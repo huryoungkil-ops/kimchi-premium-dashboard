@@ -1,0 +1,592 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>김프레이더</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+  :root{
+    --bg: #f2ede1;
+    --bg-raised: #ffffff;
+    --ink: #241f19;
+    --ink-soft: #5c5346;
+    --line: #d9d0be;
+    --line-soft: #e7e0d1;
+    --accent: #9c6b23;
+    --accent-ink: #ffffff;
+    --accent-soft: #efe0c4;
+    --good: #3f6f57;
+    --good-soft: #dde9e0;
+    --watch: #93641c;
+    --watch-soft: #f0e2c4;
+    --danger: #9a3b28;
+    --danger-soft: #f3ddd4;
+    --shadow: 0 1px 2px rgba(36,31,25,.06), 0 8px 24px -12px rgba(36,31,25,.18);
+    --radius: 14px;
+    --font-display: "Fraunces", "Noto Serif KR", serif;
+    --font-body: "IBM Plex Sans KR", "Pretendard", -apple-system, sans-serif;
+    --font-mono: "IBM Plex Mono", "Noto Sans Mono", monospace;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg: #1b1712;
+      --bg-raised: #24201a;
+      --ink: #f1e9da;
+      --ink-soft: #b9ab95;
+      --line: #3a3327;
+      --line-soft: #2c2720;
+      --accent: #d9a44e;
+      --accent-ink: #241a08;
+      --accent-soft: #3a2c14;
+      --good: #86bd9f;
+      --good-soft: #223229;
+      --watch: #dcb15f;
+      --watch-soft: #3a2f18;
+      --danger: #e08b6f;
+      --danger-soft: #3a241d;
+      --shadow: 0 1px 2px rgba(0,0,0,.3), 0 12px 32px -14px rgba(0,0,0,.55);
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg: #1b1712;
+    --bg-raised: #24201a;
+    --ink: #f1e9da;
+    --ink-soft: #b9ab95;
+    --line: #3a3327;
+    --line-soft: #2c2720;
+    --accent: #d9a44e;
+    --accent-ink: #241a08;
+    --accent-soft: #3a2c14;
+    --good: #86bd9f;
+    --good-soft: #223229;
+    --watch: #dcb15f;
+    --watch-soft: #3a2f18;
+    --danger: #e08b6f;
+    --danger-soft: #3a241d;
+    --shadow: 0 1px 2px rgba(0,0,0,.3), 0 12px 32px -14px rgba(0,0,0,.55);
+  }
+
+  *{ box-sizing:border-box; }
+  html{ background:var(--bg); }
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:var(--font-body);
+    font-size:15px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    word-break:keep-all;
+    overflow-wrap:break-word;
+  }
+  @media (prefers-reduced-motion: reduce){
+    *{ animation-duration:.001ms !important; transition-duration:.001ms !important; }
+  }
+  a{ color:var(--accent); }
+  :focus-visible{ outline:2px solid var(--accent); outline-offset:2px; border-radius:4px; }
+
+  .wrap{ max-width:980px; margin:0 auto; padding:40px 24px 80px; }
+
+  /* ---------- header ---------- */
+  header.top{
+    display:flex; flex-wrap:wrap; align-items:flex-end; justify-content:space-between; gap:16px;
+    padding-bottom:28px; border-bottom:1px solid var(--line);
+    margin-bottom:28px;
+    opacity:0; animation: rise .5s ease-out forwards;
+  }
+  .brand{ display:flex; align-items:baseline; gap:12px; }
+  .brand h1{
+    font-family:var(--font-display); font-weight:600; font-size:32px; letter-spacing:-.01em;
+    margin:0; text-wrap:balance;
+  }
+  .brand .mark{ font-size:26px; }
+  .brand .tag{
+    font-family:var(--font-mono); font-size:12px; color:var(--ink-soft);
+    border:1px solid var(--line); border-radius:999px; padding:3px 10px;
+  }
+  .snapshot-meta{ text-align:right; font-size:12.5px; color:var(--ink-soft); font-family:var(--font-mono); }
+  .snapshot-meta strong{ color:var(--ink); font-weight:600; }
+  .live-badge{ display:inline-flex; align-items:center; gap:6px; font-size:11px; color:var(--good); margin-top:6px; justify-content:flex-end; }
+  .live-badge .pulse{ width:7px; height:7px; border-radius:50%; background:var(--good); position:relative; flex:none; }
+  .live-badge .pulse::after{
+    content:""; position:absolute; inset:-5px; border-radius:50%; border:1.5px solid var(--good);
+    animation: pulse-ring 2.4s ease-out infinite;
+  }
+  @keyframes pulse-ring{ 0%{ transform:scale(.4); opacity:.9; } 100%{ transform:scale(1.8); opacity:0; } }
+
+  /* ---------- stat tiles ---------- */
+  .tiles{
+    display:grid; grid-template-columns:repeat(4,1fr); gap:1px;
+    background:var(--line); border:1px solid var(--line); border-radius:var(--radius);
+    overflow:hidden; margin-bottom:36px; box-shadow:var(--shadow);
+  }
+  .tile{ background:var(--bg-raised); padding:18px 20px; opacity:0; animation: rise .5s ease-out forwards; }
+  .tile:nth-child(1){ animation-delay:.03s; }
+  .tile:nth-child(2){ animation-delay:.08s; }
+  .tile:nth-child(3){ animation-delay:.13s; }
+  .tile:nth-child(4){ animation-delay:.18s; }
+  .tile .label{ font-size:12px; color:var(--ink-soft); text-transform:uppercase; letter-spacing:.08em; margin-bottom:8px; }
+  .tile .value{ font-family:var(--font-mono); font-size:24px; font-weight:600; font-variant-numeric:tabular-nums; }
+  .tile .sub{ font-size:12.5px; color:var(--ink-soft); margin-top:4px; }
+  @media (max-width:720px){ .tiles{ grid-template-columns:repeat(2,1fr); } }
+
+  section{ margin-bottom:40px; }
+  h2{
+    font-family:var(--font-display); font-weight:600; font-size:20px; margin:0 0 4px;
+    text-wrap:balance;
+  }
+  .section-sub{ color:var(--ink-soft); font-size:13.5px; margin:0 0 18px; max-width:62ch; }
+
+  /* ---------- strategy flow ---------- */
+  .flow{
+    display:grid; grid-template-columns:repeat(4,1fr); gap:12px;
+  }
+  .flow-step{
+    background:var(--bg-raised); border:1px solid var(--line); border-radius:var(--radius);
+    padding:16px 16px 18px; position:relative;
+  }
+  .flow-step .num{
+    font-family:var(--font-mono); font-size:11px; color:var(--accent);
+    letter-spacing:.05em; margin-bottom:8px; display:block;
+  }
+  .flow-step h3{ font-size:14.5px; margin:0 0 6px; font-weight:600; }
+  .flow-step p{ font-size:12.8px; color:var(--ink-soft); margin:0; line-height:1.55; }
+  .flow-arrow{
+    display:none;
+  }
+  @media (min-width:721px){
+    .flow{ position:relative; }
+    .flow-step:not(:last-child)::after{
+      content:"→"; position:absolute; right:-15px; top:16px; color:var(--line);
+      font-size:16px; z-index:1;
+    }
+  }
+  @media (max-width:720px){ .flow{ grid-template-columns:1fr 1fr; } }
+
+  /* ---------- concept explainer ---------- */
+  .concept{
+    margin-top:16px; background:var(--bg-raised); border:1px solid var(--line); border-radius:var(--radius);
+    padding:20px 22px 16px; box-shadow:var(--shadow);
+  }
+  .concept-lead{ font-size:13.5px; color:var(--ink-soft); margin:0 0 14px; }
+  .concept-lead strong{ color:var(--ink); }
+  .nowrap{ white-space:nowrap; }
+  .concept svg{ display:block; width:100%; height:auto; }
+  .concept-caption{ font-family:var(--font-mono); font-size:10.5px; fill:var(--ink-soft); }
+  .line-legend{ display:flex; flex-wrap:wrap; column-gap:18px; row-gap:6px; margin:10px 0 4px; font-size:12px; color:var(--ink-soft); }
+  .line-legend span{ display:inline-flex; align-items:center; gap:7px; white-space:nowrap; }
+  .sw{ display:inline-block; width:22px; height:0; border-top-style:solid; }
+  .sw-long{ border-top:2.2px dashed var(--accent); }
+  .sw-short{ border-top:2.2px dotted var(--ink-soft); }
+  .sw-combined{ border-top:3.4px solid var(--good); }
+  .sw-premium{ border-top:2.6px solid var(--accent); }
+  .sw-ma{ border-top:1.4px dashed var(--ink-soft); }
+  .sw-entryline{ border-top:1.4px dotted var(--danger); }
+  .concept-steps{
+    display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin-top:14px;
+  }
+  .concept-step{ font-size:12.3px; color:var(--ink-soft); line-height:1.5; padding-left:14px; border-left:2px solid var(--line); }
+  .concept-step b{ color:var(--ink); display:block; font-size:12.8px; margin-bottom:2px; }
+  @media (max-width:720px){ .concept-steps{ grid-template-columns:1fr; } }
+
+  .rules{
+    margin-top:16px; background:var(--bg-raised); border:1px solid var(--line); border-radius:var(--radius);
+    padding:18px 22px; box-shadow:var(--shadow);
+  }
+  .rules dl{ display:grid; grid-template-columns:auto 1fr; gap:9px 18px; margin:0; }
+  .rules dt{ font-size:12.5px; color:var(--ink-soft); white-space:nowrap; padding-top:1px; }
+  .rules dd{ margin:0; font-family:var(--font-mono); font-size:13px; }
+  .rules hr{ grid-column:1/-1; border:none; border-top:1px solid var(--line-soft); margin:2px 0; }
+
+  /* ---------- coin table ---------- */
+  .legend{ display:flex; gap:16px; flex-wrap:wrap; margin-bottom:14px; font-size:12.5px; color:var(--ink-soft); }
+  .legend span{ display:inline-flex; align-items:center; gap:6px; }
+  .dot{ width:9px; height:9px; border-radius:50%; display:inline-block; }
+  .dot.calm{ background:var(--good); }
+  .dot.watch{ background:var(--watch); }
+  .dot.danger{ background:var(--danger); }
+
+  .table-scroll{ overflow-x:auto; border:1px solid var(--line); border-radius:var(--radius); box-shadow:var(--shadow); background:var(--bg-raised); }
+  table.coins{ width:100%; border-collapse:collapse; min-width:680px; }
+  table.coins thead th{
+    text-align:left; font-size:11.5px; text-transform:uppercase; letter-spacing:.06em; color:var(--ink-soft);
+    font-weight:600; padding:12px 16px; border-bottom:1px solid var(--line); position:sticky; top:0; background:var(--bg-raised);
+  }
+  table.coins thead th.num{ text-align:right; }
+  table.coins tbody td{ padding:9px 16px; border-bottom:1px solid var(--line-soft); font-size:13.5px; vertical-align:middle; }
+  table.coins tbody tr:last-child td{ border-bottom:none; }
+  table.coins tbody tr{ opacity:0; animation: rise .35s ease-out forwards; }
+  .coin-cell{ display:flex; align-items:center; gap:9px; font-family:var(--font-mono); font-weight:600; }
+  .coin-cell .krw{ font-family:var(--font-body); font-weight:400; color:var(--ink-soft); font-size:12px; }
+  td.premium{ font-family:var(--font-mono); text-align:right; font-variant-numeric:tabular-nums; font-weight:600; white-space:nowrap; }
+  td.premium.pos{ color:var(--good); }
+  td.premium.neg{ color:var(--danger); }
+  td.bar-cell{ min-width:220px; }
+  .bar-track{ position:relative; height:8px; background:var(--line-soft); border-radius:4px; overflow:hidden; }
+  .bar-track .zero{ position:absolute; top:-3px; bottom:-3px; width:1px; background:var(--ink-soft); opacity:.5; }
+  .bar-track .fill{ position:absolute; top:0; bottom:0; border-radius:4px; }
+  .bar-track .fill.calm{ background:var(--good); }
+  .bar-track .fill.watch{ background:var(--watch); }
+  .bar-track .fill.danger{ background:var(--danger); }
+  .pill{
+    display:inline-block; font-size:11px; font-weight:600; padding:3px 9px; border-radius:999px;
+    white-space:nowrap;
+  }
+  .pill.calm{ background:var(--good-soft); color:var(--good); }
+  .pill.watch{ background:var(--watch-soft); color:var(--watch); }
+  .pill.danger{ background:var(--danger-soft); color:var(--danger); }
+  .scale-axis{ display:flex; justify-content:space-between; font-family:var(--font-mono); font-size:10.5px; color:var(--ink-soft); padding:6px 16px 10px; }
+
+  /* ---------- example alert ---------- */
+  .example-wrap{ display:flex; gap:18px; flex-wrap:wrap; align-items:flex-start; }
+  .example-note{ flex:1 1 220px; font-size:13px; color:var(--ink-soft); max-width:36ch; }
+  .discord-card{
+    flex:1 1 320px; max-width:420px; background:var(--bg-raised); border:1px solid var(--line); border-radius:var(--radius);
+    padding:16px 18px; box-shadow:var(--shadow); position:relative;
+  }
+  .discord-card::before{
+    content:"예시 · 아직 발생 전"; position:absolute; top:-10px; left:16px; background:var(--accent); color:var(--accent-ink);
+    font-size:10.5px; font-weight:700; padding:3px 10px; border-radius:999px; letter-spacing:.02em;
+  }
+  .discord-card pre{
+    margin:6px 0 0; white-space:pre-wrap; font-family:var(--font-mono); font-size:12.8px; line-height:1.65; color:var(--ink);
+  }
+
+  footer{
+    border-top:1px solid var(--line); padding-top:22px; font-size:12.5px; color:var(--ink-soft);
+  }
+  footer p{ max-width:70ch; margin:0 0 8px; }
+  footer code{ font-family:var(--font-mono); background:var(--line-soft); padding:1px 5px; border-radius:4px; }
+
+  @keyframes rise{ from{ opacity:0; transform:translateY(6px); } to{ opacity:1; transform:translateY(0); } }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <header class="top">
+    <div class="brand">
+      <span class="mark">🌶️</span>
+      <h1>김프레이더</h1>
+      <span class="tag">PAPER TRADING</span>
+    </div>
+    <div class="snapshot-meta">
+      스냅샷 기준 <strong><!--SNAPSHOT_TIME-->2026-09-07 18:30 KST<!--/SNAPSHOT_TIME--></strong><br>
+      가동 시작 2026-09-05 22:00 KST
+      <div class="live-badge"><i class="pulse"></i>자동 갱신 매시간 · <!--LAST_REFRESH-->마지막 갱신 2026-09-07 18:30 KST 기준<!--/LAST_REFRESH--></div>
+    </div>
+  </header>
+
+  <section class="tiles" aria-label="현재 요약">
+    <div class="tile">
+      <div class="label">가상 시드</div>
+      <div class="value">$10,000</div>
+      <div class="sub">1회 투입 10% · 최대 3개 동시 보유</div>
+    </div>
+    <div class="tile">
+      <div class="label">누적 청산 거래</div>
+      <div class="value"><!--STAT_TRADES-->0건<!--/STAT_TRADES--></div>
+      <div class="sub"><!--STAT_TRADES_SUB-->신호 발생 대기 중<!--/STAT_TRADES_SUB--></div>
+    </div>
+    <div class="tile">
+      <div class="label">누적 손익</div>
+      <div class="value"><!--STAT_PNL_VALUE-->+$0.00<!--/STAT_PNL_VALUE--></div>
+      <div class="sub"><!--STAT_PNL_SUB-->원금 대비 +0.00%<!--/STAT_PNL_SUB--></div>
+    </div>
+    <div class="tile">
+      <div class="label">감시 코인</div>
+      <div class="value"><!--STAT_COINCOUNT-->31개<!--/STAT_COINCOUNT--></div>
+      <div class="sub">국내거래소 × 해외거래소 동시 상장분</div>
+    </div>
+  </section>
+
+  <section aria-labelledby="strategy-h">
+    <h2 id="strategy-h">전략 — 5분마다 국내·해외 가격을 대조합니다</h2>
+    <p class="section-sub">국내거래소(원화 현물)와 해외거래소(USDT 무기한선물) 가격을 환율로 환산해 비교하고, 3일 이동평균 대비 이탈 정도로 진입·청산을 판단하는 순수 시뮬레이션입니다.</p>
+
+    <div class="flow">
+      <div class="flow-step">
+        <span class="num">01</span>
+        <h3>가격 수집·저장</h3>
+        <p>국내거래소 KRW가를 환율(open.er-api.com)로 달러 환산 후 해외거래소 USDT가와 비교해 김프(%)를 계산, 5분마다 이력 테이블에 적재</p>
+      </div>
+      <div class="flow-step">
+        <span class="num">02</span>
+        <h3>MA·신호 판정</h3>
+        <p>코인별 최근 3일 이동평균과 표준편차(σ)를 계산해, 하단 밴드 이탈이면 진입, 평균 회복이면 청산 신호로 분류</p>
+      </div>
+      <div class="flow-step">
+        <span class="num">03</span>
+        <h3>진입 처리</h3>
+        <p>중복 보유·최대 개수(3개)를 확인한 뒤 자본의 10%를 가상 매수로 기록하고 Discord로 알림</p>
+      </div>
+      <div class="flow-step">
+        <span class="num">04</span>
+        <h3>청산 처리</h3>
+        <p>보유 중인 코인의 프리미엄이 평균을 회복하면 손익을 계산해 청산 기록, 결과를 Discord로 알림</p>
+      </div>
+    </div>
+
+    <div class="concept">
+      <p class="concept-lead"><strong>코인 자체가 오르든 내리든 상관없어요.</strong> 국내거래소에서 <span class="nowrap">사고(롱)</span> 해외거래소에서 같은 만큼 <span class="nowrap">팔아두면(숏),</span> 둘을 더한 값은 코인 시세와 무관하게 거의 그대로 유지돼요 — 아래 위쪽 그래프의 굵은 <span class="nowrap">초록선(합산)이</span> 그걸 보여줘요. 대신 두 시장의 가격 <span class="nowrap">차이(프리미엄)만</span> 그대로 내 손익이 되는데, 이 차이가 평소보다 훨씬 <span class="nowrap">좁아졌을 때(할인)</span> 들어가서, 다시 평소 수준으로 돌아오면 둘 다 정리합니다. (예시를 위한 가상 데이터이며 실제 시세가 아닙니다)</p>
+      <svg id="concept-svg" width="760" height="360" viewBox="0 0 760 360" preserveAspectRatio="xMidYMid meet" role="img" aria-label="현물 롱과 선물 숏을 합치면 시세 변화와 무관하게 평평해지고, 프리미엄 갭이 벌어졌다 좁혀질 때 진입·청산하는 과정을 보여주는 개념도" style="width:100%;height:auto;display:block;"></svg>
+      <div class="line-legend">
+        <span><i class="sw sw-long"></i>국내거래소 — 롱(매수·보유)</span>
+        <span><i class="sw sw-short"></i>해외거래소 — 숏(공매도)</span>
+        <span><i class="sw sw-combined"></i>합산(롱+숏)</span>
+        <span><i class="sw sw-premium"></i>프리미엄(%)</span>
+        <span><i class="sw sw-ma"></i>3일 평균</span>
+        <span><i class="sw sw-entryline"></i>진입선(평균−1σ)</span>
+      </div>
+      <div class="concept-steps">
+        <div class="concept-step"><b>① 헤지</b>국내거래소에서 사고(롱) 동시에 해외거래소에서 같은 수량을 미리 팔아둠(숏) — 둘을 더하면 코인 시세 방향과 무관해짐</div>
+        <div class="concept-step"><b>② 진입</b>프리미엄이 3일 평균보다 훨씬 좁아지면(할인 구간) 두 포지션을 동시에 잡음</div>
+        <div class="concept-step"><b>③ 청산</b>프리미엄이 다시 평균 수준으로 돌아오면 두 포지션을 동시에 정리해 회복분을 이익으로 확정</div>
+      </div>
+    </div>
+
+    <div class="rules">
+      <dl>
+        <dt>진입 조건</dt><dd>현재 프리미엄 &lt; 3일 이동평균 − 1.0σ</dd>
+        <dt>청산 조건</dt><dd>현재 프리미엄 &gt; 3일 이동평균</dd>
+        <hr>
+        <dt>변동성 가드</dt><dd>σ &gt; 2.5%p → 이번 회차 신호 보류 (자동 복귀, 영구 제외 아님)</dd>
+        <dt>최소 표본</dt><dd>10개 스냅샷 (약 50분) 미만이면 판정 보류</dd>
+        <hr>
+        <dt>조회 주기</dt><dd>5분 간격, 24시간 상시 가동</dd>
+        <dt>가격 소스</dt><dd>국내거래소 /v2/tickers (KRW 현물) · 해외거래소 /market/tickers (USDT SWAP)</dd>
+      </dl>
+    </div>
+  </section>
+
+  <section aria-labelledby="coins-h">
+    <h2 id="coins-h">지금 이 순간, 31개 코인의 김프</h2>
+    <p class="section-sub">색상은 오늘 스냅샷의 프리미엄 크기를 기준으로 한 참고용 표시이며, 실제 변동성 가드 적용 여부는 코인별 3일 σ 계산 결과를 따릅니다.</p>
+
+    <div class="legend">
+      <span><i class="dot calm"></i>안정 (±2.0%p 이내)</span>
+      <span><i class="dot watch"></i>관찰 (±2.0~5.0%p)</span>
+      <span><i class="dot danger"></i>변동성 큼 (±5.0%p 초과)</span>
+    </div>
+
+    <div class="table-scroll">
+      <table class="coins">
+        <thead>
+          <tr>
+            <th>코인</th>
+            <th class="num">프리미엄</th>
+            <th id="dist-header">분포</th>
+            <th>상태</th>
+          </tr>
+        </thead>
+        <tbody id="coin-tbody"></tbody>
+      </table>
+      <div class="scale-axis" id="scale-axis"></div>
+    </div>
+  </section>
+
+  <section aria-labelledby="alert-h">
+    <h2 id="alert-h">신호가 뜨면 이런 알림이 갑니다</h2>
+    <div class="example-wrap">
+      <p class="example-note">아직 실제 거래가 없어서, 조건이 맞았을 때 Discord로 전송될 메시지 형태를 미리 보여드려요. 실제 발생 시 이 채널로 자동 전송됩니다.</p>
+      <div class="discord-card">
+        <pre>🟢 [가상 진입] LDO
+김프: -10.39% (3일 평균 -6.20%)
+가상 투입금: $1,000</pre>
+      </div>
+      <div class="discord-card">
+        <pre>🔴 [가상 청산] LDO
+청산 김프: -5.80%
+순손익: +$45.20</pre>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p><strong>이 페이지는 실제 자금이 오가지 않는 페이퍼 트레이딩 기록입니다.</strong> 위 수치는 매시간 자동으로 다시 게시되는 스냅샷이며(꺼져있으면 갱신되지 않음), 여는 순간의 실시간 값은 아닙니다. 원본 데이터는 5분마다 수집됩니다.</p>
+    <p>초기 설계는 Upbit×Bybit 조합이었으나, 이 서버 위치에서 Bybit·Binance API가 지역 차단(403/451)되어 있어 지금의 해외거래소(OKX)로 교체했습니다. Polygon의 MATIC→POL 리브랜딩을 반영해 종목명도 갱신했습니다.</p>
+  </footer>
+
+</div>
+
+<script>
+(function(){
+  // COINS_DATA_START — 자동 갱신 작업이 이 배열만 통째로 교체합니다. 형식: [심볼, 프리미엄(%, 소수점2), 코빗원화가, 상태("calm"|"watch"|"danger")]
+  var coins = [
+    ["GRT", 10.85, 28.75, "danger"],
+    ["XTZ", 5.23, 342.9, "danger"],
+    ["SUSHI", 3.40, 332.5, "watch"],
+    ["AVAX", 1.82, 10890, "calm"],
+    ["ICP", 1.63, 4111, "calm"],
+    ["BNB", 1.56, 1019000, "calm"],
+    ["SHIB", 1.40, 0.0075, "calm"],
+    ["NEAR", 1.37, 3209, "calm"],
+    ["TRX", 1.25, 458.7, "calm"],
+    ["HBAR", 1.25, 110, "calm"],
+    ["ETH", 1.20, 3398000, "calm"],
+    ["XRP", 1.20, 1913, "calm"],
+    ["ADA", 1.19, 298, "calm"],
+    ["DOT", 1.14, 1334, "calm"],
+    ["DOGE", 1.14, 122.2, "calm"],
+    ["HYPE", 1.14, 119000, "calm"],
+    ["SUI", 1.11, 1105, "calm"],
+    ["BTC", 1.09, 108144000, "calm"],
+    ["LINK", 1.07, 18260, "calm"],
+    ["XLM", 1.06, 259.7, "calm"],
+    ["SOL", 0.86, 142700, "calm"],
+    ["AAVE", 0.59, 182000, "calm"],
+    ["UNI", 0.44, 9500, "calm"],
+    ["BCH", 0.33, 347200, "calm"],
+    ["ARB", -0.05, 224, "calm"],
+    ["POL", -0.96, 130.7, "calm"],
+    ["IMX", -1.21, 176, "calm"],
+    ["GMX", -6.61, 10160, "danger"],
+    ["INJ", -7.88, 7000, "danger"],
+    ["DYDX", -9.27, 149.2, "danger"],
+    ["LDO", -11.55, 485, "danger"]
+  ];
+  // COINS_DATA_END
+
+  // 스케일은 그날의 실제 프리미엄 분포에 맞춰 매번 새로 계산합니다 (고정폭이면 값이 범위를 넘을 때 막대가 옆 칸을 침범함)
+  var premiums = coins.map(function (c) { return c[1]; });
+  var dataMin = Math.min.apply(null, premiums.concat([0]));
+  var dataMax = Math.max.apply(null, premiums.concat([0]));
+  var pad = Math.max(1, (dataMax - dataMin) * 0.12);
+  var SCALE_MIN = Math.floor(dataMin - pad);
+  var SCALE_MAX = Math.ceil(dataMax + pad);
+  var RANGE = SCALE_MAX - SCALE_MIN;
+  var ZERO_PCT = (0 - SCALE_MIN) / RANGE * 100;
+
+  document.getElementById('dist-header').textContent = '분포 (' + SCALE_MIN + '%p ~ +' + SCALE_MAX + '%p)';
+  var axisEl = document.getElementById('scale-axis');
+  [SCALE_MIN, Math.round((SCALE_MIN + 0) / 2), 0, Math.round((SCALE_MAX + 0) / 2), SCALE_MAX].forEach(function (v) {
+    var span = document.createElement('span');
+    span.textContent = (v > 0 ? '+' : '') + v + '%';
+    axisEl.appendChild(span);
+  });
+
+  var statusLabel = { calm: "안정", watch: "관찰", danger: "변동성 큼" };
+
+  function fmtKrw(v){
+    if (v < 1) return v.toFixed(4) + "원";
+    return Math.round(v).toLocaleString("ko-KR") + "원";
+  }
+
+  var tbody = document.getElementById("coin-tbody");
+  var rowsHtml = "";
+
+  coins.forEach(function(row, i){
+    var coin = row[0], premium = row[1], krw = row[2], status = row[3];
+    var pos = (premium - SCALE_MIN) / RANGE * 100;
+    var left = premium >= 0 ? ZERO_PCT : pos;
+    var width = Math.abs(pos - ZERO_PCT);
+    var premClass = premium >= 0 ? "pos" : "neg";
+    var sign = premium >= 0 ? "+" : "";
+
+    rowsHtml += ''
+      + '<tr style="animation-delay:' + Math.min(i * 14, 300) + 'ms">'
+      + '<td><span class="coin-cell">' + coin + '<span class="krw">' + fmtKrw(krw) + '</span></span></td>'
+      + '<td class="premium ' + premClass + '">' + sign + premium.toFixed(2) + '%</td>'
+      + '<td class="bar-cell"><div class="bar-track"><div class="zero" style="left:' + ZERO_PCT.toFixed(2) + '%"></div>'
+      + '<div class="fill ' + status + '" style="left:' + left.toFixed(2) + '%;width:' + width.toFixed(2) + '%"></div></div></td>'
+      + '<td><span class="pill ' + status + '">' + statusLabel[status] + '</span></td>'
+      + '</tr>';
+  });
+
+  tbody.innerHTML = rowsHtml;
+})();
+</script>
+
+<script>
+(function(){
+  // 개념 설명용 예시 데이터 (실제 시세 아님) — 코인 시세 자체는 전반적으로 올랐다 내렸다 하지만, 두 시장 간 "간격"(프리미엄)만 잠깐 좁혀졌다(할인) 다시 정상으로 돌아옴
+  var F = [100.0,100.8,100.5,101.2,101.6,101.3,102.0,102.5,102.2,102.8,103.2,103.0,103.6,104.0,103.8,104.3,104.6]; // OKX 선물가(환산) — 숏 기준가
+  var D = [101.2,102.1,101.6,102.4,102.6,101.9,102.1,102.2,101.6,102.4,103.2,103.5,104.5,105.1,105.0,105.5,105.9]; // 코빗 현물가 — 롱 보유가
+  var N = F.length;
+  var D0 = D[0], F0 = F[0];
+
+  // 진입 시점(t=0)을 0%로 두고, 각 포지션의 누적 손익률(%)을 계산
+  var longRet = D.map(function (d) { return Math.round((d / D0 - 1) * 10000) / 100; });      // 코빗 롱 손익률
+  var shortRet = F.map(function (f) { return Math.round(-(f / F0 - 1) * 10000) / 100; });     // OKX 숏 손익률 (가격이 내려야 이익)
+  var combinedRet = longRet.map(function (v, i) { return Math.round((v + shortRet[i]) * 100) / 100; }); // 둘을 더한 합산 손익률
+
+  var premium = F.map(function (f, i) { return Math.round((D[i] / f - 1) * 10000) / 100; });
+  var MA = 1.0, ENTRY_LINE = 0.3;
+  var entryIdx = premium.findIndex(function (p) { return p < ENTRY_LINE; });
+  var exitIdx = -1;
+  for (var i = entryIdx + 1; i < premium.length; i++) { if (premium[i] > MA) { exitIdx = i; break; } }
+
+  var X0 = 78, X1 = 730;
+  function sx(i){ return X0 + i * (X1 - X0) / (N - 1); }
+
+  // 패널 A: 손익률(%) (y 46~184, 위쪽 y 10~40은 제목+마커 라벨 전용 여백), 패널 B: 프리미엄(%) (y 228~336)
+  var rMin = Math.min.apply(null, longRet.concat(shortRet).concat([0])) - 1, rMax = Math.max.apply(null, longRet.concat(shortRet).concat([0])) + 1;
+  function syA(v){ return 184 - (v - rMin) / (rMax - rMin) * 138; }
+  var qMin = Math.min.apply(null, premium.concat([ENTRY_LINE])) - 0.5, qMax = Math.max.apply(null, premium.concat([MA])) + 0.5;
+  function syB(v){ return 336 - (v - qMin) / (qMax - qMin) * 108; }
+
+  function poly(arr, sy){ return arr.map(function (v, i) { return sx(i) + ',' + sy(v).toFixed(1); }).join(' '); }
+
+  var svgns = 'http://www.w3.org/2000/svg';
+  var svg = document.getElementById('concept-svg');
+
+  function el(tag, attrs){
+    var n = document.createElementNS(svgns, tag);
+    for (var k in attrs) {
+      // fill/stroke는 var(--색상)을 값으로 쓰는데, 일부 모바일 브라우저(구형 iOS Safari 계열)는
+      // SVG 프레젠테이션 속성(setAttribute) 안의 var()를 해석하지 못해 선이 안 보이는 문제가 있음.
+      // style로 지정하면 CSS 변수 해석이 항상 보장돼서 안전함.
+      if (k === 'fill' || k === 'stroke') {
+        n.style[k] = attrs[k];
+      } else {
+        n.setAttribute(k, attrs[k]);
+      }
+    }
+    return n;
+  }
+
+  // 두 마커 x좌표를 잇는 강조 리본 (패널 A~B 관통)
+  if (entryIdx > -1 && exitIdx > -1) {
+    svg.appendChild(el('rect', { x: sx(entryIdx), y: 16, width: sx(exitIdx) - sx(entryIdx), height: 332, fill: 'var(--accent-soft)', opacity: 0.5 }));
+  }
+
+  // 패널 A 라벨 + 0% 기준선 + 세 라인 (현물 롱 / 숏 / 합산)
+  svg.appendChild(el('text', { x: X0, y: 12, class: 'concept-caption', 'font-weight': 700 })).textContent = '포지션 손익률(%) — 진입 시점 기준';
+  svg.appendChild(el('line', { x1: X0, x2: X1, y1: syA(0), y2: syA(0), stroke: 'var(--line)', 'stroke-width': 1 }));
+  var longLine = el('polyline', { points: poly(longRet, syA), fill: 'none', stroke: 'var(--accent)', 'stroke-width': 2, 'stroke-dasharray': '5 3' });
+  var shortLine = el('polyline', { points: poly(shortRet, syA), fill: 'none', stroke: 'var(--ink-soft)', 'stroke-width': 2, 'stroke-dasharray': '2 3' });
+  var combinedLine = el('polyline', { points: poly(combinedRet, syA), fill: 'none', stroke: 'var(--good)', 'stroke-width': 3.4, 'stroke-linejoin': 'round' });
+  svg.appendChild(longLine); svg.appendChild(shortLine); svg.appendChild(combinedLine);
+
+  // 패널 B 라벨 + 기준선 + 프리미엄 라인
+  svg.appendChild(el('text', { x: X0, y: 218, class: 'concept-caption', 'font-weight': 700 })).textContent = '프리미엄(%) = 현물가 ÷ 선물가 − 1';
+  var maLine = el('line', { x1: X0, x2: X1, y1: syB(MA), y2: syB(MA), stroke: 'var(--ink-soft)', 'stroke-width': 1.2, 'stroke-dasharray': '4 3' });
+  var entryLine = el('line', { x1: X0, x2: X1, y1: syB(ENTRY_LINE), y2: syB(ENTRY_LINE), stroke: 'var(--danger)', 'stroke-width': 1.2, 'stroke-dasharray': '2 3' });
+  svg.appendChild(maLine); svg.appendChild(entryLine);
+  svg.appendChild(el('text', { x: X1, y: syB(MA) - 5, class: 'concept-caption', 'text-anchor': 'end' })).textContent = '3일 평균';
+  svg.appendChild(el('text', { x: X1, y: syB(ENTRY_LINE) + 13, class: 'concept-caption', fill: 'var(--danger)', 'text-anchor': 'end' })).textContent = '평균−1σ (진입선, 할인 구간)';
+  var qLine = el('polyline', { points: poly(premium, syB), fill: 'none', stroke: 'var(--accent)', 'stroke-width': 2.6 });
+  svg.appendChild(qLine);
+
+  // 진입/청산 마커 (두 패널 관통하는 세로선 + 점 + 라벨) — 진입·청산 모두 롱·숏 동시 매매이므로 패널 A엔 점 2개(롱, 숏)씩 표시
+  function marker(idx, label, color){
+    if (idx < 0) return;
+    var x = sx(idx);
+    svg.appendChild(el('line', { x1: x, x2: x, y1: 42, y2: 336, stroke: color, 'stroke-width': 1, 'stroke-dasharray': '3 3', opacity: 0.6 }));
+    svg.appendChild(el('circle', { cx: x, cy: syA(longRet[idx]), r: 4.5, fill: color }));
+    svg.appendChild(el('circle', { cx: x, cy: syA(shortRet[idx]), r: 4.5, fill: color }));
+    svg.appendChild(el('circle', { cx: x, cy: syA(combinedRet[idx]), r: 5, fill: color, stroke: 'var(--bg-raised)', 'stroke-width': 1.5 }));
+    svg.appendChild(el('circle', { cx: x, cy: syB(premium[idx]), r: 5, fill: color }));
+    var t = el('text', { x: x, y: 34, class: 'concept-caption', fill: color, 'font-weight': 700, 'text-anchor': 'middle' });
+    t.textContent = label;
+    svg.appendChild(t);
+  }
+  marker(entryIdx, '① 진입 (롱+숏 동시)', 'var(--danger)');
+  marker(exitIdx, '② 청산 (롱+숏 동시)', 'var(--good)');
+})();
+</script>
+
+</body>
+</html>
