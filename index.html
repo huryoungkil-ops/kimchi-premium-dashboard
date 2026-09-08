@@ -107,8 +107,8 @@
   }
   .snapshot-meta{ text-align:right; font-size:12.5px; color:var(--ink-soft); font-family:var(--font-mono); }
   .snapshot-meta strong{ color:var(--ink); font-weight:600; }
-  .live-badge{ display:inline-flex; align-items:center; gap:6px; font-size:11px; color:var(--good); margin-top:6px; justify-content:flex-end; }
-  .live-badge .pulse{ width:7px; height:7px; border-radius:50%; background:var(--good); position:relative; flex:none; }
+  .live-badge{ display:inline-flex; align-items:flex-start; gap:6px; font-size:11px; color:var(--good); margin-top:6px; justify-content:flex-end; line-height:1.5; text-align:right; }
+  .live-badge .pulse{ width:7px; height:7px; border-radius:50%; background:var(--good); position:relative; flex:none; margin-top:4px; }
   .live-badge .pulse::after{
     content:""; position:absolute; inset:-5px; border-radius:50%; border:1.5px solid var(--good);
     animation: pulse-ring 2.4s ease-out infinite;
@@ -275,7 +275,7 @@
     <div class="snapshot-meta">
       스냅샷 기준 <strong><!--SNAPSHOT_TIME-->2026-09-08 22:34 KST<!--/SNAPSHOT_TIME--></strong><br>
       가동 시작 2026-09-05 22:00 KST
-      <div class="live-badge"><i class="pulse"></i>자동 갱신 매시간 · <!--LAST_REFRESH-->마지막 갱신 2026-09-08 22:34 KST 기준<!--/LAST_REFRESH--></div>
+      <div class="live-badge"><i class="pulse"></i><span>자동 갱신 매시간<br><!--LAST_REFRESH-->마지막 갱신 2026-09-08 22:34 KST 기준<!--/LAST_REFRESH--></span></div>
     </div>
   </header>
 
