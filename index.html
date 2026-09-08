@@ -107,8 +107,8 @@
   }
   .snapshot-meta{ text-align:right; font-size:12.5px; color:var(--ink-soft); font-family:var(--font-mono); }
   .snapshot-meta strong{ color:var(--ink); font-weight:600; }
-  .live-badge{ display:inline-flex; align-items:flex-start; gap:6px; font-size:11px; color:var(--good); margin-top:6px; justify-content:flex-end; line-height:1.5; text-align:right; }
-  .live-badge .pulse{ width:7px; height:7px; border-radius:50%; background:var(--good); position:relative; flex:none; margin-top:4px; }
+  .live-badge{ display:inline-flex; align-items:center; gap:6px; font-size:11px; color:var(--good); margin-top:6px; justify-content:flex-end; }
+  .live-badge .pulse{ width:7px; height:7px; border-radius:50%; background:var(--good); position:relative; flex:none; }
   .live-badge .pulse::after{
     content:""; position:absolute; inset:-5px; border-radius:50%; border:1.5px solid var(--good);
     animation: pulse-ring 2.4s ease-out infinite;
@@ -236,7 +236,8 @@
   .pill.calm{ background:var(--good-soft); color:var(--good); }
   .pill.watch{ background:var(--watch-soft); color:var(--watch); }
   .pill.danger{ background:var(--danger-soft); color:var(--danger); }
-  .scale-axis{ display:flex; justify-content:space-between; font-family:var(--font-mono); font-size:10.5px; color:var(--ink-soft); padding:6px 16px 10px; }
+  table.coins tfoot td{ padding:6px 16px 10px; border:none; }
+  .scale-axis{ display:flex; justify-content:space-between; font-family:var(--font-mono); font-size:10.5px; color:var(--ink-soft); }
 
   /* ---------- example alert ---------- */
   .example-wrap{ display:flex; gap:18px; flex-wrap:wrap; align-items:flex-start; }
@@ -275,7 +276,7 @@
     <div class="snapshot-meta">
       스냅샷 기준 <strong><!--SNAPSHOT_TIME-->2026-09-08 23:34 KST<!--/SNAPSHOT_TIME--></strong><br>
       가동 시작 2026-09-05 22:00 KST
-      <div class="live-badge"><i class="pulse"></i><span>자동 갱신 매시간<br><!--LAST_REFRESH-->마지막 갱신 2026-09-08 23:34 KST 기준<!--/LAST_REFRESH--></span></div>
+      <div class="live-badge"><i class="pulse"></i><!--LAST_REFRESH-->마지막 갱신 2026-09-08 23:34 KST 기준<!--/LAST_REFRESH--></div>
     </div>
   </header>
 
@@ -382,8 +383,15 @@
           </tr>
         </thead>
         <tbody id="coin-tbody"></tbody>
+        <tfoot>
+          <tr class="axis-row">
+            <td></td>
+            <td></td>
+            <td><div class="scale-axis" id="scale-axis"></div></td>
+            <td></td>
+          </tr>
+        </tfoot>
       </table>
-      <div class="scale-axis" id="scale-axis"></div>
     </div>
   </section>
 
