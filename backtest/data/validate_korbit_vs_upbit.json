@@ -1,0 +1,72 @@
+[
+  {
+    "coin": "BTC",
+    "matchedBars": 38309,
+    "korbitAvgPremium": -0.475,
+    "upbitAvgPremium": -0.466,
+    "meanDiff_KminusU": -0.009,
+    "absMeanDiff": 0.054,
+    "sdDiff": 0.069,
+    "correlation": 0.998,
+    "entrySignals_korbit": 8861,
+    "entrySignals_upbit": 8928,
+    "entrySignals_both": 8099,
+    "signalOverlapPct": 83.6
+  },
+  {
+    "coin": "ETH",
+    "matchedBars": 32647,
+    "korbitAvgPremium": -0.449,
+    "upbitAvgPremium": -0.443,
+    "meanDiff_KminusU": -0.006,
+    "absMeanDiff": 0.066,
+    "sdDiff": 0.088,
+    "correlation": 0.9969,
+    "entrySignals_korbit": 7342,
+    "entrySignals_upbit": 7429,
+    "entrySignals_both": 6589,
+    "signalOverlapPct": 80.5
+  },
+  {
+    "coin": "XRP",
+    "matchedBars": 39670,
+    "korbitAvgPremium": -0.459,
+    "upbitAvgPremium": -0.456,
+    "meanDiff_KminusU": -0.003,
+    "absMeanDiff": 0.057,
+    "sdDiff": 0.077,
+    "correlation": 0.9975,
+    "entrySignals_korbit": 9122,
+    "entrySignals_upbit": 8973,
+    "entrySignals_both": 8169,
+    "signalOverlapPct": 82.3
+  },
+  {
+    "coin": "SOL",
+    "matchedBars": 25607,
+    "korbitAvgPremium": -0.534,
+    "upbitAvgPremium": -0.536,
+    "meanDiff_KminusU": 0.002,
+    "absMeanDiff": 0.082,
+    "sdDiff": 0.113,
+    "correlation": 0.9949,
+    "entrySignals_korbit": 5407,
+    "entrySignals_upbit": 5372,
+    "entrySignals_both": 4676,
+    "signalOverlapPct": 76.6
+  },
+  {
+    "coin": "DOGE",
+    "matchedBars": 16753,
+    "korbitAvgPremium": -0.483,
+    "upbitAvgPremium": -0.447,
+    "meanDiff_KminusU": -0.036,
+    "absMeanDiff": 0.32,
+    "sdDiff": 0.4,
+    "correlation": 0.9423,
+    "entrySignals_korbit": 3334,
+    "entrySignals_upbit": 3047,
+    "entrySignals_both": 2012,
+    "signalOverlapPct": 46.1
+  }
+]
