@@ -237,6 +237,18 @@
   .pill.watch{ background:var(--watch-soft); color:var(--watch); }
   .pill.danger{ background:var(--danger-soft); color:var(--danger); }
   table.coins tfoot td{ padding:6px 16px 10px; border:none; }
+
+  /* 보유 포지션 표는 서버(자동 갱신 작업)가 미리 채워 보내므로 등장 애니메이션을 쓰지 않는다 */
+  #open-tbody tr{ opacity:1; animation:none; }
+  #open-tbody td.empty-row{ color:var(--ink-soft); text-align:center; padding:20px 16px; }
+  #open-tbody td.pos{ color:var(--good); }
+  #open-tbody td.neg{ color:var(--danger); }
+  table.open-positions{ min-width:600px; }
+  table.open-positions tbody td{ font-family:var(--font-mono); font-variant-numeric:tabular-nums; }
+  table.open-positions tbody td:first-child{ font-family:inherit; font-weight:600; }
+  table.open-positions tbody td:nth-child(2),
+  table.open-positions tbody td:nth-child(3),
+  table.open-positions tbody td:nth-child(4){ text-align:right; }
   .scale-axis{ display:flex; justify-content:space-between; font-family:var(--font-mono); font-size:10.5px; color:var(--ink-soft); }
 
   /* ---------- example alert ---------- */
@@ -284,7 +296,7 @@
     <div class="tile">
       <div class="label">가상 시드</div>
       <div class="value">$10,000</div>
-      <div class="sub">1회 투입 10% · 최대 3개 동시 보유</div>
+      <div class="sub">1회 투입 10% · <!--STAT_OPEN-->보유 0 / 최대 3<!--/STAT_OPEN--></div>
     </div>
     <div class="tile">
       <div class="label">누적 청산 거래</div>
@@ -300,6 +312,26 @@
       <div class="label">감시 코인</div>
       <div class="value"><!--STAT_COINCOUNT-->31개<!--/STAT_COINCOUNT--></div>
       <div class="sub">국내거래소 × 해외거래소 동시 상장분</div>
+    </div>
+  </section>
+
+  <section aria-labelledby="open-h">
+    <h2 id="open-h">지금 들고 있는 가상 포지션</h2>
+    <p class="section-sub">진입할 때의 김프와 현재 김프의 차이가 그대로 평가손익이 됩니다. 김프가 3일 평균 위로 회복하면 자동으로 청산되고, 그때 비로소 위의 «누적 청산 거래»에 집계됩니다.</p>
+
+    <div class="table-scroll">
+      <table class="coins open-positions">
+        <thead>
+          <tr>
+            <th>코인</th>
+            <th class="num">진입 김프</th>
+            <th class="num">현재 김프</th>
+            <th class="num">평가손익</th>
+            <th>진입 시각</th>
+          </tr>
+        </thead>
+        <tbody id="open-tbody"><!--OPEN_POSITIONS--><tr><td class="empty-row" colspan="5">현재 보유 중인 포지션이 없습니다.</td></tr><!--/OPEN_POSITIONS--></tbody>
+      </table>
     </div>
   </section>
 
