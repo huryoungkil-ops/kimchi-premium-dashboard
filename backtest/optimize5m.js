@@ -161,11 +161,37 @@ async function main() {
     console.log('  이 전략은 현재 비용 구조(왕복 0.3% + 스프레드)에서 수익을 내기 어렵다는 뜻일 수 있습니다.');
   }
 
+  // ---- 샘플링 주기 비교 ----
+  // "봇을 5분에서 10분으로 바꿔도 되는가"에 대한 측정값.
+  // 원본 5분봉을 묶어서 만들기 때문에 데이터 재수집은 필요 없다.
+  const INTERVALS = [5, 10, 15, 20];
+  const ivParams = recommended || BASELINE;
+  console.log(`\n===== 샘플링 주기 비교 =====`);
+  console.log(`조건: ${JSON.stringify(ivParams)}`);
+  console.log('이동평균 기준 기간은 3일로 고정하고 봉 개수만 조정한다 (5분봉 864개 = 10분봉 432개).');
+  console.log(HEADER);
+  const intervalResults = [];
+  for (const m of INTERVALS) {
+    const ds = m === 5 ? dataset : await lib.buildDataset({ yearsBack: YEARS, barMinutes: m, log: () => {} });
+    const tr = lib.simulate(ds, ivParams, { fromRatio: 0, toRatio: TRAIN_RATIO });
+    const va = lib.simulate(ds, ivParams, { fromRatio: TRAIN_RATIO, toRatio: 1 });
+    delete tr.trades; delete tr.equity; delete va.trades; delete va.equity;
+    intervalResults.push({ barMinutes: m, train: tr, valid: va });
+    console.log(fmtRow(`  [학습] ${m}분봉`, tr));
+    console.log(fmtRow(`  [검증] ${m}분봉`, va));
+    console.log('');
+  }
+  const bestIv = intervalResults.slice().sort((a, b) =>
+    Math.min(b.train.annualizedPct, b.valid.annualizedPct) - Math.min(a.train.annualizedPct, a.valid.annualizedPct))[0];
+  console.log(`두 구간 중 나쁜 쪽 기준으로 가장 나은 주기: ${bestIv.barMinutes}분봉`);
+  console.log('(차이가 표본 오차 수준이면 지금 쓰는 5분을 그대로 두는 게 맞다 — 데이터가 2배 쌓이므로)');
+
   fs.writeFileSync(
     path.join(lib.OUT_DIR, `optimize5m_all_${YEARS}y.json`),
     JSON.stringify({
       years: YEARS, trainRatio: TRAIN_RATIO, grid: GRID,
       coinMeta: dataset.meta, baseline: base || null, recommended,
+      intervalComparison: intervalResults,
       results: ranked.map(r => ({ params: r.params, train: r.train, valid: r.valid })),
     }, null, 2)
   );

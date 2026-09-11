@@ -23,9 +23,10 @@ const POSITION_SIZE = SEED * POSITION_FRACTION;
 // 편도 수수료: 국내 현물 0.10% + 해외 무기한선물 0.05% = 0.15% (왕복 0.30%)
 const FEE_RATE = 0.0015;
 
-const MAX_WINDOW = 864;      // 3일치 5분봉
+const WINDOW_DAYS = 3;        // 이동평균 기준 기간. 봉 간격이 바뀌어도 이 "기간"은 고정한다.
+const BASE_BAR_MINUTES = 5;   // 거래소에서 받아오는 원본 봉 간격
+const MAX_WINDOW = WINDOW_DAYS * 1440 / BASE_BAR_MINUTES; // 5분봉 기준 864개
 const MIN_DATA_POINTS = 10;
-const BAR_MS = 300000;
 
 // 5분봉 거래대금이 주문 규모의 이 배수에 못 미치면 그 가격엔 실제로 못 샀다고 본다
 const MIN_BAR_VALUE_MULTIPLE = 5;
@@ -205,6 +206,19 @@ async function fetchFxDaily(startDate, endDate, cacheFile) {
 async function buildDataset(opts) {
   const yearsBack = opts.yearsBack;
   const log = opts.log || console.log;
+
+  // 봉 간격. 5의 배수여야 한다(원본 5분봉을 묶어서 만들기 때문).
+  // 간격이 바뀌어도 이동평균 기준 기간은 WINDOW_DAYS로 고정되므로, 봉 개수만 달라진다.
+  const barMinutes = opts.barMinutes || BASE_BAR_MINUTES;
+  if (barMinutes % BASE_BAR_MINUTES !== 0) {
+    throw new Error(`barMinutes는 ${BASE_BAR_MINUTES}의 배수여야 합니다 (받은 값: ${barMinutes})`);
+  }
+  const groupSize = barMinutes / BASE_BAR_MINUTES; // 원본 몇 개를 한 봉으로 묶는가
+  const barMs = barMinutes * 60000;
+  const maxWindow = Math.round(WINDOW_DAYS * 1440 / barMinutes);
+  if (barMinutes !== BASE_BAR_MINUTES) {
+    log(`봉 간격 ${barMinutes}분 (원본 5분봉 ${groupSize}개씩 묶음, 이동평균 ${WINDOW_DAYS}일 = ${maxWindow}봉)`);
+  }
   if (!fs.existsSync(CACHE_DIR)) fs.mkdirSync(CACHE_DIR, { recursive: true });
 
   const nowMs = Date.now();
@@ -263,18 +277,42 @@ async function buildDataset(opts) {
   for (const name of usedCoins) {
     const { krw, usdt, funding } = raw[name];
     const krwByTs = new Map(krw.map(r => [r.ts, r]));
-    const rows = [];
-    let thinBars = 0;
+
+    // (1) 원본 5분 슬롯에 국내·해외가 둘 다 있는 것만 남긴다
+    const matched = [];
     for (const u of usdt) {
       const kr = krwByTs.get(u.ts);
-      if (kr === undefined) continue; // 같은 5분 슬롯에 양쪽 다 있을 때만
+      if (kr === undefined) continue;
       const rate = fxForTs(u.ts);
       if (!rate) continue;
-      const premium = ((kr.close / rate) / u.close - 1) * 100;
-      const minValueKrw = POSITION_SIZE * rate * MIN_BAR_VALUE_MULTIPLE;
-      const tradable = Number(kr.value) >= minValueKrw;
+      matched.push({ ts: u.ts, krwClose: kr.close, okxClose: u.close, rate, value: Number(kr.value) || 0 });
+    }
+
+    // (2) 봉 간격이 5분보다 크면 묶는다.
+    //     가격은 구간의 마지막 봉 종가(= 그 구간의 종가), 거래대금은 구간 합계.
+    let bars = matched;
+    if (groupSize > 1) {
+      const buckets = new Map();
+      for (const m of matched) {
+        const key = Math.floor(m.ts / barMs) * barMs;
+        const b = buckets.get(key);
+        if (!b) buckets.set(key, { ts: key, last: m, value: m.value });
+        else { b.value += m.value; if (m.ts > b.last.ts) b.last = m; }
+      }
+      bars = Array.from(buckets.values()).sort((a, b) => a.ts - b.ts).map(b => ({
+        ts: b.ts, krwClose: b.last.krwClose, okxClose: b.last.okxClose, rate: b.last.rate, value: b.value,
+      }));
+    }
+
+    // (3) 프리미엄과 체결 가능 여부
+    const rows = [];
+    let thinBars = 0;
+    for (const b of bars) {
+      const premium = ((b.krwClose / b.rate) / b.okxClose - 1) * 100;
+      const minValueKrw = POSITION_SIZE * b.rate * MIN_BAR_VALUE_MULTIPLE;
+      const tradable = b.value >= minValueKrw;
       if (!tradable) thinBars++;
-      rows.push({ ts: u.ts, premium, tradable });
+      rows.push({ ts: b.ts, premium, tradable });
     }
     if (rows.length < MIN_DATA_POINTS) { log(`  ${name}: 매칭 부족(${rows.length}) — 제외`); continue; }
 
@@ -286,11 +324,11 @@ async function buildDataset(opts) {
     for (let i = 0; i < n; i++) {
       const p = rows[i].premium;
       sum += p; sumSq += p * p;
-      if (i >= MAX_WINDOW) {
-        const old = rows[i - MAX_WINDOW].premium;
+      if (i >= maxWindow) {
+        const old = rows[i - maxWindow].premium;
         sum -= old; sumSq -= old * old;
       }
-      const cnt = Math.min(i + 1, MAX_WINDOW);
+      const cnt = Math.min(i + 1, maxWindow);
       const m = sum / cnt;
       const varr = Math.max(0, sumSq / cnt - m * m);
       ma[i] = m;
@@ -326,14 +364,14 @@ async function buildDataset(opts) {
   if (!names.length) throw new Error('시뮬레이션할 코인이 없습니다');
 
   // 2) 공통 5분 격자에 인덱스 매핑
-  const gridLen = Math.floor((gridMax - gridMin) / BAR_MS) + 1;
+  const gridLen = Math.floor((gridMax - gridMin) / barMs) + 1;
   log(`공통 격자: ${gridLen.toLocaleString('en-US')}칸 (${new Date(gridMin).toISOString().slice(0, 10)} ~ ${new Date(gridMax).toISOString().slice(0, 10)})`);
 
   for (const name of names) {
     const c = perCoin[name];
     const n = c.rows.length;
     const gi = new Int32Array(n);
-    for (let i = 0; i < n; i++) gi[i] = Math.floor((c.rows[i].ts - gridMin) / BAR_MS);
+    for (let i = 0; i < n; i++) gi[i] = Math.floor((c.rows[i].ts - gridMin) / barMs);
     c.gridIdx = gi;
     c.premium = new Float64Array(n);
     c.tradable = new Uint8Array(n);
@@ -344,7 +382,7 @@ async function buildDataset(opts) {
     c.rows = null; // 메모리 절약: 이후로는 타입배열만 쓴다
   }
 
-  return { gridMin, gridMax, gridLen, coins: names.map(n => perCoin[n]), meta };
+  return { gridMin, gridMax, gridLen, barMs, barMinutes, maxWindow, coins: names.map(n => perCoin[n]), meta };
 }
 
 // ---------------------------------------------------------------------------
@@ -372,6 +410,7 @@ function simulate(dataset, params, range) {
   const startGrid = Math.floor(dataset.gridLen * r.fromRatio);
   const endGrid = Math.floor(dataset.gridLen * r.toRatio);
 
+  const BAR_MS = dataset.barMs;
   const coins = dataset.coins;
   const K = coins.length;
   const ptr = new Int32Array(K);          // 코인별 현재 읽는 위치
