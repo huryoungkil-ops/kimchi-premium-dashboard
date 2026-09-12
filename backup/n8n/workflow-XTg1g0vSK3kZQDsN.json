@@ -1,1569 +1,1569 @@
 {
-  "workflow": {
-    "id": "XTg1g0vSK3kZQDsN",
-    "name": "김치 프리미엄 페이퍼 트레이딩 (코빗×OKX, 5분)",
-    "active": true,
-    "isArchived": false,
-    "versionId": "b0e52923-579b-4d31-966b-433efda79a73",
-    "activeVersionId": "b0e52923-579b-4d31-966b-433efda79a73",
-    "triggerCount": 2,
-    "nodeCount": 39,
-    "createdAt": "2026-09-05T12:41:43.811Z",
-    "updatedAt": "2026-09-11T15:15:02.865Z",
-    "settings": {
-      "executionOrder": "v1",
-      "availableInMCP": true,
-      "binaryMode": "separate",
-      "timezone": "Asia/Seoul"
-    },
-    "tags": [],
-    "parentFolderId": null,
-    "description": "코빗(국내)과 OKX(해외 USDT 무기한선물) 가격을 5분마다 비교해 김프를 계산하고, 3일 이동평균 기준 진입/청산 신호로 가상 매매를 기록 후 Discord로 알림",
-    "scopes": [
-      "execution:reveal",
-      "workflow:create",
-      "workflow:delete",
-      "workflow:disableRedaction",
-      "workflow:enableRedaction",
-      "workflow:execute",
-      "workflow:execute-chat",
-      "workflow:export",
-      "workflow:import",
-      "workflow:list",
-      "workflow:move",
-      "workflow:publish",
-      "workflow:read",
-      "workflow:share",
-      "workflow:unpublish",
-      "workflow:unshare",
-      "workflow:update"
-    ],
-    "canExecute": true,
-    "connections": {
-      "5분마다 실행": {
-        "main": [
-          [
-            {
-              "node": "코빗 가격 조회",
-              "type": "main",
-              "index": 0
-            }
-          ]
-        ]
-      },
-      "코빗 가격 조회": {
-        "main": [
-          [
-            {
-              "node": "OKX 가격 조회",
-              "type": "main",
-              "index": 0
-            }
-          ]
-        ]
-      },
-      "프리미엄 계산": {
-        "main": [
-          [
-            {
-              "node": "프리미엄 이력 저장",
-              "type": "main",
-              "index": 0
-            }
-          ]
-        ]
-      },
-      "프리미엄 이력 저장": {
-        "main": [
-          [
-            {
-              "node": "최근 3일 이력 조회",
-              "type": "main",
-              "index": 0
-            }
-          ]
-        ]
-      },
-      "최근 3일 이력 조회": {
-        "main": [
-          [
-            {
-              "node": "MA·신호 판정",
-              "type": "main",
-              "index": 0
-            }
-          ]
-        ]
-      },
-      "MA·신호 판정": {
-        "main": [
-          [
-            {
-              "node": "신호만 남기기",
-              "type": "main",
-              "index": 0
-            }
-          ]
-        ]
-      },
-      "신호만 남기기": {
-        "main": [
-          [
-            {
-              "node": "진입 신호인가?",
-              "type": "main",
-              "index": 0
-            }
-          ]
-        ]
-      },
-      "진입 신호인가?": {
-        "main": [
-          [
-            {
-              "node": "진행 중인 포지션 조회",
-              "type": "main",
-              "index": 0
-            }
-          ],
-          [
-            {
-              "node": "청산할 포지션 조회",
-              "type": "main",
-              "index": 0
-            }
-          ]
-        ]
-      },
-      "진행 중인 포지션 조회": {
-        "main": [
-          [
-            {
-              "node": "진입 가능 여부 판단",
-              "type": "main",
-              "index": 0
-            }
-          ]
-        ]
-      },
-      "진입해도 되는가?": {
-        "main": [
-          [
-            {
-              "node": "가상 진입 기록",
-              "type": "main",
-              "index": 0
-            }
-          ]
-        ]
-      },
-      "손익 계산": {
-        "main": [
-          [
-            {
-              "node": "포지션 청산 갱신",
-              "type": "main",
-              "index": 0
-            }
-          ]
-        ]
-      },
-      "환율 조회": {
-        "main": [
-          [
-            {
-              "node": "프리미엄 계산",
-              "type": "main",
-              "index": 0
-            }
-          ]
-        ]
-      },
-      "OKX 가격 조회": {
-        "main": [
-          [
-            {
-              "node": "환율 조회",
-              "type": "main",
-              "index": 0
-            }
-          ]
-        ]
-      },
-      "매일 07:40 상태 보고": {
-        "main": [
-          [
-            {
-              "node": "최근 24시간 이력 조회",
-              "type": "main",
-              "index": 0
-            }
-          ]
-        ]
-      },
-      "최근 24시간 이력 조회": {
-        "main": [
-          [
-            {
-              "node": "24시간 통계 계산",
-              "type": "main",
-              "index": 0
-            }
-          ]
-        ]
-      },
-      "보고 메시지 구성": {
-        "main": [
-          [
-            {
-              "node": "상태 보고 전송",
-              "type": "main",
-              "index": 0
-            }
-          ]
-        ]
-      },
-      "24시간 통계 계산": {
-        "main": [
-          [
-            {
-              "node": "전체 매매 이력 조회",
-              "type": "main",
-              "index": 0
-            }
-          ]
-        ]
-      },
-      "전체 매매 이력 조회": {
-        "main": [
-          [
-            {
-              "node": "매매 성과 계산",
-              "type": "main",
-              "index": 0
-            }
-          ]
-        ]
-      },
-      "매매 성과 계산": {
-        "main": [
-          [
-            {
-              "node": "보고 메시지 구성",
-              "type": "main",
-              "index": 0
-            }
-          ]
-        ]
-      },
-      "대시보드 자동갱신 켜기": {
-        "main": [
-          [
-            {
-              "node": "설정 켜기로 갱신",
-              "type": "main",
-              "index": 0
-            }
-          ]
-        ]
-      },
-      "대시보드 자동갱신 끄기": {
-        "main": [
-          [
-            {
-              "node": "설정 끄기로 갱신",
-              "type": "main",
-              "index": 0
-            }
-          ]
-        ]
-      },
-      "진입 가능 여부 판단": {
-        "main": [
-          [
-            {
-              "node": "진입 호가 조회",
-              "type": "main",
-              "index": 0
-            }
-          ]
-        ]
-      },
-      "진입 호가 조회": {
-        "main": [
-          [
-            {
-              "node": "체결가능 김프 검증",
-              "type": "main",
-              "index": 0
-            }
-          ]
-        ]
-      },
-      "청산할 포지션 조회": {
-        "main": [
-          [
-            {
-              "node": "청산 호가 조회",
-              "type": "main",
-              "index": 0
-            }
-          ]
-        ]
-      },
-      "청산 호가 조회": {
-        "main": [
-          [
-            {
-              "node": "손익 계산",
-              "type": "main",
-              "index": 0
-            }
-          ]
-        ]
-      },
-      "체결가능 김프 검증": {
-        "main": [
-          [
-            {
-              "node": "슬롯 배분",
-              "type": "main",
-              "index": 0
-            }
-          ]
-        ]
-      },
-      "슬롯 배분": {
-        "main": [
-          [
-            {
-              "node": "진입해도 되는가?",
-              "type": "main",
-              "index": 0
-            }
-          ]
-        ]
-      },
-      "가상 진입 기록": {
-        "main": [
-          [
-            {
-              "node": "진입 성과 조회",
-              "type": "main",
-              "index": 0
-            }
-          ]
-        ]
-      },
-      "진입 성과 조회": {
-        "main": [
-          [
-            {
-              "node": "진입 메시지 구성",
-              "type": "main",
-              "index": 0
-            }
-          ]
-        ]
-      },
-      "진입 메시지 구성": {
-        "main": [
-          [
-            {
-              "node": "진입 알림 전송",
-              "type": "main",
-              "index": 0
-            }
-          ]
-        ]
-      },
-      "포지션 청산 갱신": {
-        "main": [
-          [
-            {
-              "node": "청산 성과 조회",
-              "type": "main",
-              "index": 0
-            }
-          ]
-        ]
-      },
-      "청산 성과 조회": {
-        "main": [
-          [
-            {
-              "node": "청산 메시지 구성",
-              "type": "main",
-              "index": 0
-            }
-          ]
-        ]
-      },
-      "청산 메시지 구성": {
-        "main": [
-          [
-            {
-              "node": "청산 알림 전송",
-              "type": "main",
-              "index": 0
-            }
-          ]
-        ]
-      }
-    },
-    "nodes": [
-      {
-        "parameters": {
-          "rule": {
-            "interval": [
-              {
-                "field": "minutes"
-              }
-            ]
-          }
+    "workflow": {
+        "id": "XTg1g0vSK3kZQDsN",
+        "name": "\uae40\uce58 \ud504\ub9ac\ubbf8\uc5c4 \ud398\uc774\ud37c \ud2b8\ub808\uc774\ub529 (\ucf54\ube57\u00d7OKX, 5\ubd84)",
+        "active": true,
+        "isArchived": false,
+        "versionId": "b0e52923-579b-4d31-966b-433efda79a73",
+        "activeVersionId": "b0e52923-579b-4d31-966b-433efda79a73",
+        "triggerCount": 2,
+        "nodeCount": 39,
+        "createdAt": "2026-09-05T12:41:43.811Z",
+        "updatedAt": "2026-09-11T15:15:02.865Z",
+        "settings": {
+            "executionOrder": "v1",
+            "availableInMCP": true,
+            "binaryMode": "separate",
+            "timezone": "Asia/Seoul"
         },
-        "id": "6dd409f3-6acf-4400-9a94-a0c6ccc606a5",
-        "name": "5분마다 실행",
-        "type": "n8n-nodes-base.scheduleTrigger",
-        "typeVersion": 1.4,
-        "position": [
-          0,
-          -32
-        ]
-      },
-      {
-        "parameters": {
-          "method": "GET",
-          "url": "https://api.korbit.co.kr/v2/tickers",
-          "authentication": "none",
-          "sendQuery": true,
-          "specifyQuery": "keypair",
-          "queryParameters": {
-            "parameters": [
-              {
-                "name": "symbol",
-                "value": "btc_krw,eth_krw,sol_krw,bnb_krw,xrp_krw,ada_krw,avax_krw,dot_krw,link_krw,pol_krw,doge_krw,trx_krw,xlm_krw,shib_krw,bch_krw,uni_krw,aave_krw,sushi_krw,ldo_krw,icp_krw,near_krw,hbar_krw,xtz_krw,dydx_krw,arb_krw,gmx_krw,imx_krw,inj_krw,grt_krw,sui_krw,hype_krw"
-              }
-            ]
-          }
-        },
-        "id": "35ba1d99-485a-43db-973e-f182388bbaf5",
-        "name": "코빗 가격 조회",
-        "type": "n8n-nodes-base.httpRequest",
-        "typeVersion": 4.5,
-        "position": [
-          272,
-          96
-        ]
-      },
-      {
-        "parameters": {
-          "url": "https://www.okx.com/api/v5/market/tickers",
-          "sendQuery": true,
-          "queryParameters": {
-            "parameters": [
-              {
-                "name": "instType",
-                "value": "SWAP"
-              }
-            ]
-          },
-          "options": {}
-        },
-        "id": "d436d47d-222d-40b9-a2a4-fde4e68188d7",
-        "name": "OKX 가격 조회",
-        "type": "n8n-nodes-base.httpRequest",
-        "typeVersion": 4.5,
-        "position": [
-          496,
-          96
-        ]
-      },
-      {
-        "parameters": {
-          "mode": "runOnceForAllItems",
-          "language": "javaScript",
-          "jsCode": "// 모니터링할 코인: 코빗 심볼 <-> OKX 무기한선물 심볼을 짝지어서 비교\nconst coins = [\n  { name: 'BTC',   korbitSymbol: 'btc_krw',   okxInstId: 'BTC-USDT-SWAP' },\n  { name: 'ETH',   korbitSymbol: 'eth_krw',   okxInstId: 'ETH-USDT-SWAP' },\n  { name: 'SOL',   korbitSymbol: 'sol_krw',   okxInstId: 'SOL-USDT-SWAP' },\n  { name: 'BNB',   korbitSymbol: 'bnb_krw',   okxInstId: 'BNB-USDT-SWAP' },\n  { name: 'XRP',   korbitSymbol: 'xrp_krw',   okxInstId: 'XRP-USDT-SWAP' },\n  { name: 'ADA',   korbitSymbol: 'ada_krw',   okxInstId: 'ADA-USDT-SWAP' },\n  { name: 'AVAX',  korbitSymbol: 'avax_krw',  okxInstId: 'AVAX-USDT-SWAP' },\n  { name: 'DOT',   korbitSymbol: 'dot_krw',   okxInstId: 'DOT-USDT-SWAP' },\n  { name: 'LINK',  korbitSymbol: 'link_krw',  okxInstId: 'LINK-USDT-SWAP' },\n  { name: 'POL',   korbitSymbol: 'pol_krw',   okxInstId: 'POL-USDT-SWAP' },\n  { name: 'DOGE',  korbitSymbol: 'doge_krw',  okxInstId: 'DOGE-USDT-SWAP' },\n  { name: 'TRX',   korbitSymbol: 'trx_krw',   okxInstId: 'TRX-USDT-SWAP' },\n  { name: 'XLM',   korbitSymbol: 'xlm_krw',   okxInstId: 'XLM-USDT-SWAP' },\n  { name: 'SHIB',  korbitSymbol: 'shib_krw',  okxInstId: 'SHIB-USDT-SWAP' },\n  { name: 'BCH',   korbitSymbol: 'bch_krw',   okxInstId: 'BCH-USDT-SWAP' },\n  { name: 'UNI',   korbitSymbol: 'uni_krw',   okxInstId: 'UNI-USDT-SWAP' },\n  { name: 'AAVE',  korbitSymbol: 'aave_krw',  okxInstId: 'AAVE-USDT-SWAP' },\n  { name: 'SUSHI', korbitSymbol: 'sushi_krw', okxInstId: 'SUSHI-USDT-SWAP' },\n  { name: 'LDO',   korbitSymbol: 'ldo_krw',   okxInstId: 'LDO-USDT-SWAP' },\n  { name: 'ICP',   korbitSymbol: 'icp_krw',   okxInstId: 'ICP-USDT-SWAP' },\n  { name: 'NEAR',  korbitSymbol: 'near_krw',  okxInstId: 'NEAR-USDT-SWAP' },\n  { name: 'HBAR',  korbitSymbol: 'hbar_krw',  okxInstId: 'HBAR-USDT-SWAP' },\n  { name: 'XTZ',   korbitSymbol: 'xtz_krw',   okxInstId: 'XTZ-USDT-SWAP' },\n  { name: 'DYDX',  korbitSymbol: 'dydx_krw',  okxInstId: 'DYDX-USDT-SWAP' },\n  { name: 'ARB',   korbitSymbol: 'arb_krw',   okxInstId: 'ARB-USDT-SWAP' },\n  { name: 'GMX',   korbitSymbol: 'gmx_krw',   okxInstId: 'GMX-USDT-SWAP' },\n  { name: 'IMX',   korbitSymbol: 'imx_krw',   okxInstId: 'IMX-USDT-SWAP' },\n  { name: 'INJ',   korbitSymbol: 'inj_krw',   okxInstId: 'INJ-USDT-SWAP' },\n  { name: 'GRT',   korbitSymbol: 'grt_krw',   okxInstId: 'GRT-USDT-SWAP' },\n  { name: 'SUI',   korbitSymbol: 'sui_krw',   okxInstId: 'SUI-USDT-SWAP' },\n  { name: 'HYPE',  korbitSymbol: 'hype_krw',  okxInstId: 'HYPE-USDT-SWAP' }\n];\n\n// 코빗 응답 형태: { success: true, data: [ { symbol: 'BTC_KRW', close: 130000000, ... }, ... ] }\nconst korbitBody = $('코빗 가격 조회').first().json;\nconst korbitRows = (korbitBody && korbitBody.data) ? korbitBody.data : [];\n\n// OKX 응답 형태: { code: '0', msg: '', data: [ { instId: 'BTC-USDT-SWAP', last: '79720.1', ... }, ... ] }\nconst okxBody = $('OKX 가격 조회').first().json;\nconst okxRows = (okxBody && okxBody.data) ? okxBody.data : [];\n\n// 코빗은 원화(KRW) 마켓만 있어서, 환율로 달러(USD) 환산한 뒤에 OKX(USDT) 가격과 비교해야 함\nconst fxBody = $('환율 조회').first().json;\nconst usdKrwRate = (fxBody && fxBody.rates && fxBody.rates.KRW) ? Number(fxBody.rates.KRW) : null;\n\nconst now = new Date().toISOString();\nconst results = [];\n\nif (usdKrwRate) {\n  for (let i = 0; i < coins.length; i++) {\n    const coin = coins[i];\n\n    const korbitRow = korbitRows.find(function (r) {\n      return String(r.symbol).toUpperCase() === coin.korbitSymbol.toUpperCase();\n    });\n    const okxRow = okxRows.find(function (r) {\n      return r.instId === coin.okxInstId;\n    });\n\n    // 코빗 또는 OKX 둘 중 하나라도 가격이 없으면(상장 안 됨 등) 이번 코인은 건너뜀\n    if (!korbitRow || !okxRow) continue;\n\n    const korbitPriceKrw = Number(korbitRow.close);\n    const korbitPriceUsd = korbitPriceKrw / usdKrwRate; // 원화 -> 달러 환산\n    const foreignPrice = Number(okxRow.last);\n\n    // 김프(%) = (국내가(달러 환산) / 해외가 - 1) x 100\n    const premium = Math.round(((korbitPriceUsd / foreignPrice - 1) * 100) * 10000) / 10000;\n\n    results.push({\n      json: {\n        coin: coin.name,\n        korbitPrice: korbitPriceKrw,\n        foreignPrice: foreignPrice,\n        usdKrwRate: usdKrwRate,\n        premium: premium,\n        checkedAt: now\n      }\n    });\n  }\n}\n\nreturn results;"
-        },
-        "id": "3070c315-b65d-45fe-b073-3f9ca3318cf2",
-        "name": "프리미엄 계산",
-        "type": "n8n-nodes-base.code",
-        "typeVersion": 2,
-        "position": [
-          720,
-          96
-        ]
-      },
-      {
-        "parameters": {
-          "dataTableId": {
-            "__rl": true,
-            "mode": "id",
-            "value": "7FFlXBiQp488z6M4",
-            "cachedResultName": "kimchi_premium_history"
-          },
-          "columns": {
-            "mappingMode": "defineBelow",
-            "value": {
-              "coin": "={{ $json.coin }}",
-              "premium": "={{ $json.premium }}",
-              "korbitPrice": "={{ $json.korbitPrice }}",
-              "foreignPrice": "={{ $json.foreignPrice }}",
-              "usdKrwRate": "={{ $json.usdKrwRate }}",
-              "checkedAt": "={{ $json.checkedAt }}"
+        "tags": [],
+        "parentFolderId": null,
+        "description": "\ucf54\ube57(\uad6d\ub0b4)\uacfc OKX(\ud574\uc678 USDT \ubb34\uae30\ud55c\uc120\ubb3c) \uac00\uaca9\uc744 5\ubd84\ub9c8\ub2e4 \ube44\uad50\ud574 \uae40\ud504\ub97c \uacc4\uc0b0\ud558\uace0, 3\uc77c \uc774\ub3d9\ud3c9\uade0 \uae30\uc900 \uc9c4\uc785/\uccad\uc0b0 \uc2e0\ud638\ub85c \uac00\uc0c1 \ub9e4\ub9e4\ub97c \uae30\ub85d \ud6c4 Discord\ub85c \uc54c\ub9bc",
+        "scopes": [
+            "execution:reveal",
+            "workflow:create",
+            "workflow:delete",
+            "workflow:disableRedaction",
+            "workflow:enableRedaction",
+            "workflow:execute",
+            "workflow:execute-chat",
+            "workflow:export",
+            "workflow:import",
+            "workflow:list",
+            "workflow:move",
+            "workflow:publish",
+            "workflow:read",
+            "workflow:share",
+            "workflow:unpublish",
+            "workflow:unshare",
+            "workflow:update"
+        ],
+        "canExecute": true,
+        "connections": {
+            "5\ubd84\ub9c8\ub2e4 \uc2e4\ud589": {
+                "main": [
+                    [
+                        {
+                            "node": "\ucf54\ube57 \uac00\uaca9 \uc870\ud68c",
+                            "type": "main",
+                            "index": 0
+                        }
+                    ]
+                ]
             },
-            "schema": [
-              {
-                "id": "coin",
-                "displayName": "coin",
-                "required": false,
-                "defaultMatch": false,
-                "display": true,
-                "type": "string",
-                "canBeUsedToMatch": true
-              },
-              {
-                "id": "premium",
-                "displayName": "premium",
-                "required": false,
-                "defaultMatch": false,
-                "display": true,
-                "type": "number",
-                "canBeUsedToMatch": true
-              },
-              {
-                "id": "korbitPrice",
-                "displayName": "korbitPrice",
-                "required": false,
-                "defaultMatch": false,
-                "display": true,
-                "type": "number",
-                "canBeUsedToMatch": true
-              },
-              {
-                "id": "foreignPrice",
-                "displayName": "foreignPrice",
-                "required": false,
-                "defaultMatch": false,
-                "display": true,
-                "type": "number",
-                "canBeUsedToMatch": true
-              },
-              {
-                "id": "usdKrwRate",
-                "displayName": "usdKrwRate",
-                "required": false,
-                "defaultMatch": false,
-                "display": true,
-                "type": "number",
-                "canBeUsedToMatch": true
-              },
-              {
-                "id": "checkedAt",
-                "displayName": "checkedAt",
-                "required": false,
-                "defaultMatch": false,
-                "display": true,
-                "type": "date",
-                "canBeUsedToMatch": true
-              }
-            ]
-          },
-          "options": {}
-        },
-        "id": "cfc042f5-b02c-4f59-a5be-7f6f821b2a1a",
-        "name": "프리미엄 이력 저장",
-        "type": "n8n-nodes-base.dataTable",
-        "typeVersion": 1.1,
-        "position": [
-          944,
-          96
-        ]
-      },
-      {
-        "parameters": {
-          "operation": "get",
-          "dataTableId": {
-            "__rl": true,
-            "mode": "id",
-            "value": "7FFlXBiQp488z6M4",
-            "cachedResultName": "kimchi_premium_history"
-          },
-          "matchType": "allConditions",
-          "filters": {
-            "conditions": [
-              {
-                "keyName": "coin",
-                "keyValue": "={{ $('프리미엄 계산').item.json.coin }}"
-              }
-            ]
-          },
-          "limit": 864,
-          "orderBy": true,
-          "orderByColumn": "checkedAt"
-        },
-        "id": "79355a93-5230-4a08-94db-ed13f84b2b09",
-        "name": "최근 3일 이력 조회",
-        "type": "n8n-nodes-base.dataTable",
-        "typeVersion": 1.1,
-        "position": [
-          800,
-          96
-        ]
-      },
-      {
-        "parameters": {
-          "mode": "runOnceForAllItems",
-          "language": "javaScript",
-          "jsCode": "// 설정값: 3일 이동평균 기준으로 진입/청산 신호를 판정\nconst ENTRY_SIGMA = 1.0; // 평균보다 1시그마 아래로 떨어지면 진입\nconst MIN_DATA_POINTS = 10; // 데이터가 이보다 적으면 통계 신뢰 안 함(스킵)\nconst MAX_SIGMA_PERCENT = 2.5; // 표준편차가 이보다 크면 \"너무 변동성이 큼\"으로 보고 이번 회차에는 신호를 내지 않음(일시 제외, 가라앉으면 자동 복귀)\n\nconst rows = $input.all().map(function (item) { return item.json; });\n\n// 코인별로 묶기 (한 번의 조회에 여러 코인의 이력이 섞여서 들어옵)\nconst byCoin = {};\nrows.forEach(function (r) {\n  if (!byCoin[r.coin]) byCoin[r.coin] = [];\n  byCoin[r.coin].push(r);\n});\n\nconst results = [];\n\nObject.keys(byCoin).forEach(function (coin) {\n  const list = byCoin[coin].slice().sort(function (a, b) {\n    return new Date(b.checkedAt).getTime() - new Date(a.checkedAt).getTime();\n  });\n\n  const n = list.length;\n  if (n < MIN_DATA_POINTS) return; // 아직 데이터가 부족하면 이번 코인은 판정하지 않음\n\n  const current = list[0]; // 가장 최근 값(방금 저장한 이번 회차 값)\n\n  const sum = list.reduce(function (s, r) { return s + r.premium; }, 0);\n  const ma = sum / n;\n  const variance = list.reduce(function (s, r) { return s + Math.pow(r.premium - ma, 2); }, 0) / n;\n  const sigma = Math.sqrt(variance);\n  const lower = ma - ENTRY_SIGMA * sigma;\n  const tooVolatile = sigma > MAX_SIGMA_PERCENT;\n\n  let signal = null;\n  if (!tooVolatile) {\n    if (current.premium < lower) {\n      signal = 'ENTRY'; // 평균보다 통계적으로 많이 낮음 -> 저평가 구간\n    } else if (current.premium > ma) {\n      signal = 'EXIT'; // 평균 수준으로 회복함 -> 청산 시점\n    }\n  }\n  // tooVolatile이면 signal은 계속 null -> 이번 회차에는 진입/청산 없음. 다음 회차에 sigma가 낮아지면 자동으로 다시 판정 대상이 됨\n\n  results.push({\n    json: {\n      coin: coin,\n      premium: current.premium,\n      korbitPrice: current.korbitPrice,\n      foreignPrice: current.foreignPrice,\n      ma: ma,\n      sigma: sigma,\n      lower: lower,\n      dataPoints: n,\n      tooVolatile: tooVolatile,\n      signal: signal\n    }\n  });\n});\n\nreturn results;"
-        },
-        "id": "2600479d-9e7b-4dbe-8272-c51366dff275",
-        "name": "MA·신호 판정",
-        "type": "n8n-nodes-base.code",
-        "typeVersion": 2,
-        "position": [
-          1024,
-          96
-        ]
-      },
-      {
-        "parameters": {
-          "conditions": {
-            "options": {
-              "caseSensitive": true,
-              "leftValue": "",
-              "typeValidation": "loose",
-              "version": 1
+            "\ucf54\ube57 \uac00\uaca9 \uc870\ud68c": {
+                "main": [
+                    [
+                        {
+                            "node": "OKX \uac00\uaca9 \uc870\ud68c",
+                            "type": "main",
+                            "index": 0
+                        }
+                    ]
+                ]
             },
-            "conditions": [
-              {
-                "leftValue": "={{ $json.signal }}",
-                "operator": {
-                  "type": "string",
-                  "operation": "notEmpty"
+            "\ud504\ub9ac\ubbf8\uc5c4 \uacc4\uc0b0": {
+                "main": [
+                    [
+                        {
+                            "node": "\ud504\ub9ac\ubbf8\uc5c4 \uc774\ub825 \uc800\uc7a5",
+                            "type": "main",
+                            "index": 0
+                        }
+                    ]
+                ]
+            },
+            "\ud504\ub9ac\ubbf8\uc5c4 \uc774\ub825 \uc800\uc7a5": {
+                "main": [
+                    [
+                        {
+                            "node": "\ucd5c\uadfc 3\uc77c \uc774\ub825 \uc870\ud68c",
+                            "type": "main",
+                            "index": 0
+                        }
+                    ]
+                ]
+            },
+            "\ucd5c\uadfc 3\uc77c \uc774\ub825 \uc870\ud68c": {
+                "main": [
+                    [
+                        {
+                            "node": "MA\u00b7\uc2e0\ud638 \ud310\uc815",
+                            "type": "main",
+                            "index": 0
+                        }
+                    ]
+                ]
+            },
+            "MA\u00b7\uc2e0\ud638 \ud310\uc815": {
+                "main": [
+                    [
+                        {
+                            "node": "\uc2e0\ud638\ub9cc \ub0a8\uae30\uae30",
+                            "type": "main",
+                            "index": 0
+                        }
+                    ]
+                ]
+            },
+            "\uc2e0\ud638\ub9cc \ub0a8\uae30\uae30": {
+                "main": [
+                    [
+                        {
+                            "node": "\uc9c4\uc785 \uc2e0\ud638\uc778\uac00?",
+                            "type": "main",
+                            "index": 0
+                        }
+                    ]
+                ]
+            },
+            "\uc9c4\uc785 \uc2e0\ud638\uc778\uac00?": {
+                "main": [
+                    [
+                        {
+                            "node": "\uc9c4\ud589 \uc911\uc778 \ud3ec\uc9c0\uc158 \uc870\ud68c",
+                            "type": "main",
+                            "index": 0
+                        }
+                    ],
+                    [
+                        {
+                            "node": "\uccad\uc0b0\ud560 \ud3ec\uc9c0\uc158 \uc870\ud68c",
+                            "type": "main",
+                            "index": 0
+                        }
+                    ]
+                ]
+            },
+            "\uc9c4\ud589 \uc911\uc778 \ud3ec\uc9c0\uc158 \uc870\ud68c": {
+                "main": [
+                    [
+                        {
+                            "node": "\uc9c4\uc785 \uac00\ub2a5 \uc5ec\ubd80 \ud310\ub2e8",
+                            "type": "main",
+                            "index": 0
+                        }
+                    ]
+                ]
+            },
+            "\uc9c4\uc785\ud574\ub3c4 \ub418\ub294\uac00?": {
+                "main": [
+                    [
+                        {
+                            "node": "\uac00\uc0c1 \uc9c4\uc785 \uae30\ub85d",
+                            "type": "main",
+                            "index": 0
+                        }
+                    ]
+                ]
+            },
+            "\uc190\uc775 \uacc4\uc0b0": {
+                "main": [
+                    [
+                        {
+                            "node": "\ud3ec\uc9c0\uc158 \uccad\uc0b0 \uac31\uc2e0",
+                            "type": "main",
+                            "index": 0
+                        }
+                    ]
+                ]
+            },
+            "\ud658\uc728 \uc870\ud68c": {
+                "main": [
+                    [
+                        {
+                            "node": "\ud504\ub9ac\ubbf8\uc5c4 \uacc4\uc0b0",
+                            "type": "main",
+                            "index": 0
+                        }
+                    ]
+                ]
+            },
+            "OKX \uac00\uaca9 \uc870\ud68c": {
+                "main": [
+                    [
+                        {
+                            "node": "\ud658\uc728 \uc870\ud68c",
+                            "type": "main",
+                            "index": 0
+                        }
+                    ]
+                ]
+            },
+            "\ub9e4\uc77c 07:40 \uc0c1\ud0dc \ubcf4\uace0": {
+                "main": [
+                    [
+                        {
+                            "node": "\ucd5c\uadfc 24\uc2dc\uac04 \uc774\ub825 \uc870\ud68c",
+                            "type": "main",
+                            "index": 0
+                        }
+                    ]
+                ]
+            },
+            "\ucd5c\uadfc 24\uc2dc\uac04 \uc774\ub825 \uc870\ud68c": {
+                "main": [
+                    [
+                        {
+                            "node": "24\uc2dc\uac04 \ud1b5\uacc4 \uacc4\uc0b0",
+                            "type": "main",
+                            "index": 0
+                        }
+                    ]
+                ]
+            },
+            "\ubcf4\uace0 \uba54\uc2dc\uc9c0 \uad6c\uc131": {
+                "main": [
+                    [
+                        {
+                            "node": "\uc0c1\ud0dc \ubcf4\uace0 \uc804\uc1a1",
+                            "type": "main",
+                            "index": 0
+                        }
+                    ]
+                ]
+            },
+            "24\uc2dc\uac04 \ud1b5\uacc4 \uacc4\uc0b0": {
+                "main": [
+                    [
+                        {
+                            "node": "\uc804\uccb4 \ub9e4\ub9e4 \uc774\ub825 \uc870\ud68c",
+                            "type": "main",
+                            "index": 0
+                        }
+                    ]
+                ]
+            },
+            "\uc804\uccb4 \ub9e4\ub9e4 \uc774\ub825 \uc870\ud68c": {
+                "main": [
+                    [
+                        {
+                            "node": "\ub9e4\ub9e4 \uc131\uacfc \uacc4\uc0b0",
+                            "type": "main",
+                            "index": 0
+                        }
+                    ]
+                ]
+            },
+            "\ub9e4\ub9e4 \uc131\uacfc \uacc4\uc0b0": {
+                "main": [
+                    [
+                        {
+                            "node": "\ubcf4\uace0 \uba54\uc2dc\uc9c0 \uad6c\uc131",
+                            "type": "main",
+                            "index": 0
+                        }
+                    ]
+                ]
+            },
+            "\ub300\uc2dc\ubcf4\ub4dc \uc790\ub3d9\uac31\uc2e0 \ucf1c\uae30": {
+                "main": [
+                    [
+                        {
+                            "node": "\uc124\uc815 \ucf1c\uae30\ub85c \uac31\uc2e0",
+                            "type": "main",
+                            "index": 0
+                        }
+                    ]
+                ]
+            },
+            "\ub300\uc2dc\ubcf4\ub4dc \uc790\ub3d9\uac31\uc2e0 \ub044\uae30": {
+                "main": [
+                    [
+                        {
+                            "node": "\uc124\uc815 \ub044\uae30\ub85c \uac31\uc2e0",
+                            "type": "main",
+                            "index": 0
+                        }
+                    ]
+                ]
+            },
+            "\uc9c4\uc785 \uac00\ub2a5 \uc5ec\ubd80 \ud310\ub2e8": {
+                "main": [
+                    [
+                        {
+                            "node": "\uc9c4\uc785 \ud638\uac00 \uc870\ud68c",
+                            "type": "main",
+                            "index": 0
+                        }
+                    ]
+                ]
+            },
+            "\uc9c4\uc785 \ud638\uac00 \uc870\ud68c": {
+                "main": [
+                    [
+                        {
+                            "node": "\uccb4\uacb0\uac00\ub2a5 \uae40\ud504 \uac80\uc99d",
+                            "type": "main",
+                            "index": 0
+                        }
+                    ]
+                ]
+            },
+            "\uccad\uc0b0\ud560 \ud3ec\uc9c0\uc158 \uc870\ud68c": {
+                "main": [
+                    [
+                        {
+                            "node": "\uccad\uc0b0 \ud638\uac00 \uc870\ud68c",
+                            "type": "main",
+                            "index": 0
+                        }
+                    ]
+                ]
+            },
+            "\uccad\uc0b0 \ud638\uac00 \uc870\ud68c": {
+                "main": [
+                    [
+                        {
+                            "node": "\uc190\uc775 \uacc4\uc0b0",
+                            "type": "main",
+                            "index": 0
+                        }
+                    ]
+                ]
+            },
+            "\uccb4\uacb0\uac00\ub2a5 \uae40\ud504 \uac80\uc99d": {
+                "main": [
+                    [
+                        {
+                            "node": "\uc2ac\ub86f \ubc30\ubd84",
+                            "type": "main",
+                            "index": 0
+                        }
+                    ]
+                ]
+            },
+            "\uc2ac\ub86f \ubc30\ubd84": {
+                "main": [
+                    [
+                        {
+                            "node": "\uc9c4\uc785\ud574\ub3c4 \ub418\ub294\uac00?",
+                            "type": "main",
+                            "index": 0
+                        }
+                    ]
+                ]
+            },
+            "\uac00\uc0c1 \uc9c4\uc785 \uae30\ub85d": {
+                "main": [
+                    [
+                        {
+                            "node": "\uc9c4\uc785 \uc131\uacfc \uc870\ud68c",
+                            "type": "main",
+                            "index": 0
+                        }
+                    ]
+                ]
+            },
+            "\uc9c4\uc785 \uc131\uacfc \uc870\ud68c": {
+                "main": [
+                    [
+                        {
+                            "node": "\uc9c4\uc785 \uba54\uc2dc\uc9c0 \uad6c\uc131",
+                            "type": "main",
+                            "index": 0
+                        }
+                    ]
+                ]
+            },
+            "\uc9c4\uc785 \uba54\uc2dc\uc9c0 \uad6c\uc131": {
+                "main": [
+                    [
+                        {
+                            "node": "\uc9c4\uc785 \uc54c\ub9bc \uc804\uc1a1",
+                            "type": "main",
+                            "index": 0
+                        }
+                    ]
+                ]
+            },
+            "\ud3ec\uc9c0\uc158 \uccad\uc0b0 \uac31\uc2e0": {
+                "main": [
+                    [
+                        {
+                            "node": "\uccad\uc0b0 \uc131\uacfc \uc870\ud68c",
+                            "type": "main",
+                            "index": 0
+                        }
+                    ]
+                ]
+            },
+            "\uccad\uc0b0 \uc131\uacfc \uc870\ud68c": {
+                "main": [
+                    [
+                        {
+                            "node": "\uccad\uc0b0 \uba54\uc2dc\uc9c0 \uad6c\uc131",
+                            "type": "main",
+                            "index": 0
+                        }
+                    ]
+                ]
+            },
+            "\uccad\uc0b0 \uba54\uc2dc\uc9c0 \uad6c\uc131": {
+                "main": [
+                    [
+                        {
+                            "node": "\uccad\uc0b0 \uc54c\ub9bc \uc804\uc1a1",
+                            "type": "main",
+                            "index": 0
+                        }
+                    ]
+                ]
+            }
+        },
+        "nodes": [
+            {
+                "parameters": {
+                    "rule": {
+                        "interval": [
+                            {
+                                "field": "minutes"
+                            }
+                        ]
+                    }
+                },
+                "id": "6dd409f3-6acf-4400-9a94-a0c6ccc606a5",
+                "name": "5\ubd84\ub9c8\ub2e4 \uc2e4\ud589",
+                "type": "n8n-nodes-base.scheduleTrigger",
+                "typeVersion": 1.4,
+                "position": [
+                    0,
+                    -32
+                ]
+            },
+            {
+                "parameters": {
+                    "method": "GET",
+                    "url": "https://api.korbit.co.kr/v2/tickers",
+                    "authentication": "none",
+                    "sendQuery": true,
+                    "specifyQuery": "keypair",
+                    "queryParameters": {
+                        "parameters": [
+                            {
+                                "name": "symbol",
+                                "value": "btc_krw,eth_krw,sol_krw,bnb_krw,xrp_krw,ada_krw,avax_krw,dot_krw,link_krw,pol_krw,doge_krw,trx_krw,xlm_krw,shib_krw,bch_krw,uni_krw,aave_krw,sushi_krw,ldo_krw,icp_krw,near_krw,hbar_krw,xtz_krw,dydx_krw,arb_krw,gmx_krw,imx_krw,inj_krw,grt_krw,sui_krw,hype_krw"
+                            }
+                        ]
+                    }
+                },
+                "id": "35ba1d99-485a-43db-973e-f182388bbaf5",
+                "name": "\ucf54\ube57 \uac00\uaca9 \uc870\ud68c",
+                "type": "n8n-nodes-base.httpRequest",
+                "typeVersion": 4.5,
+                "position": [
+                    272,
+                    96
+                ]
+            },
+            {
+                "parameters": {
+                    "url": "https://www.okx.com/api/v5/market/tickers",
+                    "sendQuery": true,
+                    "queryParameters": {
+                        "parameters": [
+                            {
+                                "name": "instType",
+                                "value": "SWAP"
+                            }
+                        ]
+                    },
+                    "options": {}
+                },
+                "id": "d436d47d-222d-40b9-a2a4-fde4e68188d7",
+                "name": "OKX \uac00\uaca9 \uc870\ud68c",
+                "type": "n8n-nodes-base.httpRequest",
+                "typeVersion": 4.5,
+                "position": [
+                    496,
+                    96
+                ]
+            },
+            {
+                "parameters": {
+                    "mode": "runOnceForAllItems",
+                    "language": "javaScript",
+                    "jsCode": "// \ubaa8\ub2c8\ud130\ub9c1\ud560 \ucf54\uc778: \ucf54\ube57 \uc2ec\ubcfc <-> OKX \ubb34\uae30\ud55c\uc120\ubb3c \uc2ec\ubcfc\uc744 \uc9dd\uc9c0\uc5b4\uc11c \ube44\uad50\nconst coins = [\n  { name: 'BTC',   korbitSymbol: 'btc_krw',   okxInstId: 'BTC-USDT-SWAP' },\n  { name: 'ETH',   korbitSymbol: 'eth_krw',   okxInstId: 'ETH-USDT-SWAP' },\n  { name: 'SOL',   korbitSymbol: 'sol_krw',   okxInstId: 'SOL-USDT-SWAP' },\n  { name: 'BNB',   korbitSymbol: 'bnb_krw',   okxInstId: 'BNB-USDT-SWAP' },\n  { name: 'XRP',   korbitSymbol: 'xrp_krw',   okxInstId: 'XRP-USDT-SWAP' },\n  { name: 'ADA',   korbitSymbol: 'ada_krw',   okxInstId: 'ADA-USDT-SWAP' },\n  { name: 'AVAX',  korbitSymbol: 'avax_krw',  okxInstId: 'AVAX-USDT-SWAP' },\n  { name: 'DOT',   korbitSymbol: 'dot_krw',   okxInstId: 'DOT-USDT-SWAP' },\n  { name: 'LINK',  korbitSymbol: 'link_krw',  okxInstId: 'LINK-USDT-SWAP' },\n  { name: 'POL',   korbitSymbol: 'pol_krw',   okxInstId: 'POL-USDT-SWAP' },\n  { name: 'DOGE',  korbitSymbol: 'doge_krw',  okxInstId: 'DOGE-USDT-SWAP' },\n  { name: 'TRX',   korbitSymbol: 'trx_krw',   okxInstId: 'TRX-USDT-SWAP' },\n  { name: 'XLM',   korbitSymbol: 'xlm_krw',   okxInstId: 'XLM-USDT-SWAP' },\n  { name: 'SHIB',  korbitSymbol: 'shib_krw',  okxInstId: 'SHIB-USDT-SWAP' },\n  { name: 'BCH',   korbitSymbol: 'bch_krw',   okxInstId: 'BCH-USDT-SWAP' },\n  { name: 'UNI',   korbitSymbol: 'uni_krw',   okxInstId: 'UNI-USDT-SWAP' },\n  { name: 'AAVE',  korbitSymbol: 'aave_krw',  okxInstId: 'AAVE-USDT-SWAP' },\n  { name: 'SUSHI', korbitSymbol: 'sushi_krw', okxInstId: 'SUSHI-USDT-SWAP' },\n  { name: 'LDO',   korbitSymbol: 'ldo_krw',   okxInstId: 'LDO-USDT-SWAP' },\n  { name: 'ICP',   korbitSymbol: 'icp_krw',   okxInstId: 'ICP-USDT-SWAP' },\n  { name: 'NEAR',  korbitSymbol: 'near_krw',  okxInstId: 'NEAR-USDT-SWAP' },\n  { name: 'HBAR',  korbitSymbol: 'hbar_krw',  okxInstId: 'HBAR-USDT-SWAP' },\n  { name: 'XTZ',   korbitSymbol: 'xtz_krw',   okxInstId: 'XTZ-USDT-SWAP' },\n  { name: 'DYDX',  korbitSymbol: 'dydx_krw',  okxInstId: 'DYDX-USDT-SWAP' },\n  { name: 'ARB',   korbitSymbol: 'arb_krw',   okxInstId: 'ARB-USDT-SWAP' },\n  { name: 'GMX',   korbitSymbol: 'gmx_krw',   okxInstId: 'GMX-USDT-SWAP' },\n  { name: 'IMX',   korbitSymbol: 'imx_krw',   okxInstId: 'IMX-USDT-SWAP' },\n  { name: 'INJ',   korbitSymbol: 'inj_krw',   okxInstId: 'INJ-USDT-SWAP' },\n  { name: 'GRT',   korbitSymbol: 'grt_krw',   okxInstId: 'GRT-USDT-SWAP' },\n  { name: 'SUI',   korbitSymbol: 'sui_krw',   okxInstId: 'SUI-USDT-SWAP' },\n  { name: 'HYPE',  korbitSymbol: 'hype_krw',  okxInstId: 'HYPE-USDT-SWAP' }\n];\n\n// \ucf54\ube57 \uc751\ub2f5 \ud615\ud0dc: { success: true, data: [ { symbol: 'BTC_KRW', close: 130000000, ... }, ... ] }\nconst korbitBody = $('\ucf54\ube57 \uac00\uaca9 \uc870\ud68c').first().json;\nconst korbitRows = (korbitBody && korbitBody.data) ? korbitBody.data : [];\n\n// OKX \uc751\ub2f5 \ud615\ud0dc: { code: '0', msg: '', data: [ { instId: 'BTC-USDT-SWAP', last: '79720.1', ... }, ... ] }\nconst okxBody = $('OKX \uac00\uaca9 \uc870\ud68c').first().json;\nconst okxRows = (okxBody && okxBody.data) ? okxBody.data : [];\n\n// \ucf54\ube57\uc740 \uc6d0\ud654(KRW) \ub9c8\ucf13\ub9cc \uc788\uc5b4\uc11c, \ud658\uc728\ub85c \ub2ec\ub7ec(USD) \ud658\uc0b0\ud55c \ub4a4\uc5d0 OKX(USDT) \uac00\uaca9\uacfc \ube44\uad50\ud574\uc57c \ud568\nconst fxBody = $('\ud658\uc728 \uc870\ud68c').first().json;\nconst usdKrwRate = (fxBody && fxBody.rates && fxBody.rates.KRW) ? Number(fxBody.rates.KRW) : null;\n\nconst now = new Date().toISOString();\nconst results = [];\n\nif (usdKrwRate) {\n  for (let i = 0; i < coins.length; i++) {\n    const coin = coins[i];\n\n    const korbitRow = korbitRows.find(function (r) {\n      return String(r.symbol).toUpperCase() === coin.korbitSymbol.toUpperCase();\n    });\n    const okxRow = okxRows.find(function (r) {\n      return r.instId === coin.okxInstId;\n    });\n\n    // \ucf54\ube57 \ub610\ub294 OKX \ub458 \uc911 \ud558\ub098\ub77c\ub3c4 \uac00\uaca9\uc774 \uc5c6\uc73c\uba74(\uc0c1\uc7a5 \uc548 \ub428 \ub4f1) \uc774\ubc88 \ucf54\uc778\uc740 \uac74\ub108\ub700\n    if (!korbitRow || !okxRow) continue;\n\n    const korbitPriceKrw = Number(korbitRow.close);\n    const korbitPriceUsd = korbitPriceKrw / usdKrwRate; // \uc6d0\ud654 -> \ub2ec\ub7ec \ud658\uc0b0\n    const foreignPrice = Number(okxRow.last);\n\n    // \uae40\ud504(%) = (\uad6d\ub0b4\uac00(\ub2ec\ub7ec \ud658\uc0b0) / \ud574\uc678\uac00 - 1) x 100\n    const premium = Math.round(((korbitPriceUsd / foreignPrice - 1) * 100) * 10000) / 10000;\n\n    results.push({\n      json: {\n        coin: coin.name,\n        korbitPrice: korbitPriceKrw,\n        foreignPrice: foreignPrice,\n        usdKrwRate: usdKrwRate,\n        premium: premium,\n        checkedAt: now\n      }\n    });\n  }\n}\n\nreturn results;"
+                },
+                "id": "3070c315-b65d-45fe-b073-3f9ca3318cf2",
+                "name": "\ud504\ub9ac\ubbf8\uc5c4 \uacc4\uc0b0",
+                "type": "n8n-nodes-base.code",
+                "typeVersion": 2,
+                "position": [
+                    720,
+                    96
+                ]
+            },
+            {
+                "parameters": {
+                    "dataTableId": {
+                        "__rl": true,
+                        "mode": "id",
+                        "value": "7FFlXBiQp488z6M4",
+                        "cachedResultName": "kimchi_premium_history"
+                    },
+                    "columns": {
+                        "mappingMode": "defineBelow",
+                        "value": {
+                            "coin": "={{ $json.coin }}",
+                            "premium": "={{ $json.premium }}",
+                            "korbitPrice": "={{ $json.korbitPrice }}",
+                            "foreignPrice": "={{ $json.foreignPrice }}",
+                            "usdKrwRate": "={{ $json.usdKrwRate }}",
+                            "checkedAt": "={{ $json.checkedAt }}"
+                        },
+                        "schema": [
+                            {
+                                "id": "coin",
+                                "displayName": "coin",
+                                "required": false,
+                                "defaultMatch": false,
+                                "display": true,
+                                "type": "string",
+                                "canBeUsedToMatch": true
+                            },
+                            {
+                                "id": "premium",
+                                "displayName": "premium",
+                                "required": false,
+                                "defaultMatch": false,
+                                "display": true,
+                                "type": "number",
+                                "canBeUsedToMatch": true
+                            },
+                            {
+                                "id": "korbitPrice",
+                                "displayName": "korbitPrice",
+                                "required": false,
+                                "defaultMatch": false,
+                                "display": true,
+                                "type": "number",
+                                "canBeUsedToMatch": true
+                            },
+                            {
+                                "id": "foreignPrice",
+                                "displayName": "foreignPrice",
+                                "required": false,
+                                "defaultMatch": false,
+                                "display": true,
+                                "type": "number",
+                                "canBeUsedToMatch": true
+                            },
+                            {
+                                "id": "usdKrwRate",
+                                "displayName": "usdKrwRate",
+                                "required": false,
+                                "defaultMatch": false,
+                                "display": true,
+                                "type": "number",
+                                "canBeUsedToMatch": true
+                            },
+                            {
+                                "id": "checkedAt",
+                                "displayName": "checkedAt",
+                                "required": false,
+                                "defaultMatch": false,
+                                "display": true,
+                                "type": "date",
+                                "canBeUsedToMatch": true
+                            }
+                        ]
+                    },
+                    "options": {}
+                },
+                "id": "cfc042f5-b02c-4f59-a5be-7f6f821b2a1a",
+                "name": "\ud504\ub9ac\ubbf8\uc5c4 \uc774\ub825 \uc800\uc7a5",
+                "type": "n8n-nodes-base.dataTable",
+                "typeVersion": 1.1,
+                "position": [
+                    944,
+                    96
+                ]
+            },
+            {
+                "parameters": {
+                    "operation": "get",
+                    "dataTableId": {
+                        "__rl": true,
+                        "mode": "id",
+                        "value": "7FFlXBiQp488z6M4",
+                        "cachedResultName": "kimchi_premium_history"
+                    },
+                    "matchType": "allConditions",
+                    "filters": {
+                        "conditions": [
+                            {
+                                "keyName": "coin",
+                                "keyValue": "={{ $('\ud504\ub9ac\ubbf8\uc5c4 \uacc4\uc0b0').item.json.coin }}"
+                            }
+                        ]
+                    },
+                    "limit": 864,
+                    "orderBy": true,
+                    "orderByColumn": "checkedAt"
+                },
+                "id": "79355a93-5230-4a08-94db-ed13f84b2b09",
+                "name": "\ucd5c\uadfc 3\uc77c \uc774\ub825 \uc870\ud68c",
+                "type": "n8n-nodes-base.dataTable",
+                "typeVersion": 1.1,
+                "position": [
+                    800,
+                    96
+                ]
+            },
+            {
+                "parameters": {
+                    "mode": "runOnceForAllItems",
+                    "language": "javaScript",
+                    "jsCode": "// \uc124\uc815\uac12: 3\uc77c \uc774\ub3d9\ud3c9\uade0 \uae30\uc900\uc73c\ub85c \uc9c4\uc785/\uccad\uc0b0 \uc2e0\ud638\ub97c \ud310\uc815\nconst ENTRY_SIGMA = 1.0; // \ud3c9\uade0\ubcf4\ub2e4 1\uc2dc\uadf8\ub9c8 \uc544\ub798\ub85c \ub5a8\uc5b4\uc9c0\uba74 \uc9c4\uc785\nconst MIN_DATA_POINTS = 10; // \ub370\uc774\ud130\uac00 \uc774\ubcf4\ub2e4 \uc801\uc73c\uba74 \ud1b5\uacc4 \uc2e0\ub8b0 \uc548 \ud568(\uc2a4\ud0b5)\nconst MAX_SIGMA_PERCENT = 2.5; // \ud45c\uc900\ud3b8\ucc28\uac00 \uc774\ubcf4\ub2e4 \ud06c\uba74 \"\ub108\ubb34 \ubcc0\ub3d9\uc131\uc774 \ud07c\"\uc73c\ub85c \ubcf4\uace0 \uc774\ubc88 \ud68c\ucc28\uc5d0\ub294 \uc2e0\ud638\ub97c \ub0b4\uc9c0 \uc54a\uc74c(\uc77c\uc2dc \uc81c\uc678, \uac00\ub77c\uc549\uc73c\uba74 \uc790\ub3d9 \ubcf5\uadc0)\n\nconst rows = $input.all().map(function (item) { return item.json; });\n\n// \ucf54\uc778\ubcc4\ub85c \ubb36\uae30 (\ud55c \ubc88\uc758 \uc870\ud68c\uc5d0 \uc5ec\ub7ec \ucf54\uc778\uc758 \uc774\ub825\uc774 \uc11e\uc5ec\uc11c \ub4e4\uc5b4\uc635)\nconst byCoin = {};\nrows.forEach(function (r) {\n  if (!byCoin[r.coin]) byCoin[r.coin] = [];\n  byCoin[r.coin].push(r);\n});\n\nconst results = [];\n\nObject.keys(byCoin).forEach(function (coin) {\n  const list = byCoin[coin].slice().sort(function (a, b) {\n    return new Date(b.checkedAt).getTime() - new Date(a.checkedAt).getTime();\n  });\n\n  const n = list.length;\n  if (n < MIN_DATA_POINTS) return; // \uc544\uc9c1 \ub370\uc774\ud130\uac00 \ubd80\uc871\ud558\uba74 \uc774\ubc88 \ucf54\uc778\uc740 \ud310\uc815\ud558\uc9c0 \uc54a\uc74c\n\n  const current = list[0]; // \uac00\uc7a5 \ucd5c\uadfc \uac12(\ubc29\uae08 \uc800\uc7a5\ud55c \uc774\ubc88 \ud68c\ucc28 \uac12)\n\n  const sum = list.reduce(function (s, r) { return s + r.premium; }, 0);\n  const ma = sum / n;\n  const variance = list.reduce(function (s, r) { return s + Math.pow(r.premium - ma, 2); }, 0) / n;\n  const sigma = Math.sqrt(variance);\n  const lower = ma - ENTRY_SIGMA * sigma;\n  const tooVolatile = sigma > MAX_SIGMA_PERCENT;\n\n  let signal = null;\n  if (!tooVolatile) {\n    if (current.premium < lower) {\n      signal = 'ENTRY'; // \ud3c9\uade0\ubcf4\ub2e4 \ud1b5\uacc4\uc801\uc73c\ub85c \ub9ce\uc774 \ub0ae\uc74c -> \uc800\ud3c9\uac00 \uad6c\uac04\n    } else if (current.premium > ma) {\n      signal = 'EXIT'; // \ud3c9\uade0 \uc218\uc900\uc73c\ub85c \ud68c\ubcf5\ud568 -> \uccad\uc0b0 \uc2dc\uc810\n    }\n  }\n  // tooVolatile\uc774\uba74 signal\uc740 \uacc4\uc18d null -> \uc774\ubc88 \ud68c\ucc28\uc5d0\ub294 \uc9c4\uc785/\uccad\uc0b0 \uc5c6\uc74c. \ub2e4\uc74c \ud68c\ucc28\uc5d0 sigma\uac00 \ub0ae\uc544\uc9c0\uba74 \uc790\ub3d9\uc73c\ub85c \ub2e4\uc2dc \ud310\uc815 \ub300\uc0c1\uc774 \ub428\n\n  results.push({\n    json: {\n      coin: coin,\n      premium: current.premium,\n      korbitPrice: current.korbitPrice,\n      foreignPrice: current.foreignPrice,\n      ma: ma,\n      sigma: sigma,\n      lower: lower,\n      dataPoints: n,\n      tooVolatile: tooVolatile,\n      signal: signal\n    }\n  });\n});\n\nreturn results;"
+                },
+                "id": "2600479d-9e7b-4dbe-8272-c51366dff275",
+                "name": "MA\u00b7\uc2e0\ud638 \ud310\uc815",
+                "type": "n8n-nodes-base.code",
+                "typeVersion": 2,
+                "position": [
+                    1024,
+                    96
+                ]
+            },
+            {
+                "parameters": {
+                    "conditions": {
+                        "options": {
+                            "caseSensitive": true,
+                            "leftValue": "",
+                            "typeValidation": "loose",
+                            "version": 1
+                        },
+                        "conditions": [
+                            {
+                                "leftValue": "={{ $json.signal }}",
+                                "operator": {
+                                    "type": "string",
+                                    "operation": "notEmpty"
+                                }
+                            }
+                        ],
+                        "combinator": "and"
+                    },
+                    "options": {}
+                },
+                "id": "344468d9-9f65-46b0-ba1f-750e65be9c69",
+                "name": "\uc2e0\ud638\ub9cc \ub0a8\uae30\uae30",
+                "type": "n8n-nodes-base.filter",
+                "typeVersion": 2.3,
+                "position": [
+                    1248,
+                    96
+                ]
+            },
+            {
+                "parameters": {
+                    "conditions": {
+                        "options": {
+                            "caseSensitive": true,
+                            "leftValue": "",
+                            "typeValidation": "strict",
+                            "version": 1
+                        },
+                        "conditions": [
+                            {
+                                "leftValue": "={{ $json.signal }}",
+                                "rightValue": "ENTRY",
+                                "operator": {
+                                    "type": "string",
+                                    "operation": "equals"
+                                }
+                            }
+                        ],
+                        "combinator": "and"
+                    },
+                    "options": {}
+                },
+                "id": "e809ebb9-f9ab-4167-9dd2-389c6ddcd7b0",
+                "name": "\uc9c4\uc785 \uc2e0\ud638\uc778\uac00?",
+                "type": "n8n-nodes-base.if",
+                "typeVersion": 2.3,
+                "position": [
+                    1280,
+                    -32
+                ]
+            },
+            {
+                "parameters": {
+                    "operation": "get",
+                    "dataTableId": {
+                        "__rl": true,
+                        "mode": "id",
+                        "value": "6MFkAuDuiogrRSqA",
+                        "cachedResultName": "kimchi_paper_trades"
+                    },
+                    "matchType": "allConditions",
+                    "filters": {
+                        "conditions": [
+                            {
+                                "keyName": "status",
+                                "keyValue": "OPEN"
+                            }
+                        ]
+                    },
+                    "returnAll": true
+                },
+                "id": "f3fb4fbc-0c44-490c-b957-e19d3c6ca3fc",
+                "name": "\uc9c4\ud589 \uc911\uc778 \ud3ec\uc9c0\uc158 \uc870\ud68c",
+                "type": "n8n-nodes-base.dataTable",
+                "typeVersion": 1.1,
+                "position": [
+                    1552,
+                    0
+                ],
+                "alwaysOutputData": true,
+                "executeOnce": true
+            },
+            {
+                "parameters": {
+                    "mode": "runOnceForAllItems",
+                    "language": "javaScript",
+                    "jsCode": "const MAX_POSITIONS = 3; // \ub3d9\uc2dc\uc5d0 \uc5f4 \uc218 \uc788\ub294 \ucd5c\ub300 \uac00\uc0c1 \ud3ec\uc9c0\uc158 \uc218\nconst CHECK_LIMIT = 8;   // \ud638\uac00 \uac80\uc99d\uae4c\uc9c0 \ub3cc\ub824\ubcfc \ud6c4\ubcf4 \uc218.\n                         // \uc0c1\uc704 3\uac1c\ub9cc \ubcf4\uba74 \uadf8 \uc14b\uc774 \uc804\ubd80 \uc720\ub3d9\uc131 \ubbf8\ub2ec\uc77c \ub54c\n                         // \ub4a4\uc5d0 \uba40\uc926\ud55c \ud6c4\ubcf4\uac00 \uc788\uc5b4\ub3c4 \uae30\ud68c\ub97c \ud1b5\uc9f8\ub85c \ub193\uce5c\ub2e4.\n\n// \ud604\uc7ac \uc5f4\ub824 \uc788\ub294 \ud3ec\uc9c0\uc158 \ucd94\ub9ac\uae30.\n// \ud3ec\uc9c0\uc158\uc774 \ud558\ub098\ub3c4 \uc5c6\uc744 \ub54c dataTable \ub178\ub4dc\ub294 \ube48 \uc544\uc774\ud15c({})\uc744 \ud558\ub098 \ub0b4\ubcf4\ub0b4\ubbc0\ub85c coin \ud544\ub4dc\ub85c \uac78\ub7ec\ub0b8\ub2e4.\nconst openPositions = [];\nconst seenIds = {};\n$input.all().forEach(function (item) {\n  const row = item.json;\n  if (!row || !row.coin) return;\n  if (seenIds[row.id]) return; // \uac19\uc740 \uc870\ud68c\uac00 \ubc18\ubcf5\ub420 \uacbd\uc6b0\ub97c \ub300\ube44\ud55c \uc911\ubcf5 \uc81c\uac70\n  seenIds[row.id] = true;\n  openPositions.push(row);\n});\n\nconst slots = MAX_POSITIONS - openPositions.length;\nif (slots <= 0) return []; // \uc790\ub9ac\uac00 \uc5c6\uc73c\uba74 \ud638\uac00 \uc870\ud68c\ub97c \ud560 \uc774\uc720\ub3c4 \uc5c6\ub2e4\n\nconst openCoins = openPositions.map(function (p) { return p.coin; });\n\n// \uc774\ubc88 \ud68c\ucc28\uc758 \uc9c4\uc785 \uc2e0\ud638 \uc911, \uc544\uc9c1 \ud3ec\uc9c0\uc158\uc774 \uc5c6\ub294 \ucf54\uc778\ub9cc \ud6c4\ubcf4\ub85c \uc0bc\ub294\ub2e4\nconst candidates = $('MA\u00b7\uc2e0\ud638 \ud310\uc815').all()\n  .map(function (item) { return item.json; })\n  .filter(function (s) { return s.signal === 'ENTRY'; })\n  .filter(function (s) { return openCoins.indexOf(s.coin) === -1; });\n\n// \uc800\ud3c9\uac00 \uc815\ub3c4(z-score = \ud3c9\uade0\uc5d0\uc11c \uba87 \uc2dc\uadf8\ub9c8 \uc544\ub798\uc778\uc9c0)\uac00 \ud070 \uc21c\uc11c\ub85c \uc815\ub82c\ncandidates.forEach(function (s) {\n  s.zScore = s.sigma > 0 ? (s.ma - s.premium) / s.sigma : 0;\n});\ncandidates.sort(function (a, b) { return b.zScore - a.zScore; });\n\n// \uc2e4\uc81c \uba87 \uac1c\ub97c \uc7a1\uc744\uc9c0\ub294 \ud638\uac00 \uac80\uc99d\uc744 \ud1b5\uacfc\ud55c \ub4a4\uc5d0 \u00ab\uc2ac\ub86f \ubc30\ubd84\u00bb\uc5d0\uc11c \uc815\ud55c\ub2e4\nreturn candidates.slice(0, CHECK_LIMIT).map(function (s) {\n  return {\n    json: {\n      coin: s.coin,\n      premium: s.premium,\n      ma: s.ma,\n      sigma: s.sigma,\n      lower: s.lower,               // \uc9c4\uc785\uc120 - \ud638\uac00 \uc7ac\uacc4\uc0b0 \ud6c4 \ub2e4\uc2dc \uac80\uc99d\ud560 \ub54c \uc4f4\ub2e4\n      korbitPrice: s.korbitPrice,\n      foreignPrice: s.foreignPrice, // \ud638\uac00 \uae30\uc900 \uae40\ud504\ub97c \ub2e4\uc2dc \uacc4\uc0b0\ud558\ub824\uba74 \ud574\uc678\uac00\uac00 \ud544\uc694\n      zScore: Math.round(s.zScore * 100) / 100,\n      slots: slots,\n      candidateCount: candidates.length,\n      openCount: openPositions.length\n    }\n  };\n});"
+                },
+                "id": "0b432d4d-ec2d-494f-a0a3-9101aff78f7f",
+                "name": "\uc9c4\uc785 \uac00\ub2a5 \uc5ec\ubd80 \ud310\ub2e8",
+                "type": "n8n-nodes-base.code",
+                "typeVersion": 2,
+                "position": [
+                    1776,
+                    0
+                ]
+            },
+            {
+                "parameters": {
+                    "conditions": {
+                        "options": {
+                            "caseSensitive": true,
+                            "leftValue": "",
+                            "typeValidation": "strict",
+                            "version": 1
+                        },
+                        "conditions": [
+                            {
+                                "leftValue": "={{ $json.canEnter }}",
+                                "rightValue": true,
+                                "operator": {
+                                    "type": "boolean",
+                                    "operation": "equals"
+                                }
+                            }
+                        ],
+                        "combinator": "and"
+                    },
+                    "options": {}
+                },
+                "id": "574e2944-1ea5-4506-97a0-ebe71eb85ea3",
+                "name": "\uc9c4\uc785\ud574\ub3c4 \ub418\ub294\uac00?",
+                "type": "n8n-nodes-base.if",
+                "typeVersion": 2.3,
+                "position": [
+                    2300,
+                    0
+                ]
+            },
+            {
+                "parameters": {
+                    "resource": "row",
+                    "operation": "insert",
+                    "dataTableId": {
+                        "__rl": true,
+                        "mode": "id",
+                        "value": "6MFkAuDuiogrRSqA",
+                        "cachedResultName": "kimchi_paper_trades"
+                    },
+                    "columns": {
+                        "mappingMode": "defineBelow",
+                        "value": {
+                            "coin": "={{ $json.coin }}",
+                            "status": "OPEN",
+                            "entryTime": "={{ $now.toISO() }}",
+                            "entryPremium": "={{ $json.premium }}",
+                            "entryMa": "={{ $json.ma }}",
+                            "entryPrice": "={{ $json.korbitPrice }}",
+                            "positionSize": "={{ 10000 * 0.10 }}",
+                            "feeEntry": "={{ Math.round(10000 * 0.10 * 0.0009 * 100) / 100 }}"
+                        },
+                        "schema": [
+                            {
+                                "id": "coin",
+                                "displayName": "coin",
+                                "required": false,
+                                "defaultMatch": false,
+                                "display": true,
+                                "type": "string",
+                                "canBeUsedToMatch": true
+                            },
+                            {
+                                "id": "status",
+                                "displayName": "status",
+                                "required": false,
+                                "defaultMatch": false,
+                                "display": true,
+                                "type": "string",
+                                "canBeUsedToMatch": true
+                            },
+                            {
+                                "id": "entryTime",
+                                "displayName": "entryTime",
+                                "required": false,
+                                "defaultMatch": false,
+                                "display": true,
+                                "type": "date",
+                                "canBeUsedToMatch": true
+                            },
+                            {
+                                "id": "entryPremium",
+                                "displayName": "entryPremium",
+                                "required": false,
+                                "defaultMatch": false,
+                                "display": true,
+                                "type": "number",
+                                "canBeUsedToMatch": true
+                            },
+                            {
+                                "id": "entryMa",
+                                "displayName": "entryMa",
+                                "required": false,
+                                "defaultMatch": false,
+                                "display": true,
+                                "type": "number",
+                                "canBeUsedToMatch": true
+                            },
+                            {
+                                "id": "entryPrice",
+                                "displayName": "entryPrice",
+                                "required": false,
+                                "defaultMatch": false,
+                                "display": true,
+                                "type": "number",
+                                "canBeUsedToMatch": true
+                            },
+                            {
+                                "id": "positionSize",
+                                "displayName": "positionSize",
+                                "required": false,
+                                "defaultMatch": false,
+                                "display": true,
+                                "type": "number",
+                                "canBeUsedToMatch": true
+                            },
+                            {
+                                "id": "feeEntry",
+                                "displayName": "feeEntry",
+                                "required": false,
+                                "defaultMatch": false,
+                                "display": true,
+                                "type": "number",
+                                "canBeUsedToMatch": true
+                            }
+                        ]
+                    }
+                },
+                "id": "2e47caee-2cc0-4eff-ac77-136f94d5c38e",
+                "name": "\uac00\uc0c1 \uc9c4\uc785 \uae30\ub85d",
+                "type": "n8n-nodes-base.dataTable",
+                "typeVersion": 1.1,
+                "position": [
+                    2440,
+                    0
+                ]
+            },
+            {
+                "parameters": {
+                    "method": "POST",
+                    "url": "https://discordapp.com/api/webhooks/1545778115995893870/irjbjjMjfbq-HMg-p8z06Xnc9mcjS7OnJBfl2998T9TW-q1byi7YUgzRy5C_dRVAejnU",
+                    "authentication": "none",
+                    "sendBody": true,
+                    "contentType": "json",
+                    "specifyBody": "json",
+                    "jsonBody": "={{ { \"content\": $json.content } }}"
+                },
+                "id": "e27bc2cf-a870-4e92-a075-ac7bdec3a74e",
+                "name": "\uc9c4\uc785 \uc54c\ub9bc \uc804\uc1a1",
+                "type": "n8n-nodes-base.httpRequest",
+                "typeVersion": 4.5,
+                "position": [
+                    2860,
+                    0
+                ]
+            },
+            {
+                "parameters": {
+                    "operation": "get",
+                    "dataTableId": {
+                        "__rl": true,
+                        "mode": "id",
+                        "value": "6MFkAuDuiogrRSqA",
+                        "cachedResultName": "kimchi_paper_trades"
+                    },
+                    "matchType": "allConditions",
+                    "filters": {
+                        "conditions": [
+                            {
+                                "keyName": "coin",
+                                "keyValue": "={{ $('MA\u00b7\uc2e0\ud638 \ud310\uc815').item.json.coin }}"
+                            },
+                            {
+                                "keyName": "status",
+                                "keyValue": "OPEN"
+                            }
+                        ]
+                    },
+                    "limit": 1,
+                    "orderBy": true,
+                    "orderByColumn": "entryTime"
+                },
+                "id": "bd57c2ef-1b2b-4d44-956c-24af2eff3c65",
+                "name": "\uccad\uc0b0\ud560 \ud3ec\uc9c0\uc158 \uc870\ud68c",
+                "type": "n8n-nodes-base.dataTable",
+                "typeVersion": 1.1,
+                "position": [
+                    1552,
+                    192
+                ]
+            },
+            {
+                "parameters": {
+                    "mode": "runOnceForEachItem",
+                    "language": "javaScript",
+                    "jsCode": "const FEE_RATE = 0.0009; // \uad6d\ub0b4+\ud574\uc678 \ud569\uc0b0 \uc218\uc218\ub8cc\uc728(\uc608\uc0c1)\n\nconst openTrade = $('\uccad\uc0b0\ud560 \ud3ec\uc9c0\uc158 \uc870\ud68c').item.json;   // \uccad\uc0b0\ud560 \uc774 \ucf54\uc778\uc758 OPEN \ud589\nconst exitSignal = $('MA\u00b7\uc2e0\ud638 \ud310\uc815').item.json;      // \uc774\ubc88 \ud68c\ucc28\uc758 \uccad\uc0b0 \uc2e0\ud638\n\n// \uc9c4\uc785\uc740 \ub9e4\uc218\ud638\uac00\ub85c \uacc4\uc0b0\ud588\uc73c\ub2c8 \uccad\uc0b0\ub3c4 \uc2e4\uc81c\ub85c \ud314\ub9ac\ub294 \uac00\uaca9(\ucd5c\uc6b0\uc120 \ub9e4\uc218\ud638\uac00)\uc73c\ub85c \ub9de\ucd98\ub2e4.\n// \ud638\uac00\ub97c \ubabb \uac00\uc838\uc624\uba74 \uccb4\uacb0\uac00 \uae30\uc900\uc73c\ub85c \ub300\uccb4\ud55c\ub2e4.\nlet exitPremium = Number(exitSignal.premium);\nlet exitPrice = Number(exitSignal.korbitPrice);\n\nconst ob = ($json && $json.data) ? $json.data : {};\nconst bids = ob.bids || [];\nconst fxBody = $('\ud658\uc728 \uc870\ud68c').first().json;\nconst fx = (fxBody && fxBody.rates && fxBody.rates.KRW) ? Number(fxBody.rates.KRW) : null;\nconst foreignPrice = Number(exitSignal.foreignPrice);\n\nif (fx && foreignPrice && bids.length) {\n  const bid = Number(bids[0].price);\n  if (bid) {\n    exitPrice = bid;\n    exitPremium = Math.round(((bid / fx / foreignPrice) - 1) * 100 * 10000) / 10000;\n  }\n}\n\nconst positionSize = Number(openTrade.positionSize);\n\n// \uad6d\ub0b4 \ud604\ubb3c \ub871 + \ud574\uc678 \uc120\ubb3c \uc20f\uc744 \ud569\uce58\uba74 \ucf54\uc778 \uc2dc\uc138 \ubc29\ud5a5\uc740 \uc0c1\uc1c4\ub418\uace0,\n// \ub450 \uc2dc\uc7a5\uc758 \uac00\uaca9\ucc28(\uae40\ud504)\uac00 \ubcc0\ud55c \ub9cc\ud07c\ub9cc \uc190\uc775\uc774 \ub41c\ub2e4.\n//   \ud569\uc0b0 \uc190\uc775 \u2248 \uccad\uc0b0\uae40\ud504 \u2212 \uc9c4\uc785\uae40\ud504\n// \uae40\ud504\uac00 \ud3c9\uade0\ubcf4\ub2e4 \ub0ae\uc744 \ub54c(\ud560\uc778) \ub4e4\uc5b4\uac00\uc11c \ud3c9\uade0\uc73c\ub85c \ud68c\ubcf5(\uc0c1\uc2b9)\ud560 \ub54c \uccad\uc0b0\ud558\ubbc0\ub85c \uc774\uc775\uc774 \ub41c\ub2e4.\nconst entryPremium = Number(openTrade.entryPremium);\nconst premiumGain = exitPremium - entryPremium;\nconst grossProfit = Math.round((positionSize * premiumGain / 100) * 100) / 100;\nconst feeExit = Math.round(positionSize * FEE_RATE * 100) / 100;\nconst netProfit = Math.round((grossProfit - Number(openTrade.feeEntry) - feeExit) * 100) / 100;\n\nconst heldMinutes = Math.round((Date.now() - new Date(openTrade.entryTime).getTime()) / 60000);\n\nreturn {\n  json: {\n    rowId: openTrade.id,\n    coin: openTrade.coin,\n    entryPremium: entryPremium,\n    entryTime: openTrade.entryTime,\n    heldMinutes: heldMinutes,\n    exitPremium: exitPremium,\n    exitPrice: exitPrice,\n    grossProfit: grossProfit,\n    feeExit: feeExit,\n    netProfit: netProfit\n  }\n};"
+                },
+                "id": "00ffb491-e273-468f-b258-5fe620005bd1",
+                "name": "\uc190\uc775 \uacc4\uc0b0",
+                "type": "n8n-nodes-base.code",
+                "typeVersion": 2,
+                "position": [
+                    1776,
+                    192
+                ]
+            },
+            {
+                "parameters": {
+                    "operation": "update",
+                    "dataTableId": {
+                        "__rl": true,
+                        "mode": "id",
+                        "value": "6MFkAuDuiogrRSqA",
+                        "cachedResultName": "kimchi_paper_trades"
+                    },
+                    "matchType": "allConditions",
+                    "filters": {
+                        "conditions": [
+                            {
+                                "keyValue": "={{ $json.rowId }}"
+                            }
+                        ]
+                    },
+                    "columns": {
+                        "mappingMode": "defineBelow",
+                        "value": {
+                            "status": "CLOSED",
+                            "exitTime": "={{ $now.toISO() }}",
+                            "exitPremium": "={{ $json.exitPremium }}",
+                            "exitPrice": "={{ $json.exitPrice }}",
+                            "grossProfit": "={{ $json.grossProfit }}",
+                            "feeExit": "={{ $json.feeExit }}",
+                            "netProfit": "={{ $json.netProfit }}"
+                        },
+                        "schema": [
+                            {
+                                "id": "status",
+                                "displayName": "status",
+                                "required": false,
+                                "defaultMatch": false,
+                                "display": true,
+                                "type": "string",
+                                "canBeUsedToMatch": true
+                            },
+                            {
+                                "id": "exitTime",
+                                "displayName": "exitTime",
+                                "required": false,
+                                "defaultMatch": false,
+                                "display": true,
+                                "type": "date",
+                                "canBeUsedToMatch": true
+                            },
+                            {
+                                "id": "exitPremium",
+                                "displayName": "exitPremium",
+                                "required": false,
+                                "defaultMatch": false,
+                                "display": true,
+                                "type": "number",
+                                "canBeUsedToMatch": true
+                            },
+                            {
+                                "id": "exitPrice",
+                                "displayName": "exitPrice",
+                                "required": false,
+                                "defaultMatch": false,
+                                "display": true,
+                                "type": "number",
+                                "canBeUsedToMatch": true
+                            },
+                            {
+                                "id": "grossProfit",
+                                "displayName": "grossProfit",
+                                "required": false,
+                                "defaultMatch": false,
+                                "display": true,
+                                "type": "number",
+                                "canBeUsedToMatch": true
+                            },
+                            {
+                                "id": "feeExit",
+                                "displayName": "feeExit",
+                                "required": false,
+                                "defaultMatch": false,
+                                "display": true,
+                                "type": "number",
+                                "canBeUsedToMatch": true
+                            },
+                            {
+                                "id": "netProfit",
+                                "displayName": "netProfit",
+                                "required": false,
+                                "defaultMatch": false,
+                                "display": true,
+                                "type": "number",
+                                "canBeUsedToMatch": true
+                            }
+                        ]
+                    },
+                    "options": {}
+                },
+                "id": "977cf419-f1e3-4753-beca-64b4e1636123",
+                "name": "\ud3ec\uc9c0\uc158 \uccad\uc0b0 \uac31\uc2e0",
+                "type": "n8n-nodes-base.dataTable",
+                "typeVersion": 1.1,
+                "position": [
+                    2000,
+                    192
+                ]
+            },
+            {
+                "parameters": {
+                    "method": "POST",
+                    "url": "https://discordapp.com/api/webhooks/1545778115995893870/irjbjjMjfbq-HMg-p8z06Xnc9mcjS7OnJBfl2998T9TW-q1byi7YUgzRy5C_dRVAejnU",
+                    "authentication": "none",
+                    "sendBody": true,
+                    "contentType": "json",
+                    "specifyBody": "json",
+                    "jsonBody": "={{ { \"content\": $json.content } }}"
+                },
+                "id": "2b214301-b929-433a-98e9-a4f85dc20b38",
+                "name": "\uccad\uc0b0 \uc54c\ub9bc \uc804\uc1a1",
+                "type": "n8n-nodes-base.httpRequest",
+                "typeVersion": 4.5,
+                "position": [
+                    2440,
+                    192
+                ]
+            },
+            {
+                "parameters": {
+                    "content": "## \uae40\uce58 \ud504\ub9ac\ubbf8\uc5c4 \ud398\uc774\ud37c \ud2b8\ub808\uc774\ub529 \ubd07\n\n5\ubd84\ub9c8\ub2e4 \ucf54\ube57(\uad6d\ub0b4)\uacfc OKX(\ud574\uc678 USDT \ubb34\uae30\ud55c\uc120\ubb3c) \uac00\uaca9\uc744 \ube44\uad50\ud574 \uae40\ud504\ub97c \uacc4\uc0b0\ud558\uace0,\n3\uc77c \uc774\ub3d9\ud3c9\uade0\ubcf4\ub2e4 \ud1b5\uacc4\uc801\uc73c\ub85c \ub0ae\uc544\uc9c0\uba74 \uac00\uc0c1 \ub9e4\uc218, \ud3c9\uade0\uc73c\ub85c \ub3cc\uc544\uc624\uba74 \uac00\uc0c1 \ub9e4\ub3c4\ub85c \uae30\ub85d\ud569\ub2c8\ub2e4.\n\n\u26a0\ufe0f \uc2e4\uc81c \uc8fc\ubb38\uc740 \ud558\uc9c0 \uc54a\ub294 \uc2dc\ubbac\ub808\uc774\uc158(\ud398\uc774\ud37c \ud2b8\ub808\uc774\ub529)\uc785\ub2c8\ub2e4.\n\u26a0\ufe0f Bybit/Binance\ub294 \uc774 \uc11c\ubc84 \uc9c0\uc5ed\uc5d0\uc11c \ucc28\ub2e8\ub418\uc5b4 OKX\ub85c \uad50\uccb4\ud588\uc2b5\ub2c8\ub2e4.\n\u26a0\ufe0f \ucf54\ube57\uc5d0 \uc0c1\uc7a5\ub418\uc9c0 \uc54a\uc740 \ucf54\uc778\uc740 \uc790\ub3d9\uc73c\ub85c \uac74\ub108\ub701\ub2c8\ub2e4.",
+                    "height": 304,
+                    "width": 496,
+                    "color": 4
+                },
+                "id": "2cf4e0c6-76b2-4acb-8b7a-deff2fbb8be3",
+                "name": "Sticky Note c9907429",
+                "type": "n8n-nodes-base.stickyNote",
+                "typeVersion": 1,
+                "position": [
+                    1200,
+                    192
+                ]
+            },
+            {
+                "parameters": {
+                    "url": "https://open.er-api.com/v6/latest/USD",
+                    "options": {}
+                },
+                "id": "0082610c-f42c-4a55-8dc4-2aeb0049b3fc",
+                "name": "\ud658\uc728 \uc870\ud68c",
+                "type": "n8n-nodes-base.httpRequest",
+                "typeVersion": 4.5,
+                "position": [
+                    752,
+                    272
+                ]
+            },
+            {
+                "id": "dab939e9-1ebd-4c0e-a9da-7599344e9199",
+                "name": "\ub9e4\uc77c 07:40 \uc0c1\ud0dc \ubcf4\uace0",
+                "type": "n8n-nodes-base.scheduleTrigger",
+                "typeVersion": 1.4,
+                "position": [
+                    0,
+                    1100
+                ],
+                "parameters": {
+                    "rule": {
+                        "interval": [
+                            {
+                                "field": "cronExpression",
+                                "expression": "40 7 * * *"
+                            }
+                        ]
+                    }
                 }
-              }
-            ],
-            "combinator": "and"
-          },
-          "options": {}
-        },
-        "id": "344468d9-9f65-46b0-ba1f-750e65be9c69",
-        "name": "신호만 남기기",
-        "type": "n8n-nodes-base.filter",
-        "typeVersion": 2.3,
-        "position": [
-          1248,
-          96
-        ]
-      },
-      {
-        "parameters": {
-          "conditions": {
-            "options": {
-              "caseSensitive": true,
-              "leftValue": "",
-              "typeValidation": "strict",
-              "version": 1
             },
-            "conditions": [
-              {
-                "leftValue": "={{ $json.signal }}",
-                "rightValue": "ENTRY",
-                "operator": {
-                  "type": "string",
-                  "operation": "equals"
+            {
+                "id": "17f72a9a-3434-4fcb-80e5-8cda8084074a",
+                "name": "\ucd5c\uadfc 24\uc2dc\uac04 \uc774\ub825 \uc870\ud68c",
+                "type": "n8n-nodes-base.dataTable",
+                "typeVersion": 1.1,
+                "position": [
+                    224,
+                    1100
+                ],
+                "parameters": {
+                    "resource": "row",
+                    "operation": "get",
+                    "dataTableId": {
+                        "__rl": true,
+                        "mode": "id",
+                        "value": "7FFlXBiQp488z6M4",
+                        "cachedResultName": "kimchi_premium_history"
+                    },
+                    "returnAll": false,
+                    "limit": 3500,
+                    "orderBy": true,
+                    "orderByColumn": "checkedAt",
+                    "orderByDirection": "DESC"
                 }
-              }
-            ],
-            "combinator": "and"
-          },
-          "options": {}
-        },
-        "id": "e809ebb9-f9ab-4167-9dd2-389c6ddcd7b0",
-        "name": "진입 신호인가?",
-        "type": "n8n-nodes-base.if",
-        "typeVersion": 2.3,
-        "position": [
-          1280,
-          -32
-        ]
-      },
-      {
-        "parameters": {
-          "operation": "get",
-          "dataTableId": {
-            "__rl": true,
-            "mode": "id",
-            "value": "6MFkAuDuiogrRSqA",
-            "cachedResultName": "kimchi_paper_trades"
-          },
-          "matchType": "allConditions",
-          "filters": {
-            "conditions": [
-              {
-                "keyName": "status",
-                "keyValue": "OPEN"
-              }
-            ]
-          },
-          "returnAll": true
-        },
-        "id": "f3fb4fbc-0c44-490c-b957-e19d3c6ca3fc",
-        "name": "진행 중인 포지션 조회",
-        "type": "n8n-nodes-base.dataTable",
-        "typeVersion": 1.1,
-        "position": [
-          1552,
-          0
-        ],
-        "alwaysOutputData": true,
-        "executeOnce": true
-      },
-      {
-        "parameters": {
-          "mode": "runOnceForAllItems",
-          "language": "javaScript",
-          "jsCode": "const MAX_POSITIONS = 3; // 동시에 열 수 있는 최대 가상 포지션 수\nconst CHECK_LIMIT = 8;   // 호가 검증까지 돌려볼 후보 수.\n                         // 상위 3개만 보면 그 셋이 전부 유동성 미달일 때\n                         // 뒤에 멀줦한 후보가 있어도 기회를 통째로 놓친다.\n\n// 현재 열려 있는 포지션 추리기.\n// 포지션이 하나도 없을 때 dataTable 노드는 빈 아이템({})을 하나 내보내므로 coin 필드로 걸러낸다.\nconst openPositions = [];\nconst seenIds = {};\n$input.all().forEach(function (item) {\n  const row = item.json;\n  if (!row || !row.coin) return;\n  if (seenIds[row.id]) return; // 같은 조회가 반복될 경우를 대비한 중복 제거\n  seenIds[row.id] = true;\n  openPositions.push(row);\n});\n\nconst slots = MAX_POSITIONS - openPositions.length;\nif (slots <= 0) return []; // 자리가 없으면 호가 조회를 할 이유도 없다\n\nconst openCoins = openPositions.map(function (p) { return p.coin; });\n\n// 이번 회차의 진입 신호 중, 아직 포지션이 없는 코인만 후보로 삼는다\nconst candidates = $('MA·신호 판정').all()\n  .map(function (item) { return item.json; })\n  .filter(function (s) { return s.signal === 'ENTRY'; })\n  .filter(function (s) { return openCoins.indexOf(s.coin) === -1; });\n\n// 저평가 정도(z-score = 평균에서 몇 시그마 아래인지)가 큰 순서로 정렬\ncandidates.forEach(function (s) {\n  s.zScore = s.sigma > 0 ? (s.ma - s.premium) / s.sigma : 0;\n});\ncandidates.sort(function (a, b) { return b.zScore - a.zScore; });\n\n// 실제 몇 개를 잡을지는 호가 검증을 통과한 뒤에 «슬롯 배분»에서 정한다\nreturn candidates.slice(0, CHECK_LIMIT).map(function (s) {\n  return {\n    json: {\n      coin: s.coin,\n      premium: s.premium,\n      ma: s.ma,\n      sigma: s.sigma,\n      lower: s.lower,               // 진입선 - 호가 재계산 후 다시 검증할 때 쓴다\n      korbitPrice: s.korbitPrice,\n      foreignPrice: s.foreignPrice, // 호가 기준 김프를 다시 계산하려면 해외가가 필요\n      zScore: Math.round(s.zScore * 100) / 100,\n      slots: slots,\n      candidateCount: candidates.length,\n      openCount: openPositions.length\n    }\n  };\n});"
-        },
-        "id": "0b432d4d-ec2d-494f-a0a3-9101aff78f7f",
-        "name": "진입 가능 여부 판단",
-        "type": "n8n-nodes-base.code",
-        "typeVersion": 2,
-        "position": [
-          1776,
-          0
-        ]
-      },
-      {
-        "parameters": {
-          "conditions": {
-            "options": {
-              "caseSensitive": true,
-              "leftValue": "",
-              "typeValidation": "strict",
-              "version": 1
             },
-            "conditions": [
-              {
-                "leftValue": "={{ $json.canEnter }}",
-                "rightValue": true,
-                "operator": {
-                  "type": "boolean",
-                  "operation": "equals"
+            {
+                "id": "ddbc88c4-4901-4307-8a60-b11e7c0d2580",
+                "name": "24\uc2dc\uac04 \ud1b5\uacc4 \uacc4\uc0b0",
+                "type": "n8n-nodes-base.code",
+                "typeVersion": 2,
+                "position": [
+                    448,
+                    1100
+                ],
+                "parameters": {
+                    "mode": "runOnceForAllItems",
+                    "language": "javaScript",
+                    "jsCode": "const ONE_DAY_MS = 24 * 60 * 60 * 1000;\nconst EXPECTED_RUNS_PER_DAY = 288; // 5\ubd84\ub9c8\ub2e4 \uc2e4\ud589 = \ud558\ub8e8 288\ud68c\nconst nowMs = Date.now();\nconst cutoff = nowMs - ONE_DAY_MS;\n\nconst rows = $input.all().map(function (item) { return item.json; });\nconst recentRows = rows.filter(function (r) { return new Date(r.checkedAt).getTime() >= cutoff; });\n\n// \ucf54\uc778\ubcc4\ub85c \ubb36\uae30\nconst byCoin = {};\nrecentRows.forEach(function (r) {\n  if (!byCoin[r.coin]) byCoin[r.coin] = [];\n  byCoin[r.coin].push(r);\n});\n\nconst coinStats = [];\nObject.keys(byCoin).sort().forEach(function (coin) {\n  const list = byCoin[coin].slice().sort(function (a, b) {\n    return new Date(a.checkedAt).getTime() - new Date(b.checkedAt).getTime();\n  });\n  const premiums = list.map(function (r) { return r.premium; });\n  const sum = premiums.reduce(function (s, v) { return s + v; }, 0);\n  const avg = sum / premiums.length;\n  const min = Math.min.apply(null, premiums);\n  const max = Math.max.apply(null, premiums);\n  const latest = list[list.length - 1];\n\n  coinStats.push({\n    coin: coin,\n    current: latest.premium,\n    avg: avg,\n    min: min,\n    max: max,\n    dataPoints: list.length\n  });\n});\n\n// \uc815\uc0c1 \ub3d9\uc791 \uc5ec\ubd80 \ud310\ub2e8: \uc2e4\ud589 \ud69f\uc218\uac00 \ucda9\ubd84\ud55c\uc9c0 + \ucd5c\uc2e0 \ub370\uc774\ud130\uac00 \uc2e0\uc120\ud55c\uc9c0\nconst distinctTimestamps = {};\nrecentRows.forEach(function (r) { distinctTimestamps[r.checkedAt] = true; });\nconst actualRuns = Object.keys(distinctTimestamps).length;\n\nlet latestOverallMs = null;\nrecentRows.forEach(function (r) {\n  const t = new Date(r.checkedAt).getTime();\n  if (latestOverallMs === null || t > latestOverallMs) latestOverallMs = t;\n});\nconst minutesSinceLastData = latestOverallMs !== null ? Math.round((nowMs - latestOverallMs) / 60000) : null;\n\nconst isHealthy = (actualRuns >= EXPECTED_RUNS_PER_DAY * 0.85) && (minutesSinceLastData !== null && minutesSinceLastData <= 15);\n\nreturn [{\n  json: {\n    coinStats: coinStats,\n    actualRuns: actualRuns,\n    expectedRuns: EXPECTED_RUNS_PER_DAY,\n    minutesSinceLastData: minutesSinceLastData,\n    isHealthy: isHealthy,\n    reportTime: new Date().toISOString()\n  }\n}];"
                 }
-              }
-            ],
-            "combinator": "and"
-          },
-          "options": {}
-        },
-        "id": "574e2944-1ea5-4506-97a0-ebe71eb85ea3",
-        "name": "진입해도 되는가?",
-        "type": "n8n-nodes-base.if",
-        "typeVersion": 2.3,
-        "position": [
-          2300,
-          0
-        ]
-      },
-      {
-        "parameters": {
-          "resource": "row",
-          "operation": "insert",
-          "dataTableId": {
-            "__rl": true,
-            "mode": "id",
-            "value": "6MFkAuDuiogrRSqA",
-            "cachedResultName": "kimchi_paper_trades"
-          },
-          "columns": {
-            "mappingMode": "defineBelow",
-            "value": {
-              "coin": "={{ $json.coin }}",
-              "status": "OPEN",
-              "entryTime": "={{ $now.toISO() }}",
-              "entryPremium": "={{ $json.premium }}",
-              "entryMa": "={{ $json.ma }}",
-              "entryPrice": "={{ $json.korbitPrice }}",
-              "positionSize": "={{ 10000 * 0.10 }}",
-              "feeEntry": "={{ Math.round(10000 * 0.10 * 0.0009 * 100) / 100 }}"
             },
-            "schema": [
-              {
-                "id": "coin",
-                "displayName": "coin",
-                "required": false,
-                "defaultMatch": false,
-                "display": true,
-                "type": "string",
-                "canBeUsedToMatch": true
-              },
-              {
-                "id": "status",
-                "displayName": "status",
-                "required": false,
-                "defaultMatch": false,
-                "display": true,
-                "type": "string",
-                "canBeUsedToMatch": true
-              },
-              {
-                "id": "entryTime",
-                "displayName": "entryTime",
-                "required": false,
-                "defaultMatch": false,
-                "display": true,
-                "type": "date",
-                "canBeUsedToMatch": true
-              },
-              {
-                "id": "entryPremium",
-                "displayName": "entryPremium",
-                "required": false,
-                "defaultMatch": false,
-                "display": true,
-                "type": "number",
-                "canBeUsedToMatch": true
-              },
-              {
-                "id": "entryMa",
-                "displayName": "entryMa",
-                "required": false,
-                "defaultMatch": false,
-                "display": true,
-                "type": "number",
-                "canBeUsedToMatch": true
-              },
-              {
-                "id": "entryPrice",
-                "displayName": "entryPrice",
-                "required": false,
-                "defaultMatch": false,
-                "display": true,
-                "type": "number",
-                "canBeUsedToMatch": true
-              },
-              {
-                "id": "positionSize",
-                "displayName": "positionSize",
-                "required": false,
-                "defaultMatch": false,
-                "display": true,
-                "type": "number",
-                "canBeUsedToMatch": true
-              },
-              {
-                "id": "feeEntry",
-                "displayName": "feeEntry",
-                "required": false,
-                "defaultMatch": false,
-                "display": true,
-                "type": "number",
-                "canBeUsedToMatch": true
-              }
-            ]
-          }
-        },
-        "id": "2e47caee-2cc0-4eff-ac77-136f94d5c38e",
-        "name": "가상 진입 기록",
-        "type": "n8n-nodes-base.dataTable",
-        "typeVersion": 1.1,
-        "position": [
-          2440,
-          0
-        ]
-      },
-      {
-        "parameters": {
-          "method": "POST",
-          "url": "https://discordapp.com/api/webhooks/1545778115995893870/irjbjjMjfbq-HMg-p8z06Xnc9mcjS7OnJBfl2998T9TW-q1byi7YUgzRy5C_dRVAejnU",
-          "authentication": "none",
-          "sendBody": true,
-          "contentType": "json",
-          "specifyBody": "json",
-          "jsonBody": "={{ { \"content\": $json.content } }}"
-        },
-        "id": "e27bc2cf-a870-4e92-a075-ac7bdec3a74e",
-        "name": "진입 알림 전송",
-        "type": "n8n-nodes-base.httpRequest",
-        "typeVersion": 4.5,
-        "position": [
-          2860,
-          0
-        ]
-      },
-      {
-        "parameters": {
-          "operation": "get",
-          "dataTableId": {
-            "__rl": true,
-            "mode": "id",
-            "value": "6MFkAuDuiogrRSqA",
-            "cachedResultName": "kimchi_paper_trades"
-          },
-          "matchType": "allConditions",
-          "filters": {
-            "conditions": [
-              {
-                "keyName": "coin",
-                "keyValue": "={{ $('MA·신호 판정').item.json.coin }}"
-              },
-              {
-                "keyName": "status",
-                "keyValue": "OPEN"
-              }
-            ]
-          },
-          "limit": 1,
-          "orderBy": true,
-          "orderByColumn": "entryTime"
-        },
-        "id": "bd57c2ef-1b2b-4d44-956c-24af2eff3c65",
-        "name": "청산할 포지션 조회",
-        "type": "n8n-nodes-base.dataTable",
-        "typeVersion": 1.1,
-        "position": [
-          1552,
-          192
-        ]
-      },
-      {
-        "parameters": {
-          "mode": "runOnceForEachItem",
-          "language": "javaScript",
-          "jsCode": "const FEE_RATE = 0.0009; // 국내+해외 합산 수수료율(예상)\n\nconst openTrade = $('청산할 포지션 조회').item.json;   // 청산할 이 코인의 OPEN 행\nconst exitSignal = $('MA·신호 판정').item.json;      // 이번 회차의 청산 신호\n\n// 진입은 매수호가로 계산했으니 청산도 실제로 팔리는 가격(최우선 매수호가)으로 맞춘다.\n// 호가를 못 가져오면 체결가 기준으로 대체한다.\nlet exitPremium = Number(exitSignal.premium);\nlet exitPrice = Number(exitSignal.korbitPrice);\n\nconst ob = ($json && $json.data) ? $json.data : {};\nconst bids = ob.bids || [];\nconst fxBody = $('환율 조회').first().json;\nconst fx = (fxBody && fxBody.rates && fxBody.rates.KRW) ? Number(fxBody.rates.KRW) : null;\nconst foreignPrice = Number(exitSignal.foreignPrice);\n\nif (fx && foreignPrice && bids.length) {\n  const bid = Number(bids[0].price);\n  if (bid) {\n    exitPrice = bid;\n    exitPremium = Math.round(((bid / fx / foreignPrice) - 1) * 100 * 10000) / 10000;\n  }\n}\n\nconst positionSize = Number(openTrade.positionSize);\n\n// 국내 현물 롱 + 해외 선물 숏을 합치면 코인 시세 방향은 상쇄되고,\n// 두 시장의 가격차(김프)가 변한 만큼만 손익이 된다.\n//   합산 손익 ≈ 청산김프 − 진입김프\n// 김프가 평균보다 낮을 때(할인) 들어가서 평균으로 회복(상승)할 때 청산하므로 이익이 된다.\nconst entryPremium = Number(openTrade.entryPremium);\nconst premiumGain = exitPremium - entryPremium;\nconst grossProfit = Math.round((positionSize * premiumGain / 100) * 100) / 100;\nconst feeExit = Math.round(positionSize * FEE_RATE * 100) / 100;\nconst netProfit = Math.round((grossProfit - Number(openTrade.feeEntry) - feeExit) * 100) / 100;\n\nconst heldMinutes = Math.round((Date.now() - new Date(openTrade.entryTime).getTime()) / 60000);\n\nreturn {\n  json: {\n    rowId: openTrade.id,\n    coin: openTrade.coin,\n    entryPremium: entryPremium,\n    entryTime: openTrade.entryTime,\n    heldMinutes: heldMinutes,\n    exitPremium: exitPremium,\n    exitPrice: exitPrice,\n    grossProfit: grossProfit,\n    feeExit: feeExit,\n    netProfit: netProfit\n  }\n};"
-        },
-        "id": "00ffb491-e273-468f-b258-5fe620005bd1",
-        "name": "손익 계산",
-        "type": "n8n-nodes-base.code",
-        "typeVersion": 2,
-        "position": [
-          1776,
-          192
-        ]
-      },
-      {
-        "parameters": {
-          "operation": "update",
-          "dataTableId": {
-            "__rl": true,
-            "mode": "id",
-            "value": "6MFkAuDuiogrRSqA",
-            "cachedResultName": "kimchi_paper_trades"
-          },
-          "matchType": "allConditions",
-          "filters": {
-            "conditions": [
-              {
-                "keyValue": "={{ $json.rowId }}"
-              }
-            ]
-          },
-          "columns": {
-            "mappingMode": "defineBelow",
-            "value": {
-              "status": "CLOSED",
-              "exitTime": "={{ $now.toISO() }}",
-              "exitPremium": "={{ $json.exitPremium }}",
-              "exitPrice": "={{ $json.exitPrice }}",
-              "grossProfit": "={{ $json.grossProfit }}",
-              "feeExit": "={{ $json.feeExit }}",
-              "netProfit": "={{ $json.netProfit }}"
+            {
+                "id": "53dccf38-e6f1-4533-91ec-551cb0d90cd6",
+                "name": "\ubcf4\uace0 \uba54\uc2dc\uc9c0 \uad6c\uc131",
+                "type": "n8n-nodes-base.code",
+                "typeVersion": 2,
+                "position": [
+                    672,
+                    1100
+                ],
+                "parameters": {
+                    "mode": "runOnceForAllItems",
+                    "language": "javaScript",
+                    "jsCode": "const data = $json;\nconst kstStr = new Date(data.reportTime).toLocaleString('ko-KR', { timeZone: 'Asia/Seoul', year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit' });\n\nconst statusLine = data.isHealthy\n  ? '\u2705 \uc815\uc0c1 \ub3d9\uc791 \uc911'\n  : '\u26a0\ufe0f \uc810\uac80\uc774 \ud544\uc694\ud560 \uc218 \uc788\uc5b4\uc694 (\uc2e4\ud589 \ub204\ub77d \ub610\ub294 \ucd5c\uc2e0 \ub370\uc774\ud130 \uc9c0\uc5f0 \uc758\uc2ec)';\n\nconst lines = [];\nlines.push('\ud83d\udccb \uae40\uce58 \ud504\ub9ac\ubbf8\uc5c4 \ubd07 \uc0c1\ud0dc \ubcf4\uace0 (' + kstStr + ' KST)');\nlines.push(statusLine);\nlines.push('\uc9c0\ub09c 24\uc2dc\uac04 \uc2e4\ud589: ' + data.actualRuns + '/' + data.expectedRuns + '\ud68c, \ucd5c\uc2e0 \ub370\uc774\ud130 ' + (data.minutesSinceLastData !== null ? data.minutesSinceLastData + '\ubd84 \uc804' : '\uc5c6\uc74c'));\nlines.push('');\nlines.push('\ud83d\udcb0 \ud398\uc774\ud37c \ud2b8\ub808\uc774\ub529 \uc131\uacfc (\uac00\uc0c1 \uc2dc\ub4dc $' + data.paperSeedUsd.toLocaleString('en-US') + ')');\nif (data.totalTrades > 0) {\n  const profitSign = data.totalNetProfit >= 0 ? '+' : '';\n  lines.push('\ub204\uc801 \uccad\uc0b0 \uac70\ub798: ' + data.totalTrades + '\ud68c (\uc2b9 ' + data.winTrades + ' / \uc2b9\ub960 ' + data.winRate.toFixed(1) + '%)');\n  lines.push('\ub204\uc801 \uc190\uc775: ' + profitSign + '$' + data.totalNetProfit.toFixed(2) + ' (\uc6d0\uae08 \ub300\ube44 ' + profitSign + data.returnPct.toFixed(2) + '%)');\n} else {\n  lines.push('\uc544\uc9c1 \uccad\uc0b0\ub41c \uac70\ub798 \uc5c6\uc74c');\n}\nconst openCoinNames = data.openPositions.map(function (p) { return p.coin; }).join(', ');\nlines.push('\ud604\uc7ac \ubcf4\uc720 \uc911\uc778 \uac00\uc0c1 \ud3ec\uc9c0\uc158: ' + data.openPositionsCount + '\uac1c' + (data.openPositionsCount > 0 ? (' (' + openCoinNames + ')') : ''));\nlines.push('');\nlines.push('\ucf54\uc778\ubcc4 24\uc2dc\uac04 \uae40\ud504 \ucd94\uc774 (\ud604\uc7ac | \ud3c9\uade0 | \ubc94\uc704 | \ud45c\ubcf8\uc218)');\n\ndata.coinStats.forEach(function (c) {\n  lines.push('\u00b7 ' + c.coin + ': ' + c.current.toFixed(2) + '% | \ud3c9\uade0 ' + c.avg.toFixed(2) + '% | [' + c.min.toFixed(2) + '% ~ ' + c.max.toFixed(2) + '%] | ' + c.dataPoints + '\uac1c');\n});\n\nlines.push('');\nlines.push('\ud83d\udd17 \ub300\uc2dc\ubcf4\ub4dc: https://kimchi-premium-dashboard-mu.vercel.app');\n\nreturn [{ json: { content: lines.join('\\n') } }];"
+                }
             },
-            "schema": [
-              {
-                "id": "status",
-                "displayName": "status",
-                "required": false,
-                "defaultMatch": false,
-                "display": true,
-                "type": "string",
-                "canBeUsedToMatch": true
-              },
-              {
-                "id": "exitTime",
-                "displayName": "exitTime",
-                "required": false,
-                "defaultMatch": false,
-                "display": true,
-                "type": "date",
-                "canBeUsedToMatch": true
-              },
-              {
-                "id": "exitPremium",
-                "displayName": "exitPremium",
-                "required": false,
-                "defaultMatch": false,
-                "display": true,
-                "type": "number",
-                "canBeUsedToMatch": true
-              },
-              {
-                "id": "exitPrice",
-                "displayName": "exitPrice",
-                "required": false,
-                "defaultMatch": false,
-                "display": true,
-                "type": "number",
-                "canBeUsedToMatch": true
-              },
-              {
-                "id": "grossProfit",
-                "displayName": "grossProfit",
-                "required": false,
-                "defaultMatch": false,
-                "display": true,
-                "type": "number",
-                "canBeUsedToMatch": true
-              },
-              {
-                "id": "feeExit",
-                "displayName": "feeExit",
-                "required": false,
-                "defaultMatch": false,
-                "display": true,
-                "type": "number",
-                "canBeUsedToMatch": true
-              },
-              {
-                "id": "netProfit",
-                "displayName": "netProfit",
-                "required": false,
-                "defaultMatch": false,
-                "display": true,
-                "type": "number",
-                "canBeUsedToMatch": true
-              }
-            ]
-          },
-          "options": {}
-        },
-        "id": "977cf419-f1e3-4753-beca-64b4e1636123",
-        "name": "포지션 청산 갱신",
-        "type": "n8n-nodes-base.dataTable",
-        "typeVersion": 1.1,
-        "position": [
-          2000,
-          192
-        ]
-      },
-      {
-        "parameters": {
-          "method": "POST",
-          "url": "https://discordapp.com/api/webhooks/1545778115995893870/irjbjjMjfbq-HMg-p8z06Xnc9mcjS7OnJBfl2998T9TW-q1byi7YUgzRy5C_dRVAejnU",
-          "authentication": "none",
-          "sendBody": true,
-          "contentType": "json",
-          "specifyBody": "json",
-          "jsonBody": "={{ { \"content\": $json.content } }}"
-        },
-        "id": "2b214301-b929-433a-98e9-a4f85dc20b38",
-        "name": "청산 알림 전송",
-        "type": "n8n-nodes-base.httpRequest",
-        "typeVersion": 4.5,
-        "position": [
-          2440,
-          192
-        ]
-      },
-      {
-        "parameters": {
-          "content": "## 김치 프리미엄 페이퍼 트레이딩 봇\n\n5분마다 코빗(국내)과 OKX(해외 USDT 무기한선물) 가격을 비교해 김프를 계산하고,\n3일 이동평균보다 통계적으로 낮아지면 가상 매수, 평균으로 돌아오면 가상 매도로 기록합니다.\n\n⚠️ 실제 주문은 하지 않는 시뮬레이션(페이퍼 트레이딩)입니다.\n⚠️ Bybit/Binance는 이 서버 지역에서 차단되어 OKX로 교체했습니다.\n⚠️ 코빗에 상장되지 않은 코인은 자동으로 건너뜁니다.",
-          "height": 304,
-          "width": 496,
-          "color": 4
-        },
-        "id": "2cf4e0c6-76b2-4acb-8b7a-deff2fbb8be3",
-        "name": "Sticky Note c9907429",
-        "type": "n8n-nodes-base.stickyNote",
-        "typeVersion": 1,
-        "position": [
-          1200,
-          192
-        ]
-      },
-      {
-        "parameters": {
-          "url": "https://open.er-api.com/v6/latest/USD",
-          "options": {}
-        },
-        "id": "0082610c-f42c-4a55-8dc4-2aeb0049b3fc",
-        "name": "환율 조회",
-        "type": "n8n-nodes-base.httpRequest",
-        "typeVersion": 4.5,
-        "position": [
-          752,
-          272
-        ]
-      },
-      {
-        "id": "dab939e9-1ebd-4c0e-a9da-7599344e9199",
-        "name": "매일 07:40 상태 보고",
-        "type": "n8n-nodes-base.scheduleTrigger",
-        "typeVersion": 1.4,
-        "position": [
-          0,
-          1100
-        ],
-        "parameters": {
-          "rule": {
-            "interval": [
-              {
-                "field": "cronExpression",
-                "expression": "40 7 * * *"
-              }
-            ]
-          }
-        }
-      },
-      {
-        "id": "17f72a9a-3434-4fcb-80e5-8cda8084074a",
-        "name": "최근 24시간 이력 조회",
-        "type": "n8n-nodes-base.dataTable",
-        "typeVersion": 1.1,
-        "position": [
-          224,
-          1100
-        ],
-        "parameters": {
-          "resource": "row",
-          "operation": "get",
-          "dataTableId": {
-            "__rl": true,
-            "mode": "id",
-            "value": "7FFlXBiQp488z6M4",
-            "cachedResultName": "kimchi_premium_history"
-          },
-          "returnAll": false,
-          "limit": 3500,
-          "orderBy": true,
-          "orderByColumn": "checkedAt",
-          "orderByDirection": "DESC"
-        }
-      },
-      {
-        "id": "ddbc88c4-4901-4307-8a60-b11e7c0d2580",
-        "name": "24시간 통계 계산",
-        "type": "n8n-nodes-base.code",
-        "typeVersion": 2,
-        "position": [
-          448,
-          1100
-        ],
-        "parameters": {
-          "mode": "runOnceForAllItems",
-          "language": "javaScript",
-          "jsCode": "const ONE_DAY_MS = 24 * 60 * 60 * 1000;\nconst EXPECTED_RUNS_PER_DAY = 288; // 5분마다 실행 = 하루 288회\nconst nowMs = Date.now();\nconst cutoff = nowMs - ONE_DAY_MS;\n\nconst rows = $input.all().map(function (item) { return item.json; });\nconst recentRows = rows.filter(function (r) { return new Date(r.checkedAt).getTime() >= cutoff; });\n\n// 코인별로 묶기\nconst byCoin = {};\nrecentRows.forEach(function (r) {\n  if (!byCoin[r.coin]) byCoin[r.coin] = [];\n  byCoin[r.coin].push(r);\n});\n\nconst coinStats = [];\nObject.keys(byCoin).sort().forEach(function (coin) {\n  const list = byCoin[coin].slice().sort(function (a, b) {\n    return new Date(a.checkedAt).getTime() - new Date(b.checkedAt).getTime();\n  });\n  const premiums = list.map(function (r) { return r.premium; });\n  const sum = premiums.reduce(function (s, v) { return s + v; }, 0);\n  const avg = sum / premiums.length;\n  const min = Math.min.apply(null, premiums);\n  const max = Math.max.apply(null, premiums);\n  const latest = list[list.length - 1];\n\n  coinStats.push({\n    coin: coin,\n    current: latest.premium,\n    avg: avg,\n    min: min,\n    max: max,\n    dataPoints: list.length\n  });\n});\n\n// 정상 동작 여부 판단: 실행 횟수가 충분한지 + 최신 데이터가 신선한지\nconst distinctTimestamps = {};\nrecentRows.forEach(function (r) { distinctTimestamps[r.checkedAt] = true; });\nconst actualRuns = Object.keys(distinctTimestamps).length;\n\nlet latestOverallMs = null;\nrecentRows.forEach(function (r) {\n  const t = new Date(r.checkedAt).getTime();\n  if (latestOverallMs === null || t > latestOverallMs) latestOverallMs = t;\n});\nconst minutesSinceLastData = latestOverallMs !== null ? Math.round((nowMs - latestOverallMs) / 60000) : null;\n\nconst isHealthy = (actualRuns >= EXPECTED_RUNS_PER_DAY * 0.85) && (minutesSinceLastData !== null && minutesSinceLastData <= 15);\n\nreturn [{\n  json: {\n    coinStats: coinStats,\n    actualRuns: actualRuns,\n    expectedRuns: EXPECTED_RUNS_PER_DAY,\n    minutesSinceLastData: minutesSinceLastData,\n    isHealthy: isHealthy,\n    reportTime: new Date().toISOString()\n  }\n}];"
-        }
-      },
-      {
-        "id": "53dccf38-e6f1-4533-91ec-551cb0d90cd6",
-        "name": "보고 메시지 구성",
-        "type": "n8n-nodes-base.code",
-        "typeVersion": 2,
-        "position": [
-          672,
-          1100
-        ],
-        "parameters": {
-          "mode": "runOnceForAllItems",
-          "language": "javaScript",
-          "jsCode": "const data = $json;\nconst kstStr = new Date(data.reportTime).toLocaleString('ko-KR', { timeZone: 'Asia/Seoul', year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit' });\n\nconst statusLine = data.isHealthy\n  ? '✅ 정상 동작 중'\n  : '⚠️ 점검이 필요할 수 있어요 (실행 누락 또는 최신 데이터 지연 의심)';\n\nconst lines = [];\nlines.push('📋 김치 프리미엄 봇 상태 보고 (' + kstStr + ' KST)');\nlines.push(statusLine);\nlines.push('지난 24시간 실행: ' + data.actualRuns + '/' + data.expectedRuns + '회, 최신 데이터 ' + (data.minutesSinceLastData !== null ? data.minutesSinceLastData + '분 전' : '없음'));\nlines.push('');\nlines.push('💰 페이퍼 트레이딩 성과 (가상 시드 $' + data.paperSeedUsd.toLocaleString('en-US') + ')');\nif (data.totalTrades > 0) {\n  const profitSign = data.totalNetProfit >= 0 ? '+' : '';\n  lines.push('누적 청산 거래: ' + data.totalTrades + '회 (승 ' + data.winTrades + ' / 승률 ' + data.winRate.toFixed(1) + '%)');\n  lines.push('누적 손익: ' + profitSign + '$' + data.totalNetProfit.toFixed(2) + ' (원금 대비 ' + profitSign + data.returnPct.toFixed(2) + '%)');\n} else {\n  lines.push('아직 청산된 거래 없음');\n}\nconst openCoinNames = data.openPositions.map(function (p) { return p.coin; }).join(', ');\nlines.push('현재 보유 중인 가상 포지션: ' + data.openPositionsCount + '개' + (data.openPositionsCount > 0 ? (' (' + openCoinNames + ')') : ''));\nlines.push('');\nlines.push('코인별 24시간 김프 추이 (현재 | 평균 | 범위 | 표본수)');\n\ndata.coinStats.forEach(function (c) {\n  lines.push('· ' + c.coin + ': ' + c.current.toFixed(2) + '% | 평균 ' + c.avg.toFixed(2) + '% | [' + c.min.toFixed(2) + '% ~ ' + c.max.toFixed(2) + '%] | ' + c.dataPoints + '개');\n});\n\nlines.push('');\nlines.push('🔗 대시보드: https://kimchi-premium-dashboard-mu.vercel.app');\n\nreturn [{ json: { content: lines.join('\\n') } }];"
-        }
-      },
-      {
-        "id": "cd526860-8a91-4c88-a177-a309a3761f8c",
-        "name": "상태 보고 전송",
-        "type": "n8n-nodes-base.httpRequest",
-        "typeVersion": 4.5,
-        "position": [
-          896,
-          1100
-        ],
-        "parameters": {
-          "method": "POST",
-          "url": "https://discordapp.com/api/webhooks/1545778115995893870/irjbjjMjfbq-HMg-p8z06Xnc9mcjS7OnJBfl2998T9TW-q1byi7YUgzRy5C_dRVAejnU",
-          "authentication": "none",
-          "sendBody": true,
-          "contentType": "json",
-          "specifyBody": "json",
-          "jsonBody": "={{ { \"content\": $json.content } }}"
-        }
-      },
-      {
-        "id": "f571e3d4-eb89-4cd7-9415-cfa8c951077d",
-        "name": "전체 매매 이력 조회",
-        "type": "n8n-nodes-base.dataTable",
-        "typeVersion": 1.1,
-        "position": [
-          672,
-          1300
-        ],
-        "parameters": {
-          "resource": "row",
-          "operation": "get",
-          "dataTableId": {
-            "__rl": true,
-            "mode": "id",
-            "value": "6MFkAuDuiogrRSqA",
-            "cachedResultName": "kimchi_paper_trades"
-          },
-          "returnAll": true
-        },
-        "alwaysOutputData": true
-      },
-      {
-        "id": "0dd1acbc-f322-47bc-8464-215463ddc074",
-        "name": "매매 성과 계산",
-        "type": "n8n-nodes-base.code",
-        "typeVersion": 2,
-        "position": [
-          896,
-          1300
-        ],
-        "parameters": {
-          "mode": "runOnceForAllItems",
-          "language": "javaScript",
-          "jsCode": "const PAPER_SEED_USD = 10000; // 가상 시드: $10,000\n\nconst priceStats = $('24시간 통계 계산').first().json;\n\nconst trades = $input.all().map(function (item) { return item.json; });\nconst closedTrades = trades.filter(function (t) { return t.status === 'CLOSED'; });\nconst openTrades = trades.filter(function (t) { return t.status === 'OPEN'; });\n\nconst totalTrades = closedTrades.length;\nconst winTrades = closedTrades.filter(function (t) { return Number(t.netProfit) > 0; });\nconst winRate = totalTrades > 0 ? (winTrades.length / totalTrades * 100) : null;\nconst totalNetProfit = closedTrades.reduce(function (s, t) { return s + Number(t.netProfit || 0); }, 0);\nconst returnPct = totalNetProfit / PAPER_SEED_USD * 100;\n\nconst openList = openTrades.map(function (t) {\n  return { coin: t.coin, entryPremium: Number(t.entryPremium) };\n});\n\nreturn [{\n  json: Object.assign({}, priceStats, {\n    paperSeedUsd: PAPER_SEED_USD,\n    totalTrades: totalTrades,\n    winTrades: winTrades.length,\n    winRate: winRate,\n    totalNetProfit: totalNetProfit,\n    returnPct: returnPct,\n    openPositionsCount: openTrades.length,\n    openPositions: openList\n  })\n}];"
-        }
-      },
-      {
-        "id": "099c9fc8-57dc-4c85-bd0b-e33eebcb3793",
-        "name": "대시보드 자동갱신 켜기",
-        "type": "n8n-nodes-base.manualTrigger",
-        "typeVersion": 1,
-        "position": [
-          0,
-          1780
-        ],
-        "parameters": {}
-      },
-      {
-        "id": "b92b1a3f-b526-4909-8278-390df80a31ee",
-        "name": "설정 켜기로 갱신",
-        "type": "n8n-nodes-base.dataTable",
-        "typeVersion": 1.1,
-        "position": [
-          224,
-          1780
-        ],
-        "parameters": {
-          "resource": "row",
-          "operation": "update",
-          "dataTableId": {
-            "__rl": true,
-            "mode": "id",
-            "value": "KRzzzywCgFJXoGxE",
-            "cachedResultName": "dashboard_settings"
-          },
-          "matchType": "allConditions",
-          "filters": {
-            "conditions": [
-              {
-                "keyName": "settingKey",
-                "condition": "eq",
-                "keyValue": "artifact_refresh"
-              }
-            ]
-          },
-          "columns": {
-            "mappingMode": "defineBelow",
-            "value": {
-              "enabled": true
+            {
+                "id": "cd526860-8a91-4c88-a177-a309a3761f8c",
+                "name": "\uc0c1\ud0dc \ubcf4\uace0 \uc804\uc1a1",
+                "type": "n8n-nodes-base.httpRequest",
+                "typeVersion": 4.5,
+                "position": [
+                    896,
+                    1100
+                ],
+                "parameters": {
+                    "method": "POST",
+                    "url": "https://discordapp.com/api/webhooks/1545778115995893870/irjbjjMjfbq-HMg-p8z06Xnc9mcjS7OnJBfl2998T9TW-q1byi7YUgzRy5C_dRVAejnU",
+                    "authentication": "none",
+                    "sendBody": true,
+                    "contentType": "json",
+                    "specifyBody": "json",
+                    "jsonBody": "={{ { \"content\": $json.content } }}"
+                }
             },
-            "schema": [
-              {
-                "id": "enabled",
-                "displayName": "enabled",
-                "required": false,
-                "defaultMatch": false,
-                "display": true,
-                "type": "boolean",
-                "canBeUsedToMatch": true
-              }
-            ]
-          }
-        }
-      },
-      {
-        "id": "b4e5dc60-f370-4439-9905-75eb1bd1847e",
-        "name": "대시보드 자동갱신 끄기",
-        "type": "n8n-nodes-base.manualTrigger",
-        "typeVersion": 1,
-        "position": [
-          0,
-          1900
-        ],
-        "parameters": {}
-      },
-      {
-        "id": "59e7d857-9ceb-4214-ba9e-42cfe7c30ca1",
-        "name": "설정 끄기로 갱신",
-        "type": "n8n-nodes-base.dataTable",
-        "typeVersion": 1.1,
-        "position": [
-          224,
-          1900
-        ],
-        "parameters": {
-          "resource": "row",
-          "operation": "update",
-          "dataTableId": {
-            "__rl": true,
-            "mode": "id",
-            "value": "KRzzzywCgFJXoGxE",
-            "cachedResultName": "dashboard_settings"
-          },
-          "matchType": "allConditions",
-          "filters": {
-            "conditions": [
-              {
-                "keyName": "settingKey",
-                "condition": "eq",
-                "keyValue": "artifact_refresh"
-              }
-            ]
-          },
-          "columns": {
-            "mappingMode": "defineBelow",
-            "value": {
-              "enabled": false
+            {
+                "id": "f571e3d4-eb89-4cd7-9415-cfa8c951077d",
+                "name": "\uc804\uccb4 \ub9e4\ub9e4 \uc774\ub825 \uc870\ud68c",
+                "type": "n8n-nodes-base.dataTable",
+                "typeVersion": 1.1,
+                "position": [
+                    672,
+                    1300
+                ],
+                "parameters": {
+                    "resource": "row",
+                    "operation": "get",
+                    "dataTableId": {
+                        "__rl": true,
+                        "mode": "id",
+                        "value": "6MFkAuDuiogrRSqA",
+                        "cachedResultName": "kimchi_paper_trades"
+                    },
+                    "returnAll": true
+                },
+                "alwaysOutputData": true
             },
-            "schema": [
-              {
-                "id": "enabled",
-                "displayName": "enabled",
-                "required": false,
-                "defaultMatch": false,
-                "display": true,
-                "type": "boolean",
-                "canBeUsedToMatch": true
-              }
-            ]
-          }
-        }
-      },
-      {
-        "id": "f023821e-0c31-4e0f-ada6-26ca7b6b7c92",
-        "name": "진입 호가 조회",
-        "type": "n8n-nodes-base.httpRequest",
-        "typeVersion": 4.5,
-        "position": [
-          1900,
-          0
+            {
+                "id": "0dd1acbc-f322-47bc-8464-215463ddc074",
+                "name": "\ub9e4\ub9e4 \uc131\uacfc \uacc4\uc0b0",
+                "type": "n8n-nodes-base.code",
+                "typeVersion": 2,
+                "position": [
+                    896,
+                    1300
+                ],
+                "parameters": {
+                    "mode": "runOnceForAllItems",
+                    "language": "javaScript",
+                    "jsCode": "const PAPER_SEED_USD = 10000; // \uac00\uc0c1 \uc2dc\ub4dc: $10,000\n\nconst priceStats = $('24\uc2dc\uac04 \ud1b5\uacc4 \uacc4\uc0b0').first().json;\n\nconst trades = $input.all().map(function (item) { return item.json; });\nconst closedTrades = trades.filter(function (t) { return t.status === 'CLOSED'; });\nconst openTrades = trades.filter(function (t) { return t.status === 'OPEN'; });\n\nconst totalTrades = closedTrades.length;\nconst winTrades = closedTrades.filter(function (t) { return Number(t.netProfit) > 0; });\nconst winRate = totalTrades > 0 ? (winTrades.length / totalTrades * 100) : null;\nconst totalNetProfit = closedTrades.reduce(function (s, t) { return s + Number(t.netProfit || 0); }, 0);\nconst returnPct = totalNetProfit / PAPER_SEED_USD * 100;\n\nconst openList = openTrades.map(function (t) {\n  return { coin: t.coin, entryPremium: Number(t.entryPremium) };\n});\n\nreturn [{\n  json: Object.assign({}, priceStats, {\n    paperSeedUsd: PAPER_SEED_USD,\n    totalTrades: totalTrades,\n    winTrades: winTrades.length,\n    winRate: winRate,\n    totalNetProfit: totalNetProfit,\n    returnPct: returnPct,\n    openPositionsCount: openTrades.length,\n    openPositions: openList\n  })\n}];"
+                }
+            },
+            {
+                "id": "099c9fc8-57dc-4c85-bd0b-e33eebcb3793",
+                "name": "\ub300\uc2dc\ubcf4\ub4dc \uc790\ub3d9\uac31\uc2e0 \ucf1c\uae30",
+                "type": "n8n-nodes-base.manualTrigger",
+                "typeVersion": 1,
+                "position": [
+                    0,
+                    1780
+                ],
+                "parameters": {}
+            },
+            {
+                "id": "b92b1a3f-b526-4909-8278-390df80a31ee",
+                "name": "\uc124\uc815 \ucf1c\uae30\ub85c \uac31\uc2e0",
+                "type": "n8n-nodes-base.dataTable",
+                "typeVersion": 1.1,
+                "position": [
+                    224,
+                    1780
+                ],
+                "parameters": {
+                    "resource": "row",
+                    "operation": "update",
+                    "dataTableId": {
+                        "__rl": true,
+                        "mode": "id",
+                        "value": "KRzzzywCgFJXoGxE",
+                        "cachedResultName": "dashboard_settings"
+                    },
+                    "matchType": "allConditions",
+                    "filters": {
+                        "conditions": [
+                            {
+                                "keyName": "settingKey",
+                                "condition": "eq",
+                                "keyValue": "artifact_refresh"
+                            }
+                        ]
+                    },
+                    "columns": {
+                        "mappingMode": "defineBelow",
+                        "value": {
+                            "enabled": true
+                        },
+                        "schema": [
+                            {
+                                "id": "enabled",
+                                "displayName": "enabled",
+                                "required": false,
+                                "defaultMatch": false,
+                                "display": true,
+                                "type": "boolean",
+                                "canBeUsedToMatch": true
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "id": "b4e5dc60-f370-4439-9905-75eb1bd1847e",
+                "name": "\ub300\uc2dc\ubcf4\ub4dc \uc790\ub3d9\uac31\uc2e0 \ub044\uae30",
+                "type": "n8n-nodes-base.manualTrigger",
+                "typeVersion": 1,
+                "position": [
+                    0,
+                    1900
+                ],
+                "parameters": {}
+            },
+            {
+                "id": "59e7d857-9ceb-4214-ba9e-42cfe7c30ca1",
+                "name": "\uc124\uc815 \ub044\uae30\ub85c \uac31\uc2e0",
+                "type": "n8n-nodes-base.dataTable",
+                "typeVersion": 1.1,
+                "position": [
+                    224,
+                    1900
+                ],
+                "parameters": {
+                    "resource": "row",
+                    "operation": "update",
+                    "dataTableId": {
+                        "__rl": true,
+                        "mode": "id",
+                        "value": "KRzzzywCgFJXoGxE",
+                        "cachedResultName": "dashboard_settings"
+                    },
+                    "matchType": "allConditions",
+                    "filters": {
+                        "conditions": [
+                            {
+                                "keyName": "settingKey",
+                                "condition": "eq",
+                                "keyValue": "artifact_refresh"
+                            }
+                        ]
+                    },
+                    "columns": {
+                        "mappingMode": "defineBelow",
+                        "value": {
+                            "enabled": false
+                        },
+                        "schema": [
+                            {
+                                "id": "enabled",
+                                "displayName": "enabled",
+                                "required": false,
+                                "defaultMatch": false,
+                                "display": true,
+                                "type": "boolean",
+                                "canBeUsedToMatch": true
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "id": "f023821e-0c31-4e0f-ada6-26ca7b6b7c92",
+                "name": "\uc9c4\uc785 \ud638\uac00 \uc870\ud68c",
+                "type": "n8n-nodes-base.httpRequest",
+                "typeVersion": 4.5,
+                "position": [
+                    1900,
+                    0
+                ],
+                "parameters": {
+                    "method": "GET",
+                    "url": "=https://api.korbit.co.kr/v2/orderbook?symbol={{ $json.coin.toLowerCase() }}_krw",
+                    "options": {}
+                },
+                "onError": "continueRegularOutput",
+                "retryOnFail": true,
+                "maxTries": 2,
+                "waitBetweenTries": 1000
+            },
+            {
+                "id": "c6d0e8c0-5ea0-4ffc-b250-b0a41475e272",
+                "name": "\uccb4\uacb0\uac00\ub2a5 \uae40\ud504 \uac80\uc99d",
+                "type": "n8n-nodes-base.code",
+                "typeVersion": 2,
+                "position": [
+                    2060,
+                    0
+                ],
+                "parameters": {
+                    "mode": "runOnceForEachItem",
+                    "language": "javaScript",
+                    "jsCode": "// \ub9c8\uc9c0\ub9c9 \uccb4\uacb0\uac00(close)\ub294 \uac70\ub798\uac00 \ub738\ud55c \ucf54\uc778\uc5d0\uc11c \uba87 \uc2dc\uac04 \uc804 \uac00\uaca9\uc77c \uc218 \uc788\ub2e4.\n// \uadf8\ub7f0 \uac12\uc73c\ub85c \uacc4\uc0b0\ud55c \uae40\ud504\ub294 \uc2e4\uc81c\ub85c\ub294 \uc0b4 \uc218 \uc5c6\ub294 \ud5c8\uc218\ub77c\uc11c, \uc9c4\uc785 \uc9c1\uc804\uc5d0\n// \uc2e4\uc81c \ub9e4\uc218\ud638\uac00(ask)\ub85c \uae40\ud504\ub97c \ub2e4\uc2dc \uacc4\uc0b0\ud574 \uac80\uc99d\ud55c\ub2e4.\nconst MAX_SPREAD_PERCENT = 1.0; // \ud638\uac00 \uc2a4\ud504\ub808\ub4dc\uac00 \uc774\ubcf4\ub2e4 \ubc8c\uc5b4\uc9c0\uba74 \uc0ac\uc2e4\uc0c1 \uac70\ub798\uac00 \uc5c6\ub294 \uc885\ubaa9\uc73c\ub85c \ubcf4\uace0 \uc81c\uc678\n\nconst cand = $('\uc9c4\uc785 \uac00\ub2a5 \uc5ec\ubd80 \ud310\ub2e8').item.json;\n\nfunction reject(reason) {\n  return { json: Object.assign({}, cand, { canEnter: false, rejectReason: reason }) };\n}\n\nconst body = $json || {};\nconst ob = body.data || {};\nconst asks = ob.asks || [];\nconst bids = ob.bids || [];\n\nconst fxBody = $('\ud658\uc728 \uc870\ud68c').first().json;\nconst fx = (fxBody && fxBody.rates && fxBody.rates.KRW) ? Number(fxBody.rates.KRW) : null;\n\nif (!fx) return reject('\ud658\uc728 \uc5c6\uc74c');\nif (!asks.length || !bids.length) return reject('\ud638\uac00 \uc5c6\uc74c');\n\nconst ask = Number(asks[0].price); // \uc2e4\uc81c\ub85c \uc0ac\uac8c \ub418\ub294 \uac00\uaca9\nconst bid = Number(bids[0].price); // \uc2e4\uc81c\ub85c \ud314\uac8c \ub418\ub294 \uac00\uaca9\nif (!ask || !bid) return reject('\ud638\uac00 \ud30c\uc2f1 \uc2e4\ud328');\n\nconst spread = (ask / bid - 1) * 100;\nif (spread > MAX_SPREAD_PERCENT) {\n  return reject('\uc2a4\ud504\ub808\ub4dc ' + spread.toFixed(2) + '% > ' + MAX_SPREAD_PERCENT + '%');\n}\n\nconst foreignPrice = Number(cand.foreignPrice);\nif (!foreignPrice) return reject('\ud574\uc678\uac00 \uc5c6\uc74c');\n\n// \uccb4\uacb0\uac00\uac00 \uc544\ub2c8\ub77c \uc2e4\uc81c \ub9e4\uc218\ud638\uac00\ub85c \uae40\ud504 \uc7ac\uacc4\uc0b0\nconst execPremium = Math.round(((ask / fx / foreignPrice) - 1) * 100 * 10000) / 10000;\n\n// \uc7ac\uacc4\uc0b0\ud55c \uae40\ud504\uac00 \uc5ec\uc804\ud788 \uc9c4\uc785\uc120 \uc544\ub798\uc5ec\uc57c \uc9c4\uc9dc \uae30\ud68c\ub2e4\nif (!(execPremium < Number(cand.lower))) {\n  return reject('\uc2e4\ub9e4\uc218 \uae30\uc900 ' + execPremium.toFixed(2) + '% (\uc9c4\uc785\uc120 ' + Number(cand.lower).toFixed(2) + '%)');\n}\n\nreturn {\n  json: Object.assign({}, cand, {\n    canEnter: true,\n    tickerPremium: cand.premium, // \ucc38\uace0\uc6a9: \uccb4\uacb0\uac00 \uae30\uc900 \uac12\n    premium: execPremium,        // \uc774\ud6c4 \uae30\ub85d\u00b7\uc54c\ub9bc\uc740 \uc2e4\ub9e4\uc218 \uae30\uc900 \uac12\uc744 \uc4f4\ub2e4\n    korbitPrice: ask,\n    askPrice: ask,\n    bidPrice: bid,\n    spread: Math.round(spread * 100) / 100\n  })\n};"
+                }
+            },
+            {
+                "id": "83e91df3-1636-4079-a1d3-cbf8c567d1dc",
+                "name": "\uccad\uc0b0 \ud638\uac00 \uc870\ud68c",
+                "type": "n8n-nodes-base.httpRequest",
+                "typeVersion": 4.5,
+                "position": [
+                    1664,
+                    192
+                ],
+                "parameters": {
+                    "method": "GET",
+                    "url": "=https://api.korbit.co.kr/v2/orderbook?symbol={{ $json.coin.toLowerCase() }}_krw",
+                    "options": {}
+                },
+                "onError": "continueRegularOutput",
+                "retryOnFail": true,
+                "maxTries": 2,
+                "waitBetweenTries": 1000
+            },
+            {
+                "id": "a95e9f24-ccc2-451f-915a-003cced77839",
+                "name": "\uc2ac\ub86f \ubc30\ubd84",
+                "type": "n8n-nodes-base.code",
+                "typeVersion": 2,
+                "position": [
+                    2160,
+                    0
+                ],
+                "parameters": {
+                    "mode": "runOnceForAllItems",
+                    "language": "javaScript",
+                    "jsCode": "// \ud638\uac00 \uac80\uc99d\uc744 \ud1b5\uacfc\ud55c \ud6c4\ubcf4 \uc911\uc5d0\uc11c\ub9cc \ub0a8\uc740 \uc2ac\ub86f\ub9cc\ud07c \uace8\ub77c\ub0b8\ub2e4.\n// (\uc0c1\uc704 z-score \ud6c4\ubcf4\uac00 \uc804\ubd80 \uc720\ub3d9\uc131 \ubbf8\ub2ec\uc774\uc5b4\ub3c4 \uadf8 \uc544\ub798 \uba40\uc926\ud55c \ud6c4\ubcf4\uac00 \uae30\ud68c\ub97c \uac00\uc9c4\ub2e4)\nconst all = $input.all().map(function (item) { return item.json; });\nif (!all.length) return [];\n\nconst slots = Number(all[0].slots) || 0;\nconst passed = all.filter(function (c) { return c.canEnter === true; });\n\npassed.sort(function (a, b) { return b.zScore - a.zScore; });\n\nreturn passed.slice(0, slots).map(function (c) { return { json: c }; });"
+                }
+            },
+            {
+                "id": "5bd45beb-b2db-486e-ac52-8fde049d287e",
+                "name": "\uc9c4\uc785 \uc131\uacfc \uc870\ud68c",
+                "type": "n8n-nodes-base.dataTable",
+                "typeVersion": 1.1,
+                "position": [
+                    2580,
+                    0
+                ],
+                "parameters": {
+                    "resource": "row",
+                    "operation": "get",
+                    "dataTableId": {
+                        "__rl": true,
+                        "mode": "id",
+                        "value": "6MFkAuDuiogrRSqA",
+                        "cachedResultName": "kimchi_paper_trades"
+                    },
+                    "returnAll": true
+                },
+                "alwaysOutputData": true,
+                "executeOnce": true
+            },
+            {
+                "id": "99d438ee-fe09-4a12-b8f5-613f7cb82a2a",
+                "name": "\uc9c4\uc785 \uba54\uc2dc\uc9c0 \uad6c\uc131",
+                "type": "n8n-nodes-base.code",
+                "typeVersion": 2,
+                "position": [
+                    2720,
+                    0
+                ],
+                "parameters": {
+                    "mode": "runOnceForAllItems",
+                    "language": "javaScript",
+                    "jsCode": "const SEED = 10000;\nconst MAX_POSITIONS = 3;\nconst POSITION_SIZE = SEED * 0.10;\nconst DASHBOARD = 'https://kimchi-premium-dashboard-mu.vercel.app';\n\n// \uc131\uacfc \uc870\ud68c\uac00 executeOnce\ub77c \uc804\uccb4 \ub9e4\ub9e4 \uc774\ub825\uc774 \ud55c \ubc88\ub9cc \ub4e4\uc5b4\uc628\ub2e4\nconst rows = $input.all().map(function (i) { return i.json; }).filter(function (r) { return r && r.coin; });\nconst closed = rows.filter(function (r) { return r.status === 'CLOSED'; });\nconst open = rows.filter(function (r) { return r.status === 'OPEN'; });\n\nconst totalTrades = closed.length;\nconst wins = closed.filter(function (r) { return Number(r.netProfit) > 0; }).length;\nconst net = closed.reduce(function (s, r) { return s + Number(r.netProfit || 0); }, 0);\nconst returnPct = net / SEED * 100;\n\nconst perfLines = [];\nperfLines.push('');\nperfLines.push('\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500');\nperfLines.push('\ud83d\udcca \uc2dc\ub4dc $' + SEED.toLocaleString('en-US') + ' \u00b7 \ub204\uc801 ' + (net >= 0 ? '+$' : '-$') + Math.abs(net).toFixed(2) + ' (' + (returnPct >= 0 ? '+' : '') + returnPct.toFixed(2) + '%)');\nif (totalTrades > 0) {\n  perfLines.push('\uccad\uc0b0 ' + totalTrades + '\uac74 \u00b7 \uc2b9\ub960 ' + (wins / totalTrades * 100).toFixed(1) + '% \u00b7 \ubcf4\uc720 ' + open.length + '/' + MAX_POSITIONS);\n} else {\n  perfLines.push('\uccad\uc0b0 0\uac74 (\uc544\uc9c1 \ud655\uc815 \uc190\uc775 \uc5c6\uc74c) \u00b7 \ubcf4\uc720 ' + open.length + '/' + MAX_POSITIONS);\n}\nperfLines.push('\ub300\uc2dc\ubcf4\ub4dc: ' + DASHBOARD);\nconst perf = perfLines.join('\\n');\n\n// \uc774\ubc88 \ud68c\ucc28\uc5d0 \uc2e4\uc81c\ub85c \uc9c4\uc785\ud55c \ucf54\uc778\ub4e4\nconst entries = $('\uc2ac\ub86f \ubc30\ubd84').all().map(function (i) { return i.json; });\n\nreturn entries.map(function (e) {\n  const lines = [];\n  lines.push('\ud83d\udfe2 [\uac00\uc0c1 \uc9c4\uc785] ' + e.coin);\n  lines.push('\uae40\ud504: ' + Number(e.premium).toFixed(2) + '% (3\uc77c \ud3c9\uade0 ' + Number(e.ma).toFixed(2) + '%)');\n  lines.push('\uc2e4\ub9e4\uc218\ud638\uac00 \uae30\uc900 \u00b7 \uc2a4\ud504\ub808\ub4dc ' + Number(e.spread).toFixed(2) + '%');\n  lines.push('\uac00\uc0c1 \ud22c\uc785\uae08: $' + POSITION_SIZE.toLocaleString('en-US'));\n  return { json: { content: lines.join('\\n') + perf } };\n});"
+                }
+            },
+            {
+                "id": "ac2a9c31-aff0-43df-bd57-1c41b2e61db4",
+                "name": "\uccad\uc0b0 \uc131\uacfc \uc870\ud68c",
+                "type": "n8n-nodes-base.dataTable",
+                "typeVersion": 1.1,
+                "position": [
+                    2160,
+                    192
+                ],
+                "parameters": {
+                    "resource": "row",
+                    "operation": "get",
+                    "dataTableId": {
+                        "__rl": true,
+                        "mode": "id",
+                        "value": "6MFkAuDuiogrRSqA",
+                        "cachedResultName": "kimchi_paper_trades"
+                    },
+                    "returnAll": true
+                },
+                "alwaysOutputData": true,
+                "executeOnce": true
+            },
+            {
+                "id": "304ed050-a52f-450e-9226-aeedab447633",
+                "name": "\uccad\uc0b0 \uba54\uc2dc\uc9c0 \uad6c\uc131",
+                "type": "n8n-nodes-base.code",
+                "typeVersion": 2,
+                "position": [
+                    2300,
+                    192
+                ],
+                "parameters": {
+                    "mode": "runOnceForAllItems",
+                    "language": "javaScript",
+                    "jsCode": "const SEED = 10000;\nconst MAX_POSITIONS = 3;\nconst DASHBOARD = 'https://kimchi-premium-dashboard-mu.vercel.app';\n\nconst rows = $input.all().map(function (i) { return i.json; }).filter(function (r) { return r && r.coin; });\nconst closed = rows.filter(function (r) { return r.status === 'CLOSED'; });\nconst open = rows.filter(function (r) { return r.status === 'OPEN'; });\n\nconst totalTrades = closed.length;\nconst wins = closed.filter(function (r) { return Number(r.netProfit) > 0; }).length;\nconst net = closed.reduce(function (s, r) { return s + Number(r.netProfit || 0); }, 0);\nconst returnPct = net / SEED * 100;\n\nconst perfLines = [];\nperfLines.push('');\nperfLines.push('\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500');\nperfLines.push('\ud83d\udcca \uc2dc\ub4dc $' + SEED.toLocaleString('en-US') + ' \u00b7 \ub204\uc801 ' + (net >= 0 ? '+$' : '-$') + Math.abs(net).toFixed(2) + ' (' + (returnPct >= 0 ? '+' : '') + returnPct.toFixed(2) + '%)');\nif (totalTrades > 0) {\n  perfLines.push('\uccad\uc0b0 ' + totalTrades + '\uac74 \u00b7 \uc2b9\ub960 ' + (wins / totalTrades * 100).toFixed(1) + '% \u00b7 \ubcf4\uc720 ' + open.length + '/' + MAX_POSITIONS);\n} else {\n  perfLines.push('\ubcf4\uc720 ' + open.length + '/' + MAX_POSITIONS);\n}\nperfLines.push('\ub300\uc2dc\ubcf4\ub4dc: ' + DASHBOARD);\nconst perf = perfLines.join('\\n');\n\n// \uc774\ubc88 \ud68c\ucc28\uc5d0 \uccad\uc0b0\ub41c \uac74\ub4e4\nconst exits = $('\uc190\uc775 \uacc4\uc0b0').all().map(function (i) { return i.json; });\n\nfunction fmtHeld(mins) {\n  if (mins < 60) return mins + '\ubd84';\n  const h = Math.floor(mins / 60);\n  const m = mins % 60;\n  if (h < 24) return h + '\uc2dc\uac04 ' + m + '\ubd84';\n  return Math.floor(h / 24) + '\uc77c ' + (h % 24) + '\uc2dc\uac04';\n}\n\nreturn exits.map(function (e) {\n  const lines = [];\n  lines.push('\ud83d\udd34 [\uac00\uc0c1 \uccad\uc0b0] ' + e.coin);\n  lines.push('\uccad\uc0b0 \uae40\ud504: ' + Number(e.exitPremium).toFixed(2) + '% (\uc9c4\uc785 ' + Number(e.entryPremium).toFixed(2) + '%)');\n  lines.push('\uc774\ubc88 \uc190\uc775: ' + (Number(e.netProfit) >= 0 ? '+$' : '-$') + Math.abs(Number(e.netProfit)).toFixed(2) + ' \u00b7 \ubcf4\uc720 ' + fmtHeld(Number(e.heldMinutes)));\n  return { json: { content: lines.join('\\n') + perf } };\n});"
+                }
+            }
         ],
-        "parameters": {
-          "method": "GET",
-          "url": "=https://api.korbit.co.kr/v2/orderbook?symbol={{ $json.coin.toLowerCase() }}_krw",
-          "options": {}
+        "nodeGroups": [
+            {
+                "id": "e9299a07-2439-4d7d-821f-4f46b0e39366",
+                "name": "\u2460 \uac00\uaca9 \uc218\uc9d1\u00b7\uc800\uc7a5",
+                "nodeNames": [
+                    "\ucf54\ube57 \uac00\uaca9 \uc870\ud68c",
+                    "OKX \uac00\uaca9 \uc870\ud68c",
+                    "\ud658\uc728 \uc870\ud68c",
+                    "\ud504\ub9ac\ubbf8\uc5c4 \uacc4\uc0b0",
+                    "\ud504\ub9ac\ubbf8\uc5c4 \uc774\ub825 \uc800\uc7a5"
+                ],
+                "description": "\ucf54\ube57\u00b7Bybit \uac00\uaca9\uc744 \uac00\uc838\uc640 \uae40\ud504\ub97c \uacc4\uc0b0\ud558\uace0 \uc774\ub825 \ud14c\uc774\ube14\uc5d0 \uc800\uc7a5"
+            },
+            {
+                "id": "1b16b9fb-3cc6-4e5a-af88-fbc581fc27f3",
+                "name": "\u2461 MA \uacc4\uc0b0\u00b7\uc2e0\ud638 \ud310\uc815",
+                "nodeNames": [
+                    "\ucd5c\uadfc 3\uc77c \uc774\ub825 \uc870\ud68c",
+                    "MA\u00b7\uc2e0\ud638 \ud310\uc815",
+                    "\uc2e0\ud638\ub9cc \ub0a8\uae30\uae30"
+                ],
+                "description": "\ucd5c\uadfc 3\uc77c \uc774\ub825\uc73c\ub85c \uc774\ub3d9\ud3c9\uade0/\ud45c\uc900\ud3b8\ucc28\ub97c \uad6c\ud574 \uc9c4\uc785\u00b7\uccad\uc0b0 \uc2e0\ud638\ub97c \ud310\uc815"
+            },
+            {
+                "id": "24ba2847-7bea-446f-8200-3b71a34cb922",
+                "name": "\u2464 \uc77c\uc77c \uc0c1\ud0dc \ubcf4\uace0",
+                "nodeNames": [
+                    "\ucd5c\uadfc 24\uc2dc\uac04 \uc774\ub825 \uc870\ud68c",
+                    "24\uc2dc\uac04 \ud1b5\uacc4 \uacc4\uc0b0",
+                    "\uc804\uccb4 \ub9e4\ub9e4 \uc774\ub825 \uc870\ud68c",
+                    "\ub9e4\ub9e4 \uc131\uacfc \uacc4\uc0b0",
+                    "\ubcf4\uace0 \uba54\uc2dc\uc9c0 \uad6c\uc131",
+                    "\uc0c1\ud0dc \ubcf4\uace0 \uc804\uc1a1"
+                ],
+                "description": "\ub9e4\uc77c 07:40(KST) \uc9c0\ub09c 24\uc2dc\uac04 \ucf54\uc778\ubcc4 \uae40\ud504 \ucd94\uc774\uc640 \uc2e4\ud589 \uc0c1\ud0dc\ub97c \uacc4\uc0b0\ud574 Discord\ub85c \ubcf4\uace0"
+            },
+            {
+                "id": "062937e2-2910-404a-bbe9-94d2dc07695e",
+                "name": "\u2462 \uc9c4\uc785 \ucc98\ub9ac",
+                "nodeNames": [
+                    "\uc9c4\ud589 \uc911\uc778 \ud3ec\uc9c0\uc158 \uc870\ud68c",
+                    "\uc9c4\uc785 \uac00\ub2a5 \uc5ec\ubd80 \ud310\ub2e8",
+                    "\uc9c4\uc785 \ud638\uac00 \uc870\ud68c",
+                    "\uccb4\uacb0\uac00\ub2a5 \uae40\ud504 \uac80\uc99d",
+                    "\uc2ac\ub86f \ubc30\ubd84",
+                    "\uc9c4\uc785\ud574\ub3c4 \ub418\ub294\uac00?",
+                    "\uac00\uc0c1 \uc9c4\uc785 \uae30\ub85d",
+                    "\uc9c4\uc785 \uc131\uacfc \uc870\ud68c",
+                    "\uc9c4\uc785 \uba54\uc2dc\uc9c0 \uad6c\uc131",
+                    "\uc9c4\uc785 \uc54c\ub9bc \uc804\uc1a1"
+                ],
+                "description": "\uc911\ubcf5\u00b7\ucd5c\ub300\uac1c\uc218 \ud655\uc778 \ud6c4 \ud638\uac00\ucc3d\uc73c\ub85c \uc2e4\uc81c \uccb4\uacb0 \uac00\ub2a5\ud55c \uae40\ud504\ub97c \uac80\uc99d\ud558\uace0, \ud1b5\uacfc\ud55c \uac74\ub9cc \uac00\uc0c1 \ub9e4\uc218\ub85c \uae30\ub85d\ud55c \ub4a4 Discord \uc54c\ub9bc"
+            },
+            {
+                "id": "c993a2a9-b9b4-46b1-ab68-5586072dc9a6",
+                "name": "\u2463 \uccad\uc0b0 \ucc98\ub9ac",
+                "nodeNames": [
+                    "\uccad\uc0b0\ud560 \ud3ec\uc9c0\uc158 \uc870\ud68c",
+                    "\uccad\uc0b0 \ud638\uac00 \uc870\ud68c",
+                    "\uc190\uc775 \uacc4\uc0b0",
+                    "\ud3ec\uc9c0\uc158 \uccad\uc0b0 \uac31\uc2e0",
+                    "\uccad\uc0b0 \uc131\uacfc \uc870\ud68c",
+                    "\uccad\uc0b0 \uba54\uc2dc\uc9c0 \uad6c\uc131",
+                    "\uccad\uc0b0 \uc54c\ub9bc \uc804\uc1a1"
+                ],
+                "description": "\ud574\ub2f9 \ucf54\uc778\uc758 \uc5f4\ub9b0 \ud3ec\uc9c0\uc158\uc744 \ucc3e\uc544 \uc2e4\uc81c \ub9e4\ub3c4 \uac00\uaca9(\ucd5c\uc6b0\uc120 \ub9e4\uc218\ud638\uac00) \uae30\uc900\uc73c\ub85c \uc190\uc775\uc744 \uacc4\uc0b0\ud558\uace0 \uccad\uc0b0 \ucc98\ub9ac \ud6c4 \uc54c\ub9bc"
+            }
+        ],
+        "activeVersion": {
+            "sameAsDraft": true
         },
-        "onError": "continueRegularOutput",
-        "retryOnFail": true,
-        "maxTries": 2,
-        "waitBetweenTries": 1000
-      },
-      {
-        "id": "c6d0e8c0-5ea0-4ffc-b250-b0a41475e272",
-        "name": "체결가능 김프 검증",
-        "type": "n8n-nodes-base.code",
-        "typeVersion": 2,
-        "position": [
-          2060,
-          0
-        ],
-        "parameters": {
-          "mode": "runOnceForEachItem",
-          "language": "javaScript",
-          "jsCode": "// 마지막 체결가(close)는 거래가 뜸한 코인에서 몇 시간 전 가격일 수 있다.\n// 그런 값으로 계산한 김프는 실제로는 살 수 없는 허수라서, 진입 직전에\n// 실제 매수호가(ask)로 김프를 다시 계산해 검증한다.\nconst MAX_SPREAD_PERCENT = 1.0; // 호가 스프레드가 이보다 벌어지면 사실상 거래가 없는 종목으로 보고 제외\n\nconst cand = $('진입 가능 여부 판단').item.json;\n\nfunction reject(reason) {\n  return { json: Object.assign({}, cand, { canEnter: false, rejectReason: reason }) };\n}\n\nconst body = $json || {};\nconst ob = body.data || {};\nconst asks = ob.asks || [];\nconst bids = ob.bids || [];\n\nconst fxBody = $('환율 조회').first().json;\nconst fx = (fxBody && fxBody.rates && fxBody.rates.KRW) ? Number(fxBody.rates.KRW) : null;\n\nif (!fx) return reject('환율 없음');\nif (!asks.length || !bids.length) return reject('호가 없음');\n\nconst ask = Number(asks[0].price); // 실제로 사게 되는 가격\nconst bid = Number(bids[0].price); // 실제로 팔게 되는 가격\nif (!ask || !bid) return reject('호가 파싱 실패');\n\nconst spread = (ask / bid - 1) * 100;\nif (spread > MAX_SPREAD_PERCENT) {\n  return reject('스프레드 ' + spread.toFixed(2) + '% > ' + MAX_SPREAD_PERCENT + '%');\n}\n\nconst foreignPrice = Number(cand.foreignPrice);\nif (!foreignPrice) return reject('해외가 없음');\n\n// 체결가가 아니라 실제 매수호가로 김프 재계산\nconst execPremium = Math.round(((ask / fx / foreignPrice) - 1) * 100 * 10000) / 10000;\n\n// 재계산한 김프가 여전히 진입선 아래여야 진짜 기회다\nif (!(execPremium < Number(cand.lower))) {\n  return reject('실매수 기준 ' + execPremium.toFixed(2) + '% (진입선 ' + Number(cand.lower).toFixed(2) + '%)');\n}\n\nreturn {\n  json: Object.assign({}, cand, {\n    canEnter: true,\n    tickerPremium: cand.premium, // 참고용: 체결가 기준 값\n    premium: execPremium,        // 이후 기록·알림은 실매수 기준 값을 쓴다\n    korbitPrice: ask,\n    askPrice: ask,\n    bidPrice: bid,\n    spread: Math.round(spread * 100) / 100\n  })\n};"
+        "meta": {
+            "aiBuilderAssisted": true,
+            "builderVariant": "mcp"
         }
-      },
-      {
-        "id": "83e91df3-1636-4079-a1d3-cbf8c567d1dc",
-        "name": "청산 호가 조회",
-        "type": "n8n-nodes-base.httpRequest",
-        "typeVersion": 4.5,
-        "position": [
-          1664,
-          192
-        ],
-        "parameters": {
-          "method": "GET",
-          "url": "=https://api.korbit.co.kr/v2/orderbook?symbol={{ $json.coin.toLowerCase() }}_krw",
-          "options": {}
-        },
-        "onError": "continueRegularOutput",
-        "retryOnFail": true,
-        "maxTries": 2,
-        "waitBetweenTries": 1000
-      },
-      {
-        "id": "a95e9f24-ccc2-451f-915a-003cced77839",
-        "name": "슬롯 배분",
-        "type": "n8n-nodes-base.code",
-        "typeVersion": 2,
-        "position": [
-          2160,
-          0
-        ],
-        "parameters": {
-          "mode": "runOnceForAllItems",
-          "language": "javaScript",
-          "jsCode": "// 호가 검증을 통과한 후보 중에서만 남은 슬롯만큼 골라낸다.\n// (상위 z-score 후보가 전부 유동성 미달이어도 그 아래 멀줦한 후보가 기회를 가진다)\nconst all = $input.all().map(function (item) { return item.json; });\nif (!all.length) return [];\n\nconst slots = Number(all[0].slots) || 0;\nconst passed = all.filter(function (c) { return c.canEnter === true; });\n\npassed.sort(function (a, b) { return b.zScore - a.zScore; });\n\nreturn passed.slice(0, slots).map(function (c) { return { json: c }; });"
-        }
-      },
-      {
-        "id": "5bd45beb-b2db-486e-ac52-8fde049d287e",
-        "name": "진입 성과 조회",
-        "type": "n8n-nodes-base.dataTable",
-        "typeVersion": 1.1,
-        "position": [
-          2580,
-          0
-        ],
-        "parameters": {
-          "resource": "row",
-          "operation": "get",
-          "dataTableId": {
-            "__rl": true,
-            "mode": "id",
-            "value": "6MFkAuDuiogrRSqA",
-            "cachedResultName": "kimchi_paper_trades"
-          },
-          "returnAll": true
-        },
-        "alwaysOutputData": true,
-        "executeOnce": true
-      },
-      {
-        "id": "99d438ee-fe09-4a12-b8f5-613f7cb82a2a",
-        "name": "진입 메시지 구성",
-        "type": "n8n-nodes-base.code",
-        "typeVersion": 2,
-        "position": [
-          2720,
-          0
-        ],
-        "parameters": {
-          "mode": "runOnceForAllItems",
-          "language": "javaScript",
-          "jsCode": "const SEED = 10000;\nconst MAX_POSITIONS = 3;\nconst POSITION_SIZE = SEED * 0.10;\nconst DASHBOARD = 'https://kimchi-premium-dashboard-mu.vercel.app';\n\n// 성과 조회가 executeOnce라 전체 매매 이력이 한 번만 들어온다\nconst rows = $input.all().map(function (i) { return i.json; }).filter(function (r) { return r && r.coin; });\nconst closed = rows.filter(function (r) { return r.status === 'CLOSED'; });\nconst open = rows.filter(function (r) { return r.status === 'OPEN'; });\n\nconst totalTrades = closed.length;\nconst wins = closed.filter(function (r) { return Number(r.netProfit) > 0; }).length;\nconst net = closed.reduce(function (s, r) { return s + Number(r.netProfit || 0); }, 0);\nconst returnPct = net / SEED * 100;\n\nconst perfLines = [];\nperfLines.push('');\nperfLines.push('─────────');\nperfLines.push('📊 시드 $' + SEED.toLocaleString('en-US') + ' · 누적 ' + (net >= 0 ? '+$' : '-$') + Math.abs(net).toFixed(2) + ' (' + (returnPct >= 0 ? '+' : '') + returnPct.toFixed(2) + '%)');\nif (totalTrades > 0) {\n  perfLines.push('청산 ' + totalTrades + '건 · 승률 ' + (wins / totalTrades * 100).toFixed(1) + '% · 보유 ' + open.length + '/' + MAX_POSITIONS);\n} else {\n  perfLines.push('청산 0건 (아직 확정 손익 없음) · 보유 ' + open.length + '/' + MAX_POSITIONS);\n}\nperfLines.push('대시보드: ' + DASHBOARD);\nconst perf = perfLines.join('\\n');\n\n// 이번 회차에 실제로 진입한 코인들\nconst entries = $('슬롯 배분').all().map(function (i) { return i.json; });\n\nreturn entries.map(function (e) {\n  const lines = [];\n  lines.push('🟢 [가상 진입] ' + e.coin);\n  lines.push('김프: ' + Number(e.premium).toFixed(2) + '% (3일 평균 ' + Number(e.ma).toFixed(2) + '%)');\n  lines.push('실매수호가 기준 · 스프레드 ' + Number(e.spread).toFixed(2) + '%');\n  lines.push('가상 투입금: $' + POSITION_SIZE.toLocaleString('en-US'));\n  return { json: { content: lines.join('\\n') + perf } };\n});"
-        }
-      },
-      {
-        "id": "ac2a9c31-aff0-43df-bd57-1c41b2e61db4",
-        "name": "청산 성과 조회",
-        "type": "n8n-nodes-base.dataTable",
-        "typeVersion": 1.1,
-        "position": [
-          2160,
-          192
-        ],
-        "parameters": {
-          "resource": "row",
-          "operation": "get",
-          "dataTableId": {
-            "__rl": true,
-            "mode": "id",
-            "value": "6MFkAuDuiogrRSqA",
-            "cachedResultName": "kimchi_paper_trades"
-          },
-          "returnAll": true
-        },
-        "alwaysOutputData": true,
-        "executeOnce": true
-      },
-      {
-        "id": "304ed050-a52f-450e-9226-aeedab447633",
-        "name": "청산 메시지 구성",
-        "type": "n8n-nodes-base.code",
-        "typeVersion": 2,
-        "position": [
-          2300,
-          192
-        ],
-        "parameters": {
-          "mode": "runOnceForAllItems",
-          "language": "javaScript",
-          "jsCode": "const SEED = 10000;\nconst MAX_POSITIONS = 3;\nconst DASHBOARD = 'https://kimchi-premium-dashboard-mu.vercel.app';\n\nconst rows = $input.all().map(function (i) { return i.json; }).filter(function (r) { return r && r.coin; });\nconst closed = rows.filter(function (r) { return r.status === 'CLOSED'; });\nconst open = rows.filter(function (r) { return r.status === 'OPEN'; });\n\nconst totalTrades = closed.length;\nconst wins = closed.filter(function (r) { return Number(r.netProfit) > 0; }).length;\nconst net = closed.reduce(function (s, r) { return s + Number(r.netProfit || 0); }, 0);\nconst returnPct = net / SEED * 100;\n\nconst perfLines = [];\nperfLines.push('');\nperfLines.push('─────────');\nperfLines.push('📊 시드 $' + SEED.toLocaleString('en-US') + ' · 누적 ' + (net >= 0 ? '+$' : '-$') + Math.abs(net).toFixed(2) + ' (' + (returnPct >= 0 ? '+' : '') + returnPct.toFixed(2) + '%)');\nif (totalTrades > 0) {\n  perfLines.push('청산 ' + totalTrades + '건 · 승률 ' + (wins / totalTrades * 100).toFixed(1) + '% · 보유 ' + open.length + '/' + MAX_POSITIONS);\n} else {\n  perfLines.push('보유 ' + open.length + '/' + MAX_POSITIONS);\n}\nperfLines.push('대시보드: ' + DASHBOARD);\nconst perf = perfLines.join('\\n');\n\n// 이번 회차에 청산된 건들\nconst exits = $('손익 계산').all().map(function (i) { return i.json; });\n\nfunction fmtHeld(mins) {\n  if (mins < 60) return mins + '분';\n  const h = Math.floor(mins / 60);\n  const m = mins % 60;\n  if (h < 24) return h + '시간 ' + m + '분';\n  return Math.floor(h / 24) + '일 ' + (h % 24) + '시간';\n}\n\nreturn exits.map(function (e) {\n  const lines = [];\n  lines.push('🔴 [가상 청산] ' + e.coin);\n  lines.push('청산 김프: ' + Number(e.exitPremium).toFixed(2) + '% (진입 ' + Number(e.entryPremium).toFixed(2) + '%)');\n  lines.push('이번 손익: ' + (Number(e.netProfit) >= 0 ? '+$' : '-$') + Math.abs(Number(e.netProfit)).toFixed(2) + ' · 보유 ' + fmtHeld(Number(e.heldMinutes)));\n  return { json: { content: lines.join('\\n') + perf } };\n});"
-        }
-      }
-    ],
-    "nodeGroups": [
-      {
-        "id": "e9299a07-2439-4d7d-821f-4f46b0e39366",
-        "name": "① 가격 수집·저장",
-        "nodeNames": [
-          "코빗 가격 조회",
-          "OKX 가격 조회",
-          "환율 조회",
-          "프리미엄 계산",
-          "프리미엄 이력 저장"
-        ],
-        "description": "코빗·Bybit 가격을 가져와 김프를 계산하고 이력 테이블에 저장"
-      },
-      {
-        "id": "1b16b9fb-3cc6-4e5a-af88-fbc581fc27f3",
-        "name": "② MA 계산·신호 판정",
-        "nodeNames": [
-          "최근 3일 이력 조회",
-          "MA·신호 판정",
-          "신호만 남기기"
-        ],
-        "description": "최근 3일 이력으로 이동평균/표준편차를 구해 진입·청산 신호를 판정"
-      },
-      {
-        "id": "24ba2847-7bea-446f-8200-3b71a34cb922",
-        "name": "⑤ 일일 상태 보고",
-        "nodeNames": [
-          "최근 24시간 이력 조회",
-          "24시간 통계 계산",
-          "전체 매매 이력 조회",
-          "매매 성과 계산",
-          "보고 메시지 구성",
-          "상태 보고 전송"
-        ],
-        "description": "매일 07:40(KST) 지난 24시간 코인별 김프 추이와 실행 상태를 계산해 Discord로 보고"
-      },
-      {
-        "id": "062937e2-2910-404a-bbe9-94d2dc07695e",
-        "name": "③ 진입 처리",
-        "nodeNames": [
-          "진행 중인 포지션 조회",
-          "진입 가능 여부 판단",
-          "진입 호가 조회",
-          "체결가능 김프 검증",
-          "슬롯 배분",
-          "진입해도 되는가?",
-          "가상 진입 기록",
-          "진입 성과 조회",
-          "진입 메시지 구성",
-          "진입 알림 전송"
-        ],
-        "description": "중복·최대개수 확인 후 호가창으로 실제 체결 가능한 김프를 검증하고, 통과한 건만 가상 매수로 기록한 뒤 Discord 알림"
-      },
-      {
-        "id": "c993a2a9-b9b4-46b1-ab68-5586072dc9a6",
-        "name": "④ 청산 처리",
-        "nodeNames": [
-          "청산할 포지션 조회",
-          "청산 호가 조회",
-          "손익 계산",
-          "포지션 청산 갱신",
-          "청산 성과 조회",
-          "청산 메시지 구성",
-          "청산 알림 전송"
-        ],
-        "description": "해당 코인의 열린 포지션을 찾아 실제 매도 가격(최우선 매수호가) 기준으로 손익을 계산하고 청산 처리 후 알림"
-      }
-    ],
-    "activeVersion": {
-      "sameAsDraft": true
     },
-    "meta": {
-      "aiBuilderAssisted": true,
-      "builderVariant": "mcp"
-    }
-  },
-  "triggerInfo": "This workflow has the following trigger(s):\n\n\nSchedule trigger(s):\n\n\n\t\t\t\t<trigger 1>\n\t\t\t\t\t - Node name: 5분마다 실행\n\t\t\t\t</trigger 1>\n\n\n\t\t\t\t<trigger 2>\n\t\t\t\t\t - Node name: 매일 07:40 상태 보고\n\t\t\t\t</trigger 2>\n\nScheduled workflows do not take inputs. To execute a specific schedule trigger, pass triggerNodeName only: { triggerNodeName: \"<node name>\" }."
+    "triggerInfo": "This workflow has the following trigger(s):\n\n\nSchedule trigger(s):\n\n\n\t\t\t\t<trigger 1>\n\t\t\t\t\t - Node name: 5\ubd84\ub9c8\ub2e4 \uc2e4\ud589\n\t\t\t\t</trigger 1>\n\n\n\t\t\t\t<trigger 2>\n\t\t\t\t\t - Node name: \ub9e4\uc77c 07:40 \uc0c1\ud0dc \ubcf4\uace0\n\t\t\t\t</trigger 2>\n\nScheduled workflows do not take inputs. To execute a specific schedule trigger, pass triggerNodeName only: { triggerNodeName: \"<node name>\" }."
 }
