@@ -186,11 +186,46 @@ async function main() {
   console.log(`두 구간 중 나쁜 쪽 기준으로 가장 나은 주기: ${bestIv.barMinutes}분봉`);
   console.log('(차이가 표본 오차 수준이면 지금 쓰는 5분을 그대로 두는 게 맞다 — 데이터가 2배 쌓이므로)');
 
+  // ---- 수수료 체계 비교 ----
+  // 지금 이 전략이 성립한다면, 그게 코빗의 한시적 무료 정책(2027-08-24 종료) 덕분인지
+  // 아니면 그 뒤에도 살아남는지를 갈라 보는 것. 결론이 여기서 뒤집힐 수 있다.
+  console.log(`\n===== 수수료 체계별 비교 =====`);
+  console.log(`조건: ${JSON.stringify(ivParams)}`);
+  console.log(HEADER);
+  const feeResults = [];
+  for (const key of Object.keys(lib.FEE_SCENARIOS)) {
+    const sc = lib.FEE_SCENARIOS[key];
+    const p = Object.assign({}, ivParams, { FEE_SCENARIO: key });
+    const tr = lib.simulate(dataset, p, { fromRatio: 0, toRatio: TRAIN_RATIO });
+    const va = lib.simulate(dataset, p, { fromRatio: TRAIN_RATIO, toRatio: 1 });
+    delete tr.trades; delete tr.equity; delete va.trades; delete va.equity;
+    feeResults.push({ key, label: sc.label, roundTripPct: (sc.domestic + sc.foreign) * 2 * 100, train: tr, valid: va });
+    const tag = `${sc.label} (왕복 ${((sc.domestic + sc.foreign) * 2 * 100).toFixed(2)}%)`;
+    console.log(fmtRow(`  [학습] ${tag}`, tr));
+    console.log(fmtRow(`  [검증] ${tag}`, va));
+    console.log('');
+  }
+  const promo = feeResults.find(f => f.key === 'promo_maker');
+  const post = feeResults.find(f => f.key === 'post_promo_taker');
+  if (promo && post) {
+    const promoOk = promo.valid.annualizedPct > 0;
+    const postOk = post.valid.annualizedPct > 0;
+    if (promoOk && !postOk) {
+      console.log('⚠ 지금은 수익이 나지만 코빗 무료 정책(2027-08-24 종료)이 끝나면 손실로 바뀐다.');
+      console.log('  한시적으로만 유효한 전략이라는 뜻 — 시작한다면 종료 시점을 미리 정해두어야 한다.');
+    } else if (promoOk && postOk) {
+      console.log('✅ 무료 정책이 끝나도 수익이 유지된다. 정책에 기대지 않는 전략이다.');
+    } else if (!promoOk) {
+      console.log('✗ 가장 유리한 수수료 체계에서도 수익이 나지 않는다.');
+    }
+  }
+
   fs.writeFileSync(
     path.join(lib.OUT_DIR, `optimize5m_all_${YEARS}y.json`),
     JSON.stringify({
       years: YEARS, trainRatio: TRAIN_RATIO, grid: GRID,
       coinMeta: dataset.meta, baseline: base || null, recommended,
+      feeComparison: feeResults,
       intervalComparison: intervalResults,
       results: ranked.map(r => ({ params: r.params, train: r.train, valid: r.valid })),
     }, null, 2)

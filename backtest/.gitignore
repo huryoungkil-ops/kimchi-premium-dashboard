@@ -7,3 +7,7 @@ backtest5m_result_*.json
 optimize5m_all_*.json
 optimize5m_recommended_*.json
 validate_log.txt
+
+# 실행 로그와 분석 산출물
+*.log
+analyze_*.json

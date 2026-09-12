@@ -20,8 +20,43 @@ const SEED = 10000;
 const POSITION_FRACTION = 0.10;
 const POSITION_SIZE = SEED * POSITION_FRACTION;
 
-// 편도 수수료: 국내 현물 0.10% + 해외 무기한선물 0.05% = 0.15% (왕복 0.30%)
-const FEE_RATE = 0.0015;
+// 수수료 시나리오 (2026-09-12 조사 기준)
+//
+//   코빗은 2026-08-24 09시부터 2027-08-24 09시까지 원화마켓 전 종목 거래 수수료가
+//   무료다(운영사 디지털엑스, 전 회원 자동 적용). 그 이전/이후의 유료 요율은 테이커 0.2%,
+//   메이커 0%다. OKX 무기한선물은 일반 등급에서 메이커 0.02% / 테이커 0.05%.
+//
+//   이 전략은 본전 문턱이 얇아서 어느 요율을 쓰느냐로 결론이 뒤집힌다.
+//   1년치 실측에서 기대 회귀폭이 종목당 0.17~0.25%p였는데,
+//   왕복 0.30%면 12종목 전부 미달, 왕복 0.04%면 6종목이 통과한다.
+//   그래서 고정하지 않고 시나리오로 둔다.
+const FEE_SCENARIOS = {
+  // 지금(코빗 무료 기간) 실제로 낼 수 있는 최선. 해외 다리는 지정가로 건다.
+  // 무기한선물은 호가가 촘촘해 지정가 체결이 비교적 잘 된다.
+  promo_maker: { label: '코빗무료 + OKX지정가', domestic: 0, foreign: 0.0002 },
+
+  // 해외 다리도 시장가로 확실히 잡는 경우
+  promo_taker: { label: '코빗무료 + OKX시장가', domestic: 0, foreign: 0.0005 },
+
+  // 2027-08 무료 종료 후. 국내는 지정가(메이커 0%)를 전제로 한다.
+  post_promo_maker: { label: '무료종료 + 양쪽지정가', domestic: 0, foreign: 0.0002 },
+
+  // 무료 종료 후 국내를 시장가로 잡는 최악의 경우
+  post_promo_taker: { label: '무료종료 + 양쪽시장가', domestic: 0.002, foreign: 0.0005 },
+
+  // 참고: 이번 조사 전까지 쓰던 가정 (국내 0.1% 테이커 + 해외 0.05% 테이커)
+  legacy: { label: '구 가정(왕복 0.30%)', domestic: 0.001, foreign: 0.0005 },
+};
+const DEFAULT_FEE_SCENARIO = 'promo_maker';
+
+// 편도 수수료율 = 국내 + 해외
+function feeRateOf(scenarioKey) {
+  const s = FEE_SCENARIOS[scenarioKey || DEFAULT_FEE_SCENARIO];
+  if (!s) throw new Error(`알 수 없는 수수료 시나리오: ${scenarioKey}`);
+  return s.domestic + s.foreign;
+}
+
+const FEE_RATE = feeRateOf(DEFAULT_FEE_SCENARIO);
 
 const WINDOW_DAYS = 3;        // 이동평균 기준 기간. 봉 간격이 바뀌어도 이 "기간"은 고정한다.
 const BASE_BAR_MINUTES = 5;   // 거래소에서 받아오는 원본 봉 간격
@@ -63,9 +98,12 @@ const ALL_COINS = [
 
 const COINS = ALL_COINS.filter(c => (KORBIT_SPREAD_PCT[c[0]] ?? 999) <= MAX_SPREAD_PERCENT);
 
-// 거래 1건이 본전이 되려면 김프가 최소 이만큼(%p) 움직여야 한다
-function breakEvenPp(coin) {
-  return FEE_RATE * 2 * 100 + (KORBIT_SPREAD_PCT[coin] || 0);
+// 거래 1건이 본전이 되려면 김프가 최소 이만큼(%p) 움직여야 한다.
+// 왕복 수수료 + (시장가로 잡는다면) 호가 스프레드.
+function breakEvenPp(coin, scenarioKey, paySpread) {
+  const fee = feeRateOf(scenarioKey) * 2 * 100;
+  const spread = (paySpread === false) ? 0 : (KORBIT_SPREAD_PCT[coin] || 0);
+  return fee + spread;
 }
 
 // ---------------------------------------------------------------------------
@@ -86,6 +124,19 @@ const DEFAULT_PARAMS = {
 
   // true면 신호 청산 시 최소한 본전은 넘겼을 때만 나간다 (손절·최대보유는 예외)
   REQUIRE_PROFIT_EXIT: false,
+
+  // 어느 수수료 체계로 계산할지 (FEE_SCENARIOS의 키)
+  FEE_SCENARIO: DEFAULT_FEE_SCENARIO,
+
+  // 국내 다리를 시장가로 잡으면 호가 스프레드를 그대로 부담한다.
+  // false면 지정가로 스프레드를 피한다는 가정 — 체결 위험이 생기므로 낙관적인 상한이다.
+  PAY_SPREAD: true,
+
+  // 신호를 본 뒤 몇 봉 뒤에 체결되는가.
+  // 봉 종가는 그 봉이 끝나야 알 수 있는 값이라, 같은 봉 종가에 체결시키면
+  // 미래를 보고 매매하는 셈이 된다(look-ahead). 1이면 다음 봉 종가에 체결한다.
+  // 0은 진단용이며, 실제로 낼 수 없는 성적이다.
+  EXEC_DELAY_BARS: 1,
 
   MAX_SIGMA_PERCENT: 2.5, // σ가 이보다 크면 그 회차 신호 보류
   MAX_POSITIONS: 3,
@@ -346,7 +397,6 @@ async function buildDataset(opts) {
     perCoin[name] = {
       name, rows, ma, sd, fTs, fCum, thinBars,
       spreadPp: KORBIT_SPREAD_PCT[name] || 0,
-      breakEven: breakEvenPp(name),
     };
     gridMin = Math.min(gridMin, rows[0].ts);
     gridMax = Math.max(gridMax, rows[n - 1].ts);
@@ -413,6 +463,11 @@ function simulate(dataset, params, range) {
   const BAR_MS = dataset.barMs;
   const coins = dataset.coins;
   const K = coins.length;
+
+  // 이번 실행의 수수료 체계로 코인별 본전 문턱을 계산해둔다
+  const DELAY = Math.max(0, P.EXEC_DELAY_BARS | 0);
+  const feeRate = feeRateOf(P.FEE_SCENARIO);
+  const breakEven = coins.map(c => breakEvenPp(c.name, P.FEE_SCENARIO, P.PAY_SPREAD));
   const ptr = new Int32Array(K);          // 코인별 현재 읽는 위치
   const openCoin = new Int8Array(K);      // 보유 여부
   const openTs = new Float64Array(K);
@@ -461,20 +516,24 @@ function simulate(dataset, params, range) {
       // --- 보유 중이면 청산 판단 먼저 ---
       if (openCoin[k]) {
         if (!tradable) continue; // 못 파는 구간
-        const move = prem - openPrem[k];
+        let move = prem - openPrem[k];
         const heldMs = ts - openTs[k];
         let reason = null;
         if (prem > ma + P.EXIT_SIGMA_OFFSET * sd) {
           // 본전도 못 넘겼는데 나가는 걸 막는 옵션
-          if (!P.REQUIRE_PROFIT_EXIT || move >= c.breakEven) reason = 'SIGNAL';
+          if (!P.REQUIRE_PROFIT_EXIT || move >= breakEven[k]) reason = 'SIGNAL';
         }
         if (!reason && move <= -P.STOP_LOSS_PP) reason = 'STOP';
         if (!reason && heldMs >= P.MAX_HOLD_DAYS * 86400000) reason = 'MAXHOLD';
         if (!reason) continue;
 
+        // 신호는 이 봉에서 봤지만 실제 체결은 DELAY봉 뒤 가격으로 이뤄진다
+        const xi = Math.min(i + DELAY, c.premium.length - 1);
+        const execPrem = c.premium[xi];
+        move = execPrem - openPrem[k];
         const gross = POSITION_SIZE * move / 100;
-        const fees = POSITION_SIZE * FEE_RATE * 2;
-        const spread = POSITION_SIZE * c.spreadPp / 100;
+        const fees = POSITION_SIZE * feeRate * 2;
+        const spread = P.PAY_SPREAD ? (POSITION_SIZE * c.spreadPp / 100) : 0;
         const fund = fundingBetween(c, openTs[k], ts);
         const net = gross - fees - spread + fund;
 
@@ -483,7 +542,7 @@ function simulate(dataset, params, range) {
         trades.push({
           coin: c.name, entryTs: openTs[k], exitTs: ts,
           entryPremium: Math.round(openPrem[k] * 10000) / 10000,
-          exitPremium: Math.round(prem * 10000) / 10000,
+          exitPremium: Math.round(execPrem * 10000) / 10000,
           movePp: Math.round(move * 10000) / 10000,
           holdHours: Math.round(heldMs / 3600000 * 100) / 100,
           gross: Math.round(gross * 100) / 100,
@@ -503,10 +562,11 @@ function simulate(dataset, params, range) {
 
       // 실거래 봇은 실제 매수호가로 김프를 다시 계산해 그래도 진입선 아래일 때만 들어간다.
       // 종가를 중간값으로 보면 매수호가는 스프레드의 절반만큼 위에 있다.
-      if (prem + c.spreadPp / 2 >= ma - P.ENTRY_SIGMA * sd) { blockedSpreadGate++; continue; }
+      const halfSpread = P.PAY_SPREAD ? (c.spreadPp / 2) : 0;
+      if (prem + halfSpread >= ma - P.ENTRY_SIGMA * sd) { blockedSpreadGate++; continue; }
 
       // 평균까지 회복해도 비용을 못 덮는 자리면 들어가지 않는다
-      if (P.EDGE_MULTIPLE > 0 && (ma - prem) < c.breakEven * P.EDGE_MULTIPLE) { blockedEdge++; continue; }
+      if (P.EDGE_MULTIPLE > 0 && (ma - prem) < breakEven[k] * P.EDGE_MULTIPLE) { blockedEdge++; continue; }
 
       candIdx[candN] = k;
       candZ[candN] = sd > 0 ? (ma - prem) / sd : 0;
@@ -521,18 +581,20 @@ function simulate(dataset, params, range) {
         const k = candIdx[oi];
         if (openCoin[k]) continue;
         const c = coins[k];
-        let i = ptr[k] - 1;
+        const i = ptr[k] - 1;
+        const ei = Math.min(i + DELAY, c.premium.length - 1);
         openCoin[k] = 1; openCount++;
-        openTs[k] = ts; openPrem[k] = c.premium[i];
+        openTs[k] = ts + DELAY * BAR_MS;
+        openPrem[k] = c.premium[ei];   // 신호 다음 봉 종가에 체결
       }
     }
 
-    if ((g & 0x3FF) === 0) {
-      const day = new Date(ts).toISOString().slice(0, 10);
-      if (day !== lastDay) {
-        equity.push({ date: day, cum: Math.round(cumNet * 100) / 100, open: openCount });
-        lastDay = day;
-      }
+    // 자본곡선은 하루 한 번 기록한다. (예전엔 1024봉마다 확인해서 3.5일에 한 번꼴로만
+    // 찍혔고, 그 탓에 최대 낙폭이 0으로 나오는 문제가 있었다)
+    const dayIdx = Math.floor(ts / 86400000);
+    if (dayIdx !== lastDay) {
+      equity.push({ date: new Date(ts).toISOString().slice(0, 10), cum: Math.round(cumNet * 100) / 100, open: openCount });
+      lastDay = dayIdx;
     }
   }
 
@@ -554,6 +616,7 @@ function simulate(dataset, params, range) {
 
   return {
     params: P,
+    feeScenario: Object.assign({ key: P.FEE_SCENARIO, roundTripPct: Math.round(feeRate * 2 * 100 * 1000) / 1000 }, FEE_SCENARIOS[P.FEE_SCENARIO]),
     range: { from: new Date(dataset.gridMin + startGrid * BAR_MS).toISOString().slice(0, 10),
              to: new Date(dataset.gridMin + endGrid * BAR_MS).toISOString().slice(0, 10), days: Math.round(days) },
     totalTrades: total,
@@ -580,5 +643,5 @@ function simulate(dataset, params, range) {
 module.exports = {
   OUT_DIR, CACHE_DIR, SEED, POSITION_SIZE, FEE_RATE, MAX_WINDOW, MIN_DATA_POINTS,
   MIN_BAR_VALUE_MULTIPLE, MAX_SPREAD_PERCENT, KORBIT_SPREAD_PCT, COINS, ALL_COINS,
-  DEFAULT_PARAMS, breakEvenPp, buildDataset, simulate,
+  DEFAULT_PARAMS, FEE_SCENARIOS, DEFAULT_FEE_SCENARIO, feeRateOf, breakEvenPp, buildDataset, simulate,
 };
