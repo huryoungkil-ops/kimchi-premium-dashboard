@@ -138,6 +138,17 @@ const DEFAULT_PARAMS = {
   // 0은 진단용이며, 실제로 낼 수 없는 성적이다.
   EXEC_DELAY_BARS: 1,
 
+  // --- 펀딩비를 종목 선정에 반영 ---
+  // 우리는 무기한선물 숏이라 펀딩비가 양수면 받고 음수면 낸다.
+  // 96일 실측에서 대부분 종목이 연 +1~7%였지만 TRX는 연 -11.7%였다.
+  // 며칠만 들고 있어도 펀딩비만으로 손실이 나는 종목은 애초에 거르는 게 낫다.
+  //
+  // 판단에는 "그 시점까지의 최근 펀딩비 평균"만 쓴다. 전체 기간 평균을 쓰면
+  // 미래를 보고 종목을 고르는 셈이 된다.
+  FUNDING_LOOKBACK: 21,      // 최근 몇 회(8시간 단위)를 볼 것인가. 21 = 7일
+  MIN_FUNDING_8H: null,      // 이 값보다 낮으면 진입 제외. null이면 끔. 예: 0 = 음수 종목 배제
+  FUNDING_RANK_WEIGHT: 0,    // 진입 순위에 펀딩비를 얼마나 반영할지. 0이면 끔
+
   MAX_SIGMA_PERCENT: 2.5, // σ가 이보다 크면 그 회차 신호 보류
   MAX_POSITIONS: 3,
   MAX_HOLD_DAYS: 7,       // 넘기면 다음 거래 가능한 봉에서 강제 정리
@@ -438,6 +449,22 @@ async function buildDataset(opts) {
 // ---------------------------------------------------------------------------
 // 시뮬레이션
 // ---------------------------------------------------------------------------
+// ts 시점까지의 최근 lookback회 펀딩비 평균(8시간당). 데이터가 없으면 null.
+// fCum은 누적합이라 구간 평균을 O(log n)에 구할 수 있다.
+function trailingFunding(c, ts, lookback) {
+  const m = c.fTs.length;
+  if (!m) return null;
+  // ts 이하인 마지막 펀딩 인덱스
+  let lo = 0, hi = m;
+  while (lo < hi) { const mid = (lo + hi) >> 1; if (c.fTs[mid] <= ts) lo = mid + 1; else hi = mid; }
+  const end = lo;                    // [0, end) 가 ts 이전
+  if (end === 0) return null;        // 아직 펀딩 이력이 시작되기 전
+  const start = Math.max(0, end - lookback);
+  const cnt = end - start;
+  if (cnt < 3) return null;          // 표본이 너무 적으면 판단하지 않는다
+  return (c.fCum[end] - c.fCum[start]) / cnt;
+}
+
 function fundingBetween(c, t0, t1) {
   if (!c.fTs.length) return 0;
   // (t0, t1] 구간의 펀딩비 합
@@ -484,7 +511,7 @@ function simulate(dataset, params, range) {
   const trades = [];
   let openCount = 0;
   let cumNet = 0, totalFunding = 0, totalSpread = 0, totalFees = 0;
-  let blockedThin = 0, blockedEdge = 0, blockedSpreadGate = 0;
+  let blockedThin = 0, blockedEdge = 0, blockedSpreadGate = 0, blockedFunding = 0;
   const exitReasons = { SIGNAL: 0, STOP: 0, MAXHOLD: 0 };
   const equity = [];
   let lastDay = null;
@@ -568,8 +595,18 @@ function simulate(dataset, params, range) {
       // 평균까지 회복해도 비용을 못 덮는 자리면 들어가지 않는다
       if (P.EDGE_MULTIPLE > 0 && (ma - prem) < breakEven[k] * P.EDGE_MULTIPLE) { blockedEdge++; continue; }
 
+      // 펀딩비가 지속적으로 음수인 종목은 들고 있는 것만으로 손실이 난다
+      const tf = (P.MIN_FUNDING_8H !== null || P.FUNDING_RANK_WEIGHT !== 0)
+        ? trailingFunding(c, ts, P.FUNDING_LOOKBACK) : null;
+      if (P.MIN_FUNDING_8H !== null && tf !== null && tf < P.MIN_FUNDING_8H) {
+        blockedFunding++; continue;
+      }
+
       candIdx[candN] = k;
-      candZ[candN] = sd > 0 ? (ma - prem) / sd : 0;
+      // 저평가 정도(z-score)에 펀딩비 이득을 더해 순위를 매긴다.
+      // tf는 8시간당 비율이라 %p 단위로 맞추려면 100을 곱한다.
+      candZ[candN] = (sd > 0 ? (ma - prem) / sd : 0)
+        + (P.FUNDING_RANK_WEIGHT !== 0 && tf !== null ? P.FUNDING_RANK_WEIGHT * tf * 100 : 0);
       candN++;
     }
 
@@ -632,7 +669,7 @@ function simulate(dataset, params, range) {
     totalSpreadCost: Math.round(totalSpread * 100) / 100,
     totalFunding: Math.round(totalFunding * 100) / 100,
     exitReasons,
-    blocked: { 거래량미달: blockedThin, 스프레드관문: blockedSpreadGate, 기대수익부족: blockedEdge },
+    blocked: { 거래량미달: blockedThin, 스프레드관문: blockedSpreadGate, 기대수익부족: blockedEdge, 펀딩비음수: blockedFunding },
     stillOpen: openCount,
     byCoin,
     trades,
@@ -643,5 +680,5 @@ function simulate(dataset, params, range) {
 module.exports = {
   OUT_DIR, CACHE_DIR, SEED, POSITION_SIZE, FEE_RATE, MAX_WINDOW, MIN_DATA_POINTS,
   MIN_BAR_VALUE_MULTIPLE, MAX_SPREAD_PERCENT, KORBIT_SPREAD_PCT, COINS, ALL_COINS,
-  DEFAULT_PARAMS, FEE_SCENARIOS, DEFAULT_FEE_SCENARIO, feeRateOf, breakEvenPp, buildDataset, simulate,
+  DEFAULT_PARAMS, trailingFunding, FEE_SCENARIOS, DEFAULT_FEE_SCENARIO, feeRateOf, breakEvenPp, buildDataset, simulate,
 };
