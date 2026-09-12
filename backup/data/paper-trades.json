@@ -1,6 +1,5 @@
 [
   {
-    "id": 1,
     "coin": "AAVE",
     "status": "VOID",
     "entryTime": "2026-09-11T14:20:10.571Z",
@@ -15,11 +14,11 @@
     "grossProfit": null,
     "feeExit": null,
     "netProfit": null,
+    "id": 1,
     "createdAt": "2026-09-11T14:20:10.612Z",
     "updatedAt": "2026-09-11T14:52:39.957Z"
   },
   {
-    "id": 2,
     "coin": "SUSHI",
     "status": "VOID",
     "entryTime": "2026-09-11T14:20:10.589Z",
@@ -34,11 +33,11 @@
     "grossProfit": null,
     "feeExit": null,
     "netProfit": null,
+    "id": 2,
     "createdAt": "2026-09-11T14:20:10.612Z",
     "updatedAt": "2026-09-11T14:52:39.957Z"
   },
   {
-    "id": 3,
     "coin": "ICP",
     "status": "VOID",
     "entryTime": "2026-09-11T14:20:10.594Z",
@@ -53,11 +52,11 @@
     "grossProfit": null,
     "feeExit": null,
     "netProfit": null,
+    "id": 3,
     "createdAt": "2026-09-11T14:20:10.612Z",
     "updatedAt": "2026-09-11T14:52:39.957Z"
   },
   {
-    "id": 4,
     "coin": "ETH",
     "status": "CLOSED",
     "entryTime": "2026-09-11T15:00:11.988Z",
@@ -72,11 +71,11 @@
     "grossProfit": 3.55,
     "feeExit": 0.9,
     "netProfit": 1.75,
+    "id": 4,
     "createdAt": "2026-09-11T15:00:12.057Z",
     "updatedAt": "2026-09-11T22:30:11.005Z"
   },
   {
-    "id": 5,
     "coin": "XRP",
     "status": "CLOSED",
     "entryTime": "2026-09-11T15:00:11.996Z",
@@ -91,11 +90,11 @@
     "grossProfit": 4.48,
     "feeExit": 0.9,
     "netProfit": 2.68,
+    "id": 5,
     "createdAt": "2026-09-11T15:00:12.057Z",
     "updatedAt": "2026-09-12T00:00:13.154Z"
   },
   {
-    "id": 6,
     "coin": "SOL",
     "status": "CLOSED",
     "entryTime": "2026-09-11T15:05:11.581Z",
@@ -110,6 +109,7 @@
     "grossProfit": 1.07,
     "feeExit": 0.9,
     "netProfit": -0.73,
+    "id": 6,
     "createdAt": "2026-09-11T15:05:11.593Z",
     "updatedAt": "2026-09-11T18:50:11.102Z"
   }
