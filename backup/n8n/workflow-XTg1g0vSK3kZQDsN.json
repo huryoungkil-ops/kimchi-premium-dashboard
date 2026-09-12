@@ -40,396 +40,53 @@
     ],
     "canExecute": true,
     "connections": {
-      "5분마다 실행": {
-        "main": [
-          [
-            {
-              "node": "코빗 가격 조회",
-              "type": "main",
-              "index": 0
-            }
-          ]
-        ]
-      },
-      "코빗 가격 조회": {
-        "main": [
-          [
-            {
-              "node": "OKX 가격 조회",
-              "type": "main",
-              "index": 0
-            }
-          ]
-        ]
-      },
-      "프리미엄 계산": {
-        "main": [
-          [
-            {
-              "node": "프리미엄 이력 저장",
-              "type": "main",
-              "index": 0
-            }
-          ]
-        ]
-      },
-      "프리미엄 이력 저장": {
-        "main": [
-          [
-            {
-              "node": "최근 3일 이력 조회",
-              "type": "main",
-              "index": 0
-            }
-          ]
-        ]
-      },
-      "최근 3일 이력 조회": {
-        "main": [
-          [
-            {
-              "node": "MA·신호 판정",
-              "type": "main",
-              "index": 0
-            }
-          ]
-        ]
-      },
-      "MA·신호 판정": {
-        "main": [
-          [
-            {
-              "node": "신호만 남기기",
-              "type": "main",
-              "index": 0
-            }
-          ]
-        ]
-      },
-      "신호만 남기기": {
-        "main": [
-          [
-            {
-              "node": "진입 신호인가?",
-              "type": "main",
-              "index": 0
-            }
-          ]
-        ]
-      },
+      "5분마다 실행": { "main": [[{ "node": "코빗 가격 조회", "type": "main", "index": 0 }]] },
+      "코빗 가격 조회": { "main": [[{ "node": "OKX 가격 조회", "type": "main", "index": 0 }]] },
+      "프리미엄 계산": { "main": [[{ "node": "프리미엄 이력 저장", "type": "main", "index": 0 }]] },
+      "프리미엄 이력 저장": { "main": [[{ "node": "최근 3일 이력 조회", "type": "main", "index": 0 }]] },
+      "최근 3일 이력 조회": { "main": [[{ "node": "MA·신호 판정", "type": "main", "index": 0 }]] },
+      "MA·신호 판정": { "main": [[{ "node": "신호만 남기기", "type": "main", "index": 0 }]] },
+      "신호만 남기기": { "main": [[{ "node": "진입 신호인가?", "type": "main", "index": 0 }]] },
       "진입 신호인가?": {
         "main": [
-          [
-            {
-              "node": "진행 중인 포지션 조회",
-              "type": "main",
-              "index": 0
-            }
-          ],
-          [
-            {
-              "node": "청산할 포지션 조회",
-              "type": "main",
-              "index": 0
-            }
-          ]
+          [{ "node": "진행 중인 포지션 조회", "type": "main", "index": 0 }],
+          [{ "node": "청산할 포지션 조회", "type": "main", "index": 0 }]
         ]
       },
-      "진행 중인 포지션 조회": {
-        "main": [
-          [
-            {
-              "node": "진입 가능 여부 판단",
-              "type": "main",
-              "index": 0
-            }
-          ]
-        ]
-      },
-      "진입해도 되는가?": {
-        "main": [
-          [
-            {
-              "node": "가상 진입 기록",
-              "type": "main",
-              "index": 0
-            }
-          ]
-        ]
-      },
-      "손익 계산": {
-        "main": [
-          [
-            {
-              "node": "포지션 청산 갱신",
-              "type": "main",
-              "index": 0
-            }
-          ]
-        ]
-      },
-      "환율 조회": {
-        "main": [
-          [
-            {
-              "node": "프리미엄 계산",
-              "type": "main",
-              "index": 0
-            }
-          ]
-        ]
-      },
-      "OKX 가격 조회": {
-        "main": [
-          [
-            {
-              "node": "환율 조회",
-              "type": "main",
-              "index": 0
-            }
-          ]
-        ]
-      },
-      "매일 07:40 상태 보고": {
-        "main": [
-          [
-            {
-              "node": "최근 24시간 이력 조회",
-              "type": "main",
-              "index": 0
-            }
-          ]
-        ]
-      },
-      "최근 24시간 이력 조회": {
-        "main": [
-          [
-            {
-              "node": "24시간 통계 계산",
-              "type": "main",
-              "index": 0
-            }
-          ]
-        ]
-      },
-      "보고 메시지 구성": {
-        "main": [
-          [
-            {
-              "node": "상태 보고 전송",
-              "type": "main",
-              "index": 0
-            }
-          ]
-        ]
-      },
-      "24시간 통계 계산": {
-        "main": [
-          [
-            {
-              "node": "전체 매매 이력 조회",
-              "type": "main",
-              "index": 0
-            }
-          ]
-        ]
-      },
-      "전체 매매 이력 조회": {
-        "main": [
-          [
-            {
-              "node": "매매 성과 계산",
-              "type": "main",
-              "index": 0
-            }
-          ]
-        ]
-      },
-      "매매 성과 계산": {
-        "main": [
-          [
-            {
-              "node": "보고 메시지 구성",
-              "type": "main",
-              "index": 0
-            }
-          ]
-        ]
-      },
-      "대시보드 자동갱신 켜기": {
-        "main": [
-          [
-            {
-              "node": "설정 켜기로 갱신",
-              "type": "main",
-              "index": 0
-            }
-          ]
-        ]
-      },
-      "대시보드 자동갱신 끄기": {
-        "main": [
-          [
-            {
-              "node": "설정 끄기로 갱신",
-              "type": "main",
-              "index": 0
-            }
-          ]
-        ]
-      },
-      "진입 가능 여부 판단": {
-        "main": [
-          [
-            {
-              "node": "진입 호가 조회",
-              "type": "main",
-              "index": 0
-            }
-          ]
-        ]
-      },
-      "진입 호가 조회": {
-        "main": [
-          [
-            {
-              "node": "체결가능 김프 검증",
-              "type": "main",
-              "index": 0
-            }
-          ]
-        ]
-      },
-      "청산할 포지션 조회": {
-        "main": [
-          [
-            {
-              "node": "청산 호가 조회",
-              "type": "main",
-              "index": 0
-            }
-          ]
-        ]
-      },
-      "청산 호가 조회": {
-        "main": [
-          [
-            {
-              "node": "손익 계산",
-              "type": "main",
-              "index": 0
-            }
-          ]
-        ]
-      },
-      "체결가능 김프 검증": {
-        "main": [
-          [
-            {
-              "node": "슬롯 배분",
-              "type": "main",
-              "index": 0
-            }
-          ]
-        ]
-      },
-      "슬롯 배분": {
-        "main": [
-          [
-            {
-              "node": "진입해도 되는가?",
-              "type": "main",
-              "index": 0
-            }
-          ]
-        ]
-      },
-      "가상 진입 기록": {
-        "main": [
-          [
-            {
-              "node": "진입 성과 조회",
-              "type": "main",
-              "index": 0
-            }
-          ]
-        ]
-      },
-      "진입 성과 조회": {
-        "main": [
-          [
-            {
-              "node": "진입 메시지 구성",
-              "type": "main",
-              "index": 0
-            }
-          ]
-        ]
-      },
-      "진입 메시지 구성": {
-        "main": [
-          [
-            {
-              "node": "진입 알림 전송",
-              "type": "main",
-              "index": 0
-            }
-          ]
-        ]
-      },
-      "포지션 청산 갱신": {
-        "main": [
-          [
-            {
-              "node": "청산 성과 조회",
-              "type": "main",
-              "index": 0
-            }
-          ]
-        ]
-      },
-      "청산 성과 조회": {
-        "main": [
-          [
-            {
-              "node": "청산 메시지 구성",
-              "type": "main",
-              "index": 0
-            }
-          ]
-        ]
-      },
-      "청산 메시지 구성": {
-        "main": [
-          [
-            {
-              "node": "청산 알림 전송",
-              "type": "main",
-              "index": 0
-            }
-          ]
-        ]
-      }
+      "진행 중인 포지션 조회": { "main": [[{ "node": "진입 가능 여부 판단", "type": "main", "index": 0 }]] },
+      "진입해도 되는가?": { "main": [[{ "node": "가상 진입 기록", "type": "main", "index": 0 }]] },
+      "손익 계산": { "main": [[{ "node": "포지션 청산 갱신", "type": "main", "index": 0 }]] },
+      "환율 조회": { "main": [[{ "node": "프리미엄 계산", "type": "main", "index": 0 }]] },
+      "OKX 가격 조회": { "main": [[{ "node": "환율 조회", "type": "main", "index": 0 }]] },
+      "매일 07:40 상태 보고": { "main": [[{ "node": "최근 24시간 이력 조회", "type": "main", "index": 0 }]] },
+      "최근 24시간 이력 조회": { "main": [[{ "node": "24시간 통계 계산", "type": "main", "index": 0 }]] },
+      "보고 메시지 구성": { "main": [[{ "node": "상태 보고 전송", "type": "main", "index": 0 }]] },
+      "24시간 통계 계산": { "main": [[{ "node": "전체 매매 이력 조회", "type": "main", "index": 0 }]] },
+      "전체 매매 이력 조회": { "main": [[{ "node": "매매 성과 계산", "type": "main", "index": 0 }]] },
+      "매매 성과 계산": { "main": [[{ "node": "보고 메시지 구성", "type": "main", "index": 0 }]] },
+      "대시보드 자동갱신 켜기": { "main": [[{ "node": "설정 켜기로 갱신", "type": "main", "index": 0 }]] },
+      "대시보드 자동갱신 끄기": { "main": [[{ "node": "설정 끄기로 갱신", "type": "main", "index": 0 }]] },
+      "진입 가능 여부 판단": { "main": [[{ "node": "진입 호가 조회", "type": "main", "index": 0 }]] },
+      "진입 호가 조회": { "main": [[{ "node": "체결가능 김프 검증", "type": "main", "index": 0 }]] },
+      "청산할 포지션 조회": { "main": [[{ "node": "청산 호가 조회", "type": "main", "index": 0 }]] },
+      "청산 호가 조회": { "main": [[{ "node": "손익 계산", "type": "main", "index": 0 }]] },
+      "체결가능 김프 검증": { "main": [[{ "node": "슬롯 배분", "type": "main", "index": 0 }]] },
+      "슬롯 배분": { "main": [[{ "node": "진입해도 되는가?", "type": "main", "index": 0 }]] },
+      "가상 진입 기록": { "main": [[{ "node": "진입 성과 조회", "type": "main", "index": 0 }]] },
+      "진입 성과 조회": { "main": [[{ "node": "진입 메시지 구성", "type": "main", "index": 0 }]] },
+      "진입 메시지 구성": { "main": [[{ "node": "진입 알림 전송", "type": "main", "index": 0 }]] },
+      "포지션 청산 갱신": { "main": [[{ "node": "청산 성과 조회", "type": "main", "index": 0 }]] },
+      "청산 성과 조회": { "main": [[{ "node": "청산 메시지 구성", "type": "main", "index": 0 }]] },
+      "청산 메시지 구성": { "main": [[{ "node": "청산 알림 전송", "type": "main", "index": 0 }]] }
     },
     "nodes": [
       {
-        "parameters": {
-          "rule": {
-            "interval": [
-              {
-                "field": "minutes"
-              }
-            ]
-          }
-        },
+        "parameters": { "rule": { "interval": [{ "field": "minutes" }] } },
         "id": "6dd409f3-6acf-4400-9a94-a0c6ccc606a5",
         "name": "5분마다 실행",
         "type": "n8n-nodes-base.scheduleTrigger",
         "typeVersion": 1.4,
-        "position": [
-          0,
-          -32
-        ]
+        "position": [0, -32]
       },
       {
         "parameters": {
@@ -451,33 +108,20 @@
         "name": "코빗 가격 조회",
         "type": "n8n-nodes-base.httpRequest",
         "typeVersion": 4.5,
-        "position": [
-          272,
-          96
-        ]
+        "position": [272, 96]
       },
       {
         "parameters": {
           "url": "https://www.okx.com/api/v5/market/tickers",
           "sendQuery": true,
-          "queryParameters": {
-            "parameters": [
-              {
-                "name": "instType",
-                "value": "SWAP"
-              }
-            ]
-          },
+          "queryParameters": { "parameters": [{ "name": "instType", "value": "SWAP" }] },
           "options": {}
         },
         "id": "d436d47d-222d-40b9-a2a4-fde4e68188d7",
         "name": "OKX 가격 조회",
         "type": "n8n-nodes-base.httpRequest",
         "typeVersion": 4.5,
-        "position": [
-          496,
-          96
-        ]
+        "position": [496, 96]
       },
       {
         "parameters": {
@@ -489,19 +133,11 @@
         "name": "프리미엄 계산",
         "type": "n8n-nodes-base.code",
         "typeVersion": 2,
-        "position": [
-          720,
-          96
-        ]
+        "position": [720, 96]
       },
       {
         "parameters": {
-          "dataTableId": {
-            "__rl": true,
-            "mode": "id",
-            "value": "7FFlXBiQp488z6M4",
-            "cachedResultName": "kimchi_premium_history"
-          },
+          "dataTableId": { "__rl": true, "mode": "id", "value": "7FFlXBiQp488z6M4", "cachedResultName": "kimchi_premium_history" },
           "columns": {
             "mappingMode": "defineBelow",
             "value": {
@@ -513,60 +149,12 @@
               "checkedAt": "={{ $json.checkedAt }}"
             },
             "schema": [
-              {
-                "id": "coin",
-                "displayName": "coin",
-                "required": false,
-                "defaultMatch": false,
-                "display": true,
-                "type": "string",
-                "canBeUsedToMatch": true
-              },
-              {
-                "id": "premium",
-                "displayName": "premium",
-                "required": false,
-                "defaultMatch": false,
-                "display": true,
-                "type": "number",
-                "canBeUsedToMatch": true
-              },
-              {
-                "id": "korbitPrice",
-                "displayName": "korbitPrice",
-                "required": false,
-                "defaultMatch": false,
-                "display": true,
-                "type": "number",
-                "canBeUsedToMatch": true
-              },
-              {
-                "id": "foreignPrice",
-                "displayName": "foreignPrice",
-                "required": false,
-                "defaultMatch": false,
-                "display": true,
-                "type": "number",
-                "canBeUsedToMatch": true
-              },
-              {
-                "id": "usdKrwRate",
-                "displayName": "usdKrwRate",
-                "required": false,
-                "defaultMatch": false,
-                "display": true,
-                "type": "number",
-                "canBeUsedToMatch": true
-              },
-              {
-                "id": "checkedAt",
-                "displayName": "checkedAt",
-                "required": false,
-                "defaultMatch": false,
-                "display": true,
-                "type": "date",
-                "canBeUsedToMatch": true
-              }
+              { "id": "coin", "displayName": "coin", "required": false, "defaultMatch": false, "display": true, "type": "string", "canBeUsedToMatch": true },
+              { "id": "premium", "displayName": "premium", "required": false, "defaultMatch": false, "display": true, "type": "number", "canBeUsedToMatch": true },
+              { "id": "korbitPrice", "displayName": "korbitPrice", "required": false, "defaultMatch": false, "display": true, "type": "number", "canBeUsedToMatch": true },
+              { "id": "foreignPrice", "displayName": "foreignPrice", "required": false, "defaultMatch": false, "display": true, "type": "number", "canBeUsedToMatch": true },
+              { "id": "usdKrwRate", "displayName": "usdKrwRate", "required": false, "defaultMatch": false, "display": true, "type": "number", "canBeUsedToMatch": true },
+              { "id": "checkedAt", "displayName": "checkedAt", "required": false, "defaultMatch": false, "display": true, "type": "date", "canBeUsedToMatch": true }
             ]
           },
           "options": {}
@@ -575,29 +163,14 @@
         "name": "프리미엄 이력 저장",
         "type": "n8n-nodes-base.dataTable",
         "typeVersion": 1.1,
-        "position": [
-          944,
-          96
-        ]
+        "position": [944, 96]
       },
       {
         "parameters": {
           "operation": "get",
-          "dataTableId": {
-            "__rl": true,
-            "mode": "id",
-            "value": "7FFlXBiQp488z6M4",
-            "cachedResultName": "kimchi_premium_history"
-          },
+          "dataTableId": { "__rl": true, "mode": "id", "value": "7FFlXBiQp488z6M4", "cachedResultName": "kimchi_premium_history" },
           "matchType": "allConditions",
-          "filters": {
-            "conditions": [
-              {
-                "keyName": "coin",
-                "keyValue": "={{ $('프리미엄 계산').item.json.coin }}"
-              }
-            ]
-          },
+          "filters": { "conditions": [{ "keyName": "coin", "keyValue": "={{ $('프리미엄 계산').item.json.coin }}" }] },
           "limit": 864,
           "orderBy": true,
           "orderByColumn": "checkedAt"
@@ -606,10 +179,7 @@
         "name": "최근 3일 이력 조회",
         "type": "n8n-nodes-base.dataTable",
         "typeVersion": 1.1,
-        "position": [
-          800,
-          96
-        ]
+        "position": [800, 96]
       },
       {
         "parameters": {
@@ -621,29 +191,13 @@
         "name": "MA·신호 판정",
         "type": "n8n-nodes-base.code",
         "typeVersion": 2,
-        "position": [
-          1024,
-          96
-        ]
+        "position": [1024, 96]
       },
       {
         "parameters": {
           "conditions": {
-            "options": {
-              "caseSensitive": true,
-              "leftValue": "",
-              "typeValidation": "loose",
-              "version": 1
-            },
-            "conditions": [
-              {
-                "leftValue": "={{ $json.signal }}",
-                "operator": {
-                  "type": "string",
-                  "operation": "notEmpty"
-                }
-              }
-            ],
+            "options": { "caseSensitive": true, "leftValue": "", "typeValidation": "loose", "version": 1 },
+            "conditions": [{ "leftValue": "={{ $json.signal }}", "operator": { "type": "string", "operation": "notEmpty" } }],
             "combinator": "and"
           },
           "options": {}
@@ -652,30 +206,13 @@
         "name": "신호만 남기기",
         "type": "n8n-nodes-base.filter",
         "typeVersion": 2.3,
-        "position": [
-          1248,
-          96
-        ]
+        "position": [1248, 96]
       },
       {
         "parameters": {
           "conditions": {
-            "options": {
-              "caseSensitive": true,
-              "leftValue": "",
-              "typeValidation": "strict",
-              "version": 1
-            },
-            "conditions": [
-              {
-                "leftValue": "={{ $json.signal }}",
-                "rightValue": "ENTRY",
-                "operator": {
-                  "type": "string",
-                  "operation": "equals"
-                }
-              }
-            ],
+            "options": { "caseSensitive": true, "leftValue": "", "typeValidation": "strict", "version": 1 },
+            "conditions": [{ "leftValue": "={{ $json.signal }}", "rightValue": "ENTRY", "operator": { "type": "string", "operation": "equals" } }],
             "combinator": "and"
           },
           "options": {}
@@ -684,39 +221,21 @@
         "name": "진입 신호인가?",
         "type": "n8n-nodes-base.if",
         "typeVersion": 2.3,
-        "position": [
-          1280,
-          -32
-        ]
+        "position": [1280, -32]
       },
       {
         "parameters": {
           "operation": "get",
-          "dataTableId": {
-            "__rl": true,
-            "mode": "id",
-            "value": "6MFkAuDuiogrRSqA",
-            "cachedResultName": "kimchi_paper_trades"
-          },
+          "dataTableId": { "__rl": true, "mode": "id", "value": "6MFkAuDuiogrRSqA", "cachedResultName": "kimchi_paper_trades" },
           "matchType": "allConditions",
-          "filters": {
-            "conditions": [
-              {
-                "keyName": "status",
-                "keyValue": "OPEN"
-              }
-            ]
-          },
+          "filters": { "conditions": [{ "keyName": "status", "keyValue": "OPEN" }] },
           "returnAll": true
         },
         "id": "f3fb4fbc-0c44-490c-b957-e19d3c6ca3fc",
         "name": "진행 중인 포지션 조회",
         "type": "n8n-nodes-base.dataTable",
         "typeVersion": 1.1,
-        "position": [
-          1552,
-          0
-        ],
+        "position": [1552, 0],
         "alwaysOutputData": true,
         "executeOnce": true
       },
@@ -730,30 +249,13 @@
         "name": "진입 가능 여부 판단",
         "type": "n8n-nodes-base.code",
         "typeVersion": 2,
-        "position": [
-          1776,
-          0
-        ]
+        "position": [1776, 0]
       },
       {
         "parameters": {
           "conditions": {
-            "options": {
-              "caseSensitive": true,
-              "leftValue": "",
-              "typeValidation": "strict",
-              "version": 1
-            },
-            "conditions": [
-              {
-                "leftValue": "={{ $json.canEnter }}",
-                "rightValue": true,
-                "operator": {
-                  "type": "boolean",
-                  "operation": "equals"
-                }
-              }
-            ],
+            "options": { "caseSensitive": true, "leftValue": "", "typeValidation": "strict", "version": 1 },
+            "conditions": [{ "leftValue": "={{ $json.canEnter }}", "rightValue": true, "operator": { "type": "boolean", "operation": "equals" } }],
             "combinator": "and"
           },
           "options": {}
@@ -762,21 +264,13 @@
         "name": "진입해도 되는가?",
         "type": "n8n-nodes-base.if",
         "typeVersion": 2.3,
-        "position": [
-          2300,
-          0
-        ]
+        "position": [2300, 0]
       },
       {
         "parameters": {
           "resource": "row",
           "operation": "insert",
-          "dataTableId": {
-            "__rl": true,
-            "mode": "id",
-            "value": "6MFkAuDuiogrRSqA",
-            "cachedResultName": "kimchi_paper_trades"
-          },
+          "dataTableId": { "__rl": true, "mode": "id", "value": "6MFkAuDuiogrRSqA", "cachedResultName": "kimchi_paper_trades" },
           "columns": {
             "mappingMode": "defineBelow",
             "value": {
@@ -790,78 +284,14 @@
               "feeEntry": "={{ Math.round(10000 * 0.10 * 0.0009 * 100) / 100 }}"
             },
             "schema": [
-              {
-                "id": "coin",
-                "displayName": "coin",
-                "required": false,
-                "defaultMatch": false,
-                "display": true,
-                "type": "string",
-                "canBeUsedToMatch": true
-              },
-              {
-                "id": "status",
-                "displayName": "status",
-                "required": false,
-                "defaultMatch": false,
-                "display": true,
-                "type": "string",
-                "canBeUsedToMatch": true
-              },
-              {
-                "id": "entryTime",
-                "displayName": "entryTime",
-                "required": false,
-                "defaultMatch": false,
-                "display": true,
-                "type": "date",
-                "canBeUsedToMatch": true
-              },
-              {
-                "id": "entryPremium",
-                "displayName": "entryPremium",
-                "required": false,
-                "defaultMatch": false,
-                "display": true,
-                "type": "number",
-                "canBeUsedToMatch": true
-              },
-              {
-                "id": "entryMa",
-                "displayName": "entryMa",
-                "required": false,
-                "defaultMatch": false,
-                "display": true,
-                "type": "number",
-                "canBeUsedToMatch": true
-              },
-              {
-                "id": "entryPrice",
-                "displayName": "entryPrice",
-                "required": false,
-                "defaultMatch": false,
-                "display": true,
-                "type": "number",
-                "canBeUsedToMatch": true
-              },
-              {
-                "id": "positionSize",
-                "displayName": "positionSize",
-                "required": false,
-                "defaultMatch": false,
-                "display": true,
-                "type": "number",
-                "canBeUsedToMatch": true
-              },
-              {
-                "id": "feeEntry",
-                "displayName": "feeEntry",
-                "required": false,
-                "defaultMatch": false,
-                "display": true,
-                "type": "number",
-                "canBeUsedToMatch": true
-              }
+              { "id": "coin", "displayName": "coin", "required": false, "defaultMatch": false, "display": true, "type": "string", "canBeUsedToMatch": true },
+              { "id": "status", "displayName": "status", "required": false, "defaultMatch": false, "display": true, "type": "string", "canBeUsedToMatch": true },
+              { "id": "entryTime", "displayName": "entryTime", "required": false, "defaultMatch": false, "display": true, "type": "date", "canBeUsedToMatch": true },
+              { "id": "entryPremium", "displayName": "entryPremium", "required": false, "defaultMatch": false, "display": true, "type": "number", "canBeUsedToMatch": true },
+              { "id": "entryMa", "displayName": "entryMa", "required": false, "defaultMatch": false, "display": true, "type": "number", "canBeUsedToMatch": true },
+              { "id": "entryPrice", "displayName": "entryPrice", "required": false, "defaultMatch": false, "display": true, "type": "number", "canBeUsedToMatch": true },
+              { "id": "positionSize", "displayName": "positionSize", "required": false, "defaultMatch": false, "display": true, "type": "number", "canBeUsedToMatch": true },
+              { "id": "feeEntry", "displayName": "feeEntry", "required": false, "defaultMatch": false, "display": true, "type": "number", "canBeUsedToMatch": true }
             ]
           }
         },
@@ -869,10 +299,7 @@
         "name": "가상 진입 기록",
         "type": "n8n-nodes-base.dataTable",
         "typeVersion": 1.1,
-        "position": [
-          2440,
-          0
-        ]
+        "position": [2440, 0]
       },
       {
         "parameters": {
@@ -888,33 +315,14 @@
         "name": "진입 알림 전송",
         "type": "n8n-nodes-base.httpRequest",
         "typeVersion": 4.5,
-        "position": [
-          2860,
-          0
-        ]
+        "position": [2860, 0]
       },
       {
         "parameters": {
           "operation": "get",
-          "dataTableId": {
-            "__rl": true,
-            "mode": "id",
-            "value": "6MFkAuDuiogrRSqA",
-            "cachedResultName": "kimchi_paper_trades"
-          },
+          "dataTableId": { "__rl": true, "mode": "id", "value": "6MFkAuDuiogrRSqA", "cachedResultName": "kimchi_paper_trades" },
           "matchType": "allConditions",
-          "filters": {
-            "conditions": [
-              {
-                "keyName": "coin",
-                "keyValue": "={{ $('MA·신호 판정').item.json.coin }}"
-              },
-              {
-                "keyName": "status",
-                "keyValue": "OPEN"
-              }
-            ]
-          },
+          "filters": { "conditions": [{ "keyName": "coin", "keyValue": "={{ $('MA·신호 판정').item.json.coin }}" }, { "keyName": "status", "keyValue": "OPEN" }] },
           "limit": 1,
           "orderBy": true,
           "orderByColumn": "entryTime"
@@ -923,10 +331,7 @@
         "name": "청산할 포지션 조회",
         "type": "n8n-nodes-base.dataTable",
         "typeVersion": 1.1,
-        "position": [
-          1552,
-          192
-        ]
+        "position": [1552, 192]
       },
       {
         "parameters": {
@@ -938,28 +343,14 @@
         "name": "손익 계산",
         "type": "n8n-nodes-base.code",
         "typeVersion": 2,
-        "position": [
-          1776,
-          192
-        ]
+        "position": [1776, 192]
       },
       {
         "parameters": {
           "operation": "update",
-          "dataTableId": {
-            "__rl": true,
-            "mode": "id",
-            "value": "6MFkAuDuiogrRSqA",
-            "cachedResultName": "kimchi_paper_trades"
-          },
+          "dataTableId": { "__rl": true, "mode": "id", "value": "6MFkAuDuiogrRSqA", "cachedResultName": "kimchi_paper_trades" },
           "matchType": "allConditions",
-          "filters": {
-            "conditions": [
-              {
-                "keyValue": "={{ $json.rowId }}"
-              }
-            ]
-          },
+          "filters": { "conditions": [{ "keyValue": "={{ $json.rowId }}" }] },
           "columns": {
             "mappingMode": "defineBelow",
             "value": {
@@ -972,69 +363,13 @@
               "netProfit": "={{ $json.netProfit }}"
             },
             "schema": [
-              {
-                "id": "status",
-                "displayName": "status",
-                "required": false,
-                "defaultMatch": false,
-                "display": true,
-                "type": "string",
-                "canBeUsedToMatch": true
-              },
-              {
-                "id": "exitTime",
-                "displayName": "exitTime",
-                "required": false,
-                "defaultMatch": false,
-                "display": true,
-                "type": "date",
-                "canBeUsedToMatch": true
-              },
-              {
-                "id": "exitPremium",
-                "displayName": "exitPremium",
-                "required": false,
-                "defaultMatch": false,
-                "display": true,
-                "type": "number",
-                "canBeUsedToMatch": true
-              },
-              {
-                "id": "exitPrice",
-                "displayName": "exitPrice",
-                "required": false,
-                "defaultMatch": false,
-                "display": true,
-                "type": "number",
-                "canBeUsedToMatch": true
-              },
-              {
-                "id": "grossProfit",
-                "displayName": "grossProfit",
-                "required": false,
-                "defaultMatch": false,
-                "display": true,
-                "type": "number",
-                "canBeUsedToMatch": true
-              },
-              {
-                "id": "feeExit",
-                "displayName": "feeExit",
-                "required": false,
-                "defaultMatch": false,
-                "display": true,
-                "type": "number",
-                "canBeUsedToMatch": true
-              },
-              {
-                "id": "netProfit",
-                "displayName": "netProfit",
-                "required": false,
-                "defaultMatch": false,
-                "display": true,
-                "type": "number",
-                "canBeUsedToMatch": true
-              }
+              { "id": "status", "displayName": "status", "required": false, "defaultMatch": false, "display": true, "type": "string", "canBeUsedToMatch": true },
+              { "id": "exitTime", "displayName": "exitTime", "required": false, "defaultMatch": false, "display": true, "type": "date", "canBeUsedToMatch": true },
+              { "id": "exitPremium", "displayName": "exitPremium", "required": false, "defaultMatch": false, "display": true, "type": "number", "canBeUsedToMatch": true },
+              { "id": "exitPrice", "displayName": "exitPrice", "required": false, "defaultMatch": false, "display": true, "type": "number", "canBeUsedToMatch": true },
+              { "id": "grossProfit", "displayName": "grossProfit", "required": false, "defaultMatch": false, "display": true, "type": "number", "canBeUsedToMatch": true },
+              { "id": "feeExit", "displayName": "feeExit", "required": false, "defaultMatch": false, "display": true, "type": "number", "canBeUsedToMatch": true },
+              { "id": "netProfit", "displayName": "netProfit", "required": false, "defaultMatch": false, "display": true, "type": "number", "canBeUsedToMatch": true }
             ]
           },
           "options": {}
@@ -1043,10 +378,7 @@
         "name": "포지션 청산 갱신",
         "type": "n8n-nodes-base.dataTable",
         "typeVersion": 1.1,
-        "position": [
-          2000,
-          192
-        ]
+        "position": [2000, 192]
       },
       {
         "parameters": {
@@ -1062,10 +394,7 @@
         "name": "청산 알림 전송",
         "type": "n8n-nodes-base.httpRequest",
         "typeVersion": 4.5,
-        "position": [
-          2440,
-          192
-        ]
+        "position": [2440, 192]
       },
       {
         "parameters": {
@@ -1078,63 +407,34 @@
         "name": "Sticky Note c9907429",
         "type": "n8n-nodes-base.stickyNote",
         "typeVersion": 1,
-        "position": [
-          1200,
-          192
-        ]
+        "position": [1200, 192]
       },
       {
-        "parameters": {
-          "url": "https://open.er-api.com/v6/latest/USD",
-          "options": {}
-        },
+        "parameters": { "url": "https://open.er-api.com/v6/latest/USD", "options": {} },
         "id": "0082610c-f42c-4a55-8dc4-2aeb0049b3fc",
         "name": "환율 조회",
         "type": "n8n-nodes-base.httpRequest",
         "typeVersion": 4.5,
-        "position": [
-          752,
-          272
-        ]
+        "position": [752, 272]
       },
       {
         "id": "dab939e9-1ebd-4c0e-a9da-7599344e9199",
         "name": "매일 07:40 상태 보고",
         "type": "n8n-nodes-base.scheduleTrigger",
         "typeVersion": 1.4,
-        "position": [
-          0,
-          1100
-        ],
-        "parameters": {
-          "rule": {
-            "interval": [
-              {
-                "field": "cronExpression",
-                "expression": "40 7 * * *"
-              }
-            ]
-          }
-        }
+        "position": [0, 1100],
+        "parameters": { "rule": { "interval": [{ "field": "cronExpression", "expression": "40 7 * * *" }] } }
       },
       {
         "id": "17f72a9a-3434-4fcb-80e5-8cda8084074a",
         "name": "최근 24시간 이력 조회",
         "type": "n8n-nodes-base.dataTable",
         "typeVersion": 1.1,
-        "position": [
-          224,
-          1100
-        ],
+        "position": [224, 1100],
         "parameters": {
           "resource": "row",
           "operation": "get",
-          "dataTableId": {
-            "__rl": true,
-            "mode": "id",
-            "value": "7FFlXBiQp488z6M4",
-            "cachedResultName": "kimchi_premium_history"
-          },
+          "dataTableId": { "__rl": true, "mode": "id", "value": "7FFlXBiQp488z6M4", "cachedResultName": "kimchi_premium_history" },
           "returnAll": false,
           "limit": 3500,
           "orderBy": true,
@@ -1147,10 +447,7 @@
         "name": "24시간 통계 계산",
         "type": "n8n-nodes-base.code",
         "typeVersion": 2,
-        "position": [
-          448,
-          1100
-        ],
+        "position": [448, 1100],
         "parameters": {
           "mode": "runOnceForAllItems",
           "language": "javaScript",
@@ -1162,10 +459,7 @@
         "name": "보고 메시지 구성",
         "type": "n8n-nodes-base.code",
         "typeVersion": 2,
-        "position": [
-          672,
-          1100
-        ],
+        "position": [672, 1100],
         "parameters": {
           "mode": "runOnceForAllItems",
           "language": "javaScript",
@@ -1177,10 +471,7 @@
         "name": "상태 보고 전송",
         "type": "n8n-nodes-base.httpRequest",
         "typeVersion": 4.5,
-        "position": [
-          896,
-          1100
-        ],
+        "position": [896, 1100],
         "parameters": {
           "method": "POST",
           "url": "https://discordapp.com/api/webhooks/1545778115995893870/irjbjjMjfbq-HMg-p8z06Xnc9mcjS7OnJBfl2998T9TW-q1byi7YUgzRy5C_dRVAejnU",
@@ -1196,19 +487,11 @@
         "name": "전체 매매 이력 조회",
         "type": "n8n-nodes-base.dataTable",
         "typeVersion": 1.1,
-        "position": [
-          672,
-          1300
-        ],
+        "position": [672, 1300],
         "parameters": {
           "resource": "row",
           "operation": "get",
-          "dataTableId": {
-            "__rl": true,
-            "mode": "id",
-            "value": "6MFkAuDuiogrRSqA",
-            "cachedResultName": "kimchi_paper_trades"
-          },
+          "dataTableId": { "__rl": true, "mode": "id", "value": "6MFkAuDuiogrRSqA", "cachedResultName": "kimchi_paper_trades" },
           "returnAll": true
         },
         "alwaysOutputData": true
@@ -1218,10 +501,7 @@
         "name": "매매 성과 계산",
         "type": "n8n-nodes-base.code",
         "typeVersion": 2,
-        "position": [
-          896,
-          1300
-        ],
+        "position": [896, 1300],
         "parameters": {
           "mode": "runOnceForAllItems",
           "language": "javaScript",
@@ -1233,10 +513,7 @@
         "name": "대시보드 자동갱신 켜기",
         "type": "n8n-nodes-base.manualTrigger",
         "typeVersion": 1,
-        "position": [
-          0,
-          1780
-        ],
+        "position": [0, 1780],
         "parameters": {}
       },
       {
@@ -1244,45 +521,17 @@
         "name": "설정 켜기로 갱신",
         "type": "n8n-nodes-base.dataTable",
         "typeVersion": 1.1,
-        "position": [
-          224,
-          1780
-        ],
+        "position": [224, 1780],
         "parameters": {
           "resource": "row",
           "operation": "update",
-          "dataTableId": {
-            "__rl": true,
-            "mode": "id",
-            "value": "KRzzzywCgFJXoGxE",
-            "cachedResultName": "dashboard_settings"
-          },
+          "dataTableId": { "__rl": true, "mode": "id", "value": "KRzzzywCgFJXoGxE", "cachedResultName": "dashboard_settings" },
           "matchType": "allConditions",
-          "filters": {
-            "conditions": [
-              {
-                "keyName": "settingKey",
-                "condition": "eq",
-                "keyValue": "artifact_refresh"
-              }
-            ]
-          },
+          "filters": { "conditions": [{ "keyName": "settingKey", "condition": "eq", "keyValue": "artifact_refresh" }] },
           "columns": {
             "mappingMode": "defineBelow",
-            "value": {
-              "enabled": true
-            },
-            "schema": [
-              {
-                "id": "enabled",
-                "displayName": "enabled",
-                "required": false,
-                "defaultMatch": false,
-                "display": true,
-                "type": "boolean",
-                "canBeUsedToMatch": true
-              }
-            ]
+            "value": { "enabled": true },
+            "schema": [{ "id": "enabled", "displayName": "enabled", "required": false, "defaultMatch": false, "display": true, "type": "boolean", "canBeUsedToMatch": true }]
           }
         }
       },
@@ -1291,10 +540,7 @@
         "name": "대시보드 자동갱신 끄기",
         "type": "n8n-nodes-base.manualTrigger",
         "typeVersion": 1,
-        "position": [
-          0,
-          1900
-        ],
+        "position": [0, 1900],
         "parameters": {}
       },
       {
@@ -1302,45 +548,17 @@
         "name": "설정 끄기로 갱신",
         "type": "n8n-nodes-base.dataTable",
         "typeVersion": 1.1,
-        "position": [
-          224,
-          1900
-        ],
+        "position": [224, 1900],
         "parameters": {
           "resource": "row",
           "operation": "update",
-          "dataTableId": {
-            "__rl": true,
-            "mode": "id",
-            "value": "KRzzzywCgFJXoGxE",
-            "cachedResultName": "dashboard_settings"
-          },
+          "dataTableId": { "__rl": true, "mode": "id", "value": "KRzzzywCgFJXoGxE", "cachedResultName": "dashboard_settings" },
           "matchType": "allConditions",
-          "filters": {
-            "conditions": [
-              {
-                "keyName": "settingKey",
-                "condition": "eq",
-                "keyValue": "artifact_refresh"
-              }
-            ]
-          },
+          "filters": { "conditions": [{ "keyName": "settingKey", "condition": "eq", "keyValue": "artifact_refresh" }] },
           "columns": {
             "mappingMode": "defineBelow",
-            "value": {
-              "enabled": false
-            },
-            "schema": [
-              {
-                "id": "enabled",
-                "displayName": "enabled",
-                "required": false,
-                "defaultMatch": false,
-                "display": true,
-                "type": "boolean",
-                "canBeUsedToMatch": true
-              }
-            ]
+            "value": { "enabled": false },
+            "schema": [{ "id": "enabled", "displayName": "enabled", "required": false, "defaultMatch": false, "display": true, "type": "boolean", "canBeUsedToMatch": true }]
           }
         }
       },
@@ -1349,10 +567,7 @@
         "name": "진입 호가 조회",
         "type": "n8n-nodes-base.httpRequest",
         "typeVersion": 4.5,
-        "position": [
-          1900,
-          0
-        ],
+        "position": [1900, 0],
         "parameters": {
           "method": "GET",
           "url": "=https://api.korbit.co.kr/v2/orderbook?symbol={{ $json.coin.toLowerCase() }}_krw",
@@ -1368,10 +583,7 @@
         "name": "체결가능 김프 검증",
         "type": "n8n-nodes-base.code",
         "typeVersion": 2,
-        "position": [
-          2060,
-          0
-        ],
+        "position": [2060, 0],
         "parameters": {
           "mode": "runOnceForEachItem",
           "language": "javaScript",
@@ -1383,10 +595,7 @@
         "name": "청산 호가 조회",
         "type": "n8n-nodes-base.httpRequest",
         "typeVersion": 4.5,
-        "position": [
-          1664,
-          192
-        ],
+        "position": [1664, 192],
         "parameters": {
           "method": "GET",
           "url": "=https://api.korbit.co.kr/v2/orderbook?symbol={{ $json.coin.toLowerCase() }}_krw",
@@ -1402,10 +611,7 @@
         "name": "슬롯 배분",
         "type": "n8n-nodes-base.code",
         "typeVersion": 2,
-        "position": [
-          2160,
-          0
-        ],
+        "position": [2160, 0],
         "parameters": {
           "mode": "runOnceForAllItems",
           "language": "javaScript",
@@ -1417,19 +623,11 @@
         "name": "진입 성과 조회",
         "type": "n8n-nodes-base.dataTable",
         "typeVersion": 1.1,
-        "position": [
-          2580,
-          0
-        ],
+        "position": [2580, 0],
         "parameters": {
           "resource": "row",
           "operation": "get",
-          "dataTableId": {
-            "__rl": true,
-            "mode": "id",
-            "value": "6MFkAuDuiogrRSqA",
-            "cachedResultName": "kimchi_paper_trades"
-          },
+          "dataTableId": { "__rl": true, "mode": "id", "value": "6MFkAuDuiogrRSqA", "cachedResultName": "kimchi_paper_trades" },
           "returnAll": true
         },
         "alwaysOutputData": true,
@@ -1440,10 +638,7 @@
         "name": "진입 메시지 구성",
         "type": "n8n-nodes-base.code",
         "typeVersion": 2,
-        "position": [
-          2720,
-          0
-        ],
+        "position": [2720, 0],
         "parameters": {
           "mode": "runOnceForAllItems",
           "language": "javaScript",
@@ -1455,19 +650,11 @@
         "name": "청산 성과 조회",
         "type": "n8n-nodes-base.dataTable",
         "typeVersion": 1.1,
-        "position": [
-          2160,
-          192
-        ],
+        "position": [2160, 192],
         "parameters": {
           "resource": "row",
           "operation": "get",
-          "dataTableId": {
-            "__rl": true,
-            "mode": "id",
-            "value": "6MFkAuDuiogrRSqA",
-            "cachedResultName": "kimchi_paper_trades"
-          },
+          "dataTableId": { "__rl": true, "mode": "id", "value": "6MFkAuDuiogrRSqA", "cachedResultName": "kimchi_paper_trades" },
           "returnAll": true
         },
         "alwaysOutputData": true,
@@ -1478,10 +665,7 @@
         "name": "청산 메시지 구성",
         "type": "n8n-nodes-base.code",
         "typeVersion": 2,
-        "position": [
-          2300,
-          192
-        ],
+        "position": [2300, 192],
         "parameters": {
           "mode": "runOnceForAllItems",
           "language": "javaScript",
@@ -1490,80 +674,14 @@
       }
     ],
     "nodeGroups": [
-      {
-        "id": "e9299a07-2439-4d7d-821f-4f46b0e39366",
-        "name": "① 가격 수집·저장",
-        "nodeNames": [
-          "코빗 가격 조회",
-          "OKX 가격 조회",
-          "환율 조회",
-          "프리미엄 계산",
-          "프리미엄 이력 저장"
-        ],
-        "description": "코빗·Bybit 가격을 가져와 김프를 계산하고 이력 테이블에 저장"
-      },
-      {
-        "id": "1b16b9fb-3cc6-4e5a-af88-fbc581fc27f3",
-        "name": "② MA 계산·신호 판정",
-        "nodeNames": [
-          "최근 3일 이력 조회",
-          "MA·신호 판정",
-          "신호만 남기기"
-        ],
-        "description": "최근 3일 이력으로 이동평균/표준편차를 구해 진입·청산 신호를 판정"
-      },
-      {
-        "id": "24ba2847-7bea-446f-8200-3b71a34cb922",
-        "name": "⑤ 일일 상태 보고",
-        "nodeNames": [
-          "최근 24시간 이력 조회",
-          "24시간 통계 계산",
-          "전체 매매 이력 조회",
-          "매매 성과 계산",
-          "보고 메시지 구성",
-          "상태 보고 전송"
-        ],
-        "description": "매일 07:40(KST) 지난 24시간 코인별 김프 추이와 실행 상태를 계산해 Discord로 보고"
-      },
-      {
-        "id": "062937e2-2910-404a-bbe9-94d2dc07695e",
-        "name": "③ 진입 처리",
-        "nodeNames": [
-          "진행 중인 포지션 조회",
-          "진입 가능 여부 판단",
-          "진입 호가 조회",
-          "체결가능 김프 검증",
-          "슬롯 배분",
-          "진입해도 되는가?",
-          "가상 진입 기록",
-          "진입 성과 조회",
-          "진입 메시지 구성",
-          "진입 알림 전송"
-        ],
-        "description": "중복·최대개수 확인 후 호가창으로 실제 체결 가능한 김프를 검증하고, 통과한 건만 가상 매수로 기록한 뒤 Discord 알림"
-      },
-      {
-        "id": "c993a2a9-b9b4-46b1-ab68-5586072dc9a6",
-        "name": "④ 청산 처리",
-        "nodeNames": [
-          "청산할 포지션 조회",
-          "청산 호가 조회",
-          "손익 계산",
-          "포지션 청산 갱신",
-          "청산 성과 조회",
-          "청산 메시지 구성",
-          "청산 알림 전송"
-        ],
-        "description": "해당 코인의 열린 포지션을 찾아 실제 매도 가격(최우선 매수호가) 기준으로 손익을 계산하고 청산 처리 후 알림"
-      }
+      { "id": "e9299a07-2439-4d7d-821f-4f46b0e39366", "name": "① 가격 수집·저장", "nodeNames": ["코빗 가격 조회", "OKX 가격 조회", "환율 조회", "프리미엄 계산", "프리미엄 이력 저장"], "description": "코빗·Bybit 가격을 가져와 김프를 계산하고 이력 테이블에 저장" },
+      { "id": "1b16b9fb-3cc6-4e5a-af88-fbc581fc27f3", "name": "② MA 계산·신호 판정", "nodeNames": ["최근 3일 이력 조회", "MA·신호 판정", "신호만 남기기"], "description": "최근 3일 이력으로 이동평균/표준편차를 구해 진입·청산 신호를 판정" },
+      { "id": "24ba2847-7bea-446f-8200-3b71a34cb922", "name": "⑤ 일일 상태 보고", "nodeNames": ["최근 24시간 이력 조회", "24시간 통계 계산", "전체 매매 이력 조회", "매매 성과 계산", "보고 메시지 구성", "상태 보고 전송"], "description": "매일 07:40(KST) 지난 24시간 코인별 김프 추이와 실행 상태를 계산해 Discord로 보고" },
+      { "id": "062937e2-2910-404a-bbe9-94d2dc07695e", "name": "③ 진입 처리", "nodeNames": ["진행 중인 포지션 조회", "진입 가능 여부 판단", "진입 호가 조회", "체결가능 김프 검증", "슬롯 배분", "진입해도 되는가?", "가상 진입 기록", "진입 성과 조회", "진입 메시지 구성", "진입 알림 전송"], "description": "중복·최대개수 확인 후 호가창으로 실제 체결 가능한 김프를 검증하고, 통과한 건만 가상 매수로 기록한 뒤 Discord 알림" },
+      { "id": "c993a2a9-b9b4-46b1-ab68-5586072dc9a6", "name": "④ 청산 처리", "nodeNames": ["청산할 포지션 조회", "청산 호가 조회", "손익 계산", "포지션 청산 갱신", "청산 성과 조회", "청산 메시지 구성", "청산 알림 전송"], "description": "해당 코인의 열린 포지션을 찾아 실제 매도 가격(최우선 매수호가) 기준으로 손익을 계산하고 청산 처리 후 알림" }
     ],
-    "activeVersion": {
-      "sameAsDraft": true
-    },
-    "meta": {
-      "aiBuilderAssisted": true,
-      "builderVariant": "mcp"
-    }
+    "activeVersion": { "sameAsDraft": true },
+    "meta": { "aiBuilderAssisted": true, "builderVariant": "mcp" }
   },
   "triggerInfo": "This workflow has the following trigger(s):\n\n\nSchedule trigger(s):\n\n\n\t\t\t\t<trigger 1>\n\t\t\t\t\t - Node name: 5분마다 실행\n\t\t\t\t</trigger 1>\n\n\n\t\t\t\t<trigger 2>\n\t\t\t\t\t - Node name: 매일 07:40 상태 보고\n\t\t\t\t</trigger 2>\n\nScheduled workflows do not take inputs. To execute a specific schedule trigger, pass triggerNodeName only: { triggerNodeName: \"<node name>\" }."
 }
