@@ -194,8 +194,14 @@ async function fetchUpbit5m(market, sinceMs, cacheFile) {
       });
     }
     const oldest = data[data.length - 1];
-    if (Date.parse(oldest.candle_date_time_utc + 'Z') <= sinceMs) break;
-    to = oldest.candle_date_time_utc.replace('T', ' ');
+    const oldestMs = Date.parse(oldest.candle_date_time_utc + 'Z');
+    if (oldestMs <= sinceMs) break;
+    const nextTo = oldest.candle_date_time_utc.replace('T', ' ');
+    if (nextTo === to) {   // 커서 정체 = 더 이상 과거 데이터가 없음
+      console.warn("  " + market + ": 더 이상 과거로 가지 않아 중단 (" + new Date(oldestMs).toISOString().slice(0, 10) + "까지)");
+      break;
+    }
+    to = nextTo;
     await sleep(110);
   }
   out.sort((a, b) => a.ts - b.ts);
@@ -217,6 +223,12 @@ async function fetchOkxSwap5m(instId, sinceMs, cacheFile) {
     for (const row of data.data) out.push({ ts: Number(row[0]), close: Number(row[4]) });
     const oldestTs = Number(data.data[data.data.length - 1][0]);
     if (oldestTs <= sinceMs) break;
+    // 커서가 더 이상 과거로 가지 못하면 서버가 같은 구간을 반복해서 주는 것이다.
+    // 그대로 두면 guard(40000회)까지 도느라 몇 시간씩 묶인다 (UNI 수집이 7시간 멈춘 원인).
+    if (after !== undefined && Number(after) <= oldestTs) {
+      console.warn("  " + instId + ": 더 이상 과거로 가지 않아 중단 (" + new Date(oldestTs).toISOString().slice(0, 10) + "까지)");
+      break;
+    }
     after = String(oldestTs);
     await sleep(130);
   }
