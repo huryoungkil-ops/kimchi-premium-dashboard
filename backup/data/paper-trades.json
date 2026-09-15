@@ -1,6 +1,5 @@
 [
   {
-    "id": 1,
     "coin": "AAVE",
     "status": "VOID",
     "entryTime": "2026-09-11T14:20:10.571Z",
@@ -15,11 +14,11 @@
     "grossProfit": null,
     "feeExit": null,
     "netProfit": null,
+    "id": 1,
     "createdAt": "2026-09-11T14:20:10.612Z",
     "updatedAt": "2026-09-11T14:52:39.957Z"
   },
   {
-    "id": 2,
     "coin": "SUSHI",
     "status": "VOID",
     "entryTime": "2026-09-11T14:20:10.589Z",
@@ -34,11 +33,11 @@
     "grossProfit": null,
     "feeExit": null,
     "netProfit": null,
+    "id": 2,
     "createdAt": "2026-09-11T14:20:10.612Z",
     "updatedAt": "2026-09-11T14:52:39.957Z"
   },
   {
-    "id": 3,
     "coin": "ICP",
     "status": "VOID",
     "entryTime": "2026-09-11T14:20:10.594Z",
@@ -53,11 +52,11 @@
     "grossProfit": null,
     "feeExit": null,
     "netProfit": null,
+    "id": 3,
     "createdAt": "2026-09-11T14:20:10.612Z",
     "updatedAt": "2026-09-11T14:52:39.957Z"
   },
   {
-    "id": 4,
     "coin": "ETH",
     "status": "CLOSED",
     "entryTime": "2026-09-11T15:00:11.988Z",
@@ -72,11 +71,11 @@
     "grossProfit": 3.55,
     "feeExit": 0.9,
     "netProfit": 1.75,
+    "id": 4,
     "createdAt": "2026-09-11T15:00:12.057Z",
     "updatedAt": "2026-09-11T22:30:11.005Z"
   },
   {
-    "id": 5,
     "coin": "XRP",
     "status": "CLOSED",
     "entryTime": "2026-09-11T15:00:11.996Z",
@@ -91,11 +90,11 @@
     "grossProfit": 4.48,
     "feeExit": 0.9,
     "netProfit": 2.68,
+    "id": 5,
     "createdAt": "2026-09-11T15:00:12.057Z",
     "updatedAt": "2026-09-12T00:00:13.154Z"
   },
   {
-    "id": 6,
     "coin": "SOL",
     "status": "CLOSED",
     "entryTime": "2026-09-11T15:05:11.581Z",
@@ -110,11 +109,11 @@
     "grossProfit": 1.07,
     "feeExit": 0.9,
     "netProfit": -0.73,
+    "id": 6,
     "createdAt": "2026-09-11T15:05:11.593Z",
     "updatedAt": "2026-09-11T18:50:11.102Z"
   },
   {
-    "id": 7,
     "coin": "XLM",
     "status": "CLOSED",
     "entryTime": "2026-09-14T08:10:11.583Z",
@@ -129,11 +128,11 @@
     "grossProfit": -0.56,
     "feeExit": 0.2,
     "netProfit": -0.96,
+    "id": 7,
     "createdAt": "2026-09-14T08:10:11.681Z",
     "updatedAt": "2026-09-14T12:50:11.904Z"
   },
   {
-    "id": 8,
     "coin": "SOL",
     "status": "CLOSED",
     "entryTime": "2026-09-14T08:25:11.098Z",
@@ -148,11 +147,11 @@
     "grossProfit": 1.35,
     "feeExit": 0.2,
     "netProfit": 0.95,
+    "id": 8,
     "createdAt": "2026-09-14T08:25:11.167Z",
     "updatedAt": "2026-09-14T12:55:12.664Z"
   },
   {
-    "id": 9,
     "coin": "DOGE",
     "status": "CLOSED",
     "entryTime": "2026-09-14T08:25:11.153Z",
@@ -167,30 +166,30 @@
     "grossProfit": 3.98,
     "feeExit": 0.2,
     "netProfit": 3.58,
+    "id": 9,
     "createdAt": "2026-09-14T08:25:11.167Z",
     "updatedAt": "2026-09-14T13:00:11.851Z"
   },
   {
-    "id": 10,
     "coin": "ADA",
-    "status": "OPEN",
+    "status": "CLOSED",
     "entryTime": "2026-09-14T15:40:10.954Z",
     "entryPremium": 1.0806,
     "entryMa": 1.3765159722222224,
     "entryPrice": 283.1,
     "positionSize": 1000,
     "feeEntry": 0.2,
-    "exitTime": null,
-    "exitPremium": null,
-    "exitPrice": null,
-    "grossProfit": null,
-    "feeExit": null,
-    "netProfit": null,
+    "exitTime": "2026-09-15T04:25:11.189Z",
+    "exitPremium": 0.9762,
+    "exitPrice": 278.6,
+    "grossProfit": -1.04,
+    "feeExit": 0.2,
+    "netProfit": -1.44,
+    "id": 10,
     "createdAt": "2026-09-14T15:40:11.064Z",
-    "updatedAt": "2026-09-14T15:40:11.064Z"
+    "updatedAt": "2026-09-15T04:25:11.227Z"
   },
   {
-    "id": 11,
     "coin": "BTC",
     "status": "OPEN",
     "entryTime": "2026-09-14T16:35:11.520Z",
@@ -205,11 +204,11 @@
     "grossProfit": null,
     "feeExit": null,
     "netProfit": null,
+    "id": 11,
     "createdAt": "2026-09-14T16:35:11.565Z",
     "updatedAt": "2026-09-14T16:35:11.565Z"
   },
   {
-    "id": 12,
     "coin": "TRX",
     "status": "OPEN",
     "entryTime": "2026-09-14T16:40:10.807Z",
@@ -224,6 +223,7 @@
     "grossProfit": null,
     "feeExit": null,
     "netProfit": null,
+    "id": 12,
     "createdAt": "2026-09-14T16:40:10.867Z",
     "updatedAt": "2026-09-14T16:40:10.867Z"
   }
