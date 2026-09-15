@@ -210,21 +210,21 @@
   },
   {
     "coin": "TRX",
-    "status": "OPEN",
+    "status": "CLOSED",
     "entryTime": "2026-09-14T16:40:10.807Z",
     "entryPremium": 1.0074,
     "entryMa": 1.4003996527777784,
     "entryPrice": 462.6,
     "positionSize": 1000,
     "feeEntry": 0.2,
-    "exitTime": null,
-    "exitPremium": null,
-    "exitPrice": null,
-    "grossProfit": null,
-    "feeExit": null,
-    "netProfit": null,
+    "exitTime": "2026-09-15T11:20:11.916Z",
+    "exitPremium": 1.256,
+    "exitPrice": 461.4,
+    "grossProfit": 2.49,
+    "feeExit": 0.2,
+    "netProfit": 2.09,
     "id": 12,
     "createdAt": "2026-09-14T16:40:10.867Z",
-    "updatedAt": "2026-09-14T16:40:10.867Z"
+    "updatedAt": "2026-09-15T11:20:11.964Z"
   }
 ]
