@@ -286,9 +286,9 @@
       <span class="tag">PAPER TRADING</span>
     </div>
     <div class="snapshot-meta">
-      스냅샷 기준 <strong><!--SNAPSHOT_TIME-->2026-09-18 11:34 KST<!--/SNAPSHOT_TIME--></strong><br>
+      스냅샷 기준 <strong><!--SNAPSHOT_TIME-->2026-09-18 12:34 KST<!--/SNAPSHOT_TIME--></strong><br>
       가동 시작 2026-09-05 22:00 KST
-      <div class="live-badge"><i class="pulse"></i><!--LAST_REFRESH-->마지막 갱신 2026-09-18 11:34 KST 기준<!--/LAST_REFRESH--></div>
+      <div class="live-badge"><i class="pulse"></i><!--LAST_REFRESH-->마지막 갱신 2026-09-18 12:34 KST 기준<!--/LAST_REFRESH--></div>
     </div>
   </header>
 
@@ -331,7 +331,7 @@
             <th>진입 시각</th>
           </tr>
         </thead>
-        <tbody id="open-tbody"><!--OPEN_POSITIONS--><tr><td>XRP</td><td>-0.09%</td><td>-0.11%</td><td class="neg">-$1.27</td><td>09-18 09:30</td></tr><tr><td>ETH</td><td>+0.50%</td><td>-0.08%</td><td class="neg">-$6.98</td><td>09-17 12:00</td></tr><tr><td>BTC</td><td>+0.47%</td><td>-0.20%</td><td class="neg">-$7.84</td><td>09-17 09:40</td></tr><!--/OPEN_POSITIONS--></tbody>
+        <tbody id="open-tbody"><!--OPEN_POSITIONS--><tr><td>XRP</td><td>-0.09%</td><td>-0.37%</td><td class="neg">-$3.90</td><td>09-18 09:30</td></tr><tr><td>BTC</td><td>+0.47%</td><td>-0.26%</td><td class="neg">-$8.47</td><td>09-17 09:40</td></tr><tr><td>ETH</td><td>+0.50%</td><td>-0.29%</td><td class="neg">-$9.02</td><td>09-17 12:00</td></tr><!--/OPEN_POSITIONS--></tbody>
       </table>
     </div>
   </section>
@@ -456,37 +456,37 @@
 (function(){
   // COINS_DATA_START — 자동 갱신 작업이 이 배열만 통째로 교체합니다. 형식: [심볼, 프리미엄(%, 소수점2), 코빗원화가, 상태("calm"|"watch"|"danger")]
   var coins = [
-    ["POL", 1.8, 138, "calm"],
-    ["HYPE", 0.49, 119600, "calm"],
-    ["GMX", 0.4, 10200, "calm"],
-    ["SHIB", 0.28, 0.0073, "calm"],
-    ["AVAX", 0.08, 10640, "calm"],
-    ["UNI", -0.02, 10890, "calm"],
-    ["XTZ", -0.03, 354, "calm"],
-    ["ETH", -0.08, 3394000, "calm"],
-    ["TRX", -0.08, 462.9, "calm"],
-    ["XLM", -0.09, 255.1, "calm"],
-    ["XRP", -0.11, 1802, "calm"],
-    ["AAVE", -0.12, 180700, "calm"],
-    ["SOL", -0.17, 141300, "calm"],
-    ["ADA", -0.17, 297, "calm"],
-    ["BTC", -0.2, 105943000, "calm"],
-    ["LINK", -0.23, 15900, "calm"],
-    ["BNB", -0.25, 1032000, "calm"],
-    ["DOGE", -0.26, 113.8, "calm"],
-    ["SUI", -0.29, 1054, "calm"],
-    ["HBAR", -0.54, 103.9, "calm"],
-    ["BCH", -0.83, 326100, "calm"],
-    ["DOT", -1.26, 1525, "calm"],
-    ["ARB", -1.33, 276.7, "calm"],
-    ["NEAR", -1.42, 4472, "calm"],
-    ["ICP", -1.49, 3661, "calm"],
-    ["SUSHI", -2.64, 313.7, "watch"],
-    ["DYDX", -3.6, 161, "watch"],
-    ["IMX", -4.02, 163.3, "watch"],
-    ["GRT", -6.17, 24.65, "danger"],
-    ["LDO", -6.75, 474, "danger"],
-    ["INJ", -24.41, 6020, "danger"]
+    ["POL", 0.1, 138, "calm"],
+    ["UNI", 0, 11760, "calm"],
+    ["BNB", -0.02, 1036000, "calm"],
+    ["ARB", -0.09, 300.3, "calm"],
+    ["DOGE", -0.17, 115.5, "calm"],
+    ["TRX", -0.18, 462.8, "calm"],
+    ["BCH", -0.2, 339600, "calm"],
+    ["HYPE", -0.25, 119300, "calm"],
+    ["BTC", -0.26, 106625000, "calm"],
+    ["ETH", -0.29, 3408000, "calm"],
+    ["HBAR", -0.33, 105.7, "calm"],
+    ["SHIB", -0.33, 0.0074, "calm"],
+    ["XLM", -0.36, 258.3, "calm"],
+    ["XRP", -0.37, 1819, "calm"],
+    ["SOL", -0.4, 143100, "calm"],
+    ["ADA", -0.4, 295.9, "calm"],
+    ["SUI", -0.67, 1074, "calm"],
+    ["LINK", -0.69, 16070, "calm"],
+    ["GMX", -0.81, 10200, "calm"],
+    ["NEAR", -0.93, 4668, "calm"],
+    ["XTZ", -1.15, 354, "calm"],
+    ["DOT", -1.5, 1525, "calm"],
+    ["AVAX", -1.57, 10660, "calm"],
+    ["DYDX", -2.24, 161, "watch"],
+    ["AAVE", -2.39, 180700, "watch"],
+    ["ICP", -3.81, 3661, "watch"],
+    ["SUSHI", -4.52, 313.7, "watch"],
+    ["IMX", -6.42, 163.3, "danger"],
+    ["GRT", -6.95, 24.65, "danger"],
+    ["LDO", -9.17, 474, "danger"],
+    ["INJ", -25.16, 6020, "danger"]
   ];
   // COINS_DATA_END
 
