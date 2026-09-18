@@ -4,12 +4,12 @@
     "name": "김치 프리미엄 페이퍼 트레이딩 (코빗×OKX, 5분)",
     "active": true,
     "isArchived": false,
-    "versionId": "675f7ae6-2933-4f5e-ae6c-2b0cb984ba72",
-    "activeVersionId": "675f7ae6-2933-4f5e-ae6c-2b0cb984ba72",
+    "versionId": "59a28af4-07dc-4edc-870f-b9ba11565135",
+    "activeVersionId": "59a28af4-07dc-4edc-870f-b9ba11565135",
     "triggerCount": 2,
     "nodeCount": 44,
     "createdAt": "2026-09-05T12:41:43.811Z",
-    "updatedAt": "2026-09-18T12:52:40.690Z",
+    "updatedAt": "2026-09-18T13:55:56.865Z",
     "settings": {
       "executionOrder": "v1",
       "availableInMCP": true,
@@ -784,7 +784,7 @@
         "parameters": {
           "mode": "runOnceForAllItems",
           "language": "javaScript",
-          "jsCode": "const MAX_POSITIONS = 5; // 동시에 열 수 있는 최대 가상 포지션 수\n// 6년 백테스트: 자리를 늘려도 증거금 대비 동시 손실 최대치는 오히려 줄었다\n// (3자리 39.7% -> 5자리 32.4%). 증거금도 함께 늘고 종목이 분산되기 때문.\n\nconst CHECK_LIMIT = 8;   // 호가 검증까지 돌려볼 후보 수.\n\nconst openPositions = [];\nconst seenIds = {};\n$input.all().forEach(function (item) {\n  const row = item.json;\n  if (!row || !row.coin) return;\n  if (seenIds[row.id]) return;\n  seenIds[row.id] = true;\n  openPositions.push(row);\n});\n\nconst slots = MAX_POSITIONS - openPositions.length;\nif (slots <= 0) return [];\n\nconst openCoins = openPositions.map(function (p) { return p.coin; });\n\nconst candidates = $('MA·신호 판정').all()\n  .map(function (item) { return item.json; })\n  .filter(function (s) { return s.signal === 'ENTRY'; })\n  .filter(function (s) { return openCoins.indexOf(s.coin) === -1; });\n\ncandidates.forEach(function (s) {\n  s.zScore = s.sigma > 0 ? (s.ma - s.premium) / s.sigma : 0;\n});\ncandidates.sort(function (a, b) { return b.zScore - a.zScore; });\n\nreturn candidates.slice(0, CHECK_LIMIT).map(function (s) {\n  return {\n    json: {\n      coin: s.coin,\n      premium: s.premium,\n      ma: s.ma,\n      sigma: s.sigma,\n      lower: s.lower,\n      korbitPrice: s.korbitPrice,\n      foreignPrice: s.foreignPrice, // 호가 기준 김프 재계산 + 가격손절 기준점\n      zScore: Math.round(s.zScore * 100) / 100,\n      slots: slots,\n      candidateCount: candidates.length,\n      openCount: openPositions.length\n    }\n  };\n});"
+          "jsCode": "const MAX_POSITIONS = 4; // 동시에 열 수 있는 최대 가상 포지션 수\n// 6년 백테스트상 5자리까지는 청산 위험이 늘지 않는다(증거금 사용률 3자리 39.7% -> 5자리 32.4%).\n// 그럼에도 4로 두는 건 시드의 20%를 현금으로 남겨\n// 백테스트로 측정되지 않는 위험(거래소 장애, 증거금 요구 변경)에 대응하기 위함.\n// 운영이 안정되면 5로 올린다.\n\nconst CHECK_LIMIT = 8;   // 호가 검증까지 돌려볼 후보 수.\n\nconst openPositions = [];\nconst seenIds = {};\n$input.all().forEach(function (item) {\n  const row = item.json;\n  if (!row || !row.coin) return;\n  if (seenIds[row.id]) return;\n  seenIds[row.id] = true;\n  openPositions.push(row);\n});\n\nconst slots = MAX_POSITIONS - openPositions.length;\nif (slots <= 0) return [];\n\nconst openCoins = openPositions.map(function (p) { return p.coin; });\n\nconst candidates = $('MA·신호 판정').all()\n  .map(function (item) { return item.json; })\n  .filter(function (s) { return s.signal === 'ENTRY'; })\n  .filter(function (s) { return openCoins.indexOf(s.coin) === -1; });\n\ncandidates.forEach(function (s) {\n  s.zScore = s.sigma > 0 ? (s.ma - s.premium) / s.sigma : 0;\n});\ncandidates.sort(function (a, b) { return b.zScore - a.zScore; });\n\nreturn candidates.slice(0, CHECK_LIMIT).map(function (s) {\n  return {\n    json: {\n      coin: s.coin,\n      premium: s.premium,\n      ma: s.ma,\n      sigma: s.sigma,\n      lower: s.lower,\n      korbitPrice: s.korbitPrice,\n      foreignPrice: s.foreignPrice, // 호가 기준 김프 재계산 + 가격손절 기준점\n      zScore: Math.round(s.zScore * 100) / 100,\n      slots: slots,\n      candidateCount: candidates.length,\n      openCount: openPositions.length\n    }\n  };\n});"
         },
         "id": "0b432d4d-ec2d-494f-a0a3-9101aff78f7f",
         "name": "진입 가능 여부 판단",
