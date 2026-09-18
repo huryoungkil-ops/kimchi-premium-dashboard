@@ -151,8 +151,24 @@ const DEFAULT_PARAMS = {
 
   MAX_SIGMA_PERCENT: 2.5, // σ가 이보다 크면 그 회차 신호 보류
   MAX_POSITIONS: 3,
+  // --- 2단계 청산 ---
+  // 오래 물린 포지션을 시장가로 던지면 회복될 것까지 손실로 확정시킨다.
+  // 대신 일정 기간이 지나면 청산 조건만 느슨하게 풀어서, 손실이 충분히
+  // 줄어든 순간에 빠져나오게 한다. 그래도 안 되면 마지막에 강제 정리한다.
+  SOFT_HOLD_DAYS: null,     // 이 기간이 지나면 완화 조건을 켠다. null이면 끔
+  SOFT_EXIT_LOSS_PP: 0,     // 완화 조건: 손실이 이 폭 이내로 줄면 청산 (0이면 본전 이상일 때)
+
   MAX_HOLD_DAYS: 7,       // 넘기면 다음 거래 가능한 봉에서 강제 정리
   STOP_LOSS_PP: 5.0,      // 김프가 진입 시점보다 이만큼 더 내려가면 손절
+
+  // --- 증거금 보호 손절 ---
+  // 위 STOP_LOSS_PP는 '김프' 기준이라 청산 위험과는 무관하다.
+  // 청산은 '가격'이 결정한다: 우리는 무기한선물 숏이라 코인 가격이 오르면 증거금이 깎이고,
+  // 1배(증거금=명목)면 약 +100%에서 청산된다. 반대편 현물 이익은 다른 거래소에 있어
+  // OKX 증거금을 지켜주지 못한다.
+  // 가격이 이만큼 오르면 청산당하기 전에 양쪽 다리를 함께 닫는다.
+  // 두 다리를 같이 닫으면 가격 변동은 서로 상쇄되므로 비용은 수수료와 남은 회귀분뿐이다.
+  PRICE_STOP_PCT: null,   // 예: 50 = 진입가 대비 +50% 상승 시 청산. null이면 끔
 };
 
 // ---------------------------------------------------------------------------
@@ -386,7 +402,7 @@ async function buildDataset(opts) {
       const minValueKrw = POSITION_SIZE * b.rate * MIN_BAR_VALUE_MULTIPLE;
       const tradable = b.value >= minValueKrw;
       if (!tradable) thinBars++;
-      rows.push({ ts: b.ts, premium, tradable });
+      rows.push({ ts: b.ts, premium, tradable, foreign: b.okxClose });
     }
     if (rows.length < MIN_DATA_POINTS) { log(`  ${name}: 매칭 부족(${rows.length}) — 제외`); continue; }
 
@@ -447,9 +463,11 @@ async function buildDataset(opts) {
     for (let i = 0; i < n; i++) gi[i] = Math.floor((c.rows[i].ts - gridMin) / barMs);
     c.gridIdx = gi;
     c.premium = new Float64Array(n);
+    c.foreign = new Float64Array(n);   // OKX 무기한선물 가격(숏 다리)
     c.tradable = new Uint8Array(n);
     for (let i = 0; i < n; i++) {
       c.premium[i] = c.rows[i].premium;
+      c.foreign[i] = c.rows[i].foreign;
       c.tradable[i] = c.rows[i].tradable ? 1 : 0;
     }
     c.rows = null; // 메모리 절약: 이후로는 타입배열만 쓴다
@@ -511,6 +529,7 @@ function simulate(dataset, params, range) {
   const openCoin = new Int8Array(K);      // 보유 여부
   const openTs = new Float64Array(K);
   const openPrem = new Float64Array(K);
+  const openForeign = new Float64Array(K);
 
   // 구간 시작 지점까지 포인터를 미리 밀어둔다 (평균/σ는 이미 전체 이력으로 계산돼 있음)
   for (let k = 0; k < K; k++) {
@@ -524,7 +543,7 @@ function simulate(dataset, params, range) {
   let openCount = 0;
   let cumNet = 0, totalFunding = 0, totalSpread = 0, totalFees = 0;
   let blockedThin = 0, blockedEdge = 0, blockedSpreadGate = 0, blockedFunding = 0;
-  const exitReasons = { SIGNAL: 0, STOP: 0, MAXHOLD: 0 };
+  const exitReasons = { SIGNAL: 0, SOFT: 0, STOP: 0, MAXHOLD: 0, PRICESTOP: 0 };
   const equity = [];
   let lastDay = null;
 
@@ -558,10 +577,21 @@ function simulate(dataset, params, range) {
         let move = prem - openPrem[k];
         const heldMs = ts - openTs[k];
         let reason = null;
-        if (prem > ma + P.EXIT_SIGMA_OFFSET * sd) {
+
+        // 증거금 보호가 최우선. 거래량이 말라도 이건 나가야 한다(청산당하는 것보다 낫다).
+        if (P.PRICE_STOP_PCT !== null && openForeign[k] > 0) {
+          const priceRise = (c.foreign[i] / openForeign[k] - 1) * 100;
+          if (priceRise >= P.PRICE_STOP_PCT) reason = 'PRICESTOP';
+        }
+
+        if (!reason && prem > ma + P.EXIT_SIGMA_OFFSET * sd) {
           // 본전도 못 넘겼는데 나가는 걸 막는 옵션
           if (!P.REQUIRE_PROFIT_EXIT || move >= breakEven[k]) reason = 'SIGNAL';
         }
+        // 완화 구간: 정규 청산선에는 못 미쳐도 손실이 충분히 줄었으면 나간다
+        if (!reason && P.SOFT_HOLD_DAYS !== null
+            && heldMs >= P.SOFT_HOLD_DAYS * 86400000
+            && move >= -P.SOFT_EXIT_LOSS_PP) reason = 'SOFT';
         if (!reason && move <= -P.STOP_LOSS_PP) reason = 'STOP';
         if (!reason && heldMs >= P.MAX_HOLD_DAYS * 86400000) reason = 'MAXHOLD';
         if (!reason) continue;
@@ -590,6 +620,7 @@ function simulate(dataset, params, range) {
           funding: Math.round(fund * 100) / 100,
           netProfit: Math.round(net * 100) / 100,
           exitReason: reason,
+          priceRisePct: openForeign[k] > 0 ? Math.round((c.foreign[xi] / openForeign[k] - 1) * 10000) / 100 : null,
         });
         openCoin[k] = 0; openCount--;
         continue;
@@ -635,6 +666,7 @@ function simulate(dataset, params, range) {
         openCoin[k] = 1; openCount++;
         openTs[k] = ts + DELAY * BAR_MS;
         openPrem[k] = c.premium[ei];   // 신호 다음 봉 종가에 체결
+        openForeign[k] = c.foreign[ei];
       }
     }
 
