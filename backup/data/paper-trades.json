@@ -340,5 +340,24 @@
     "netProfit": 4.42,
     "createdAt": "2026-09-17T03:25:11.687Z",
     "updatedAt": "2026-09-17T10:45:11.026Z"
+  },
+  {
+    "id": 19,
+    "coin": "XRP",
+    "status": "OPEN",
+    "entryTime": "2026-09-18T00:30:11.558Z",
+    "entryPremium": -0.0882,
+    "entryMa": 0.8470846064814812,
+    "entryPrice": 1783,
+    "positionSize": 1000,
+    "feeEntry": 0.2,
+    "exitTime": null,
+    "exitPremium": null,
+    "exitPrice": null,
+    "grossProfit": null,
+    "feeExit": null,
+    "netProfit": null,
+    "createdAt": "2026-09-18T00:30:11.572Z",
+    "updatedAt": "2026-09-18T00:30:11.572Z"
   }
 ]
