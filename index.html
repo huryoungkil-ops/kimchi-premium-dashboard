@@ -316,9 +316,9 @@
       <span class="tag">PAPER TRADING</span>
     </div>
     <div class="snapshot-meta">
-      스냅샷 기준 <strong><!--SNAPSHOT_TIME-->2026-09-18 23:34 KST<!--/SNAPSHOT_TIME--></strong><br>
+      스냅샷 기준 <strong><!--SNAPSHOT_TIME-->2026-09-19 00:30 KST<!--/SNAPSHOT_TIME--></strong><br>
       가동 시작 2026-09-05 22:00 KST
-      <div class="live-badge"><i class="pulse"></i><!--LAST_REFRESH-->마지막 갱신 2026-09-18 23:34 KST 기준<!--/LAST_REFRESH--></div>
+      <div class="live-badge"><i class="pulse"></i><!--LAST_REFRESH-->마지막 갱신 2026-09-19 00:30 KST 기준<!--/LAST_REFRESH--></div>
     </div>
   </header>
 
@@ -360,7 +360,7 @@
             <th>진입 시각</th>
           </tr>
         </thead>
-        <tbody id="open-tbody"><!--OPEN_POSITIONS--><tr><td>ADA</td><td>-0.17%</td><td>-0.11%</td><td class="neg">-$0.47</td><td>09-18 22:15</td></tr><tr><td>DOGE</td><td>-0.13%</td><td>-0.09%</td><td class="neg">-$0.78</td><td>09-18 21:55</td></tr><tr><td>XRP</td><td>-0.09%</td><td>-0.48%</td><td class="neg">-$5.03</td><td>09-18 09:30</td></tr><tr><td>ETH</td><td>0.50%</td><td>-0.43%</td><td class="neg">-$10.49</td><td>09-17 12:00</td></tr><tr><td>BTC</td><td>0.47%</td><td>-0.51%</td><td class="neg">-$10.90</td><td>09-17 09:40</td></tr><!--/OPEN_POSITIONS--></tbody>
+        <tbody id="open-tbody"><!--OPEN_POSITIONS--><tr><td>ADA</td><td>-0.17%</td><td>-0.62%</td><td class="neg">-$5.55</td><td>09-18 22:15</td></tr><tr><td>XRP</td><td>-0.09%</td><td>-0.61%</td><td class="neg">-$6.33</td><td>09-18 09:30</td></tr><tr><td>DOGE</td><td>-0.13%</td><td>-0.92%</td><td class="neg">-$9.01</td><td>09-18 21:55</td></tr><tr><td>ETH</td><td>+0.50%</td><td>-0.59%</td><td class="neg">-$12.04</td><td>09-17 12:00</td></tr><tr><td>BTC</td><td>+0.47%</td><td>-0.73%</td><td class="neg">-$13.13</td><td>09-17 09:40</td></tr><!--/OPEN_POSITIONS--></tbody>
       </table>
     </div>
   </section>
@@ -524,37 +524,37 @@
 (function(){
   // COINS_DATA_START — 자동 갱신 작업이 이 배열만 통째로 교체합니다. 형식: [심볼, 프리미엄(%, 소수점2), 코빗원화가, 상태("calm"|"watch"|"danger")]
   var coins = [
-    ["INJ", 5.79, 9500, "danger"],
-    ["NEAR", 0.5, 5000, "calm"],
-    ["SUI", 0.42, 1112, "calm"],
-    ["AAVE", 0.41, 190200, "calm"],
-    ["XTZ", 0.24, 379.3, "calm"],
-    ["DYDX", 0.23, 175, "calm"],
-    ["BCH", 0.22, 351700, "calm"],
-    ["DOGE", -0.09, 120.9, "calm"],
-    ["ADA", -0.11, 302, "calm"],
-    ["ARB", -0.23, 290.6, "calm"],
-    ["TRX", -0.3, 467.1, "calm"],
-    ["BNB", -0.39, 1044000, "calm"],
-    ["AVAX", -0.41, 11120, "calm"],
-    ["ETH", -0.43, 3532000, "calm"],
-    ["XLM", -0.43, 264.1, "calm"],
-    ["UNI", -0.44, 12070, "calm"],
-    ["XRP", -0.48, 1887, "calm"],
-    ["BTC", -0.51, 110857000, "calm"],
-    ["LINK", -0.54, 16540, "calm"],
-    ["HYPE", -0.56, 126100, "calm"],
-    ["SOL", -0.57, 150200, "calm"],
-    ["POL", -0.67, 138, "calm"],
-    ["HBAR", -0.67, 107.1, "calm"],
-    ["SHIB", -0.77, 0.0075, "calm"],
-    ["ICP", -0.82, 3857, "calm"],
-    ["DOT", -0.96, 1562, "calm"],
-    ["SUSHI", -1.31, 335.3, "calm"],
-    ["GMX", -2.91, 10200, "watch"],
-    ["IMX", -8.59, 163.3, "danger"],
-    ["GRT", -10.27, 24.65, "danger"],
-    ["LDO", -12.19, 474, "danger"]
+    ["INJ", 5.9, 9500, "danger"],
+    ["NEAR", 1.47, 5200, "calm"],
+    ["XTZ", 1.01, 379.3, "calm"],
+    ["UNI", 0.24, 12090, "calm"],
+    ["AAVE", -0.08, 190200, "calm"],
+    ["SUSHI", -0.13, 338.9, "calm"],
+    ["ICP", -0.37, 3884, "calm"],
+    ["HYPE", -0.39, 125900, "calm"],
+    ["SUI", -0.4, 1103, "calm"],
+    ["DOT", -0.47, 1560, "calm"],
+    ["ETH", -0.59, 3548000, "calm"],
+    ["DYDX", -0.59, 171.6, "calm"],
+    ["SOL", -0.61, 151600, "calm"],
+    ["XRP", -0.61, 1901, "calm"],
+    ["TRX", -0.61, 465.7, "calm"],
+    ["ADA", -0.62, 301.7, "calm"],
+    ["ARB", -0.7, 285.9, "calm"],
+    ["AVAX", -0.71, 11120, "calm"],
+    ["BTC", -0.73, 110892000, "calm"],
+    ["BNB", -0.84, 1038000, "calm"],
+    ["XLM", -0.88, 262.4, "calm"],
+    ["DOGE", -0.92, 120, "calm"],
+    ["SHIB", -0.92, 0.0075, "calm"],
+    ["LINK", -1.01, 16690, "calm"],
+    ["POL", -1.12, 138, "calm"],
+    ["BCH", -1.43, 344400, "calm"],
+    ["HBAR", -1.54, 107.6, "calm"],
+    ["GMX", -3.52, 10200, "watch"],
+    ["IMX", -8.67, 163.3, "danger"],
+    ["GRT", -10, 24.65, "danger"],
+    ["LDO", -12.45, 474, "danger"]
   ];
   // COINS_DATA_END
 
