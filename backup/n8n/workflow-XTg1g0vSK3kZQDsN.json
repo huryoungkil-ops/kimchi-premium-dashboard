@@ -4,12 +4,12 @@
     "name": "김치 프리미엄 페이퍼 트레이딩 (코빗×OKX, 5분)",
     "active": true,
     "isArchived": false,
-    "versionId": "8016125d-f2dd-4199-9242-2e3e6df47453",
-    "activeVersionId": "8016125d-f2dd-4199-9242-2e3e6df47453",
+    "versionId": "675f7ae6-2933-4f5e-ae6c-2b0cb984ba72",
+    "activeVersionId": "675f7ae6-2933-4f5e-ae6c-2b0cb984ba72",
     "triggerCount": 2,
-    "nodeCount": 39,
+    "nodeCount": 44,
     "createdAt": "2026-09-05T12:41:43.811Z",
-    "updatedAt": "2026-09-13T00:44:48.495Z",
+    "updatedAt": "2026-09-18T12:52:40.690Z",
     "settings": {
       "executionOrder": "v1",
       "availableInMCP": true,
@@ -102,6 +102,11 @@
               "node": "신호만 남기기",
               "type": "main",
               "index": 0
+            },
+            {
+              "node": "보유 포지션 점검",
+              "type": "main",
+              "index": 0
             }
           ]
         ]
@@ -151,17 +156,6 @@
           [
             {
               "node": "가상 진입 기록",
-              "type": "main",
-              "index": 0
-            }
-          ]
-        ]
-      },
-      "손익 계산": {
-        "main": [
-          [
-            {
-              "node": "포지션 청산 갱신",
               "type": "main",
               "index": 0
             }
@@ -404,6 +398,72 @@
           [
             {
               "node": "청산 알림 전송",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "손익 계산": {
+        "main": [
+          [
+            {
+              "node": "청산해도 되는가?",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "청산해도 되는가?": {
+        "main": [
+          [
+            {
+              "node": "포지션 청산 갱신",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "보유 포지션 점검": {
+        "main": [
+          [
+            {
+              "node": "강제청산 판정",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "강제청산 판정": {
+        "main": [
+          [
+            {
+              "node": "강제청산 호가 조회",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "강제청산 호가 조회": {
+        "main": [
+          [
+            {
+              "node": "강제청산 손익 계산",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "강제청산 손익 계산": {
+        "main": [
+          [
+            {
+              "node": "청산해도 되는가?",
               "type": "main",
               "index": 0
             }
@@ -724,7 +784,7 @@
         "parameters": {
           "mode": "runOnceForAllItems",
           "language": "javaScript",
-          "jsCode": "const MAX_POSITIONS = 3; // 동시에 열 수 있는 최대 가상 포지션 수\nconst CHECK_LIMIT = 8;   // 호가 검증까지 돌려볼 후보 수.\n                         // 상위 3개만 보면 그 셋이 전부 유동성 미달일 때\n                         // 뒤에 멀줦한 후보가 있어도 기회를 통째로 놓친다.\n\n// 현재 열려 있는 포지션 추리기.\n// 포지션이 하나도 없을 때 dataTable 노드는 빈 아이템({})을 하나 내보내므로 coin 필드로 걸러낸다.\nconst openPositions = [];\nconst seenIds = {};\n$input.all().forEach(function (item) {\n  const row = item.json;\n  if (!row || !row.coin) return;\n  if (seenIds[row.id]) return; // 같은 조회가 반복될 경우를 대비한 중복 제거\n  seenIds[row.id] = true;\n  openPositions.push(row);\n});\n\nconst slots = MAX_POSITIONS - openPositions.length;\nif (slots <= 0) return []; // 자리가 없으면 호가 조회를 할 이유도 없다\n\nconst openCoins = openPositions.map(function (p) { return p.coin; });\n\n// 이번 회차의 진입 신호 중, 아직 포지션이 없는 코인만 후보로 삼는다\nconst candidates = $('MA·신호 판정').all()\n  .map(function (item) { return item.json; })\n  .filter(function (s) { return s.signal === 'ENTRY'; })\n  .filter(function (s) { return openCoins.indexOf(s.coin) === -1; });\n\n// 저평가 정도(z-score = 평균에서 몇 시그마 아래인지)가 큰 순서로 정렬\ncandidates.forEach(function (s) {\n  s.zScore = s.sigma > 0 ? (s.ma - s.premium) / s.sigma : 0;\n});\ncandidates.sort(function (a, b) { return b.zScore - a.zScore; });\n\n// 실제 몇 개를 잡을지는 호가 검증을 통과한 뒤에 «슬롯 배분»에서 정한다\nreturn candidates.slice(0, CHECK_LIMIT).map(function (s) {\n  return {\n    json: {\n      coin: s.coin,\n      premium: s.premium,\n      ma: s.ma,\n      sigma: s.sigma,\n      lower: s.lower,               // 진입선 - 호가 재계산 후 다시 검증할 때 쓴다\n      korbitPrice: s.korbitPrice,\n      foreignPrice: s.foreignPrice, // 호가 기준 김프를 다시 계산하려면 해외가가 필요\n      zScore: Math.round(s.zScore * 100) / 100,\n      slots: slots,\n      candidateCount: candidates.length,\n      openCount: openPositions.length\n    }\n  };\n});"
+          "jsCode": "const MAX_POSITIONS = 5; // 동시에 열 수 있는 최대 가상 포지션 수\n// 6년 백테스트: 자리를 늘려도 증거금 대비 동시 손실 최대치는 오히려 줄었다\n// (3자리 39.7% -> 5자리 32.4%). 증거금도 함께 늘고 종목이 분산되기 때문.\n\nconst CHECK_LIMIT = 8;   // 호가 검증까지 돌려볼 후보 수.\n\nconst openPositions = [];\nconst seenIds = {};\n$input.all().forEach(function (item) {\n  const row = item.json;\n  if (!row || !row.coin) return;\n  if (seenIds[row.id]) return;\n  seenIds[row.id] = true;\n  openPositions.push(row);\n});\n\nconst slots = MAX_POSITIONS - openPositions.length;\nif (slots <= 0) return [];\n\nconst openCoins = openPositions.map(function (p) { return p.coin; });\n\nconst candidates = $('MA·신호 판정').all()\n  .map(function (item) { return item.json; })\n  .filter(function (s) { return s.signal === 'ENTRY'; })\n  .filter(function (s) { return openCoins.indexOf(s.coin) === -1; });\n\ncandidates.forEach(function (s) {\n  s.zScore = s.sigma > 0 ? (s.ma - s.premium) / s.sigma : 0;\n});\ncandidates.sort(function (a, b) { return b.zScore - a.zScore; });\n\nreturn candidates.slice(0, CHECK_LIMIT).map(function (s) {\n  return {\n    json: {\n      coin: s.coin,\n      premium: s.premium,\n      ma: s.ma,\n      sigma: s.sigma,\n      lower: s.lower,\n      korbitPrice: s.korbitPrice,\n      foreignPrice: s.foreignPrice, // 호가 기준 김프 재계산 + 가격손절 기준점\n      zScore: Math.round(s.zScore * 100) / 100,\n      slots: slots,\n      candidateCount: candidates.length,\n      openCount: openPositions.length\n    }\n  };\n});"
         },
         "id": "0b432d4d-ec2d-494f-a0a3-9101aff78f7f",
         "name": "진입 가능 여부 판단",
@@ -787,7 +847,8 @@
               "entryMa": "={{ $json.ma }}",
               "entryPrice": "={{ $json.korbitPrice }}",
               "positionSize": "={{ 10000 * 0.10 }}",
-              "feeEntry": "={{ Math.round(10000 * 0.10 * 0.0002 * 10000) / 10000 }}"
+              "feeEntry": "={{ Math.round(10000 * 0.10 * 0.0002 * 10000) / 10000 }}",
+              "entryForeignPrice": "={{ $json.foreignPrice }}"
             },
             "schema": [
               {
@@ -856,6 +917,15 @@
               {
                 "id": "feeEntry",
                 "displayName": "feeEntry",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "number",
+                "canBeUsedToMatch": true
+              },
+              {
+                "id": "entryForeignPrice",
+                "displayName": "entryForeignPrice",
                 "required": false,
                 "defaultMatch": false,
                 "display": true,
@@ -932,7 +1002,7 @@
         "parameters": {
           "mode": "runOnceForEachItem",
           "language": "javaScript",
-          "jsCode": "// 편도 수수료: 국내 0%(코빗 2026-08-24~2027-08-24 원화마켓 무료)\n//                + 해외 무기한선물 지정가 0.02%\n// 지정가 체결을 전제한 값이다. 시장가로 잡으면 0.05%가 되고,\n// 6년 백테스트에서는 그 차이로 거래 가능 기회가 5,027건에서 158건으로 줄었다.\nconst FEE_RATE = 0.0002;\n\nconst openTrade = $('청산할 포지션 조회').item.json;   // 청산할 이 코인의 OPEN 행\nconst exitSignal = $('MA·신호 판정').item.json;      // 이번 회차의 청산 신호\n\n// 진입은 매수호가로 계산했으니 청산도 실제로 팔리는 가격(최우선 매수호가)으로 맞춘다.\n// 호가를 못 가져오면 체결가 기준으로 대체한다.\nlet exitPremium = Number(exitSignal.premium);\nlet exitPrice = Number(exitSignal.korbitPrice);\n\nconst ob = ($json && $json.data) ? $json.data : {};\nconst bids = ob.bids || [];\nconst fxBody = $('환율 조회').first().json;\nconst fx = (fxBody && fxBody.rates && fxBody.rates.KRW) ? Number(fxBody.rates.KRW) : null;\nconst foreignPrice = Number(exitSignal.foreignPrice);\n\nif (fx && foreignPrice && bids.length) {\n  const bid = Number(bids[0].price);\n  if (bid) {\n    exitPrice = bid;\n    exitPremium = Math.round(((bid / fx / foreignPrice) - 1) * 100 * 10000) / 10000;\n  }\n}\n\nconst positionSize = Number(openTrade.positionSize);\n\n// 국내 현물 롱 + 해외 선물 숏을 합치면 코인 시세 방향은 상쇄되고,\n// 두 시장의 가격차(김프)가 변한 만큼만 손익이 된다.\n//   합산 손익 ≈ 청산김프 − 진입김프\n// 김프가 평균보다 낮을 때(할인) 들어가서 회복(상승)할 때 청산하므로 이익이 된다.\nconst entryPremium = Number(openTrade.entryPremium);\nconst premiumGain = exitPremium - entryPremium;\nconst grossProfit = Math.round((positionSize * premiumGain / 100) * 100) / 100;\nconst feeExit = Math.round(positionSize * FEE_RATE * 10000) / 10000;\nconst netProfit = Math.round((grossProfit - Number(openTrade.feeEntry) - feeExit) * 100) / 100;\n\nconst heldMinutes = Math.round((Date.now() - new Date(openTrade.entryTime).getTime()) / 60000);\n\nreturn {\n  json: {\n    rowId: openTrade.id,\n    coin: openTrade.coin,\n    entryPremium: entryPremium,\n    entryTime: openTrade.entryTime,\n    heldMinutes: heldMinutes,\n    exitPremium: exitPremium,\n    exitPrice: exitPrice,\n    grossProfit: grossProfit,\n    feeExit: feeExit,\n    netProfit: netProfit\n  }\n};"
+          "jsCode": "// 편도 수수료: 국내 0%(코빗 2026-08-24~2027-08-24 원화마켓 무료) + 해외 지정가 0.02%\nconst FEE_RATE = 0.0002;\nconst EXIT_SIGMA_OFFSET = 0.5; // MA·신호 판정과 같은 값이어야 한다\n\nconst openTrade = $('청산할 포지션 조회').item.json;\nconst exitSignal = $('MA·신호 판정').item.json;\n\nconst ob = ($json && $json.data) ? $json.data : {};\nconst bids = ob.bids || [];\nconst fxBody = $('환율 조회').first().json;\nconst fx = (fxBody && fxBody.rates && fxBody.rates.KRW) ? Number(fxBody.rates.KRW) : null;\nconst foreignPrice = Number(exitSignal.foreignPrice);\n\n// 청산 신호는 마지막 체결가로 판정하지만, 실제로 팔리는 건 최우선 매수호가다.\n// 가격이 내려가는 구간에서는 체결가가 호가보다 높게 남아 있어서,\n// \"회복했다\"고 본 가격에 정작 팔 수가 없는 일이 생긴다.\n// 진입과 대칭으로, 실제 매도가로 다시 계산해 그래도 청산 조건을 만족할 때만 나간다.\nlet exitPremium = Number(exitSignal.premium);\nlet exitPrice = Number(exitSignal.korbitPrice);\nlet verified = false;\nlet skipReason = '';\n\nif (fx && foreignPrice && bids.length) {\n  const bid = Number(bids[0].price);\n  if (bid) {\n    exitPrice = bid;\n    exitPremium = Math.round(((bid / fx / foreignPrice) - 1) * 100 * 10000) / 10000;\n    const threshold = Number(exitSignal.ma) + EXIT_SIGMA_OFFSET * Number(exitSignal.sigma);\n    if (exitPremium > threshold) {\n      verified = true;\n    } else {\n      skipReason = '실매도 기준 ' + exitPremium.toFixed(2) + '% ≤ 청산선 ' + threshold.toFixed(2) + '%';\n    }\n  } else {\n    skipReason = '호가 파싱 실패';\n  }\n} else {\n  skipReason = '호가/환율 없음';\n}\n\n// 검증을 통과하지 못하면 포지션을 그대로 둔다.\n// 다음 회차에 다시 신호가 뜨면 그때 재판정한다.\nif (!verified) {\n  return { json: { shouldExit: false, coin: openTrade.coin, skipReason: skipReason } };\n}\n\nconst positionSize = Number(openTrade.positionSize);\nconst entryPremium = Number(openTrade.entryPremium);\n\n// 국내 현물 롱 + 해외 선물 숏을 합치면 코인 시세는 상쇄되고\n// 두 시장의 가격차(김프)가 변한 만큼만 손익이 된다.\nconst premiumGain = exitPremium - entryPremium;\nconst grossProfit = Math.round((positionSize * premiumGain / 100) * 100) / 100;\nconst feeExit = Math.round(positionSize * FEE_RATE * 10000) / 10000;\nconst netProfit = Math.round((grossProfit - Number(openTrade.feeEntry) - feeExit) * 100) / 100;\nconst heldMinutes = Math.round((Date.now() - new Date(openTrade.entryTime).getTime()) / 60000);\n\nreturn {\n  json: {\n    shouldExit: true,\n    rowId: openTrade.id,\n    coin: openTrade.coin,\n    entryPremium: entryPremium,\n    entryTime: openTrade.entryTime,\n    heldMinutes: heldMinutes,\n    exitPremium: exitPremium,\n    exitPrice: exitPrice,\n    grossProfit: grossProfit,\n    feeExit: feeExit,\n    netProfit: netProfit\n  }\n};"
         },
         "id": "00ffb491-e273-468f-b258-5fe620005bd1",
         "name": "손익 계산",
@@ -1485,7 +1555,121 @@
         "parameters": {
           "mode": "runOnceForAllItems",
           "language": "javaScript",
-          "jsCode": "const SEED = 10000;\nconst MAX_POSITIONS = 3;\nconst DASHBOARD = 'https://kimchi-premium-dashboard-mu.vercel.app';\n\nconst rows = $input.all().map(function (i) { return i.json; }).filter(function (r) { return r && r.coin; });\nconst closed = rows.filter(function (r) { return r.status === 'CLOSED'; });\nconst open = rows.filter(function (r) { return r.status === 'OPEN'; });\n\nconst totalTrades = closed.length;\nconst wins = closed.filter(function (r) { return Number(r.netProfit) > 0; }).length;\nconst net = closed.reduce(function (s, r) { return s + Number(r.netProfit || 0); }, 0);\nconst returnPct = net / SEED * 100;\n\nconst perfLines = [];\nperfLines.push('');\nperfLines.push('─────────');\nperfLines.push('📊 시드 $' + SEED.toLocaleString('en-US') + ' · 누적 ' + (net >= 0 ? '+$' : '-$') + Math.abs(net).toFixed(2) + ' (' + (returnPct >= 0 ? '+' : '') + returnPct.toFixed(2) + '%)');\nif (totalTrades > 0) {\n  perfLines.push('청산 ' + totalTrades + '건 · 승률 ' + (wins / totalTrades * 100).toFixed(1) + '% · 보유 ' + open.length + '/' + MAX_POSITIONS);\n} else {\n  perfLines.push('보유 ' + open.length + '/' + MAX_POSITIONS);\n}\nperfLines.push('대시보드: ' + DASHBOARD);\nconst perf = perfLines.join('\\n');\n\n// 이번 회차에 청산된 건들\nconst exits = $('손익 계산').all().map(function (i) { return i.json; });\n\nfunction fmtHeld(mins) {\n  if (mins < 60) return mins + '분';\n  const h = Math.floor(mins / 60);\n  const m = mins % 60;\n  if (h < 24) return h + '시간 ' + m + '분';\n  return Math.floor(h / 24) + '일 ' + (h % 24) + '시간';\n}\n\nreturn exits.map(function (e) {\n  const lines = [];\n  lines.push('🔴 [가상 청산] ' + e.coin);\n  lines.push('청산 김프: ' + Number(e.exitPremium).toFixed(2) + '% (진입 ' + Number(e.entryPremium).toFixed(2) + '%)');\n  lines.push('이번 손익: ' + (Number(e.netProfit) >= 0 ? '+$' : '-$') + Math.abs(Number(e.netProfit)).toFixed(2) + ' · 보유 ' + fmtHeld(Number(e.heldMinutes)));\n  return { json: { content: lines.join('\\n') + perf } };\n});"
+          "jsCode": "const SEED = 10000;\nconst MAX_POSITIONS = 3;\nconst DASHBOARD = 'https://kimchi-premium-dashboard-mu.vercel.app';\n\nconst rows = $input.all().map(function (i) { return i.json; }).filter(function (r) { return r && r.coin; });\nconst closed = rows.filter(function (r) { return r.status === 'CLOSED'; });\nconst open = rows.filter(function (r) { return r.status === 'OPEN'; });\n\nconst totalTrades = closed.length;\nconst wins = closed.filter(function (r) { return Number(r.netProfit) > 0; }).length;\nconst net = closed.reduce(function (s, r) { return s + Number(r.netProfit || 0); }, 0);\nconst returnPct = net / SEED * 100;\n\nconst perfLines = [];\nperfLines.push('');\nperfLines.push('─────────');\nperfLines.push('📊 시드 $' + SEED.toLocaleString('en-US') + ' · 누적 ' + (net >= 0 ? '+$' : '-$') + Math.abs(net).toFixed(2) + ' (' + (returnPct >= 0 ? '+' : '') + returnPct.toFixed(2) + '%)');\nif (totalTrades > 0) {\n  perfLines.push('청산 ' + totalTrades + '건 · 승률 ' + (wins / totalTrades * 100).toFixed(1) + '% · 보유 ' + open.length + '/' + MAX_POSITIONS);\n} else {\n  perfLines.push('보유 ' + open.length + '/' + MAX_POSITIONS);\n}\nperfLines.push('대시보드: ' + DASHBOARD);\nconst perf = perfLines.join('\\n');\n\n// 정규 청산과 강제 청산이 한 곳으로 모이는 지점이 '청산해도 되는가?'다\nconst exits = $('청산해도 되는가?').all().map(function (i) { return i.json; });\n\nfunction fmtHeld(mins) {\n  if (mins < 60) return mins + '분';\n  const h = Math.floor(mins / 60);\n  const m = mins % 60;\n  if (h < 24) return h + '시간 ' + m + '분';\n  return Math.floor(h / 24) + '일 ' + (h % 24) + '시간';\n}\n\nconst REASON_LABEL = { SOFT: ' · 2일 경과 후 완화 청산', MAXHOLD: ' · 5일 초과 강제 청산' };\n\nreturn exits.map(function (e) {\n  const lines = [];\n  lines.push('🔴 [가상 청산] ' + e.coin + (REASON_LABEL[e.forceReason] || ''));\n  lines.push('청산 김프: ' + Number(e.exitPremium).toFixed(2) + '% (진입 ' + Number(e.entryPremium).toFixed(2) + '%)');\n  lines.push('이번 손익: ' + (Number(e.netProfit) >= 0 ? '+$' : '-$') + Math.abs(Number(e.netProfit)).toFixed(2) + ' · 보유 ' + fmtHeld(Number(e.heldMinutes)));\n  return { json: { content: lines.join('\\n') + perf } };\n});"
+        }
+      },
+      {
+        "id": "892e0d1d-d092-4767-9ad4-05f301110d98",
+        "name": "청산해도 되는가?",
+        "type": "n8n-nodes-base.filter",
+        "typeVersion": 2.3,
+        "position": [
+          1890,
+          192
+        ],
+        "parameters": {
+          "conditions": {
+            "options": {
+              "caseSensitive": true,
+              "leftValue": "",
+              "typeValidation": "strict",
+              "version": 1
+            },
+            "conditions": [
+              {
+                "leftValue": "={{ $json.shouldExit }}",
+                "rightValue": true,
+                "operator": {
+                  "type": "boolean",
+                  "operation": "equals"
+                }
+              }
+            ],
+            "combinator": "and"
+          },
+          "options": {}
+        }
+      },
+      {
+        "id": "b8933dc8-ff42-488e-9bfe-9ead4d5e226a",
+        "name": "보유 포지션 점검",
+        "type": "n8n-nodes-base.dataTable",
+        "typeVersion": 1.1,
+        "position": [
+          1280,
+          420
+        ],
+        "parameters": {
+          "resource": "row",
+          "operation": "get",
+          "dataTableId": {
+            "__rl": true,
+            "mode": "id",
+            "value": "6MFkAuDuiogrRSqA",
+            "cachedResultName": "kimchi_paper_trades"
+          },
+          "matchType": "allConditions",
+          "filters": {
+            "conditions": [
+              {
+                "keyName": "status",
+                "condition": "eq",
+                "keyValue": "OPEN"
+              }
+            ]
+          },
+          "returnAll": true
+        },
+        "alwaysOutputData": true,
+        "executeOnce": true
+      },
+      {
+        "id": "69b64525-6d84-4aae-b21b-dc68a69ead8e",
+        "name": "강제청산 판정",
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          1520,
+          420
+        ],
+        "parameters": {
+          "mode": "runOnceForAllItems",
+          "language": "javaScript",
+          "jsCode": "// 보유 중인 포지션을 매 회차 훑어 세 가지를 점검한다.\n//   ① 증거금 보호 가격손절 — 가격이 진입가 대비 많이 오르면 청산당하기 전에 나간다\n//   ② 2일 경과 후 완화 청산 — 정규 청산선에 못 미쳐도 손실이 충분히 줄었으면 빠진다\n//   ③ 5일 초과 강제 청산\nconst SOFT_HOLD_DAYS = 2;\nconst SOFT_EXIT_LOSS_PP = 0.5;\nconst MAX_HOLD_DAYS = 5;\n\n// 우리는 무기한선물 숏이라 코인 가격이 오르면 증거금이 깎인다.\n// 1배(증거금=명목)면 약 +100%에서 청산된다. 반대편 현물 이익은 코빗에 있어\n// OKX 증거금을 지켜주지 못한다. 그 전에 양쪽 다리를 함께 닫는다.\n// 두 다리를 같이 닫으면 가격 변동은 상쇄되므로 비용은 수수료와 남은 회귀분뿐이다.\nconst PRICE_STOP_PCT = 50;\n\nconst positions = $input.all()\n  .map(function (i) { return i.json; })\n  .filter(function (r) { return r && r.coin && r.status === 'OPEN'; });\nif (!positions.length) return [];\n\nconst sig = {};\n$('MA·신호 판정').all().forEach(function (i) { sig[i.json.coin] = i.json; });\n\nconst now = Date.now();\nconst out = [];\n\npositions.forEach(function (p) {\n  const s = sig[p.coin];\n  if (!s) return;\n\n  const heldDays = (now - new Date(p.entryTime).getTime()) / 86400000;\n  const move = Number(s.premium) - Number(p.entryPremium); // 음수면 손실 중\n\n  // 가격 상승폭 (진입 시점 해외가가 기록된 포지션만 — 기능 추가 이전 건은 null)\n  let priceRise = null;\n  const entryFp = Number(p.entryForeignPrice);\n  const nowFp = Number(s.foreignPrice);\n  if (entryFp > 0 && nowFp > 0) priceRise = (nowFp / entryFp - 1) * 100;\n\n  let forceReason = null;\n  if (priceRise !== null && priceRise >= PRICE_STOP_PCT) {\n    forceReason = 'PRICESTOP'; // 증거금이 걸린 문제라 최우선\n  } else if (heldDays >= MAX_HOLD_DAYS) {\n    forceReason = 'MAXHOLD';\n  } else if (heldDays >= SOFT_HOLD_DAYS && move >= -SOFT_EXIT_LOSS_PP) {\n    forceReason = 'SOFT';\n  }\n  if (!forceReason) return;\n\n  out.push({\n    json: {\n      coin: p.coin,\n      rowId: p.id,\n      entryPremium: Number(p.entryPremium),\n      entryTime: p.entryTime,\n      positionSize: Number(p.positionSize),\n      feeEntry: Number(p.feeEntry),\n      foreignPrice: nowFp,\n      tickerPremium: Number(s.premium),\n      heldDays: Math.round(heldDays * 100) / 100,\n      priceRisePct: priceRise === null ? null : Math.round(priceRise * 100) / 100,\n      forceReason: forceReason\n    }\n  });\n});\n\nreturn out;"
+        }
+      },
+      {
+        "id": "bbf76e11-f42b-4a8d-879d-effd6e03c2a8",
+        "name": "강제청산 호가 조회",
+        "type": "n8n-nodes-base.httpRequest",
+        "typeVersion": 4.5,
+        "position": [
+          1760,
+          420
+        ],
+        "parameters": {
+          "method": "GET",
+          "url": "=https://api.korbit.co.kr/v2/orderbook?symbol={{ $json.coin.toLowerCase() }}_krw",
+          "options": {}
+        },
+        "onError": "continueRegularOutput",
+        "retryOnFail": true,
+        "maxTries": 2,
+        "waitBetweenTries": 1000
+      },
+      {
+        "id": "f6d2aa9c-f513-4447-a6f2-edf00e6820a8",
+        "name": "강제청산 손익 계산",
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          2000,
+          420
+        ],
+        "parameters": {
+          "mode": "runOnceForEachItem",
+          "language": "javaScript",
+          "jsCode": "// 강제청산은 정규 청산과 달리 청산선 검증을 하지 않는다.\n// 그게 이 장치의 목적이다 — 조건을 못 맞추는 포지션을 빼내는 것.\n// 다만 가격은 실제 팔리는 값(최우선 매수호가)을 쓴다.\nconst FEE_RATE = 0.0002;\n\nconst pos = $('강제청산 판정').item.json;\n\nconst ob = ($json && $json.data) ? $json.data : {};\nconst bids = ob.bids || [];\nconst fxBody = $('환율 조회').first().json;\nconst fx = (fxBody && fxBody.rates && fxBody.rates.KRW) ? Number(fxBody.rates.KRW) : null;\n\nlet exitPremium = Number(pos.tickerPremium);\nlet exitPrice = null;\nif (fx && pos.foreignPrice && bids.length) {\n  const bid = Number(bids[0].price);\n  if (bid) {\n    exitPrice = bid;\n    exitPremium = Math.round(((bid / fx / Number(pos.foreignPrice)) - 1) * 100 * 10000) / 10000;\n  }\n}\n\nconst positionSize = Number(pos.positionSize);\nconst premiumGain = exitPremium - Number(pos.entryPremium);\nconst grossProfit = Math.round((positionSize * premiumGain / 100) * 100) / 100;\nconst feeExit = Math.round(positionSize * FEE_RATE * 10000) / 10000;\nconst netProfit = Math.round((grossProfit - Number(pos.feeEntry) - feeExit) * 100) / 100;\nconst heldMinutes = Math.round((Date.now() - new Date(pos.entryTime).getTime()) / 60000);\n\nreturn {\n  json: {\n    shouldExit: true,\n    rowId: pos.rowId,\n    coin: pos.coin,\n    entryPremium: Number(pos.entryPremium),\n    entryTime: pos.entryTime,\n    heldMinutes: heldMinutes,\n    exitPremium: exitPremium,\n    exitPrice: exitPrice,\n    grossProfit: grossProfit,\n    feeExit: feeExit,\n    netProfit: netProfit,\n    forceReason: pos.forceReason\n  }\n};"
         }
       }
     ],
@@ -1501,16 +1685,6 @@
           "프리미엄 이력 저장"
         ],
         "description": "코빗·Bybit 가격을 가져와 김프를 계산하고 이력 테이블에 저장"
-      },
-      {
-        "id": "1b16b9fb-3cc6-4e5a-af88-fbc581fc27f3",
-        "name": "② MA 계산·신호 판정",
-        "nodeNames": [
-          "최근 3일 이력 조회",
-          "MA·신호 판정",
-          "신호만 남기기"
-        ],
-        "description": "최근 3일 이력으로 이동평균/표준편차를 구해 진입·청산 신호를 판정"
       },
       {
         "id": "24ba2847-7bea-446f-8200-3b71a34cb922",
@@ -1541,20 +1715,6 @@
           "진입 알림 전송"
         ],
         "description": "중복·최대개수 확인 후 호가창으로 실제 체결 가능한 김프를 검증하고, 통과한 건만 가상 매수로 기록한 뒤 Discord 알림"
-      },
-      {
-        "id": "c993a2a9-b9b4-46b1-ab68-5586072dc9a6",
-        "name": "④ 청산 처리",
-        "nodeNames": [
-          "청산할 포지션 조회",
-          "청산 호가 조회",
-          "손익 계산",
-          "포지션 청산 갱신",
-          "청산 성과 조회",
-          "청산 메시지 구성",
-          "청산 알림 전송"
-        ],
-        "description": "해당 코인의 열린 포지션을 찾아 실제 매도 가격(최우선 매수호가) 기준으로 손익을 계산하고 청산 처리 후 알림"
       }
     ],
     "activeVersion": {
