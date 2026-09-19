@@ -169,6 +169,14 @@ const DEFAULT_PARAMS = {
   // 가격이 이만큼 오르면 청산당하기 전에 양쪽 다리를 함께 닫는다.
   // 두 다리를 같이 닫으면 가격 변동은 서로 상쇄되므로 비용은 수수료와 남은 회귀분뿐이다.
   PRICE_STOP_PCT: null,   // 예: 50 = 진입가 대비 +50% 상승 시 청산. null이면 끔
+
+  // --- 시장 국면 필터 ---
+  // 3일 이동평균은 "평균이 고정돼 있다"고 가정하지만, 김프 수준 자체가 며칠씩
+  // 내려가는 국면이 있다. 그때는 모든 종목이 동시에 자기 MA 아래로 내려가서
+  // "이 종목이 싸다"는 신호가 정보를 잃는다 — 싼 게 아니라 전부 내려간 것이다.
+  // 매 틱 전 종목의 (프리미엄-MA)/σ 평균(marketZ)을 재서, 이 값이 바닥 아래면
+  // 그 회차 진입을 통째로 보류한다. null이면 끔.
+  MARKET_Z_FLOOR: null,
 };
 
 // ---------------------------------------------------------------------------
@@ -542,7 +550,7 @@ function simulate(dataset, params, range) {
   const trades = [];
   let openCount = 0;
   let cumNet = 0, totalFunding = 0, totalSpread = 0, totalFees = 0;
-  let blockedThin = 0, blockedEdge = 0, blockedSpreadGate = 0, blockedFunding = 0;
+  let blockedThin = 0, blockedEdge = 0, blockedSpreadGate = 0, blockedFunding = 0, blockedRegime = 0;
   const exitReasons = { SIGNAL: 0, SOFT: 0, STOP: 0, MAXHOLD: 0, PRICESTOP: 0 };
   const equity = [];
   let lastDay = null;
@@ -554,6 +562,7 @@ function simulate(dataset, params, range) {
   for (let g = startGrid; g < endGrid; g++) {
     const ts = dataset.gridMin + g * BAR_MS;
     let candN = 0;
+    let mzSum = 0, mzN = 0; // 이번 틱 전 종목의 (프리미엄-MA)/σ 평균 = 시장 국면
 
     // --- 이번 틱에 데이터가 있는 코인들 훑기 ---
     for (let k = 0; k < K; k++) {
@@ -570,6 +579,9 @@ function simulate(dataset, params, range) {
       const sd = c.sd[i];
       const tradable = c.tradable[i];
       if (sd > P.MAX_SIGMA_PERCENT) continue; // 변동성 가드
+
+      // 국면 측정은 보유 여부와 무관하게 값이 있는 종목 전부로 한다
+      if (sd > 0) { mzSum += (prem - ma) / sd; mzN++; }
 
       // --- 보유 중이면 청산 판단 먼저 ---
       if (openCoin[k]) {
@@ -653,6 +665,11 @@ function simulate(dataset, params, range) {
       candN++;
     }
 
+    // --- 시장 전체가 내려가는 국면이면 이번 회차 진입은 건너뛴다 ---
+    if (P.MARKET_Z_FLOOR !== null && candN > 0 && mzN > 0) {
+      if (mzSum / mzN < P.MARKET_Z_FLOOR) { blockedRegime += candN; candN = 0; }
+    }
+
     // --- 남은 자리를 저평가 정도가 큰 순서로 채운다 (실거래 봇과 동일) ---
     if (candN > 0 && openCount < P.MAX_POSITIONS) {
       const order = Array.from({ length: candN }, (_, i) => i).sort((a, b) => candZ[b] - candZ[a]);
@@ -713,7 +730,7 @@ function simulate(dataset, params, range) {
     totalSpreadCost: Math.round(totalSpread * 100) / 100,
     totalFunding: Math.round(totalFunding * 100) / 100,
     exitReasons,
-    blocked: { 거래량미달: blockedThin, 스프레드관문: blockedSpreadGate, 기대수익부족: blockedEdge, 펀딩비음수: blockedFunding },
+    blocked: { 거래량미달: blockedThin, 스프레드관문: blockedSpreadGate, 기대수익부족: blockedEdge, 펀딩비음수: blockedFunding, 하락국면: blockedRegime },
     stillOpen: openCount,
     byCoin,
     trades,
