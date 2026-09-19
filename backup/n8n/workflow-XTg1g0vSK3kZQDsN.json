@@ -4,12 +4,12 @@
     "name": "김치 프리미엄 페이퍼 트레이딩 (코빗×OKX, 5분)",
     "active": true,
     "isArchived": false,
-    "versionId": "fff28720-f6cf-4543-b0c2-42290105161e",
-    "activeVersionId": "fff28720-f6cf-4543-b0c2-42290105161e",
+    "versionId": "35832d07-63e4-4619-8a1c-0edc6e005456",
+    "activeVersionId": "35832d07-63e4-4619-8a1c-0edc6e005456",
     "triggerCount": 2,
     "nodeCount": 45,
     "createdAt": "2026-09-05T12:41:43.811Z",
-    "updatedAt": "2026-09-19T15:40:23.379Z",
+    "updatedAt": "2026-09-19T16:10:42.691Z",
     "settings": {
       "executionOrder": "v1",
       "availableInMCP": true,
@@ -1471,7 +1471,7 @@
         "parameters": {
           "mode": "runOnceForAllItems",
           "language": "javaScript",
-          "jsCode": "// 호가 검증을 통과한 후보 중에서만 남은 슬롯만큼 골라낸다.\n// (상위 z-score 후보가 전부 유동성 미달이어도 그 아래 멀줦한 후보가 기회를 가진다)\nconst all = $input.all().map(function (item) { return item.json; });\nif (!all.length) return [];\n\nconst slots = Number(all[0].slots) || 0;\nconst passed = all.filter(function (c) { return c.canEnter === true; });\n\npassed.sort(function (a, b) { return b.zScore - a.zScore; });\n\nreturn passed.slice(0, slots).map(function (c) { return { json: c }; });"
+          "jsCode": "// 호가 검증을 통과한 후보 중에서만 남은 슬롯만큼 골라낸다.\n// (상위 후보가 전부 유동성 미달이어도 그 아래 멀줦한 후보가 기회를 가진다)\n//\n// --- 2026-09-20: 순위 기준을 z-score → 순기대이익으로 바꿈 ---\n// 자리가 4개뿐이라 후보가 자리보다 많으면 «누구를 먼저 넣느냐»가 성적을 바꿄다.\n// z-score = (평균-김프)/σ 는 비용을 모른다. 거래가 뜸한 종목은 마지막 체결가가\n// 낡아 김프가 싸 보이는데 σ는 그만큼 커지지 않아서 z-score만 크게 나온다.\n// 관문(EDGE_MULTIPLE)은 통과/탈락만 보는 바닥이라 이걸 못 막는다 — 통과하기만\n// 하면 순위 싸움에서 멀줦한 종목을 밀어낸다.\n//\n// 자리마다 같은 금액($1,000)이 들어가므로, 비율이 아니라 «자리 하나가 벌어올\n// 기대 순이익(%p)»이 목적함수다. 6년 백테스트 검증 구간에서\n// 연 +9.39% → +11.04%, 건당 $1.87 → $2.18, 수익/MDD 9.44 → 11.10.\n// 비율(기대이익/본전문턱)로 세우면 효과가 거의 없었다(+9.53%).\n//\n// breakEven은 «체결가능 김프 검증»이 방금 실제 호가로 재서 넣어준 값이라,\n// 백테스트가 쓰는 고정 스프레드표보다 정확하다.\nconst all = $input.all().map(function (item) { return item.json; });\nif (!all.length) return [];\n\nconst slots = Number(all[0].slots) || 0;\nconst passed = all.filter(function (c) { return c.canEnter === true; });\n\n// 순기대이익 = 평균까지 회복하면 벌 폭 − 이 종목 거래비용 (둘 다 %p)\n// 값이 없는 경우에만 예전 기준(z-score)으로 되돌린다.\npassed.forEach(function (c) {\n  const gain = Number(c.expectedGain);\n  const be = Number(c.breakEven);\n  c.netEdge = (isFinite(gain) && isFinite(be)) ? (gain - be) : null;\n});\n\npassed.sort(function (a, b) {\n  if (a.netEdge !== null && b.netEdge !== null) return b.netEdge - a.netEdge;\n  if (a.netEdge !== null) return -1;   // 계산된 쪽을 앞에\n  if (b.netEdge !== null) return 1;\n  return b.zScore - a.zScore;          // 둘 다 없으면 예전 기준\n});\n\nreturn passed.slice(0, slots).map(function (c) { return { json: c }; });"
         }
       },
       {
