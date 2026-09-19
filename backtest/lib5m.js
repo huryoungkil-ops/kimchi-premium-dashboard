@@ -187,6 +187,15 @@ const DEFAULT_PARAMS = {
   // 작은 크기로만 굴러간다. 수수료·스프레드는 명목금액 비례라 분할 자체는 공짜다.
   // 보유 기간 타이머(SOFT/MAXHOLD)는 1차 진입 시각부터 센다.
   TRANCHES: null,
+
+  // --- 잔차 기반 진입 ---
+  // true면 진입·청산 "신호"만 잔차(김프 − 매 시점 전종목 중앙값)로 판단한다.
+  // 손익·수수료·스프레드·손절·보유시간은 그대로 실제 김프로 계산한다 —
+  // 우리가 버는 것은 잔차가 아니라 그 종목의 실제 김프 변화이기 때문이다.
+  // (잔차 자체를 벌려면 나머지 종목을 반대로 잡아 공통 요인을 헤지해야 하는데,
+  //  그건 다리가 네 개인 다른 전략이다.)
+  // 쓰기 전에 residual.js의 attachResidual(dataset)을 먼저 호출해야 한다.
+  SIGNAL_RESIDUAL: false,
 };
 
 // ---------------------------------------------------------------------------
@@ -531,6 +540,8 @@ function fundingBetween(c, t0, t1, size) {
  */
 function simulate(dataset, params, range) {
   const P = Object.assign({}, DEFAULT_PARAMS, params || {});
+  // 신호를 잔차로 볼 것인가. 손익은 어느 쪽이든 실제 김프로 계산한다.
+  const SIG = !!P.SIGNAL_RESIDUAL;
   const r = range || { fromRatio: 0, toRatio: 1 };
   const startGrid = Math.floor(dataset.gridLen * r.fromRatio);
   const endGrid = Math.floor(dataset.gridLen * r.toRatio);
@@ -592,7 +603,15 @@ function simulate(dataset, params, range) {
       const ma = c.ma[i];
       const sd = c.sd[i];
       const tradable = c.tradable[i];
-      if (sd > P.MAX_SIGMA_PERCENT) continue; // 변동성 가드
+      if (sd > P.MAX_SIGMA_PERCENT) continue; // 변동성 가드 (실제 김프 기준)
+
+      // 신호용 계열. 기본은 실제 김프 그대로, 잔차 모드면 잔차 계열을 쓴다.
+      // 변동성 가드와 시장 국면(marketZ)은 실제 김프로 두는데, 그 둘은
+      // "얼마나 위험한 구간인가"를 재는 것이라 신호 정의와 무관하기 때문이다.
+      const sPrem = SIG ? c.resPremium[i] : prem;
+      const sMa = SIG ? c.resMa[i] : ma;
+      const sSd = SIG ? c.resSd[i] : sd;
+      if (SIG && !(Number.isFinite(sPrem) && Number.isFinite(sMa) && sSd > 0)) continue;
 
       // 국면 측정은 보유 여부와 무관하게 값이 있는 종목 전부로 한다
       if (sd > 0) { mzSum += (prem - ma) / sd; mzN++; }
@@ -620,7 +639,7 @@ function simulate(dataset, params, range) {
           if (priceRise >= P.PRICE_STOP_PCT) reason = 'PRICESTOP';
         }
 
-        if (!reason && prem > ma + P.EXIT_SIGMA_OFFSET * sd) {
+        if (!reason && sPrem > sMa + P.EXIT_SIGMA_OFFSET * sSd) {
           // 본전도 못 넘겼는데 나가는 걸 막는 옵션
           if (!P.REQUIRE_PROFIT_EXIT || move >= breakEven[k]) reason = 'SIGNAL';
         }
@@ -636,7 +655,7 @@ function simulate(dataset, params, range) {
         if (!reason && tr.length < LADDER.length) {
           const step = LADDER[tr.length];
           const halfSpreadAdd = P.PAY_SPREAD ? (c.spreadPp / 2) : 0;
-          if (prem + halfSpreadAdd < ma - step.sigma * sd) {
+          if (sPrem + halfSpreadAdd < sMa - step.sigma * sSd) {
             const ai = Math.min(i + DELAY, c.premium.length - 1);
             tr.push({ ts: ts + DELAY * BAR_MS, prem: c.premium[ai], size: POSITION_SIZE * step.fraction, foreign: c.foreign[ai] });
             addOns++;
@@ -680,16 +699,16 @@ function simulate(dataset, params, range) {
       }
 
       // --- 미보유면 진입 후보 판단 ---
-      if (prem >= ma - LADDER[0].sigma * sd) continue; // 진입선 위
+      if (sPrem >= sMa - LADDER[0].sigma * sSd) continue; // 진입선 위
       if (!tradable) { blockedThin++; continue; }
 
       // 실거래 봇은 실제 매수호가로 김프를 다시 계산해 그래도 진입선 아래일 때만 들어간다.
       // 종가를 중간값으로 보면 매수호가는 스프레드의 절반만큼 위에 있다.
       const halfSpread = P.PAY_SPREAD ? (c.spreadPp / 2) : 0;
-      if (prem + halfSpread >= ma - LADDER[0].sigma * sd) { blockedSpreadGate++; continue; }
+      if (sPrem + halfSpread >= sMa - LADDER[0].sigma * sSd) { blockedSpreadGate++; continue; }
 
       // 평균까지 회복해도 비용을 못 덮는 자리면 들어가지 않는다
-      if (P.EDGE_MULTIPLE > 0 && (ma - prem) < breakEven[k] * P.EDGE_MULTIPLE) { blockedEdge++; continue; }
+      if (P.EDGE_MULTIPLE > 0 && (sMa - sPrem) < breakEven[k] * P.EDGE_MULTIPLE) { blockedEdge++; continue; }
 
       // 펀딩비가 지속적으로 음수인 종목은 들고 있는 것만으로 손실이 난다
       const tf = (P.MIN_FUNDING_8H !== null || P.FUNDING_RANK_WEIGHT !== 0)
@@ -701,7 +720,7 @@ function simulate(dataset, params, range) {
       candIdx[candN] = k;
       // 저평가 정도(z-score)에 펀딩비 이득을 더해 순위를 매긴다.
       // tf는 8시간당 비율이라 %p 단위로 맞추려면 100을 곱한다.
-      candZ[candN] = (sd > 0 ? (ma - prem) / sd : 0)
+      candZ[candN] = (sSd > 0 ? (sMa - sPrem) / sSd : 0)
         + (P.FUNDING_RANK_WEIGHT !== 0 && tf !== null ? P.FUNDING_RANK_WEIGHT * tf * 100 : 0);
       candN++;
     }

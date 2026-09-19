@@ -1,0 +1,456 @@
+{
+  "years": 6,
+  "base": {
+    "ENTRY_SIGMA": 1,
+    "EDGE_MULTIPLE": 5,
+    "EXIT_SIGMA_OFFSET": 0.5,
+    "REQUIRE_PROFIT_EXIT": false
+  },
+  "residualCoins": [
+    "XLM",
+    "XRP",
+    "DOGE",
+    "TRX"
+  ],
+  "medianCoveragePct": 99.7,
+  "cases": [
+    {
+      "label": "원본 신호 · 9종목(현재)",
+      "coins": [
+        "BTC",
+        "ETH",
+        "SOL",
+        "XRP",
+        "ADA",
+        "LINK",
+        "DOGE",
+        "TRX",
+        "XLM"
+      ],
+      "residual": false,
+      "full": {
+        "trades": 5027,
+        "winRate": 68.1,
+        "ann": 22.45,
+        "mdd": 281.71,
+        "avg": 2.68
+      },
+      "byCoin": {
+        "XRP": {
+          "trades": 1112,
+          "wins": 879,
+          "net": 3763.89
+        },
+        "XLM": {
+          "trades": 1912,
+          "wins": 1223,
+          "net": 3568.99
+        },
+        "TRX": {
+          "trades": 1068,
+          "wins": 681,
+          "net": 2897.19
+        },
+        "ETH": {
+          "trades": 220,
+          "wins": 184,
+          "net": 1026.05
+        },
+        "BTC": {
+          "trades": 90,
+          "wins": 74,
+          "net": 489.08
+        },
+        "ADA": {
+          "trades": 26,
+          "wins": 20,
+          "net": -29.46
+        },
+        "LINK": {
+          "trades": 7,
+          "wins": 5,
+          "net": 16.92
+        },
+        "DOGE": {
+          "trades": 534,
+          "wins": 311,
+          "net": 1198.71
+        },
+        "SOL": {
+          "trades": 58,
+          "wins": 44,
+          "net": 535.91
+        }
+      },
+      "train": {
+        "trades": 4326,
+        "ann": 28.14,
+        "mdd": 281.71
+      },
+      "valid": {
+        "trades": 699,
+        "ann": 9.2,
+        "mdd": 112.18
+      }
+    },
+    {
+      "label": "잔차 신호 · 9종목",
+      "coins": [
+        "BTC",
+        "ETH",
+        "SOL",
+        "XRP",
+        "ADA",
+        "LINK",
+        "DOGE",
+        "TRX",
+        "XLM"
+      ],
+      "residual": true,
+      "full": {
+        "trades": 7437,
+        "winRate": 51.9,
+        "ann": 9.42,
+        "mdd": 434.64,
+        "avg": 0.76
+      },
+      "byCoin": {
+        "XRP": {
+          "trades": 1827,
+          "wins": 895,
+          "net": 412.41
+        },
+        "TRX": {
+          "trades": 1973,
+          "wins": 1067,
+          "net": 2187.57
+        },
+        "XLM": {
+          "trades": 3162,
+          "wins": 1635,
+          "net": 2265.24
+        },
+        "ETH": {
+          "trades": 69,
+          "wins": 30,
+          "net": -251
+        },
+        "BTC": {
+          "trades": 53,
+          "wins": 22,
+          "net": -46.99
+        },
+        "ADA": {
+          "trades": 18,
+          "wins": 9,
+          "net": -105.94
+        },
+        "LINK": {
+          "trades": 4,
+          "wins": 3,
+          "net": 391.06
+        },
+        "DOGE": {
+          "trades": 287,
+          "wins": 171,
+          "net": 624.18
+        },
+        "SOL": {
+          "trades": 44,
+          "wins": 28,
+          "net": 173.16
+        }
+      },
+      "train": {
+        "trades": 7356,
+        "ann": 12.75,
+        "mdd": 434.64
+      },
+      "valid": {
+        "trades": 81,
+        "ann": 1.65,
+        "mdd": 168.68
+      }
+    },
+    {
+      "label": "원본 신호 · 4종목",
+      "coins": [
+        "XRP",
+        "DOGE",
+        "TRX",
+        "XLM"
+      ],
+      "residual": false,
+      "full": {
+        "trades": 5167,
+        "winRate": 67.3,
+        "ann": 22.61,
+        "mdd": 198.16,
+        "avg": 2.63
+      },
+      "byCoin": {
+        "XRP": {
+          "trades": 1178,
+          "wins": 933,
+          "net": 4202.94
+        },
+        "XLM": {
+          "trades": 2071,
+          "wins": 1319,
+          "net": 4130.68
+        },
+        "TRX": {
+          "trades": 1287,
+          "wins": 844,
+          "net": 3460.32
+        },
+        "DOGE": {
+          "trades": 631,
+          "wins": 380,
+          "net": 1770.85
+        }
+      },
+      "train": {
+        "trades": 4453,
+        "ann": 28.53,
+        "mdd": 198.16
+      },
+      "valid": {
+        "trades": 712,
+        "ann": 8.88,
+        "mdd": 116
+      }
+    },
+    {
+      "label": "잔차 신호 · 4종목",
+      "coins": [
+        "XRP",
+        "DOGE",
+        "TRX",
+        "XLM"
+      ],
+      "residual": true,
+      "full": {
+        "trades": 7270,
+        "winRate": 51.9,
+        "ann": 7.84,
+        "mdd": 793.5,
+        "avg": 0.65
+      },
+      "byCoin": {
+        "XRP": {
+          "trades": 1832,
+          "wins": 897,
+          "net": 444.61
+        },
+        "TRX": {
+          "trades": 1983,
+          "wins": 1071,
+          "net": 2132.91
+        },
+        "XLM": {
+          "trades": 3166,
+          "wins": 1636,
+          "net": 1507.19
+        },
+        "DOGE": {
+          "trades": 289,
+          "wins": 172,
+          "net": 620.02
+        }
+      },
+      "train": {
+        "trades": 7201,
+        "ann": 12.24,
+        "mdd": 360.96
+      },
+      "valid": {
+        "trades": 69,
+        "ann": -2.43,
+        "mdd": 793.49
+      }
+    }
+  ],
+  "entrySweep": [
+    {
+      "edgeMultiple": 0,
+      "entrySigma": 1,
+      "trades": 88078,
+      "winRate": 35.6,
+      "ann": -119.18,
+      "mdd": 71472.44,
+      "avg": -0.81,
+      "avgHoldHours": 0.56,
+      "validAnn": -166.82,
+      "validTrades": 26934
+    },
+    {
+      "edgeMultiple": 0,
+      "entrySigma": 1.5,
+      "trades": 41826,
+      "winRate": 38.5,
+      "ann": -38.47,
+      "mdd": 23161.01,
+      "avg": -0.55,
+      "avgHoldHours": 0.67,
+      "validAnn": -65.22,
+      "validTrades": 11995
+    },
+    {
+      "edgeMultiple": 0,
+      "entrySigma": 2,
+      "trades": 13454,
+      "winRate": 39.5,
+      "ann": -7.92,
+      "mdd": 5978.48,
+      "avg": -0.35,
+      "avgHoldHours": 0.82,
+      "validAnn": -13.75,
+      "validTrades": 3335
+    },
+    {
+      "edgeMultiple": 1,
+      "entrySigma": 1,
+      "trades": 84952,
+      "winRate": 36.3,
+      "ann": -111.62,
+      "mdd": 66933.4,
+      "avg": -0.79,
+      "avgHoldHours": 0.56,
+      "validAnn": -159,
+      "validTrades": 25765
+    },
+    {
+      "edgeMultiple": 1,
+      "entrySigma": 1.5,
+      "trades": 41594,
+      "winRate": 38.7,
+      "ann": -37.76,
+      "mdd": 22734.47,
+      "avg": -0.54,
+      "avgHoldHours": 0.67,
+      "validAnn": -64.11,
+      "validTrades": 11878
+    },
+    {
+      "edgeMultiple": 1,
+      "entrySigma": 2,
+      "trades": 13441,
+      "winRate": 39.5,
+      "ann": -7.89,
+      "mdd": 5963.15,
+      "avg": -0.35,
+      "avgHoldHours": 0.82,
+      "validAnn": -13.67,
+      "validTrades": 3323
+    },
+    {
+      "edgeMultiple": 2,
+      "entrySigma": 1,
+      "trades": 53783,
+      "winRate": 41.1,
+      "ann": -53.59,
+      "mdd": 32135.02,
+      "avg": -0.6,
+      "avgHoldHours": 0.56,
+      "validAnn": -63.04,
+      "validTrades": 10532
+    },
+    {
+      "edgeMultiple": 2,
+      "entrySigma": 1.5,
+      "trades": 31545,
+      "winRate": 42.4,
+      "ann": -19.86,
+      "mdd": 12197.65,
+      "avg": -0.38,
+      "avgHoldHours": 0.65,
+      "validAnn": -35.47,
+      "validTrades": 6542
+    },
+    {
+      "edgeMultiple": 2,
+      "entrySigma": 2,
+      "trades": 11225,
+      "winRate": 42.1,
+      "ann": -4.27,
+      "mdd": 3800.23,
+      "avg": -0.23,
+      "avgHoldHours": 0.82,
+      "validAnn": -9.51,
+      "validTrades": 2171
+    },
+    {
+      "edgeMultiple": 3,
+      "entrySigma": 1,
+      "trades": 31037,
+      "winRate": 44.5,
+      "ann": -16.49,
+      "mdd": 11096,
+      "avg": -0.32,
+      "avgHoldHours": 0.62,
+      "validAnn": -16.29,
+      "validTrades": 3239
+    },
+    {
+      "edgeMultiple": 3,
+      "entrySigma": 1.5,
+      "trades": 20464,
+      "winRate": 46.1,
+      "ann": -3.3,
+      "mdd": 3496.57,
+      "avg": -0.1,
+      "avgHoldHours": 0.68,
+      "validAnn": -14.71,
+      "validTrades": 2891
+    },
+    {
+      "edgeMultiple": 3,
+      "entrySigma": 2,
+      "trades": 7906,
+      "winRate": 45.3,
+      "ann": -0.48,
+      "mdd": 1905.87,
+      "avg": -0.04,
+      "avgHoldHours": 0.82,
+      "validAnn": -5.67,
+      "validTrades": 894
+    },
+    {
+      "edgeMultiple": 5,
+      "entrySigma": 1,
+      "trades": 7270,
+      "winRate": 51.9,
+      "ann": 7.84,
+      "mdd": 793.5,
+      "avg": 0.65,
+      "avgHoldHours": 0.97,
+      "validAnn": -2.43,
+      "validTrades": 69
+    },
+    {
+      "edgeMultiple": 5,
+      "entrySigma": 1.5,
+      "trades": 6701,
+      "winRate": 52,
+      "ann": 6.77,
+      "mdd": 792.02,
+      "avg": 0.61,
+      "avgHoldHours": 0.9,
+      "validAnn": -2.47,
+      "validTrades": 65
+    },
+    {
+      "edgeMultiple": 5,
+      "entrySigma": 2,
+      "trades": 3456,
+      "winRate": 50,
+      "ann": 2.9,
+      "mdd": 792.28,
+      "avg": 0.5,
+      "avgHoldHours": 0.96,
+      "validAnn": -2.35,
+      "validTrades": 63
+    }
+  ]
+}
