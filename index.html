@@ -303,6 +303,21 @@
   footer code{ font-family:var(--font-mono); background:var(--line-soft); padding:1px 5px; border-radius:4px; }
 
   @keyframes rise{ from{ opacity:0; transform:translateY(6px); } to{ opacity:1; transform:translateY(0); } }
+  /* 수동 새로고침 — 자동 갱신(마커 치환)과 무관하게 이 블록은 유지된다 */
+  .live-refresh{ display:flex; flex-wrap:wrap; align-items:center; gap:10px 12px; margin:0 0 16px; }
+  .refresh-btn{
+    font-family:var(--font-body); font-size:13px; font-weight:600; letter-spacing:-.01em;
+    color:var(--accent-ink); background:var(--accent); border:0; border-radius:999px;
+    padding:9px 17px; cursor:pointer; transition:filter .15s ease;
+  }
+  .refresh-btn:hover:not(:disabled){ filter:brightness(1.1); }
+  .refresh-btn:focus-visible{ outline:2px solid var(--ink); outline-offset:2px; }
+  .refresh-btn:disabled{ opacity:.5; cursor:progress; }
+  .refresh-status{ font-size:12.5px; color:var(--ink-soft); line-height:1.5; }
+  .refresh-status.live{ color:var(--good); }
+  .refresh-status.err{ color:var(--danger); }
+  .refresh-status b{ font-family:var(--font-mono); font-weight:600; }
+  @media (prefers-reduced-motion: reduce){ .refresh-btn{ transition:none; } }
 </style>
 </head>
 <body>
@@ -349,6 +364,11 @@
   <section aria-labelledby="open-h">
     <h2 id="open-h">지금 들고 있는 가상 포지션</h2>
     <p class="section-sub">진입할 때의 김프와 현재 김프의 차이가 그대로 평가손익이 됩니다. 김프가 3일 평균 위로 회복하면 자동으로 청산되고, 그때 비로소 위의 «누적 청산 거래»에 집계됩니다.</p>
+
+    <div class="live-refresh">
+      <button type="button" id="refresh-open" class="refresh-btn">지금 값 불러오기</button>
+      <span id="refresh-status" class="refresh-status">아래는 스냅샷 기준 값입니다. 버튼을 누르면 지금 호가로 다시 계산합니다.</span>
+    </div>
 
     <div class="table-scroll">
       <table class="coins open-positions">
@@ -704,6 +724,128 @@
   }
   marker(entryIdx, '① 진입 (롱+숏 동시)', 'var(--danger)');
   marker(exitIdx, '② 청산 (롱+숏 동시)', 'var(--good)');
+})();
+</script>
+
+<script>
+/* ─────────────────────────────────────────────────────────────
+   «지금 값 불러오기» — 보유 포지션을 실시간 호가로 다시 계산한다.
+
+   n8n 웹훅(읽기 전용)이 페이퍼 트레이딩 봇의 «손익 계산» 노드와 같은 방식으로
+   계산해 돌려준다. 즉 마지막 체결가가 아니라 실제로 팔리는 값(최우선 매수호가)
+   기준이라 Discord 알림에 찍히는 숫자와 일치한다.
+
+   이 블록은 자동 갱신이 건드리는 <!--마커--> 바깥에 있으므로 매시간 갱신돼도
+   지워지지 않는다. 갱신은 마커 사이 내용만 바꾼다.
+   ───────────────────────────────────────────────────────────── */
+(function(){
+  var ENDPOINT = 'https://threesons.devpartner.org/webhook/kimchi-live-7f3a92';
+  var TIMEOUT_MS = 40000;
+
+  var btn = document.getElementById('refresh-open');
+  var status = document.getElementById('refresh-status');
+  var tbody = document.getElementById('open-tbody');
+  if (!btn || !status || !tbody) return;
+
+  function setStatus(text, kind){
+    status.className = 'refresh-status' + (kind ? ' ' + kind : '');
+    status.innerHTML = text;
+  }
+  function pct(v){
+    if (v === null || v === undefined) return '—';
+    return (v >= 0 ? '+' : '') + v.toFixed(2) + '%';
+  }
+  function money(v){
+    if (v === null || v === undefined) return '—';
+    return (v >= 0 ? '+$' : '-$') + Math.abs(v).toFixed(2);
+  }
+  function kst(iso){
+    try {
+      var parts = new Intl.DateTimeFormat('ko-KR', {
+        timeZone: 'Asia/Seoul', month: '2-digit', day: '2-digit',
+        hour: '2-digit', minute: '2-digit', hour12: false
+      }).formatToParts(new Date(iso));
+      var g = function(t){ var f = parts.find(function(x){ return x.type === t; }); return f ? f.value : ''; };
+      return g('month') + '-' + g('day') + ' ' + g('hour') + ':' + g('minute');
+    } catch (e) { return ''; }
+  }
+  function esc(v){
+    return String(v).replace(/[&<>"]/g, function(c){
+      return ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;' })[c];
+    });
+  }
+
+  /* 자동 갱신이 쓰는 <!--NAME--> ... <!--/NAME--> 사이만 갈아끼운다.
+     마커를 남겨둬야 다음 자동 갱신이 제자리를 찾는다. */
+  function replaceBetween(name, html){
+    var walker = document.createTreeWalker(document.body, NodeFilter.SHOW_COMMENT);
+    var open = null, close = null, n;
+    while ((n = walker.nextNode())) {
+      if (n.nodeValue === name) open = n;
+      else if (n.nodeValue === '/' + name) { close = n; break; }
+    }
+    if (!open || !close || open.parentNode !== close.parentNode) return false;
+    var node = open.nextSibling;
+    while (node && node !== close) { var next = node.nextSibling; node.parentNode.removeChild(node); node = next; }
+    var frag = document.createRange().createContextualFragment(html);
+    close.parentNode.insertBefore(frag, close);
+    return true;
+  }
+
+  function render(data){
+    var rows = (data.positions || []).map(function(p){
+      var cls = p.netProfit === null ? '' : (p.netProfit >= 0 ? ' class="pos"' : ' class="neg"');
+      var cur = p.currentPremium === null
+        ? '<span title="' + esc(p.note || '값 없음') + '">—</span>'
+        : pct(p.currentPremium);
+      return '<tr><td>' + esc(p.coin) + '</td>'
+        + '<td>' + pct(p.entryPremium) + '</td>'
+        + '<td>' + cur + '</td>'
+        + '<td' + cls + '>' + money(p.netProfit) + '</td>'
+        + '<td>' + esc(kst(p.entryTime)) + '</td></tr>';
+    }).join('');
+
+    if (!replaceBetween('OPEN_POSITIONS', rows)) tbody.innerHTML = rows;
+    replaceBetween('STAT_OPEN', '보유 ' + data.openCount + ' / 최대 ' + data.maxPositions);
+
+    var when = kst(data.checkedAt);
+    var total = money(data.totalUnrealized);
+    var msg = '실시간 <b>' + esc(when) + ' KST</b> 기준 · 평가손익 합계 <b>' + total + '</b>'
+      + ' · 환율 <b>' + Number(data.usdKrw).toFixed(1) + '</b>';
+    if (data.pricedCount < data.openCount) {
+      msg += ' · <b>' + (data.openCount - data.pricedCount) + '개</b>는 호가를 못 받아 «—»로 둠';
+    }
+    setStatus(msg, 'live');
+  }
+
+  btn.addEventListener('click', function(){
+    btn.disabled = true;
+    setStatus('거래소 호가를 불러오는 중… (몇 초 걸립니다)');
+
+    var ctrl = null, timer = null;
+    try { ctrl = new AbortController(); timer = setTimeout(function(){ ctrl.abort(); }, TIMEOUT_MS); } catch (e) {}
+
+    fetch(ENDPOINT + '?t=' + Date.now(), {
+      cache: 'no-store',
+      signal: ctrl ? ctrl.signal : undefined
+    })
+      .then(function(r){
+        if (!r.ok) throw new Error('서버 응답 ' + r.status);
+        return r.json();
+      })
+      .then(function(data){
+        if (!data || data.ok !== true) throw new Error('응답 형식이 예상과 다릅니다');
+        render(data);
+      })
+      .catch(function(err){
+        var why = (err && err.name === 'AbortError') ? '시간 초과' : (err && err.message) || '알 수 없는 오류';
+        setStatus('불러오지 못했습니다 — ' + esc(why) + '. 아래 값은 스냅샷 그대로입니다.', 'err');
+      })
+      .then(function(){
+        if (timer) clearTimeout(timer);
+        btn.disabled = false;
+      });
+  });
 })();
 </script>
 
