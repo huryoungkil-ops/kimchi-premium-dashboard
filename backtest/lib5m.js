@@ -177,6 +177,16 @@ const DEFAULT_PARAMS = {
   // 매 틱 전 종목의 (프리미엄-MA)/σ 평균(marketZ)을 재서, 이 값이 바닥 아래면
   // 그 회차 진입을 통째로 보류한다. null이면 끔.
   MARKET_Z_FLOOR: null,
+
+  // --- 분할 진입(물타기) ---
+  // null이면 신호가 뜬 순간 전액을 한 번에 넣는다(기존 동작).
+  // 배열을 주면 계단식으로 나눠 넣는다. 예:
+  //   [{sigma:1.0,fraction:1/3},{sigma:1.5,fraction:1/3},{sigma:2.0,fraction:1/3}]
+  // 1차는 -1.0σ에서 1/3, 더 벌어져 -1.5σ에 닿으면 1/3 추가, -2.0σ에서 나머지.
+  // 평단(가중평균 진입 김프)이 낮아지는 대신, 2·3차가 안 채워지면 그 자리는
+  // 작은 크기로만 굴러간다. 수수료·스프레드는 명목금액 비례라 분할 자체는 공짜다.
+  // 보유 기간 타이머(SOFT/MAXHOLD)는 1차 진입 시각부터 센다.
+  TRANCHES: null,
 };
 
 // ---------------------------------------------------------------------------
@@ -503,7 +513,7 @@ function trailingFunding(c, ts, lookback) {
   return (c.fCum[end] - c.fCum[start]) / cnt;
 }
 
-function fundingBetween(c, t0, t1) {
+function fundingBetween(c, t0, t1, size) {
   if (!c.fTs.length) return 0;
   // (t0, t1] 구간의 펀딩비 합
   const ub = (t) => {
@@ -511,7 +521,7 @@ function fundingBetween(c, t0, t1) {
     while (lo < hi) { const m = (lo + hi) >> 1; if (c.fTs[m] <= t) lo = m + 1; else hi = m; }
     return lo;
   };
-  return POSITION_SIZE * (c.fCum[ub(t1)] - c.fCum[ub(t0)]);
+  return (size === undefined ? POSITION_SIZE : size) * (c.fCum[ub(t1)] - c.fCum[ub(t0)]);
 }
 
 /**
@@ -534,10 +544,13 @@ function simulate(dataset, params, range) {
   const feeRate = feeRateOf(P.FEE_SCENARIO);
   const breakEven = coins.map(c => breakEvenPp(c.name, P.FEE_SCENARIO, P.PAY_SPREAD));
   const ptr = new Int32Array(K);          // 코인별 현재 읽는 위치
-  const openCoin = new Int8Array(K);      // 보유 여부
-  const openTs = new Float64Array(K);
-  const openPrem = new Float64Array(K);
-  const openForeign = new Float64Array(K);
+  // 분할 진입을 지원하려면 코인별로 여러 체결을 들고 있어야 한다.
+  // 종목이 10개 안팎이라 작은 배열로 둬도 비용이 없다.
+  const tranches = [];                    // tranches[k] = [{ts, prem, size, foreign}, ...]
+  for (let k = 0; k < K; k++) tranches.push([]);
+
+  // 분할 계단. 지정하지 않으면 한 칸짜리 계단 = 기존의 전액 일괄 진입이다.
+  const LADDER = P.TRANCHES || [{ sigma: P.ENTRY_SIGMA, fraction: 1 }];
 
   // 구간 시작 지점까지 포인터를 미리 밀어둔다 (평균/σ는 이미 전체 이력으로 계산돼 있음)
   for (let k = 0; k < K; k++) {
@@ -551,6 +564,7 @@ function simulate(dataset, params, range) {
   let openCount = 0;
   let cumNet = 0, totalFunding = 0, totalSpread = 0, totalFees = 0;
   let blockedThin = 0, blockedEdge = 0, blockedSpreadGate = 0, blockedFunding = 0, blockedRegime = 0;
+  let addOns = 0;  // 2차 이후 추가 체결 횟수
   const exitReasons = { SIGNAL: 0, SOFT: 0, STOP: 0, MAXHOLD: 0, PRICESTOP: 0 };
   const equity = [];
   let lastDay = null;
@@ -584,15 +598,25 @@ function simulate(dataset, params, range) {
       if (sd > 0) { mzSum += (prem - ma) / sd; mzN++; }
 
       // --- 보유 중이면 청산 판단 먼저 ---
-      if (openCoin[k]) {
+      const tr = tranches[k];
+      if (tr.length) {
         if (!tradable) continue; // 못 파는 구간
-        let move = prem - openPrem[k];
-        const heldMs = ts - openTs[k];
+
+        // 여러 차수를 들고 있으면 평단은 금액 가중평균이다
+        let totalSize = 0, wPrem = 0, wForeign = 0;
+        for (let t = 0; t < tr.length; t++) {
+          totalSize += tr[t].size; wPrem += tr[t].size * tr[t].prem; wForeign += tr[t].size * tr[t].foreign;
+        }
+        const avgPrem = wPrem / totalSize;
+        const avgForeign = wForeign / totalSize;
+
+        let move = prem - avgPrem;
+        const heldMs = ts - tr[0].ts;   // 타이머는 1차 진입부터 센다
         let reason = null;
 
         // 증거금 보호가 최우선. 거래량이 말라도 이건 나가야 한다(청산당하는 것보다 낫다).
-        if (P.PRICE_STOP_PCT !== null && openForeign[k] > 0) {
-          const priceRise = (c.foreign[i] / openForeign[k] - 1) * 100;
+        if (P.PRICE_STOP_PCT !== null && avgForeign > 0) {
+          const priceRise = (c.foreign[i] / avgForeign - 1) * 100;
           if (priceRise >= P.PRICE_STOP_PCT) reason = 'PRICESTOP';
         }
 
@@ -606,23 +630,40 @@ function simulate(dataset, params, range) {
             && move >= -P.SOFT_EXIT_LOSS_PP) reason = 'SOFT';
         if (!reason && move <= -P.STOP_LOSS_PP) reason = 'STOP';
         if (!reason && heldMs >= P.MAX_HOLD_DAYS * 86400000) reason = 'MAXHOLD';
+        // --- 추가 진입(물타기) ---
+        // 청산 사유가 없고 남은 차수가 있으면, 더 깊은 계단에 닿았는지 본다.
+        // 실거래 봇과 같게 호가 스프레드 절반만큼 불리하게 잡고 판정한다.
+        if (!reason && tr.length < LADDER.length) {
+          const step = LADDER[tr.length];
+          const halfSpreadAdd = P.PAY_SPREAD ? (c.spreadPp / 2) : 0;
+          if (prem + halfSpreadAdd < ma - step.sigma * sd) {
+            const ai = Math.min(i + DELAY, c.premium.length - 1);
+            tr.push({ ts: ts + DELAY * BAR_MS, prem: c.premium[ai], size: POSITION_SIZE * step.fraction, foreign: c.foreign[ai] });
+            addOns++;
+          }
+        }
+
         if (!reason) continue;
 
         // 신호는 이 봉에서 봤지만 실제 체결은 DELAY봉 뒤 가격으로 이뤄진다
         const xi = Math.min(i + DELAY, c.premium.length - 1);
         const execPrem = c.premium[xi];
-        move = execPrem - openPrem[k];
-        const gross = POSITION_SIZE * move / 100;
-        const fees = POSITION_SIZE * feeRate * 2;
-        const spread = P.PAY_SPREAD ? (POSITION_SIZE * c.spreadPp / 100) : 0;
-        const fund = fundingBetween(c, openTs[k], ts);
+        move = execPrem - avgPrem;
+        const gross = totalSize * move / 100;
+        const fees = totalSize * feeRate * 2;
+        const spread = P.PAY_SPREAD ? (totalSize * c.spreadPp / 100) : 0;
+        // 펀딩은 차수마다 진입 시각이 다르므로 각각 계산해 더한다
+        let fund = 0;
+        for (let t = 0; t < tr.length; t++) fund += fundingBetween(c, tr[t].ts, ts, tr[t].size);
         const net = gross - fees - spread + fund;
 
         cumNet += net; totalFunding += fund; totalSpread += spread; totalFees += fees;
         exitReasons[reason]++;
         trades.push({
-          coin: c.name, entryTs: openTs[k], exitTs: ts,
-          entryPremium: Math.round(openPrem[k] * 10000) / 10000,
+          coin: c.name, entryTs: tr[0].ts, exitTs: ts,
+          entryPremium: Math.round(avgPrem * 10000) / 10000,
+          tranchesFilled: tr.length,
+          sizeUsd: Math.round(totalSize * 100) / 100,
           exitPremium: Math.round(execPrem * 10000) / 10000,
           movePp: Math.round(move * 10000) / 10000,
           holdHours: Math.round(heldMs / 3600000 * 100) / 100,
@@ -632,20 +673,20 @@ function simulate(dataset, params, range) {
           funding: Math.round(fund * 100) / 100,
           netProfit: Math.round(net * 100) / 100,
           exitReason: reason,
-          priceRisePct: openForeign[k] > 0 ? Math.round((c.foreign[xi] / openForeign[k] - 1) * 10000) / 100 : null,
+          priceRisePct: avgForeign > 0 ? Math.round((c.foreign[xi] / avgForeign - 1) * 10000) / 100 : null,
         });
-        openCoin[k] = 0; openCount--;
+        tranches[k] = []; openCount--;
         continue;
       }
 
       // --- 미보유면 진입 후보 판단 ---
-      if (prem >= ma - P.ENTRY_SIGMA * sd) continue; // 진입선 위
+      if (prem >= ma - LADDER[0].sigma * sd) continue; // 진입선 위
       if (!tradable) { blockedThin++; continue; }
 
       // 실거래 봇은 실제 매수호가로 김프를 다시 계산해 그래도 진입선 아래일 때만 들어간다.
       // 종가를 중간값으로 보면 매수호가는 스프레드의 절반만큼 위에 있다.
       const halfSpread = P.PAY_SPREAD ? (c.spreadPp / 2) : 0;
-      if (prem + halfSpread >= ma - P.ENTRY_SIGMA * sd) { blockedSpreadGate++; continue; }
+      if (prem + halfSpread >= ma - LADDER[0].sigma * sd) { blockedSpreadGate++; continue; }
 
       // 평균까지 회복해도 비용을 못 덮는 자리면 들어가지 않는다
       if (P.EDGE_MULTIPLE > 0 && (ma - prem) < breakEven[k] * P.EDGE_MULTIPLE) { blockedEdge++; continue; }
@@ -676,14 +717,17 @@ function simulate(dataset, params, range) {
       for (const oi of order) {
         if (openCount >= P.MAX_POSITIONS) break;
         const k = candIdx[oi];
-        if (openCoin[k]) continue;
+        if (tranches[k].length) continue;
         const c = coins[k];
         const i = ptr[k] - 1;
         const ei = Math.min(i + DELAY, c.premium.length - 1);
-        openCoin[k] = 1; openCount++;
-        openTs[k] = ts + DELAY * BAR_MS;
-        openPrem[k] = c.premium[ei];   // 신호 다음 봉 종가에 체결
-        openForeign[k] = c.foreign[ei];
+        tranches[k].push({
+          ts: ts + DELAY * BAR_MS,
+          prem: c.premium[ei],          // 신호 다음 봉 종가에 체결
+          size: POSITION_SIZE * LADDER[0].fraction,
+          foreign: c.foreign[ei],
+        });
+        openCount++;
       }
     }
 
@@ -731,6 +775,9 @@ function simulate(dataset, params, range) {
     totalFunding: Math.round(totalFunding * 100) / 100,
     exitReasons,
     blocked: { 거래량미달: blockedThin, 스프레드관문: blockedSpreadGate, 기대수익부족: blockedEdge, 펀딩비음수: blockedFunding, 하락국면: blockedRegime },
+    addOns,
+    avgTranches: total ? Math.round(trades.reduce((s, t) => s + t.tranchesFilled, 0) / total * 100) / 100 : null,
+    avgSizeUsd: total ? Math.round(trades.reduce((s, t) => s + t.sizeUsd, 0) / total * 100) / 100 : null,
     stillOpen: openCount,
     byCoin,
     trades,
