@@ -1,0 +1,374 @@
+{
+  "years": 6,
+  "recommended": {
+    "ENTRY_SIGMA": 2,
+    "EDGE_MULTIPLE": 3,
+    "EXIT_SIGMA_OFFSET": 0.5,
+    "REQUIRE_PROFIT_EXIT": false
+  },
+  "capitalMultiple": 2,
+  "positionSize": 1000,
+  "seed": 10000,
+  "results": {
+    "slots": [
+      {
+        "label": "  자리 3",
+        "params": {
+          "MAX_POSITIONS": 3
+        },
+        "trades": 2534,
+        "validTrades": 655,
+        "validAnn": 7.66,
+        "validAvg": 2.11,
+        "validMdd": 99.87,
+        "validRatio": 7.67,
+        "peakConcurrent": 3,
+        "capitalNeeded": 6000,
+        "overSeed": false
+      },
+      {
+        "label": "  자리 4",
+        "params": {
+          "MAX_POSITIONS": 4
+        },
+        "trades": 3076,
+        "validTrades": 790,
+        "validAnn": 9.35,
+        "validAvg": 2.14,
+        "validMdd": 127.79,
+        "validRatio": 7.32,
+        "peakConcurrent": 4,
+        "capitalNeeded": 8000,
+        "overSeed": false
+      },
+      {
+        "label": "  자리 5",
+        "params": {
+          "MAX_POSITIONS": 5
+        },
+        "trades": 3615,
+        "validTrades": 922,
+        "validAnn": 11.69,
+        "validAvg": 2.29,
+        "validMdd": 155.15,
+        "validRatio": 7.53,
+        "peakConcurrent": 5,
+        "capitalNeeded": 10000,
+        "overSeed": false
+      },
+      {
+        "label": "  자리 6",
+        "params": {
+          "MAX_POSITIONS": 6
+        },
+        "trades": 4120,
+        "validTrades": 1044,
+        "validAnn": 13.25,
+        "validAvg": 2.29,
+        "validMdd": 181.81,
+        "validRatio": 7.29,
+        "peakConcurrent": 6,
+        "capitalNeeded": 12000,
+        "overSeed": true
+      },
+      {
+        "label": "  자리 9",
+        "params": {
+          "MAX_POSITIONS": 9
+        },
+        "trades": 4946,
+        "validTrades": 1269,
+        "validAnn": 16.33,
+        "validAvg": 2.32,
+        "validMdd": 442.1,
+        "validRatio": 3.69,
+        "peakConcurrent": 9,
+        "capitalNeeded": 18000,
+        "overSeed": true
+      }
+    ],
+    "entry": [
+      {
+        "label": "  진입 2σ",
+        "params": {
+          "ENTRY_SIGMA": 2
+        },
+        "trades": 2534,
+        "validTrades": 655,
+        "validAnn": 7.66,
+        "validAvg": 2.11,
+        "validMdd": 99.87,
+        "validRatio": 7.67,
+        "peakConcurrent": 3,
+        "capitalNeeded": 6000,
+        "overSeed": false
+      },
+      {
+        "label": "  진입 1.75σ",
+        "params": {
+          "ENTRY_SIGMA": 1.75
+        },
+        "trades": 3358,
+        "validTrades": 863,
+        "validAnn": 7.87,
+        "validAvg": 1.65,
+        "validMdd": 99.55,
+        "validRatio": 7.91,
+        "peakConcurrent": 3,
+        "capitalNeeded": 6000,
+        "overSeed": false
+      },
+      {
+        "label": "  진입 1.5σ",
+        "params": {
+          "ENTRY_SIGMA": 1.5
+        },
+        "trades": 4542,
+        "validTrades": 1136,
+        "validAnn": 5.78,
+        "validAvg": 0.92,
+        "validMdd": 225.6,
+        "validRatio": 2.56,
+        "peakConcurrent": 3,
+        "capitalNeeded": 6000,
+        "overSeed": false
+      },
+      {
+        "label": "  진입 1.25σ",
+        "params": {
+          "ENTRY_SIGMA": 1.25
+        },
+        "trades": 6082,
+        "validTrades": 1453,
+        "validAnn": 5.15,
+        "validAvg": 0.64,
+        "validMdd": 225.6,
+        "validRatio": 2.28,
+        "peakConcurrent": 3,
+        "capitalNeeded": 6000,
+        "overSeed": false
+      }
+    ],
+    "exit": [
+      {
+        "label": "  청산 +0.5σ",
+        "params": {
+          "EXIT_SIGMA_OFFSET": 0.5
+        },
+        "trades": 2534,
+        "validTrades": 655,
+        "validAnn": 7.66,
+        "validAvg": 2.11,
+        "validMdd": 99.87,
+        "validRatio": 7.67,
+        "peakConcurrent": 3,
+        "capitalNeeded": 6000,
+        "overSeed": false
+      },
+      {
+        "label": "  청산 +0.25σ",
+        "params": {
+          "EXIT_SIGMA_OFFSET": 0.25
+        },
+        "trades": 2903,
+        "validTrades": 751,
+        "validAnn": 7.31,
+        "validAvg": 1.76,
+        "validMdd": 79.28,
+        "validRatio": 9.22,
+        "peakConcurrent": 3,
+        "capitalNeeded": 6000,
+        "overSeed": false
+      },
+      {
+        "label": "  청산 +0σ",
+        "params": {
+          "EXIT_SIGMA_OFFSET": 0
+        },
+        "trades": 3413,
+        "validTrades": 869,
+        "validAnn": 6.05,
+        "validAvg": 1.26,
+        "validMdd": 67.53,
+        "validRatio": 8.96,
+        "peakConcurrent": 3,
+        "capitalNeeded": 6000,
+        "overSeed": false
+      }
+    ],
+    "hold": [
+      {
+        "label": "  최대보유 7일",
+        "params": {
+          "MAX_HOLD_DAYS": 7
+        },
+        "trades": 2534,
+        "validTrades": 655,
+        "validAnn": 7.66,
+        "validAvg": 2.11,
+        "validMdd": 99.87,
+        "validRatio": 7.67,
+        "peakConcurrent": 3,
+        "capitalNeeded": 6000,
+        "overSeed": false
+      },
+      {
+        "label": "  최대보유 5일",
+        "params": {
+          "MAX_HOLD_DAYS": 5
+        },
+        "trades": 2541,
+        "validTrades": 657,
+        "validAnn": 7.64,
+        "validAvg": 2.1,
+        "validMdd": 100.61,
+        "validRatio": 7.59,
+        "peakConcurrent": 3,
+        "capitalNeeded": 6000,
+        "overSeed": false
+      },
+      {
+        "label": "  최대보유 3일",
+        "params": {
+          "MAX_HOLD_DAYS": 3
+        },
+        "trades": 2608,
+        "validTrades": 683,
+        "validAnn": 7.34,
+        "validAvg": 1.94,
+        "validMdd": 82.37,
+        "validRatio": 8.91,
+        "peakConcurrent": 3,
+        "capitalNeeded": 6000,
+        "overSeed": false
+      },
+      {
+        "label": "  최대보유 2일",
+        "params": {
+          "MAX_HOLD_DAYS": 2
+        },
+        "trades": 2734,
+        "validTrades": 727,
+        "validAnn": 7.7,
+        "validAvg": 1.91,
+        "validMdd": 90.79,
+        "validRatio": 8.48,
+        "peakConcurrent": 3,
+        "capitalNeeded": 6000,
+        "overSeed": false
+      },
+      {
+        "label": "  최대보유 1일",
+        "params": {
+          "MAX_HOLD_DAYS": 1
+        },
+        "trades": 3138,
+        "validTrades": 835,
+        "validAnn": 6.66,
+        "validAvg": 1.44,
+        "validMdd": 86.64,
+        "validRatio": 7.69,
+        "peakConcurrent": 3,
+        "capitalNeeded": 6000,
+        "overSeed": false
+      }
+    ],
+    "combo": [
+      {
+        "label": "  기준(자리3)",
+        "params": {},
+        "trades": 2534,
+        "validTrades": 655,
+        "validAnn": 7.66,
+        "validAvg": 2.11,
+        "validMdd": 99.87,
+        "validRatio": 7.67,
+        "peakConcurrent": 3,
+        "capitalNeeded": 6000,
+        "overSeed": false
+      },
+      {
+        "label": "  자리5",
+        "params": {
+          "MAX_POSITIONS": 5
+        },
+        "trades": 3615,
+        "validTrades": 922,
+        "validAnn": 11.69,
+        "validAvg": 2.29,
+        "validMdd": 155.15,
+        "validRatio": 7.53,
+        "peakConcurrent": 5,
+        "capitalNeeded": 10000,
+        "overSeed": false
+      },
+      {
+        "label": "  자리5+청산0.25",
+        "params": {
+          "MAX_POSITIONS": 5,
+          "EXIT_SIGMA_OFFSET": 0.25
+        },
+        "trades": 4110,
+        "validTrades": 1049,
+        "validAnn": 11.72,
+        "validAvg": 2.02,
+        "validMdd": 126.97,
+        "validRatio": 9.23,
+        "peakConcurrent": 5,
+        "capitalNeeded": 10000,
+        "overSeed": false
+      },
+      {
+        "label": "  자리5+보유3일",
+        "params": {
+          "MAX_POSITIONS": 5,
+          "MAX_HOLD_DAYS": 3
+        },
+        "trades": 3717,
+        "validTrades": 967,
+        "validAnn": 11.38,
+        "validAvg": 2.13,
+        "validMdd": 145.55,
+        "validRatio": 7.82,
+        "peakConcurrent": 5,
+        "capitalNeeded": 10000,
+        "overSeed": false
+      },
+      {
+        "label": "  자리5+청산.25+보유3",
+        "params": {
+          "MAX_POSITIONS": 5,
+          "EXIT_SIGMA_OFFSET": 0.25,
+          "MAX_HOLD_DAYS": 3
+        },
+        "trades": 4176,
+        "validTrades": 1080,
+        "validAnn": 11.1,
+        "validAvg": 1.85,
+        "validMdd": 142.02,
+        "validRatio": 7.82,
+        "peakConcurrent": 5,
+        "capitalNeeded": 10000,
+        "overSeed": false
+      },
+      {
+        "label": "  위+진입1.75σ",
+        "params": {
+          "MAX_POSITIONS": 5,
+          "EXIT_SIGMA_OFFSET": 0.25,
+          "MAX_HOLD_DAYS": 3,
+          "ENTRY_SIGMA": 1.75
+        },
+        "trades": 5624,
+        "validTrades": 1445,
+        "validAnn": 10.75,
+        "validAvg": 1.34,
+        "validMdd": 136.09,
+        "validRatio": 7.9,
+        "peakConcurrent": 5,
+        "capitalNeeded": 10000,
+        "overSeed": false
+      }
+    ]
+  }
+}
