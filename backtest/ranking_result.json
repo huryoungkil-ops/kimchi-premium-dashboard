@@ -1,0 +1,265 @@
+{
+  "years": 6,
+  "live": {
+    "ENTRY_SIGMA": 2,
+    "EDGE_MULTIPLE": 3,
+    "EXIT_SIGMA_OFFSET": 0.25,
+    "REQUIRE_PROFIT_EXIT": false,
+    "MAX_POSITIONS": 4
+  },
+  "methods": [
+    "zscore",
+    "netEdge",
+    "edgeRatio"
+  ],
+  "results": [
+    {
+      "method": "zscore",
+      "label": "z-score (현재)",
+      "full": {
+        "trades": 3513,
+        "winRate": 73,
+        "ann": 21.43,
+        "avg": 3.67,
+        "mdd": 170.08,
+        "rankContested": 253,
+        "rankSkipped": 486
+      },
+      "byCoin": {
+        "ADA": {
+          "trades": 127,
+          "wins": 87,
+          "net": 350.9
+        },
+        "TRX": {
+          "trades": 624,
+          "wins": 450,
+          "net": 2464.79
+        },
+        "XRP": {
+          "trades": 576,
+          "wins": 468,
+          "net": 2406.86
+        },
+        "BTC": {
+          "trades": 288,
+          "wins": 240,
+          "net": 1343.88
+        },
+        "ETH": {
+          "trades": 361,
+          "wins": 295,
+          "net": 1651.28
+        },
+        "XLM": {
+          "trades": 702,
+          "wins": 469,
+          "net": 2207.7
+        },
+        "LINK": {
+          "trades": 25,
+          "wins": 21,
+          "net": 314.78
+        },
+        "DOGE": {
+          "trades": 568,
+          "wins": 339,
+          "net": 1160
+        },
+        "SOL": {
+          "trades": 229,
+          "wins": 186,
+          "net": 1094.85
+        },
+        "SUI": {
+          "trades": 8,
+          "wins": 6,
+          "net": 29.77
+        },
+        "ARB": {
+          "trades": 4,
+          "wins": 2,
+          "net": -132.31
+        },
+        "UNI": {
+          "trades": 1,
+          "wins": 1,
+          "net": 3.76
+        }
+      },
+      "train": {
+        "trades": 2609,
+        "ann": 26.6,
+        "mdd": 170.08
+      },
+      "valid": {
+        "trades": 904,
+        "ann": 9.39,
+        "mdd": 99.5,
+        "winRate": 67
+      }
+    },
+    {
+      "method": "netEdge",
+      "label": "순기대이익 (%p)",
+      "full": {
+        "trades": 3542,
+        "winRate": 73,
+        "ann": 22.11,
+        "avg": 3.76,
+        "mdd": 170.08,
+        "rankContested": 255,
+        "rankSkipped": 489
+      },
+      "byCoin": {
+        "ADA": {
+          "trades": 114,
+          "wins": 76,
+          "net": 310.23
+        },
+        "TRX": {
+          "trades": 644,
+          "wins": 468,
+          "net": 2635.54
+        },
+        "XRP": {
+          "trades": 599,
+          "wins": 487,
+          "net": 2507.04
+        },
+        "BTC": {
+          "trades": 240,
+          "wins": 203,
+          "net": 1053.42
+        },
+        "ETH": {
+          "trades": 367,
+          "wins": 302,
+          "net": 1733.48
+        },
+        "XLM": {
+          "trades": 754,
+          "wins": 506,
+          "net": 2438.07
+        },
+        "LINK": {
+          "trades": 17,
+          "wins": 13,
+          "net": 164.92
+        },
+        "DOGE": {
+          "trades": 581,
+          "wins": 348,
+          "net": 1234.9
+        },
+        "SOL": {
+          "trades": 220,
+          "wins": 178,
+          "net": 1034.53
+        },
+        "SUI": {
+          "trades": 3,
+          "wins": 2,
+          "net": 12.15
+        },
+        "ARB": {
+          "trades": 3,
+          "wins": 1,
+          "net": 183.83
+        }
+      },
+      "train": {
+        "trades": 2629,
+        "ann": 26.87,
+        "mdd": 170.08
+      },
+      "valid": {
+        "trades": 913,
+        "ann": 11.04,
+        "mdd": 99.5,
+        "winRate": 67.1
+      }
+    },
+    {
+      "method": "edgeRatio",
+      "label": "비용 대비 배수",
+      "full": {
+        "trades": 3530,
+        "winRate": 73,
+        "ann": 21.61,
+        "avg": 3.68,
+        "mdd": 170.08,
+        "rankContested": 253,
+        "rankSkipped": 471
+      },
+      "byCoin": {
+        "ADA": {
+          "trades": 102,
+          "wins": 71,
+          "net": 518.59
+        },
+        "TRX": {
+          "trades": 642,
+          "wins": 465,
+          "net": 2683.02
+        },
+        "XRP": {
+          "trades": 625,
+          "wins": 511,
+          "net": 2797.48
+        },
+        "BTC": {
+          "trades": 247,
+          "wins": 206,
+          "net": 1237.3
+        },
+        "ETH": {
+          "trades": 397,
+          "wins": 323,
+          "net": 1617.7
+        },
+        "XLM": {
+          "trades": 763,
+          "wins": 512,
+          "net": 2090.82
+        },
+        "LINK": {
+          "trades": 12,
+          "wins": 9,
+          "net": 37.72
+        },
+        "DOGE": {
+          "trades": 540,
+          "wins": 318,
+          "net": 1043.34
+        },
+        "SOL": {
+          "trades": 198,
+          "wins": 160,
+          "net": 975.45
+        },
+        "SUI": {
+          "trades": 3,
+          "wins": 2,
+          "net": 12.15
+        },
+        "ARB": {
+          "trades": 1,
+          "wins": 0,
+          "net": -9.02
+        }
+      },
+      "train": {
+        "trades": 2620,
+        "ann": 26.79,
+        "mdd": 170.08
+      },
+      "valid": {
+        "trades": 910,
+        "ann": 9.53,
+        "mdd": 98.3,
+        "winRate": 67
+      }
+    }
+  ]
+}

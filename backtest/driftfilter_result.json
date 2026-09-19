@@ -14,167 +14,170 @@
     "LINK",
     "DOGE",
     "TRX",
-    "XLM"
+    "XLM",
+    "UNI",
+    "ARB",
+    "SUI"
   ],
   "results": [
     {
       "floor": null,
       "full": {
-        "trades": 5027,
-        "winRate": 68.1,
-        "ann": 22.45,
+        "trades": 5029,
+        "winRate": 68,
+        "ann": 22.34,
         "mdd": 281.71,
         "blocked": 0
       },
       "train": {
-        "ann": 28.14,
+        "ann": 28.07,
         "mdd": 281.71,
-        "trades": 4326
+        "trades": 4334
       },
       "valid": {
-        "ann": 9.2,
+        "ann": 9.03,
         "mdd": 112.18,
-        "trades": 699
+        "trades": 694
       }
     },
     {
       "floor": -0.2,
       "full": {
-        "trades": 701,
-        "winRate": 60.5,
-        "ann": 2.5,
+        "trades": 717,
+        "winRate": 61.4,
+        "ann": 2.68,
         "mdd": 127.04,
-        "blocked": 437715
+        "blocked": 438465
       },
       "train": {
-        "ann": 3.57,
+        "ann": 3.82,
         "mdd": 127.04,
-        "trades": 695
+        "trades": 712
       },
       "valid": {
-        "ann": 0.01,
-        "mdd": 10.36,
-        "trades": 6
+        "ann": 0.02,
+        "mdd": 4.69,
+        "trades": 5
       }
     },
     {
       "floor": -0.3,
       "full": {
-        "trades": 946,
-        "winRate": 60.4,
-        "ann": 2.96,
+        "trades": 977,
+        "winRate": 61.4,
+        "ann": 3.25,
         "mdd": 127.04,
-        "blocked": 433189
+        "blocked": 433991
       },
       "train": {
-        "ann": 4.21,
+        "ann": 4.64,
         "mdd": 127.04,
-        "trades": 936
+        "trades": 966
       },
       "valid": {
-        "ann": 0.05,
-        "mdd": 10.67,
-        "trades": 10
+        "ann": 0.02,
+        "mdd": 15.39,
+        "trades": 11
       }
     },
     {
       "floor": -0.4,
       "full": {
-        "trades": 1252,
-        "winRate": 60.8,
-        "ann": 3.92,
+        "trades": 1299,
+        "winRate": 60.6,
+        "ann": 3.98,
         "mdd": 127.03,
-        "blocked": 427382
+        "blocked": 427782
       },
       "train": {
-        "ann": 5.58,
+        "ann": 5.64,
         "mdd": 127.03,
-        "trades": 1236
+        "trades": 1281
       },
       "valid": {
-        "ann": 0.06,
-        "mdd": 16.23,
-        "trades": 16
+        "ann": 0.09,
+        "mdd": 19.61,
+        "trades": 18
       }
     },
     {
       "floor": -0.5,
       "full": {
-        "trades": 1680,
-        "winRate": 60.9,
-        "ann": 5.33,
+        "trades": 1713,
+        "winRate": 60.7,
+        "ann": 5.35,
         "mdd": 116.47,
-        "blocked": 418857
+        "blocked": 419675
       },
       "train": {
-        "ann": 7.55,
+        "ann": 7.62,
         "mdd": 116.47,
-        "trades": 1654
+        "trades": 1682
       },
       "valid": {
-        "ann": 0.17,
-        "mdd": 11.5,
-        "trades": 26
+        "ann": 0.04,
+        "mdd": 28.2,
+        "trades": 31
       }
     },
     {
       "floor": -0.6,
       "full": {
-        "trades": 2104,
-        "winRate": 62.1,
-        "ann": 6.38,
-        "mdd": 139.24,
-        "blocked": 404402
+        "trades": 2158,
+        "winRate": 62,
+        "ann": 6.44,
+        "mdd": 126.36,
+        "blocked": 404438
       },
       "train": {
-        "ann": 9.07,
-        "mdd": 139.24,
-        "trades": 2050
+        "ann": 9.22,
+        "mdd": 126.36,
+        "trades": 2101
       },
       "valid": {
-        "ann": 0.11,
-        "mdd": 36.88,
-        "trades": 53
+        "ann": -0.05,
+        "mdd": 41.25,
+        "trades": 57
       }
     },
     {
       "floor": -0.8,
       "full": {
-        "trades": 3071,
+        "trades": 3117,
         "winRate": 64.7,
-        "ann": 10.98,
+        "ann": 11.1,
         "mdd": 115.81,
-        "blocked": 353141
+        "blocked": 352455
       },
       "train": {
-        "ann": 15.12,
+        "ann": 15.28,
         "mdd": 115.81,
-        "trades": 2910
+        "trades": 2944
       },
       "valid": {
-        "ann": 1.28,
-        "mdd": 37.65,
-        "trades": 158
+        "ann": 1.34,
+        "mdd": 42.64,
+        "trades": 173
       }
     },
     {
       "floor": -1,
       "full": {
-        "trades": 3966,
-        "winRate": 66.2,
-        "ann": 14.88,
+        "trades": 4020,
+        "winRate": 66.4,
+        "ann": 15.24,
         "mdd": 320.81,
-        "blocked": 279936
+        "blocked": 280302
       },
       "train": {
-        "ann": 19.77,
+        "ann": 20.09,
         "mdd": 320.81,
-        "trades": 3596
+        "trades": 3643
       },
       "valid": {
-        "ann": 3.43,
-        "mdd": 94.45,
-        "trades": 368
+        "ann": 3.93,
+        "mdd": 94.47,
+        "trades": 377
       }
     }
   ]

@@ -196,6 +196,21 @@ const DEFAULT_PARAMS = {
   //  그건 다리가 네 개인 다른 전략이다.)
   // 쓰기 전에 residual.js의 attachResidual(dataset)을 먼저 호출해야 한다.
   SIGNAL_RESIDUAL: false,
+
+  // --- 진입 후보 순위 ---
+  // 자리가 모자랄 때 누구를 먼저 넣을지 정하는 기준.
+  //   'zscore'    (평균−김프)/σ — "이 종목 평소 대비 얼마나 싼가". 기존 방식
+  //   'netEdge'   (평균−김프) − 본전문턱 — 자리 하나가 벌어올 기대 순이익(%p)
+  //   'edgeRatio' (평균−김프) / 본전문턱 — 비용의 몇 배인가
+  //
+  // z-score는 비용을 모른다. 거래가 뜸한 종목은 마지막 체결가가 낡아 김프가 싸 보이는데
+  // σ는 그만큼 커지지 않아서 z-score만 크게 나온다. 관문(EDGE_MULTIPLE)은 통과/탈락만
+  // 보는 바닥이라 이걸 못 막는다 — 통과하기만 하면 순위 싸움에서 멀쩡한 종목을 밀어낸다.
+  // 자리가 3~5개뿐이라 밀려난 자리는 그대로 손해다.
+  //
+  // 포지션 크기가 모두 같으므로, 자리당 기대 순이익이 큰 순서로 채우는 'netEdge'가
+  // 목적함수에 맞는 기준이다.
+  RANK_BY: 'zscore',
 };
 
 // ---------------------------------------------------------------------------
@@ -575,6 +590,8 @@ function simulate(dataset, params, range) {
   let openCount = 0;
   let cumNet = 0, totalFunding = 0, totalSpread = 0, totalFees = 0;
   let blockedThin = 0, blockedEdge = 0, blockedSpreadGate = 0, blockedFunding = 0, blockedRegime = 0;
+  // 순위 기준이 실제로 결과를 바꾸는 회차 수. 후보가 남은 자리보다 많을 때만 의미가 있다.
+  let rankContested = 0, rankSkipped = 0;
   let addOns = 0;  // 2차 이후 추가 체결 횟수
   const exitReasons = { SIGNAL: 0, SOFT: 0, STOP: 0, MAXHOLD: 0, PRICESTOP: 0 };
   const equity = [];
@@ -718,9 +735,18 @@ function simulate(dataset, params, range) {
       }
 
       candIdx[candN] = k;
-      // 저평가 정도(z-score)에 펀딩비 이득을 더해 순위를 매긴다.
+      // 저평가 정도에 펀딩비 이득을 더해 순위를 매긴다.
       // tf는 8시간당 비율이라 %p 단위로 맞추려면 100을 곱한다.
-      candZ[candN] = (sSd > 0 ? (sMa - sPrem) / sSd : 0)
+      const gapPp = sMa - sPrem;               // 평균까지 회복하면 벌 폭(%p)
+      let rank;
+      if (P.RANK_BY === 'netEdge') {
+        rank = gapPp - breakEven[k];           // 비용을 뺀 순기대이익
+      } else if (P.RANK_BY === 'edgeRatio') {
+        rank = breakEven[k] > 0 ? gapPp / breakEven[k] : gapPp;
+      } else {
+        rank = (sSd > 0 ? gapPp / sSd : 0);    // 기존 z-score
+      }
+      candZ[candN] = rank
         + (P.FUNDING_RANK_WEIGHT !== 0 && tf !== null ? P.FUNDING_RANK_WEIGHT * tf * 100 : 0);
       candN++;
     }
@@ -728,6 +754,12 @@ function simulate(dataset, params, range) {
     // --- 시장 전체가 내려가는 국면이면 이번 회차 진입은 건너뛴다 ---
     if (P.MARKET_Z_FLOOR !== null && candN > 0 && mzN > 0) {
       if (mzSum / mzN < P.MARKET_Z_FLOOR) { blockedRegime += candN; candN = 0; }
+    }
+
+    // 후보가 남은 자리보다 많을 때만 순위 기준이 결과를 바꾼다
+    if (candN > 0) {
+      const free = P.MAX_POSITIONS - openCount;
+      if (free > 0 && candN > free) { rankContested++; rankSkipped += candN - free; }
     }
 
     // --- 남은 자리를 저평가 정도가 큰 순서로 채운다 (실거래 봇과 동일) ---
@@ -794,6 +826,9 @@ function simulate(dataset, params, range) {
     totalFunding: Math.round(totalFunding * 100) / 100,
     exitReasons,
     blocked: { 거래량미달: blockedThin, 스프레드관문: blockedSpreadGate, 기대수익부족: blockedEdge, 펀딩비음수: blockedFunding, 하락국면: blockedRegime },
+    rankBy: P.RANK_BY,
+    rankContested,   // 후보가 자리보다 많았던 회차 (순위가 결과를 바꾼 횟수)
+    rankSkipped,     // 그때 자리를 못 받고 밀려난 후보 누적
     addOns,
     avgTranches: total ? Math.round(trades.reduce((s, t) => s + t.tranchesFilled, 0) / total * 100) / 100 : null,
     avgSizeUsd: total ? Math.round(trades.reduce((s, t) => s + t.sizeUsd, 0) / total * 100) / 100 : null,
