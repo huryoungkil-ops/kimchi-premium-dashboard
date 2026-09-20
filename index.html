@@ -776,8 +776,12 @@
   }
 
   /* 자동 갱신이 쓰는 <!--NAME--> ... <!--/NAME--> 사이만 갈아끼운다.
-     마커를 남겨둬야 다음 자동 갱신이 제자리를 찾는다. */
-  function replaceBetween(name, html){
+     마커를 남겨둬야 다음 자동 갱신이 제자리를 찾는다.
+
+     ⚠️ 여기에 HTML «문자열»을 넣으면 안 된다. <tr>/<td>는 표 안에서 파싱될 때만
+     살아남고, 표 바깥 문맥에서 파싱하면 브라우저가 태그를 버리고 글자만 남긴다
+     (2026-09-20에 실제로 이렇게 표가 깨졌다). 그래서 노드 배열만 받는다. */
+  function replaceBetween(name, nodes){
     var walker = document.createTreeWalker(document.body, NodeFilter.SHOW_COMMENT);
     var open = null, close = null, n;
     while ((n = walker.nextNode())) {
@@ -787,26 +791,43 @@
     if (!open || !close || open.parentNode !== close.parentNode) return false;
     var node = open.nextSibling;
     while (node && node !== close) { var next = node.nextSibling; node.parentNode.removeChild(node); node = next; }
-    var frag = document.createRange().createContextualFragment(html);
-    close.parentNode.insertBefore(frag, close);
+    var parent = close.parentNode;
+    nodes.forEach(function(el){ parent.insertBefore(el, close); });
     return true;
   }
 
-  function render(data){
-    var rows = (data.positions || []).map(function(p){
-      var cls = p.netProfit === null ? '' : (p.netProfit >= 0 ? ' class="pos"' : ' class="neg"');
-      var cur = p.currentPremium === null
-        ? '<span title="' + esc(p.note || '값 없음') + '">—</span>'
-        : pct(p.currentPremium);
-      return '<tr><td>' + esc(p.coin) + '</td>'
-        + '<td>' + pct(p.entryPremium) + '</td>'
-        + '<td>' + cur + '</td>'
-        + '<td' + cls + '>' + money(p.netProfit) + '</td>'
-        + '<td>' + esc(kst(p.entryTime)) + '</td></tr>';
-    }).join('');
+  /* 기존 표와 같은 모양으로 <tr>을 만든다.
+     열 순서: 코인 · 진입 김프 · 현재 김프 · 평가손익 · 진입 시각
+     평가손익 칸만 pos/neg 클래스로 색이 붙는다 (#open-tbody td.pos / td.neg) */
+  function buildRow(p){
+    var tr = document.createElement('tr');
 
-    if (!replaceBetween('OPEN_POSITIONS', rows)) tbody.innerHTML = rows;
-    replaceBetween('STAT_OPEN', '보유 ' + data.openCount + ' / 최대 ' + data.maxPositions);
+    function cell(text, cls, title){
+      var td = document.createElement('td');
+      td.textContent = text;
+      if (cls) td.className = cls;
+      if (title) td.title = title;
+      tr.appendChild(td);
+      return td;
+    }
+
+    cell(p.coin);
+    cell(pct(p.entryPremium));
+    cell(p.currentPremium === null ? '—' : pct(p.currentPremium), '', p.currentPremium === null ? (p.note || '값 없음') : '');
+    cell(money(p.netProfit), p.netProfit === null ? '' : (p.netProfit >= 0 ? 'pos' : 'neg'));
+    cell(kst(p.entryTime));
+
+    return tr;
+  }
+
+  function render(data){
+    var rows = (data.positions || []).map(buildRow);
+
+    if (!replaceBetween('OPEN_POSITIONS', rows)) {
+      while (tbody.firstChild) tbody.removeChild(tbody.firstChild);
+      rows.forEach(function(tr){ tbody.appendChild(tr); });
+    }
+    replaceBetween('STAT_OPEN', [document.createTextNode('보유 ' + data.openCount + ' / 최대 ' + data.maxPositions)]);
 
     var when = kst(data.checkedAt);
     var total = money(data.totalUnrealized);
