@@ -322,6 +322,8 @@
   td.spark-cell{ width:92px; padding-top:6px !important; padding-bottom:6px !important; }
   td.spark-cell svg{ display:block; }
   td.spark-cell .spark-none{ font-family:var(--font-body); font-size:11px; color:var(--ink-soft); opacity:.5; }
+  .hold-left{ color:var(--ink-soft); font-size:12px; }
+  .hold-left.over{ color:var(--danger); }
   @media (prefers-reduced-motion: reduce){ .refresh-btn{ transition:none; } }
 </style>
 </head>
@@ -445,12 +447,12 @@
       <div class="flow-step">
         <span class="num">02</span>
         <h3>MA·신호 판정</h3>
-        <p>코인별 최근 3일 이동평균과 표준편차(σ)를 계산해, 하단 밴드 이탈이면 진입, 평균 회복이면 청산 신호로 분류</p>
+        <p>코인별 최근 3일 이동평균과 표준편차(σ)를 계산해, 평균−2.0σ 아래면 진입, 평균+0.25σ 위로 회복하면 청산 신호로 분류</p>
       </div>
       <div class="flow-step">
         <span class="num">03</span>
         <h3>진입 처리</h3>
-        <p>중복 보유·최대 개수(3개)를 확인한 뒤 자본의 10%를 가상 매수로 기록하고 Discord로 알림</p>
+        <p>중복 보유·최대 개수(4개)와 기대수익 관문을 확인한 뒤 자본의 10%를 가상 매수로 기록하고 Discord로 알림</p>
       </div>
       <div class="flow-step">
         <span class="num">04</span>
@@ -468,7 +470,7 @@
         <span><i class="sw sw-combined"></i>합산(롱+숏)</span>
         <span><i class="sw sw-premium"></i>프리미엄(%)</span>
         <span><i class="sw sw-ma"></i>3일 평균</span>
-        <span><i class="sw sw-entryline"></i>진입선(평균−1σ)</span>
+        <span><i class="sw sw-entryline"></i>진입선(평균−2σ)</span>
       </div>
       <div class="concept-steps">
         <div class="concept-step"><b>① 헤지</b>국내거래소에서 사고(롱) 동시에 해외거래소에서 같은 수량을 미리 팔아둠(숏) — 둘을 더하면 코인 시세 방향과 무관해짐</div>
@@ -479,8 +481,10 @@
 
     <div class="rules">
       <dl>
-        <dt>진입 조건</dt><dd>현재 프리미엄 &lt; 3일 이동평균 − 1.0σ</dd>
-        <dt>청산 조건</dt><dd>현재 프리미엄 &gt; 3일 이동평균</dd>
+        <dt>진입 조건</dt><dd>현재 프리미엄 &lt; 3일 이동평균 − 2.0σ</dd>
+        <dt>기대수익 관문</dt><dd>평균 회복 시 기대이익 ≥ 본전문턱 × 3</dd>
+        <dt>청산 조건</dt><dd>현재 프리미엄 &gt; 3일 이동평균 + 0.25σ</dd>
+        <dt>최대 보유</dt><dd>동시 4자리 · 5일 초과 시 강제 청산</dd>
         <hr>
         <dt>변동성 가드</dt><dd>σ &gt; 2.5%p → 이번 회차 신호 보류 (자동 복귀, 영구 제외 아님)</dd>
         <dt>최소 표본</dt><dd>10개 스냅샷 (약 50분) 미만이면 판정 보류</dd>
@@ -712,7 +716,7 @@
   var entryLine = el('line', { x1: X0, x2: X1, y1: syB(ENTRY_LINE), y2: syB(ENTRY_LINE), stroke: 'var(--danger)', 'stroke-width': 1.2, 'stroke-dasharray': '2 3' });
   svg.appendChild(maLine); svg.appendChild(entryLine);
   svg.appendChild(el('text', { x: X1, y: syB(MA) - 5, class: 'concept-caption', 'text-anchor': 'end' })).textContent = '3일 평균';
-  svg.appendChild(el('text', { x: X1, y: syB(ENTRY_LINE) + 13, class: 'concept-caption', fill: 'var(--danger)', 'text-anchor': 'end' })).textContent = '평균−1σ (진입선, 할인 구간)';
+  svg.appendChild(el('text', { x: X1, y: syB(ENTRY_LINE) + 13, class: 'concept-caption', fill: 'var(--danger)', 'text-anchor': 'end' })).textContent = '평균−2σ (진입선, 할인 구간)';
   var qLine = el('polyline', { points: poly(premium, syB), fill: 'none', stroke: 'var(--accent)', 'stroke-width': 2.6 });
   svg.appendChild(qLine);
 
@@ -921,7 +925,23 @@
     }
     tr.appendChild(sparkTd);
 
-    cell(kst(p.entryTime));
+    // 진입 시각 + 강제청산까지 남은 시간 (시:분)
+    var timeTd = document.createElement('td');
+    timeTd.appendChild(document.createTextNode(kst(p.entryTime)));
+    var left = MAX_HOLD_DAYS * 1440 - p.heldMinutes;
+    var rem = document.createElement('span');
+    rem.className = 'hold-left';
+    if (left > 0) {
+      var lh = Math.floor(left / 60), lm = Math.round(left % 60);
+      if (lm === 60) { lh += 1; lm = 0; }
+      rem.textContent = ' (남은시간 ' + lh + ':' + (lm < 10 ? '0' + lm : lm) + ')';
+      rem.title = MAX_HOLD_DAYS + '일(' + (MAX_HOLD_DAYS * 24) + '시간)을 넘기면 강제 청산된다';
+    } else {
+      rem.className += ' over';
+      rem.textContent = ' (강제청산 대상)';
+    }
+    timeTd.appendChild(rem);
+    tr.appendChild(timeTd);
 
     return tr;
   }
