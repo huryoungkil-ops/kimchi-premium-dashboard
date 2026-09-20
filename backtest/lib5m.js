@@ -158,6 +158,13 @@ const DEFAULT_PARAMS = {
   SOFT_HOLD_DAYS: null,     // 이 기간이 지나면 완화 조건을 켠다. null이면 끔
   SOFT_EXIT_LOSS_PP: 0,     // 완화 조건: 손실이 이 폭 이내로 줄면 청산 (0이면 본전 이상일 때)
 
+  // 완화 청산을 «실제로 팔리는 가격» 기준으로 판정할 것인가.
+  // 봉 종가는 대략 중간값이라, 실제 매도호가는 스프레드만큼 아래다. 종가로 판정하면
+  // «손실이 줄었다»고 보고 나갔는데 실제로는 그만큼 더 손해를 확정하게 된다.
+  // (2026-09-20 실거래에서 ADA가 판정 -0.22%p / 실제 -1.10%p로 나간 사례가 있다)
+  // true면 스프레드를 뺀 값으로 판정한다. 손절·최대보유는 영향받지 않는다.
+  SOFT_SPREAD_AWARE: false,
+
   MAX_HOLD_DAYS: 7,       // 넘기면 다음 거래 가능한 봉에서 강제 정리
   STOP_LOSS_PP: 5.0,      // 김프가 진입 시점보다 이만큼 더 내려가면 손절
 
@@ -662,8 +669,11 @@ function simulate(dataset, params, range) {
         }
         // 완화 구간: 정규 청산선에는 못 미쳐도 손실이 충분히 줄었으면 나간다
         if (!reason && P.SOFT_HOLD_DAYS !== null
-            && heldMs >= P.SOFT_HOLD_DAYS * 86400000
-            && move >= -P.SOFT_EXIT_LOSS_PP) reason = 'SOFT';
+            && heldMs >= P.SOFT_HOLD_DAYS * 86400000) {
+          // 실제로 팔리는 가격은 종가보다 스프레드만큼 아래다
+          const softMove = P.SOFT_SPREAD_AWARE && P.PAY_SPREAD ? move - c.spreadPp : move;
+          if (softMove >= -P.SOFT_EXIT_LOSS_PP) reason = 'SOFT';
+        }
         if (!reason && move <= -P.STOP_LOSS_PP) reason = 'STOP';
         if (!reason && heldMs >= P.MAX_HOLD_DAYS * 86400000) reason = 'MAXHOLD';
         // --- 추가 진입(물타기) ---

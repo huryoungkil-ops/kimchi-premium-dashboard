@@ -1,0 +1,608 @@
+{
+  "years": 6,
+  "live": {
+    "ENTRY_SIGMA": 2,
+    "EDGE_MULTIPLE": 3,
+    "EXIT_SIGMA_OFFSET": 0.25,
+    "REQUIRE_PROFIT_EXIT": false,
+    "MAX_POSITIONS": 4,
+    "RANK_BY": "netEdge",
+    "MAX_HOLD_DAYS": 5
+  },
+  "old": {
+    "ENTRY_SIGMA": 1,
+    "EDGE_MULTIPLE": 5,
+    "EXIT_SIGMA_OFFSET": 0.5,
+    "REQUIRE_PROFIT_EXIT": false,
+    "MAX_POSITIONS": 3,
+    "RANK_BY": "zscore",
+    "MAX_HOLD_DAYS": 7
+  },
+  "results": {
+    "live": [
+      {
+        "label": "SOFT 끔",
+        "params": {
+          "SOFT_HOLD_DAYS": null
+        },
+        "full": {
+          "trades": 3542,
+          "winRate": 73,
+          "ann": 22.11,
+          "avg": 3.76,
+          "mdd": 170.08,
+          "exits": {
+            "SIGNAL": 3523,
+            "SOFT": 0,
+            "STOP": 19,
+            "MAXHOLD": 0,
+            "PRICESTOP": 0
+          }
+        },
+        "valid": {
+          "trades": 913,
+          "ann": 11.04,
+          "mdd": 99.5,
+          "exits": {
+            "SIGNAL": 908,
+            "SOFT": 0,
+            "STOP": 5,
+            "MAXHOLD": 0,
+            "PRICESTOP": 0
+          }
+        }
+      },
+      {
+        "label": "1일 · 0.5%p",
+        "params": {
+          "SOFT_HOLD_DAYS": 1,
+          "SOFT_EXIT_LOSS_PP": 0.5
+        },
+        "full": {
+          "trades": 4025,
+          "winRate": 65.8,
+          "ann": 20.44,
+          "avg": 3.06,
+          "mdd": 170.08,
+          "exits": {
+            "SIGNAL": 3088,
+            "SOFT": 918,
+            "STOP": 19,
+            "MAXHOLD": 0,
+            "PRICESTOP": 0
+          }
+        },
+        "valid": {
+          "trades": 1054,
+          "ann": 9.11,
+          "mdd": 91.98,
+          "exits": {
+            "SIGNAL": 741,
+            "SOFT": 308,
+            "STOP": 5,
+            "MAXHOLD": 0,
+            "PRICESTOP": 0
+          }
+        }
+      },
+      {
+        "label": "2일 · 0%p(본전)",
+        "params": {
+          "SOFT_HOLD_DAYS": 2,
+          "SOFT_EXIT_LOSS_PP": 0
+        },
+        "full": {
+          "trades": 3591,
+          "winRate": 72.2,
+          "ann": 22.17,
+          "avg": 3.71,
+          "mdd": 170.08,
+          "exits": {
+            "SIGNAL": 3469,
+            "SOFT": 103,
+            "STOP": 19,
+            "MAXHOLD": 0,
+            "PRICESTOP": 0
+          }
+        },
+        "valid": {
+          "trades": 930,
+          "ann": 11.36,
+          "mdd": 99.5,
+          "exits": {
+            "SIGNAL": 902,
+            "SOFT": 23,
+            "STOP": 5,
+            "MAXHOLD": 0,
+            "PRICESTOP": 0
+          }
+        }
+      },
+      {
+        "label": "2일 · 0.5%p ← 지금 봇",
+        "params": {
+          "SOFT_HOLD_DAYS": 2,
+          "SOFT_EXIT_LOSS_PP": 0.5
+        },
+        "full": {
+          "trades": 3645,
+          "winRate": 72,
+          "ann": 22.02,
+          "avg": 3.64,
+          "mdd": 170.08,
+          "exits": {
+            "SIGNAL": 3392,
+            "SOFT": 234,
+            "STOP": 19,
+            "MAXHOLD": 0,
+            "PRICESTOP": 0
+          }
+        },
+        "valid": {
+          "trades": 955,
+          "ann": 11.41,
+          "mdd": 89.06,
+          "exits": {
+            "SIGNAL": 883,
+            "SOFT": 67,
+            "STOP": 5,
+            "MAXHOLD": 0,
+            "PRICESTOP": 0
+          }
+        }
+      },
+      {
+        "label": "2일 · 1.0%p",
+        "params": {
+          "SOFT_HOLD_DAYS": 2,
+          "SOFT_EXIT_LOSS_PP": 1
+        },
+        "full": {
+          "trades": 3689,
+          "winRate": 72.1,
+          "ann": 21.87,
+          "avg": 3.57,
+          "mdd": 170.08,
+          "exits": {
+            "SIGNAL": 3366,
+            "SOFT": 304,
+            "STOP": 19,
+            "MAXHOLD": 0,
+            "PRICESTOP": 0
+          }
+        },
+        "valid": {
+          "trades": 964,
+          "ann": 11.19,
+          "mdd": 91.8,
+          "exits": {
+            "SIGNAL": 875,
+            "SOFT": 84,
+            "STOP": 5,
+            "MAXHOLD": 0,
+            "PRICESTOP": 0
+          }
+        }
+      },
+      {
+        "label": "3일 · 0.5%p",
+        "params": {
+          "SOFT_HOLD_DAYS": 3,
+          "SOFT_EXIT_LOSS_PP": 0.5
+        },
+        "full": {
+          "trades": 3571,
+          "winRate": 72.9,
+          "ann": 22.13,
+          "avg": 3.73,
+          "mdd": 170.08,
+          "exits": {
+            "SIGNAL": 3513,
+            "SOFT": 39,
+            "STOP": 19,
+            "MAXHOLD": 0,
+            "PRICESTOP": 0
+          }
+        },
+        "valid": {
+          "trades": 924,
+          "ann": 11.04,
+          "mdd": 99.5,
+          "exits": {
+            "SIGNAL": 900,
+            "SOFT": 19,
+            "STOP": 5,
+            "MAXHOLD": 0,
+            "PRICESTOP": 0
+          }
+        }
+      },
+      {
+        "label": "2일·0.5%p +호가반영",
+        "params": {
+          "SOFT_HOLD_DAYS": 2,
+          "SOFT_EXIT_LOSS_PP": 0.5,
+          "SOFT_SPREAD_AWARE": true
+        },
+        "full": {
+          "trades": 3634,
+          "winRate": 72,
+          "ann": 22,
+          "avg": 3.64,
+          "mdd": 170.08,
+          "exits": {
+            "SIGNAL": 3407,
+            "SOFT": 208,
+            "STOP": 19,
+            "MAXHOLD": 0,
+            "PRICESTOP": 0
+          }
+        },
+        "valid": {
+          "trades": 950,
+          "ann": 11.33,
+          "mdd": 99.51,
+          "exits": {
+            "SIGNAL": 885,
+            "SOFT": 60,
+            "STOP": 5,
+            "MAXHOLD": 0,
+            "PRICESTOP": 0
+          }
+        }
+      },
+      {
+        "label": "2일·1.0%p +호가반영",
+        "params": {
+          "SOFT_HOLD_DAYS": 2,
+          "SOFT_EXIT_LOSS_PP": 1,
+          "SOFT_SPREAD_AWARE": true
+        },
+        "full": {
+          "trades": 3680,
+          "winRate": 72.1,
+          "ann": 21.88,
+          "avg": 3.58,
+          "mdd": 170.08,
+          "exits": {
+            "SIGNAL": 3371,
+            "SOFT": 290,
+            "STOP": 19,
+            "MAXHOLD": 0,
+            "PRICESTOP": 0
+          }
+        },
+        "valid": {
+          "trades": 962,
+          "ann": 11.47,
+          "mdd": 88.19,
+          "exits": {
+            "SIGNAL": 879,
+            "SOFT": 78,
+            "STOP": 5,
+            "MAXHOLD": 0,
+            "PRICESTOP": 0
+          }
+        }
+      }
+    ],
+    "old": [
+      {
+        "label": "SOFT 끔",
+        "params": {
+          "SOFT_HOLD_DAYS": null
+        },
+        "full": {
+          "trades": 5029,
+          "winRate": 68,
+          "ann": 22.34,
+          "avg": 2.67,
+          "mdd": 281.71,
+          "exits": {
+            "SIGNAL": 5004,
+            "SOFT": 0,
+            "STOP": 23,
+            "MAXHOLD": 2,
+            "PRICESTOP": 0
+          }
+        },
+        "valid": {
+          "trades": 694,
+          "ann": 9.03,
+          "mdd": 112.18,
+          "exits": {
+            "SIGNAL": 690,
+            "SOFT": 0,
+            "STOP": 4,
+            "MAXHOLD": 0,
+            "PRICESTOP": 0
+          }
+        }
+      },
+      {
+        "label": "1일 · 0.5%p",
+        "params": {
+          "SOFT_HOLD_DAYS": 1,
+          "SOFT_EXIT_LOSS_PP": 0.5
+        },
+        "full": {
+          "trades": 5878,
+          "winRate": 63.5,
+          "ann": 21.66,
+          "avg": 2.22,
+          "mdd": 296.85,
+          "exits": {
+            "SIGNAL": 4824,
+            "SOFT": 1032,
+            "STOP": 22,
+            "MAXHOLD": 0,
+            "PRICESTOP": 0
+          }
+        },
+        "valid": {
+          "trades": 951,
+          "ann": 8.64,
+          "mdd": 118.44,
+          "exits": {
+            "SIGNAL": 622,
+            "SOFT": 325,
+            "STOP": 4,
+            "MAXHOLD": 0,
+            "PRICESTOP": 0
+          }
+        }
+      },
+      {
+        "label": "2일 · 0%p(본전)",
+        "params": {
+          "SOFT_HOLD_DAYS": 2,
+          "SOFT_EXIT_LOSS_PP": 0
+        },
+        "full": {
+          "trades": 5105,
+          "winRate": 67.6,
+          "ann": 22.58,
+          "avg": 2.66,
+          "mdd": 281.7,
+          "exits": {
+            "SIGNAL": 4953,
+            "SOFT": 129,
+            "STOP": 23,
+            "MAXHOLD": 0,
+            "PRICESTOP": 0
+          }
+        },
+        "valid": {
+          "trades": 720,
+          "ann": 9.18,
+          "mdd": 112.19,
+          "exits": {
+            "SIGNAL": 671,
+            "SOFT": 45,
+            "STOP": 4,
+            "MAXHOLD": 0,
+            "PRICESTOP": 0
+          }
+        }
+      },
+      {
+        "label": "2일 · 0.5%p ← 지금 봇",
+        "params": {
+          "SOFT_HOLD_DAYS": 2,
+          "SOFT_EXIT_LOSS_PP": 0.5
+        },
+        "full": {
+          "trades": 5209,
+          "winRate": 67.2,
+          "ann": 22.56,
+          "avg": 2.61,
+          "mdd": 281.71,
+          "exits": {
+            "SIGNAL": 4942,
+            "SOFT": 244,
+            "STOP": 23,
+            "MAXHOLD": 0,
+            "PRICESTOP": 0
+          }
+        },
+        "valid": {
+          "trades": 756,
+          "ann": 9.29,
+          "mdd": 101.96,
+          "exits": {
+            "SIGNAL": 668,
+            "SOFT": 84,
+            "STOP": 4,
+            "MAXHOLD": 0,
+            "PRICESTOP": 0
+          }
+        }
+      },
+      {
+        "label": "2일 · 1.0%p",
+        "params": {
+          "SOFT_HOLD_DAYS": 2,
+          "SOFT_EXIT_LOSS_PP": 1
+        },
+        "full": {
+          "trades": 5299,
+          "winRate": 67.3,
+          "ann": 22.37,
+          "avg": 2.54,
+          "mdd": 281.71,
+          "exits": {
+            "SIGNAL": 4935,
+            "SOFT": 341,
+            "STOP": 23,
+            "MAXHOLD": 0,
+            "PRICESTOP": 0
+          }
+        },
+        "valid": {
+          "trades": 786,
+          "ann": 9.12,
+          "mdd": 121.21,
+          "exits": {
+            "SIGNAL": 668,
+            "SOFT": 114,
+            "STOP": 4,
+            "MAXHOLD": 0,
+            "PRICESTOP": 0
+          }
+        }
+      },
+      {
+        "label": "3일 · 0.5%p",
+        "params": {
+          "SOFT_HOLD_DAYS": 3,
+          "SOFT_EXIT_LOSS_PP": 0.5
+        },
+        "full": {
+          "trades": 5056,
+          "winRate": 68,
+          "ann": 22.38,
+          "avg": 2.66,
+          "mdd": 281.7,
+          "exits": {
+            "SIGNAL": 4990,
+            "SOFT": 42,
+            "STOP": 23,
+            "MAXHOLD": 1,
+            "PRICESTOP": 0
+          }
+        },
+        "valid": {
+          "trades": 701,
+          "ann": 9.11,
+          "mdd": 112.18,
+          "exits": {
+            "SIGNAL": 682,
+            "SOFT": 15,
+            "STOP": 4,
+            "MAXHOLD": 0,
+            "PRICESTOP": 0
+          }
+        }
+      },
+      {
+        "label": "2일·0.5%p +호가반영",
+        "params": {
+          "SOFT_HOLD_DAYS": 2,
+          "SOFT_EXIT_LOSS_PP": 0.5,
+          "SOFT_SPREAD_AWARE": true
+        },
+        "full": {
+          "trades": 5195,
+          "winRate": 67.2,
+          "ann": 22.7,
+          "avg": 2.63,
+          "mdd": 281.71,
+          "exits": {
+            "SIGNAL": 4944,
+            "SOFT": 228,
+            "STOP": 23,
+            "MAXHOLD": 0,
+            "PRICESTOP": 0
+          }
+        },
+        "valid": {
+          "trades": 749,
+          "ann": 9.34,
+          "mdd": 98.86,
+          "exits": {
+            "SIGNAL": 668,
+            "SOFT": 77,
+            "STOP": 4,
+            "MAXHOLD": 0,
+            "PRICESTOP": 0
+          }
+        }
+      },
+      {
+        "label": "2일·1.0%p +호가반영",
+        "params": {
+          "SOFT_HOLD_DAYS": 2,
+          "SOFT_EXIT_LOSS_PP": 1,
+          "SOFT_SPREAD_AWARE": true
+        },
+        "full": {
+          "trades": 5284,
+          "winRate": 67.3,
+          "ann": 22.34,
+          "avg": 2.54,
+          "mdd": 281.71,
+          "exits": {
+            "SIGNAL": 4933,
+            "SOFT": 328,
+            "STOP": 23,
+            "MAXHOLD": 0,
+            "PRICESTOP": 0
+          }
+        },
+        "valid": {
+          "trades": 784,
+          "ann": 9.08,
+          "mdd": 121.2,
+          "exits": {
+            "SIGNAL": 668,
+            "SOFT": 112,
+            "STOP": 4,
+            "MAXHOLD": 0,
+            "PRICESTOP": 0
+          }
+        }
+      }
+    ],
+    "holdDist": [
+      {
+        "bucket": "~6시간",
+        "trades": 1627,
+        "net": 6080.82,
+        "avg": 3.74,
+        "wins": 1138
+      },
+      {
+        "bucket": "6~12시간",
+        "trades": 533,
+        "net": 3331.19,
+        "avg": 6.25,
+        "wins": 481
+      },
+      {
+        "bucket": "12~24시간",
+        "trades": 597,
+        "net": 3522.79,
+        "avg": 5.9,
+        "wins": 525
+      },
+      {
+        "bucket": "1~2일",
+        "trades": 463,
+        "net": 1704.89,
+        "avg": 3.68,
+        "wins": 370
+      },
+      {
+        "bucket": "2~3일",
+        "trades": 214,
+        "net": -444.85,
+        "avg": -2.08,
+        "wins": 65
+      },
+      {
+        "bucket": "3~5일",
+        "trades": 108,
+        "net": -886.73,
+        "avg": -8.21,
+        "wins": 5
+      },
+      {
+        "bucket": "5일+",
+        "trades": 0,
+        "net": 0,
+        "avg": 0,
+        "wins": 0
+      }
+    ]
+  }
+}
