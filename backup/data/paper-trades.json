@@ -401,22 +401,22 @@
   },
   {
     "coin": "ADA",
-    "status": "OPEN",
+    "status": "CLOSED",
     "entryTime": "2026-09-18T13:15:11.961Z",
     "entryPremium": -0.172,
     "entryMa": 0.717661342592593,
     "entryPrice": 297.4,
     "positionSize": 1000,
     "feeEntry": 0.2,
-    "exitTime": null,
-    "exitPremium": null,
-    "exitPrice": null,
-    "grossProfit": null,
-    "feeExit": null,
-    "netProfit": null,
+    "exitTime": "2026-09-20T14:15:14.570Z",
+    "exitPremium": -1.275,
+    "exitPrice": 302.7,
+    "grossProfit": -11.03,
+    "feeExit": 0.2,
+    "netProfit": -11.43,
     "entryForeignPrice": 0.2158,
     "id": 21,
     "createdAt": "2026-09-18T13:15:11.977Z",
-    "updatedAt": "2026-09-18T13:15:11.977Z"
+    "updatedAt": "2026-09-20T14:15:14.587Z"
   }
 ]
