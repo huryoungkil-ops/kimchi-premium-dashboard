@@ -317,6 +317,11 @@
   .refresh-status.live{ color:var(--good); }
   .refresh-status.err{ color:var(--danger); }
   .refresh-status b{ font-family:var(--font-mono); font-weight:600; }
+  /* 진입 이후 평가손익 추이 — 본전선(0) 기준으로 아래 면적을 채워
+     «얼마나 떨어졌나»가 눈으로 바로 읽히게 한다 */
+  td.spark-cell{ width:92px; padding-top:6px !important; padding-bottom:6px !important; }
+  td.spark-cell svg{ display:block; }
+  td.spark-cell .spark-none{ font-family:var(--font-body); font-size:11px; color:var(--ink-soft); opacity:.5; }
   @media (prefers-reduced-motion: reduce){ .refresh-btn{ transition:none; } }
 </style>
 </head>
@@ -379,6 +384,7 @@
             <th class="num">진입 김프</th>
             <th class="num">현재 김프</th>
             <th class="num">평가손익</th>
+            <th>추이</th>
             <th>진입 시각</th>
           </tr>
         </thead>
@@ -797,8 +803,86 @@
     return true;
   }
 
+  /* 봇의 «강제청산 판정» 노드와 같아야 하는 값. 남은 보유 여유를 알려주는 데만 쓴다. */
+  var MAX_HOLD_DAYS = 5;
+
+  function dur(minutes){
+    var m = Math.max(0, Math.round(minutes));
+    var d = Math.floor(m / 1440), h = Math.floor((m % 1440) / 60);
+    if (d > 0) return d + '일 ' + h + '시간';
+    if (h > 0) return h + '시간';
+    return m + '분';
+  }
+
+  /* 진입 이후 평가손익 추이를 아주 작은 선그래프로 그린다.
+     - 가로: 진입 시점 → 지금
+     - 세로: 평가손익. 0(본전)은 언제나 범위에 넣어 «얼마나 떨어졌나»가 바로 읽히게 한다
+     - 선과 0 사이를 옅게 채운다. 면적의 두께가 곧 손실 폭이다 */
+  function buildSpark(series, positive){
+    var NS = 'http://www.w3.org/2000/svg';
+    var W = 76, H = 20, PAD = 2.5;
+    var svg = document.createElementNS(NS, 'svg');
+    svg.setAttribute('width', W);
+    svg.setAttribute('height', H);
+    svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H);
+    svg.setAttribute('aria-hidden', 'true');
+
+    var lo = Math.min.apply(null, series.concat([0]));
+    var hi = Math.max.apply(null, series.concat([0]));
+    var span = (hi - lo) || 1;
+    lo -= span * 0.08; hi += span * 0.08;
+    span = hi - lo;
+
+    var n = series.length;
+    var X = function(i){ return n < 2 ? W / 2 : PAD + i * (W - PAD * 2) / (n - 1); };
+    var Y = function(v){ return PAD + (hi - v) * (H - PAD * 2) / span; };
+    var color = positive ? 'var(--good)' : 'var(--danger)';
+
+    // 0(본전)선 — 이 선 아래로 내려간 만큼이 손실이다
+    var zero = document.createElementNS(NS, 'line');
+    zero.setAttribute('x1', 0); zero.setAttribute('x2', W);
+    zero.setAttribute('y1', Y(0)); zero.setAttribute('y2', Y(0));
+    zero.setAttribute('stroke', 'var(--ink-soft)');
+    zero.setAttribute('stroke-width', '1');
+    zero.setAttribute('stroke-dasharray', '2 2');
+    zero.setAttribute('opacity', '0.45');
+    svg.appendChild(zero);
+
+    if (n >= 2) {
+      var pts = series.map(function(v, i){ return X(i) + ',' + Y(v); });
+
+      var area = document.createElementNS(NS, 'path');
+      area.setAttribute('d', 'M' + pts.join('L')
+        + 'L' + X(n - 1) + ',' + Y(0) + 'L' + X(0) + ',' + Y(0) + 'Z');
+      area.setAttribute('fill', color);
+      area.setAttribute('opacity', '0.16');
+      svg.appendChild(area);
+
+      var line = document.createElementNS(NS, 'polyline');
+      line.setAttribute('points', pts.join(' '));
+      line.setAttribute('fill', 'none');
+      line.setAttribute('stroke', color);
+      line.setAttribute('stroke-width', '1.4');
+      line.setAttribute('stroke-linejoin', 'round');
+      line.setAttribute('stroke-linecap', 'round');
+      svg.appendChild(line);
+    }
+
+    // 현재 지점
+    var dot = document.createElementNS(NS, 'circle');
+    dot.setAttribute('cx', X(n - 1));
+    dot.setAttribute('cy', Y(series[n - 1]));
+    dot.setAttribute('r', '2.1');
+    dot.setAttribute('fill', color);
+    dot.setAttribute('stroke', 'var(--bg-raised)');
+    dot.setAttribute('stroke-width', '1');
+    svg.appendChild(dot);
+
+    return svg;
+  }
+
   /* 기존 표와 같은 모양으로 <tr>을 만든다.
-     열 순서: 코인 · 진입 김프 · 현재 김프 · 평가손익 · 진입 시각
+     열 순서: 코인 · 진입 김프 · 현재 김프 · 평가손익 · 추이 · 진입 시각
      평가손익 칸만 pos/neg 클래스로 색이 붙는다 (#open-tbody td.pos / td.neg) */
   function buildRow(p){
     var tr = document.createElement('tr');
@@ -816,10 +900,46 @@
     cell(pct(p.entryPremium));
     cell(p.currentPremium === null ? '—' : pct(p.currentPremium), '', p.currentPremium === null ? (p.note || '값 없음') : '');
     cell(money(p.netProfit), p.netProfit === null ? '' : (p.netProfit >= 0 ? 'pos' : 'neg'));
+
+    var sparkTd = document.createElement('td');
+    sparkTd.className = 'spark-cell';
+    var series = (p.spark || []).filter(function(v){ return typeof v === 'number' && isFinite(v); });
+    if (series.length) {
+      var last = (p.netProfit === null) ? series[series.length - 1] : p.netProfit;
+      sparkTd.appendChild(buildSpark(series, last >= 0));
+      var lo = Math.min.apply(null, series), hi = Math.max.apply(null, series);
+      var left = MAX_HOLD_DAYS * 1440 - p.heldMinutes;
+      sparkTd.title = '진입 이후 ' + dur(p.heldMinutes)
+        + ' · 최저 ' + money(lo) + ' · 최고 ' + money(hi)
+        + ' · 현재 ' + money(p.netProfit)
+        + (left > 0 ? ' · ' + MAX_HOLD_DAYS + '일 강제청산까지 ' + dur(left) : ' · 강제청산 시점 지남');
+    } else {
+      var none = document.createElement('span');
+      none.className = 'spark-none';
+      none.textContent = '이력 없음';
+      sparkTd.appendChild(none);
+    }
+    tr.appendChild(sparkTd);
+
     cell(kst(p.entryTime));
 
     return tr;
   }
+
+  /* 자동 갱신이 채워둔 행에는 «추이» 칸이 없다(서버는 5칸만 만든다).
+     버튼을 누르기 전에도 열이 어긋나지 않도록 빈 칸을 끼워 넣는다. */
+  (function padStaticRows(){
+    Array.prototype.forEach.call(tbody.rows, function(tr){
+      if (tr.cells.length !== 5) return;
+      var td = document.createElement('td');
+      td.className = 'spark-cell';
+      var none = document.createElement('span');
+      none.className = 'spark-none';
+      none.textContent = '버튼을 누르면';
+      td.appendChild(none);
+      tr.insertBefore(td, tr.cells[4]);
+    });
+  })();
 
   function render(data){
     var rows = (data.positions || []).map(buildRow);
