@@ -1,0 +1,40 @@
+{
+  "years": 6,
+  "coins": [
+    "BTC",
+    "ETH",
+    "SOL",
+    "XRP",
+    "ADA",
+    "LINK",
+    "DOGE",
+    "TRX",
+    "XLM",
+    "UNI",
+    "ARB",
+    "SUI"
+  ],
+  "horizons": {
+    "1시간": {
+      "meanRho": 0.651,
+      "min": 0.413,
+      "max": 0.885,
+      "neff4": 1.36,
+      "riskReductionPct4": 14.1
+    },
+    "6시간": {
+      "meanRho": 0.797,
+      "min": 0.599,
+      "max": 0.964,
+      "neff4": 1.18,
+      "riskReductionPct4": 7.9
+    },
+    "1일": {
+      "meanRho": 0.884,
+      "min": 0.68,
+      "max": 0.982,
+      "neff4": 1.1,
+      "riskReductionPct4": 4.5
+    }
+  }
+}
