@@ -218,6 +218,14 @@ const DEFAULT_PARAMS = {
   // 포지션 크기가 모두 같으므로, 자리당 기대 순이익이 큰 순서로 채우는 'netEdge'가
   // 목적함수에 맞는 기준이다.
   RANK_BY: 'zscore',
+
+  // --- 진입 간격 제한 ---
+  // 종목 간 김프 변화의 상관이 1일 기준 0.88이라, 김프가 빠지면 진입 신호가 전 종목에
+  // 동시에 뜨고 자리가 같은 가격대에 한꺼번에 찬다(4자리 = 실효 베팅 1.1개).
+  // 새 진입 뒤 이 시간 동안은 다음 새 진입을 받지 않는다. 공통 요인이 계속 빠지면
+  // 다음 자리는 더 싼 가격에 들어가게 된다 — 종목 대신 «시간»으로 나누는 분산이다.
+  // 0이면 끔. 물타기(TRANCHES)의 추가 체결은 새 진입이 아니므로 영향받지 않는다.
+  ENTRY_GAP_HOURS: 0,
 };
 
 // ---------------------------------------------------------------------------
@@ -599,6 +607,10 @@ function simulate(dataset, params, range) {
   let blockedThin = 0, blockedEdge = 0, blockedSpreadGate = 0, blockedFunding = 0, blockedRegime = 0;
   // 순위 기준이 실제로 결과를 바꾸는 회차 수. 후보가 남은 자리보다 많을 때만 의미가 있다.
   let rankContested = 0, rankSkipped = 0;
+  // 진입 간격 제한
+  const GAP_MS = (P.ENTRY_GAP_HOURS || 0) * 3600000;
+  let lastEntryTs = -Infinity;
+  let blockedGap = 0;
   let addOns = 0;  // 2차 이후 추가 체결 횟수
   const exitReasons = { SIGNAL: 0, SOFT: 0, STOP: 0, MAXHOLD: 0, PRICESTOP: 0 };
   const equity = [];
@@ -773,10 +785,17 @@ function simulate(dataset, params, range) {
     }
 
     // --- 남은 자리를 저평가 정도가 큰 순서로 채운다 (실거래 봇과 동일) ---
+    // 간격 제한이 켜져 있고 직전 진입에서 충분히 지나지 않았으면 이번 회차는 건너뛴다
+    if (candN > 0 && GAP_MS > 0 && ts - lastEntryTs < GAP_MS && openCount < P.MAX_POSITIONS) {
+      blockedGap += candN;
+      candN = 0;
+    }
     if (candN > 0 && openCount < P.MAX_POSITIONS) {
       const order = Array.from({ length: candN }, (_, i) => i).sort((a, b) => candZ[b] - candZ[a]);
       for (const oi of order) {
         if (openCount >= P.MAX_POSITIONS) break;
+        // 간격 제한이 켜져 있으면 한 회차에 한 건만 받는다
+        if (GAP_MS > 0 && ts - lastEntryTs < GAP_MS) break;
         const k = candIdx[oi];
         if (tranches[k].length) continue;
         const c = coins[k];
@@ -789,6 +808,7 @@ function simulate(dataset, params, range) {
           foreign: c.foreign[ei],
         });
         openCount++;
+        lastEntryTs = ts;
       }
     }
 
@@ -796,7 +816,23 @@ function simulate(dataset, params, range) {
     // 찍혔고, 그 탓에 최대 낙폭이 0으로 나오는 문제가 있었다)
     const dayIdx = Math.floor(ts / 86400000);
     if (dayIdx !== lastDay) {
-      equity.push({ date: new Date(ts).toISOString().slice(0, 10), cum: Math.round(cumNet * 100) / 100, open: openCount });
+      // 청산 손익만 쌓으면 들고 있는 자리의 평가손실이 안 보인다. 동시에 여러 자리가
+      // 같이 물리는 위험은 정확히 그 평가손실로 드러나므로 따로 계산해 둔다.
+      let unreal = 0;
+      for (let k = 0; k < K; k++) {
+        const tr = tranches[k];
+        if (!tr.length) continue;
+        const idx = ptr[k] - 1;
+        if (idx < 0) continue;
+        const pr = coins[k].premium[idx];
+        for (let t = 0; t < tr.length; t++) unreal += tr[t].size * (pr - tr[t].prem) / 100;
+      }
+      equity.push({
+        date: new Date(ts).toISOString().slice(0, 10),
+        cum: Math.round(cumNet * 100) / 100,
+        mtm: Math.round((cumNet + unreal) * 100) / 100,
+        open: openCount,
+      });
       lastDay = dayIdx;
     }
   }
@@ -805,6 +841,9 @@ function simulate(dataset, params, range) {
   const wins = trades.filter(t => t.netProfit > 0).length;
   let peak = 0, maxDD = 0;
   for (const e of equity) { if (e.cum > peak) peak = e.cum; const dd = peak - e.cum; if (dd > maxDD) maxDD = dd; }
+  // 평가손익을 포함한 최대 낙폭 (하루 한 번 표본이라 장중 최저점은 놓칠 수 있다)
+  let peakM = 0, maxDDM = 0;
+  for (const e of equity) { if (e.mtm > peakM) peakM = e.mtm; const dd = peakM - e.mtm; if (dd > maxDDM) maxDDM = dd; }
 
   const byCoin = {};
   for (const t of trades) {
@@ -831,12 +870,14 @@ function simulate(dataset, params, range) {
     avgNetPerTrade: total ? Math.round(cumNet / total * 100) / 100 : null,
     avgHoldHours: total ? Math.round(trades.reduce((s, t) => s + t.holdHours, 0) / total * 100) / 100 : null,
     maxDrawdown: Math.round(maxDD * 100) / 100,
+    maxDrawdownMTM: Math.round(maxDDM * 100) / 100,
     totalFees: Math.round(totalFees * 100) / 100,
     totalSpreadCost: Math.round(totalSpread * 100) / 100,
     totalFunding: Math.round(totalFunding * 100) / 100,
     exitReasons,
     blocked: { 거래량미달: blockedThin, 스프레드관문: blockedSpreadGate, 기대수익부족: blockedEdge, 펀딩비음수: blockedFunding, 하락국면: blockedRegime },
     rankBy: P.RANK_BY,
+    blockedGap,
     rankContested,   // 후보가 자리보다 많았던 회차 (순위가 결과를 바꾼 횟수)
     rankSkipped,     // 그때 자리를 못 받고 밀려난 후보 누적
     addOns,

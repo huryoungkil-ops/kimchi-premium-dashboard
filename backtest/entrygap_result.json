@@ -1,0 +1,136 @@
+{
+  "years": 6,
+  "live": {
+    "ENTRY_SIGMA": 2,
+    "EDGE_MULTIPLE": 3,
+    "EXIT_SIGMA_OFFSET": 0.25,
+    "REQUIRE_PROFIT_EXIT": false,
+    "MAX_POSITIONS": 4,
+    "RANK_BY": "netEdge",
+    "SOFT_HOLD_DAYS": 2,
+    "SOFT_EXIT_LOSS_PP": 0.5,
+    "MAX_HOLD_DAYS": 5
+  },
+  "results": [
+    {
+      "gapHours": 0,
+      "full": {
+        "trades": 3645,
+        "winRate": 72,
+        "ann": 22.02,
+        "avg": 3.64,
+        "mdd": 170.08,
+        "mddMTM": 197.51,
+        "ratioMTM": 11.15,
+        "clusteredPct": 47.4,
+        "blockedGap": 0
+      },
+      "valid": {
+        "trades": 955,
+        "ann": 11.41,
+        "mddMTM": 121.76,
+        "ratioMTM": 9.37
+      }
+    },
+    {
+      "gapHours": 1,
+      "full": {
+        "trades": 3157,
+        "winRate": 71.1,
+        "ann": 19.28,
+        "avg": 3.68,
+        "mdd": 93.07,
+        "mddMTM": 181.17,
+        "ratioMTM": 10.64,
+        "clusteredPct": 38.5,
+        "blockedGap": 25254
+      },
+      "valid": {
+        "trades": 827,
+        "ann": 8.5,
+        "mddMTM": 129.16,
+        "ratioMTM": 6.58
+      }
+    },
+    {
+      "gapHours": 3,
+      "full": {
+        "trades": 2528,
+        "winRate": 69.9,
+        "ann": 14.84,
+        "avg": 3.53,
+        "mdd": 159.39,
+        "mddMTM": 205.43,
+        "ratioMTM": 7.22,
+        "clusteredPct": 10,
+        "blockedGap": 76171
+      },
+      "valid": {
+        "trades": 699,
+        "ann": 6.9,
+        "mddMTM": 127.9,
+        "ratioMTM": 5.39
+      }
+    },
+    {
+      "gapHours": 6,
+      "full": {
+        "trades": 1939,
+        "winRate": 71,
+        "ann": 11.89,
+        "avg": 3.69,
+        "mdd": 111.07,
+        "mddMTM": 147.54,
+        "ratioMTM": 8.06,
+        "clusteredPct": 0,
+        "blockedGap": 113853
+      },
+      "valid": {
+        "trades": 535,
+        "ann": 5.07,
+        "mddMTM": 111.43,
+        "ratioMTM": 4.55
+      }
+    },
+    {
+      "gapHours": 12,
+      "full": {
+        "trades": 1353,
+        "winRate": 71.3,
+        "ann": 8.59,
+        "avg": 3.82,
+        "mdd": 111.07,
+        "mddMTM": 111.07,
+        "ratioMTM": 7.73,
+        "clusteredPct": 0,
+        "blockedGap": 145207
+      },
+      "valid": {
+        "trades": 375,
+        "ann": 3.06,
+        "mddMTM": 111.07,
+        "ratioMTM": 2.76
+      }
+    },
+    {
+      "gapHours": 24,
+      "full": {
+        "trades": 901,
+        "winRate": 71.7,
+        "ann": 6,
+        "avg": 4.01,
+        "mdd": 111.07,
+        "mddMTM": 111.07,
+        "ratioMTM": 5.4,
+        "clusteredPct": 0,
+        "blockedGap": 160875
+      },
+      "valid": {
+        "trades": 252,
+        "ann": 2.11,
+        "mddMTM": 111.07,
+        "ratioMTM": 1.9
+      }
+    }
+  ]
+}
