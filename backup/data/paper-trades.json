@@ -1,5 +1,6 @@
 [
   {
+    "id": 1,
     "coin": "AAVE",
     "status": "VOID",
     "entryTime": "2026-09-11T14:20:10.571Z",
@@ -15,11 +16,11 @@
     "feeExit": null,
     "netProfit": null,
     "entryForeignPrice": null,
-    "id": 1,
     "createdAt": "2026-09-11T14:20:10.612Z",
     "updatedAt": "2026-09-11T14:52:39.957Z"
   },
   {
+    "id": 2,
     "coin": "SUSHI",
     "status": "VOID",
     "entryTime": "2026-09-11T14:20:10.589Z",
@@ -35,11 +36,11 @@
     "feeExit": null,
     "netProfit": null,
     "entryForeignPrice": null,
-    "id": 2,
     "createdAt": "2026-09-11T14:20:10.612Z",
     "updatedAt": "2026-09-11T14:52:39.957Z"
   },
   {
+    "id": 3,
     "coin": "ICP",
     "status": "VOID",
     "entryTime": "2026-09-11T14:20:10.594Z",
@@ -55,11 +56,11 @@
     "feeExit": null,
     "netProfit": null,
     "entryForeignPrice": null,
-    "id": 3,
     "createdAt": "2026-09-11T14:20:10.612Z",
     "updatedAt": "2026-09-11T14:52:39.957Z"
   },
   {
+    "id": 4,
     "coin": "ETH",
     "status": "CLOSED",
     "entryTime": "2026-09-11T15:00:11.988Z",
@@ -75,11 +76,11 @@
     "feeExit": 0.9,
     "netProfit": 1.75,
     "entryForeignPrice": null,
-    "id": 4,
     "createdAt": "2026-09-11T15:00:12.057Z",
     "updatedAt": "2026-09-11T22:30:11.005Z"
   },
   {
+    "id": 5,
     "coin": "XRP",
     "status": "CLOSED",
     "entryTime": "2026-09-11T15:00:11.996Z",
@@ -95,11 +96,11 @@
     "feeExit": 0.9,
     "netProfit": 2.68,
     "entryForeignPrice": null,
-    "id": 5,
     "createdAt": "2026-09-11T15:00:12.057Z",
     "updatedAt": "2026-09-12T00:00:13.154Z"
   },
   {
+    "id": 6,
     "coin": "SOL",
     "status": "CLOSED",
     "entryTime": "2026-09-11T15:05:11.581Z",
@@ -115,11 +116,11 @@
     "feeExit": 0.9,
     "netProfit": -0.73,
     "entryForeignPrice": null,
-    "id": 6,
     "createdAt": "2026-09-11T15:05:11.593Z",
     "updatedAt": "2026-09-11T18:50:11.102Z"
   },
   {
+    "id": 7,
     "coin": "XLM",
     "status": "CLOSED",
     "entryTime": "2026-09-14T08:10:11.583Z",
@@ -135,11 +136,11 @@
     "feeExit": 0.2,
     "netProfit": -0.96,
     "entryForeignPrice": null,
-    "id": 7,
     "createdAt": "2026-09-14T08:10:11.681Z",
     "updatedAt": "2026-09-14T12:50:11.904Z"
   },
   {
+    "id": 8,
     "coin": "SOL",
     "status": "CLOSED",
     "entryTime": "2026-09-14T08:25:11.098Z",
@@ -155,11 +156,11 @@
     "feeExit": 0.2,
     "netProfit": 0.95,
     "entryForeignPrice": null,
-    "id": 8,
     "createdAt": "2026-09-14T08:25:11.167Z",
     "updatedAt": "2026-09-14T12:55:12.664Z"
   },
   {
+    "id": 9,
     "coin": "DOGE",
     "status": "CLOSED",
     "entryTime": "2026-09-14T08:25:11.153Z",
@@ -175,11 +176,11 @@
     "feeExit": 0.2,
     "netProfit": 3.58,
     "entryForeignPrice": null,
-    "id": 9,
     "createdAt": "2026-09-14T08:25:11.167Z",
     "updatedAt": "2026-09-14T13:00:11.851Z"
   },
   {
+    "id": 10,
     "coin": "ADA",
     "status": "CLOSED",
     "entryTime": "2026-09-14T15:40:10.954Z",
@@ -195,11 +196,11 @@
     "feeExit": 0.2,
     "netProfit": -1.44,
     "entryForeignPrice": null,
-    "id": 10,
     "createdAt": "2026-09-14T15:40:11.064Z",
     "updatedAt": "2026-09-15T04:25:11.227Z"
   },
   {
+    "id": 11,
     "coin": "BTC",
     "status": "CLOSED",
     "entryTime": "2026-09-14T16:35:11.520Z",
@@ -215,11 +216,11 @@
     "feeExit": 0.2,
     "netProfit": 1.46,
     "entryForeignPrice": null,
-    "id": 11,
     "createdAt": "2026-09-14T16:35:11.565Z",
     "updatedAt": "2026-09-15T09:55:12.556Z"
   },
   {
+    "id": 12,
     "coin": "TRX",
     "status": "CLOSED",
     "entryTime": "2026-09-14T16:40:10.807Z",
@@ -235,11 +236,11 @@
     "feeExit": 0.2,
     "netProfit": 2.09,
     "entryForeignPrice": null,
-    "id": 12,
     "createdAt": "2026-09-14T16:40:10.867Z",
     "updatedAt": "2026-09-15T11:20:11.964Z"
   },
   {
+    "id": 13,
     "coin": "ETH",
     "status": "CLOSED",
     "entryTime": "2026-09-15T22:50:11.853Z",
@@ -255,11 +256,11 @@
     "feeExit": 0.2,
     "netProfit": 1.36,
     "entryForeignPrice": null,
-    "id": 13,
     "createdAt": "2026-09-15T22:50:11.866Z",
     "updatedAt": "2026-09-16T20:40:12.777Z"
   },
   {
+    "id": 14,
     "coin": "BTC",
     "status": "CLOSED",
     "entryTime": "2026-09-16T00:30:11.775Z",
@@ -275,11 +276,11 @@
     "feeExit": 0.2,
     "netProfit": 5.56,
     "entryForeignPrice": null,
-    "id": 14,
     "createdAt": "2026-09-16T00:30:11.867Z",
     "updatedAt": "2026-09-16T19:10:12.176Z"
   },
   {
+    "id": 15,
     "coin": "DOGE",
     "status": "CLOSED",
     "entryTime": "2026-09-16T00:30:11.852Z",
@@ -295,11 +296,11 @@
     "feeExit": 0.2,
     "netProfit": 1.85,
     "entryForeignPrice": null,
-    "id": 15,
     "createdAt": "2026-09-16T00:30:11.867Z",
     "updatedAt": "2026-09-16T18:10:12.359Z"
   },
   {
+    "id": 16,
     "coin": "BTC",
     "status": "OPEN",
     "entryTime": "2026-09-17T00:40:11.255Z",
@@ -315,11 +316,11 @@
     "feeExit": null,
     "netProfit": null,
     "entryForeignPrice": null,
-    "id": 16,
     "createdAt": "2026-09-17T00:40:11.290Z",
     "updatedAt": "2026-09-17T00:40:11.290Z"
   },
   {
+    "id": 17,
     "coin": "ETH",
     "status": "OPEN",
     "entryTime": "2026-09-17T03:00:11.588Z",
@@ -335,11 +336,11 @@
     "feeExit": null,
     "netProfit": null,
     "entryForeignPrice": null,
-    "id": 17,
     "createdAt": "2026-09-17T03:00:11.600Z",
     "updatedAt": "2026-09-17T03:00:11.600Z"
   },
   {
+    "id": 18,
     "coin": "XRP",
     "status": "CLOSED",
     "entryTime": "2026-09-17T03:25:11.671Z",
@@ -355,11 +356,11 @@
     "feeExit": 0.2,
     "netProfit": 4.42,
     "entryForeignPrice": null,
-    "id": 18,
     "createdAt": "2026-09-17T03:25:11.687Z",
     "updatedAt": "2026-09-17T10:45:11.026Z"
   },
   {
+    "id": 19,
     "coin": "XRP",
     "status": "OPEN",
     "entryTime": "2026-09-18T00:30:11.558Z",
@@ -375,11 +376,11 @@
     "feeExit": null,
     "netProfit": null,
     "entryForeignPrice": null,
-    "id": 19,
     "createdAt": "2026-09-18T00:30:11.572Z",
     "updatedAt": "2026-09-18T00:30:11.572Z"
   },
   {
+    "id": 20,
     "coin": "DOGE",
     "status": "OPEN",
     "entryTime": "2026-09-18T12:55:11.822Z",
@@ -395,11 +396,11 @@
     "feeExit": null,
     "netProfit": null,
     "entryForeignPrice": 0.08544,
-    "id": 20,
     "createdAt": "2026-09-18T12:55:11.863Z",
     "updatedAt": "2026-09-18T12:55:11.863Z"
   },
   {
+    "id": 21,
     "coin": "ADA",
     "status": "CLOSED",
     "entryTime": "2026-09-18T13:15:11.961Z",
@@ -415,7 +416,6 @@
     "feeExit": 0.2,
     "netProfit": -11.43,
     "entryForeignPrice": 0.2158,
-    "id": 21,
     "createdAt": "2026-09-18T13:15:11.977Z",
     "updatedAt": "2026-09-20T14:15:14.587Z"
   }
