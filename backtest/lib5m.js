@@ -362,9 +362,11 @@ async function buildDataset(opts) {
   }
   const groupSize = barMinutes / BASE_BAR_MINUTES; // 원본 몇 개를 한 봉으로 묶는가
   const barMs = barMinutes * 60000;
-  const maxWindow = Math.round(WINDOW_DAYS * 1440 / barMinutes);
+  // 이동평균 기간. 기본 3일. 기간 자체를 비교할 때만 바꾼다(stability.js).
+  const windowDays = opts.windowDays || WINDOW_DAYS;
+  const maxWindow = Math.round(windowDays * 1440 / barMinutes);
   if (barMinutes !== BASE_BAR_MINUTES) {
-    log(`봉 간격 ${barMinutes}분 (원본 5분봉 ${groupSize}개씩 묶음, 이동평균 ${WINDOW_DAYS}일 = ${maxWindow}봉)`);
+    log(`봉 간격 ${barMinutes}분 (원본 5분봉 ${groupSize}개씩 묶음, 이동평균 ${windowDays}일 = ${maxWindow}봉)`);
   }
   if (!fs.existsSync(CACHE_DIR)) fs.mkdirSync(CACHE_DIR, { recursive: true });
 
