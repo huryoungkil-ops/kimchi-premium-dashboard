@@ -338,9 +338,9 @@
       <span class="tag">PAPER TRADING</span>
     </div>
     <div class="snapshot-meta">
-      스냅샷 기준 <strong><!--SNAPSHOT_TIME-->2026-09-22 13:36 KST<!--/SNAPSHOT_TIME--></strong><br>
+      스냅샷 기준 <strong><!--SNAPSHOT_TIME-->2026-09-22 14:35 KST<!--/SNAPSHOT_TIME--></strong><br>
       가동 시작 2026-09-05 22:00 KST
-      <div class="live-badge"><i class="pulse"></i><!--LAST_REFRESH-->마지막 갱신 2026-09-22 13:36 KST 기준<!--/LAST_REFRESH--></div>
+      <div class="live-badge"><i class="pulse"></i><!--LAST_REFRESH-->마지막 갱신 2026-09-22 14:35 KST 기준<!--/LAST_REFRESH--></div>
     </div>
   </header>
 
@@ -390,7 +390,7 @@
             <th>진입 시각</th>
           </tr>
         </thead>
-        <tbody id="open-tbody"><!--OPEN_POSITIONS--><tr><td>XRP</td><td>-0.09%</td><td>-2.10%</td><td class="neg">-$21.24</td><td>09-18 09:30</td></tr><tr><td>DOGE</td><td>-0.13%</td><td>-2.26%</td><td class="neg">-$22.46</td><td>09-18 21:55</td></tr><!--/OPEN_POSITIONS--></tbody>
+        <tbody id="open-tbody"><!--OPEN_POSITIONS--><tr><td>DOGE</td><td>-0.13%</td><td>-2.21%</td><td class="neg">-$21.90</td><td>09-18 21:55</td></tr><tr><td>XRP</td><td>-0.09%</td><td>-2.32%</td><td class="neg">-$23.39</td><td>09-18 09:30</td></tr><!--/OPEN_POSITIONS--></tbody>
       </table>
     </div>
   </section>
@@ -555,7 +555,7 @@
 <script>
 (function(){
   // COINS_DATA_START — 자동 갱신 작업이 이 배열만 통째로 교체합니다. 형식: [심볼, 프리미엄(%, 소수점2), 코빗원화가, 상태("calm"|"watch"|"danger")]
-var coins = [["APT",8.06,1140,"danger"],["AR",7.45,6480,"danger"],["SUSHI",0.17,350.3,"calm"],["UNI",-0.74,12260,"calm"],["CELO",-1.2,128.1,"calm"],["SHIB",-1.23,0.0084,"calm"],["TIA",-1.36,599.5,"calm"],["SEI",-1.37,81.52,"calm"],["LINK",-1.37,17620,"calm"],["PENDLE",-1.47,3329,"calm"],["HBAR",-1.57,128.4,"calm"],["ONDO",-1.88,591.2,"calm"],["SOL",-2,157400,"calm"],["AVAX",-2.01,14750,"watch"],["SUI",-2.02,1388,"watch"],["ETH",-2.03,3686000,"watch"],["BTC",-2.03,115275000,"watch"],["XLM",-2.08,289.3,"watch"],["XRP",-2.1,2052,"watch"],["BNB",-2.11,1061000,"watch"],["ADA",-2.12,337.7,"watch"],["HYPE",-2.17,125000,"watch"],["W",-2.25,15.98,"watch"],["DOGE",-2.26,139.6,"watch"],["FIL",-2.34,1343,"watch"],["TRX",-2.36,468,"watch"],["AAVE",-2.37,192600,"watch"],["PYTH",-2.38,85.77,"watch"],["QTUM",-2.4,1328,"watch"],["BCH",-2.43,356100,"watch"],["STX",-2.51,462.7,"watch"],["ARB",-2.54,294.2,"watch"],["WLD",-2.58,612.7,"watch"],["JTO",-2.68,692.4,"watch"],["FLOW",-3,43.66,"watch"],["ALGO",-3.13,148.8,"watch"],["ETC",-3.26,11800,"watch"],["NEAR",-3.32,5800,"watch"],["XTZ",-3.34,454.5,"watch"],["ZIL",-6.06,4.78,"danger"]];
+var coins = [["AR",12.96,6480,"danger"],["SUSHI",2.27,350.3,"watch"],["W",-0.25,15.98,"calm"],["PYTH",-0.34,85.77,"calm"],["QTUM",-0.46,1328,"calm"],["PENDLE",-1.15,3329,"calm"],["SHIB",-1.21,0.0081,"calm"],["CELO",-1.33,125.9,"calm"],["BCH",-1.35,356100,"calm"],["JTO",-1.35,691.3,"calm"],["UNI",-1.36,12030,"calm"],["FLOW",-1.45,43.45,"calm"],["TIA",-1.52,583.6,"calm"],["ALGO",-1.55,147.7,"calm"],["AAVE",-1.59,192600,"calm"],["XTZ",-1.61,454.5,"calm"],["FIL",-1.86,1329,"calm"],["ARB",-1.88,293.2,"calm"],["BNB",-1.95,1058000,"calm"],["APT",-1.95,1019,"calm"],["ETC",-1.98,11680,"calm"],["XLM",-2.01,283.4,"watch"],["LINK",-2.03,17300,"watch"],["HBAR",-2.18,123.2,"watch"],["DOGE",-2.21,132.9,"watch"],["HYPE",-2.21,125400,"watch"],["WLD",-2.22,603,"watch"],["SOL",-2.23,155700,"watch"],["TRX",-2.27,468.6,"watch"],["BTC",-2.28,114500000,"watch"],["ETH",-2.28,3656000,"watch"],["XRP",-2.32,2017,"watch"],["ONDO",-2.32,578.1,"watch"],["SUI",-2.34,1349,"watch"],["SEI",-2.36,79.73,"watch"],["ADA",-2.46,325,"watch"],["NEAR",-2.49,5760,"watch"],["STX",-2.61,467.3,"watch"],["AVAX",-2.85,14150,"watch"],["ZIL",-3.88,4.78,"watch"]];
 // COINS_DATA_END
 
   // 스케일은 그날의 실제 프리미엄 분포에 맞춰 매번 새로 계산합니다 (고정폭이면 값이 범위를 넘을 때 막대가 옆 칸을 침범함)
