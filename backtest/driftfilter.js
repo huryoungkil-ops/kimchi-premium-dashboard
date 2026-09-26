@@ -20,8 +20,8 @@ const ready = lib.COINS.filter(c =>
 lib.COINS.length = 0;
 for (const c of ready) lib.COINS.push(c);
 
-// run6y가 고른 보수적 조합을 그대로 쓰고 필터만 얹는다
-const BASE = JSON.parse(fs.readFileSync(path.join(lib.OUT_DIR, 'run6y_result.json'), 'utf8')).best;
+// 지금 실거래 봇이 쓰는 설정을 그대로 쓰고 필터만 얹는다 (lib5m.js LIVE_PARAMS)
+const BASE = lib.LIVE_PARAMS;
 
 function row(label, r) {
   const p = (s, n) => String(s).padStart(n);

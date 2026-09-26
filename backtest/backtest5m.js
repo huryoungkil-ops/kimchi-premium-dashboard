@@ -17,8 +17,11 @@ const USE_OPTIMIZED = process.argv.includes('optimized');
 
 function pick() {
   if (!USE_OPTIMIZED) {
-    // 현재 실거래 봇(n8n)이 쓰고 있는 조건과 동일
-    return { label: '현재 실거래 봇 설정', params: {} };
+    // 현재 실거래 봇(n8n)이 쓰고 있는 조건과 동일.
+    // 예전에는 여기서 빈 객체를 넘겨 DEFAULT_PARAMS가 쓰이게 했는데, 2026-09-20에
+    // 봇 설정이 바뀌면서 그게 더는 «현재 봇»이 아니게 됐다. 이제 lib5m.js의
+    // LIVE_PARAMS 한 곳만 보면 된다.
+    return { label: '현재 실거래 봇 설정', params: lib.LIVE_PARAMS };
   }
   const f = path.join(lib.OUT_DIR, `optimize5m_recommended_${YEARS}y.json`);
   if (!fs.existsSync(f)) {

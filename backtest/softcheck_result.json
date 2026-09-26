@@ -5,9 +5,25 @@
     "EDGE_MULTIPLE": 3,
     "EXIT_SIGMA_OFFSET": 0.25,
     "REQUIRE_PROFIT_EXIT": false,
+    "FEE_SCENARIO": "promo_maker",
+    "PAY_SPREAD": true,
+    "EXEC_DELAY_BARS": 1,
+    "FUNDING_LOOKBACK": 21,
+    "MIN_FUNDING_8H": null,
+    "FUNDING_RANK_WEIGHT": 0,
+    "MAX_SIGMA_PERCENT": 2.5,
     "MAX_POSITIONS": 4,
+    "SOFT_HOLD_DAYS": 2,
+    "SOFT_EXIT_LOSS_PP": 0.5,
+    "SOFT_SPREAD_AWARE": false,
+    "MAX_HOLD_DAYS": 5,
+    "STOP_LOSS_PP": null,
+    "PRICE_STOP_PCT": 50,
+    "MARKET_Z_FLOOR": null,
+    "TRANCHES": null,
+    "SIGNAL_RESIDUAL": false,
     "RANK_BY": "netEdge",
-    "MAX_HOLD_DAYS": 5
+    "ENTRY_GAP_HOURS": 0
   },
   "old": {
     "ENTRY_SIGMA": 1,
@@ -26,29 +42,29 @@
           "SOFT_HOLD_DAYS": null
         },
         "full": {
-          "trades": 3542,
-          "winRate": 73,
-          "ann": 22.11,
-          "avg": 3.76,
-          "mdd": 170.08,
+          "trades": 3527,
+          "winRate": 73.1,
+          "ann": 21.75,
+          "avg": 3.71,
+          "mdd": 112.26,
           "exits": {
-            "SIGNAL": 3523,
+            "SIGNAL": 3521,
             "SOFT": 0,
-            "STOP": 19,
+            "STOP": 0,
             "MAXHOLD": 0,
-            "PRICESTOP": 0
+            "PRICESTOP": 6
           }
         },
         "valid": {
-          "trades": 913,
-          "ann": 11.04,
-          "mdd": 99.5,
+          "trades": 908,
+          "ann": 9.95,
+          "mdd": 99.34,
           "exits": {
-            "SIGNAL": 908,
+            "SIGNAL": 907,
             "SOFT": 0,
-            "STOP": 5,
+            "STOP": 0,
             "MAXHOLD": 0,
-            "PRICESTOP": 0
+            "PRICESTOP": 1
           }
         }
       },
@@ -59,27 +75,27 @@
           "SOFT_EXIT_LOSS_PP": 0.5
         },
         "full": {
-          "trades": 4025,
-          "winRate": 65.8,
-          "ann": 20.44,
-          "avg": 3.06,
-          "mdd": 170.08,
+          "trades": 4008,
+          "winRate": 66,
+          "ann": 20.15,
+          "avg": 3.02,
+          "mdd": 134.47,
           "exits": {
-            "SIGNAL": 3088,
-            "SOFT": 918,
-            "STOP": 19,
+            "SIGNAL": 3091,
+            "SOFT": 913,
+            "STOP": 0,
             "MAXHOLD": 0,
-            "PRICESTOP": 0
+            "PRICESTOP": 4
           }
         },
         "valid": {
-          "trades": 1054,
-          "ann": 9.11,
+          "trades": 1048,
+          "ann": 8.02,
           "mdd": 91.98,
           "exits": {
-            "SIGNAL": 741,
+            "SIGNAL": 740,
             "SOFT": 308,
-            "STOP": 5,
+            "STOP": 0,
             "MAXHOLD": 0,
             "PRICESTOP": 0
           }
@@ -92,29 +108,29 @@
           "SOFT_EXIT_LOSS_PP": 0
         },
         "full": {
-          "trades": 3591,
-          "winRate": 72.2,
-          "ann": 22.17,
-          "avg": 3.71,
-          "mdd": 170.08,
+          "trades": 3576,
+          "winRate": 72.4,
+          "ann": 21.81,
+          "avg": 3.67,
+          "mdd": 112.26,
           "exits": {
-            "SIGNAL": 3469,
-            "SOFT": 103,
-            "STOP": 19,
+            "SIGNAL": 3468,
+            "SOFT": 102,
+            "STOP": 0,
             "MAXHOLD": 0,
-            "PRICESTOP": 0
+            "PRICESTOP": 6
           }
         },
         "valid": {
-          "trades": 930,
-          "ann": 11.36,
-          "mdd": 99.5,
+          "trades": 925,
+          "ann": 10.27,
+          "mdd": 99.33,
           "exits": {
-            "SIGNAL": 902,
+            "SIGNAL": 901,
             "SOFT": 23,
-            "STOP": 5,
+            "STOP": 0,
             "MAXHOLD": 0,
-            "PRICESTOP": 0
+            "PRICESTOP": 1
           }
         }
       },
@@ -125,29 +141,29 @@
           "SOFT_EXIT_LOSS_PP": 0.5
         },
         "full": {
-          "trades": 3645,
-          "winRate": 72,
-          "ann": 22.02,
-          "avg": 3.64,
-          "mdd": 170.08,
+          "trades": 3631,
+          "winRate": 72.2,
+          "ann": 21.73,
+          "avg": 3.6,
+          "mdd": 122.55,
           "exits": {
-            "SIGNAL": 3392,
+            "SIGNAL": 3391,
             "SOFT": 234,
-            "STOP": 19,
+            "STOP": 0,
             "MAXHOLD": 0,
-            "PRICESTOP": 0
+            "PRICESTOP": 6
           }
         },
         "valid": {
-          "trades": 955,
-          "ann": 11.41,
-          "mdd": 89.06,
+          "trades": 950,
+          "ann": 10.32,
+          "mdd": 88.89,
           "exits": {
-            "SIGNAL": 883,
+            "SIGNAL": 882,
             "SOFT": 67,
-            "STOP": 5,
+            "STOP": 0,
             "MAXHOLD": 0,
-            "PRICESTOP": 0
+            "PRICESTOP": 1
           }
         }
       },
@@ -158,29 +174,29 @@
           "SOFT_EXIT_LOSS_PP": 1
         },
         "full": {
-          "trades": 3689,
-          "winRate": 72.1,
-          "ann": 21.87,
-          "avg": 3.57,
-          "mdd": 170.08,
+          "trades": 3676,
+          "winRate": 72.3,
+          "ann": 21.59,
+          "avg": 3.53,
+          "mdd": 124.92,
           "exits": {
-            "SIGNAL": 3366,
-            "SOFT": 304,
-            "STOP": 19,
+            "SIGNAL": 3365,
+            "SOFT": 305,
+            "STOP": 0,
             "MAXHOLD": 0,
-            "PRICESTOP": 0
+            "PRICESTOP": 6
           }
         },
         "valid": {
-          "trades": 964,
-          "ann": 11.19,
-          "mdd": 91.8,
+          "trades": 959,
+          "ann": 10.11,
+          "mdd": 91.63,
           "exits": {
-            "SIGNAL": 875,
+            "SIGNAL": 874,
             "SOFT": 84,
-            "STOP": 5,
+            "STOP": 0,
             "MAXHOLD": 0,
-            "PRICESTOP": 0
+            "PRICESTOP": 1
           }
         }
       },
@@ -191,29 +207,29 @@
           "SOFT_EXIT_LOSS_PP": 0.5
         },
         "full": {
-          "trades": 3571,
-          "winRate": 72.9,
-          "ann": 22.13,
-          "avg": 3.73,
-          "mdd": 170.08,
+          "trades": 3556,
+          "winRate": 73.1,
+          "ann": 21.77,
+          "avg": 3.68,
+          "mdd": 112.26,
           "exits": {
-            "SIGNAL": 3513,
+            "SIGNAL": 3511,
             "SOFT": 39,
-            "STOP": 19,
+            "STOP": 0,
             "MAXHOLD": 0,
-            "PRICESTOP": 0
+            "PRICESTOP": 6
           }
         },
         "valid": {
-          "trades": 924,
-          "ann": 11.04,
-          "mdd": 99.5,
+          "trades": 919,
+          "ann": 9.95,
+          "mdd": 99.33,
           "exits": {
-            "SIGNAL": 900,
+            "SIGNAL": 899,
             "SOFT": 19,
-            "STOP": 5,
+            "STOP": 0,
             "MAXHOLD": 0,
-            "PRICESTOP": 0
+            "PRICESTOP": 1
           }
         }
       },
@@ -225,29 +241,29 @@
           "SOFT_SPREAD_AWARE": true
         },
         "full": {
-          "trades": 3634,
-          "winRate": 72,
-          "ann": 22,
-          "avg": 3.64,
-          "mdd": 170.08,
+          "trades": 3619,
+          "winRate": 72.2,
+          "ann": 21.65,
+          "avg": 3.6,
+          "mdd": 112.26,
           "exits": {
-            "SIGNAL": 3407,
-            "SOFT": 208,
-            "STOP": 19,
+            "SIGNAL": 3406,
+            "SOFT": 207,
+            "STOP": 0,
             "MAXHOLD": 0,
-            "PRICESTOP": 0
+            "PRICESTOP": 6
           }
         },
         "valid": {
-          "trades": 950,
-          "ann": 11.33,
-          "mdd": 99.51,
+          "trades": 945,
+          "ann": 10.25,
+          "mdd": 99.33,
           "exits": {
-            "SIGNAL": 885,
+            "SIGNAL": 884,
             "SOFT": 60,
-            "STOP": 5,
+            "STOP": 0,
             "MAXHOLD": 0,
-            "PRICESTOP": 0
+            "PRICESTOP": 1
           }
         }
       },
@@ -259,29 +275,29 @@
           "SOFT_SPREAD_AWARE": true
         },
         "full": {
-          "trades": 3680,
-          "winRate": 72.1,
-          "ann": 21.88,
-          "avg": 3.58,
-          "mdd": 170.08,
+          "trades": 3667,
+          "winRate": 72.3,
+          "ann": 21.6,
+          "avg": 3.54,
+          "mdd": 122.55,
           "exits": {
-            "SIGNAL": 3371,
-            "SOFT": 290,
-            "STOP": 19,
+            "SIGNAL": 3370,
+            "SOFT": 291,
+            "STOP": 0,
             "MAXHOLD": 0,
-            "PRICESTOP": 0
+            "PRICESTOP": 6
           }
         },
         "valid": {
-          "trades": 962,
-          "ann": 11.47,
-          "mdd": 88.19,
+          "trades": 957,
+          "ann": 10.39,
+          "mdd": 88.02,
           "exits": {
-            "SIGNAL": 879,
+            "SIGNAL": 878,
             "SOFT": 78,
-            "STOP": 5,
+            "STOP": 0,
             "MAXHOLD": 0,
-            "PRICESTOP": 0
+            "PRICESTOP": 1
           }
         }
       }
@@ -556,44 +572,44 @@
     "holdDist": [
       {
         "bucket": "~6시간",
-        "trades": 1627,
-        "net": 6080.82,
-        "avg": 3.74,
-        "wins": 1138
+        "trades": 1611,
+        "net": 5939.34,
+        "avg": 3.69,
+        "wins": 1132
       },
       {
         "bucket": "6~12시간",
         "trades": 533,
-        "net": 3331.19,
-        "avg": 6.25,
-        "wins": 481
+        "net": 3272.84,
+        "avg": 6.14,
+        "wins": 480
       },
       {
         "bucket": "12~24시간",
-        "trades": 597,
-        "net": 3522.79,
-        "avg": 5.9,
-        "wins": 525
+        "trades": 600,
+        "net": 3674,
+        "avg": 6.12,
+        "wins": 532
       },
       {
         "bucket": "1~2일",
-        "trades": 463,
-        "net": 1704.89,
-        "avg": 3.68,
-        "wins": 370
+        "trades": 459,
+        "net": 1651.25,
+        "avg": 3.6,
+        "wins": 366
       },
       {
         "bucket": "2~3일",
-        "trades": 214,
-        "net": -444.85,
-        "avg": -2.08,
+        "trades": 213,
+        "net": -486.27,
+        "avg": -2.28,
         "wins": 65
       },
       {
         "bucket": "3~5일",
-        "trades": 108,
-        "net": -886.73,
-        "avg": -8.21,
+        "trades": 111,
+        "net": -959.31,
+        "avg": -8.64,
         "wins": 5
       },
       {

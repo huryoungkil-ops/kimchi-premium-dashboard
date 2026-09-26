@@ -1,22 +1,41 @@
 {
   "years": 6,
   "base": {
-    "ENTRY_SIGMA": 1,
-    "EDGE_MULTIPLE": 5,
-    "EXIT_SIGMA_OFFSET": 0.5,
-    "REQUIRE_PROFIT_EXIT": false
+    "ENTRY_SIGMA": 2,
+    "EDGE_MULTIPLE": 3,
+    "EXIT_SIGMA_OFFSET": 0.25,
+    "REQUIRE_PROFIT_EXIT": false,
+    "FEE_SCENARIO": "promo_maker",
+    "PAY_SPREAD": true,
+    "EXEC_DELAY_BARS": 1,
+    "FUNDING_LOOKBACK": 21,
+    "MIN_FUNDING_8H": null,
+    "FUNDING_RANK_WEIGHT": 0,
+    "MAX_SIGMA_PERCENT": 2.5,
+    "MAX_POSITIONS": 4,
+    "SOFT_HOLD_DAYS": 2,
+    "SOFT_EXIT_LOSS_PP": 0.5,
+    "SOFT_SPREAD_AWARE": false,
+    "MAX_HOLD_DAYS": 5,
+    "STOP_LOSS_PP": null,
+    "PRICE_STOP_PCT": 50,
+    "MARKET_Z_FLOOR": null,
+    "TRANCHES": null,
+    "SIGNAL_RESIDUAL": false,
+    "RANK_BY": "netEdge",
+    "ENTRY_GAP_HOURS": 0
   },
-  "entrySigma": 1,
-  "maxHoldDays": 7,
+  "entrySigma": 2,
+  "maxHoldDays": 5,
   "windowBars": 864,
   "minCoinsForMedian": 4,
-  "medianCoveragePct": 99.7,
+  "medianCoveragePct": 99.4,
   "coins": [
     {
       "coin": "BTC",
       "breakEven": 0.17,
       "sigmaRaw": 0.416,
-      "sigmaRes": 0.062,
+      "sigmaRes": 0.063,
       "halfLifeHoursRaw": {
         "5분": 5.31520242643291,
         "1시간": 10.689617727474939,
@@ -25,19 +44,19 @@
         "48시간": 9.412454405378382
       },
       "halfLifeHoursRes": {
-        "5분": 0.17660055835280278,
-        "1시간": 0.41977929075936293,
-        "6시간": 1.6478063822917195,
+        "5분": 0.1978379716136215,
+        "1시간": 0.4166775066615431,
+        "6시간": 1.7494717581881027,
         "24시간": null,
         "48시간": null
       },
       "hlRawH": 14.405280354857712,
-      "hlResH": 1.6478063822917195,
-      "recoverRaw": 0.416,
-      "recoverRes": 0.062,
+      "hlResH": 1.7494717581881027,
+      "recoverRaw": 0.83,
+      "recoverRes": 0.125,
       "passRaw": true,
       "passRes": false,
-      "needSigmaRes": 2.74,
+      "needSigmaRes": 2.71,
       "needSigmaRaw": 0.41
     },
     {
@@ -53,19 +72,19 @@
         "48시간": 9.270380570294218
       },
       "halfLifeHoursRes": {
-        "5분": 0.1518407554648103,
-        "1시간": 0.5128514890190425,
-        "6시간": 2.180988698234497,
-        "24시간": 6.5588064781360185,
+        "5분": 0.170625426194977,
+        "1시간": 0.5104014048617552,
+        "6시간": 2.2680677966437015,
+        "24시간": 6.617035638544722,
         "48시간": null
       },
       "hlRawH": 14.411019616162475,
-      "hlResH": 6.5588064781360185,
-      "recoverRaw": 0.422,
-      "recoverRes": 0.064,
+      "hlResH": 6.617035638544722,
+      "recoverRaw": 0.841,
+      "recoverRes": 0.128,
       "passRaw": true,
       "passRes": false,
-      "needSigmaRes": 2.35,
+      "needSigmaRes": 2.34,
       "needSigmaRaw": 0.36
     },
     {
@@ -81,26 +100,26 @@
         "48시간": 10.872476833206692
       },
       "halfLifeHoursRes": {
-        "5분": 1.5032565219255454,
-        "1시간": 4.49844991601718,
-        "6시간": 9.229399807778908,
-        "24시간": 7.334130323615872,
-        "48시간": 9.609354405231588
+        "5분": 1.300163825994726,
+        "1시간": 4.344162684074918,
+        "6시간": 9.219363983725103,
+        "24시간": 7.365623270284997,
+        "48시간": 9.520095455596334
       },
       "hlRawH": 16.215999448066956,
-      "hlResH": 9.609354405231588,
-      "recoverRaw": 0.414,
-      "recoverRes": 0.071,
+      "hlResH": 9.520095455596334,
+      "recoverRaw": 0.823,
+      "recoverRes": 0.142,
       "passRaw": true,
       "passRes": false,
-      "needSigmaRes": 2.54,
+      "needSigmaRes": 2.53,
       "needSigmaRaw": 0.43
     },
     {
       "coin": "XRP",
       "breakEven": 0.09,
       "sigmaRaw": 0.433,
-      "sigmaRes": 0.1,
+      "sigmaRes": 0.101,
       "halfLifeHoursRaw": {
         "5분": 1.7209237175174936,
         "1시간": 5.9087091874587,
@@ -109,19 +128,19 @@
         "48시간": 9.488609068635956
       },
       "halfLifeHoursRes": {
-        "5분": 0.07076443284231623,
-        "1시간": 0.40618522670405866,
-        "6시간": 1.1190585399737287,
+        "5분": 0.07328540134581796,
+        "1시간": 0.40496590851392056,
+        "6시간": 1.1210631397606419,
         "24시간": null,
-        "48시간": 7.648346132414343
+        "48시간": 7.817014736940537
       },
       "hlRawH": 13.749848672008305,
-      "hlResH": 7.648346132414343,
-      "recoverRaw": 0.433,
-      "recoverRes": 0.1,
+      "hlResH": 7.817014736940537,
+      "recoverRaw": 0.864,
+      "recoverRes": 0.203,
       "passRaw": true,
       "passRes": true,
-      "needSigmaRes": 0.9,
+      "needSigmaRes": 0.89,
       "needSigmaRaw": 0.21
     },
     {
@@ -137,16 +156,16 @@
         "48시간": 7.440799391239911
       },
       "halfLifeHoursRes": {
-        "5분": 0.17010678181336442,
-        "1시간": 1.3083672778079947,
-        "6시간": 4.7195387766132475,
-        "24시간": 10.091109576057772,
+        "5분": 0.16959115443104827,
+        "1시간": 1.304771965569128,
+        "6시간": 4.70860410495751,
+        "24시간": 10.125202098087698,
         "48시간": null
       },
       "hlRawH": 13.86162929504087,
-      "hlResH": 10.091109576057772,
-      "recoverRaw": 0.472,
-      "recoverRes": 0.133,
+      "hlResH": 10.125202098087698,
+      "recoverRaw": 0.941,
+      "recoverRes": 0.267,
       "passRaw": true,
       "passRes": false,
       "needSigmaRes": 2.7,
@@ -165,19 +184,19 @@
         "48시간": 9.05989671489977
       },
       "halfLifeHoursRes": {
-        "5분": 0.20465406139704437,
-        "1시간": 1.133679800464187,
-        "6시간": 2.241236709124716,
+        "5분": 0.2027867191482336,
+        "1시간": 1.1649407714023265,
+        "6시간": 2.225356027598,
         "24시간": null,
         "48시간": null
       },
       "hlRawH": 12.009712614725196,
-      "hlResH": 2.241236709124716,
-      "recoverRaw": 0.436,
-      "recoverRes": 0.092,
-      "passRaw": false,
+      "hlResH": 2.225356027598,
+      "recoverRaw": 0.871,
+      "recoverRes": 0.183,
+      "passRaw": true,
       "passRes": false,
-      "needSigmaRes": 5.12,
+      "needSigmaRes": 5.13,
       "needSigmaRaw": 1.08
     },
     {
@@ -193,18 +212,18 @@
         "48시간": 10.95445230437678
       },
       "halfLifeHoursRes": {
-        "5분": 0.07184799831988439,
-        "1시간": 0.5325737702948796,
-        "6시간": 2.2173615408606207,
-        "24시간": 5.5603006349052135,
-        "48시간": 4.459798767556275
+        "5분": 0.06908881030039588,
+        "1시간": 0.5302281461533904,
+        "6시간": 2.2042476498460406,
+        "24시간": 5.664963786696382,
+        "48시간": 4.519838704573852
       },
       "hlRawH": 12.984845463324497,
-      "hlResH": 5.5603006349052135,
-      "recoverRaw": 0.523,
-      "recoverRes": 0.2,
+      "hlResH": 5.664963786696382,
+      "recoverRaw": 1.044,
+      "recoverRes": 0.4,
       "passRaw": true,
-      "passRes": false,
+      "passRes": true,
       "needSigmaRes": 1.05,
       "needSigmaRaw": 0.4
     },
@@ -212,7 +231,7 @@
       "coin": "TRX",
       "breakEven": 0.17,
       "sigmaRaw": 0.495,
-      "sigmaRes": 0.142,
+      "sigmaRes": 0.143,
       "halfLifeHoursRaw": {
         "5분": 0.7137257280800798,
         "1시간": 3.988602239070093,
@@ -221,19 +240,19 @@
         "48시간": 8.869829498311194
       },
       "halfLifeHoursRes": {
-        "5분": 0.053079217320762026,
-        "1시간": 0.3283862924826807,
-        "6시간": 1.3631257463006838,
-        "24시간": 4.771731445929409,
-        "48시간": 6.587333129208508
+        "5분": 0.06077414953240587,
+        "1시간": 0.3306989513847429,
+        "6시간": 1.3791057930898503,
+        "24시간": 4.7818664883131055,
+        "48시간": 7.364802102914143
       },
       "hlRawH": 13.414165991327966,
-      "hlResH": 6.587333129208508,
-      "recoverRaw": 0.495,
-      "recoverRes": 0.142,
+      "hlResH": 7.364802102914143,
+      "recoverRaw": 0.987,
+      "recoverRes": 0.287,
       "passRaw": true,
-      "passRes": false,
-      "needSigmaRes": 1.19,
+      "passRes": true,
+      "needSigmaRes": 1.18,
       "needSigmaRaw": 0.34
     },
     {
@@ -249,26 +268,110 @@
         "48시간": null
       },
       "halfLifeHoursRes": {
-        "5분": 0.08858340600446421,
-        "1시간": 0.6787681490189096,
-        "6시간": 2.515792688792896,
+        "5분": 0.08732312783077756,
+        "1시간": 0.6786879467244412,
+        "6시간": 2.5113707784864916,
         "24시간": null,
         "48시간": null
       },
       "hlRawH": 12.643507384226634,
-      "hlResH": 2.515792688792896,
-      "recoverRaw": 0.505,
-      "recoverRes": 0.196,
+      "hlResH": 2.5113707784864916,
+      "recoverRaw": 1.008,
+      "recoverRes": 0.392,
       "passRaw": true,
       "passRes": true,
       "needSigmaRes": 0.61,
       "needSigmaRaw": 0.24
+    },
+    {
+      "coin": "UNI",
+      "breakEven": 0.74,
+      "sigmaRaw": 0.4,
+      "sigmaRes": 0.11,
+      "halfLifeHoursRaw": {
+        "5분": 0.7520765366170955,
+        "1시간": 3.030133671932281,
+        "6시간": 13.924399051053076,
+        "24시간": 15.412274757850625,
+        "48시간": null
+      },
+      "halfLifeHoursRes": {
+        "5분": 0.06896749971054722,
+        "1시간": 0.31968177289832317,
+        "6시간": 1.3059599600045186,
+        "24시간": 3.534112107276462,
+        "48시간": 7.705324816438603
+      },
+      "hlRawH": 15.412274757850625,
+      "hlResH": 7.705324816438603,
+      "recoverRaw": 0.796,
+      "recoverRes": 0.22,
+      "passRaw": true,
+      "passRes": false,
+      "needSigmaRes": 6.73,
+      "needSigmaRaw": 1.85
+    },
+    {
+      "coin": "ARB",
+      "breakEven": 0.64,
+      "sigmaRaw": 0.433,
+      "sigmaRes": 0.138,
+      "halfLifeHoursRaw": {
+        "5분": 0.38256163164376966,
+        "1시간": 2.883261638634442,
+        "6시간": 9.477272230603791,
+        "24시간": 15.28744960520445,
+        "48시간": 9.476746408866703
+      },
+      "halfLifeHoursRes": {
+        "5분": 0.041752989298600246,
+        "1시간": 0.3264719311221311,
+        "6시간": 1.038595839874058,
+        "24시간": null,
+        "48시간": 8.578015330006677
+      },
+      "hlRawH": 15.28744960520445,
+      "hlResH": 8.578015330006677,
+      "recoverRaw": 0.862,
+      "recoverRes": 0.276,
+      "passRaw": true,
+      "passRes": false,
+      "needSigmaRes": 4.64,
+      "needSigmaRaw": 1.48
+    },
+    {
+      "coin": "SUI",
+      "breakEven": 0.43,
+      "sigmaRaw": 0.399,
+      "sigmaRes": 0.082,
+      "halfLifeHoursRaw": {
+        "5분": 0.3468397728977811,
+        "1시간": 5.34115166376143,
+        "6시간": 12.31541351595465,
+        "24시간": 16.096346737806513,
+        "48시간": 6.115471370675814
+      },
+      "halfLifeHoursRes": {
+        "5분": 0.08285754547973682,
+        "1시간": 1.7802810498387798,
+        "6시간": 4.156526947508625,
+        "24시간": 7.1004328917344095,
+        "48시간": null
+      },
+      "hlRawH": 16.096346737806513,
+      "hlResH": 7.1004328917344095,
+      "recoverRaw": 0.793,
+      "recoverRes": 0.164,
+      "passRaw": true,
+      "passRes": false,
+      "needSigmaRes": 5.24,
+      "needSigmaRaw": 1.08
     }
   ],
   "summary": {
-    "passRaw": 8,
-    "passRes": 2,
-    "faster": 9,
-    "total": 9
+    "passRaw": 12,
+    "passRes": 4,
+    "faster": 12,
+    "total": 12
   }
 }

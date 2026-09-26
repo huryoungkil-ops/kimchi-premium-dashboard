@@ -3,8 +3,27 @@
   "recommended": {
     "ENTRY_SIGMA": 2,
     "EDGE_MULTIPLE": 3,
-    "EXIT_SIGMA_OFFSET": 0.5,
-    "REQUIRE_PROFIT_EXIT": false
+    "EXIT_SIGMA_OFFSET": 0.25,
+    "REQUIRE_PROFIT_EXIT": false,
+    "FEE_SCENARIO": "promo_maker",
+    "PAY_SPREAD": true,
+    "EXEC_DELAY_BARS": 1,
+    "FUNDING_LOOKBACK": 21,
+    "MIN_FUNDING_8H": null,
+    "FUNDING_RANK_WEIGHT": 0,
+    "MAX_SIGMA_PERCENT": 2.5,
+    "MAX_POSITIONS": 4,
+    "SOFT_HOLD_DAYS": 2,
+    "SOFT_EXIT_LOSS_PP": 0.5,
+    "SOFT_SPREAD_AWARE": false,
+    "MAX_HOLD_DAYS": 5,
+    "STOP_LOSS_PP": null,
+    "PRICE_STOP_PCT": 50,
+    "MARKET_Z_FLOOR": null,
+    "TRANCHES": null,
+    "SIGNAL_RESIDUAL": false,
+    "RANK_BY": "netEdge",
+    "ENTRY_GAP_HOURS": 0
   },
   "capitalMultiple": 2,
   "positionSize": 1000,
@@ -16,12 +35,12 @@
         "params": {
           "MAX_POSITIONS": 3
         },
-        "trades": 2534,
-        "validTrades": 655,
-        "validAnn": 7.66,
-        "validAvg": 2.11,
-        "validMdd": 99.87,
-        "validRatio": 7.67,
+        "trades": 3019,
+        "validTrades": 789,
+        "validAnn": 7.85,
+        "validAvg": 1.8,
+        "validMdd": 73.27,
+        "validRatio": 10.71,
         "peakConcurrent": 3,
         "capitalNeeded": 6000,
         "overSeed": false
@@ -31,12 +50,12 @@
         "params": {
           "MAX_POSITIONS": 4
         },
-        "trades": 3076,
-        "validTrades": 790,
-        "validAnn": 9.35,
-        "validAvg": 2.14,
-        "validMdd": 127.79,
-        "validRatio": 7.32,
+        "trades": 3631,
+        "validTrades": 950,
+        "validAnn": 10.32,
+        "validAvg": 1.96,
+        "validMdd": 88.89,
+        "validRatio": 11.61,
         "peakConcurrent": 4,
         "capitalNeeded": 8000,
         "overSeed": false
@@ -46,12 +65,12 @@
         "params": {
           "MAX_POSITIONS": 5
         },
-        "trades": 3615,
-        "validTrades": 922,
-        "validAnn": 11.69,
-        "validAvg": 2.29,
-        "validMdd": 155.15,
-        "validRatio": 7.53,
+        "trades": 4217,
+        "validTrades": 1095,
+        "validAnn": 12.35,
+        "validAvg": 2.04,
+        "validMdd": 108.5,
+        "validRatio": 11.38,
         "peakConcurrent": 5,
         "capitalNeeded": 10000,
         "overSeed": false
@@ -61,12 +80,12 @@
         "params": {
           "MAX_POSITIONS": 6
         },
-        "trades": 4120,
-        "validTrades": 1044,
-        "validAnn": 13.25,
-        "validAvg": 2.29,
-        "validMdd": 181.81,
-        "validRatio": 7.29,
+        "trades": 4787,
+        "validTrades": 1237,
+        "validAnn": 14.71,
+        "validAvg": 2.15,
+        "validMdd": 126.65,
+        "validRatio": 11.61,
         "peakConcurrent": 6,
         "capitalNeeded": 12000,
         "overSeed": true
@@ -76,12 +95,12 @@
         "params": {
           "MAX_POSITIONS": 9
         },
-        "trades": 4946,
-        "validTrades": 1269,
-        "validAnn": 16.33,
-        "validAvg": 2.32,
-        "validMdd": 442.1,
-        "validRatio": 3.69,
+        "trades": 5663,
+        "validTrades": 1480,
+        "validAnn": 17.65,
+        "validAvg": 2.15,
+        "validMdd": 215.42,
+        "validRatio": 8.19,
         "peakConcurrent": 9,
         "capitalNeeded": 18000,
         "overSeed": true
@@ -93,14 +112,14 @@
         "params": {
           "ENTRY_SIGMA": 2
         },
-        "trades": 2534,
-        "validTrades": 655,
-        "validAnn": 7.66,
-        "validAvg": 2.11,
-        "validMdd": 99.87,
-        "validRatio": 7.67,
-        "peakConcurrent": 3,
-        "capitalNeeded": 6000,
+        "trades": 3631,
+        "validTrades": 950,
+        "validAnn": 10.32,
+        "validAvg": 1.96,
+        "validMdd": 88.89,
+        "validRatio": 11.61,
+        "peakConcurrent": 4,
+        "capitalNeeded": 8000,
         "overSeed": false
       },
       {
@@ -108,14 +127,14 @@
         "params": {
           "ENTRY_SIGMA": 1.75
         },
-        "trades": 3358,
-        "validTrades": 863,
-        "validAnn": 7.87,
-        "validAvg": 1.65,
-        "validMdd": 99.55,
-        "validRatio": 7.91,
-        "peakConcurrent": 3,
-        "capitalNeeded": 6000,
+        "trades": 4962,
+        "validTrades": 1294,
+        "validAnn": 9.72,
+        "validAvg": 1.36,
+        "validMdd": 101.37,
+        "validRatio": 9.59,
+        "peakConcurrent": 4,
+        "capitalNeeded": 8000,
         "overSeed": false
       },
       {
@@ -123,14 +142,14 @@
         "params": {
           "ENTRY_SIGMA": 1.5
         },
-        "trades": 4542,
-        "validTrades": 1136,
-        "validAnn": 5.78,
-        "validAvg": 0.92,
-        "validMdd": 225.6,
-        "validRatio": 2.56,
-        "peakConcurrent": 3,
-        "capitalNeeded": 6000,
+        "trades": 6831,
+        "validTrades": 1759,
+        "validAnn": 7.63,
+        "validAvg": 0.78,
+        "validMdd": 186.99,
+        "validRatio": 4.08,
+        "peakConcurrent": 4,
+        "capitalNeeded": 8000,
         "overSeed": false
       },
       {
@@ -138,14 +157,14 @@
         "params": {
           "ENTRY_SIGMA": 1.25
         },
-        "trades": 6082,
-        "validTrades": 1453,
-        "validAnn": 5.15,
-        "validAvg": 0.64,
-        "validMdd": 225.6,
-        "validRatio": 2.28,
-        "peakConcurrent": 3,
-        "capitalNeeded": 6000,
+        "trades": 9366,
+        "validTrades": 2273,
+        "validAnn": 5.08,
+        "validAvg": 0.4,
+        "validMdd": 454.79,
+        "validRatio": 1.12,
+        "peakConcurrent": 4,
+        "capitalNeeded": 8000,
         "overSeed": false
       }
     ],
@@ -155,14 +174,14 @@
         "params": {
           "EXIT_SIGMA_OFFSET": 0.5
         },
-        "trades": 2534,
-        "validTrades": 655,
-        "validAnn": 7.66,
-        "validAvg": 2.11,
-        "validMdd": 99.87,
-        "validRatio": 7.67,
-        "peakConcurrent": 3,
-        "capitalNeeded": 6000,
+        "trades": 3249,
+        "validTrades": 852,
+        "validAnn": 10.21,
+        "validAvg": 2.16,
+        "validMdd": 131.17,
+        "validRatio": 7.78,
+        "peakConcurrent": 4,
+        "capitalNeeded": 8000,
         "overSeed": false
       },
       {
@@ -170,14 +189,14 @@
         "params": {
           "EXIT_SIGMA_OFFSET": 0.25
         },
-        "trades": 2903,
-        "validTrades": 751,
-        "validAnn": 7.31,
-        "validAvg": 1.76,
-        "validMdd": 79.28,
-        "validRatio": 9.22,
-        "peakConcurrent": 3,
-        "capitalNeeded": 6000,
+        "trades": 3631,
+        "validTrades": 950,
+        "validAnn": 10.32,
+        "validAvg": 1.96,
+        "validMdd": 88.89,
+        "validRatio": 11.61,
+        "peakConcurrent": 4,
+        "capitalNeeded": 8000,
         "overSeed": false
       },
       {
@@ -185,14 +204,14 @@
         "params": {
           "EXIT_SIGMA_OFFSET": 0
         },
-        "trades": 3413,
-        "validTrades": 869,
-        "validAnn": 6.05,
-        "validAvg": 1.26,
-        "validMdd": 67.53,
-        "validRatio": 8.96,
-        "peakConcurrent": 3,
-        "capitalNeeded": 6000,
+        "trades": 4154,
+        "validTrades": 1073,
+        "validAnn": 8.87,
+        "validAvg": 1.49,
+        "validMdd": 86.7,
+        "validRatio": 10.23,
+        "peakConcurrent": 4,
+        "capitalNeeded": 8000,
         "overSeed": false
       }
     ],
@@ -202,14 +221,14 @@
         "params": {
           "MAX_HOLD_DAYS": 7
         },
-        "trades": 2534,
-        "validTrades": 655,
-        "validAnn": 7.66,
-        "validAvg": 2.11,
-        "validMdd": 99.87,
-        "validRatio": 7.67,
-        "peakConcurrent": 3,
-        "capitalNeeded": 6000,
+        "trades": 3631,
+        "validTrades": 950,
+        "validAnn": 10.32,
+        "validAvg": 1.96,
+        "validMdd": 88.89,
+        "validRatio": 11.61,
+        "peakConcurrent": 4,
+        "capitalNeeded": 8000,
         "overSeed": false
       },
       {
@@ -217,14 +236,14 @@
         "params": {
           "MAX_HOLD_DAYS": 5
         },
-        "trades": 2541,
-        "validTrades": 657,
-        "validAnn": 7.64,
-        "validAvg": 2.1,
-        "validMdd": 100.61,
-        "validRatio": 7.59,
-        "peakConcurrent": 3,
-        "capitalNeeded": 6000,
+        "trades": 3631,
+        "validTrades": 950,
+        "validAnn": 10.32,
+        "validAvg": 1.96,
+        "validMdd": 88.89,
+        "validRatio": 11.61,
+        "peakConcurrent": 4,
+        "capitalNeeded": 8000,
         "overSeed": false
       },
       {
@@ -232,14 +251,14 @@
         "params": {
           "MAX_HOLD_DAYS": 3
         },
-        "trades": 2608,
-        "validTrades": 683,
-        "validAnn": 7.34,
-        "validAvg": 1.94,
-        "validMdd": 82.37,
-        "validRatio": 8.91,
-        "peakConcurrent": 3,
-        "capitalNeeded": 6000,
+        "trades": 3641,
+        "validTrades": 955,
+        "validAnn": 10.01,
+        "validAvg": 1.89,
+        "validMdd": 94.98,
+        "validRatio": 10.54,
+        "peakConcurrent": 4,
+        "capitalNeeded": 8000,
         "overSeed": false
       },
       {
@@ -247,14 +266,14 @@
         "params": {
           "MAX_HOLD_DAYS": 2
         },
-        "trades": 2734,
-        "validTrades": 727,
-        "validAnn": 7.7,
-        "validAvg": 1.91,
-        "validMdd": 90.79,
-        "validRatio": 8.48,
-        "peakConcurrent": 3,
-        "capitalNeeded": 6000,
+        "trades": 3700,
+        "validTrades": 972,
+        "validAnn": 10.39,
+        "validAvg": 1.93,
+        "validMdd": 101.54,
+        "validRatio": 10.23,
+        "peakConcurrent": 4,
+        "capitalNeeded": 8000,
         "overSeed": false
       },
       {
@@ -262,14 +281,14 @@
         "params": {
           "MAX_HOLD_DAYS": 1
         },
-        "trades": 3138,
-        "validTrades": 835,
-        "validAnn": 6.66,
-        "validAvg": 1.44,
-        "validMdd": 86.64,
-        "validRatio": 7.69,
-        "peakConcurrent": 3,
-        "capitalNeeded": 6000,
+        "trades": 4147,
+        "validTrades": 1095,
+        "validAnn": 8.62,
+        "validAvg": 1.42,
+        "validMdd": 99.19,
+        "validRatio": 8.69,
+        "peakConcurrent": 4,
+        "capitalNeeded": 8000,
         "overSeed": false
       }
     ],
@@ -277,14 +296,14 @@
       {
         "label": "  기준(자리3)",
         "params": {},
-        "trades": 2534,
-        "validTrades": 655,
-        "validAnn": 7.66,
-        "validAvg": 2.11,
-        "validMdd": 99.87,
-        "validRatio": 7.67,
-        "peakConcurrent": 3,
-        "capitalNeeded": 6000,
+        "trades": 3631,
+        "validTrades": 950,
+        "validAnn": 10.32,
+        "validAvg": 1.96,
+        "validMdd": 88.89,
+        "validRatio": 11.61,
+        "peakConcurrent": 4,
+        "capitalNeeded": 8000,
         "overSeed": false
       },
       {
@@ -292,12 +311,12 @@
         "params": {
           "MAX_POSITIONS": 5
         },
-        "trades": 3615,
-        "validTrades": 922,
-        "validAnn": 11.69,
-        "validAvg": 2.29,
-        "validMdd": 155.15,
-        "validRatio": 7.53,
+        "trades": 4217,
+        "validTrades": 1095,
+        "validAnn": 12.35,
+        "validAvg": 2.04,
+        "validMdd": 108.5,
+        "validRatio": 11.38,
         "peakConcurrent": 5,
         "capitalNeeded": 10000,
         "overSeed": false
@@ -308,12 +327,12 @@
           "MAX_POSITIONS": 5,
           "EXIT_SIGMA_OFFSET": 0.25
         },
-        "trades": 4110,
-        "validTrades": 1049,
-        "validAnn": 11.72,
-        "validAvg": 2.02,
-        "validMdd": 126.97,
-        "validRatio": 9.23,
+        "trades": 4217,
+        "validTrades": 1095,
+        "validAnn": 12.35,
+        "validAvg": 2.04,
+        "validMdd": 108.5,
+        "validRatio": 11.38,
         "peakConcurrent": 5,
         "capitalNeeded": 10000,
         "overSeed": false
@@ -324,12 +343,12 @@
           "MAX_POSITIONS": 5,
           "MAX_HOLD_DAYS": 3
         },
-        "trades": 3717,
-        "validTrades": 967,
-        "validAnn": 11.38,
-        "validAvg": 2.13,
-        "validMdd": 145.55,
-        "validRatio": 7.82,
+        "trades": 4228,
+        "validTrades": 1101,
+        "validAnn": 12.05,
+        "validAvg": 1.98,
+        "validMdd": 118,
+        "validRatio": 10.21,
         "peakConcurrent": 5,
         "capitalNeeded": 10000,
         "overSeed": false
@@ -341,12 +360,12 @@
           "EXIT_SIGMA_OFFSET": 0.25,
           "MAX_HOLD_DAYS": 3
         },
-        "trades": 4176,
-        "validTrades": 1080,
-        "validAnn": 11.1,
-        "validAvg": 1.85,
-        "validMdd": 142.02,
-        "validRatio": 7.82,
+        "trades": 4228,
+        "validTrades": 1101,
+        "validAnn": 12.05,
+        "validAvg": 1.98,
+        "validMdd": 118,
+        "validRatio": 10.21,
         "peakConcurrent": 5,
         "capitalNeeded": 10000,
         "overSeed": false
@@ -359,12 +378,12 @@
           "MAX_HOLD_DAYS": 3,
           "ENTRY_SIGMA": 1.75
         },
-        "trades": 5624,
-        "validTrades": 1445,
-        "validAnn": 10.75,
-        "validAvg": 1.34,
-        "validMdd": 136.09,
-        "validRatio": 7.9,
+        "trades": 5708,
+        "validTrades": 1481,
+        "validAnn": 11.92,
+        "validAvg": 1.45,
+        "validMdd": 126.98,
+        "validRatio": 9.39,
         "peakConcurrent": 5,
         "capitalNeeded": 10000,
         "overSeed": false

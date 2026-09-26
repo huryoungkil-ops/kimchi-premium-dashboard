@@ -17,11 +17,9 @@ const lib = require('./lib5m');
 const YEARS = 6;
 const TRAIN_RATIO = 0.7;
 
-// 2026-09-20 봇에 반영한 설정
-const LIVE = {
-  ENTRY_SIGMA: 2.0, EDGE_MULTIPLE: 3.0, EXIT_SIGMA_OFFSET: 0.25,
-  REQUIRE_PROFIT_EXIT: false, MAX_POSITIONS: 4,
-};
+// 봇에 반영된 설정 — 정의는 lib5m.js LIVE_PARAMS 한 곳뿐이다.
+// (RANK_BY는 이 스크립트가 축으로 훑으므로 매 조합에서 덮어쓴다)
+const LIVE = lib.LIVE_PARAMS;
 
 const METHODS = [
   ['zscore', 'z-score (현재)'],

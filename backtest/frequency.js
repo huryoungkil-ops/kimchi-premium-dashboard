@@ -17,7 +17,10 @@ const lib = require('./lib5m');
 
 const YEARS = 6;
 const TRAIN_RATIO = 0.7;
-const RECOMMENDED = { ENTRY_SIGMA: 2.0, EDGE_MULTIPLE: 3.0, EXIT_SIGMA_OFFSET: 0.5, REQUIRE_PROFIT_EXIT: false };
+// 봇에 반영된 설정에서 손잡이를 돌린다 — 정의는 lib5m.js LIVE_PARAMS 한 곳뿐이다.
+// 2026-09-20 최초 측정 때는 6년 탐색 추천값(자리3 · 청산+0.5)에서 출발했고, 그 결과로
+// 봇이 자리4 · 청산+0.25가 됐다. 이제 출발점이 그 «도착지»다.
+const RECOMMENDED = lib.LIVE_PARAMS;
 
 // 실거래에서는 국내 현물 + 해외 증거금으로 명목의 2배가 묶인다
 const CAPITAL_MULTIPLE = 2;
@@ -68,7 +71,7 @@ function run(label, over, out) {
 let ds;
 (async () => {
   console.log(`=== 거래 빈도 손잡이 비교 (종목 ${ready.length}개, ${YEARS}년) ===`);
-  console.log(`기준: ${JSON.stringify(RECOMMENDED)} · 자리 ${lib.DEFAULT_PARAMS.MAX_POSITIONS}`
+  console.log(`기준: ${JSON.stringify(RECOMMENDED)} · 자리 ${RECOMMENDED.MAX_POSITIONS}`
     + ` · 1자리 $${lib.POSITION_SIZE} · 시드 $${lib.SEED}`);
   console.log(`«필요자본» = 최대동시 × $${lib.POSITION_SIZE} × ${CAPITAL_MULTIPLE}(현물+증거금)\n`);
 

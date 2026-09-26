@@ -22,9 +22,9 @@ const YEARS = 6;
 const W = lib.MAX_WINDOW;          // 3일 = 864봉
 const MIN_IN_WINDOW = Math.floor(W * 0.5);  // 창 안에 이만큼은 값이 있어야 통계를 낸다
 const MIN_COINS_FOR_MEDIAN = 4;    // 중앙값을 낼 때 최소 이만큼의 종목이 동시에 있어야 한다
-const BASE = JSON.parse(fs.readFileSync(path.join(lib.OUT_DIR, 'run6y_result.json'), 'utf8')).best;
+const BASE = lib.LIVE_PARAMS;               // 지금 실거래 봇 설정 (lib5m.js)
 const ENTRY_SIGMA = BASE.ENTRY_SIGMA;
-const MAX_HOLD_DAYS = lib.DEFAULT_PARAMS.MAX_HOLD_DAYS;
+const MAX_HOLD_DAYS = BASE.MAX_HOLD_DAYS;
 
 // 5분봉 한 개 단위로만 재면 호가 튐(microstructure noise)이 회귀를 실제보다
 // 빠르게 보이게 만든다. 표본 간격을 넓혀가며 같은 답이 나오는지 확인한다.

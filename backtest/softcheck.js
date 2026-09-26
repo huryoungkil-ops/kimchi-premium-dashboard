@@ -13,12 +13,8 @@ const lib = require('./lib5m');
 const YEARS = 6;
 const TRAIN_RATIO = 0.7;
 
-// 2026-09-20 봇에 반영한 설정
-const LIVE = {
-  ENTRY_SIGMA: 2.0, EDGE_MULTIPLE: 3.0, EXIT_SIGMA_OFFSET: 0.25,
-  REQUIRE_PROFIT_EXIT: false, MAX_POSITIONS: 4, RANK_BY: 'netEdge',
-  MAX_HOLD_DAYS: 5,
-};
+// 봇에 반영된 설정 — 정의는 lib5m.js LIVE_PARAMS 한 곳뿐이다
+const LIVE = lib.LIVE_PARAMS;
 // 비교용 옛 조합 (softsweep.js가 SOFT 값을 고를 때 쓴 기준)
 const OLD = {
   ENTRY_SIGMA: 1.0, EDGE_MULTIPLE: 5.0, EXIT_SIGMA_OFFSET: 0.5,

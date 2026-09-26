@@ -229,6 +229,37 @@ const DEFAULT_PARAMS = {
 };
 
 // ---------------------------------------------------------------------------
+// 현재 실거래 봇(n8n `XTg1g0vSK3kZQDsN`)이 실제로 쓰고 있는 설정
+// ---------------------------------------------------------------------------
+// DEFAULT_PARAMS는 «격자 탐색의 중립 출발점»이지 봇 설정이 아니다. 봇은 2026-09-20에
+// 6년 탐색 결과로 바뀌었고(그 전 설정은 검증 구간에서 연 -14.58%로 지고 있었다),
+// 그 뒤로도 청산선·자리 수·순위 기준이 따로 조정됐다.
+//
+// 「지금 봇이 이러면 어떻게 되는가」를 재는 스크립트는 전부 이 값을 기준으로 삼는다.
+// 예전에는 run6y_result.json의 격자 우승자(.best)를 기준으로 썼는데, 그 파일은
+// σ·관문·청산선 네 축만 탐색해서 자리 수·순위 기준·완화 청산을 담지 못했고,
+// 봇이 바뀐 뒤로도 갱신되지 않아 문서마다 기준이 어긋났다.
+//
+// n8n 워크플로를 고치면 여기도 같이 고칠 것. (마지막 대조: 2026-09-26)
+const LIVE_PARAMS = Object.assign({}, DEFAULT_PARAMS, {
+  ENTRY_SIGMA: 2.0,          // 6년 탐색 추천
+  EDGE_MULTIPLE: 3.0,        // 6년 탐색 추천
+  EXIT_SIGMA_OFFSET: 0.25,   // frequency.js: 수익 조금 내주고 낙폭을 더 줄인다
+  REQUIRE_PROFIT_EXIT: false,
+  MAX_POSITIONS: 4,          // 5까지 가능하나 시드 20%를 현금으로 남긴다
+  RANK_BY: 'netEdge',        // ranking.js: 비율이 아니라 %p 절대 순이익으로 줄 세운다
+  SOFT_HOLD_DAYS: 2,         // softcheck.js: 2일이 분기점
+  SOFT_EXIT_LOSS_PP: 0.5,
+  MAX_HOLD_DAYS: 5,
+
+  // 봇에는 김프 기준 손절이 없다. 증거금 보호용 «가격» 손절만 있다(+50%).
+  // DEFAULT_PARAMS는 정반대로 되어 있어(김프손절 5%p 켜짐 / 가격손절 꺼짐) 백테스트가
+  // 6년 내내 봇에 없는 규칙을 적용하고 봇에 있는 규칙을 빼먹고 있었다. (2026-09-26 발견)
+  STOP_LOSS_PP: null,
+  PRICE_STOP_PCT: 50,
+});
+
+// ---------------------------------------------------------------------------
 // 수집
 // ---------------------------------------------------------------------------
 function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
@@ -688,7 +719,10 @@ function simulate(dataset, params, range) {
           const softMove = P.SOFT_SPREAD_AWARE && P.PAY_SPREAD ? move - c.spreadPp : move;
           if (softMove >= -P.SOFT_EXIT_LOSS_PP) reason = 'SOFT';
         }
-        if (!reason && move <= -P.STOP_LOSS_PP) reason = 'STOP';
+        // null이면 끔. 가드가 없으면 -null === -0이 되어 «손실이 나는 순간 전부 손절»로
+        // 돌변한다 (6년 기준 거래 3,645 -> 94,709건, 연 -243%). PRICE_STOP_PCT와 같은
+        // 규칙으로 맞춘다.
+        if (!reason && P.STOP_LOSS_PP !== null && move <= -P.STOP_LOSS_PP) reason = 'STOP';
         if (!reason && heldMs >= P.MAX_HOLD_DAYS * 86400000) reason = 'MAXHOLD';
         // --- 추가 진입(물타기) ---
         // 청산 사유가 없고 남은 차수가 있으면, 더 깊은 계단에 닿았는지 본다.
@@ -895,5 +929,5 @@ function simulate(dataset, params, range) {
 module.exports = {
   OUT_DIR, CACHE_DIR, SEED, POSITION_SIZE, FEE_RATE, MAX_WINDOW, MIN_DATA_POINTS,
   MIN_BAR_VALUE_MULTIPLE, MAX_SPREAD_PERCENT, KORBIT_SPREAD_PCT, COINS, ALL_COINS,
-  DEFAULT_PARAMS, trailingFunding, FEE_SCENARIOS, DEFAULT_FEE_SCENARIO, feeRateOf, breakEvenPp, buildDataset, simulate,
+  DEFAULT_PARAMS, LIVE_PARAMS, trailingFunding, FEE_SCENARIOS, DEFAULT_FEE_SCENARIO, feeRateOf, breakEvenPp, buildDataset, simulate,
 };
