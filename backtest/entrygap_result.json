@@ -5,91 +5,105 @@
     "EDGE_MULTIPLE": 3,
     "EXIT_SIGMA_OFFSET": 0.25,
     "REQUIRE_PROFIT_EXIT": false,
+    "FEE_SCENARIO": "promo_maker",
+    "PAY_SPREAD": true,
+    "EXEC_DELAY_BARS": 1,
+    "FUNDING_LOOKBACK": 21,
+    "MIN_FUNDING_8H": null,
+    "FUNDING_RANK_WEIGHT": 0,
+    "MAX_SIGMA_PERCENT": 2.5,
     "MAX_POSITIONS": 4,
-    "RANK_BY": "netEdge",
     "SOFT_HOLD_DAYS": 2,
     "SOFT_EXIT_LOSS_PP": 0.5,
-    "MAX_HOLD_DAYS": 5
+    "SOFT_SPREAD_AWARE": false,
+    "MAX_HOLD_DAYS": 5,
+    "STOP_LOSS_PP": null,
+    "PRICE_STOP_PCT": 50,
+    "MARKET_Z_FLOOR": null,
+    "TRANCHES": null,
+    "SIGNAL_RESIDUAL": false,
+    "RANK_BY": "netEdge",
+    "ENTRY_GAP_HOURS": 0
   },
   "results": [
     {
       "gapHours": 0,
       "full": {
-        "trades": 3645,
-        "winRate": 72,
-        "ann": 22.02,
-        "avg": 3.64,
-        "mdd": 170.08,
-        "mddMTM": 197.51,
-        "ratioMTM": 11.15,
-        "clusteredPct": 47.4,
+        "trades": 3631,
+        "winRate": 72.2,
+        "ann": 21.73,
+        "avg": 3.6,
+        "mdd": 122.55,
+        "mddMTM": 157.86,
+        "ratioMTM": 13.77,
+        "clusteredPct": 47.2,
         "blockedGap": 0
       },
       "valid": {
-        "trades": 955,
-        "ann": 11.41,
-        "mddMTM": 121.76,
-        "ratioMTM": 9.37
+        "trades": 950,
+        "ann": 10.32,
+        "mddMTM": 121.75,
+        "ratioMTM": 8.48
       }
     },
     {
       "gapHours": 1,
       "full": {
-        "trades": 3157,
-        "winRate": 71.1,
-        "ann": 19.28,
-        "avg": 3.68,
+        "trades": 3155,
+        "winRate": 71.2,
+        "ann": 19.63,
+        "avg": 3.74,
         "mdd": 93.07,
-        "mddMTM": 181.17,
-        "ratioMTM": 10.64,
-        "clusteredPct": 38.5,
-        "blockedGap": 25254
+        "mddMTM": 130.4,
+        "ratioMTM": 15.05,
+        "clusteredPct": 38.4,
+        "blockedGap": 25216
       },
       "valid": {
         "trades": 827,
-        "ann": 8.5,
+        "ann": 9.47,
         "mddMTM": 129.16,
-        "ratioMTM": 6.58
+        "ratioMTM": 7.33
       }
     },
     {
       "gapHours": 3,
       "full": {
         "trades": 2528,
-        "winRate": 69.9,
-        "ann": 14.84,
-        "avg": 3.53,
-        "mdd": 159.39,
-        "mddMTM": 205.43,
-        "ratioMTM": 7.22,
+        "winRate": 70,
+        "ann": 15.81,
+        "avg": 3.76,
+        "mdd": 87.34,
+        "mddMTM": 129.13,
+        "ratioMTM": 12.24,
         "clusteredPct": 10,
-        "blockedGap": 76171
+        "blockedGap": 75960
       },
       "valid": {
         "trades": 699,
-        "ann": 6.9,
+        "ann": 7.87,
         "mddMTM": 127.9,
-        "ratioMTM": 5.39
+        "ratioMTM": 6.15
       }
     },
     {
       "gapHours": 6,
       "full": {
         "trades": 1939,
-        "winRate": 71,
-        "ann": 11.89,
-        "avg": 3.69,
-        "mdd": 111.07,
-        "mddMTM": 147.54,
-        "ratioMTM": 8.06,
+        "winRate": 71.1,
+        "ann": 12.56,
+        "avg": 3.9,
+        "mdd": 68.77,
+        "mddMTM": 113.35,
+        "ratioMTM": 11.08,
         "clusteredPct": 0,
-        "blockedGap": 113853
+        "blockedGap": 113625
       },
       "valid": {
         "trades": 535,
-        "ann": 5.07,
-        "mddMTM": 111.43,
-        "ratioMTM": 4.55
+        "ann": 6.04,
+        "mddMTM": 111.42,
+        "ratioMTM": 5.42
       }
     },
     {
@@ -97,19 +111,19 @@
       "full": {
         "trades": 1353,
         "winRate": 71.3,
-        "ann": 8.59,
-        "avg": 3.82,
-        "mdd": 111.07,
-        "mddMTM": 111.07,
-        "ratioMTM": 7.73,
+        "ann": 9.13,
+        "avg": 4.06,
+        "mdd": 61.85,
+        "mddMTM": 103.9,
+        "ratioMTM": 8.79,
         "clusteredPct": 0,
-        "blockedGap": 145207
+        "blockedGap": 145231
       },
       "valid": {
         "trades": 375,
-        "ann": 3.06,
-        "mddMTM": 111.07,
-        "ratioMTM": 2.76
+        "ann": 4.03,
+        "mddMTM": 103.91,
+        "ratioMTM": 3.88
       }
     },
     {
@@ -117,19 +131,19 @@
       "full": {
         "trades": 901,
         "winRate": 71.7,
-        "ann": 6,
-        "avg": 4.01,
-        "mdd": 111.07,
-        "mddMTM": 111.07,
-        "ratioMTM": 5.4,
+        "ann": 6.43,
+        "avg": 4.3,
+        "mdd": 39.95,
+        "mddMTM": 72.29,
+        "ratioMTM": 8.89,
         "clusteredPct": 0,
-        "blockedGap": 160875
+        "blockedGap": 160899
       },
       "valid": {
         "trades": 252,
-        "ann": 2.11,
-        "mddMTM": 111.07,
-        "ratioMTM": 1.9
+        "ann": 3.08,
+        "mddMTM": 72.29,
+        "ratioMTM": 4.26
       }
     }
   ]

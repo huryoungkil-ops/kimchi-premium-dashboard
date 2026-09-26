@@ -27,7 +27,7 @@ for (const c of ready) lib.COINS.push(c);
 const BASE = lib.LIVE_PARAMS;   // 지금 실거래 봇 설정 (lib5m.js)
 
 // 회귀 검사 기준값. BASE를 바꾸면 여기도 같이 갱신한다 (2026-09-26 측정).
-const EXPECT = { trades: 3645, ann: 22.02, mdd: 170.08 };
+const EXPECT = { trades: 3631, ann: 21.73, mdd: 122.55 };
 const T = (sigma, fraction) => ({ sigma, fraction });
 
 // ⚠️ 사다리의 첫 칸이 곧 진입선이다 (lib5m.js: LADDER[0]이 ENTRY_SIGMA를 대신한다).

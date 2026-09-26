@@ -251,6 +251,12 @@ const LIVE_PARAMS = Object.assign({}, DEFAULT_PARAMS, {
   SOFT_HOLD_DAYS: 2,         // softcheck.js: 2일이 분기점
   SOFT_EXIT_LOSS_PP: 0.5,
   MAX_HOLD_DAYS: 5,
+
+  // 봇에는 김프 기준 손절이 없다. 증거금 보호용 «가격» 손절만 있다(+50%).
+  // DEFAULT_PARAMS는 정반대로 되어 있어(김프손절 5%p 켜짐 / 가격손절 꺼짐) 백테스트가
+  // 6년 내내 봇에 없는 규칙을 적용하고 봇에 있는 규칙을 빼먹고 있었다. (2026-09-26 발견)
+  STOP_LOSS_PP: null,
+  PRICE_STOP_PCT: 50,
 });
 
 // ---------------------------------------------------------------------------
@@ -713,7 +719,10 @@ function simulate(dataset, params, range) {
           const softMove = P.SOFT_SPREAD_AWARE && P.PAY_SPREAD ? move - c.spreadPp : move;
           if (softMove >= -P.SOFT_EXIT_LOSS_PP) reason = 'SOFT';
         }
-        if (!reason && move <= -P.STOP_LOSS_PP) reason = 'STOP';
+        // null이면 끔. 가드가 없으면 -null === -0이 되어 «손실이 나는 순간 전부 손절»로
+        // 돌변한다 (6년 기준 거래 3,645 -> 94,709건, 연 -243%). PRICE_STOP_PCT와 같은
+        // 규칙으로 맞춘다.
+        if (!reason && P.STOP_LOSS_PP !== null && move <= -P.STOP_LOSS_PP) reason = 'STOP';
         if (!reason && heldMs >= P.MAX_HOLD_DAYS * 86400000) reason = 'MAXHOLD';
         // --- 추가 진입(물타기) ---
         // 청산 사유가 없고 남은 차수가 있으면, 더 깊은 계단에 닿았는지 본다.
