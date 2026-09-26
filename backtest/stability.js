@@ -17,11 +17,9 @@ const WINDOWS = [2, 3, 5, 7];      // 이동평균 기간(일)
 const SIGMAS = [1.5, 2.0, 2.5];    // 진입선 배수
 const FIXED = { win: 3, sig: 2.0 }; // 지금 봇
 
-const LIVE = {
-  EDGE_MULTIPLE: 3.0, EXIT_SIGMA_OFFSET: 0.25, REQUIRE_PROFIT_EXIT: false,
-  MAX_POSITIONS: 4, RANK_BY: 'netEdge',
-  SOFT_HOLD_DAYS: 2, SOFT_EXIT_LOSS_PP: 0.5, MAX_HOLD_DAYS: 5,
-};
+// 지금 봇 설정 — 정의는 lib5m.js LIVE_PARAMS 한 곳뿐이다.
+// (ENTRY_SIGMA는 이 스크립트가 축으로 훑으므로 매 조합에서 덮어쓴다)
+const LIVE = lib.LIVE_PARAMS;
 
 const ready = lib.COINS.filter(c =>
   fs.existsSync(path.join(lib.CACHE_DIR, `upbit_${c[0]}_${YEARS}y.json`)) &&

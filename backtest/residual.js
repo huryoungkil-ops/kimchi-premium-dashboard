@@ -98,7 +98,7 @@ module.exports = { attachResidual };
 // 아래는 직접 실행했을 때의 실험
 // ---------------------------------------------------------------------------
 if (require.main === module) {
-  const BASE = JSON.parse(fs.readFileSync(path.join(lib.OUT_DIR, 'run6y_result.json'), 'utf8')).best;
+  const BASE = lib.LIVE_PARAMS;   // 지금 실거래 봇 설정 (lib5m.js)
 
   const ready = lib.COINS.filter(c =>
     fs.existsSync(path.join(lib.CACHE_DIR, `upbit_${c[0]}_${YEARS}y.json`)) &&
@@ -134,8 +134,8 @@ if (require.main === module) {
     const dsFour = subset(RESIDUAL_OK);
 
     const cases = [
-      ['원본 신호 · 9종목(현재)', ds, { SIGNAL_RESIDUAL: false }],
-      ['잔차 신호 · 9종목', ds, { SIGNAL_RESIDUAL: true }],
+      ['원본 신호 · 전종목(현재)', ds, { SIGNAL_RESIDUAL: false }],
+      ['잔차 신호 · 전종목', ds, { SIGNAL_RESIDUAL: true }],
       ['원본 신호 · 4종목', dsFour, { SIGNAL_RESIDUAL: false }],
       ['잔차 신호 · 4종목', dsFour, { SIGNAL_RESIDUAL: true }],
     ];
@@ -166,7 +166,7 @@ if (require.main === module) {
       out[i].valid = { trades: va.totalTrades, ann: va.annualizedPct, mdd: va.maxDrawdown };
     }
 
-    // 기준 조합(EDGE_MULTIPLE=5 등)은 "원본 신호"에 맞춰 고른 값이다. 그대로 잔차에
+    // 기준 조합(EDGE_MULTIPLE 등)은 "원본 신호"에 맞춰 고른 값이다. 그대로 잔차에
     // 씌우면 불공정하다 — 실제로 검증 구간에서 기대수익부족으로 5만 건 넘게 막힌다.
     // 잔차에 가장 유리한 조합까지 찾아준 뒤에 비교한다.
     console.log('\n===== 잔차 신호 · 4종목 · 진입선 × 기대수익 관문 =====');
@@ -188,8 +188,9 @@ if (require.main === module) {
       }
     }
     const bestRes = sweep.reduce((a, b) => (b.ann > a.ann ? b : a));
+    const baseAnn = out[0].full.ann;   // 원본 신호 · 전종목 · 현재 설정
     console.log(`\n잔차 최고 조합: 관문 ${bestRes.edgeMultiple}배 · 진입 ${bestRes.entrySigma}σ`
-      + ` → 연 ${bestRes.ann}% (원본 9종목 현재 설정은 +22.45%)`);
+      + ` → 연 ${bestRes.ann}% (원본 전종목 현재 설정은 +${baseAnn}%)`);
 
     fs.writeFileSync(path.join(lib.OUT_DIR, 'residual_result.json'),
       JSON.stringify({ years: YEARS, base: BASE, residualCoins: RESIDUAL_OK, medianCoveragePct: info.medianCoveragePct, cases: out, entrySweep: sweep }, null, 2));

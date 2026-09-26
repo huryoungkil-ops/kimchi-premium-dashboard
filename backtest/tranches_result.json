@@ -1,9 +1,28 @@
 {
   "base": {
-    "ENTRY_SIGMA": 1,
-    "EDGE_MULTIPLE": 5,
-    "EXIT_SIGMA_OFFSET": 0.5,
-    "REQUIRE_PROFIT_EXIT": false
+    "ENTRY_SIGMA": 2,
+    "EDGE_MULTIPLE": 3,
+    "EXIT_SIGMA_OFFSET": 0.25,
+    "REQUIRE_PROFIT_EXIT": false,
+    "FEE_SCENARIO": "promo_maker",
+    "PAY_SPREAD": true,
+    "EXEC_DELAY_BARS": 1,
+    "FUNDING_LOOKBACK": 21,
+    "MIN_FUNDING_8H": null,
+    "FUNDING_RANK_WEIGHT": 0,
+    "MAX_SIGMA_PERCENT": 2.5,
+    "MAX_POSITIONS": 4,
+    "SOFT_HOLD_DAYS": 2,
+    "SOFT_EXIT_LOSS_PP": 0.5,
+    "SOFT_SPREAD_AWARE": false,
+    "MAX_HOLD_DAYS": 5,
+    "STOP_LOSS_PP": 5,
+    "PRICE_STOP_PCT": null,
+    "MARKET_Z_FLOOR": null,
+    "TRANCHES": null,
+    "SIGNAL_RESIDUAL": false,
+    "RANK_BY": "netEdge",
+    "ENTRY_GAP_HOURS": 0
   },
   "coins": [
     "BTC",
@@ -14,7 +33,10 @@
     "LINK",
     "DOGE",
     "TRX",
-    "XLM"
+    "XLM",
+    "UNI",
+    "ARB",
+    "SUI"
   ],
   "results": [
     {
@@ -22,234 +44,302 @@
       "ladder": null,
       "slots": null,
       "full": {
-        "trades": 5027,
-        "winRate": 68.1,
-        "ann": 22.45,
-        "net": 13467.13,
-        "mdd": 281.71,
+        "trades": 3645,
+        "winRate": 72,
+        "ann": 22.02,
+        "net": 13253.9,
+        "mdd": 170.08,
         "addOns": 0,
         "avgTranches": 1,
         "avgSizeUsd": 1000
       },
       "train": {
-        "ann": 28.14,
-        "mdd": 281.71
+        "ann": 26.58,
+        "mdd": 170.08
       },
       "valid": {
-        "ann": 9.2,
-        "mdd": 112.18
+        "ann": 11.41,
+        "mdd": 89.06
       }
     },
     {
-      "label": "2단 1.0/1.5  50:50",
+      "label": "2단 2.0/2.5  50:50",
       "ladder": [
-        {
-          "sigma": 1,
-          "fraction": 0.5
-        },
-        {
-          "sigma": 1.5,
-          "fraction": 0.5
-        }
-      ],
-      "slots": null,
-      "full": {
-        "trades": 5024,
-        "winRate": 69,
-        "ann": 21.05,
-        "net": 12627.39,
-        "mdd": 169.46,
-        "addOns": 3096,
-        "avgTranches": 1.62,
-        "avgSizeUsd": 808.12
-      },
-      "train": {
-        "ann": 26.69,
-        "mdd": 169.46
-      },
-      "valid": {
-        "ann": 7.94,
-        "mdd": 97.67
-      }
-    },
-    {
-      "label": "2단 1.0/2.0  50:50",
-      "ladder": [
-        {
-          "sigma": 1,
-          "fraction": 0.5
-        },
         {
           "sigma": 2,
           "fraction": 0.5
+        },
+        {
+          "sigma": 2.5,
+          "fraction": 0.5
         }
       ],
       "slots": null,
       "full": {
-        "trades": 5022,
-        "winRate": 69.9,
-        "ann": 19.23,
-        "net": 11539.15,
-        "mdd": 167.94,
-        "addOns": 2023,
-        "avgTranches": 1.4,
-        "avgSizeUsd": 701.41
+        "trades": 3656,
+        "winRate": 74.4,
+        "ann": 17.95,
+        "net": 10801.55,
+        "mdd": 126.47,
+        "addOns": 1719,
+        "avgTranches": 1.47,
+        "avgSizeUsd": 735.09
       },
       "train": {
-        "ann": 24.13,
-        "mdd": 167.94
+        "ann": 21.64,
+        "mdd": 126.47
       },
       "valid": {
-        "ann": 7.86,
-        "mdd": 97.68
+        "ann": 9.35,
+        "mdd": 74.01
       }
     },
     {
-      "label": "3단 1.0/1.5/2.0 균등",
+      "label": "2단 2.0/3.0  50:50",
       "ladder": [
-        {
-          "sigma": 1,
-          "fraction": 0.3333333333333333
-        },
-        {
-          "sigma": 1.5,
-          "fraction": 0.3333333333333333
-        },
         {
           "sigma": 2,
-          "fraction": 0.3333333333333333
+          "fraction": 0.5
+        },
+        {
+          "sigma": 3,
+          "fraction": 0.5
         }
       ],
       "slots": null,
       "full": {
-        "trades": 5021,
-        "winRate": 69.7,
-        "ann": 19.02,
-        "net": 11410.47,
-        "mdd": 129.97,
-        "addOns": 4987,
-        "avgTranches": 1.99,
-        "avgSizeUsd": 664.41
+        "trades": 3658,
+        "winRate": 74.1,
+        "ann": 15.77,
+        "net": 9489.43,
+        "mdd": 99.99,
+        "addOns": 966,
+        "avgTranches": 1.26,
+        "avgSizeUsd": 632.04
       },
       "train": {
-        "ann": 23.99,
-        "mdd": 129.97
+        "ann": 19,
+        "mdd": 99.99
       },
       "valid": {
-        "ann": 7.47,
-        "mdd": 92.89
+        "ann": 8.23,
+        "mdd": 63.06
       }
     },
     {
-      "label": "3단 1.0/1.75/2.5 균등",
+      "label": "3단 2.0/2.5/3.0 균등",
       "ladder": [
         {
-          "sigma": 1,
-          "fraction": 0.3333333333333333
-        },
-        {
-          "sigma": 1.75,
+          "sigma": 2,
           "fraction": 0.3333333333333333
         },
         {
           "sigma": 2.5,
           "fraction": 0.3333333333333333
+        },
+        {
+          "sigma": 3,
+          "fraction": 0.3333333333333333
         }
       ],
       "slots": null,
       "full": {
-        "trades": 5018,
-        "winRate": 71,
-        "ann": 16.98,
-        "net": 10189.19,
-        "mdd": 143.93,
-        "addOns": 3666,
-        "avgTranches": 1.73,
-        "avgSizeUsd": 576.86
+        "trades": 3664,
+        "winRate": 75.5,
+        "ann": 14.98,
+        "net": 9013.42,
+        "mdd": 71.14,
+        "addOns": 2624,
+        "avgTranches": 1.72,
+        "avgSizeUsd": 572.05
       },
       "train": {
-        "ann": 21.27,
-        "mdd": 143.93
+        "ann": 18.18,
+        "mdd": 71.14
       },
       "valid": {
-        "ann": 7.01,
-        "mdd": 93.4
+        "ann": 7.52,
+        "mdd": 58.24
       }
     },
     {
       "label": "3단 앞무겁게 50:30:20",
       "ladder": [
         {
-          "sigma": 1,
+          "sigma": 2,
           "fraction": 0.5
         },
         {
-          "sigma": 1.5,
+          "sigma": 2.5,
           "fraction": 0.3
         },
         {
-          "sigma": 2,
+          "sigma": 3,
           "fraction": 0.2
         }
       ],
       "slots": null,
       "full": {
-        "trades": 5022,
-        "winRate": 69.7,
-        "ann": 20.1,
-        "net": 12055.54,
-        "mdd": 164.52,
-        "addOns": 4991,
-        "avgTranches": 1.99,
-        "avgSizeUsd": 760.37
+        "trades": 3658,
+        "winRate": 74.6,
+        "ann": 16.88,
+        "net": 10158.9,
+        "mdd": 120.87,
+        "addOns": 2619,
+        "avgTranches": 1.72,
+        "avgSizeUsd": 690.13
       },
       "train": {
-        "ann": 25.41,
-        "mdd": 164.52
+        "ann": 20.52,
+        "mdd": 120.87
       },
       "valid": {
-        "ann": 7.74,
-        "mdd": 97.71
+        "ann": 8.4,
+        "mdd": 62.9
       }
     },
     {
       "label": "3단 뒤무겁게 20:30:50",
       "ladder": [
         {
-          "sigma": 1,
+          "sigma": 2,
           "fraction": 0.2
         },
         {
-          "sigma": 1.5,
+          "sigma": 2.5,
           "fraction": 0.3
         },
         {
-          "sigma": 2,
+          "sigma": 3,
           "fraction": 0.5
         }
       ],
       "slots": null,
       "full": {
-        "trades": 5019,
-        "winRate": 70.5,
-        "ann": 17.85,
-        "net": 10708.17,
-        "mdd": 181.48,
-        "addOns": 4986,
-        "avgTranches": 1.99,
-        "avgSizeUsd": 573.54
+        "trades": 3670,
+        "winRate": 76,
+        "ann": 12.99,
+        "net": 7819.36,
+        "mdd": 88.08,
+        "addOns": 2626,
+        "avgTranches": 1.72,
+        "avgSizeUsd": 463.81
       },
       "train": {
-        "ann": 22.43,
-        "mdd": 181.48
+        "ann": 15.88,
+        "mdd": 67.75
       },
       "valid": {
-        "ann": 7.19,
-        "mdd": 89.05
+        "ann": 6.27,
+        "mdd": 88.08
       }
     },
     {
-      "label": "3단 균등 + 자리 9",
+      "label": "3단 2.0/2.5/3.0 + 자리 6",
+      "ladder": [
+        {
+          "sigma": 2,
+          "fraction": 0.3333333333333333
+        },
+        {
+          "sigma": 2.5,
+          "fraction": 0.3333333333333333
+        },
+        {
+          "sigma": 3,
+          "fraction": 0.3333333333333333
+        }
+      ],
+      "slots": 6,
+      "full": {
+        "trades": 4831,
+        "winRate": 76.1,
+        "ann": 20.09,
+        "net": 12091.17,
+        "mdd": 243.42,
+        "addOns": 3679,
+        "avgTranches": 1.76,
+        "avgSizeUsd": 587.18
+      },
+      "train": {
+        "ann": 24.77,
+        "mdd": 130.33
+      },
+      "valid": {
+        "ann": 9.18,
+        "mdd": 243.42
+      }
+    },
+    {
+      "label": "[구] 2단 1.0/1.5 50:50",
+      "ladder": [
+        {
+          "sigma": 1,
+          "fraction": 0.5
+        },
+        {
+          "sigma": 1.5,
+          "fraction": 0.5
+        }
+      ],
+      "slots": null,
+      "full": {
+        "trades": 12887,
+        "winRate": 57.6,
+        "ann": 21.75,
+        "net": 13088.53,
+        "mdd": 259.05,
+        "addOns": 5413,
+        "avgTranches": 1.42,
+        "avgSizeUsd": 709.98
+      },
+      "train": {
+        "ann": 27.88,
+        "mdd": 259.05
+      },
+      "valid": {
+        "ann": 7.48,
+        "mdd": 213.36
+      }
+    },
+    {
+      "label": "[구] 3단 1.0/1.5/2.0",
+      "ladder": [
+        {
+          "sigma": 1,
+          "fraction": 0.3333333333333333
+        },
+        {
+          "sigma": 1.5,
+          "fraction": 0.3333333333333333
+        },
+        {
+          "sigma": 2,
+          "fraction": 0.3333333333333333
+        }
+      ],
+      "slots": null,
+      "full": {
+        "trades": 12923,
+        "winRate": 58.5,
+        "ann": 20.53,
+        "net": 12356.83,
+        "mdd": 185.71,
+        "addOns": 8292,
+        "avgTranches": 1.64,
+        "avgSizeUsd": 547.19
+      },
+      "train": {
+        "ann": 26.21,
+        "mdd": 185.71
+      },
+      "valid": {
+        "ann": 7.31,
+        "mdd": 137.82
+      }
+    },
+    {
+      "label": "[구] 3단 균등 + 자리 9",
       "ladder": [
         {
           "sigma": 1,
@@ -266,54 +356,22 @@
       ],
       "slots": 9,
       "full": {
-        "trades": 7139,
-        "winRate": 72.9,
-        "ann": 35.99,
-        "net": 21590.36,
-        "mdd": 525.36,
-        "addOns": 8403,
-        "avgTranches": 2.18,
-        "avgSizeUsd": 725.68
+        "trades": 17514,
+        "winRate": 60.1,
+        "ann": 32.75,
+        "net": 19709.69,
+        "mdd": 792.5,
+        "addOns": 13557,
+        "avgTranches": 1.77,
+        "avgSizeUsd": 591.34
       },
       "train": {
-        "ann": 45.63,
-        "mdd": 379.66
+        "ann": 42.81,
+        "mdd": 364.3
       },
       "valid": {
-        "ann": 13.64,
-        "mdd": 525.36
-      }
-    },
-    {
-      "label": "2단 50:50 + 자리 6",
-      "ladder": [
-        {
-          "sigma": 1,
-          "fraction": 0.5
-        },
-        {
-          "sigma": 1.5,
-          "fraction": 0.5
-        }
-      ],
-      "slots": 6,
-      "full": {
-        "trades": 6703,
-        "winRate": 71.3,
-        "ann": 33.69,
-        "net": 20213.46,
-        "mdd": 520.32,
-        "addOns": 4574,
-        "avgTranches": 1.68,
-        "avgSizeUsd": 841.19
-      },
-      "train": {
-        "ann": 43.14,
-        "mdd": 335.43
-      },
-      "valid": {
-        "ann": 11.78,
-        "mdd": 520.33
+        "ann": 9.38,
+        "mdd": 792.49
       }
     }
   ]

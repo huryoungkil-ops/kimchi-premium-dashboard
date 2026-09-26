@@ -14,12 +14,8 @@ const lib = require('./lib5m');
 const YEARS = 6;
 const TRAIN_RATIO = 0.7;
 
-// 지금 봇 설정 그대로 (완화 청산 포함)
-const LIVE = {
-  ENTRY_SIGMA: 2.0, EDGE_MULTIPLE: 3.0, EXIT_SIGMA_OFFSET: 0.25,
-  REQUIRE_PROFIT_EXIT: false, MAX_POSITIONS: 4, RANK_BY: 'netEdge',
-  SOFT_HOLD_DAYS: 2, SOFT_EXIT_LOSS_PP: 0.5, MAX_HOLD_DAYS: 5,
-};
+// 지금 봇 설정 그대로 (완화 청산 포함) — 정의는 lib5m.js LIVE_PARAMS 한 곳뿐이다
+const LIVE = lib.LIVE_PARAMS;
 const GAPS = [0, 1, 3, 6, 12, 24];
 
 const ready = lib.COINS.filter(c =>

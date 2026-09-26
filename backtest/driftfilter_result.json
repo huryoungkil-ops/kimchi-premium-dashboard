@@ -1,9 +1,28 @@
 {
   "base": {
-    "ENTRY_SIGMA": 1,
-    "EDGE_MULTIPLE": 5,
-    "EXIT_SIGMA_OFFSET": 0.5,
-    "REQUIRE_PROFIT_EXIT": false
+    "ENTRY_SIGMA": 2,
+    "EDGE_MULTIPLE": 3,
+    "EXIT_SIGMA_OFFSET": 0.25,
+    "REQUIRE_PROFIT_EXIT": false,
+    "FEE_SCENARIO": "promo_maker",
+    "PAY_SPREAD": true,
+    "EXEC_DELAY_BARS": 1,
+    "FUNDING_LOOKBACK": 21,
+    "MIN_FUNDING_8H": null,
+    "FUNDING_RANK_WEIGHT": 0,
+    "MAX_SIGMA_PERCENT": 2.5,
+    "MAX_POSITIONS": 4,
+    "SOFT_HOLD_DAYS": 2,
+    "SOFT_EXIT_LOSS_PP": 0.5,
+    "SOFT_SPREAD_AWARE": false,
+    "MAX_HOLD_DAYS": 5,
+    "STOP_LOSS_PP": 5,
+    "PRICE_STOP_PCT": null,
+    "MARKET_Z_FLOOR": null,
+    "TRANCHES": null,
+    "SIGNAL_RESIDUAL": false,
+    "RANK_BY": "netEdge",
+    "ENTRY_GAP_HOURS": 0
   },
   "coins": [
     "BTC",
@@ -23,161 +42,161 @@
     {
       "floor": null,
       "full": {
-        "trades": 5029,
-        "winRate": 68,
-        "ann": 22.34,
-        "mdd": 281.71,
+        "trades": 3645,
+        "winRate": 72,
+        "ann": 22.02,
+        "mdd": 170.08,
         "blocked": 0
       },
       "train": {
-        "ann": 28.07,
-        "mdd": 281.71,
-        "trades": 4334
+        "ann": 26.58,
+        "mdd": 170.08,
+        "trades": 2690
       },
       "valid": {
-        "ann": 9.03,
-        "mdd": 112.18,
-        "trades": 694
+        "ann": 11.41,
+        "mdd": 89.06,
+        "trades": 955
       }
     },
     {
       "floor": -0.2,
       "full": {
-        "trades": 717,
-        "winRate": 61.4,
-        "ann": 2.68,
-        "mdd": 127.04,
-        "blocked": 438465
+        "trades": 65,
+        "winRate": 60,
+        "ann": 0.26,
+        "mdd": 50.1,
+        "blocked": 185622
       },
       "train": {
-        "ann": 3.82,
-        "mdd": 127.04,
-        "trades": 712
+        "ann": 0.38,
+        "mdd": 50.1,
+        "trades": 58
       },
       "valid": {
-        "ann": 0.02,
-        "mdd": 4.69,
-        "trades": 5
+        "ann": -0.01,
+        "mdd": 7.72,
+        "trades": 7
       }
     },
     {
       "floor": -0.3,
       "full": {
-        "trades": 977,
-        "winRate": 61.4,
-        "ann": 3.25,
-        "mdd": 127.04,
-        "blocked": 433991
+        "trades": 75,
+        "winRate": 58.7,
+        "ann": 0.37,
+        "mdd": 49.81,
+        "blocked": 185528
       },
       "train": {
-        "ann": 4.64,
-        "mdd": 127.04,
-        "trades": 966
+        "ann": 0.52,
+        "mdd": 49.81,
+        "trades": 65
       },
       "valid": {
         "ann": 0.02,
-        "mdd": 15.39,
-        "trades": 11
+        "mdd": 9.23,
+        "trades": 10
       }
     },
     {
       "floor": -0.4,
       "full": {
-        "trades": 1299,
-        "winRate": 60.6,
-        "ann": 3.98,
-        "mdd": 127.03,
-        "blocked": 427782
+        "trades": 102,
+        "winRate": 57.8,
+        "ann": 0.41,
+        "mdd": 49.8,
+        "blocked": 185473
       },
       "train": {
-        "ann": 5.64,
-        "mdd": 127.03,
-        "trades": 1281
+        "ann": 0.58,
+        "mdd": 49.8,
+        "trades": 86
       },
       "valid": {
-        "ann": 0.09,
-        "mdd": 19.61,
-        "trades": 18
+        "ann": 0.01,
+        "mdd": 16.68,
+        "trades": 16
       }
     },
     {
       "floor": -0.5,
       "full": {
-        "trades": 1713,
-        "winRate": 60.7,
-        "ann": 5.35,
-        "mdd": 116.47,
-        "blocked": 419675
+        "trades": 130,
+        "winRate": 55.4,
+        "ann": 0.42,
+        "mdd": 55.85,
+        "blocked": 185399
       },
       "train": {
-        "ann": 7.62,
-        "mdd": 116.47,
-        "trades": 1682
+        "ann": 0.62,
+        "mdd": 55.85,
+        "trades": 109
       },
       "valid": {
-        "ann": 0.04,
-        "mdd": 28.2,
-        "trades": 31
+        "ann": -0.05,
+        "mdd": 25.09,
+        "trades": 21
       }
     },
     {
       "floor": -0.6,
       "full": {
-        "trades": 2158,
-        "winRate": 62,
-        "ann": 6.44,
-        "mdd": 126.36,
-        "blocked": 404438
+        "trades": 171,
+        "winRate": 55,
+        "ann": 0.6,
+        "mdd": 69.62,
+        "blocked": 184892
       },
       "train": {
-        "ann": 9.22,
-        "mdd": 126.36,
-        "trades": 2101
+        "ann": 0.9,
+        "mdd": 69.62,
+        "trades": 146
       },
       "valid": {
-        "ann": -0.05,
-        "mdd": 41.25,
-        "trades": 57
+        "ann": -0.08,
+        "mdd": 27.95,
+        "trades": 25
       }
     },
     {
       "floor": -0.8,
       "full": {
-        "trades": 3117,
-        "winRate": 64.7,
-        "ann": 11.1,
-        "mdd": 115.81,
-        "blocked": 352455
+        "trades": 305,
+        "winRate": 54.4,
+        "ann": 0.93,
+        "mdd": 67.96,
+        "blocked": 183998
       },
       "train": {
-        "ann": 15.28,
-        "mdd": 115.81,
-        "trades": 2944
+        "ann": 1.45,
+        "mdd": 67.96,
+        "trades": 257
       },
       "valid": {
-        "ann": 1.34,
-        "mdd": 42.64,
-        "trades": 173
+        "ann": -0.27,
+        "mdd": 53.58,
+        "trades": 48
       }
     },
     {
       "floor": -1,
       "full": {
-        "trades": 4020,
-        "winRate": 66.4,
-        "ann": 15.24,
-        "mdd": 320.81,
-        "blocked": 280302
+        "trades": 567,
+        "winRate": 58.9,
+        "ann": 1.74,
+        "mdd": 77.05,
+        "blocked": 181713
       },
       "train": {
-        "ann": 20.09,
-        "mdd": 320.81,
-        "trades": 3643
+        "ann": 2.59,
+        "mdd": 77.05,
+        "trades": 474
       },
       "valid": {
-        "ann": 3.93,
-        "mdd": 94.47,
-        "trades": 377
+        "ann": -0.23,
+        "mdd": 67.76,
+        "trades": 93
       }
     }
   ]

@@ -24,20 +24,34 @@ const ready = lib.COINS.filter(c =>
 lib.COINS.length = 0;
 for (const c of ready) lib.COINS.push(c);
 
-const BASE = JSON.parse(fs.readFileSync(path.join(lib.OUT_DIR, 'run6y_result.json'), 'utf8')).best;
+const BASE = lib.LIVE_PARAMS;   // 지금 실거래 봇 설정 (lib5m.js)
+
+// 회귀 검사 기준값. BASE를 바꾸면 여기도 같이 갱신한다 (2026-09-26 측정).
+const EXPECT = { trades: 3645, ann: 22.02, mdd: 170.08 };
 const T = (sigma, fraction) => ({ sigma, fraction });
 
+// ⚠️ 사다리의 첫 칸이 곧 진입선이다 (lib5m.js: LADDER[0]이 ENTRY_SIGMA를 대신한다).
+// 그래서 1.0σ에서 시작하는 사다리를 지금 봇(2.0σ 진입)과 나란히 놓으면 «분할의 효과»가
+// 아니라 «진입선을 2.0σ에서 1.0σ로 푼 효과»를 재게 된다. 우리는 1σ 진입이 검증 구간에서
+// 진다는 걸 이미 안다(6년 탐색: 연 -14.58%). 분할만 따로 재려면 첫 칸을 진입선에
+// 맞춰야 한다 — 아래 «2.0σ 기준» 묶음이 그것이다.
+// 1.0σ 묶음은 옛 기준(σ1)에서 재던 것이라 비교용으로만 남겨둔다.
+const E = BASE.ENTRY_SIGMA;   // 2.0
 const LADDERS = [
   ['일괄 (현재)',            null,                                            null],
-  ['2단 1.0/1.5  50:50',     [T(1.0, 0.5), T(1.5, 0.5)],                      null],
-  ['2단 1.0/2.0  50:50',     [T(1.0, 0.5), T(2.0, 0.5)],                      null],
-  ['3단 1.0/1.5/2.0 균등',   [T(1.0, 1/3), T(1.5, 1/3), T(2.0, 1/3)],         null],
-  ['3단 1.0/1.75/2.5 균등',  [T(1.0, 1/3), T(1.75, 1/3), T(2.5, 1/3)],        null],
-  ['3단 앞무겁게 50:30:20',  [T(1.0, 0.5), T(1.5, 0.3), T(2.0, 0.2)],         null],
-  ['3단 뒤무겁게 20:30:50',  [T(1.0, 0.2), T(1.5, 0.3), T(2.0, 0.5)],         null],
-  // 자리를 비운 만큼 더 많은 종목에 깔아보는 변형
-  ['3단 균등 + 자리 9',      [T(1.0, 1/3), T(1.5, 1/3), T(2.0, 1/3)],         9],
-  ['2단 50:50 + 자리 6',     [T(1.0, 0.5), T(1.5, 0.5)],                      6],
+
+  // --- 진입선(2.0σ)에 맞춘 사다리: 분할 자체의 효과 ---
+  ['2단 2.0/2.5  50:50',     [T(E, 0.5), T(E + 0.5, 0.5)],                    null],
+  ['2단 2.0/3.0  50:50',     [T(E, 0.5), T(E + 1.0, 0.5)],                    null],
+  ['3단 2.0/2.5/3.0 균등',   [T(E, 1/3), T(E + 0.5, 1/3), T(E + 1.0, 1/3)],   null],
+  ['3단 앞무겁게 50:30:20',  [T(E, 0.5), T(E + 0.5, 0.3), T(E + 1.0, 0.2)],   null],
+  ['3단 뒤무겁게 20:30:50',  [T(E, 0.2), T(E + 0.5, 0.3), T(E + 1.0, 0.5)],   null],
+  ['3단 2.0/2.5/3.0 + 자리 6', [T(E, 1/3), T(E + 0.5, 1/3), T(E + 1.0, 1/3)], 6],
+
+  // --- 옛 1.0σ 사다리 (진입선까지 같이 푸는 셈이라 순수 비교 아님) ---
+  ['[구] 2단 1.0/1.5 50:50', [T(1.0, 0.5), T(1.5, 0.5)],                      null],
+  ['[구] 3단 1.0/1.5/2.0',   [T(1.0, 1/3), T(1.5, 1/3), T(2.0, 1/3)],         null],
+  ['[구] 3단 균등 + 자리 9', [T(1.0, 1/3), T(1.5, 1/3), T(2.0, 1/3)],         9],
 ];
 
 function row(label, r) {
@@ -62,10 +76,12 @@ const HEAD = ''.padEnd(24) + '  거래   승률   연환산      MDD  평균차�
   const ds = await lib.buildDataset({ yearsBack: YEARS });
 
   // --- 회귀 검사: TRANCHES=null이 기존 결과와 같은지 ---
+  // 기준 조합을 바꾸면 이 값도 같이 갱신해야 한다. 안 그러면 «리팩터링이 깨졌다»는
+  // 가짜 경고가 뜬다. (2026-09-26: 기준을 lib5m.js LIVE_PARAMS로 옮기며 갱신)
   const baseRun = lib.simulate(ds, BASE, { fromRatio: 0, toRatio: 1 });
   console.log(`\n[회귀 검사] 일괄 진입 = 거래 ${baseRun.totalTrades}건 / 연환산 ${baseRun.annualizedPct}% / MDD $${baseRun.maxDrawdown}`);
-  console.log(`            기대값     = 거래 5027건 / 연환산 22.45% / MDD $281.71`);
-  if (baseRun.totalTrades !== 5027 || baseRun.annualizedPct !== 22.45) {
+  console.log(`            기대값     = 거래 ${EXPECT.trades}건 / 연환산 ${EXPECT.ann}% / MDD $${EXPECT.mdd}`);
+  if (baseRun.totalTrades !== EXPECT.trades || baseRun.annualizedPct !== EXPECT.ann) {
     console.log('            ⚠ 불일치 — 리팩터링이 기존 동작을 바꿨다. 아래 결과를 믿지 말 것.');
   } else {
     console.log('            일치 ✓ 리팩터링은 기존 동작을 바꾸지 않았다.');

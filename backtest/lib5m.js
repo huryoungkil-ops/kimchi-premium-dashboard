@@ -229,6 +229,31 @@ const DEFAULT_PARAMS = {
 };
 
 // ---------------------------------------------------------------------------
+// 현재 실거래 봇(n8n `XTg1g0vSK3kZQDsN`)이 실제로 쓰고 있는 설정
+// ---------------------------------------------------------------------------
+// DEFAULT_PARAMS는 «격자 탐색의 중립 출발점»이지 봇 설정이 아니다. 봇은 2026-09-20에
+// 6년 탐색 결과로 바뀌었고(그 전 설정은 검증 구간에서 연 -14.58%로 지고 있었다),
+// 그 뒤로도 청산선·자리 수·순위 기준이 따로 조정됐다.
+//
+// 「지금 봇이 이러면 어떻게 되는가」를 재는 스크립트는 전부 이 값을 기준으로 삼는다.
+// 예전에는 run6y_result.json의 격자 우승자(.best)를 기준으로 썼는데, 그 파일은
+// σ·관문·청산선 네 축만 탐색해서 자리 수·순위 기준·완화 청산을 담지 못했고,
+// 봇이 바뀐 뒤로도 갱신되지 않아 문서마다 기준이 어긋났다.
+//
+// n8n 워크플로를 고치면 여기도 같이 고칠 것. (마지막 대조: 2026-09-26)
+const LIVE_PARAMS = Object.assign({}, DEFAULT_PARAMS, {
+  ENTRY_SIGMA: 2.0,          // 6년 탐색 추천
+  EDGE_MULTIPLE: 3.0,        // 6년 탐색 추천
+  EXIT_SIGMA_OFFSET: 0.25,   // frequency.js: 수익 조금 내주고 낙폭을 더 줄인다
+  REQUIRE_PROFIT_EXIT: false,
+  MAX_POSITIONS: 4,          // 5까지 가능하나 시드 20%를 현금으로 남긴다
+  RANK_BY: 'netEdge',        // ranking.js: 비율이 아니라 %p 절대 순이익으로 줄 세운다
+  SOFT_HOLD_DAYS: 2,         // softcheck.js: 2일이 분기점
+  SOFT_EXIT_LOSS_PP: 0.5,
+  MAX_HOLD_DAYS: 5,
+});
+
+// ---------------------------------------------------------------------------
 // 수집
 // ---------------------------------------------------------------------------
 function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
@@ -895,5 +920,5 @@ function simulate(dataset, params, range) {
 module.exports = {
   OUT_DIR, CACHE_DIR, SEED, POSITION_SIZE, FEE_RATE, MAX_WINDOW, MIN_DATA_POINTS,
   MIN_BAR_VALUE_MULTIPLE, MAX_SPREAD_PERCENT, KORBIT_SPREAD_PCT, COINS, ALL_COINS,
-  DEFAULT_PARAMS, trailingFunding, FEE_SCENARIOS, DEFAULT_FEE_SCENARIO, feeRateOf, breakEvenPp, buildDataset, simulate,
+  DEFAULT_PARAMS, LIVE_PARAMS, trailingFunding, FEE_SCENARIOS, DEFAULT_FEE_SCENARIO, feeRateOf, breakEvenPp, buildDataset, simulate,
 };
