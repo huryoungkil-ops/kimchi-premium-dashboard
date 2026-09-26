@@ -769,6 +769,10 @@ var coins = [["APT",1.67,1166,"calm"],["XTZ",1.65,444.3,"calm"],["TIA",1.6,672.6
   /* 봇의 «강제청산 판정» 노드와 같아야 하는 값. 남은 보유 여유를 알려주는 데만 쓴다. */
   var MAX_HOLD_DAYS = 5;
 
+  /* 봇의 «진입 가능 여부 판단» 노드와 같아야 하는 값. 웹훅이 maxPositions를 실어 보내므로
+     평소엔 쓰이지 않고, 응답이 비어 자체적으로 «보유 0건»을 그릴 때만 쓴다. */
+  var MAX_POSITIONS = 4;
+
   function dur(minutes){
     var m = Math.max(0, Math.round(minutes));
     var d = Math.floor(m / 1440), h = Math.floor((m % 1440) / 60);
@@ -920,8 +924,21 @@ var coins = [["APT",1.67,1166,"calm"],["XTZ",1.65,444.3,"calm"],["TIA",1.6,672.6
     });
   })();
 
+  /* 보유 포지션이 0건이면 표를 비우는 게 아니라 안내행을 남긴다.
+     그냥 비우면 머리글만 뜬 빈 표가 되어 «고장난 것»처럼 보인다. */
+  function emptyRow(){
+    var tr = document.createElement('tr');
+    var td = document.createElement('td');
+    td.className = 'empty-row';
+    td.setAttribute('colspan', '5');
+    td.textContent = '현재 보유 중인 포지션이 없습니다.';
+    tr.appendChild(td);
+    return tr;
+  }
+
   function render(data){
     var rows = (data.positions || []).map(buildRow);
+    if (!rows.length) rows = [emptyRow()];
 
     if (!replaceBetween('OPEN_POSITIONS', rows)) {
       while (tbody.firstChild) tbody.removeChild(tbody.firstChild);
@@ -930,12 +947,18 @@ var coins = [["APT",1.67,1166,"calm"],["XTZ",1.65,444.3,"calm"],["TIA",1.6,672.6
     replaceBetween('STAT_OPEN', [document.createTextNode('보유 ' + data.openCount + ' / 최대 ' + data.maxPositions)]);
 
     var when = kst(data.checkedAt);
-    var total = money(data.totalUnrealized);
-    var msg = '실시간 <b>' + esc(when) + ' KST</b> 기준 · 평가손익 합계 <b>' + total + '</b>'
-      + ' · 환율 <b>' + Number(data.usdKrw).toFixed(1) + '</b>';
-    if (data.pricedCount < data.openCount) {
-      msg += ' · <b>' + (data.openCount - data.pricedCount) + '개</b>는 호가를 못 받아 «—»로 둠';
+    var msg;
+    if (!data.openCount) {
+      msg = '실시간 <b>' + esc(when) + ' KST</b> 기준 · <b>보유 포지션 없음</b>';
+    } else {
+      msg = '실시간 <b>' + esc(when) + ' KST</b> 기준 · 평가손익 합계 <b>' + money(data.totalUnrealized) + '</b>';
+      if (data.pricedCount < data.openCount) {
+        msg += ' · <b>' + (data.openCount - data.pricedCount) + '개</b>는 호가를 못 받아 «—»로 둠';
+      }
     }
+    // 포지션이 없으면 웹훅이 환율을 못 실어 보낼 수 있다. Number(null)은 0이라 «0.0»으로 나온다.
+    var fx = Number(data.usdKrw);
+    if (isFinite(fx) && fx > 0) msg += ' · 환율 <b>' + fx.toFixed(1) + '</b>';
     setStatus(msg, 'live');
   }
 
@@ -952,9 +975,23 @@ var coins = [["APT",1.67,1166,"calm"],["XTZ",1.65,444.3,"calm"],["TIA",1.6,672.6
     })
       .then(function(r){
         if (!r.ok) throw new Error('서버 응답 ' + r.status);
-        return r.json();
+        // r.json()을 바로 쓰지 않는 이유: n8n은 워크플로가 «결과 반환»(Respond to Webhook)
+        // 노드에 닿지 못하면 Content-Type만 JSON인 «본문 0바이트 200»을 돌려준다. 그러면
+        // r.json()이 "Unexpected end of JSON input"으로 터져 멀쩡한 상태가 오류로 보인다.
+        // 2026-09-23에 마지막 포지션이 청산되면서 실제로 이 일이 났다 — 데이터 테이블
+        // 노드가 0개 항목을 내보내 뒤 노드가 전부 건너뛰어진 것. (웹훅 쪽은 두 노드에
+        // Always Output Data를 켜서 고쳤고, 여기는 다시 그래도 안 깨지게 하는 방어다.)
+        return r.text();
       })
-      .then(function(data){
+      .then(function(text){
+        if (!text || !text.trim()) {
+          return render({ ok: true, checkedAt: new Date().toISOString(),
+                          openCount: 0, maxPositions: MAX_POSITIONS,
+                          pricedCount: 0, totalUnrealized: 0, usdKrw: null, positions: [] });
+        }
+        var data;
+        try { data = JSON.parse(text); }
+        catch (e) { throw new Error('응답을 JSON으로 읽지 못했습니다'); }
         if (!data || data.ok !== true) throw new Error('응답 형식이 예상과 다릅니다');
         render(data);
       })
