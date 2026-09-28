@@ -1,0 +1,521 @@
+{
+  "workflow": {
+    "id": "80EIa2eVuDXFtp84",
+    "name": "김프 거래소 잔액 계산",
+    "description": null,
+    "active": true,
+    "activeVersionId": "95554120-df63-4dc6-9f2e-46b437aafcf4",
+    "createdAt": "2026-09-28T16:37:07.316Z",
+    "updatedAt": "2026-09-28T16:37:24.055Z",
+    "isArchived": false,
+    "versionId": "95554120-df63-4dc6-9f2e-46b437aafcf4",
+    "versionCounter": 2,
+    "sourceWorkflowId": null,
+    "triggerCount": 0,
+    "nodes": [
+      {
+        "id": "a1",
+        "name": "잔액 계산 요청",
+        "type": "n8n-nodes-base.executeWorkflowTrigger",
+        "typeVersion": 1.2,
+        "position": [
+          0,
+          0
+        ],
+        "parameters": {
+          "inputSource": "passthrough"
+        }
+      },
+      {
+        "id": "a2",
+        "name": "환율 조회",
+        "type": "n8n-nodes-base.httpRequest",
+        "typeVersion": 4.5,
+        "executeOnce": true,
+        "alwaysOutputData": true,
+        "retryOnFail": true,
+        "maxTries": 2,
+        "waitBetweenTries": 1000,
+        "onError": "continueRegularOutput",
+        "position": [
+          224,
+          0
+        ],
+        "parameters": {
+          "method": "GET",
+          "url": "https://open.er-api.com/v6/latest/USD",
+          "options": {}
+        }
+      },
+      {
+        "id": "a3",
+        "name": "코빗 가격 조회",
+        "type": "n8n-nodes-base.httpRequest",
+        "typeVersion": 4.5,
+        "executeOnce": true,
+        "alwaysOutputData": true,
+        "retryOnFail": true,
+        "maxTries": 2,
+        "waitBetweenTries": 1000,
+        "onError": "continueRegularOutput",
+        "position": [
+          448,
+          0
+        ],
+        "parameters": {
+          "method": "GET",
+          "url": "https://api.korbit.co.kr/v2/tickers",
+          "options": {}
+        }
+      },
+      {
+        "id": "a4",
+        "name": "OKX 가격 조회",
+        "type": "n8n-nodes-base.httpRequest",
+        "typeVersion": 4.5,
+        "executeOnce": true,
+        "alwaysOutputData": true,
+        "retryOnFail": true,
+        "maxTries": 2,
+        "waitBetweenTries": 1000,
+        "onError": "continueRegularOutput",
+        "position": [
+          672,
+          0
+        ],
+        "parameters": {
+          "method": "GET",
+          "url": "https://www.okx.com/api/v5/market/tickers?instType=SWAP",
+          "options": {}
+        }
+      },
+      {
+        "id": "a5",
+        "name": "전체 거래 조회",
+        "type": "n8n-nodes-base.dataTable",
+        "typeVersion": 1.1,
+        "executeOnce": true,
+        "alwaysOutputData": true,
+        "position": [
+          896,
+          0
+        ],
+        "parameters": {
+          "resource": "row",
+          "operation": "get",
+          "dataTableId": {
+            "__rl": true,
+            "mode": "id",
+            "value": "6MFkAuDuiogrRSqA",
+            "cachedResultName": "kimchi_paper_trades"
+          },
+          "returnAll": true
+        }
+      },
+      {
+        "id": "a6",
+        "name": "원장 설정 조회",
+        "type": "n8n-nodes-base.httpRequest",
+        "typeVersion": 4.5,
+        "executeOnce": true,
+        "alwaysOutputData": true,
+        "retryOnFail": true,
+        "maxTries": 2,
+        "waitBetweenTries": 1000,
+        "onError": "continueRegularOutput",
+        "position": [
+          1120,
+          0
+        ],
+        "parameters": {
+          "method": "GET",
+          "url": "https://kimchi-premium-dashboard-mu.vercel.app/ledger/config.json",
+          "options": {}
+        }
+      },
+      {
+        "id": "a7",
+        "name": "원장 백필 조회",
+        "type": "n8n-nodes-base.httpRequest",
+        "typeVersion": 4.5,
+        "executeOnce": true,
+        "alwaysOutputData": true,
+        "retryOnFail": true,
+        "maxTries": 2,
+        "waitBetweenTries": 1000,
+        "onError": "continueRegularOutput",
+        "position": [
+          1344,
+          0
+        ],
+        "parameters": {
+          "method": "GET",
+          "url": "https://kimchi-premium-dashboard-mu.vercel.app/ledger/backfill.json",
+          "options": {}
+        }
+      },
+      {
+        "id": "a8",
+        "name": "잔액 계산",
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          1568,
+          0
+        ],
+        "parameters": {
+          "mode": "runOnceForAllItems",
+          "language": "javaScript",
+          "jsCode": "// 거래소별 가상 잔액 계산 — 페이퍼 트레이딩 봇의 «진입 잔액 관문», «청산 알림», «07:40 상태 보고»가\n// 모두 이 워크플로 하나를 부른다 (2026-09-29). 계산을 한 곳에 두어 세 숫자가 어긋나지 않게 한다.\n//\n// 원장은 대시보드 «거래소별 잔액»(ledger/ledger.js)과 같은 방식이다:\n//   시드 $10,000을 가동일에 코빗(원화)·OKX(USDT)에 반씩 넣고, 청산 거래를 두 다리로 쌓고,\n//   ledger/config.json 의 리밸런싱(가상 이체)을 반영한다. 설정과 옛 거래 환율 백필은\n//   대시보드(Vercel)에서 받아 와서 두 곳이 같은 파일을 쓴다.\n//   코빗 여유 = 원화 예수금 (보유 코인 매수대금은 이미 빠져 있다)\n//   OKX 여유 = 평가금액(예수금 + 미실현손익) − 보유 포지션 증거금(1배 = 진입 명목)\n//   보유 포지션은 코빗 최우선 매수호가·OKX 최종가로 평가한다.\n// 한 자리에 코빗은 $1,000어치 원화, OKX는 $1,000 증거금 + 진입 수수료가 필요하다.\nconst POSITION_USD = 1000;          // 봇 «가상 진입 기록»의 positionSize와 같아야 한다\nconst FEE_RATE = 0.0002;            // 해외 지정가 편도\nconst MAX_POSITIONS = 4;            // 봇 «진입 가능 여부 판단»과 같아야 한다\n\nconst num = function (v) { const n = Number(v); return isFinite(n) && n !== 0 ? n : null; };\nconst r2 = function (v) { return Math.round(v * 100) / 100; };\nconst usd0 = function (v) { return '$' + Math.round(Math.abs(v)).toLocaleString('en-US'); };\n\nconst cfg = $('원장 설정 조회').first().json || {};\nconst backfill = $('원장 백필 조회').first().json || {};\nconst fxBody = $('환율 조회').first().json;\nconst fx = (fxBody && fxBody.rates && fxBody.rates.KRW) ? Number(fxBody.rates.KRW) : null;\n\nif (!num(cfg.seedUsd) || !num(cfg.startFx) || !fx) {\n  const reason = !fx ? '환율 없음' : '원장 설정을 받지 못함';\n  return [{ json: { checked: false, reason: reason, line: '💰 거래소별 잔액: 계산 실패 (' + reason + ')' } }];\n}\n\n// 지금 가격 (보유 포지션 평가용)\nconst kBid = {};\nconst kBody = $('코빗 가격 조회').first().json || {};\n(kBody.data || []).forEach(function (r) {\n  const m = String(r.symbol || '').match(/^(.+)_krw$/);\n  if (m) kBid[m[1].toUpperCase()] = num(r.bestBidPrice) || num(r.close);\n});\nconst oLast = {};\nconst oBody = $('OKX 가격 조회').first().json || {};\n(oBody.data || []).forEach(function (r) {\n  const m = String(r.instId || '').match(/^(.+)-USDT-SWAP$/);\n  if (m) oLast[m[1]] = num(r.last);\n});\n\nconst trades = $('전체 거래 조회').all().map(function (i) { return i.json; })\n  .filter(function (t) { return t && t.coin && t.status !== 'VOID'; });\n\nconst half = Number(cfg.seedUsd) / 2;\nlet korbitKrw = half * Number(cfg.startFx);\nlet okxCash = half;\nlet okxUnreal = 0, okxMargin = 0, korbitHoldKrw = 0;\nlet openCount = 0, closedCount = 0, unpriced = 0;\nconst missing = [];\n\n(cfg.transfers || []).forEach(function (tr) {\n  if (new Date(tr.time).getTime() > Date.now()) return;\n  const usd = Number(tr.usd), tfx = Number(tr.fx);\n  if (tr.from === 'korbit') { korbitKrw -= usd * tfx; okxCash += usd; }\n  else { okxCash -= usd; korbitKrw += usd * tfx; }\n});\n\ntrades.forEach(function (t) {\n  const b = backfill[t.id] || {};\n  const pe = Number(t.entryPremium) / 100;\n  const entryFp = num(t.entryForeignPrice) || num(b.entryForeignPrice);\n  const entryFx = num(t.entryFx) || num(b.entryFx) || (entryFp ? Number(t.entryPrice) / (entryFp * (1 + pe)) : null);\n  const q = entryFx ? Number(t.positionSize) * entryFx / Number(t.entryPrice) : null;\n  if (!q || !entryFp) { missing.push(t.id); return; }\n\n  if (t.status === 'CLOSED') {\n    const exitFx = num(t.exitFx) || num(b.exitFx);\n    let exitFp = num(t.exitForeignPrice) || num(b.exitForeignPrice);\n    if (!exitFp && exitFx) exitFp = Number(t.exitPrice) / (exitFx * (1 + Number(t.exitPremium) / 100));\n    if (!exitFp) { missing.push(t.id); return; }\n    korbitKrw += q * (Number(t.exitPrice) - Number(t.entryPrice));\n    okxCash += q * (entryFp - exitFp) - Number(t.feeEntry || 0) - Number(t.feeExit || 0);\n    closedCount++;\n    return;\n  }\n\n  // OPEN\n  openCount++;\n  korbitKrw -= q * Number(t.entryPrice);\n  okxCash -= Number(t.feeEntry || 0);\n  okxMargin += q * entryFp;\n  const bid = kBid[t.coin], fp = oLast[t.coin];\n  if (!bid || !fp) unpriced++;\n  if (fp) okxUnreal += q * (entryFp - fp);\n  korbitHoldKrw += q * (bid || Number(t.entryPrice));\n});\n\nconst korbitFree = korbitKrw / fx;\nconst okxFree = okxCash + okxUnreal - okxMargin;\nconst korbitSlots = Math.max(0, Math.floor(korbitFree / POSITION_USD));\nconst okxSlots = Math.max(0, Math.floor(okxFree / (POSITION_USD * (1 + FEE_RATE))));\n\nconst korbitTotal = (korbitKrw + korbitHoldKrw) / fx;\nconst okxTotal = okxCash + okxUnreal;\nconst total = korbitTotal + okxTotal;\nconst korbitShare = korbitTotal / total * 100;\nconst okxShare = okxTotal / total * 100;\nconst rebalanceUsd = korbitTotal - total / 2; // 양수면 코빗→OKX\n\nconst line = '💰 코빗 ' + usd0(korbitTotal) + ' (' + korbitShare.toFixed(1) + '%) · OKX ' + usd0(okxTotal) +\n  ' (' + okxShare.toFixed(1) + '%) · 합계 ' + usd0(total) + ' · ' +\n  (Math.abs(rebalanceUsd) < 1 ? '50:50 균형'\n    : '50:50까지 ' + (rebalanceUsd > 0 ? '코빗→OKX ' : 'OKX→코빗 ') + usd0(rebalanceUsd)) +\n  (unpriced ? ' (보유 ' + unpriced + '종목 원가 기준)' : '');\n\nreturn [{ json: {\n  checked: true,\n  fx: fx,\n  korbitTotal: r2(korbitTotal),\n  okxTotal: r2(okxTotal),\n  total: r2(total),\n  korbitShare: Math.round(korbitShare * 10) / 10,\n  okxShare: Math.round(okxShare * 10) / 10,\n  korbitFree: r2(korbitFree),\n  okxFree: r2(okxFree),\n  korbitSlots: korbitSlots,\n  okxSlots: okxSlots,\n  balanceSlots: Math.min(korbitSlots, okxSlots),\n  countSlots: Math.max(0, MAX_POSITIONS - openCount),\n  openCount: openCount,\n  closedCount: closedCount,\n  rebalanceUsd: r2(rebalanceUsd),\n  missing: missing,\n  line: line\n} }];\n"
+        }
+      }
+    ],
+    "connections": {
+      "잔액 계산 요청": {
+        "main": [
+          [
+            {
+              "node": "환율 조회",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "환율 조회": {
+        "main": [
+          [
+            {
+              "node": "코빗 가격 조회",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "코빗 가격 조회": {
+        "main": [
+          [
+            {
+              "node": "OKX 가격 조회",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "OKX 가격 조회": {
+        "main": [
+          [
+            {
+              "node": "전체 거래 조회",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "전체 거래 조회": {
+        "main": [
+          [
+            {
+              "node": "원장 설정 조회",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "원장 설정 조회": {
+        "main": [
+          [
+            {
+              "node": "원장 백필 조회",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "원장 백필 조회": {
+        "main": [
+          [
+            {
+              "node": "잔액 계산",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    },
+    "nodeGroups": [],
+    "settings": {
+      "executionOrder": "v1",
+      "callerPolicy": "workflowsFromSameOwner",
+      "availableInMCP": true
+    },
+    "staticData": null,
+    "pinData": null,
+    "meta": null,
+    "tags": [],
+    "activeVersion": {
+      "versionId": "95554120-df63-4dc6-9f2e-46b437aafcf4",
+      "workflowId": "80EIa2eVuDXFtp84",
+      "nodes": [
+        {
+          "id": "a1",
+          "name": "잔액 계산 요청",
+          "type": "n8n-nodes-base.executeWorkflowTrigger",
+          "typeVersion": 1.2,
+          "position": [
+            0,
+            0
+          ],
+          "parameters": {
+            "inputSource": "passthrough"
+          }
+        },
+        {
+          "id": "a2",
+          "name": "환율 조회",
+          "type": "n8n-nodes-base.httpRequest",
+          "typeVersion": 4.5,
+          "executeOnce": true,
+          "alwaysOutputData": true,
+          "retryOnFail": true,
+          "maxTries": 2,
+          "waitBetweenTries": 1000,
+          "onError": "continueRegularOutput",
+          "position": [
+            224,
+            0
+          ],
+          "parameters": {
+            "method": "GET",
+            "url": "https://open.er-api.com/v6/latest/USD",
+            "options": {}
+          }
+        },
+        {
+          "id": "a3",
+          "name": "코빗 가격 조회",
+          "type": "n8n-nodes-base.httpRequest",
+          "typeVersion": 4.5,
+          "executeOnce": true,
+          "alwaysOutputData": true,
+          "retryOnFail": true,
+          "maxTries": 2,
+          "waitBetweenTries": 1000,
+          "onError": "continueRegularOutput",
+          "position": [
+            448,
+            0
+          ],
+          "parameters": {
+            "method": "GET",
+            "url": "https://api.korbit.co.kr/v2/tickers",
+            "options": {}
+          }
+        },
+        {
+          "id": "a4",
+          "name": "OKX 가격 조회",
+          "type": "n8n-nodes-base.httpRequest",
+          "typeVersion": 4.5,
+          "executeOnce": true,
+          "alwaysOutputData": true,
+          "retryOnFail": true,
+          "maxTries": 2,
+          "waitBetweenTries": 1000,
+          "onError": "continueRegularOutput",
+          "position": [
+            672,
+            0
+          ],
+          "parameters": {
+            "method": "GET",
+            "url": "https://www.okx.com/api/v5/market/tickers?instType=SWAP",
+            "options": {}
+          }
+        },
+        {
+          "id": "a5",
+          "name": "전체 거래 조회",
+          "type": "n8n-nodes-base.dataTable",
+          "typeVersion": 1.1,
+          "executeOnce": true,
+          "alwaysOutputData": true,
+          "position": [
+            896,
+            0
+          ],
+          "parameters": {
+            "resource": "row",
+            "operation": "get",
+            "dataTableId": {
+              "__rl": true,
+              "mode": "id",
+              "value": "6MFkAuDuiogrRSqA",
+              "cachedResultName": "kimchi_paper_trades"
+            },
+            "returnAll": true
+          }
+        },
+        {
+          "id": "a6",
+          "name": "원장 설정 조회",
+          "type": "n8n-nodes-base.httpRequest",
+          "typeVersion": 4.5,
+          "executeOnce": true,
+          "alwaysOutputData": true,
+          "retryOnFail": true,
+          "maxTries": 2,
+          "waitBetweenTries": 1000,
+          "onError": "continueRegularOutput",
+          "position": [
+            1120,
+            0
+          ],
+          "parameters": {
+            "method": "GET",
+            "url": "https://kimchi-premium-dashboard-mu.vercel.app/ledger/config.json",
+            "options": {}
+          }
+        },
+        {
+          "id": "a7",
+          "name": "원장 백필 조회",
+          "type": "n8n-nodes-base.httpRequest",
+          "typeVersion": 4.5,
+          "executeOnce": true,
+          "alwaysOutputData": true,
+          "retryOnFail": true,
+          "maxTries": 2,
+          "waitBetweenTries": 1000,
+          "onError": "continueRegularOutput",
+          "position": [
+            1344,
+            0
+          ],
+          "parameters": {
+            "method": "GET",
+            "url": "https://kimchi-premium-dashboard-mu.vercel.app/ledger/backfill.json",
+            "options": {}
+          }
+        },
+        {
+          "id": "a8",
+          "name": "잔액 계산",
+          "type": "n8n-nodes-base.code",
+          "typeVersion": 2,
+          "position": [
+            1568,
+            0
+          ],
+          "parameters": {
+            "mode": "runOnceForAllItems",
+            "language": "javaScript",
+            "jsCode": "// 거래소별 가상 잔액 계산 — 페이퍼 트레이딩 봇의 «진입 잔액 관문», «청산 알림», «07:40 상태 보고»가\n// 모두 이 워크플로 하나를 부른다 (2026-09-29). 계산을 한 곳에 두어 세 숫자가 어긋나지 않게 한다.\n//\n// 원장은 대시보드 «거래소별 잔액»(ledger/ledger.js)과 같은 방식이다:\n//   시드 $10,000을 가동일에 코빗(원화)·OKX(USDT)에 반씩 넣고, 청산 거래를 두 다리로 쌓고,\n//   ledger/config.json 의 리밸런싱(가상 이체)을 반영한다. 설정과 옛 거래 환율 백필은\n//   대시보드(Vercel)에서 받아 와서 두 곳이 같은 파일을 쓴다.\n//   코빗 여유 = 원화 예수금 (보유 코인 매수대금은 이미 빠져 있다)\n//   OKX 여유 = 평가금액(예수금 + 미실현손익) − 보유 포지션 증거금(1배 = 진입 명목)\n//   보유 포지션은 코빗 최우선 매수호가·OKX 최종가로 평가한다.\n// 한 자리에 코빗은 $1,000어치 원화, OKX는 $1,000 증거금 + 진입 수수료가 필요하다.\nconst POSITION_USD = 1000;          // 봇 «가상 진입 기록»의 positionSize와 같아야 한다\nconst FEE_RATE = 0.0002;            // 해외 지정가 편도\nconst MAX_POSITIONS = 4;            // 봇 «진입 가능 여부 판단»과 같아야 한다\n\nconst num = function (v) { const n = Number(v); return isFinite(n) && n !== 0 ? n : null; };\nconst r2 = function (v) { return Math.round(v * 100) / 100; };\nconst usd0 = function (v) { return '$' + Math.round(Math.abs(v)).toLocaleString('en-US'); };\n\nconst cfg = $('원장 설정 조회').first().json || {};\nconst backfill = $('원장 백필 조회').first().json || {};\nconst fxBody = $('환율 조회').first().json;\nconst fx = (fxBody && fxBody.rates && fxBody.rates.KRW) ? Number(fxBody.rates.KRW) : null;\n\nif (!num(cfg.seedUsd) || !num(cfg.startFx) || !fx) {\n  const reason = !fx ? '환율 없음' : '원장 설정을 받지 못함';\n  return [{ json: { checked: false, reason: reason, line: '💰 거래소별 잔액: 계산 실패 (' + reason + ')' } }];\n}\n\n// 지금 가격 (보유 포지션 평가용)\nconst kBid = {};\nconst kBody = $('코빗 가격 조회').first().json || {};\n(kBody.data || []).forEach(function (r) {\n  const m = String(r.symbol || '').match(/^(.+)_krw$/);\n  if (m) kBid[m[1].toUpperCase()] = num(r.bestBidPrice) || num(r.close);\n});\nconst oLast = {};\nconst oBody = $('OKX 가격 조회').first().json || {};\n(oBody.data || []).forEach(function (r) {\n  const m = String(r.instId || '').match(/^(.+)-USDT-SWAP$/);\n  if (m) oLast[m[1]] = num(r.last);\n});\n\nconst trades = $('전체 거래 조회').all().map(function (i) { return i.json; })\n  .filter(function (t) { return t && t.coin && t.status !== 'VOID'; });\n\nconst half = Number(cfg.seedUsd) / 2;\nlet korbitKrw = half * Number(cfg.startFx);\nlet okxCash = half;\nlet okxUnreal = 0, okxMargin = 0, korbitHoldKrw = 0;\nlet openCount = 0, closedCount = 0, unpriced = 0;\nconst missing = [];\n\n(cfg.transfers || []).forEach(function (tr) {\n  if (new Date(tr.time).getTime() > Date.now()) return;\n  const usd = Number(tr.usd), tfx = Number(tr.fx);\n  if (tr.from === 'korbit') { korbitKrw -= usd * tfx; okxCash += usd; }\n  else { okxCash -= usd; korbitKrw += usd * tfx; }\n});\n\ntrades.forEach(function (t) {\n  const b = backfill[t.id] || {};\n  const pe = Number(t.entryPremium) / 100;\n  const entryFp = num(t.entryForeignPrice) || num(b.entryForeignPrice);\n  const entryFx = num(t.entryFx) || num(b.entryFx) || (entryFp ? Number(t.entryPrice) / (entryFp * (1 + pe)) : null);\n  const q = entryFx ? Number(t.positionSize) * entryFx / Number(t.entryPrice) : null;\n  if (!q || !entryFp) { missing.push(t.id); return; }\n\n  if (t.status === 'CLOSED') {\n    const exitFx = num(t.exitFx) || num(b.exitFx);\n    let exitFp = num(t.exitForeignPrice) || num(b.exitForeignPrice);\n    if (!exitFp && exitFx) exitFp = Number(t.exitPrice) / (exitFx * (1 + Number(t.exitPremium) / 100));\n    if (!exitFp) { missing.push(t.id); return; }\n    korbitKrw += q * (Number(t.exitPrice) - Number(t.entryPrice));\n    okxCash += q * (entryFp - exitFp) - Number(t.feeEntry || 0) - Number(t.feeExit || 0);\n    closedCount++;\n    return;\n  }\n\n  // OPEN\n  openCount++;\n  korbitKrw -= q * Number(t.entryPrice);\n  okxCash -= Number(t.feeEntry || 0);\n  okxMargin += q * entryFp;\n  const bid = kBid[t.coin], fp = oLast[t.coin];\n  if (!bid || !fp) unpriced++;\n  if (fp) okxUnreal += q * (entryFp - fp);\n  korbitHoldKrw += q * (bid || Number(t.entryPrice));\n});\n\nconst korbitFree = korbitKrw / fx;\nconst okxFree = okxCash + okxUnreal - okxMargin;\nconst korbitSlots = Math.max(0, Math.floor(korbitFree / POSITION_USD));\nconst okxSlots = Math.max(0, Math.floor(okxFree / (POSITION_USD * (1 + FEE_RATE))));\n\nconst korbitTotal = (korbitKrw + korbitHoldKrw) / fx;\nconst okxTotal = okxCash + okxUnreal;\nconst total = korbitTotal + okxTotal;\nconst korbitShare = korbitTotal / total * 100;\nconst okxShare = okxTotal / total * 100;\nconst rebalanceUsd = korbitTotal - total / 2; // 양수면 코빗→OKX\n\nconst line = '💰 코빗 ' + usd0(korbitTotal) + ' (' + korbitShare.toFixed(1) + '%) · OKX ' + usd0(okxTotal) +\n  ' (' + okxShare.toFixed(1) + '%) · 합계 ' + usd0(total) + ' · ' +\n  (Math.abs(rebalanceUsd) < 1 ? '50:50 균형'\n    : '50:50까지 ' + (rebalanceUsd > 0 ? '코빗→OKX ' : 'OKX→코빗 ') + usd0(rebalanceUsd)) +\n  (unpriced ? ' (보유 ' + unpriced + '종목 원가 기준)' : '');\n\nreturn [{ json: {\n  checked: true,\n  fx: fx,\n  korbitTotal: r2(korbitTotal),\n  okxTotal: r2(okxTotal),\n  total: r2(total),\n  korbitShare: Math.round(korbitShare * 10) / 10,\n  okxShare: Math.round(okxShare * 10) / 10,\n  korbitFree: r2(korbitFree),\n  okxFree: r2(okxFree),\n  korbitSlots: korbitSlots,\n  okxSlots: okxSlots,\n  balanceSlots: Math.min(korbitSlots, okxSlots),\n  countSlots: Math.max(0, MAX_POSITIONS - openCount),\n  openCount: openCount,\n  closedCount: closedCount,\n  rebalanceUsd: r2(rebalanceUsd),\n  missing: missing,\n  line: line\n} }];\n"
+          }
+        }
+      ],
+      "connections": {
+        "잔액 계산 요청": {
+          "main": [
+            [
+              {
+                "node": "환율 조회",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "환율 조회": {
+          "main": [
+            [
+              {
+                "node": "코빗 가격 조회",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "코빗 가격 조회": {
+          "main": [
+            [
+              {
+                "node": "OKX 가격 조회",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "OKX 가격 조회": {
+          "main": [
+            [
+              {
+                "node": "전체 거래 조회",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "전체 거래 조회": {
+          "main": [
+            [
+              {
+                "node": "원장 설정 조회",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "원장 설정 조회": {
+          "main": [
+            [
+              {
+                "node": "원장 백필 조회",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "원장 백필 조회": {
+          "main": [
+            [
+              {
+                "node": "잔액 계산",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        }
+      },
+      "nodeGroups": [],
+      "authors": "youngkil Hur",
+      "name": null,
+      "description": null,
+      "autosaved": false,
+      "createdAt": "2026-09-28T16:37:07.316Z",
+      "updatedAt": "2026-09-28T16:37:07.316Z",
+      "workflowPublishHistory": [
+        {
+          "id": 1550,
+          "workflowId": "80EIa2eVuDXFtp84",
+          "versionId": "95554120-df63-4dc6-9f2e-46b437aafcf4",
+          "event": "activated",
+          "userId": "185e9a53-294d-4ab7-913f-1bc33324adfd",
+          "createdAt": "2026-09-28T16:39:55.418Z"
+        }
+      ]
+    }
+  }
+}

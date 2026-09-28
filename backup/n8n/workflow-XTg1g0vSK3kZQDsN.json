@@ -4,12 +4,12 @@
     "name": "김치 프리미엄 페이퍼 트레이딩 (코빗×OKX, 5분)",
     "description": "코빗(국내)과 OKX(해외 USDT 무기한선물) 가격을 5분마다 비교해 김프를 계산하고, 3일 이동평균 기준 진입/청산 신호로 가상 매매를 기록 후 Discord로 알림",
     "active": true,
-    "activeVersionId": "bcdde89f-44af-4a1b-a178-2568ec2d401a",
+    "activeVersionId": "51f9ccd4-a092-4d20-b7ff-ee9ec57ea423",
     "createdAt": "2026-09-05T12:41:43.811Z",
-    "updatedAt": "2026-09-28T13:44:55.463Z",
+    "updatedAt": "2026-09-28T16:39:40.594Z",
     "isArchived": false,
-    "versionId": "bcdde89f-44af-4a1b-a178-2568ec2d401a",
-    "versionCounter": 52,
+    "versionId": "51f9ccd4-a092-4d20-b7ff-ee9ec57ea423",
+    "versionCounter": 53,
     "sourceWorkflowId": null,
     "triggerCount": 2,
     "nodes": [
@@ -811,7 +811,7 @@
         "parameters": {
           "mode": "runOnceForAllItems",
           "language": "javaScript",
-          "jsCode": "const data = $json;\nconst kstStr = new Date(data.reportTime).toLocaleString('ko-KR', { timeZone: 'Asia/Seoul', year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit' });\n\nconst statusLine = data.isHealthy\n  ? '✅ 정상 동작 중'\n  : '⚠️ 점검이 필요할 수 있어요 (실행 누락 또는 최신 데이터 지연 의심)';\n\nconst lines = [];\nlines.push('📋 김치 프리미엄 봇 상태 보고 (' + kstStr + ' KST)');\nlines.push(statusLine);\nlines.push('지난 24시간 실행: ' + data.actualRuns + '/' + data.expectedRuns + '회, 최신 데이터 ' + (data.minutesSinceLastData !== null ? data.minutesSinceLastData + '분 전' : '없음'));\nlines.push('');\nlines.push('💰 페이퍼 트레이딩 성과 (가상 시드 $' + data.paperSeedUsd.toLocaleString('en-US') + ')');\nif (data.totalTrades > 0) {\n  const profitSign = data.totalNetProfit >= 0 ? '+' : '';\n  lines.push('누적 청산 거래: ' + data.totalTrades + '회 (승 ' + data.winTrades + ' / 승률 ' + data.winRate.toFixed(1) + '%)');\n  lines.push('누적 손익: ' + profitSign + '$' + data.totalNetProfit.toFixed(2) + ' (원금 대비 ' + profitSign + data.returnPct.toFixed(2) + '%)');\n} else {\n  lines.push('아직 청산된 거래 없음');\n}\nconst openCoinNames = data.openPositions.map(function (p) { return p.coin; }).join(', ');\nlines.push('현재 보유 중인 가상 포지션: ' + data.openPositionsCount + '개' + (data.openPositionsCount > 0 ? (' (' + openCoinNames + ')') : ''));\nlines.push('');\nlines.push('코인별 24시간 김프 추이 (현재 | 평균 | 범위 | 표본수)');\n\ndata.coinStats.forEach(function (c) {\n  lines.push('· ' + c.coin + ': ' + c.current.toFixed(2) + '% | 평균 ' + c.avg.toFixed(2) + '% | [' + c.min.toFixed(2) + '% ~ ' + c.max.toFixed(2) + '%] | ' + c.dataPoints + '개');\n});\n\nlines.push('');\nlines.push('🔗 대시보드: https://kimchi-premium-dashboard-mu.vercel.app');\n\nreturn [{ json: { content: lines.join('\\n') } }];"
+          "jsCode": "const data = $('매매 성과 계산').first().json;\n// 거래소별 잔액 (서브 워크플로 «김프 거래소 잔액 계산», 2026-09-29 추가)\nconst bal = $('보고용 잔액 조회').first().json || {};\nconst kstStr = new Date(data.reportTime).toLocaleString('ko-KR', { timeZone: 'Asia/Seoul', year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit' });\n\nconst statusLine = data.isHealthy\n  ? '✅ 정상 동작 중'\n  : '⚠️ 점검이 필요할 수 있어요 (실행 누락 또는 최신 데이터 지연 의심)';\n\nconst lines = [];\nlines.push('📋 김치 프리미엄 봇 상태 보고 (' + kstStr + ' KST)');\nlines.push(statusLine);\nlines.push('지난 24시간 실행: ' + data.actualRuns + '/' + data.expectedRuns + '회, 최신 데이터 ' + (data.minutesSinceLastData !== null ? data.minutesSinceLastData + '분 전' : '없음'));\nlines.push('');\nlines.push('💰 페이퍼 트레이딩 성과 (가상 시드 $' + data.paperSeedUsd.toLocaleString('en-US') + ')');\nif (data.totalTrades > 0) {\n  const profitSign = data.totalNetProfit >= 0 ? '+' : '';\n  lines.push('누적 청산 거래: ' + data.totalTrades + '회 (승 ' + data.winTrades + ' / 승률 ' + data.winRate.toFixed(1) + '%)');\n  lines.push('누적 손익: ' + profitSign + '$' + data.totalNetProfit.toFixed(2) + ' (원금 대비 ' + profitSign + data.returnPct.toFixed(2) + '%)');\n} else {\n  lines.push('아직 청산된 거래 없음');\n}\nconst openCoinNames = data.openPositions.map(function (p) { return p.coin; }).join(', ');\nlines.push('현재 보유 중인 가상 포지션: ' + data.openPositionsCount + '개' + (data.openPositionsCount > 0 ? (' (' + openCoinNames + ')') : ''));\nif (bal.line) lines.push(bal.line);\nlines.push('');\nlines.push('코인별 24시간 김프 추이 (현재 | 평균 | 범위 | 표본수)');\n\ndata.coinStats.forEach(function (c) {\n  lines.push('· ' + c.coin + ': ' + c.current.toFixed(2) + '% | 평균 ' + c.avg.toFixed(2) + '% | [' + c.min.toFixed(2) + '% ~ ' + c.max.toFixed(2) + '%] | ' + c.dataPoints + '개');\n});\n\nlines.push('');\nlines.push('🔗 대시보드: https://kimchi-premium-dashboard-mu.vercel.app');\n\nreturn [{ json: { content: lines.join('\\n') } }];"
         }
       },
       {
@@ -1127,7 +1127,7 @@
         "parameters": {
           "mode": "runOnceForAllItems",
           "language": "javaScript",
-          "jsCode": "const SEED = 10000;\nconst MAX_POSITIONS = 4;\nconst DASHBOARD = 'https://kimchi-premium-dashboard-mu.vercel.app';\n\nconst rows = $input.all().map(function (i) { return i.json; }).filter(function (r) { return r && r.coin; });\nconst closed = rows.filter(function (r) { return r.status === 'CLOSED'; });\nconst open = rows.filter(function (r) { return r.status === 'OPEN'; });\n\nconst totalTrades = closed.length;\nconst wins = closed.filter(function (r) { return Number(r.netProfit) > 0; }).length;\nconst net = closed.reduce(function (s, r) { return s + Number(r.netProfit || 0); }, 0);\nconst returnPct = net / SEED * 100;\n\nconst perfLines = [];\nperfLines.push('');\nperfLines.push('─────');\nperfLines.push('📊 시드 $' + SEED.toLocaleString('en-US') + ' · 누적 ' + (net >= 0 ? '+$' : '-$') + Math.abs(net).toFixed(2) + ' (' + (returnPct >= 0 ? '+' : '') + returnPct.toFixed(2) + '%)');\nif (totalTrades > 0) {\n  perfLines.push('청산 ' + totalTrades + '건 · 승률 ' + (wins / totalTrades * 100).toFixed(1) + '% · 보유 ' + open.length + '/' + MAX_POSITIONS);\n} else {\n  perfLines.push('보유 ' + open.length + '/' + MAX_POSITIONS);\n}\nperfLines.push('대시보드: ' + DASHBOARD);\nconst perf = perfLines.join('\\n');\n\n// 정규 청산과 강제 청산이 한 곳으로 모이는 지점이 '청산해도 되는가?'다\nconst exits = $('청산해도 되는가?').all().map(function (i) { return i.json; });\n\nfunction fmtHeld(mins) {\n  if (mins < 60) return mins + '분';\n  const h = Math.floor(mins / 60);\n  const m = mins % 60;\n  if (h < 24) return h + '시간 ' + m + '분';\n  return Math.floor(h / 24) + '일 ' + (h % 24) + '시간';\n}\n\nconst REASON_LABEL = { SOFT: ' · 2일 경과 후 완화 청산', MAXHOLD: ' · 5일 초과 강제 청산', PRICESTOP: ' · 가격손절(증거금 보호)' };\n\n// 왜 그렇게 청산했는지를 알림에 함께 적는다.\n// ⚠️ 여기 적힌 숫자(2일 · 0.5%p · 5일)는 «강제청산 판정» 노드의 상수와 같아야 한다.\nconst REASON_NOTE = {\n  SOFT: [\n    '📌 완화 청산이란',\n    '2일이 지나도 평균으로 돌아오지 않은 자리입니다. 6년 백테스트에서',\n    '이런 자리는 승률이 80% → 30%로 떨어지고, 3일을 넘기면 4.6%까지',\n    '내려갔습니다.',\n    '청산 기준인 3일 평균도 같이 내려오기 때문에, 버틸수록 «회복해서»가',\n    '아니라 «평균이 내려와서» 손실로 끝납니다. 그래서 손실이 0.5%p',\n    '이내로 줄어든 첫 순간에 정리하고 자리를 비우는 장치입니다.'\n  ].join('\\n'),\n  MAXHOLD: [\n    '📌 강제 청산이란',\n    '5일을 넘긴 자리는 조건과 무관하게 정리합니다. 회복 가능성보다',\n    '자리가 묶이는 비용이 크다고 보는 마지막 안전장치입니다.'\n  ].join('\\n'),\n  PRICESTOP: [\n    '📌 가격 손절이란',\n    '해외 선물 숏은 코인 가격이 오르면 증거금이 깎입니다. 청산당하기 전에',\n    '양쪽 다리를 함께 닫습니다. 같이 닫으면 가격 변동은 상쇄되므로',\n    '비용은 수수료와 남은 회귀분뿐입니다.'\n  ].join('\\n')\n};\n\nreturn exits.map(function (e) {\n  const lines = [];\n  lines.push('🔴 [가상 청산] ' + e.coin + (REASON_LABEL[e.forceReason] || ''));\n  lines.push('청산 김프: ' + Number(e.exitPremium).toFixed(2) + '% (진입 ' + Number(e.entryPremium).toFixed(2) + '%)');\n  lines.push('이번 손익: ' + (Number(e.netProfit) >= 0 ? '+$' : '-$') + Math.abs(Number(e.netProfit)).toFixed(2) + ' · 보유 ' + fmtHeld(Number(e.heldMinutes)));\n\n  const note = REASON_NOTE[e.forceReason];\n  if (note) {\n    lines.push('');\n    lines.push(note);\n\n    // 판정은 마지막 체결가로 하고 체결은 실제 매도호가로 된다.\n    // 거래가 뜸한 시간대엔 체결가가 낡아 있어 둘이 크게 벌어진다.\n    // 이게 예외인지 상시 비용인지 알려면 매번 찍어두고 봐야 한다.\n    const tp = Number(e.tickerPremium);\n    if (isFinite(tp)) {\n      const judged = tp - Number(e.entryPremium);\n      const filled = Number(e.exitPremium) - Number(e.entryPremium);\n      const gap = Math.abs(judged - filled);\n      if (gap >= 0.1) {\n        lines.push('');\n        lines.push('⚠️ 판정 ' + judged.toFixed(2) + '%p → 체결 ' + filled.toFixed(2) + '%p (차이 ' + gap.toFixed(2) + '%p)');\n        lines.push('판정은 마지막 체결가, 체결은 실제 매도호가 기준입니다.');\n        lines.push('거래가 뜸한 시간대일수록 이 차이가 벌어집니다.');\n      }\n    }\n  }\n\n  return { json: { content: lines.join('\\n') + perf } };\n});"
+          "jsCode": "const SEED = 10000;\nconst MAX_POSITIONS = 4;\nconst DASHBOARD = 'https://kimchi-premium-dashboard-mu.vercel.app';\n\nconst rows = $('청산 성과 조회').all().map(function (i) { return i.json; }).filter(function (r) { return r && r.coin; });\nconst closed = rows.filter(function (r) { return r.status === 'CLOSED'; });\nconst open = rows.filter(function (r) { return r.status === 'OPEN'; });\n\nconst totalTrades = closed.length;\nconst wins = closed.filter(function (r) { return Number(r.netProfit) > 0; }).length;\nconst net = closed.reduce(function (s, r) { return s + Number(r.netProfit || 0); }, 0);\nconst returnPct = net / SEED * 100;\n\nconst perfLines = [];\nperfLines.push('');\nperfLines.push('─────');\nperfLines.push('📊 시드 $' + SEED.toLocaleString('en-US') + ' · 누적 ' + (net >= 0 ? '+$' : '-$') + Math.abs(net).toFixed(2) + ' (' + (returnPct >= 0 ? '+' : '') + returnPct.toFixed(2) + '%)');\nif (totalTrades > 0) {\n  perfLines.push('청산 ' + totalTrades + '건 · 승률 ' + (wins / totalTrades * 100).toFixed(1) + '% · 보유 ' + open.length + '/' + MAX_POSITIONS);\n} else {\n  perfLines.push('보유 ' + open.length + '/' + MAX_POSITIONS);\n}\n// 거래소별 잔액 (서브 워크플로 «김프 거래소 잔액 계산», 2026-09-29 추가)\nconst bal = $('청산 후 잔액 조회').first().json || {};\nif (bal.line) perfLines.push(bal.line);\nperfLines.push('대시보드: ' + DASHBOARD);\nconst perf = perfLines.join('\\n');\n\n// 정규 청산과 강제 청산이 한 곳으로 모이는 지점이 '청산해도 되는가?'다\nconst exits = $('청산해도 되는가?').all().map(function (i) { return i.json; });\n\nfunction fmtHeld(mins) {\n  if (mins < 60) return mins + '분';\n  const h = Math.floor(mins / 60);\n  const m = mins % 60;\n  if (h < 24) return h + '시간 ' + m + '분';\n  return Math.floor(h / 24) + '일 ' + (h % 24) + '시간';\n}\n\nconst REASON_LABEL = { SOFT: ' · 2일 경과 후 완화 청산', MAXHOLD: ' · 5일 초과 강제 청산', PRICESTOP: ' · 가격손절(증거금 보호)' };\n\n// 왜 그렇게 청산했는지를 알림에 함께 적는다.\n// ⚠️ 여기 적힌 숫자(2일 · 0.5%p · 5일)는 «강제청산 판정» 노드의 상수와 같아야 한다.\nconst REASON_NOTE = {\n  SOFT: [\n    '📌 완화 청산이란',\n    '2일이 지나도 평균으로 돌아오지 않은 자리입니다. 6년 백테스트에서',\n    '이런 자리는 승률이 80% → 30%로 떨어지고, 3일을 넘기면 4.6%까지',\n    '내려갔습니다.',\n    '청산 기준인 3일 평균도 같이 내려오기 때문에, 버틸수록 «회복해서»가',\n    '아니라 «평균이 내려와서» 손실로 끝납니다. 그래서 손실이 0.5%p',\n    '이내로 줄어든 첫 순간에 정리하고 자리를 비우는 장치입니다.'\n  ].join('\\n'),\n  MAXHOLD: [\n    '📌 강제 청산이란',\n    '5일을 넘긴 자리는 조건과 무관하게 정리합니다. 회복 가능성보다',\n    '자리가 묶이는 비용이 크다고 보는 마지막 안전장치입니다.'\n  ].join('\\n'),\n  PRICESTOP: [\n    '📌 가격 손절이란',\n    '해외 선물 숏은 코인 가격이 오르면 증거금이 깎입니다. 청산당하기 전에',\n    '양쪽 다리를 함께 닫습니다. 같이 닫으면 가격 변동은 상쇄되므로',\n    '비용은 수수료와 남은 회귀분뿐입니다.'\n  ].join('\\n')\n};\n\nreturn exits.map(function (e) {\n  const lines = [];\n  lines.push('🔴 [가상 청산] ' + e.coin + (REASON_LABEL[e.forceReason] || ''));\n  lines.push('청산 김프: ' + Number(e.exitPremium).toFixed(2) + '% (진입 ' + Number(e.entryPremium).toFixed(2) + '%)');\n  lines.push('이번 손익: ' + (Number(e.netProfit) >= 0 ? '+$' : '-$') + Math.abs(Number(e.netProfit)).toFixed(2) + ' · 보유 ' + fmtHeld(Number(e.heldMinutes)));\n\n  const note = REASON_NOTE[e.forceReason];\n  if (note) {\n    lines.push('');\n    lines.push(note);\n\n    // 판정은 마지막 체결가로 하고 체결은 실제 매도호가로 된다.\n    // 거래가 뜸한 시간대엔 체결가가 낡아 있어 둘이 크게 벌어진다.\n    // 이게 예외인지 상시 비용인지 알려면 매번 찍어두고 봐야 한다.\n    const tp = Number(e.tickerPremium);\n    if (isFinite(tp)) {\n      const judged = tp - Number(e.entryPremium);\n      const filled = Number(e.exitPremium) - Number(e.entryPremium);\n      const gap = Math.abs(judged - filled);\n      if (gap >= 0.1) {\n        lines.push('');\n        lines.push('⚠️ 판정 ' + judged.toFixed(2) + '%p → 체결 ' + filled.toFixed(2) + '%p (차이 ' + gap.toFixed(2) + '%p)');\n        lines.push('판정은 마지막 체결가, 체결은 실제 매도호가 기준입니다.');\n        lines.push('거래가 뜸한 시간대일수록 이 차이가 벌어집니다.');\n      }\n    }\n  }\n\n  return { json: { content: lines.join('\\n') + perf } };\n});"
         }
       },
       {
@@ -1286,71 +1286,6 @@
         "executeOnce": true
       },
       {
-        "id": "4617bce4-8c26-4f44-95b6-10184a6ae4fc",
-        "name": "전체 거래 조회",
-        "type": "n8n-nodes-base.dataTable",
-        "typeVersion": 1.1,
-        "position": [
-          1552,
-          -260
-        ],
-        "parameters": {
-          "resource": "row",
-          "operation": "get",
-          "dataTableId": {
-            "__rl": true,
-            "mode": "id",
-            "value": "6MFkAuDuiogrRSqA",
-            "cachedResultName": "kimchi_paper_trades"
-          },
-          "returnAll": true
-        },
-        "alwaysOutputData": true,
-        "executeOnce": true
-      },
-      {
-        "id": "3d173742-2423-4e98-af19-f4930c87b771",
-        "name": "원장 설정 조회",
-        "type": "n8n-nodes-base.httpRequest",
-        "typeVersion": 4.5,
-        "position": [
-          1776,
-          -260
-        ],
-        "parameters": {
-          "method": "GET",
-          "url": "https://kimchi-premium-dashboard-mu.vercel.app/ledger/config.json",
-          "options": {}
-        },
-        "onError": "continueRegularOutput",
-        "retryOnFail": true,
-        "maxTries": 2,
-        "waitBetweenTries": 1000,
-        "alwaysOutputData": true,
-        "executeOnce": true
-      },
-      {
-        "id": "8dc25203-f3ba-48dd-a101-2d3a5a69ec12",
-        "name": "원장 백필 조회",
-        "type": "n8n-nodes-base.httpRequest",
-        "typeVersion": 4.5,
-        "position": [
-          2000,
-          -260
-        ],
-        "parameters": {
-          "method": "GET",
-          "url": "https://kimchi-premium-dashboard-mu.vercel.app/ledger/backfill.json",
-          "options": {}
-        },
-        "onError": "continueRegularOutput",
-        "retryOnFail": true,
-        "maxTries": 2,
-        "waitBetweenTries": 1000,
-        "alwaysOutputData": true,
-        "executeOnce": true
-      },
-      {
         "id": "3923bb84-7b01-4948-a7dc-3ae82c809559",
         "name": "잔액 점검",
         "type": "n8n-nodes-base.code",
@@ -1362,7 +1297,7 @@
         "parameters": {
           "mode": "runOnceForAllItems",
           "language": "javaScript",
-          "jsCode": "// 새 자리를 열기 전에 두 거래소에 돈이 남아 있는지 본다 (2026-09-28 추가).\n// 자리 수(최대 4)만 보면 한쪽 잔액이 $4,000 아래로 내려가도 4번째 자리를 열어버린다 —\n// 실제 계좌라면 불가능한 거래가 기록에 섞인다.\n//\n// 원장은 대시보드 «거래소별 잔액»(ledger/ledger.js)과 같은 방식이다:\n//   시드 $10,000을 가동일에 코빗(원화)·OKX(USDT)에 반씩 넣고, 청산 거래를 두 다리로 쌓고,\n//   ledger/config.json 의 리밸런싱(가상 이체)을 반영한다. 설정과 옛 거래 환율 백필은\n//   대시보드(Vercel)에서 받아 와서 두 곳이 같은 숫자를 쓰게 한다.\n//   코빗 여유 = 원화 예수금 (보유 코인 매수대금은 이미 빠져 있다)\n//   OKX 여유 = 평가금액(예수금 + 미실현손익) − 보유 포지션 증거금(1배 = 진입 명목)\n// 한 자리에 코빗은 $1,000어치 원화, OKX는 $1,000 증거금 + 진입 수수료가 필요하다.\nconst POSITION_USD = 1000;          // «가상 진입 기록»의 positionSize와 같아야 한다\nconst FEE_RATE = 0.0002;            // 해외 지정가 편도\nconst MAX_POSITIONS = 4;            // «진입 가능 여부 판단»과 같아야 한다\nconst NOTIFY_EVERY_MS = 6 * 3600 * 1000; // 부족 알림은 6시간에 한 번만\nconst DASHBOARD = 'https://kimchi-premium-dashboard-mu.vercel.app/#ledger';\n\nconst num = function (v) { const n = Number(v); return isFinite(n) && n !== 0 ? n : null; };\nconst r2 = function (v) { return Math.round(v * 100) / 100; };\n\nconst cfg = $('원장 설정 조회').first().json || {};\nconst backfill = $('원장 백필 조회').first().json || {};\nconst fxBody = $('환율 조회').first().json;\nconst fx = (fxBody && fxBody.rates && fxBody.rates.KRW) ? Number(fxBody.rates.KRW) : null;\n\n// 설정을 못 받으면 잔액 관문을 건너뛰고 예전처럼 자리 수만 본다.\n// Vercel 장애 하나로 봇 전체 진입이 멈추는 것보다 낫다.\nif (!num(cfg.seedUsd) || !num(cfg.startFx) || !fx) {\n  return [{ json: { checked: false, balanceSlots: MAX_POSITIONS, notify: false,\n                    reason: !fx ? '환율 없음' : '원장 설정을 받지 못함' } }];\n}\n\nconst sig = {};\n$('MA·신호 판정').all().forEach(function (i) { if (i.json && i.json.coin) sig[i.json.coin] = i.json; });\n\nconst trades = $('전체 거래 조회').all().map(function (i) { return i.json; })\n  .filter(function (t) { return t && t.coin && t.status !== 'VOID'; });\n\nconst half = Number(cfg.seedUsd) / 2;\nlet korbitKrw = half * Number(cfg.startFx);\nlet okxCash = half;\nlet okxUnreal = 0, okxMargin = 0, korbitHoldKrw = 0;\nlet openCount = 0;\nconst missing = [];\n\n(cfg.transfers || []).forEach(function (tr) {\n  if (new Date(tr.time).getTime() > Date.now()) return;\n  const usd = Number(tr.usd), tfx = Number(tr.fx);\n  if (tr.from === 'korbit') { korbitKrw -= usd * tfx; okxCash += usd; }\n  else { okxCash -= usd; korbitKrw += usd * tfx; }\n});\n\ntrades.forEach(function (t) {\n  const b = backfill[t.id] || {};\n  const pe = Number(t.entryPremium) / 100;\n  const entryFp = num(t.entryForeignPrice) || num(b.entryForeignPrice);\n  const entryFx = num(t.entryFx) || num(b.entryFx) || (entryFp ? Number(t.entryPrice) / (entryFp * (1 + pe)) : null);\n  const q = entryFx ? Number(t.positionSize) * entryFx / Number(t.entryPrice) : null;\n  if (!q || !entryFp) { missing.push(t.id); return; }\n\n  if (t.status === 'CLOSED') {\n    const exitFx = num(t.exitFx) || num(b.exitFx);\n    let exitFp = num(t.exitForeignPrice) || num(b.exitForeignPrice);\n    if (!exitFp && exitFx) exitFp = Number(t.exitPrice) / (exitFx * (1 + Number(t.exitPremium) / 100));\n    if (!exitFp) { missing.push(t.id); return; }\n    korbitKrw += q * (Number(t.exitPrice) - Number(t.entryPrice));\n    okxCash += q * (entryFp - exitFp) - Number(t.feeEntry || 0) - Number(t.feeExit || 0);\n    return;\n  }\n\n  // OPEN\n  openCount++;\n  korbitKrw -= q * Number(t.entryPrice);\n  okxCash -= Number(t.feeEntry || 0);\n  okxMargin += q * entryFp;\n  const s = sig[t.coin];\n  const fpNow = s ? num(s.foreignPrice) : null;\n  const kNow = s ? num(s.korbitPrice) : null;\n  if (fpNow) okxUnreal += q * (entryFp - fpNow);\n  korbitHoldKrw += q * (kNow || Number(t.entryPrice));\n});\n\nconst korbitFree = korbitKrw / fx;\nconst okxFree = okxCash + okxUnreal - okxMargin;\nconst korbitSlots = Math.max(0, Math.floor(korbitFree / POSITION_USD));\nconst okxSlots = Math.max(0, Math.floor(okxFree / (POSITION_USD * (1 + FEE_RATE))));\nconst balanceSlots = Math.min(korbitSlots, okxSlots);\nconst countSlots = Math.max(0, MAX_POSITIONS - openCount);\n\nconst korbitTotal = (korbitKrw + korbitHoldKrw) / fx;\nconst okxTotal = okxCash + okxUnreal;\nconst rebalanceUsd = korbitTotal - (korbitTotal + okxTotal) / 2; // 양수면 코빗→OKX\n\n// 잔액 때문에 자리 수보다 적게 열 수 있을 때만 알린다 (6시간에 한 번)\nlet notify = false;\nlet content = null;\nif (balanceSlots < countSlots) {\n  const st = $getWorkflowStaticData('global');\n  const last = Number(st.lastBalanceNotice || 0);\n  if (Date.now() - last >= NOTIFY_EVERY_MS) {\n    notify = true;\n    st.lastBalanceNotice = Date.now();\n    const short = korbitSlots < okxSlots ? '코빗' : (okxSlots < korbitSlots ? 'OKX' : '양쪽');\n    content = [\n      '⚠️ [잔액 부족] ' + short + ' 잔액이 모자라 새 진입을 줄입니다',\n      '열 수 있는 자리 ' + balanceSlots + ' / 남은 자리 ' + countSlots + ' (보유 ' + openCount + '/' + MAX_POSITIONS + ')',\n      '코빗 여유 $' + korbitFree.toFixed(2) + ' · OKX 여유 $' + okxFree.toFixed(2) + ' (한 자리에 $' + POSITION_USD.toLocaleString('en-US') + '씩 필요)',\n      '50:50 리밸런싱: ' + (rebalanceUsd >= 0 ? '코빗 → OKX' : 'OKX → 코빗') + ' $' + Math.abs(rebalanceUsd).toFixed(2),\n      '가상 이체는 저장소 ledger/config.json 의 transfers에 기록하면 다음 회차부터 반영됩니다.',\n      '대시보드: ' + DASHBOARD\n    ].join('\\n');\n  }\n}\n\nreturn [{ json: {\n  checked: true,\n  balanceSlots: balanceSlots,\n  countSlots: countSlots,\n  korbitFree: r2(korbitFree),\n  okxFree: r2(okxFree),\n  korbitSlots: korbitSlots,\n  okxSlots: okxSlots,\n  rebalanceUsd: r2(rebalanceUsd),\n  missing: missing,\n  notify: notify,\n  content: content\n} }];\n"
+          "jsCode": "// 새 자리를 열기 전에 두 거래소에 돈이 남아 있는지 본다 (2026-09-28 추가).\n// 자리 수(최대 4)만 보면 한쪽 잔액이 $4,000 아래로 내려가도 4번째 자리를 열어버린다 —\n// 실제 계좌라면 불가능한 거래가 기록에 섞인다.\n//\n// 잔액 계산은 서브 워크플로 «김프 거래소 잔액 계산»이 한다 (청산 알림·07:40 보고와 같은 계산).\n// 여기서는 그 결과로 부족 알림을 보낼지만 정한다. 결과를 못 받으면 checked:false로 넘겨\n// «진입 가능 여부 판단»이 예전처럼 자리 수만 보게 한다 — 계산 실패로 봇 진입 전체가 멈추지 않게.\nconst NOTIFY_EVERY_MS = 6 * 3600 * 1000; // 부족 알림은 6시간에 한 번만\nconst MAX_POSITIONS = 4;                 // «진입 가능 여부 판단»과 같아야 한다\nconst DASHBOARD = 'https://kimchi-premium-dashboard-mu.vercel.app/#ledger';\n\nconst b = $('잔액 계산 호출').first().json || {};\nif (b.checked !== true) {\n  return [{ json: { checked: false, balanceSlots: MAX_POSITIONS, notify: false, reason: b.reason || '잔액 계산 결과 없음' } }];\n}\n\nlet notify = false;\nlet content = null;\nif (b.balanceSlots < b.countSlots) {\n  const st = $getWorkflowStaticData('global');\n  const last = Number(st.lastBalanceNotice || 0);\n  if (Date.now() - last >= NOTIFY_EVERY_MS) {\n    notify = true;\n    st.lastBalanceNotice = Date.now();\n    const short = b.korbitSlots < b.okxSlots ? '코빗' : (b.okxSlots < b.korbitSlots ? 'OKX' : '양쪽');\n    content = [\n      '⚠️ [잔액 부족] ' + short + ' 잔액이 모자라 새 진입을 줄입니다',\n      '열 수 있는 자리 ' + b.balanceSlots + ' / 남은 자리 ' + b.countSlots + ' (보유 ' + b.openCount + '/' + MAX_POSITIONS + ')',\n      '코빗 여유 $' + Number(b.korbitFree).toFixed(2) + ' · OKX 여유 $' + Number(b.okxFree).toFixed(2) + ' (한 자리에 $1,000씩 필요)',\n      b.line,\n      '가상 이체는 저장소 ledger/config.json 의 transfers에 기록하면 다음 회차부터 반영됩니다.',\n      '대시보드: ' + DASHBOARD\n    ].join('\\n');\n  }\n}\n\nreturn [{ json: Object.assign({}, b, { notify: notify, content: content }) }];\n"
         }
       },
       {
@@ -1397,6 +1332,84 @@
           },
           "options": {}
         }
+      },
+      {
+        "id": "e32da941-9d11-47c0-ad72-c84879bd4fca",
+        "name": "잔액 계산 호출",
+        "type": "n8n-nodes-base.executeWorkflow",
+        "typeVersion": 1.3,
+        "position": [
+          1776,
+          -260
+        ],
+        "parameters": {
+          "mode": "once",
+          "source": "database",
+          "workflowId": {
+            "__rl": true,
+            "mode": "id",
+            "value": "80EIa2eVuDXFtp84",
+            "cachedResultName": "김프 거래소 잔액 계산"
+          },
+          "options": {
+            "waitForSubWorkflow": true
+          }
+        },
+        "onError": "continueRegularOutput",
+        "alwaysOutputData": true,
+        "executeOnce": true
+      },
+      {
+        "id": "525e7c70-f7f9-4477-8e3f-169c56aac5a4",
+        "name": "청산 후 잔액 조회",
+        "type": "n8n-nodes-base.executeWorkflow",
+        "typeVersion": 1.3,
+        "position": [
+          2272,
+          372
+        ],
+        "parameters": {
+          "mode": "once",
+          "source": "database",
+          "workflowId": {
+            "__rl": true,
+            "mode": "id",
+            "value": "80EIa2eVuDXFtp84",
+            "cachedResultName": "김프 거래소 잔액 계산"
+          },
+          "options": {
+            "waitForSubWorkflow": true
+          }
+        },
+        "onError": "continueRegularOutput",
+        "alwaysOutputData": true,
+        "executeOnce": true
+      },
+      {
+        "id": "e40788c3-b71e-4d89-90df-c3a657e74a1e",
+        "name": "보고용 잔액 조회",
+        "type": "n8n-nodes-base.executeWorkflow",
+        "typeVersion": 1.3,
+        "position": [
+          1120,
+          1300
+        ],
+        "parameters": {
+          "mode": "once",
+          "source": "database",
+          "workflowId": {
+            "__rl": true,
+            "mode": "id",
+            "value": "80EIa2eVuDXFtp84",
+            "cachedResultName": "김프 거래소 잔액 계산"
+          },
+          "options": {
+            "waitForSubWorkflow": true
+          }
+        },
+        "onError": "continueRegularOutput",
+        "alwaysOutputData": true,
+        "executeOnce": true
       }
     ],
     "connections": {
@@ -1566,17 +1579,6 @@
           ]
         ]
       },
-      "매매 성과 계산": {
-        "main": [
-          [
-            {
-              "node": "보고 메시지 구성",
-              "type": "main",
-              "index": 0
-            }
-          ]
-        ]
-      },
       "대시보드 자동갱신 켜기": {
         "main": [
           [
@@ -1709,17 +1711,6 @@
           ]
         ]
       },
-      "청산 성과 조회": {
-        "main": [
-          [
-            {
-              "node": "청산 메시지 구성",
-              "type": "main",
-              "index": 0
-            }
-          ]
-        ]
-      },
       "청산 메시지 구성": {
         "main": [
           [
@@ -1830,50 +1821,6 @@
           ]
         ]
       },
-      "진행 중인 포지션 조회": {
-        "main": [
-          [
-            {
-              "node": "전체 거래 조회",
-              "type": "main",
-              "index": 0
-            }
-          ]
-        ]
-      },
-      "전체 거래 조회": {
-        "main": [
-          [
-            {
-              "node": "원장 설정 조회",
-              "type": "main",
-              "index": 0
-            }
-          ]
-        ]
-      },
-      "원장 설정 조회": {
-        "main": [
-          [
-            {
-              "node": "원장 백필 조회",
-              "type": "main",
-              "index": 0
-            }
-          ]
-        ]
-      },
-      "원장 백필 조회": {
-        "main": [
-          [
-            {
-              "node": "잔액 점검",
-              "type": "main",
-              "index": 0
-            }
-          ]
-        ]
-      },
       "잔액 점검": {
         "main": [
           [
@@ -1895,6 +1842,72 @@
           [
             {
               "node": "진입 알림 전송",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "진행 중인 포지션 조회": {
+        "main": [
+          [
+            {
+              "node": "잔액 계산 호출",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "잔액 계산 호출": {
+        "main": [
+          [
+            {
+              "node": "잔액 점검",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "청산 성과 조회": {
+        "main": [
+          [
+            {
+              "node": "청산 후 잔액 조회",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "청산 후 잔액 조회": {
+        "main": [
+          [
+            {
+              "node": "청산 메시지 구성",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "매매 성과 계산": {
+        "main": [
+          [
+            {
+              "node": "보고용 잔액 조회",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "보고용 잔액 조회": {
+        "main": [
+          [
+            {
+              "node": "보고 메시지 구성",
               "type": "main",
               "index": 0
             }
@@ -1922,6 +1935,7 @@
           "ddbc88c4-4901-4307-8a60-b11e7c0d2580",
           "f571e3d4-eb89-4cd7-9415-cfa8c951077d",
           "0dd1acbc-f322-47bc-8464-215463ddc074",
+          "e40788c3-b71e-4d89-90df-c3a657e74a1e",
           "53dccf38-e6f1-4533-91ec-551cb0d90cd6",
           "cd526860-8a91-4c88-a177-a309a3761f8c"
         ],
@@ -1932,9 +1946,7 @@
         "name": "③ 진입 처리",
         "nodeIds": [
           "f3fb4fbc-0c44-490c-b957-e19d3c6ca3fc",
-          "4617bce4-8c26-4f44-95b6-10184a6ae4fc",
-          "3d173742-2423-4e98-af19-f4930c87b771",
-          "8dc25203-f3ba-48dd-a101-2d3a5a69ec12",
+          "e32da941-9d11-47c0-ad72-c84879bd4fca",
           "3923bb84-7b01-4948-a7dc-3ae82c809559",
           "bc219032-c706-408f-b41d-c321eadf02c7",
           "0b432d4d-ec2d-494f-a0a3-9101aff78f7f",
@@ -1981,7 +1993,7 @@
     },
     "tags": [],
     "activeVersion": {
-      "versionId": "bcdde89f-44af-4a1b-a178-2568ec2d401a",
+      "versionId": "51f9ccd4-a092-4d20-b7ff-ee9ec57ea423",
       "workflowId": "XTg1g0vSK3kZQDsN",
       "nodes": [
         {
@@ -2782,7 +2794,7 @@
           "parameters": {
             "mode": "runOnceForAllItems",
             "language": "javaScript",
-            "jsCode": "const data = $json;\nconst kstStr = new Date(data.reportTime).toLocaleString('ko-KR', { timeZone: 'Asia/Seoul', year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit' });\n\nconst statusLine = data.isHealthy\n  ? '✅ 정상 동작 중'\n  : '⚠️ 점검이 필요할 수 있어요 (실행 누락 또는 최신 데이터 지연 의심)';\n\nconst lines = [];\nlines.push('📋 김치 프리미엄 봇 상태 보고 (' + kstStr + ' KST)');\nlines.push(statusLine);\nlines.push('지난 24시간 실행: ' + data.actualRuns + '/' + data.expectedRuns + '회, 최신 데이터 ' + (data.minutesSinceLastData !== null ? data.minutesSinceLastData + '분 전' : '없음'));\nlines.push('');\nlines.push('💰 페이퍼 트레이딩 성과 (가상 시드 $' + data.paperSeedUsd.toLocaleString('en-US') + ')');\nif (data.totalTrades > 0) {\n  const profitSign = data.totalNetProfit >= 0 ? '+' : '';\n  lines.push('누적 청산 거래: ' + data.totalTrades + '회 (승 ' + data.winTrades + ' / 승률 ' + data.winRate.toFixed(1) + '%)');\n  lines.push('누적 손익: ' + profitSign + '$' + data.totalNetProfit.toFixed(2) + ' (원금 대비 ' + profitSign + data.returnPct.toFixed(2) + '%)');\n} else {\n  lines.push('아직 청산된 거래 없음');\n}\nconst openCoinNames = data.openPositions.map(function (p) { return p.coin; }).join(', ');\nlines.push('현재 보유 중인 가상 포지션: ' + data.openPositionsCount + '개' + (data.openPositionsCount > 0 ? (' (' + openCoinNames + ')') : ''));\nlines.push('');\nlines.push('코인별 24시간 김프 추이 (현재 | 평균 | 범위 | 표본수)');\n\ndata.coinStats.forEach(function (c) {\n  lines.push('· ' + c.coin + ': ' + c.current.toFixed(2) + '% | 평균 ' + c.avg.toFixed(2) + '% | [' + c.min.toFixed(2) + '% ~ ' + c.max.toFixed(2) + '%] | ' + c.dataPoints + '개');\n});\n\nlines.push('');\nlines.push('🔗 대시보드: https://kimchi-premium-dashboard-mu.vercel.app');\n\nreturn [{ json: { content: lines.join('\\n') } }];"
+            "jsCode": "const data = $('매매 성과 계산').first().json;\n// 거래소별 잔액 (서브 워크플로 «김프 거래소 잔액 계산», 2026-09-29 추가)\nconst bal = $('보고용 잔액 조회').first().json || {};\nconst kstStr = new Date(data.reportTime).toLocaleString('ko-KR', { timeZone: 'Asia/Seoul', year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit' });\n\nconst statusLine = data.isHealthy\n  ? '✅ 정상 동작 중'\n  : '⚠️ 점검이 필요할 수 있어요 (실행 누락 또는 최신 데이터 지연 의심)';\n\nconst lines = [];\nlines.push('📋 김치 프리미엄 봇 상태 보고 (' + kstStr + ' KST)');\nlines.push(statusLine);\nlines.push('지난 24시간 실행: ' + data.actualRuns + '/' + data.expectedRuns + '회, 최신 데이터 ' + (data.minutesSinceLastData !== null ? data.minutesSinceLastData + '분 전' : '없음'));\nlines.push('');\nlines.push('💰 페이퍼 트레이딩 성과 (가상 시드 $' + data.paperSeedUsd.toLocaleString('en-US') + ')');\nif (data.totalTrades > 0) {\n  const profitSign = data.totalNetProfit >= 0 ? '+' : '';\n  lines.push('누적 청산 거래: ' + data.totalTrades + '회 (승 ' + data.winTrades + ' / 승률 ' + data.winRate.toFixed(1) + '%)');\n  lines.push('누적 손익: ' + profitSign + '$' + data.totalNetProfit.toFixed(2) + ' (원금 대비 ' + profitSign + data.returnPct.toFixed(2) + '%)');\n} else {\n  lines.push('아직 청산된 거래 없음');\n}\nconst openCoinNames = data.openPositions.map(function (p) { return p.coin; }).join(', ');\nlines.push('현재 보유 중인 가상 포지션: ' + data.openPositionsCount + '개' + (data.openPositionsCount > 0 ? (' (' + openCoinNames + ')') : ''));\nif (bal.line) lines.push(bal.line);\nlines.push('');\nlines.push('코인별 24시간 김프 추이 (현재 | 평균 | 범위 | 표본수)');\n\ndata.coinStats.forEach(function (c) {\n  lines.push('· ' + c.coin + ': ' + c.current.toFixed(2) + '% | 평균 ' + c.avg.toFixed(2) + '% | [' + c.min.toFixed(2) + '% ~ ' + c.max.toFixed(2) + '%] | ' + c.dataPoints + '개');\n});\n\nlines.push('');\nlines.push('🔗 대시보드: https://kimchi-premium-dashboard-mu.vercel.app');\n\nreturn [{ json: { content: lines.join('\\n') } }];"
           }
         },
         {
@@ -3098,7 +3110,7 @@
           "parameters": {
             "mode": "runOnceForAllItems",
             "language": "javaScript",
-            "jsCode": "const SEED = 10000;\nconst MAX_POSITIONS = 4;\nconst DASHBOARD = 'https://kimchi-premium-dashboard-mu.vercel.app';\n\nconst rows = $input.all().map(function (i) { return i.json; }).filter(function (r) { return r && r.coin; });\nconst closed = rows.filter(function (r) { return r.status === 'CLOSED'; });\nconst open = rows.filter(function (r) { return r.status === 'OPEN'; });\n\nconst totalTrades = closed.length;\nconst wins = closed.filter(function (r) { return Number(r.netProfit) > 0; }).length;\nconst net = closed.reduce(function (s, r) { return s + Number(r.netProfit || 0); }, 0);\nconst returnPct = net / SEED * 100;\n\nconst perfLines = [];\nperfLines.push('');\nperfLines.push('─────');\nperfLines.push('📊 시드 $' + SEED.toLocaleString('en-US') + ' · 누적 ' + (net >= 0 ? '+$' : '-$') + Math.abs(net).toFixed(2) + ' (' + (returnPct >= 0 ? '+' : '') + returnPct.toFixed(2) + '%)');\nif (totalTrades > 0) {\n  perfLines.push('청산 ' + totalTrades + '건 · 승률 ' + (wins / totalTrades * 100).toFixed(1) + '% · 보유 ' + open.length + '/' + MAX_POSITIONS);\n} else {\n  perfLines.push('보유 ' + open.length + '/' + MAX_POSITIONS);\n}\nperfLines.push('대시보드: ' + DASHBOARD);\nconst perf = perfLines.join('\\n');\n\n// 정규 청산과 강제 청산이 한 곳으로 모이는 지점이 '청산해도 되는가?'다\nconst exits = $('청산해도 되는가?').all().map(function (i) { return i.json; });\n\nfunction fmtHeld(mins) {\n  if (mins < 60) return mins + '분';\n  const h = Math.floor(mins / 60);\n  const m = mins % 60;\n  if (h < 24) return h + '시간 ' + m + '분';\n  return Math.floor(h / 24) + '일 ' + (h % 24) + '시간';\n}\n\nconst REASON_LABEL = { SOFT: ' · 2일 경과 후 완화 청산', MAXHOLD: ' · 5일 초과 강제 청산', PRICESTOP: ' · 가격손절(증거금 보호)' };\n\n// 왜 그렇게 청산했는지를 알림에 함께 적는다.\n// ⚠️ 여기 적힌 숫자(2일 · 0.5%p · 5일)는 «강제청산 판정» 노드의 상수와 같아야 한다.\nconst REASON_NOTE = {\n  SOFT: [\n    '📌 완화 청산이란',\n    '2일이 지나도 평균으로 돌아오지 않은 자리입니다. 6년 백테스트에서',\n    '이런 자리는 승률이 80% → 30%로 떨어지고, 3일을 넘기면 4.6%까지',\n    '내려갔습니다.',\n    '청산 기준인 3일 평균도 같이 내려오기 때문에, 버틸수록 «회복해서»가',\n    '아니라 «평균이 내려와서» 손실로 끝납니다. 그래서 손실이 0.5%p',\n    '이내로 줄어든 첫 순간에 정리하고 자리를 비우는 장치입니다.'\n  ].join('\\n'),\n  MAXHOLD: [\n    '📌 강제 청산이란',\n    '5일을 넘긴 자리는 조건과 무관하게 정리합니다. 회복 가능성보다',\n    '자리가 묶이는 비용이 크다고 보는 마지막 안전장치입니다.'\n  ].join('\\n'),\n  PRICESTOP: [\n    '📌 가격 손절이란',\n    '해외 선물 숏은 코인 가격이 오르면 증거금이 깎입니다. 청산당하기 전에',\n    '양쪽 다리를 함께 닫습니다. 같이 닫으면 가격 변동은 상쇄되므로',\n    '비용은 수수료와 남은 회귀분뿐입니다.'\n  ].join('\\n')\n};\n\nreturn exits.map(function (e) {\n  const lines = [];\n  lines.push('🔴 [가상 청산] ' + e.coin + (REASON_LABEL[e.forceReason] || ''));\n  lines.push('청산 김프: ' + Number(e.exitPremium).toFixed(2) + '% (진입 ' + Number(e.entryPremium).toFixed(2) + '%)');\n  lines.push('이번 손익: ' + (Number(e.netProfit) >= 0 ? '+$' : '-$') + Math.abs(Number(e.netProfit)).toFixed(2) + ' · 보유 ' + fmtHeld(Number(e.heldMinutes)));\n\n  const note = REASON_NOTE[e.forceReason];\n  if (note) {\n    lines.push('');\n    lines.push(note);\n\n    // 판정은 마지막 체결가로 하고 체결은 실제 매도호가로 된다.\n    // 거래가 뜸한 시간대엔 체결가가 낡아 있어 둘이 크게 벌어진다.\n    // 이게 예외인지 상시 비용인지 알려면 매번 찍어두고 봐야 한다.\n    const tp = Number(e.tickerPremium);\n    if (isFinite(tp)) {\n      const judged = tp - Number(e.entryPremium);\n      const filled = Number(e.exitPremium) - Number(e.entryPremium);\n      const gap = Math.abs(judged - filled);\n      if (gap >= 0.1) {\n        lines.push('');\n        lines.push('⚠️ 판정 ' + judged.toFixed(2) + '%p → 체결 ' + filled.toFixed(2) + '%p (차이 ' + gap.toFixed(2) + '%p)');\n        lines.push('판정은 마지막 체결가, 체결은 실제 매도호가 기준입니다.');\n        lines.push('거래가 뜸한 시간대일수록 이 차이가 벌어집니다.');\n      }\n    }\n  }\n\n  return { json: { content: lines.join('\\n') + perf } };\n});"
+            "jsCode": "const SEED = 10000;\nconst MAX_POSITIONS = 4;\nconst DASHBOARD = 'https://kimchi-premium-dashboard-mu.vercel.app';\n\nconst rows = $('청산 성과 조회').all().map(function (i) { return i.json; }).filter(function (r) { return r && r.coin; });\nconst closed = rows.filter(function (r) { return r.status === 'CLOSED'; });\nconst open = rows.filter(function (r) { return r.status === 'OPEN'; });\n\nconst totalTrades = closed.length;\nconst wins = closed.filter(function (r) { return Number(r.netProfit) > 0; }).length;\nconst net = closed.reduce(function (s, r) { return s + Number(r.netProfit || 0); }, 0);\nconst returnPct = net / SEED * 100;\n\nconst perfLines = [];\nperfLines.push('');\nperfLines.push('─────');\nperfLines.push('📊 시드 $' + SEED.toLocaleString('en-US') + ' · 누적 ' + (net >= 0 ? '+$' : '-$') + Math.abs(net).toFixed(2) + ' (' + (returnPct >= 0 ? '+' : '') + returnPct.toFixed(2) + '%)');\nif (totalTrades > 0) {\n  perfLines.push('청산 ' + totalTrades + '건 · 승률 ' + (wins / totalTrades * 100).toFixed(1) + '% · 보유 ' + open.length + '/' + MAX_POSITIONS);\n} else {\n  perfLines.push('보유 ' + open.length + '/' + MAX_POSITIONS);\n}\n// 거래소별 잔액 (서브 워크플로 «김프 거래소 잔액 계산», 2026-09-29 추가)\nconst bal = $('청산 후 잔액 조회').first().json || {};\nif (bal.line) perfLines.push(bal.line);\nperfLines.push('대시보드: ' + DASHBOARD);\nconst perf = perfLines.join('\\n');\n\n// 정규 청산과 강제 청산이 한 곳으로 모이는 지점이 '청산해도 되는가?'다\nconst exits = $('청산해도 되는가?').all().map(function (i) { return i.json; });\n\nfunction fmtHeld(mins) {\n  if (mins < 60) return mins + '분';\n  const h = Math.floor(mins / 60);\n  const m = mins % 60;\n  if (h < 24) return h + '시간 ' + m + '분';\n  return Math.floor(h / 24) + '일 ' + (h % 24) + '시간';\n}\n\nconst REASON_LABEL = { SOFT: ' · 2일 경과 후 완화 청산', MAXHOLD: ' · 5일 초과 강제 청산', PRICESTOP: ' · 가격손절(증거금 보호)' };\n\n// 왜 그렇게 청산했는지를 알림에 함께 적는다.\n// ⚠️ 여기 적힌 숫자(2일 · 0.5%p · 5일)는 «강제청산 판정» 노드의 상수와 같아야 한다.\nconst REASON_NOTE = {\n  SOFT: [\n    '📌 완화 청산이란',\n    '2일이 지나도 평균으로 돌아오지 않은 자리입니다. 6년 백테스트에서',\n    '이런 자리는 승률이 80% → 30%로 떨어지고, 3일을 넘기면 4.6%까지',\n    '내려갔습니다.',\n    '청산 기준인 3일 평균도 같이 내려오기 때문에, 버틸수록 «회복해서»가',\n    '아니라 «평균이 내려와서» 손실로 끝납니다. 그래서 손실이 0.5%p',\n    '이내로 줄어든 첫 순간에 정리하고 자리를 비우는 장치입니다.'\n  ].join('\\n'),\n  MAXHOLD: [\n    '📌 강제 청산이란',\n    '5일을 넘긴 자리는 조건과 무관하게 정리합니다. 회복 가능성보다',\n    '자리가 묶이는 비용이 크다고 보는 마지막 안전장치입니다.'\n  ].join('\\n'),\n  PRICESTOP: [\n    '📌 가격 손절이란',\n    '해외 선물 숏은 코인 가격이 오르면 증거금이 깎입니다. 청산당하기 전에',\n    '양쪽 다리를 함께 닫습니다. 같이 닫으면 가격 변동은 상쇄되므로',\n    '비용은 수수료와 남은 회귀분뿐입니다.'\n  ].join('\\n')\n};\n\nreturn exits.map(function (e) {\n  const lines = [];\n  lines.push('🔴 [가상 청산] ' + e.coin + (REASON_LABEL[e.forceReason] || ''));\n  lines.push('청산 김프: ' + Number(e.exitPremium).toFixed(2) + '% (진입 ' + Number(e.entryPremium).toFixed(2) + '%)');\n  lines.push('이번 손익: ' + (Number(e.netProfit) >= 0 ? '+$' : '-$') + Math.abs(Number(e.netProfit)).toFixed(2) + ' · 보유 ' + fmtHeld(Number(e.heldMinutes)));\n\n  const note = REASON_NOTE[e.forceReason];\n  if (note) {\n    lines.push('');\n    lines.push(note);\n\n    // 판정은 마지막 체결가로 하고 체결은 실제 매도호가로 된다.\n    // 거래가 뜸한 시간대엔 체결가가 낡아 있어 둘이 크게 벌어진다.\n    // 이게 예외인지 상시 비용인지 알려면 매번 찍어두고 봐야 한다.\n    const tp = Number(e.tickerPremium);\n    if (isFinite(tp)) {\n      const judged = tp - Number(e.entryPremium);\n      const filled = Number(e.exitPremium) - Number(e.entryPremium);\n      const gap = Math.abs(judged - filled);\n      if (gap >= 0.1) {\n        lines.push('');\n        lines.push('⚠️ 판정 ' + judged.toFixed(2) + '%p → 체결 ' + filled.toFixed(2) + '%p (차이 ' + gap.toFixed(2) + '%p)');\n        lines.push('판정은 마지막 체결가, 체결은 실제 매도호가 기준입니다.');\n        lines.push('거래가 뜸한 시간대일수록 이 차이가 벌어집니다.');\n      }\n    }\n  }\n\n  return { json: { content: lines.join('\\n') + perf } };\n});"
           }
         },
         {
@@ -3257,71 +3269,6 @@
           "executeOnce": true
         },
         {
-          "id": "4617bce4-8c26-4f44-95b6-10184a6ae4fc",
-          "name": "전체 거래 조회",
-          "type": "n8n-nodes-base.dataTable",
-          "typeVersion": 1.1,
-          "position": [
-            1552,
-            -260
-          ],
-          "parameters": {
-            "resource": "row",
-            "operation": "get",
-            "dataTableId": {
-              "__rl": true,
-              "mode": "id",
-              "value": "6MFkAuDuiogrRSqA",
-              "cachedResultName": "kimchi_paper_trades"
-            },
-            "returnAll": true
-          },
-          "alwaysOutputData": true,
-          "executeOnce": true
-        },
-        {
-          "id": "3d173742-2423-4e98-af19-f4930c87b771",
-          "name": "원장 설정 조회",
-          "type": "n8n-nodes-base.httpRequest",
-          "typeVersion": 4.5,
-          "position": [
-            1776,
-            -260
-          ],
-          "parameters": {
-            "method": "GET",
-            "url": "https://kimchi-premium-dashboard-mu.vercel.app/ledger/config.json",
-            "options": {}
-          },
-          "onError": "continueRegularOutput",
-          "retryOnFail": true,
-          "maxTries": 2,
-          "waitBetweenTries": 1000,
-          "alwaysOutputData": true,
-          "executeOnce": true
-        },
-        {
-          "id": "8dc25203-f3ba-48dd-a101-2d3a5a69ec12",
-          "name": "원장 백필 조회",
-          "type": "n8n-nodes-base.httpRequest",
-          "typeVersion": 4.5,
-          "position": [
-            2000,
-            -260
-          ],
-          "parameters": {
-            "method": "GET",
-            "url": "https://kimchi-premium-dashboard-mu.vercel.app/ledger/backfill.json",
-            "options": {}
-          },
-          "onError": "continueRegularOutput",
-          "retryOnFail": true,
-          "maxTries": 2,
-          "waitBetweenTries": 1000,
-          "alwaysOutputData": true,
-          "executeOnce": true
-        },
-        {
           "id": "3923bb84-7b01-4948-a7dc-3ae82c809559",
           "name": "잔액 점검",
           "type": "n8n-nodes-base.code",
@@ -3333,7 +3280,7 @@
           "parameters": {
             "mode": "runOnceForAllItems",
             "language": "javaScript",
-            "jsCode": "// 새 자리를 열기 전에 두 거래소에 돈이 남아 있는지 본다 (2026-09-28 추가).\n// 자리 수(최대 4)만 보면 한쪽 잔액이 $4,000 아래로 내려가도 4번째 자리를 열어버린다 —\n// 실제 계좌라면 불가능한 거래가 기록에 섞인다.\n//\n// 원장은 대시보드 «거래소별 잔액»(ledger/ledger.js)과 같은 방식이다:\n//   시드 $10,000을 가동일에 코빗(원화)·OKX(USDT)에 반씩 넣고, 청산 거래를 두 다리로 쌓고,\n//   ledger/config.json 의 리밸런싱(가상 이체)을 반영한다. 설정과 옛 거래 환율 백필은\n//   대시보드(Vercel)에서 받아 와서 두 곳이 같은 숫자를 쓰게 한다.\n//   코빗 여유 = 원화 예수금 (보유 코인 매수대금은 이미 빠져 있다)\n//   OKX 여유 = 평가금액(예수금 + 미실현손익) − 보유 포지션 증거금(1배 = 진입 명목)\n// 한 자리에 코빗은 $1,000어치 원화, OKX는 $1,000 증거금 + 진입 수수료가 필요하다.\nconst POSITION_USD = 1000;          // «가상 진입 기록»의 positionSize와 같아야 한다\nconst FEE_RATE = 0.0002;            // 해외 지정가 편도\nconst MAX_POSITIONS = 4;            // «진입 가능 여부 판단»과 같아야 한다\nconst NOTIFY_EVERY_MS = 6 * 3600 * 1000; // 부족 알림은 6시간에 한 번만\nconst DASHBOARD = 'https://kimchi-premium-dashboard-mu.vercel.app/#ledger';\n\nconst num = function (v) { const n = Number(v); return isFinite(n) && n !== 0 ? n : null; };\nconst r2 = function (v) { return Math.round(v * 100) / 100; };\n\nconst cfg = $('원장 설정 조회').first().json || {};\nconst backfill = $('원장 백필 조회').first().json || {};\nconst fxBody = $('환율 조회').first().json;\nconst fx = (fxBody && fxBody.rates && fxBody.rates.KRW) ? Number(fxBody.rates.KRW) : null;\n\n// 설정을 못 받으면 잔액 관문을 건너뛰고 예전처럼 자리 수만 본다.\n// Vercel 장애 하나로 봇 전체 진입이 멈추는 것보다 낫다.\nif (!num(cfg.seedUsd) || !num(cfg.startFx) || !fx) {\n  return [{ json: { checked: false, balanceSlots: MAX_POSITIONS, notify: false,\n                    reason: !fx ? '환율 없음' : '원장 설정을 받지 못함' } }];\n}\n\nconst sig = {};\n$('MA·신호 판정').all().forEach(function (i) { if (i.json && i.json.coin) sig[i.json.coin] = i.json; });\n\nconst trades = $('전체 거래 조회').all().map(function (i) { return i.json; })\n  .filter(function (t) { return t && t.coin && t.status !== 'VOID'; });\n\nconst half = Number(cfg.seedUsd) / 2;\nlet korbitKrw = half * Number(cfg.startFx);\nlet okxCash = half;\nlet okxUnreal = 0, okxMargin = 0, korbitHoldKrw = 0;\nlet openCount = 0;\nconst missing = [];\n\n(cfg.transfers || []).forEach(function (tr) {\n  if (new Date(tr.time).getTime() > Date.now()) return;\n  const usd = Number(tr.usd), tfx = Number(tr.fx);\n  if (tr.from === 'korbit') { korbitKrw -= usd * tfx; okxCash += usd; }\n  else { okxCash -= usd; korbitKrw += usd * tfx; }\n});\n\ntrades.forEach(function (t) {\n  const b = backfill[t.id] || {};\n  const pe = Number(t.entryPremium) / 100;\n  const entryFp = num(t.entryForeignPrice) || num(b.entryForeignPrice);\n  const entryFx = num(t.entryFx) || num(b.entryFx) || (entryFp ? Number(t.entryPrice) / (entryFp * (1 + pe)) : null);\n  const q = entryFx ? Number(t.positionSize) * entryFx / Number(t.entryPrice) : null;\n  if (!q || !entryFp) { missing.push(t.id); return; }\n\n  if (t.status === 'CLOSED') {\n    const exitFx = num(t.exitFx) || num(b.exitFx);\n    let exitFp = num(t.exitForeignPrice) || num(b.exitForeignPrice);\n    if (!exitFp && exitFx) exitFp = Number(t.exitPrice) / (exitFx * (1 + Number(t.exitPremium) / 100));\n    if (!exitFp) { missing.push(t.id); return; }\n    korbitKrw += q * (Number(t.exitPrice) - Number(t.entryPrice));\n    okxCash += q * (entryFp - exitFp) - Number(t.feeEntry || 0) - Number(t.feeExit || 0);\n    return;\n  }\n\n  // OPEN\n  openCount++;\n  korbitKrw -= q * Number(t.entryPrice);\n  okxCash -= Number(t.feeEntry || 0);\n  okxMargin += q * entryFp;\n  const s = sig[t.coin];\n  const fpNow = s ? num(s.foreignPrice) : null;\n  const kNow = s ? num(s.korbitPrice) : null;\n  if (fpNow) okxUnreal += q * (entryFp - fpNow);\n  korbitHoldKrw += q * (kNow || Number(t.entryPrice));\n});\n\nconst korbitFree = korbitKrw / fx;\nconst okxFree = okxCash + okxUnreal - okxMargin;\nconst korbitSlots = Math.max(0, Math.floor(korbitFree / POSITION_USD));\nconst okxSlots = Math.max(0, Math.floor(okxFree / (POSITION_USD * (1 + FEE_RATE))));\nconst balanceSlots = Math.min(korbitSlots, okxSlots);\nconst countSlots = Math.max(0, MAX_POSITIONS - openCount);\n\nconst korbitTotal = (korbitKrw + korbitHoldKrw) / fx;\nconst okxTotal = okxCash + okxUnreal;\nconst rebalanceUsd = korbitTotal - (korbitTotal + okxTotal) / 2; // 양수면 코빗→OKX\n\n// 잔액 때문에 자리 수보다 적게 열 수 있을 때만 알린다 (6시간에 한 번)\nlet notify = false;\nlet content = null;\nif (balanceSlots < countSlots) {\n  const st = $getWorkflowStaticData('global');\n  const last = Number(st.lastBalanceNotice || 0);\n  if (Date.now() - last >= NOTIFY_EVERY_MS) {\n    notify = true;\n    st.lastBalanceNotice = Date.now();\n    const short = korbitSlots < okxSlots ? '코빗' : (okxSlots < korbitSlots ? 'OKX' : '양쪽');\n    content = [\n      '⚠️ [잔액 부족] ' + short + ' 잔액이 모자라 새 진입을 줄입니다',\n      '열 수 있는 자리 ' + balanceSlots + ' / 남은 자리 ' + countSlots + ' (보유 ' + openCount + '/' + MAX_POSITIONS + ')',\n      '코빗 여유 $' + korbitFree.toFixed(2) + ' · OKX 여유 $' + okxFree.toFixed(2) + ' (한 자리에 $' + POSITION_USD.toLocaleString('en-US') + '씩 필요)',\n      '50:50 리밸런싱: ' + (rebalanceUsd >= 0 ? '코빗 → OKX' : 'OKX → 코빗') + ' $' + Math.abs(rebalanceUsd).toFixed(2),\n      '가상 이체는 저장소 ledger/config.json 의 transfers에 기록하면 다음 회차부터 반영됩니다.',\n      '대시보드: ' + DASHBOARD\n    ].join('\\n');\n  }\n}\n\nreturn [{ json: {\n  checked: true,\n  balanceSlots: balanceSlots,\n  countSlots: countSlots,\n  korbitFree: r2(korbitFree),\n  okxFree: r2(okxFree),\n  korbitSlots: korbitSlots,\n  okxSlots: okxSlots,\n  rebalanceUsd: r2(rebalanceUsd),\n  missing: missing,\n  notify: notify,\n  content: content\n} }];\n"
+            "jsCode": "// 새 자리를 열기 전에 두 거래소에 돈이 남아 있는지 본다 (2026-09-28 추가).\n// 자리 수(최대 4)만 보면 한쪽 잔액이 $4,000 아래로 내려가도 4번째 자리를 열어버린다 —\n// 실제 계좌라면 불가능한 거래가 기록에 섞인다.\n//\n// 잔액 계산은 서브 워크플로 «김프 거래소 잔액 계산»이 한다 (청산 알림·07:40 보고와 같은 계산).\n// 여기서는 그 결과로 부족 알림을 보낼지만 정한다. 결과를 못 받으면 checked:false로 넘겨\n// «진입 가능 여부 판단»이 예전처럼 자리 수만 보게 한다 — 계산 실패로 봇 진입 전체가 멈추지 않게.\nconst NOTIFY_EVERY_MS = 6 * 3600 * 1000; // 부족 알림은 6시간에 한 번만\nconst MAX_POSITIONS = 4;                 // «진입 가능 여부 판단»과 같아야 한다\nconst DASHBOARD = 'https://kimchi-premium-dashboard-mu.vercel.app/#ledger';\n\nconst b = $('잔액 계산 호출').first().json || {};\nif (b.checked !== true) {\n  return [{ json: { checked: false, balanceSlots: MAX_POSITIONS, notify: false, reason: b.reason || '잔액 계산 결과 없음' } }];\n}\n\nlet notify = false;\nlet content = null;\nif (b.balanceSlots < b.countSlots) {\n  const st = $getWorkflowStaticData('global');\n  const last = Number(st.lastBalanceNotice || 0);\n  if (Date.now() - last >= NOTIFY_EVERY_MS) {\n    notify = true;\n    st.lastBalanceNotice = Date.now();\n    const short = b.korbitSlots < b.okxSlots ? '코빗' : (b.okxSlots < b.korbitSlots ? 'OKX' : '양쪽');\n    content = [\n      '⚠️ [잔액 부족] ' + short + ' 잔액이 모자라 새 진입을 줄입니다',\n      '열 수 있는 자리 ' + b.balanceSlots + ' / 남은 자리 ' + b.countSlots + ' (보유 ' + b.openCount + '/' + MAX_POSITIONS + ')',\n      '코빗 여유 $' + Number(b.korbitFree).toFixed(2) + ' · OKX 여유 $' + Number(b.okxFree).toFixed(2) + ' (한 자리에 $1,000씩 필요)',\n      b.line,\n      '가상 이체는 저장소 ledger/config.json 의 transfers에 기록하면 다음 회차부터 반영됩니다.',\n      '대시보드: ' + DASHBOARD\n    ].join('\\n');\n  }\n}\n\nreturn [{ json: Object.assign({}, b, { notify: notify, content: content }) }];\n"
           }
         },
         {
@@ -3368,6 +3315,84 @@
             },
             "options": {}
           }
+        },
+        {
+          "id": "e32da941-9d11-47c0-ad72-c84879bd4fca",
+          "name": "잔액 계산 호출",
+          "type": "n8n-nodes-base.executeWorkflow",
+          "typeVersion": 1.3,
+          "position": [
+            1776,
+            -260
+          ],
+          "parameters": {
+            "mode": "once",
+            "source": "database",
+            "workflowId": {
+              "__rl": true,
+              "mode": "id",
+              "value": "80EIa2eVuDXFtp84",
+              "cachedResultName": "김프 거래소 잔액 계산"
+            },
+            "options": {
+              "waitForSubWorkflow": true
+            }
+          },
+          "onError": "continueRegularOutput",
+          "alwaysOutputData": true,
+          "executeOnce": true
+        },
+        {
+          "id": "525e7c70-f7f9-4477-8e3f-169c56aac5a4",
+          "name": "청산 후 잔액 조회",
+          "type": "n8n-nodes-base.executeWorkflow",
+          "typeVersion": 1.3,
+          "position": [
+            2272,
+            372
+          ],
+          "parameters": {
+            "mode": "once",
+            "source": "database",
+            "workflowId": {
+              "__rl": true,
+              "mode": "id",
+              "value": "80EIa2eVuDXFtp84",
+              "cachedResultName": "김프 거래소 잔액 계산"
+            },
+            "options": {
+              "waitForSubWorkflow": true
+            }
+          },
+          "onError": "continueRegularOutput",
+          "alwaysOutputData": true,
+          "executeOnce": true
+        },
+        {
+          "id": "e40788c3-b71e-4d89-90df-c3a657e74a1e",
+          "name": "보고용 잔액 조회",
+          "type": "n8n-nodes-base.executeWorkflow",
+          "typeVersion": 1.3,
+          "position": [
+            1120,
+            1300
+          ],
+          "parameters": {
+            "mode": "once",
+            "source": "database",
+            "workflowId": {
+              "__rl": true,
+              "mode": "id",
+              "value": "80EIa2eVuDXFtp84",
+              "cachedResultName": "김프 거래소 잔액 계산"
+            },
+            "options": {
+              "waitForSubWorkflow": true
+            }
+          },
+          "onError": "continueRegularOutput",
+          "alwaysOutputData": true,
+          "executeOnce": true
         }
       ],
       "connections": {
@@ -3537,17 +3562,6 @@
             ]
           ]
         },
-        "매매 성과 계산": {
-          "main": [
-            [
-              {
-                "node": "보고 메시지 구성",
-                "type": "main",
-                "index": 0
-              }
-            ]
-          ]
-        },
         "대시보드 자동갱신 켜기": {
           "main": [
             [
@@ -3680,17 +3694,6 @@
             ]
           ]
         },
-        "청산 성과 조회": {
-          "main": [
-            [
-              {
-                "node": "청산 메시지 구성",
-                "type": "main",
-                "index": 0
-              }
-            ]
-          ]
-        },
         "청산 메시지 구성": {
           "main": [
             [
@@ -3801,50 +3804,6 @@
             ]
           ]
         },
-        "진행 중인 포지션 조회": {
-          "main": [
-            [
-              {
-                "node": "전체 거래 조회",
-                "type": "main",
-                "index": 0
-              }
-            ]
-          ]
-        },
-        "전체 거래 조회": {
-          "main": [
-            [
-              {
-                "node": "원장 설정 조회",
-                "type": "main",
-                "index": 0
-              }
-            ]
-          ]
-        },
-        "원장 설정 조회": {
-          "main": [
-            [
-              {
-                "node": "원장 백필 조회",
-                "type": "main",
-                "index": 0
-              }
-            ]
-          ]
-        },
-        "원장 백필 조회": {
-          "main": [
-            [
-              {
-                "node": "잔액 점검",
-                "type": "main",
-                "index": 0
-              }
-            ]
-          ]
-        },
         "잔액 점검": {
           "main": [
             [
@@ -3866,6 +3825,72 @@
             [
               {
                 "node": "진입 알림 전송",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "진행 중인 포지션 조회": {
+          "main": [
+            [
+              {
+                "node": "잔액 계산 호출",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "잔액 계산 호출": {
+          "main": [
+            [
+              {
+                "node": "잔액 점검",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "청산 성과 조회": {
+          "main": [
+            [
+              {
+                "node": "청산 후 잔액 조회",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "청산 후 잔액 조회": {
+          "main": [
+            [
+              {
+                "node": "청산 메시지 구성",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "매매 성과 계산": {
+          "main": [
+            [
+              {
+                "node": "보고용 잔액 조회",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "보고용 잔액 조회": {
+          "main": [
+            [
+              {
+                "node": "보고 메시지 구성",
                 "type": "main",
                 "index": 0
               }
@@ -3893,6 +3918,7 @@
             "ddbc88c4-4901-4307-8a60-b11e7c0d2580",
             "f571e3d4-eb89-4cd7-9415-cfa8c951077d",
             "0dd1acbc-f322-47bc-8464-215463ddc074",
+            "e40788c3-b71e-4d89-90df-c3a657e74a1e",
             "53dccf38-e6f1-4533-91ec-551cb0d90cd6",
             "cd526860-8a91-4c88-a177-a309a3761f8c"
           ],
@@ -3903,9 +3929,7 @@
           "name": "③ 진입 처리",
           "nodeIds": [
             "f3fb4fbc-0c44-490c-b957-e19d3c6ca3fc",
-            "4617bce4-8c26-4f44-95b6-10184a6ae4fc",
-            "3d173742-2423-4e98-af19-f4930c87b771",
-            "8dc25203-f3ba-48dd-a101-2d3a5a69ec12",
+            "e32da941-9d11-47c0-ad72-c84879bd4fca",
             "3923bb84-7b01-4948-a7dc-3ae82c809559",
             "bc219032-c706-408f-b41d-c321eadf02c7",
             "0b432d4d-ec2d-494f-a0a3-9101aff78f7f",
@@ -3922,19 +3946,19 @@
         }
       ],
       "authors": "youngkil Hur (via MCP)",
-      "name": "«③ 진입 처리» 그룹 복구 (잔액 점검 노드 포함)",
-      "description": "Updated workflow",
+      "name": "청산 알림·07:40 보고에 거래소별 잔액 한 줄, 계산은 서브 워크플로로",
+      "description": "잔액 계산을 서브 워크플로 «김프 거래소 잔액 계산»(80EIa2eVuDXFtp84)으로 옮기고 진입 관문·청산 알림·07:40 보고가 함께 호출. 청산 알림과 상태 보고에 «💰 코빗 $ (%) · OKX $ (%) · 합계 $ · 50:50까지 이체액» 한 줄 추가.",
       "autosaved": false,
-      "createdAt": "2026-09-28T13:44:55.468Z",
-      "updatedAt": "2026-09-28T13:44:55.468Z",
+      "createdAt": "2026-09-28T16:39:40.597Z",
+      "updatedAt": "2026-09-28T16:39:40.597Z",
       "workflowPublishHistory": [
         {
-          "id": 1549,
+          "id": 1552,
           "workflowId": "XTg1g0vSK3kZQDsN",
-          "versionId": "bcdde89f-44af-4a1b-a178-2568ec2d401a",
+          "versionId": "51f9ccd4-a092-4d20-b7ff-ee9ec57ea423",
           "event": "activated",
           "userId": "185e9a53-294d-4ab7-913f-1bc33324adfd",
-          "createdAt": "2026-09-28T13:45:06.433Z"
+          "createdAt": "2026-09-28T16:40:00.300Z"
         }
       ]
     }
