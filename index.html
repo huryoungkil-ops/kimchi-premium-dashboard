@@ -338,9 +338,9 @@
       <span class="tag">PAPER TRADING</span>
     </div>
     <div class="snapshot-meta">
-      스냅샷 기준 <strong><!--SNAPSHOT_TIME-->2026-09-28 09:35 KST<!--/SNAPSHOT_TIME--></strong><br>
+      스냅샷 기준 <strong><!--SNAPSHOT_TIME-->2026-09-28 10:35 KST<!--/SNAPSHOT_TIME--></strong><br>
       가동 시작 2026-09-05 22:00 KST
-      <div class="live-badge"><i class="pulse"></i><!--LAST_REFRESH-->마지막 갱신 2026-09-28 09:35 KST 기준<!--/LAST_REFRESH--></div>
+      <div class="live-badge"><i class="pulse"></i><!--LAST_REFRESH-->마지막 갱신 2026-09-28 10:35 KST 기준<!--/LAST_REFRESH--></div>
     </div>
   </header>
 
@@ -390,7 +390,7 @@
             <th>진입 시각</th>
           </tr>
         </thead>
-        <tbody id="open-tbody"><!--OPEN_POSITIONS--><tr><td>FLOW</td><td>-2.58%</td><td>-2.49%</td><td class="neg">-$0.30</td><td>09-28 08:05</td></tr><!--/OPEN_POSITIONS--></tbody>
+        <tbody id="open-tbody"><!--OPEN_POSITIONS--><tr><td>FLOW</td><td>-2.58%</td><td>-1.84%</td><td class="pos">+$6.26</td><td>09-28 08:05</td></tr><!--/OPEN_POSITIONS--></tbody>
       </table>
     </div>
   </section>
@@ -555,7 +555,7 @@
 <script>
 (function(){
   // COINS_DATA_START — 자동 갱신 작업이 이 배열만 통째로 교체합니다. 형식: [심볼, 프리미엄(%, 소수점2), 코빗원화가, 상태("calm"|"watch"|"danger")]
-var coins = [["PYTH",5.02,119.9,"danger"],["ARB",0.97,310,"calm"],["NEAR",0.39,7320,"calm"],["W",0.28,21.39,"calm"],["SHIB",0.27,0.0081,"calm"],["FIL",0.23,1560,"calm"],["SUI",0.2,1750,"calm"],["HBAR",0.15,130.8,"calm"],["ADA",0.12,349.2,"calm"],["BTC",0.04,114916000,"calm"],["HYPE",0.04,124400,"calm"],["XRP",0.03,2071,"calm"],["ETH",0.03,3649000,"calm"],["WLD",0.01,744.4,"calm"],["ETC",0,13010,"calm"],["JTO",-0.02,816.3,"calm"],["XLM",-0.04,294.6,"calm"],["TRX",-0.06,451.8,"calm"],["DOGE",-0.08,132.3,"calm"],["ONDO",-0.09,790,"calm"],["SOL",-0.11,166000,"calm"],["ALGO",-0.22,162.5,"calm"],["CELO",-0.24,132.3,"calm"],["BCH",-0.28,449900,"calm"],["SEI",-0.35,113,"calm"],["STX",-0.44,458.1,"calm"],["SUSHI",-0.48,367.2,"calm"],["AAVE",-1.08,208700,"calm"],["LINK",-1.1,18940,"calm"],["BNB",-1.27,1048000,"calm"],["UNI",-1.3,13000,"calm"],["XTZ",-1.31,432,"calm"],["AVAX",-1.4,14630,"calm"],["PENDLE",-1.49,3564,"calm"],["APT",-1.59,1163,"calm"],["AR",-2.19,6250,"watch"],["TIA",-2.31,673.6,"watch"],["QTUM",-2.39,1360,"watch"],["FLOW",-2.49,43.99,"watch"],["ZIL",-5.28,4.9,"danger"]];
+var coins = [["PYTH",5.81,119.9,"danger"],["AR",1.5,6250,"calm"],["CELO",1.31,132.3,"calm"],["AVAX",0.5,14850,"calm"],["SUSHI",0.48,367.2,"calm"],["UNI",0.45,13120,"calm"],["LINK",0.44,19230,"calm"],["HYPE",0.39,123000,"calm"],["SUI",0.33,1732,"calm"],["DOGE",0.28,131.7,"calm"],["XLM",0.27,296.8,"calm"],["ADA",0.25,348.3,"calm"],["APT",0.25,1173,"calm"],["XRP",0.22,2061,"calm"],["ETH",0.18,3631000,"calm"],["SEI",0.18,115.1,"calm"],["STX",0.15,458.1,"calm"],["BTC",0.14,114122000,"calm"],["AAVE",0.12,208700,"calm"],["SOL",0.1,165500,"calm"],["WLD",0.06,731.1,"calm"],["ONDO",0.04,771.5,"calm"],["BCH",0.02,445000,"calm"],["ETC",-0.01,12850,"calm"],["XTZ",-0.04,432,"calm"],["TRX",-0.06,453.1,"calm"],["SHIB",-0.06,0.008,"calm"],["FIL",-0.08,1532,"calm"],["ALGO",-0.25,162.5,"calm"],["PENDLE",-0.29,3564,"calm"],["W",-0.39,20.55,"calm"],["ARB",-0.48,301.8,"calm"],["JTO",-0.54,800.2,"calm"],["TIA",-0.57,673.6,"calm"],["NEAR",-0.61,7185,"calm"],["BNB",-0.73,1048000,"calm"],["QTUM",-1.67,1360,"calm"],["FLOW",-1.84,43.66,"calm"],["HBAR",-1.88,129.2,"calm"],["ZIL",-4.15,4.9,"watch"]];
 // COINS_DATA_END
 
   // 스케일은 그날의 실제 프리미엄 분포에 맞춰 매번 새로 계산합니다 (고정폭이면 값이 범위를 넘을 때 막대가 옆 칸을 침범함)
