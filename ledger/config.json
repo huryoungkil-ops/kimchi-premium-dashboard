@@ -1,0 +1,8 @@
+{
+  "seedUsd": 10000,
+  "start": "2026-09-05T13:00:00Z",
+  "startFx": 1348.990395,
+  "segment": { "from": "2026-09-28T13:00:00Z", "fx": 1356.044355, "label": "09-28 이후" },
+  "rebalanceAlertPct": 55,
+  "transfers": []
+}

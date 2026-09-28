@@ -1,0 +1,211 @@
+{
+ "4": {
+  "coin": "ETH",
+  "entryFx": 1345.0621,
+  "exitFx": 1345.0616,
+  "entryForeignPrice": 2607.24,
+  "exitForeignPrice": 2515.8012,
+  "check": {
+   "entryFxVsHist": 0,
+   "exitFpVsHist": 0
+  }
+ },
+ "5": {
+  "coin": "XRP",
+  "entryFx": 1345.0618,
+  "exitFx": 1345.0616,
+  "entryForeignPrice": 1.3942,
+  "exitForeignPrice": 1.3549999,
+  "check": {
+   "entryFxVsHist": 0,
+   "exitFpVsHist": 0
+  }
+ },
+ "6": {
+  "coin": "SOL",
+  "entryFx": 1345.061,
+  "exitFx": 1345.0616,
+  "entryForeignPrice": 103.11,
+  "exitForeignPrice": 101.15999,
+  "check": {
+   "entryFxVsHist": 0,
+   "exitFpVsHist": 0
+  }
+ },
+ "7": {
+  "coin": "XLM",
+  "entryFx": 1342.6344,
+  "exitFx": 1342.6345,
+  "entryForeignPrice": 0.18483,
+  "exitForeignPrice": 0.19186992,
+  "check": {
+   "entryFxVsHist": 0,
+   "exitFpVsHist": 0
+  }
+ },
+ "8": {
+  "coin": "SOL",
+  "entryFx": 1342.634,
+  "exitFx": 1342.6345,
+  "entryForeignPrice": 101.74,
+  "exitForeignPrice": 101.30999,
+  "check": {
+   "entryFxVsHist": 0,
+   "exitFpVsHist": 0
+  }
+ },
+ "9": {
+  "coin": "DOGE",
+  "entryFx": 1342.6344,
+  "exitFx": 1342.6345,
+  "entryForeignPrice": 0.0845,
+  "exitForeignPrice": 0.083579997,
+  "check": {
+   "entryFxVsHist": 0,
+   "exitFpVsHist": 0
+  }
+ },
+ "10": {
+  "coin": "ADA",
+  "entryFx": 1342.6344,
+  "exitFx": 1347.1997,
+  "entryForeignPrice": 0.2086,
+  "exitForeignPrice": 0.20480007,
+  "check": {
+   "entryFxVsHist": 0,
+   "exitFpVsHist": 0
+  }
+ },
+ "11": {
+  "coin": "BTC",
+  "entryFx": 1342.6347,
+  "exitFx": 1347.1997,
+  "entryForeignPrice": 78647.7,
+  "exitForeignPrice": 76984.116,
+  "check": {
+   "entryFxVsHist": 0,
+   "exitFpVsHist": 0
+  }
+ },
+ "12": {
+  "coin": "TRX",
+  "entryFx": 1342.6351,
+  "exitFx": 1347.1997,
+  "entryForeignPrice": 0.34111,
+  "exitForeignPrice": 0.33823991,
+  "check": {
+   "entryFxVsHist": 0,
+   "exitFpVsHist": 0
+  }
+ },
+ "13": {
+  "coin": "ETH",
+  "entryFx": 1347.1992,
+  "exitFx": 1360.3618,
+  "entryForeignPrice": 2397.92,
+  "exitForeignPrice": 2406.9796,
+  "check": {
+   "entryFxVsHist": 0,
+   "exitFpVsHist": 0
+  }
+ },
+ "14": {
+  "coin": "BTC",
+  "entryFx": 1360.3612,
+  "exitFx": 1360.3618,
+  "entryForeignPrice": 75822.6,
+  "exitForeignPrice": 75853.11,
+  "check": {
+   "entryFxVsHist": 0,
+   "exitFpVsHist": 0
+  }
+ },
+ "15": {
+  "coin": "DOGE",
+  "entryFx": 1360.362,
+  "exitFx": 1360.3618,
+  "entryForeignPrice": 0.08018,
+  "exitForeignPrice": 0.080220017,
+  "check": {
+   "entryFxVsHist": 0,
+   "exitFpVsHist": 0
+  }
+ },
+ "16": {
+  "coin": "BTC",
+  "entryFx": 1369.811,
+  "exitFx": 1375.6422,
+  "entryForeignPrice": 76425.1,
+  "exitForeignPrice": 86255.57,
+  "check": {
+   "entryFxVsHist": 0,
+   "exitFpVsHist": 0
+  }
+ },
+ "17": {
+  "coin": "ETH",
+  "entryFx": 1369.8109,
+  "exitFx": 1375.6422,
+  "entryForeignPrice": 2428.23,
+  "exitForeignPrice": 2740.0291,
+  "check": {
+   "entryFxVsHist": 0,
+   "exitFpVsHist": 0
+  }
+ },
+ "18": {
+  "coin": "XRP",
+  "entryFx": 1369.8119,
+  "exitFx": 1369.8112,
+  "entryForeignPrice": 1.3022,
+  "exitForeignPrice": 1.2931,
+  "check": {
+   "entryFxVsHist": 0,
+   "exitFpVsHist": 0
+  }
+ },
+ "19": {
+  "coin": "XRP",
+  "entryFx": 1380.5013,
+  "exitFx": 1353.7035,
+  "entryForeignPrice": 1.2927,
+  "exitForeignPrice": 1.5842003,
+  "check": {
+   "entryFxVsHist": 0,
+   "exitFpVsHist": 0
+  }
+ },
+ "20": {
+  "coin": "DOGE",
+  "entryFx": 1380.5013,
+  "exitFx": 1353.7035,
+  "entryForeignPrice": 0.08544,
+  "exitForeignPrice": 0.10070002,
+  "check": {
+   "entryFxVsHist": 0,
+   "exitFpVsHist": 0
+  }
+ },
+ "21": {
+  "coin": "ADA",
+  "entryFx": 1380.5024,
+  "exitFx": 1386.7442,
+  "entryForeignPrice": 0.2158,
+  "exitForeignPrice": 0.22110009,
+  "check": {
+   "entryFxVsHist": 0,
+   "exitFpVsHist": 0
+  }
+ },
+ "22": {
+  "coin": "FLOW",
+  "entryFx": 1357.0475,
+  "exitFx": 1356.0444,
+  "entryForeignPrice": 0.03294,
+  "exitForeignPrice": 0.032240006,
+  "check": {
+   "entryFxVsHist": 0,
+   "exitFpVsHist": 0
+  }
+ }
+}
