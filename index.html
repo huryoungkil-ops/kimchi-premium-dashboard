@@ -325,6 +325,49 @@
   .hold-left{ color:var(--ink-soft); font-size:12px; }
   .hold-left.over{ color:var(--danger); }
   @media (prefers-reduced-motion: reduce){ .refresh-btn{ transition:none; } }
+
+  /* ---------- 거래소별 잔액 ----------
+     자동 갱신(마커 치환)과 무관하다. 값은 페이지가 열릴 때 ledger/ 와 백업 거래기록을 읽어 직접 계산한다. */
+  .ledger-summary{
+    display:flex; flex-wrap:wrap; align-items:baseline; gap:6px 22px;
+    background:var(--bg-raised); border:1px solid var(--line); border-radius:var(--radius);
+    padding:16px 20px; box-shadow:var(--shadow); margin-bottom:12px;
+  }
+  .ledger-total{ font-family:var(--font-mono); font-size:28px; font-weight:600; font-variant-numeric:tabular-nums; }
+  .ledger-delta{ font-family:var(--font-mono); font-size:15px; font-weight:600; font-variant-numeric:tabular-nums; }
+  .ledger-parts{ font-size:12.5px; color:var(--ink-soft); }
+  .ledger-parts b{ font-family:var(--font-mono); font-weight:600; color:var(--ink); }
+  .pos-t{ color:var(--good) !important; }
+  .neg-t{ color:var(--danger) !important; }
+  .ledger-grid{ display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:12px; }
+  @media (max-width:720px){ .ledger-grid{ grid-template-columns:1fr; } }
+  .xcard{
+    background:var(--bg-raised); border:1px solid var(--line); border-radius:var(--radius);
+    padding:15px 18px 12px; box-shadow:var(--shadow);
+  }
+  .xcard-head{ display:flex; justify-content:space-between; align-items:baseline; gap:10px; margin-bottom:8px; }
+  .xcard-head h3{ margin:0; font-size:15px; font-weight:600; }
+  .xcard-head .kind{ font-size:11.5px; color:var(--ink-soft); font-weight:400; margin-left:4px; }
+  .xcard-share{ font-family:var(--font-mono); font-size:13px; font-weight:600; }
+  .xcard dl{ display:grid; grid-template-columns:1fr auto; gap:5px 12px; margin:0; }
+  .xcard dt{ font-size:12.8px; color:var(--ink-soft); }
+  .xcard dt small{ font-size:11px; }
+  .xcard dd{ margin:0; text-align:right; font-family:var(--font-mono); font-size:13px; font-variant-numeric:tabular-nums; white-space:nowrap; }
+  .xcard dd small{ color:var(--ink-soft); font-size:11.5px; margin-right:6px; }
+  .xcard .sum{ border-top:1px solid var(--line-soft); padding-top:6px; font-weight:600; color:var(--ink); }
+  .share-bar{ position:relative; display:flex; height:10px; border-radius:5px; overflow:hidden; background:var(--line-soft); margin:4px 0 6px; }
+  .share-bar .k{ background:var(--accent); }
+  .share-bar .o{ background:var(--ink-soft); opacity:.55; }
+  .share-bar .mid{ position:absolute; left:50%; top:-2px; bottom:-2px; width:2px; margin-left:-1px; background:var(--bg-raised); }
+  .share-legend{ display:flex; justify-content:space-between; font-family:var(--font-mono); font-size:11.5px; color:var(--ink-soft); }
+  .rebalance{
+    display:flex; flex-wrap:wrap; align-items:center; gap:8px 12px; margin-top:12px;
+    border:1px solid var(--line); border-radius:var(--radius); padding:12px 18px; background:var(--bg-raised);
+    font-size:13.5px;
+  }
+  .rebalance b{ font-family:var(--font-mono); }
+  .ledger-note{ font-size:12px; color:var(--ink-soft); margin:10px 2px 0; line-height:1.6; }
+  .ledger-note b{ font-family:var(--font-mono); font-weight:600; }
 </style>
 </head>
 <body>
@@ -367,6 +410,45 @@
     </div>
 
 
+  </section>
+
+  <section aria-labelledby="ledger-h" id="ledger">
+    <h2 id="ledger-h">거래소별 잔액 — 시드 $10,000을 반씩 나눠 들고 시작했습니다</h2>
+    <p class="section-sub">국내 현물을 사고 해외 선물을 파는 두 다리는 서로 반대로 움직입니다. 코인값이 오르면 코빗이 벌고 OKX가 잃어서, 합계는 그대로여도 두 거래소 잔액은 계속 벌어집니다. 한쪽이 마르기 전에 50:50으로 다시 맞춰야(리밸런싱) 다음 거래를 받을 수 있습니다.</p>
+
+    <div class="ledger-summary" aria-live="polite">
+      <span class="ledger-total" id="lg-total">—</span>
+      <span class="ledger-delta" id="lg-delta">계산 중…</span>
+      <span class="ledger-parts" id="lg-parts"></span>
+    </div>
+
+    <div class="ledger-grid">
+      <div class="xcard">
+        <div class="xcard-head"><h3>코빗<span class="kind">국내 · 원화 현물 롱</span></h3><span class="xcard-share" id="lg-k-share">—</span></div>
+        <dl>
+          <dt>예수금</dt><dd id="lg-k-cash">—</dd>
+          <dt>코인 평가액</dt><dd id="lg-k-hold">—</dd>
+          <dt class="sum">합계</dt><dd class="sum" id="lg-k-total">—</dd>
+          <dt>누적 실현손익</dt><dd id="lg-k-real">—</dd>
+        </dl>
+      </div>
+      <div class="xcard">
+        <div class="xcard-head"><h3>OKX<span class="kind">해외 · USDT 무기한선물 숏</span></h3><span class="xcard-share" id="lg-o-share">—</span></div>
+        <dl>
+          <dt>예수금</dt><dd id="lg-o-cash">—</dd>
+          <dt>미실현 손익</dt><dd id="lg-o-unreal">—</dd>
+          <dt class="sum">합계</dt><dd class="sum" id="lg-o-total">—</dd>
+          <dt>누적 실현손익 <small>수수료 포함</small></dt><dd id="lg-o-real">—</dd>
+        </dl>
+      </div>
+    </div>
+
+    <div class="share-bar" role="img" id="lg-bar" aria-label="거래소 비중"><div class="k" id="lg-bar-k" style="width:50%"></div><div class="o" style="flex:1"></div><i class="mid"></i></div>
+    <div class="share-legend"><span>코빗</span><span>50%</span><span>OKX</span></div>
+
+    <div class="rebalance" id="lg-rebalance">리밸런싱 계산 중…</div>
+
+    <p class="ledger-note" id="lg-note"></p>
   </section>
 
   <section aria-labelledby="open-h">
@@ -960,6 +1042,8 @@ var coins = [["AR",3.58,6145,"watch"],["QTUM",2.55,1360,"watch"],["SHIB",1.74,0.
     var fx = Number(data.usdKrw);
     if (isFinite(fx) && fx > 0) msg += ' · 환율 <b>' + fx.toFixed(1) + '</b>';
     setStatus(msg, 'live');
+    // 아래 «거래소별 잔액» 섹션이 같은 값으로 보유 포지션 평가액을 다시 계산한다
+    try { document.dispatchEvent(new CustomEvent('kimchi:live', { detail: data })); } catch (e) {}
   }
 
   btn.addEventListener('click', function(){
@@ -1003,6 +1087,148 @@ var coins = [["AR",3.58,6145,"watch"],["QTUM",2.55,1360,"watch"],["SHIB",1.74,0.
         if (timer) clearTimeout(timer);
         btn.disabled = false;
       });
+  });
+})();
+</script>
+
+<script src="ledger/ledger.js"></script>
+<script>
+/* ─────────────────────────────────────────────────────────────
+   거래소별 잔액 — 청산된 거래를 두 다리(코빗 원화 현물 / OKX 달러 선물)로 나눠 쌓은 가상 원장.
+   계산은 ledger/ledger.js 한 곳에 있고, 여기서는 데이터만 모아 넘긴다.
+     - 거래 기록: backup/data/paper-trades.json (매시간 n8n 백업본)
+     - 옛 거래의 환율·해외가: ledger/backfill.json  /  시드·리밸런싱 이력: ledger/config.json
+     - 환율: open.er-api.com (봇과 같은 출처)
+     - 보유 포지션의 지금 값: «지금 값 불러오기»가 받아오면(kimchi:live 이벤트) 그 값으로 다시 계산
+   자동 갱신(마커 치환)이 건드리지 않는 영역이다.
+   ───────────────────────────────────────────────────────────── */
+(function(){
+  if (!window.KimchiLedger || !document.getElementById('ledger')) return;
+  var $ = function(id){ return document.getElementById(id); };
+  var bust = '?t=' + Math.floor(Date.now() / 300000); // 5분 단위 캐시 무효화
+  var state = { cfg: null, trades: null, backfill: null, fx: null, fxAt: null, live: null, liveAt: null };
+
+  function getJSON(url){
+    return fetch(url, { cache: 'no-store' }).then(function(r){
+      if (!r.ok) throw new Error(url.split('?')[0] + ' ' + r.status);
+      return r.json();
+    });
+  }
+  function usd(v, signed){
+    var s = '$' + Math.abs(v).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    if (signed) return (v >= 0 ? '+' : '−') + s;
+    return (v < 0 ? '−' : '') + s;
+  }
+  function krw(v, signed){
+    var s = '₩' + Math.round(Math.abs(v)).toLocaleString('ko-KR');
+    if (signed) return (v >= 0 ? '+' : '−') + s;
+    return (v < 0 ? '−' : '') + s;
+  }
+  function cls(v){ return Math.abs(v) < 0.005 ? '' : (v > 0 ? 'pos-t' : 'neg-t'); }
+  function tone(el, v){ el.classList.remove('pos-t', 'neg-t'); if (cls(v)) el.classList.add(cls(v)); }
+  function kst(iso){
+    var d = new Date(new Date(iso).getTime() + 9 * 3600000);
+    return d.toISOString().slice(5, 16).replace('T', ' ') + ' KST';
+  }
+
+  function draw(){
+    var s = state;
+    if (!s.cfg || !s.trades || !s.fx) return;
+    var liveMap = null;
+    if (s.live && s.live.positions) {
+      liveMap = {};
+      s.live.positions.forEach(function(p){ if (p.bid && p.foreignPrice) liveMap[p.coin] = { bid: p.bid, foreignPrice: p.foreignPrice }; });
+    }
+    var r = KimchiLedger.compute(s.cfg, s.trades, s.backfill, { fx: s.fx, live: liveMap });
+    var seg = s.cfg.segment;
+    var base = KimchiLedger.compute(s.cfg, s.trades, s.backfill, { fx: seg.fx, asOf: seg.from });
+    var segDelta = r.total - base.total;
+
+    $('lg-total').textContent = usd(r.total);
+    var d = $('lg-delta');
+    d.textContent = usd(r.pnl, true) + ' (' + (r.pnlPct >= 0 ? '+' : '−') + Math.abs(r.pnlPct).toFixed(2) + '%)';
+    tone(d, r.pnl);
+    $('lg-parts').innerHTML =
+      '시드 ' + usd(s.cfg.seedUsd) + ' 대비 · 전략 손익 <b class="' + cls(r.strategyUsd) + '">' + usd(r.strategyUsd, true) + '</b>' +
+      ' · 환율 효과 <b class="' + cls(r.fxEffectUsd) + '">' + usd(r.fxEffectUsd, true) + '</b>' +
+      ' · <span title="' + kst(seg.from) + ' 기준 ' + usd(base.total) + '">' + seg.label + ' <b class="' + cls(segDelta) + '">' + usd(segDelta, true) + '</b></span>';
+
+    var hasOpen = r.open.length > 0;
+    var allPriced = r.open.every(function(o){ return o.priced; });
+    $('lg-k-share').textContent = r.korbit.share.toFixed(1) + '%';
+    $('lg-o-share').textContent = r.okx.share.toFixed(1) + '%';
+    $('lg-k-cash').innerHTML = '<small>' + krw(r.korbit.cashKrw) + '</small>' + usd(r.korbit.cashUsd);
+    $('lg-k-hold').innerHTML = hasOpen
+      ? '<small>' + r.open.length + '종목' + (allPriced ? '' : ' · 원가 기준') + '</small>' + usd(r.korbit.holdUsd)
+      : '<small>보유 없음</small>' + usd(0);
+    $('lg-k-total').innerHTML = '<small>' + krw(r.korbit.totalKrw) + '</small>' + usd(r.korbit.totalUsd);
+    $('lg-k-real').innerHTML = '<small>원화 기준</small>' + krw(r.korbit.realizedKrw, true);
+    tone($('lg-k-real'), r.korbit.realizedKrw);
+    $('lg-o-cash').textContent = usd(r.okx.cashUsd);
+    $('lg-o-unreal').innerHTML = (hasOpen && !allPriced ? '<small>지금 값 전</small>' : '') + usd(r.okx.unrealUsd, true);
+    tone($('lg-o-unreal'), r.okx.unrealUsd);
+    $('lg-o-total').textContent = usd(r.okx.totalUsd);
+    $('lg-o-real').textContent = usd(r.okx.realizedUsd, true);
+    tone($('lg-o-real'), r.okx.realizedUsd);
+
+    $('lg-bar-k').style.width = Math.max(0, Math.min(100, r.korbit.share)) + '%';
+    $('lg-bar').setAttribute('aria-label', '코빗 ' + r.korbit.share.toFixed(1) + '%, OKX ' + r.okx.share.toFixed(1) + '%');
+
+    var move = r.rebalanceUsd, heavy = Math.max(r.korbit.share, r.okx.share);
+    var alertPct = s.cfg.rebalanceAlertPct || 55;
+    var pill = heavy >= alertPct ? '<span class="pill danger">리밸런싱 권장</span>'
+             : heavy >= 52.5 ? '<span class="pill watch">치우침</span>'
+             : '<span class="pill calm">균형</span>';
+    var dir = move > 0 ? '코빗 → OKX' : 'OKX → 코빗';
+    $('lg-rebalance').innerHTML = pill + ' <span>50:50으로 맞추려면 <b>' + dir + '</b>로 <b>' + usd(Math.abs(move)) +
+      '</b> <span class="ledger-parts">(' + krw(Math.abs(move) * s.fx) + ')</span> 이체</span>' +
+      (hasOpen ? ' <span class="ledger-parts">· 보유 포지션이 없을 때 옮기는 게 깔끔합니다</span>' : '');
+
+    var t = s.cfg.transfers || [];
+    var last = t.length ? t[t.length - 1] : null;
+    $('lg-note').innerHTML =
+      '환율 <b>' + s.fx.toFixed(2) + '</b>원/$ (' + (s.liveAt ? '지금 값 ' + kst(s.liveAt) : '기준 ' + s.fxAt) + ') · 청산 ' + r.closedCount + '건 반영 · 거래 기록은 매시간 백업본 기준입니다. ' +
+      (last ? '마지막 리밸런싱 ' + kst(last.time) + ' (' + usd(Number(last.usd)) + ', ' + (last.from === 'korbit' ? '코빗→OKX' : 'OKX→코빗') + '). '
+            : '아직 리밸런싱 이력이 없습니다. ') +
+      '<br>코빗 잔고는 원화로 들고 있어서 달러 환산액이 환율에 따라 움직입니다 — 그 몫이 «환율 효과»입니다. ' +
+      '«전략 손익»은 거래마다 두 다리를 따로 재서 더한 값으로, 코인을 q개 사고 같은 q개를 판 실제 포지션 기준입니다. ' +
+      '봇은 09-28까지 «투입금 × 김프변화»로 근사해 기록했기 때문에 위 «누적 손익» 타일(봇 기록 합계)과 조금 다릅니다. 이후 거래부터는 봇도 같은 공식으로 기록합니다.' +
+      (r.missing.length ? '<br>⚠️ 환율 정보가 없어 빠진 거래: ' + r.missing.join(', ') : '');
+  }
+
+  function fail(msg){
+    $('lg-delta').textContent = '불러오지 못했습니다 — ' + msg;
+    $('lg-rebalance').textContent = '잔액을 계산하지 못했습니다.';
+  }
+
+  Promise.all([
+    getJSON('ledger/config.json' + bust),
+    getJSON('ledger/backfill.json' + bust),
+    getJSON('backup/data/paper-trades.json' + bust),
+    getJSON('https://open.er-api.com/v6/latest/USD').catch(function(){ return null; })
+  ]).then(function(res){
+    state.cfg = res[0]; state.backfill = res[1]; state.trades = res[2];
+    var fxBody = res[3];
+    if (fxBody && fxBody.rates && fxBody.rates.KRW) {
+      state.fx = Number(fxBody.rates.KRW);
+      state.fxAt = fxBody.time_last_update_unix ? kst(new Date(fxBody.time_last_update_unix * 1000).toISOString()) : '조회 시각';
+    } else {
+      state.fx = state.cfg.segment.fx; // 환율 조회 실패 시 기준일 환율로라도 보여준다
+      state.fxAt = '조회 실패 · ' + kst(state.cfg.segment.from) + ' 환율';
+    }
+    draw();
+    // 보유 포지션이 있으면 지금 값을 한 번 받아와 평가액까지 채운다
+    var hasOpen = state.trades.some(function(t){ return t.status === 'OPEN'; });
+    var btn = $('refresh-open');
+    if (hasOpen && btn && !btn.disabled) btn.click();
+  }).catch(function(e){ fail(e && e.message || '알 수 없는 오류'); });
+
+  document.addEventListener('kimchi:live', function(ev){
+    var data = ev.detail || {};
+    state.live = data;
+    state.liveAt = data.checkedAt || new Date().toISOString();
+    if (Number(data.usdKrw) > 0) state.fx = Number(data.usdKrw);
+    draw();
   });
 })();
 </script>

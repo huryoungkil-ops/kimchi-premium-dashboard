@@ -43,7 +43,9 @@ usdKrwRate(number) / checkedAt(date)`,
 `coin(string) / status(string) / entryTime(date) / entryPremium(number) / entryMa(number) /
 entryPrice(number) / positionSize(number) / feeEntry(number) / exitTime(date) /
 exitPremium(number) / exitPrice(number) / grossProfit(number) / feeExit(number) /
-netProfit(number)` 열로 만든 뒤 CSV/JSON을 적재합니다.
+netProfit(number) / entryForeignPrice(number) / entryFx(number) / exitFx(number) /
+exitForeignPrice(number) / korbitPnl(number) / okxPnl(number)` 열로 만든 뒤 CSV/JSON을 적재합니다.
+(`entryFx` 이후 다섯 열은 2026-09-28에 추가 — 그 전 거래는 비어 있고, 대시보드는 `ledger/backfill.json`으로 채웁니다.)
 
 `status`는 `OPEN`(보유 중) / `CLOSED`(청산 완료) / `VOID`(무효 처리, 집계 제외) 중 하나입니다.
 
