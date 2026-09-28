@@ -4,12 +4,12 @@
     "name": "김치 프리미엄 페이퍼 트레이딩 (코빗×OKX, 5분)",
     "description": "코빗(국내)과 OKX(해외 USDT 무기한선물) 가격을 5분마다 비교해 김프를 계산하고, 3일 이동평균 기준 진입/청산 신호로 가상 매매를 기록 후 Discord로 알림",
     "active": true,
-    "activeVersionId": "c306dc14-14f7-4c22-928d-d0c0617924a2",
+    "activeVersionId": "bcdde89f-44af-4a1b-a178-2568ec2d401a",
     "createdAt": "2026-09-05T12:41:43.811Z",
-    "updatedAt": "2026-09-28T13:16:13.662Z",
+    "updatedAt": "2026-09-28T13:44:55.463Z",
     "isArchived": false,
-    "versionId": "c306dc14-14f7-4c22-928d-d0c0617924a2",
-    "versionCounter": 51,
+    "versionId": "bcdde89f-44af-4a1b-a178-2568ec2d401a",
+    "versionCounter": 52,
     "sourceWorkflowId": null,
     "triggerCount": 2,
     "nodes": [
@@ -303,7 +303,7 @@
         "parameters": {
           "mode": "runOnceForAllItems",
           "language": "javaScript",
-          "jsCode": "const MAX_POSITIONS = 4; // 동시에 열 수 있는 최대 가상 포지션 수\n// 6년 백테스트상 5자리까지는 청산 위험이 늘지 않는다(증거금 사용률 3자리 39.7% -> 5자리 32.4%).\n// 그럼에도 4로 두는 건 시드의 20%를 현금으로 남겨\n// 백테스트로 측정되지 않는 위험(거래소 장애, 증거금 요구 변경)에 대응하기 위함.\n// 운영이 안정되면 5로 올린다.\n\nconst CHECK_LIMIT = 8;   // 호가 검증까지 돌려볼 후보 수.\n\n// 거래 대상은 스캐너가 관리한다 — 호가 스프레드 중앙값이 3일(12회) 연속 0.8% 이하일 때만\n// tradable이 켜진다. 스프레드가 넓다는 건 사고팔 상대가 없다는 뜻이고,\n// 그런 종목의 김프는 먹을 수 있는 기회가 아니라 거래가 없어서 생긴 허상이다.\nconst tradable = {};\n$('거래 종목 조회').all().forEach(function (i) {\n  const r = i.json;\n  if (r && r.coin && r.tradable === true) tradable[String(r.coin).toUpperCase()] = true;\n});\n// 테이블을 못 읽었을 때 전체 진입을 막아버리지 않도록, 비어 있으면 관문을 해제한다\nconst hasUniverse = Object.keys(tradable).length > 0;\n\nconst openPositions = [];\nconst seenIds = {};\n$input.all().forEach(function (item) {\n  const row = item.json;\n  if (!row || !row.coin) return;\n  if (seenIds[row.id]) return;\n  seenIds[row.id] = true;\n  openPositions.push(row);\n});\n\nconst slots = MAX_POSITIONS - openPositions.length;\nif (slots <= 0) return [];\n\nconst openCoins = openPositions.map(function (p) { return p.coin; });\n\nconst candidates = $('MA·신호 판정').all()\n  .map(function (item) { return item.json; })\n  .filter(function (s) { return s.signal === 'ENTRY'; })\n  .filter(function (s) { return openCoins.indexOf(s.coin) === -1; })\n  .filter(function (s) { return !hasUniverse || tradable[s.coin] === true; });\n\ncandidates.forEach(function (s) {\n  s.zScore = s.sigma > 0 ? (s.ma - s.premium) / s.sigma : 0;\n});\ncandidates.sort(function (a, b) { return b.zScore - a.zScore; });\n\nreturn candidates.slice(0, CHECK_LIMIT).map(function (s) {\n  return {\n    json: {\n      coin: s.coin,\n      premium: s.premium,\n      ma: s.ma,\n      sigma: s.sigma,\n      lower: s.lower,\n      korbitPrice: s.korbitPrice,\n      foreignPrice: s.foreignPrice, // 호가 기준 김프 재계산 + 가격손절 기준점\n      zScore: Math.round(s.zScore * 100) / 100,\n      slots: slots,\n      candidateCount: candidates.length,\n      openCount: openPositions.length\n    }\n  };\n});"
+          "jsCode": "const MAX_POSITIONS = 4; // 동시에 열 수 있는 최대 가상 포지션 수\n// 6년 백테스트상 5자리까지는 청산 위험이 늘지 않는다(증거금 사용률 3자리 39.7% -> 5자리 32.4%).\n// 그럼에도 4로 두는 건 시드의 20%를 현금으로 남겨\n// 백테스트로 측정되지 않는 위험(거래소 장애, 증거금 요구 변경)에 대응하기 위함.\n// 운영이 안정되면 5로 올린다.\n\nconst CHECK_LIMIT = 8;   // 호가 검증까지 돌려볼 후보 수.\n\n// 거래 대상은 스캐너가 관리한다 — 호가 스프레드 중앙값이 3일(12회) 연속 0.8% 이하일 때만\n// tradable이 켜진다. 스프레드가 넓다는 건 사고팔 상대가 없다는 뜻이고,\n// 그런 종목의 김프는 먹을 수 있는 기회가 아니라 거래가 없어서 생긴 허상이다.\nconst tradable = {};\n$('거래 종목 조회').all().forEach(function (i) {\n  const r = i.json;\n  if (r && r.coin && r.tradable === true) tradable[String(r.coin).toUpperCase()] = true;\n});\n// 테이블을 못 읽었을 때 전체 진입을 막아버리지 않도록, 비어 있으면 관문을 해제한다\nconst hasUniverse = Object.keys(tradable).length > 0;\n\nconst openPositions = [];\nconst seenIds = {};\n$('진행 중인 포지션 조회').all().forEach(function (item) {\n  const row = item.json;\n  if (!row || !row.coin) return;\n  if (seenIds[row.id]) return;\n  seenIds[row.id] = true;\n  openPositions.push(row);\n});\n\n// 자리 수와 잔액 둘 다 봐서 작은 쪽만큼만 연다 (2026-09-28 추가).\n// 잔액 계산은 «잔액 점검» 노드 — 한쪽 거래소 여유가 $1,000 미만이면 그만큼 자리를 줄인다.\nconst bal = $('잔액 점검').first().json || {};\nconst countSlots = MAX_POSITIONS - openPositions.length;\nconst balanceSlots = bal.checked ? Number(bal.balanceSlots) : countSlots;\nconst slots = Math.min(countSlots, balanceSlots);\nif (slots <= 0) return [];\n\nconst openCoins = openPositions.map(function (p) { return p.coin; });\n\nconst candidates = $('MA·신호 판정').all()\n  .map(function (item) { return item.json; })\n  .filter(function (s) { return s.signal === 'ENTRY'; })\n  .filter(function (s) { return openCoins.indexOf(s.coin) === -1; })\n  .filter(function (s) { return !hasUniverse || tradable[s.coin] === true; });\n\ncandidates.forEach(function (s) {\n  s.zScore = s.sigma > 0 ? (s.ma - s.premium) / s.sigma : 0;\n});\ncandidates.sort(function (a, b) { return b.zScore - a.zScore; });\n\nreturn candidates.slice(0, CHECK_LIMIT).map(function (s) {\n  return {\n    json: {\n      coin: s.coin,\n      premium: s.premium,\n      ma: s.ma,\n      sigma: s.sigma,\n      lower: s.lower,\n      korbitPrice: s.korbitPrice,\n      foreignPrice: s.foreignPrice, // 호가 기준 김프 재계산 + 가격손절 기준점\n      zScore: Math.round(s.zScore * 100) / 100,\n      slots: slots,\n      candidateCount: candidates.length,\n      openCount: openPositions.length,\n      balanceSlots: bal.checked ? balanceSlots : null\n    }\n  };\n});"
         },
         "id": "0b432d4d-ec2d-494f-a0a3-9101aff78f7f",
         "name": "진입 가능 여부 판단",
@@ -1284,6 +1284,119 @@
         "maxTries": 3,
         "waitBetweenTries": 3000,
         "executeOnce": true
+      },
+      {
+        "id": "4617bce4-8c26-4f44-95b6-10184a6ae4fc",
+        "name": "전체 거래 조회",
+        "type": "n8n-nodes-base.dataTable",
+        "typeVersion": 1.1,
+        "position": [
+          1552,
+          -260
+        ],
+        "parameters": {
+          "resource": "row",
+          "operation": "get",
+          "dataTableId": {
+            "__rl": true,
+            "mode": "id",
+            "value": "6MFkAuDuiogrRSqA",
+            "cachedResultName": "kimchi_paper_trades"
+          },
+          "returnAll": true
+        },
+        "alwaysOutputData": true,
+        "executeOnce": true
+      },
+      {
+        "id": "3d173742-2423-4e98-af19-f4930c87b771",
+        "name": "원장 설정 조회",
+        "type": "n8n-nodes-base.httpRequest",
+        "typeVersion": 4.5,
+        "position": [
+          1776,
+          -260
+        ],
+        "parameters": {
+          "method": "GET",
+          "url": "https://kimchi-premium-dashboard-mu.vercel.app/ledger/config.json",
+          "options": {}
+        },
+        "onError": "continueRegularOutput",
+        "retryOnFail": true,
+        "maxTries": 2,
+        "waitBetweenTries": 1000,
+        "alwaysOutputData": true,
+        "executeOnce": true
+      },
+      {
+        "id": "8dc25203-f3ba-48dd-a101-2d3a5a69ec12",
+        "name": "원장 백필 조회",
+        "type": "n8n-nodes-base.httpRequest",
+        "typeVersion": 4.5,
+        "position": [
+          2000,
+          -260
+        ],
+        "parameters": {
+          "method": "GET",
+          "url": "https://kimchi-premium-dashboard-mu.vercel.app/ledger/backfill.json",
+          "options": {}
+        },
+        "onError": "continueRegularOutput",
+        "retryOnFail": true,
+        "maxTries": 2,
+        "waitBetweenTries": 1000,
+        "alwaysOutputData": true,
+        "executeOnce": true
+      },
+      {
+        "id": "3923bb84-7b01-4948-a7dc-3ae82c809559",
+        "name": "잔액 점검",
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          2224,
+          -260
+        ],
+        "parameters": {
+          "mode": "runOnceForAllItems",
+          "language": "javaScript",
+          "jsCode": "// 새 자리를 열기 전에 두 거래소에 돈이 남아 있는지 본다 (2026-09-28 추가).\n// 자리 수(최대 4)만 보면 한쪽 잔액이 $4,000 아래로 내려가도 4번째 자리를 열어버린다 —\n// 실제 계좌라면 불가능한 거래가 기록에 섞인다.\n//\n// 원장은 대시보드 «거래소별 잔액»(ledger/ledger.js)과 같은 방식이다:\n//   시드 $10,000을 가동일에 코빗(원화)·OKX(USDT)에 반씩 넣고, 청산 거래를 두 다리로 쌓고,\n//   ledger/config.json 의 리밸런싱(가상 이체)을 반영한다. 설정과 옛 거래 환율 백필은\n//   대시보드(Vercel)에서 받아 와서 두 곳이 같은 숫자를 쓰게 한다.\n//   코빗 여유 = 원화 예수금 (보유 코인 매수대금은 이미 빠져 있다)\n//   OKX 여유 = 평가금액(예수금 + 미실현손익) − 보유 포지션 증거금(1배 = 진입 명목)\n// 한 자리에 코빗은 $1,000어치 원화, OKX는 $1,000 증거금 + 진입 수수료가 필요하다.\nconst POSITION_USD = 1000;          // «가상 진입 기록»의 positionSize와 같아야 한다\nconst FEE_RATE = 0.0002;            // 해외 지정가 편도\nconst MAX_POSITIONS = 4;            // «진입 가능 여부 판단»과 같아야 한다\nconst NOTIFY_EVERY_MS = 6 * 3600 * 1000; // 부족 알림은 6시간에 한 번만\nconst DASHBOARD = 'https://kimchi-premium-dashboard-mu.vercel.app/#ledger';\n\nconst num = function (v) { const n = Number(v); return isFinite(n) && n !== 0 ? n : null; };\nconst r2 = function (v) { return Math.round(v * 100) / 100; };\n\nconst cfg = $('원장 설정 조회').first().json || {};\nconst backfill = $('원장 백필 조회').first().json || {};\nconst fxBody = $('환율 조회').first().json;\nconst fx = (fxBody && fxBody.rates && fxBody.rates.KRW) ? Number(fxBody.rates.KRW) : null;\n\n// 설정을 못 받으면 잔액 관문을 건너뛰고 예전처럼 자리 수만 본다.\n// Vercel 장애 하나로 봇 전체 진입이 멈추는 것보다 낫다.\nif (!num(cfg.seedUsd) || !num(cfg.startFx) || !fx) {\n  return [{ json: { checked: false, balanceSlots: MAX_POSITIONS, notify: false,\n                    reason: !fx ? '환율 없음' : '원장 설정을 받지 못함' } }];\n}\n\nconst sig = {};\n$('MA·신호 판정').all().forEach(function (i) { if (i.json && i.json.coin) sig[i.json.coin] = i.json; });\n\nconst trades = $('전체 거래 조회').all().map(function (i) { return i.json; })\n  .filter(function (t) { return t && t.coin && t.status !== 'VOID'; });\n\nconst half = Number(cfg.seedUsd) / 2;\nlet korbitKrw = half * Number(cfg.startFx);\nlet okxCash = half;\nlet okxUnreal = 0, okxMargin = 0, korbitHoldKrw = 0;\nlet openCount = 0;\nconst missing = [];\n\n(cfg.transfers || []).forEach(function (tr) {\n  if (new Date(tr.time).getTime() > Date.now()) return;\n  const usd = Number(tr.usd), tfx = Number(tr.fx);\n  if (tr.from === 'korbit') { korbitKrw -= usd * tfx; okxCash += usd; }\n  else { okxCash -= usd; korbitKrw += usd * tfx; }\n});\n\ntrades.forEach(function (t) {\n  const b = backfill[t.id] || {};\n  const pe = Number(t.entryPremium) / 100;\n  const entryFp = num(t.entryForeignPrice) || num(b.entryForeignPrice);\n  const entryFx = num(t.entryFx) || num(b.entryFx) || (entryFp ? Number(t.entryPrice) / (entryFp * (1 + pe)) : null);\n  const q = entryFx ? Number(t.positionSize) * entryFx / Number(t.entryPrice) : null;\n  if (!q || !entryFp) { missing.push(t.id); return; }\n\n  if (t.status === 'CLOSED') {\n    const exitFx = num(t.exitFx) || num(b.exitFx);\n    let exitFp = num(t.exitForeignPrice) || num(b.exitForeignPrice);\n    if (!exitFp && exitFx) exitFp = Number(t.exitPrice) / (exitFx * (1 + Number(t.exitPremium) / 100));\n    if (!exitFp) { missing.push(t.id); return; }\n    korbitKrw += q * (Number(t.exitPrice) - Number(t.entryPrice));\n    okxCash += q * (entryFp - exitFp) - Number(t.feeEntry || 0) - Number(t.feeExit || 0);\n    return;\n  }\n\n  // OPEN\n  openCount++;\n  korbitKrw -= q * Number(t.entryPrice);\n  okxCash -= Number(t.feeEntry || 0);\n  okxMargin += q * entryFp;\n  const s = sig[t.coin];\n  const fpNow = s ? num(s.foreignPrice) : null;\n  const kNow = s ? num(s.korbitPrice) : null;\n  if (fpNow) okxUnreal += q * (entryFp - fpNow);\n  korbitHoldKrw += q * (kNow || Number(t.entryPrice));\n});\n\nconst korbitFree = korbitKrw / fx;\nconst okxFree = okxCash + okxUnreal - okxMargin;\nconst korbitSlots = Math.max(0, Math.floor(korbitFree / POSITION_USD));\nconst okxSlots = Math.max(0, Math.floor(okxFree / (POSITION_USD * (1 + FEE_RATE))));\nconst balanceSlots = Math.min(korbitSlots, okxSlots);\nconst countSlots = Math.max(0, MAX_POSITIONS - openCount);\n\nconst korbitTotal = (korbitKrw + korbitHoldKrw) / fx;\nconst okxTotal = okxCash + okxUnreal;\nconst rebalanceUsd = korbitTotal - (korbitTotal + okxTotal) / 2; // 양수면 코빗→OKX\n\n// 잔액 때문에 자리 수보다 적게 열 수 있을 때만 알린다 (6시간에 한 번)\nlet notify = false;\nlet content = null;\nif (balanceSlots < countSlots) {\n  const st = $getWorkflowStaticData('global');\n  const last = Number(st.lastBalanceNotice || 0);\n  if (Date.now() - last >= NOTIFY_EVERY_MS) {\n    notify = true;\n    st.lastBalanceNotice = Date.now();\n    const short = korbitSlots < okxSlots ? '코빗' : (okxSlots < korbitSlots ? 'OKX' : '양쪽');\n    content = [\n      '⚠️ [잔액 부족] ' + short + ' 잔액이 모자라 새 진입을 줄입니다',\n      '열 수 있는 자리 ' + balanceSlots + ' / 남은 자리 ' + countSlots + ' (보유 ' + openCount + '/' + MAX_POSITIONS + ')',\n      '코빗 여유 $' + korbitFree.toFixed(2) + ' · OKX 여유 $' + okxFree.toFixed(2) + ' (한 자리에 $' + POSITION_USD.toLocaleString('en-US') + '씩 필요)',\n      '50:50 리밸런싱: ' + (rebalanceUsd >= 0 ? '코빗 → OKX' : 'OKX → 코빗') + ' $' + Math.abs(rebalanceUsd).toFixed(2),\n      '가상 이체는 저장소 ledger/config.json 의 transfers에 기록하면 다음 회차부터 반영됩니다.',\n      '대시보드: ' + DASHBOARD\n    ].join('\\n');\n  }\n}\n\nreturn [{ json: {\n  checked: true,\n  balanceSlots: balanceSlots,\n  countSlots: countSlots,\n  korbitFree: r2(korbitFree),\n  okxFree: r2(okxFree),\n  korbitSlots: korbitSlots,\n  okxSlots: okxSlots,\n  rebalanceUsd: r2(rebalanceUsd),\n  missing: missing,\n  notify: notify,\n  content: content\n} }];\n"
+        }
+      },
+      {
+        "id": "bc219032-c706-408f-b41d-c321eadf02c7",
+        "name": "잔액 부족 알림?",
+        "type": "n8n-nodes-base.if",
+        "typeVersion": 2.3,
+        "position": [
+          2448,
+          -420
+        ],
+        "parameters": {
+          "conditions": {
+            "options": {
+              "caseSensitive": true,
+              "leftValue": "",
+              "typeValidation": "loose",
+              "version": 1
+            },
+            "conditions": [
+              {
+                "leftValue": "={{ $json.notify }}",
+                "rightValue": true,
+                "operator": {
+                  "type": "boolean",
+                  "operation": "true",
+                  "singleValue": true
+                }
+              }
+            ],
+            "combinator": "and"
+          },
+          "options": {}
+        }
       }
     ],
     "connections": {
@@ -1359,17 +1472,6 @@
           [
             {
               "node": "청산할 포지션 조회",
-              "type": "main",
-              "index": 0
-            }
-          ]
-        ]
-      },
-      "진행 중인 포지션 조회": {
-        "main": [
-          [
-            {
-              "node": "진입 가능 여부 판단",
               "type": "main",
               "index": 0
             }
@@ -1727,6 +1829,77 @@
             }
           ]
         ]
+      },
+      "진행 중인 포지션 조회": {
+        "main": [
+          [
+            {
+              "node": "전체 거래 조회",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "전체 거래 조회": {
+        "main": [
+          [
+            {
+              "node": "원장 설정 조회",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "원장 설정 조회": {
+        "main": [
+          [
+            {
+              "node": "원장 백필 조회",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "원장 백필 조회": {
+        "main": [
+          [
+            {
+              "node": "잔액 점검",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "잔액 점검": {
+        "main": [
+          [
+            {
+              "node": "진입 가능 여부 판단",
+              "type": "main",
+              "index": 0
+            },
+            {
+              "node": "잔액 부족 알림?",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "잔액 부족 알림?": {
+        "main": [
+          [
+            {
+              "node": "진입 알림 전송",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
       }
     },
     "nodeGroups": [
@@ -1759,6 +1932,11 @@
         "name": "③ 진입 처리",
         "nodeIds": [
           "f3fb4fbc-0c44-490c-b957-e19d3c6ca3fc",
+          "4617bce4-8c26-4f44-95b6-10184a6ae4fc",
+          "3d173742-2423-4e98-af19-f4930c87b771",
+          "8dc25203-f3ba-48dd-a101-2d3a5a69ec12",
+          "3923bb84-7b01-4948-a7dc-3ae82c809559",
+          "bc219032-c706-408f-b41d-c321eadf02c7",
           "0b432d4d-ec2d-494f-a0a3-9101aff78f7f",
           "f023821e-0c31-4e0f-ada6-26ca7b6b7c92",
           "c6d0e8c0-5ea0-4ffc-b250-b0a41475e272",
@@ -1769,7 +1947,7 @@
           "99d438ee-fe09-4a12-b8f5-613f7cb82a2a",
           "e27bc2cf-a870-4e92-a075-ac7bdec3a74e"
         ],
-        "description": "중복·최대개수 확인 후 호가창으로 실제 체결 가능한 김프를 검증하고, 통과한 건만 가상 매수로 기록한 뒤 Discord 알림"
+        "description": "중복·최대개수·거래소 잔액 확인 후 호가창으로 실제 체결 가능한 김프를 검증하고, 통과한 건만 가상 매수로 기록한 뒤 Discord 알림 (잔액 부족 시 6시간에 한 번 경고)"
       }
     ],
     "settings": {
@@ -1803,7 +1981,7 @@
     },
     "tags": [],
     "activeVersion": {
-      "versionId": "c306dc14-14f7-4c22-928d-d0c0617924a2",
+      "versionId": "bcdde89f-44af-4a1b-a178-2568ec2d401a",
       "workflowId": "XTg1g0vSK3kZQDsN",
       "nodes": [
         {
@@ -2096,7 +2274,7 @@
           "parameters": {
             "mode": "runOnceForAllItems",
             "language": "javaScript",
-            "jsCode": "const MAX_POSITIONS = 4; // 동시에 열 수 있는 최대 가상 포지션 수\n// 6년 백테스트상 5자리까지는 청산 위험이 늘지 않는다(증거금 사용률 3자리 39.7% -> 5자리 32.4%).\n// 그럼에도 4로 두는 건 시드의 20%를 현금으로 남겨\n// 백테스트로 측정되지 않는 위험(거래소 장애, 증거금 요구 변경)에 대응하기 위함.\n// 운영이 안정되면 5로 올린다.\n\nconst CHECK_LIMIT = 8;   // 호가 검증까지 돌려볼 후보 수.\n\n// 거래 대상은 스캐너가 관리한다 — 호가 스프레드 중앙값이 3일(12회) 연속 0.8% 이하일 때만\n// tradable이 켜진다. 스프레드가 넓다는 건 사고팔 상대가 없다는 뜻이고,\n// 그런 종목의 김프는 먹을 수 있는 기회가 아니라 거래가 없어서 생긴 허상이다.\nconst tradable = {};\n$('거래 종목 조회').all().forEach(function (i) {\n  const r = i.json;\n  if (r && r.coin && r.tradable === true) tradable[String(r.coin).toUpperCase()] = true;\n});\n// 테이블을 못 읽었을 때 전체 진입을 막아버리지 않도록, 비어 있으면 관문을 해제한다\nconst hasUniverse = Object.keys(tradable).length > 0;\n\nconst openPositions = [];\nconst seenIds = {};\n$input.all().forEach(function (item) {\n  const row = item.json;\n  if (!row || !row.coin) return;\n  if (seenIds[row.id]) return;\n  seenIds[row.id] = true;\n  openPositions.push(row);\n});\n\nconst slots = MAX_POSITIONS - openPositions.length;\nif (slots <= 0) return [];\n\nconst openCoins = openPositions.map(function (p) { return p.coin; });\n\nconst candidates = $('MA·신호 판정').all()\n  .map(function (item) { return item.json; })\n  .filter(function (s) { return s.signal === 'ENTRY'; })\n  .filter(function (s) { return openCoins.indexOf(s.coin) === -1; })\n  .filter(function (s) { return !hasUniverse || tradable[s.coin] === true; });\n\ncandidates.forEach(function (s) {\n  s.zScore = s.sigma > 0 ? (s.ma - s.premium) / s.sigma : 0;\n});\ncandidates.sort(function (a, b) { return b.zScore - a.zScore; });\n\nreturn candidates.slice(0, CHECK_LIMIT).map(function (s) {\n  return {\n    json: {\n      coin: s.coin,\n      premium: s.premium,\n      ma: s.ma,\n      sigma: s.sigma,\n      lower: s.lower,\n      korbitPrice: s.korbitPrice,\n      foreignPrice: s.foreignPrice, // 호가 기준 김프 재계산 + 가격손절 기준점\n      zScore: Math.round(s.zScore * 100) / 100,\n      slots: slots,\n      candidateCount: candidates.length,\n      openCount: openPositions.length\n    }\n  };\n});"
+            "jsCode": "const MAX_POSITIONS = 4; // 동시에 열 수 있는 최대 가상 포지션 수\n// 6년 백테스트상 5자리까지는 청산 위험이 늘지 않는다(증거금 사용률 3자리 39.7% -> 5자리 32.4%).\n// 그럼에도 4로 두는 건 시드의 20%를 현금으로 남겨\n// 백테스트로 측정되지 않는 위험(거래소 장애, 증거금 요구 변경)에 대응하기 위함.\n// 운영이 안정되면 5로 올린다.\n\nconst CHECK_LIMIT = 8;   // 호가 검증까지 돌려볼 후보 수.\n\n// 거래 대상은 스캐너가 관리한다 — 호가 스프레드 중앙값이 3일(12회) 연속 0.8% 이하일 때만\n// tradable이 켜진다. 스프레드가 넓다는 건 사고팔 상대가 없다는 뜻이고,\n// 그런 종목의 김프는 먹을 수 있는 기회가 아니라 거래가 없어서 생긴 허상이다.\nconst tradable = {};\n$('거래 종목 조회').all().forEach(function (i) {\n  const r = i.json;\n  if (r && r.coin && r.tradable === true) tradable[String(r.coin).toUpperCase()] = true;\n});\n// 테이블을 못 읽었을 때 전체 진입을 막아버리지 않도록, 비어 있으면 관문을 해제한다\nconst hasUniverse = Object.keys(tradable).length > 0;\n\nconst openPositions = [];\nconst seenIds = {};\n$('진행 중인 포지션 조회').all().forEach(function (item) {\n  const row = item.json;\n  if (!row || !row.coin) return;\n  if (seenIds[row.id]) return;\n  seenIds[row.id] = true;\n  openPositions.push(row);\n});\n\n// 자리 수와 잔액 둘 다 봐서 작은 쪽만큼만 연다 (2026-09-28 추가).\n// 잔액 계산은 «잔액 점검» 노드 — 한쪽 거래소 여유가 $1,000 미만이면 그만큼 자리를 줄인다.\nconst bal = $('잔액 점검').first().json || {};\nconst countSlots = MAX_POSITIONS - openPositions.length;\nconst balanceSlots = bal.checked ? Number(bal.balanceSlots) : countSlots;\nconst slots = Math.min(countSlots, balanceSlots);\nif (slots <= 0) return [];\n\nconst openCoins = openPositions.map(function (p) { return p.coin; });\n\nconst candidates = $('MA·신호 판정').all()\n  .map(function (item) { return item.json; })\n  .filter(function (s) { return s.signal === 'ENTRY'; })\n  .filter(function (s) { return openCoins.indexOf(s.coin) === -1; })\n  .filter(function (s) { return !hasUniverse || tradable[s.coin] === true; });\n\ncandidates.forEach(function (s) {\n  s.zScore = s.sigma > 0 ? (s.ma - s.premium) / s.sigma : 0;\n});\ncandidates.sort(function (a, b) { return b.zScore - a.zScore; });\n\nreturn candidates.slice(0, CHECK_LIMIT).map(function (s) {\n  return {\n    json: {\n      coin: s.coin,\n      premium: s.premium,\n      ma: s.ma,\n      sigma: s.sigma,\n      lower: s.lower,\n      korbitPrice: s.korbitPrice,\n      foreignPrice: s.foreignPrice, // 호가 기준 김프 재계산 + 가격손절 기준점\n      zScore: Math.round(s.zScore * 100) / 100,\n      slots: slots,\n      candidateCount: candidates.length,\n      openCount: openPositions.length,\n      balanceSlots: bal.checked ? balanceSlots : null\n    }\n  };\n});"
           },
           "id": "0b432d4d-ec2d-494f-a0a3-9101aff78f7f",
           "name": "진입 가능 여부 판단",
@@ -3077,6 +3255,119 @@
           "maxTries": 3,
           "waitBetweenTries": 3000,
           "executeOnce": true
+        },
+        {
+          "id": "4617bce4-8c26-4f44-95b6-10184a6ae4fc",
+          "name": "전체 거래 조회",
+          "type": "n8n-nodes-base.dataTable",
+          "typeVersion": 1.1,
+          "position": [
+            1552,
+            -260
+          ],
+          "parameters": {
+            "resource": "row",
+            "operation": "get",
+            "dataTableId": {
+              "__rl": true,
+              "mode": "id",
+              "value": "6MFkAuDuiogrRSqA",
+              "cachedResultName": "kimchi_paper_trades"
+            },
+            "returnAll": true
+          },
+          "alwaysOutputData": true,
+          "executeOnce": true
+        },
+        {
+          "id": "3d173742-2423-4e98-af19-f4930c87b771",
+          "name": "원장 설정 조회",
+          "type": "n8n-nodes-base.httpRequest",
+          "typeVersion": 4.5,
+          "position": [
+            1776,
+            -260
+          ],
+          "parameters": {
+            "method": "GET",
+            "url": "https://kimchi-premium-dashboard-mu.vercel.app/ledger/config.json",
+            "options": {}
+          },
+          "onError": "continueRegularOutput",
+          "retryOnFail": true,
+          "maxTries": 2,
+          "waitBetweenTries": 1000,
+          "alwaysOutputData": true,
+          "executeOnce": true
+        },
+        {
+          "id": "8dc25203-f3ba-48dd-a101-2d3a5a69ec12",
+          "name": "원장 백필 조회",
+          "type": "n8n-nodes-base.httpRequest",
+          "typeVersion": 4.5,
+          "position": [
+            2000,
+            -260
+          ],
+          "parameters": {
+            "method": "GET",
+            "url": "https://kimchi-premium-dashboard-mu.vercel.app/ledger/backfill.json",
+            "options": {}
+          },
+          "onError": "continueRegularOutput",
+          "retryOnFail": true,
+          "maxTries": 2,
+          "waitBetweenTries": 1000,
+          "alwaysOutputData": true,
+          "executeOnce": true
+        },
+        {
+          "id": "3923bb84-7b01-4948-a7dc-3ae82c809559",
+          "name": "잔액 점검",
+          "type": "n8n-nodes-base.code",
+          "typeVersion": 2,
+          "position": [
+            2224,
+            -260
+          ],
+          "parameters": {
+            "mode": "runOnceForAllItems",
+            "language": "javaScript",
+            "jsCode": "// 새 자리를 열기 전에 두 거래소에 돈이 남아 있는지 본다 (2026-09-28 추가).\n// 자리 수(최대 4)만 보면 한쪽 잔액이 $4,000 아래로 내려가도 4번째 자리를 열어버린다 —\n// 실제 계좌라면 불가능한 거래가 기록에 섞인다.\n//\n// 원장은 대시보드 «거래소별 잔액»(ledger/ledger.js)과 같은 방식이다:\n//   시드 $10,000을 가동일에 코빗(원화)·OKX(USDT)에 반씩 넣고, 청산 거래를 두 다리로 쌓고,\n//   ledger/config.json 의 리밸런싱(가상 이체)을 반영한다. 설정과 옛 거래 환율 백필은\n//   대시보드(Vercel)에서 받아 와서 두 곳이 같은 숫자를 쓰게 한다.\n//   코빗 여유 = 원화 예수금 (보유 코인 매수대금은 이미 빠져 있다)\n//   OKX 여유 = 평가금액(예수금 + 미실현손익) − 보유 포지션 증거금(1배 = 진입 명목)\n// 한 자리에 코빗은 $1,000어치 원화, OKX는 $1,000 증거금 + 진입 수수료가 필요하다.\nconst POSITION_USD = 1000;          // «가상 진입 기록»의 positionSize와 같아야 한다\nconst FEE_RATE = 0.0002;            // 해외 지정가 편도\nconst MAX_POSITIONS = 4;            // «진입 가능 여부 판단»과 같아야 한다\nconst NOTIFY_EVERY_MS = 6 * 3600 * 1000; // 부족 알림은 6시간에 한 번만\nconst DASHBOARD = 'https://kimchi-premium-dashboard-mu.vercel.app/#ledger';\n\nconst num = function (v) { const n = Number(v); return isFinite(n) && n !== 0 ? n : null; };\nconst r2 = function (v) { return Math.round(v * 100) / 100; };\n\nconst cfg = $('원장 설정 조회').first().json || {};\nconst backfill = $('원장 백필 조회').first().json || {};\nconst fxBody = $('환율 조회').first().json;\nconst fx = (fxBody && fxBody.rates && fxBody.rates.KRW) ? Number(fxBody.rates.KRW) : null;\n\n// 설정을 못 받으면 잔액 관문을 건너뛰고 예전처럼 자리 수만 본다.\n// Vercel 장애 하나로 봇 전체 진입이 멈추는 것보다 낫다.\nif (!num(cfg.seedUsd) || !num(cfg.startFx) || !fx) {\n  return [{ json: { checked: false, balanceSlots: MAX_POSITIONS, notify: false,\n                    reason: !fx ? '환율 없음' : '원장 설정을 받지 못함' } }];\n}\n\nconst sig = {};\n$('MA·신호 판정').all().forEach(function (i) { if (i.json && i.json.coin) sig[i.json.coin] = i.json; });\n\nconst trades = $('전체 거래 조회').all().map(function (i) { return i.json; })\n  .filter(function (t) { return t && t.coin && t.status !== 'VOID'; });\n\nconst half = Number(cfg.seedUsd) / 2;\nlet korbitKrw = half * Number(cfg.startFx);\nlet okxCash = half;\nlet okxUnreal = 0, okxMargin = 0, korbitHoldKrw = 0;\nlet openCount = 0;\nconst missing = [];\n\n(cfg.transfers || []).forEach(function (tr) {\n  if (new Date(tr.time).getTime() > Date.now()) return;\n  const usd = Number(tr.usd), tfx = Number(tr.fx);\n  if (tr.from === 'korbit') { korbitKrw -= usd * tfx; okxCash += usd; }\n  else { okxCash -= usd; korbitKrw += usd * tfx; }\n});\n\ntrades.forEach(function (t) {\n  const b = backfill[t.id] || {};\n  const pe = Number(t.entryPremium) / 100;\n  const entryFp = num(t.entryForeignPrice) || num(b.entryForeignPrice);\n  const entryFx = num(t.entryFx) || num(b.entryFx) || (entryFp ? Number(t.entryPrice) / (entryFp * (1 + pe)) : null);\n  const q = entryFx ? Number(t.positionSize) * entryFx / Number(t.entryPrice) : null;\n  if (!q || !entryFp) { missing.push(t.id); return; }\n\n  if (t.status === 'CLOSED') {\n    const exitFx = num(t.exitFx) || num(b.exitFx);\n    let exitFp = num(t.exitForeignPrice) || num(b.exitForeignPrice);\n    if (!exitFp && exitFx) exitFp = Number(t.exitPrice) / (exitFx * (1 + Number(t.exitPremium) / 100));\n    if (!exitFp) { missing.push(t.id); return; }\n    korbitKrw += q * (Number(t.exitPrice) - Number(t.entryPrice));\n    okxCash += q * (entryFp - exitFp) - Number(t.feeEntry || 0) - Number(t.feeExit || 0);\n    return;\n  }\n\n  // OPEN\n  openCount++;\n  korbitKrw -= q * Number(t.entryPrice);\n  okxCash -= Number(t.feeEntry || 0);\n  okxMargin += q * entryFp;\n  const s = sig[t.coin];\n  const fpNow = s ? num(s.foreignPrice) : null;\n  const kNow = s ? num(s.korbitPrice) : null;\n  if (fpNow) okxUnreal += q * (entryFp - fpNow);\n  korbitHoldKrw += q * (kNow || Number(t.entryPrice));\n});\n\nconst korbitFree = korbitKrw / fx;\nconst okxFree = okxCash + okxUnreal - okxMargin;\nconst korbitSlots = Math.max(0, Math.floor(korbitFree / POSITION_USD));\nconst okxSlots = Math.max(0, Math.floor(okxFree / (POSITION_USD * (1 + FEE_RATE))));\nconst balanceSlots = Math.min(korbitSlots, okxSlots);\nconst countSlots = Math.max(0, MAX_POSITIONS - openCount);\n\nconst korbitTotal = (korbitKrw + korbitHoldKrw) / fx;\nconst okxTotal = okxCash + okxUnreal;\nconst rebalanceUsd = korbitTotal - (korbitTotal + okxTotal) / 2; // 양수면 코빗→OKX\n\n// 잔액 때문에 자리 수보다 적게 열 수 있을 때만 알린다 (6시간에 한 번)\nlet notify = false;\nlet content = null;\nif (balanceSlots < countSlots) {\n  const st = $getWorkflowStaticData('global');\n  const last = Number(st.lastBalanceNotice || 0);\n  if (Date.now() - last >= NOTIFY_EVERY_MS) {\n    notify = true;\n    st.lastBalanceNotice = Date.now();\n    const short = korbitSlots < okxSlots ? '코빗' : (okxSlots < korbitSlots ? 'OKX' : '양쪽');\n    content = [\n      '⚠️ [잔액 부족] ' + short + ' 잔액이 모자라 새 진입을 줄입니다',\n      '열 수 있는 자리 ' + balanceSlots + ' / 남은 자리 ' + countSlots + ' (보유 ' + openCount + '/' + MAX_POSITIONS + ')',\n      '코빗 여유 $' + korbitFree.toFixed(2) + ' · OKX 여유 $' + okxFree.toFixed(2) + ' (한 자리에 $' + POSITION_USD.toLocaleString('en-US') + '씩 필요)',\n      '50:50 리밸런싱: ' + (rebalanceUsd >= 0 ? '코빗 → OKX' : 'OKX → 코빗') + ' $' + Math.abs(rebalanceUsd).toFixed(2),\n      '가상 이체는 저장소 ledger/config.json 의 transfers에 기록하면 다음 회차부터 반영됩니다.',\n      '대시보드: ' + DASHBOARD\n    ].join('\\n');\n  }\n}\n\nreturn [{ json: {\n  checked: true,\n  balanceSlots: balanceSlots,\n  countSlots: countSlots,\n  korbitFree: r2(korbitFree),\n  okxFree: r2(okxFree),\n  korbitSlots: korbitSlots,\n  okxSlots: okxSlots,\n  rebalanceUsd: r2(rebalanceUsd),\n  missing: missing,\n  notify: notify,\n  content: content\n} }];\n"
+          }
+        },
+        {
+          "id": "bc219032-c706-408f-b41d-c321eadf02c7",
+          "name": "잔액 부족 알림?",
+          "type": "n8n-nodes-base.if",
+          "typeVersion": 2.3,
+          "position": [
+            2448,
+            -420
+          ],
+          "parameters": {
+            "conditions": {
+              "options": {
+                "caseSensitive": true,
+                "leftValue": "",
+                "typeValidation": "loose",
+                "version": 1
+              },
+              "conditions": [
+                {
+                  "leftValue": "={{ $json.notify }}",
+                  "rightValue": true,
+                  "operator": {
+                    "type": "boolean",
+                    "operation": "true",
+                    "singleValue": true
+                  }
+                }
+              ],
+              "combinator": "and"
+            },
+            "options": {}
+          }
         }
       ],
       "connections": {
@@ -3152,17 +3443,6 @@
             [
               {
                 "node": "청산할 포지션 조회",
-                "type": "main",
-                "index": 0
-              }
-            ]
-          ]
-        },
-        "진행 중인 포지션 조회": {
-          "main": [
-            [
-              {
-                "node": "진입 가능 여부 판단",
                 "type": "main",
                 "index": 0
               }
@@ -3520,6 +3800,77 @@
               }
             ]
           ]
+        },
+        "진행 중인 포지션 조회": {
+          "main": [
+            [
+              {
+                "node": "전체 거래 조회",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "전체 거래 조회": {
+          "main": [
+            [
+              {
+                "node": "원장 설정 조회",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "원장 설정 조회": {
+          "main": [
+            [
+              {
+                "node": "원장 백필 조회",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "원장 백필 조회": {
+          "main": [
+            [
+              {
+                "node": "잔액 점검",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "잔액 점검": {
+          "main": [
+            [
+              {
+                "node": "진입 가능 여부 판단",
+                "type": "main",
+                "index": 0
+              },
+              {
+                "node": "잔액 부족 알림?",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "잔액 부족 알림?": {
+          "main": [
+            [
+              {
+                "node": "진입 알림 전송",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
         }
       },
       "nodeGroups": [
@@ -3552,6 +3903,11 @@
           "name": "③ 진입 처리",
           "nodeIds": [
             "f3fb4fbc-0c44-490c-b957-e19d3c6ca3fc",
+            "4617bce4-8c26-4f44-95b6-10184a6ae4fc",
+            "3d173742-2423-4e98-af19-f4930c87b771",
+            "8dc25203-f3ba-48dd-a101-2d3a5a69ec12",
+            "3923bb84-7b01-4948-a7dc-3ae82c809559",
+            "bc219032-c706-408f-b41d-c321eadf02c7",
             "0b432d4d-ec2d-494f-a0a3-9101aff78f7f",
             "f023821e-0c31-4e0f-ada6-26ca7b6b7c92",
             "c6d0e8c0-5ea0-4ffc-b250-b0a41475e272",
@@ -3562,23 +3918,23 @@
             "99d438ee-fe09-4a12-b8f5-613f7cb82a2a",
             "e27bc2cf-a870-4e92-a075-ac7bdec3a74e"
           ],
-          "description": "중복·최대개수 확인 후 호가창으로 실제 체결 가능한 김프를 검증하고, 통과한 건만 가상 매수로 기록한 뒤 Discord 알림"
+          "description": "중복·최대개수·거래소 잔액 확인 후 호가창으로 실제 체결 가능한 김프를 검증하고, 통과한 건만 가상 매수로 기록한 뒤 Discord 알림 (잔액 부족 시 6시간에 한 번 경고)"
         }
       ],
       "authors": "youngkil Hur (via MCP)",
-      "name": "손익을 두 다리(코빗·OKX)로 따로 계산·기록",
-      "description": "명목 $1,000 고정 근사(투입금×김프변화) 대신 q개 코인 기준 두 다리 손익으로 계산. 진입 환율(entryFx), 청산 환율·해외가(exitFx, exitForeignPrice), 다리별 손익(korbitPnl, okxPnl)을 새로 기록해 대시보드 거래소별 잔액 원장과 맞춘다.",
+      "name": "«③ 진입 처리» 그룹 복구 (잔액 점검 노드 포함)",
+      "description": "Updated workflow",
       "autosaved": false,
-      "createdAt": "2026-09-28T13:16:13.667Z",
-      "updatedAt": "2026-09-28T13:16:13.667Z",
+      "createdAt": "2026-09-28T13:44:55.468Z",
+      "updatedAt": "2026-09-28T13:44:55.468Z",
       "workflowPublishHistory": [
         {
-          "id": 1545,
+          "id": 1549,
           "workflowId": "XTg1g0vSK3kZQDsN",
-          "versionId": "c306dc14-14f7-4c22-928d-d0c0617924a2",
+          "versionId": "bcdde89f-44af-4a1b-a178-2568ec2d401a",
           "event": "activated",
           "userId": "185e9a53-294d-4ab7-913f-1bc33324adfd",
-          "createdAt": "2026-09-28T13:16:50.132Z"
+          "createdAt": "2026-09-28T13:45:06.433Z"
         }
       ]
     }
