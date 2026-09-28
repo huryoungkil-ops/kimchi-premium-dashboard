@@ -338,9 +338,9 @@
       <span class="tag">PAPER TRADING</span>
     </div>
     <div class="snapshot-meta">
-      스냅샷 기준 <strong><!--SNAPSHOT_TIME-->2026-09-28 11:35 KST<!--/SNAPSHOT_TIME--></strong><br>
+      스냅샷 기준 <strong><!--SNAPSHOT_TIME-->2026-09-28 12:35 KST<!--/SNAPSHOT_TIME--></strong><br>
       가동 시작 2026-09-05 22:00 KST
-      <div class="live-badge"><i class="pulse"></i><!--LAST_REFRESH-->마지막 갱신 2026-09-28 11:35 KST 기준<!--/LAST_REFRESH--></div>
+      <div class="live-badge"><i class="pulse"></i><!--LAST_REFRESH-->마지막 갱신 2026-09-28 12:35 KST 기준<!--/LAST_REFRESH--></div>
     </div>
   </header>
 
@@ -348,17 +348,17 @@
     <div class="tile">
       <div class="label">가상 시드</div>
       <div class="value">$10,000</div>
-      <div class="sub">1회 투입 10% · <!--STAT_OPEN-->보유 1 / 최대 4<!--/STAT_OPEN--></div>
+      <div class="sub">1회 투입 10% · <!--STAT_OPEN-->보유 0 / 최대 4<!--/STAT_OPEN--></div>
     </div>
     <div class="tile">
       <div class="label">누적 청산 거래</div>
-      <div class="value"><!--STAT_TRADES-->18건<!--/STAT_TRADES--></div>
-      <div class="sub"><!--STAT_TRADES_SUB-->승 10 · 승률 55.6%<!--/STAT_TRADES_SUB--></div>
+      <div class="value"><!--STAT_TRADES-->19건<!--/STAT_TRADES--></div>
+      <div class="sub"><!--STAT_TRADES_SUB-->승 11 · 승률 57.9%<!--/STAT_TRADES_SUB--></div>
     </div>
     <div class="tile">
       <div class="label">누적 손익</div>
-      <div class="value"><!--STAT_PNL_VALUE-->-$58.46<!--/STAT_PNL_VALUE--></div>
-      <div class="sub"><!--STAT_PNL_SUB-->원금 대비 -0.58%<!--/STAT_PNL_SUB--></div>
+      <div class="value"><!--STAT_PNL_VALUE-->-$34.23<!--/STAT_PNL_VALUE--></div>
+      <div class="sub"><!--STAT_PNL_SUB-->원금 대비 -0.34%<!--/STAT_PNL_SUB--></div>
     </div>
     <div class="tile">
       <div class="label">감시 코인</div>
@@ -390,7 +390,7 @@
             <th>진입 시각</th>
           </tr>
         </thead>
-        <tbody id="open-tbody"><!--OPEN_POSITIONS--><tr><td>FLOW</td><td>-2.58%</td><td>-0.72%</td><td class="pos">+$17.46</td><td>09-28 08:05</td></tr><!--/OPEN_POSITIONS--></tbody>
+        <tbody id="open-tbody"><!--OPEN_POSITIONS--><tr><td class="empty-row" colspan="5">현재 보유 중인 포지션이 없습니다.</td></tr><!--/OPEN_POSITIONS--></tbody>
       </table>
     </div>
   </section>
@@ -555,7 +555,7 @@
 <script>
 (function(){
   // COINS_DATA_START — 자동 갱신 작업이 이 배열만 통째로 교체합니다. 형식: [심볼, 프리미엄(%, 소수점2), 코빗원화가, 상태("calm"|"watch"|"danger")]
-var coins = [["PYTH",4.86,119.9,"watch"],["AR",3.11,6145,"watch"],["CELO",3.03,132.3,"watch"],["SUSHI",2.38,367.2,"watch"],["XTZ",1.75,432,"calm"],["STX",1.72,458.1,"calm"],["PENDLE",1.55,3564,"calm"],["ALGO",1.45,162.9,"calm"],["W",1.24,20.55,"calm"],["AAVE",1.15,208700,"calm"],["APT",1.1,1173,"calm"],["HBAR",0.9,131.8,"calm"],["UNI",0.9,12990,"calm"],["ONDO",0.6,781.5,"calm"],["SEI",0.49,116.9,"calm"],["TIA",0.49,673.6,"calm"],["ADA",0.47,346.2,"calm"],["ARB",0.39,302.5,"calm"],["FIL",0.38,1521,"calm"],["BNB",0.38,1053000,"calm"],["DOGE",0.37,129.8,"calm"],["SUI",0.33,1709,"calm"],["JTO",0.3,799.1,"calm"],["XLM",0.27,292.6,"calm"],["NEAR",0.22,7195,"calm"],["ETH",0.2,3607000,"calm"],["LINK",0.2,19090,"calm"],["SOL",0.19,164000,"calm"],["BTC",0.16,113532000,"calm"],["XRP",0.15,2044,"calm"],["BCH",0.12,441900,"calm"],["HYPE",0.12,123200,"calm"],["WLD",0.1,721.7,"calm"],["TRX",0.04,453.1,"calm"],["SHIB",-0.14,0.0079,"calm"],["ETC",-0.27,12750,"calm"],["QTUM",-0.45,1360,"calm"],["FLOW",-0.72,43.66,"calm"],["AVAX",-0.75,14630,"calm"],["ZIL",-3.05,4.9,"watch"]];
+var coins = [["PYTH",7.55,119.9,"danger"],["CELO",6.24,132.3,"danger"],["SUSHI",4.96,367.2,"watch"],["W",4.4,20.55,"watch"],["AR",3.51,6145,"watch"],["APT",3.14,1173,"watch"],["AAVE",2.27,208700,"watch"],["TIA",2.23,660,"watch"],["PENDLE",2.02,3460,"watch"],["QTUM",1.62,1360,"calm"],["SEI",1.44,112.7,"calm"],["FLOW",0.72,42.68,"calm"],["FIL",0.71,1497,"calm"],["JTO",0.7,784.4,"calm"],["TRX",0.69,455.2,"calm"],["AVAX",0.65,14630,"calm"],["ALGO",0.59,157.8,"calm"],["LINK",0.41,19000,"calm"],["ETC",0.41,12610,"calm"],["BCH",0.36,426100,"calm"],["STX",0.36,444.6,"calm"],["DOGE",0.34,127.9,"calm"],["ONDO",0.21,766.7,"calm"],["XTZ",0.2,420,"calm"],["SOL",0.18,162700,"calm"],["NEAR",0.18,7110,"calm"],["ETH",0.16,3593000,"calm"],["HYPE",0.15,121900,"calm"],["SUI",0.12,1689,"calm"],["BTC",0.11,113046000,"calm"],["XRP",0.09,2022,"calm"],["BNB",0.09,1044000,"calm"],["ADA",0.07,340.2,"calm"],["ARB",0.05,297.7,"calm"],["XLM",-0.01,287.1,"calm"],["WLD",-0.14,710.1,"calm"],["UNI",-0.42,12530,"calm"],["HBAR",-1.35,126.8,"calm"],["ZIL",-1.89,4.9,"calm"]];
 // COINS_DATA_END
 
   // 스케일은 그날의 실제 프리미엄 분포에 맞춰 매번 새로 계산합니다 (고정폭이면 값이 범위를 넘을 때 막대가 옆 칸을 침범함)
