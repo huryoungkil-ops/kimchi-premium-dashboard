@@ -418,5 +418,25 @@
     "id": 21,
     "createdAt": "2026-09-18T13:15:11.977Z",
     "updatedAt": "2026-09-20T14:15:14.587Z"
+  },
+  {
+    "coin": "FLOW",
+    "status": "OPEN",
+    "entryTime": "2026-09-27T23:05:24.084Z",
+    "entryPremium": -2.5752,
+    "entryMa": -0.583311921296296,
+    "entryPrice": 43.55,
+    "positionSize": 1000,
+    "feeEntry": 0.2,
+    "exitTime": null,
+    "exitPremium": null,
+    "exitPrice": null,
+    "grossProfit": null,
+    "feeExit": null,
+    "netProfit": null,
+    "entryForeignPrice": 0.03294,
+    "id": 22,
+    "createdAt": "2026-09-27T23:05:24.112Z",
+    "updatedAt": "2026-09-27T23:05:24.112Z"
   }
 ]
