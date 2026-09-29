@@ -20,7 +20,9 @@
     "exitForeignPrice": null,
     "korbitPnl": null,
     "okxPnl": null,
-    "id": 1
+    "id": 1,
+    "createdAt": "2026-09-11T14:20:10.612Z",
+    "updatedAt": "2026-09-11T14:52:39.957Z"
   },
   {
     "coin": "SUSHI",
@@ -43,7 +45,9 @@
     "exitForeignPrice": null,
     "korbitPnl": null,
     "okxPnl": null,
-    "id": 2
+    "id": 2,
+    "createdAt": "2026-09-11T14:20:10.612Z",
+    "updatedAt": "2026-09-11T14:52:39.957Z"
   },
   {
     "coin": "ICP",
@@ -66,7 +70,9 @@
     "exitForeignPrice": null,
     "korbitPnl": null,
     "okxPnl": null,
-    "id": 3
+    "id": 3,
+    "createdAt": "2026-09-11T14:20:10.612Z",
+    "updatedAt": "2026-09-11T14:52:39.957Z"
   },
   {
     "coin": "ETH",
@@ -89,7 +95,9 @@
     "exitForeignPrice": null,
     "korbitPnl": null,
     "okxPnl": null,
-    "id": 4
+    "id": 4,
+    "createdAt": "2026-09-11T15:00:12.057Z",
+    "updatedAt": "2026-09-11T22:30:11.005Z"
   },
   {
     "coin": "XRP",
@@ -112,7 +120,9 @@
     "exitForeignPrice": null,
     "korbitPnl": null,
     "okxPnl": null,
-    "id": 5
+    "id": 5,
+    "createdAt": "2026-09-11T15:00:12.057Z",
+    "updatedAt": "2026-09-12T00:00:13.154Z"
   },
   {
     "coin": "SOL",
@@ -135,7 +145,9 @@
     "exitForeignPrice": null,
     "korbitPnl": null,
     "okxPnl": null,
-    "id": 6
+    "id": 6,
+    "createdAt": "2026-09-11T15:05:11.593Z",
+    "updatedAt": "2026-09-11T18:50:11.102Z"
   },
   {
     "coin": "XLM",
@@ -158,7 +170,9 @@
     "exitForeignPrice": null,
     "korbitPnl": null,
     "okxPnl": null,
-    "id": 7
+    "id": 7,
+    "createdAt": "2026-09-14T08:10:11.681Z",
+    "updatedAt": "2026-09-14T12:50:11.904Z"
   },
   {
     "coin": "SOL",
@@ -181,7 +195,9 @@
     "exitForeignPrice": null,
     "korbitPnl": null,
     "okxPnl": null,
-    "id": 8
+    "id": 8,
+    "createdAt": "2026-09-14T08:25:11.167Z",
+    "updatedAt": "2026-09-14T12:55:12.664Z"
   },
   {
     "coin": "DOGE",
@@ -204,7 +220,9 @@
     "exitForeignPrice": null,
     "korbitPnl": null,
     "okxPnl": null,
-    "id": 9
+    "id": 9,
+    "createdAt": "2026-09-14T08:25:11.167Z",
+    "updatedAt": "2026-09-14T13:00:11.851Z"
   },
   {
     "coin": "ADA",
@@ -227,7 +245,9 @@
     "exitForeignPrice": null,
     "korbitPnl": null,
     "okxPnl": null,
-    "id": 10
+    "id": 10,
+    "createdAt": "2026-09-14T15:40:11.064Z",
+    "updatedAt": "2026-09-15T04:25:11.227Z"
   },
   {
     "coin": "BTC",
@@ -250,7 +270,9 @@
     "exitForeignPrice": null,
     "korbitPnl": null,
     "okxPnl": null,
-    "id": 11
+    "id": 11,
+    "createdAt": "2026-09-14T16:35:11.565Z",
+    "updatedAt": "2026-09-15T09:55:12.556Z"
   },
   {
     "coin": "TRX",
@@ -273,7 +295,9 @@
     "exitForeignPrice": null,
     "korbitPnl": null,
     "okxPnl": null,
-    "id": 12
+    "id": 12,
+    "createdAt": "2026-09-14T16:40:10.867Z",
+    "updatedAt": "2026-09-15T11:20:11.964Z"
   },
   {
     "coin": "ETH",
@@ -296,7 +320,9 @@
     "exitForeignPrice": null,
     "korbitPnl": null,
     "okxPnl": null,
-    "id": 13
+    "id": 13,
+    "createdAt": "2026-09-15T22:50:11.866Z",
+    "updatedAt": "2026-09-16T20:40:12.777Z"
   },
   {
     "coin": "BTC",
@@ -319,7 +345,9 @@
     "exitForeignPrice": null,
     "korbitPnl": null,
     "okxPnl": null,
-    "id": 14
+    "id": 14,
+    "createdAt": "2026-09-16T00:30:11.867Z",
+    "updatedAt": "2026-09-16T19:10:12.176Z"
   },
   {
     "coin": "DOGE",
@@ -342,7 +370,9 @@
     "exitForeignPrice": null,
     "korbitPnl": null,
     "okxPnl": null,
-    "id": 15
+    "id": 15,
+    "createdAt": "2026-09-16T00:30:11.867Z",
+    "updatedAt": "2026-09-16T18:10:12.359Z"
   },
   {
     "coin": "BTC",
@@ -365,7 +395,9 @@
     "exitForeignPrice": null,
     "korbitPnl": null,
     "okxPnl": null,
-    "id": 16
+    "id": 16,
+    "createdAt": "2026-09-17T00:40:11.290Z",
+    "updatedAt": "2026-09-22T00:40:15.347Z"
   },
   {
     "coin": "ETH",
@@ -388,7 +420,9 @@
     "exitForeignPrice": null,
     "korbitPnl": null,
     "okxPnl": null,
-    "id": 17
+    "id": 17,
+    "createdAt": "2026-09-17T03:00:11.600Z",
+    "updatedAt": "2026-09-22T03:00:16.566Z"
   },
   {
     "coin": "XRP",
@@ -411,7 +445,9 @@
     "exitForeignPrice": null,
     "korbitPnl": null,
     "okxPnl": null,
-    "id": 18
+    "id": 18,
+    "createdAt": "2026-09-17T03:25:11.687Z",
+    "updatedAt": "2026-09-17T10:45:11.026Z"
   },
   {
     "coin": "XRP",
@@ -434,7 +470,9 @@
     "exitForeignPrice": null,
     "korbitPnl": null,
     "okxPnl": null,
-    "id": 19
+    "id": 19,
+    "createdAt": "2026-09-18T00:30:11.572Z",
+    "updatedAt": "2026-09-23T00:30:17.302Z"
   },
   {
     "coin": "DOGE",
@@ -457,7 +495,9 @@
     "exitForeignPrice": null,
     "korbitPnl": null,
     "okxPnl": null,
-    "id": 20
+    "id": 20,
+    "createdAt": "2026-09-18T12:55:11.863Z",
+    "updatedAt": "2026-09-23T00:30:17.384Z"
   },
   {
     "coin": "ADA",
@@ -480,7 +520,9 @@
     "exitForeignPrice": null,
     "korbitPnl": null,
     "okxPnl": null,
-    "id": 21
+    "id": 21,
+    "createdAt": "2026-09-18T13:15:11.977Z",
+    "updatedAt": "2026-09-20T14:15:14.587Z"
   },
   {
     "coin": "FLOW",
@@ -503,7 +545,9 @@
     "exitForeignPrice": null,
     "korbitPnl": null,
     "okxPnl": null,
-    "id": 22
+    "id": 22,
+    "createdAt": "2026-09-27T23:05:24.112Z",
+    "updatedAt": "2026-09-28T02:35:24.470Z"
   },
   {
     "coin": "SOL",
@@ -526,7 +570,9 @@
     "exitForeignPrice": null,
     "korbitPnl": null,
     "okxPnl": null,
-    "id": 23
+    "id": 23,
+    "createdAt": "2026-09-29T06:10:25.923Z",
+    "updatedAt": "2026-09-29T06:10:25.923Z"
   },
   {
     "coin": "BTC",
@@ -549,7 +595,9 @@
     "exitForeignPrice": null,
     "korbitPnl": null,
     "okxPnl": null,
-    "id": 24
+    "id": 24,
+    "createdAt": "2026-09-29T06:15:26.001Z",
+    "updatedAt": "2026-09-29T06:15:26.001Z"
   },
   {
     "coin": "ETH",
@@ -572,7 +620,9 @@
     "exitForeignPrice": null,
     "korbitPnl": null,
     "okxPnl": null,
-    "id": 25
+    "id": 25,
+    "createdAt": "2026-09-29T06:15:26.001Z",
+    "updatedAt": "2026-09-29T06:15:26.001Z"
   },
   {
     "coin": "XRP",
@@ -595,6 +645,8 @@
     "exitForeignPrice": null,
     "korbitPnl": null,
     "okxPnl": null,
-    "id": 26
+    "id": 26,
+    "createdAt": "2026-09-29T06:15:26.001Z",
+    "updatedAt": "2026-09-29T06:15:26.001Z"
   }
 ]
