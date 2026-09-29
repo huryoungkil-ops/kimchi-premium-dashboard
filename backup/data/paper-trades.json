@@ -548,5 +548,30 @@
     "id": 22,
     "createdAt": "2026-09-27T23:05:24.112Z",
     "updatedAt": "2026-09-28T02:35:24.470Z"
+  },
+  {
+    "coin": "SOL",
+    "status": "OPEN",
+    "entryTime": "2026-09-29T06:10:25.880Z",
+    "entryPremium": -0.2329,
+    "entryMa": 0.18667418981481493,
+    "entryPrice": 161300,
+    "positionSize": 1000,
+    "feeEntry": 0.2,
+    "exitTime": null,
+    "exitPremium": null,
+    "exitPrice": null,
+    "grossProfit": null,
+    "feeExit": null,
+    "netProfit": null,
+    "entryForeignPrice": 118.97,
+    "entryFx": 1358.968392,
+    "exitFx": null,
+    "exitForeignPrice": null,
+    "korbitPnl": null,
+    "okxPnl": null,
+    "id": 23,
+    "createdAt": "2026-09-29T06:10:25.923Z",
+    "updatedAt": "2026-09-29T06:10:25.923Z"
   }
 ]
