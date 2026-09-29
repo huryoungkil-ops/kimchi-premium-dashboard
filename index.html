@@ -381,9 +381,9 @@
       <span class="tag">PAPER TRADING</span>
     </div>
     <div class="snapshot-meta">
-      스냅샷 기준 <strong><!--SNAPSHOT_TIME-->2026-09-30 01:35 KST<!--/SNAPSHOT_TIME--></strong><br>
+      스냅샷 기준 <strong><!--SNAPSHOT_TIME-->2026-09-30 02:35 KST<!--/SNAPSHOT_TIME--></strong><br>
       가동 시작 2026-09-05 22:00 KST
-      <div class="live-badge"><i class="pulse"></i><!--LAST_REFRESH-->마지막 갱신 2026-09-30 01:35 KST 기준<!--/LAST_REFRESH--></div>
+      <div class="live-badge"><i class="pulse"></i><!--LAST_REFRESH-->마지막 갱신 2026-09-30 02:35 KST 기준<!--/LAST_REFRESH--></div>
     </div>
   </header>
 
@@ -472,7 +472,7 @@
             <th>진입 시각</th>
           </tr>
         </thead>
-        <tbody id="open-tbody"><!--OPEN_POSITIONS--><tr><td>XRP</td><td>-0.29%</td><td>-0.22%</td><td class="neg">-$0.40</td><td>09-29 15:15</td></tr><tr><td>ETH</td><td>-0.21%</td><td>-0.21%</td><td class="neg">-$1.09</td><td>09-29 15:15</td></tr><tr><td>BTC</td><td>-0.20%</td><td>-0.31%</td><td class="neg">-$2.19</td><td>09-29 15:15</td></tr><tr><td>SOL</td><td>-0.23%</td><td>-0.38%</td><td class="neg">-$2.60</td><td>09-29 15:10</td></tr><!--/OPEN_POSITIONS--></tbody>
+        <tbody id="open-tbody"><!--OPEN_POSITIONS--><tr><td>XRP</td><td>-0.29%</td><td>0.04%</td><td class="pos">+$2.13</td><td>09-29 15:15</td></tr><tr><td>ETH</td><td>-0.21%</td><td>-0.03%</td><td class="pos">+$0.63</td><td>09-29 15:15</td></tr><tr><td>BTC</td><td>-0.20%</td><td>-0.11%</td><td class="neg">-$0.15</td><td>09-29 15:15</td></tr><tr><td>SOL</td><td>-0.23%</td><td>-0.14%</td><td class="neg">-$0.21</td><td>09-29 15:10</td></tr><!--/OPEN_POSITIONS--></tbody>
       </table>
     </div>
   </section>
@@ -637,7 +637,7 @@
 <script>
 (function(){
   // COINS_DATA_START — 자동 갱신 작업이 이 배열만 통째로 교체합니다. 형식: [심볼, 프리미엄(%, 소수점2), 코빗원화가, 상태("calm"|"watch"|"danger")]
-var coins = [["AR",6.65,6145,"danger"],["CELO",4.67,147.7,"watch"],["W",2.73,19.3,"watch"],["QTUM",2.01,1360,"watch"],["TIA",1.1,614.3,"calm"],["AVAX",0.42,15260,"calm"],["STX",0.4,435.8,"calm"],["ARB",0.33,280.4,"calm"],["JTO",0.29,753.8,"calm"],["SEI",0.28,99.37,"calm"],["NEAR",0.17,6730,"calm"],["FIL",0.16,1463,"calm"],["WLD",0.01,679.3,"calm"],["BNB",-0.12,1026000,"calm"],["TRX",-0.14,453.7,"calm"],["ETH",-0.21,3635000,"calm"],["XRP",-0.22,2053,"calm"],["DOGE",-0.3,127.5,"calm"],["BTC",-0.31,112732000,"calm"],["UNI",-0.36,12000,"calm"],["SOL",-0.38,160300,"calm"],["SHIB",-0.39,0.0078,"calm"],["SUI",-0.42,1546,"calm"],["PENDLE",-0.42,3187,"calm"],["HYPE",-0.43,117200,"calm"],["XLM",-0.47,305.8,"calm"],["ETC",-0.54,12300,"calm"],["HBAR",-0.6,150.5,"calm"],["APT",-0.61,1099,"calm"],["ONDO",-0.67,684,"calm"],["ADA",-0.76,330,"calm"],["PYTH",-0.79,105,"calm"],["BCH",-0.8,415600,"calm"],["FLOW",-0.81,41.41,"calm"],["LINK",-0.85,19960,"calm"],["ALGO",-1.88,173.9,"calm"],["XTZ",-3.28,413.9,"watch"],["SUSHI",-3.45,345.2,"watch"],["ZIL",-10.14,4.362,"danger"],["AAVE",-13.43,199800,"danger"]];
+var coins = [["AR",7.53,6145,"danger"],["CELO",5.75,147.7,"danger"],["HBAR",5.52,150.3,"danger"],["QTUM",3.2,1360,"watch"],["W",1.82,19.3,"calm"],["ADA",1.37,333.1,"calm"],["STX",1.16,435.8,"calm"],["ARB",0.78,280.4,"calm"],["ALGO",0.74,170.5,"calm"],["PENDLE",0.47,3180,"calm"],["SHIB",0.4,0.0078,"calm"],["APT",0.34,1092,"calm"],["BNB",0.26,1026000,"calm"],["TIA",0.24,598.7,"calm"],["SUI",0.09,1545,"calm"],["XRP",0.04,2020,"calm"],["PYTH",0.04,105,"calm"],["ETH",-0.03,3637000,"calm"],["JTO",-0.03,746.4,"calm"],["BTC",-0.11,112889000,"calm"],["BCH",-0.12,415600,"calm"],["SOL",-0.14,160100,"calm"],["TRX",-0.14,454.5,"calm"],["DOGE",-0.16,126.6,"calm"],["FIL",-0.31,1438,"calm"],["AVAX",-0.31,15050,"calm"],["XLM",-0.32,300.4,"calm"],["UNI",-0.33,11990,"calm"],["WLD",-0.35,667.5,"calm"],["LINK",-0.35,19820,"calm"],["ETC",-0.42,12220,"calm"],["HYPE",-0.42,116500,"calm"],["ONDO",-0.47,679.4,"calm"],["SEI",-0.55,97.9,"calm"],["NEAR",-0.66,6635,"calm"],["FLOW",-1.33,41.22,"calm"],["XTZ",-2.32,413.9,"watch"],["SUSHI",-2.82,345.2,"watch"],["ZIL",-8.94,4.362,"danger"],["AAVE",-12.06,199800,"danger"]];
 // COINS_DATA_END
 
   // 스케일은 그날의 실제 프리미엄 분포에 맞춰 매번 새로 계산합니다 (고정폭이면 값이 범위를 넘을 때 막대가 옆 칸을 침범함)
