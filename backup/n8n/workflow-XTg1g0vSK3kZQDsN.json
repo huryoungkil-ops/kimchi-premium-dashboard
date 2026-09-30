@@ -4,12 +4,12 @@
     "name": "김치 프리미엄 페이퍼 트레이딩 (코빗×OKX, 5분)",
     "description": "코빗(국내)과 OKX(해외 USDT 무기한선물) 가격을 5분마다 비교해 김프를 계산하고, 3일 이동평균 기준 진입/청산 신호로 가상 매매를 기록 후 Discord로 알림",
     "active": true,
-    "activeVersionId": "21307619-94c9-4a89-a45b-9ac867babbc5",
+    "activeVersionId": "bac67d16-426e-4461-9d60-fa0bbaca2492",
     "createdAt": "2026-09-05T12:41:43.811Z",
-    "updatedAt": "2026-09-30T10:01:37.700Z",
+    "updatedAt": "2026-09-30T10:04:59.951Z",
     "isArchived": false,
-    "versionId": "21307619-94c9-4a89-a45b-9ac867babbc5",
-    "versionCounter": 54,
+    "versionId": "bac67d16-426e-4461-9d60-fa0bbaca2492",
+    "versionCounter": 55,
     "sourceWorkflowId": null,
     "triggerCount": 2,
     "nodes": [
@@ -476,7 +476,7 @@
       {
         "parameters": {
           "method": "POST",
-          "url": "https://discord.com/api/webhooks/1554794956499984489/<REDACTED>",
+          "url": "https://discord.com/api/webhooks/1554795914088943676/<REDACTED>",
           "authentication": "none",
           "sendBody": true,
           "contentType": "json",
@@ -690,7 +690,7 @@
       {
         "parameters": {
           "method": "POST",
-          "url": "https://discord.com/api/webhooks/1554794956499984489/<REDACTED>",
+          "url": "https://discord.com/api/webhooks/1554795914088943676/<REDACTED>",
           "authentication": "none",
           "sendBody": true,
           "contentType": "json",
@@ -1993,7 +1993,7 @@
     },
     "tags": [],
     "activeVersion": {
-      "versionId": "21307619-94c9-4a89-a45b-9ac867babbc5",
+      "versionId": "bac67d16-426e-4461-9d60-fa0bbaca2492",
       "workflowId": "XTg1g0vSK3kZQDsN",
       "nodes": [
         {
@@ -2459,7 +2459,7 @@
         {
           "parameters": {
             "method": "POST",
-            "url": "https://discord.com/api/webhooks/1554794956499984489/<REDACTED>",
+            "url": "https://discord.com/api/webhooks/1554795914088943676/<REDACTED>",
             "authentication": "none",
             "sendBody": true,
             "contentType": "json",
@@ -2673,7 +2673,7 @@
         {
           "parameters": {
             "method": "POST",
-            "url": "https://discord.com/api/webhooks/1554794956499984489/<REDACTED>",
+            "url": "https://discord.com/api/webhooks/1554795914088943676/<REDACTED>",
             "authentication": "none",
             "sendBody": true,
             "contentType": "json",
@@ -3946,19 +3946,19 @@
         }
       ],
       "authors": "youngkil Hur (via MCP)",
-      "name": "Discord 웹훅 교체 (옛 웹훅 토큰 공개 저장소 노출)",
-      "description": "Updated nodes: 진입 알림 전송, 청산 알림 전송, 상태 보고 전송",
+      "name": "매수·매도 알림을 별도 Discord 채널로 분리",
+      "description": "Updated nodes: 진입 알림 전송, 청산 알림 전송",
       "autosaved": false,
-      "createdAt": "2026-09-30T10:01:37.760Z",
-      "updatedAt": "2026-09-30T10:01:37.760Z",
+      "createdAt": "2026-09-30T10:04:59.968Z",
+      "updatedAt": "2026-09-30T10:04:59.968Z",
       "workflowPublishHistory": [
         {
-          "id": 1554,
+          "id": 1558,
           "workflowId": "XTg1g0vSK3kZQDsN",
-          "versionId": "21307619-94c9-4a89-a45b-9ac867babbc5",
+          "versionId": "bac67d16-426e-4461-9d60-fa0bbaca2492",
           "event": "activated",
           "userId": "185e9a53-294d-4ab7-913f-1bc33324adfd",
-          "createdAt": "2026-09-30T10:02:02.391Z"
+          "createdAt": "2026-09-30T10:05:05.201Z"
         }
       ]
     }
