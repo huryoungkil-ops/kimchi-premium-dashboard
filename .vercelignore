@@ -1,0 +1,15 @@
+# Vercel 배포에 올리지 않을 파일 — 웹페이지는 index.html, ledger/(ledger.js·config.json·backfill.json),
+# backup/data/paper-trades.json 만 읽는다. 나머지는 git에만 남긴다.
+#
+# 2026-10-02: 백업 CSV(31MB, 하루 2MB씩 증가)가 커밋마다 배포에 같이 실려
+# 30일 배포 저장 용량이 무료 한도 10GB를 넘었다(866개 배포 ≈ 10.6GB).
+backup/data/premium-history
+backup/data/state.json
+backup/n8n
+backup/export_history.py
+backup/README.md
+backtest
+.github
+README.md
+ledger/build-backfill.js
+ledger/check.js
