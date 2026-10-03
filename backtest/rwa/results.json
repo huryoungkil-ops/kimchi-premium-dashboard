@@ -1,0 +1,4990 @@
+{
+ "generated": "2026-10-03T04:27:45.615Z",
+ "note": "All numbers computed from public APIs on 2026-10-03 (UTC). Unverified items are marked 확인 못함. Funding not included in backtest P&L.",
+ "assumptions": {
+  "rule": "enter long spread when x<MA-2σ (MA/σ over previous W obs), exit when x>MA+0.25σ or hold>=120h; execution at NEXT bar close; one position; twoSided mirrors the short side",
+  "costs": {
+   "cost0.30": "0.30% round trip = spot taker 0.10% + perp taker 0.05% on entry and exit",
+   "cost0.20": "0.20% RT = perp taker 0.05% x 4",
+   "cost0.10": "0.10% RT (maker-ish)"
+  },
+  "pnlBase": "return on notional of one leg; annualized = total net / years (no compounding, no leverage)",
+  "funding": "NOT included in P&L; see funding summary",
+  "prices": "hourly close, no bid/ask or slippage beyond fee",
+  "tradfiClosed": "Fri 21:00 UTC - Sun 22:00 UTC (approx, no holidays/DST)"
+ },
+ "catalog_live": {
+  "binance_tradfi_perps_commodity": "XAUUSDT(2025-12-11), XAGUSDT(2026-01-07), XPTUSDT/XPDUSDT(2026-01-30), COPPERUSDT(2026-03-06), CLUSDT/BZUSDT/NATGASUSDT(2026-04-01); contractType TRADIFI_PERPETUAL; no RBOB gasoline, no heating oil",
+  "binance_tradfi_counts": {
+   "equity": 175,
+   "kr_equity": 8,
+   "hk_equity": 15,
+   "cn_equity": 2,
+   "fx": 1,
+   "premarket": 4,
+   "commodity": 8
+  },
+  "binance_XAUUSDT_contract": {
+   "minQty": "0.001 oz",
+   "minNotional": 5,
+   "maintMarginPct": 2.5,
+   "requiredMarginPct": 5,
+   "impliedMaxLev": "20x (from requiredMarginPercent; actual brackets need auth - 확인 못함)"
+  },
+  "binance_rwa_coin_perps": "PAXGUSDT perp (2025-03-27), XAUTUSDT perp (2026-03-26)",
+  "bybit_linear_commodity_fx": "XAUUSDT 150x, XAGUSDT 150x, CLUSDT 150x, BZUSDT 100x, EURUSD/GBPUSD/USDJPY 100x; also XAUTUSDT/PAXGUSDT perps, XAUT weekly futures; xStocks spot (TSLAX, NVDAX, AAPLX, ...)",
+  "hyperliquid_hip3_commodity_index": [
+   {
+    "market": "xyz:SP500",
+    "maxLev": 50,
+    "oiUsdM": 346.5,
+    "vol24hUsdM": 213.13,
+    "fundingPerHour": 0.00000625
+   },
+   {
+    "market": "xyz:GOLD",
+    "maxLev": 25,
+    "oiUsdM": 277.76,
+    "vol24hUsdM": 64.86,
+    "fundingPerHour": 0.00000625
+   },
+   {
+    "market": "xyz:XYZ100",
+    "maxLev": 30,
+    "oiUsdM": 236.34,
+    "vol24hUsdM": 334.3,
+    "fundingPerHour": 0.00000625
+   },
+   {
+    "market": "xyz:BRENTOIL",
+    "maxLev": 20,
+    "oiUsdM": 165.71,
+    "vol24hUsdM": 144.18,
+    "fundingPerHour": -0.0000090995
+   },
+   {
+    "market": "xyz:SILVER",
+    "maxLev": 25,
+    "oiUsdM": 143.09,
+    "vol24hUsdM": 139.75,
+    "fundingPerHour": 0.00000625
+   },
+   {
+    "market": "xyz:CL",
+    "maxLev": 20,
+    "oiUsdM": 128.84,
+    "vol24hUsdM": 180.6,
+    "fundingPerHour": 0.00000625
+   },
+   {
+    "market": "xyz:CRCL",
+    "maxLev": 10,
+    "oiUsdM": 117.42,
+    "vol24hUsdM": 30.9,
+    "fundingPerHour": 0.00000625
+   },
+   {
+    "market": "xyz:ORCL",
+    "maxLev": 10,
+    "oiUsdM": 26.3,
+    "vol24hUsdM": 4.04,
+    "fundingPerHour": 0.00000625
+   },
+   {
+    "market": "xyz:COPPER",
+    "maxLev": 20,
+    "oiUsdM": 13.15,
+    "vol24hUsdM": 4.78,
+    "fundingPerHour": 0.00000625
+   },
+   {
+    "market": "xyz:NATGAS",
+    "maxLev": 10,
+    "oiUsdM": 8.31,
+    "vol24hUsdM": 4.11,
+    "fundingPerHour": -0.0000380697
+   },
+   {
+    "market": "xyz:JP225",
+    "maxLev": 20,
+    "oiUsdM": 4.03,
+    "vol24hUsdM": 9.87,
+    "fundingPerHour": -0.000053507
+   },
+   {
+    "market": "xyz:PLATINUM",
+    "maxLev": 20,
+    "oiUsdM": 2.95,
+    "vol24hUsdM": 2.21,
+    "fundingPerHour": -0.0000027493
+   },
+   {
+    "market": "xyz:PALLADIUM",
+    "maxLev": 20,
+    "oiUsdM": 2.68,
+    "vol24hUsdM": 0.29,
+    "fundingPerHour": 0.0000167129
+   },
+   {
+    "market": "xyz:HO",
+    "maxLev": 10,
+    "oiUsdM": 0.08,
+    "vol24hUsdM": 1.74,
+    "fundingPerHour": 0.0000416701
+   },
+   {
+    "market": "mkts:USTECH",
+    "maxLev": 25,
+    "oiUsdM": 4.12,
+    "vol24hUsdM": 1.93,
+    "fundingPerHour": 0.0000057078
+   },
+   {
+    "market": "mkts:US500",
+    "maxLev": 25,
+    "oiUsdM": 2.01,
+    "vol24hUsdM": 1.46,
+    "fundingPerHour": 0.0000057078
+   }
+  ],
+  "ostium_feeds": "CL, BRENT, DIESEL, XAU, XAG, XPT, XPD, HG, UNG, XLE, COCOA, COFFEE, COTTON, SUGAR, SPX, NDX, DJI, DAX, FTSE, NIK, HSI, FX, stocks; all RWA feeds isMarketOpen=false on Saturday 2026-10-03 (weekend closed)",
+  "gtrade_commodities": "XAU, XAG, XPT, XPD, HG, WTI, BRENT, NATGAS; commodities-1 maxLev 250x, commodities-2 150x; WTI open fee 0.04%, XAU 0.035% (parsed from 1e10 precision fields - unit interpretation 확인 필요); isCommoditiesOpen=false on Saturday",
+  "gasoline_RBOB_anywhere": "not found on Binance, Bybit, Hyperliquid HIP-3, Ostium, gTrade (2026-10-03)",
+  "market_snapshot": {
+   "time": "2026-10-03T04:27:14.987Z",
+   "binancePerp": {
+    "XAUUSDT": {
+     "oiUsdM": 655.1,
+     "vol24hUsdM": 2452.5,
+     "mark": 4146.91,
+     "index": 4147.2519456,
+     "lastFunding": 0
+    },
+    "XAGUSDT": {
+     "oiUsdM": 249.3,
+     "vol24hUsdM": 983.6,
+     "mark": 60.45348694,
+     "index": 60.45348694,
+     "lastFunding": 0
+    },
+    "CLUSDT": {
+     "oiUsdM": 199.7,
+     "vol24hUsdM": 1293.4,
+     "mark": 90.92428704,
+     "index": 90.80462391,
+     "lastFunding": 0
+    },
+    "BZUSDT": {
+     "oiUsdM": 313.9,
+     "vol24hUsdM": 562.5,
+     "mark": 101.98648755,
+     "index": 101.90759461,
+     "lastFunding": 0
+    },
+    "NATGASUSDT": {
+     "oiUsdM": 11.2,
+     "vol24hUsdM": 43.8,
+     "mark": 3.024,
+     "index": 3.02557501,
+     "lastFunding": 0
+    },
+    "COPPERUSDT": {
+     "oiUsdM": 7.6,
+     "vol24hUsdM": 11.7,
+     "mark": 6.585,
+     "index": 6.58846285,
+     "lastFunding": 0
+    },
+    "PAXGUSDT": {
+     "oiUsdM": 101.2,
+     "vol24hUsdM": 106.6,
+     "mark": 4148.82,
+     "index": 4150.8168311,
+     "lastFunding": 0.0000334
+    },
+    "XAUTUSDT": {
+     "oiUsdM": 49.9,
+     "vol24hUsdM": 63.6,
+     "mark": 4140.6315431,
+     "index": 4142.31254178,
+     "lastFunding": 0.0000358
+    },
+    "TSLAUSDT": {
+     "oiUsdM": 42.7,
+     "vol24hUsdM": 205.1,
+     "mark": 370.87238874,
+     "index": 371.00402573,
+     "lastFunding": 0
+    },
+    "SPYUSDT": {
+     "oiUsdM": 26,
+     "vol24hUsdM": 68.1,
+     "mark": 771.13,
+     "index": 771.19248194,
+     "lastFunding": 0
+    }
+   },
+   "binanceSpot": {
+    "PAXGUSDT": {
+     "vol24hUsdM": 25.5,
+     "last": 4150.88
+    },
+    "XAUTUSDT": {
+     "vol24hUsdM": 42.2,
+     "last": 4142.18
+    }
+   },
+   "bybit": {
+    "XAUUSDT": {
+     "oiUsdM": 123.9,
+     "vol24hUsdM": 149.7,
+     "funding": 0
+    },
+    "CLUSDT": {
+     "oiUsdM": 42.8,
+     "vol24hUsdM": 216.8,
+     "funding": 0
+    },
+    "BZUSDT": {
+     "oiUsdM": 20.5,
+     "vol24hUsdM": 21.8,
+     "funding": 0
+    },
+    "XAUTUSDT": {
+     "oiUsdM": 131.5,
+     "vol24hUsdM": 44.1,
+     "funding": 0.00005
+    },
+    "PAXGUSDT": {
+     "oiUsdM": 17.4,
+     "vol24hUsdM": 7.2,
+     "funding": 0.00005
+    },
+    "spot_TSLAXUSDT": {
+     "vol24hUsdM": 1.01
+    },
+    "spot_NVDAXUSDT": {
+     "vol24hUsdM": 0.39
+    },
+    "spot_XAUTUSDT": {
+     "vol24hUsdM": 16.28
+    }
+   }
+  },
+  "binance_funding_recent": {
+   "XAUUSDT": {
+    "n": 500,
+    "from": "2026-07-12",
+    "meanPerInterval": 0.000029110779999999984,
+    "intervalH": 4,
+    "annualizedPct": 6.38,
+    "maxAbs": 0.00036472,
+    "pctZero": 58
+   },
+   "PAXGUSDT": {
+    "n": 500,
+    "from": "2026-07-12",
+    "meanPerInterval": 0.000023312519999999955,
+    "intervalH": 4,
+    "annualizedPct": 5.11,
+    "maxAbs": 0.00009835,
+    "pctZero": 0
+   },
+   "XAUTUSDT": {
+    "n": 500,
+    "from": "2026-07-12",
+    "meanPerInterval": 0.000026603139999999948,
+    "intervalH": 4,
+    "annualizedPct": 5.83,
+    "maxAbs": 0.00005723,
+    "pctZero": 0
+   },
+   "TSLAUSDT": {
+    "n": 500,
+    "from": "2026-04-19",
+    "meanPerInterval": 0.00006704303999999999,
+    "intervalH": 8,
+    "annualizedPct": 7.34,
+    "maxAbs": 0.00631976,
+    "pctZero": 61.8
+   },
+   "CLUSDT": {
+    "n": 500,
+    "from": "2026-07-12",
+    "meanPerInterval": -0.00013925558,
+    "intervalH": 4,
+    "annualizedPct": -30.5,
+    "maxAbs": 0.0041053,
+    "pctZero": 46.8
+   },
+   "BZUSDT": {
+    "n": 500,
+    "from": "2026-07-12",
+    "meanPerInterval": -0.000182454,
+    "intervalH": 4,
+    "annualizedPct": -39.96,
+    "maxAbs": 0.0041984,
+    "pctZero": 40.6
+   }
+  }
+ },
+ "backtest_A_gold": {
+  "A1_PAXGspot_vs_BNperpXAU": {
+   "desc": "Binance PAXG/USDT spot / Binance XAUUSDT TradFi perp - 1",
+   "obs": 7101,
+   "premiumStats": {
+    "n": 7101,
+    "meanPct": -0.0153,
+    "sdPct": 0.3163,
+    "p01": -0.547,
+    "p50": -0.119,
+    "p99": 1.052,
+    "minPct": -1.013,
+    "maxPct": 3.225
+   },
+   "premTradFiOpen": {
+    "n": 5035,
+    "meanPct": -0.0137,
+    "sdPct": 0.2446,
+    "p01": -0.375,
+    "p50": -0.101,
+    "p99": 0.634,
+    "minPct": -0.587,
+    "maxPct": 1.335
+   },
+   "premTradFiClosed": {
+    "n": 2066,
+    "meanPct": -0.0191,
+    "sdPct": 0.445,
+    "p01": -0.784,
+    "p50": -0.162,
+    "p99": 1.779,
+    "minPct": -1.013,
+    "maxPct": 3.225
+   },
+   "halfLifeBars": 30.7,
+   "results": {
+    "W72_cost0.30": {
+     "period": "2025-12-11~2026-10-03",
+     "trades": 70,
+     "winPct": 7.1,
+     "avgGrossPct": 0.093,
+     "avgNetPct": -0.207,
+     "annNetPctOnNotional": -17.86,
+     "sharpe": -5.23,
+     "mddPct": -14.46,
+     "avgHoldH": 21.9,
+     "timeoutPct": 0,
+     "byYear": {
+      "2025": {
+       "n": 6,
+       "netPct": -0.74
+      },
+      "2026": {
+       "n": 64,
+       "netPct": -13.73
+      }
+     },
+     "signalWhenTradFiClosed": {
+      "n": 27,
+      "avgNetPct": -0.186,
+      "win": 7.4
+     },
+     "signalWhenTradFiOpen": {
+      "n": 43,
+      "avgNetPct": -0.22,
+      "win": 7
+     }
+    },
+    "W72_cost0.20": {
+     "period": "2025-12-11~2026-10-03",
+     "trades": 70,
+     "winPct": 11.4,
+     "avgGrossPct": 0.093,
+     "avgNetPct": -0.107,
+     "annNetPctOnNotional": -9.21,
+     "sharpe": -3.27,
+     "mddPct": -7.61,
+     "avgHoldH": 21.9,
+     "timeoutPct": 0,
+     "byYear": {
+      "2025": {
+       "n": 6,
+       "netPct": -0.14
+      },
+      "2026": {
+       "n": 64,
+       "netPct": -7.33
+      }
+     },
+     "signalWhenTradFiClosed": {
+      "n": 27,
+      "avgNetPct": -0.086,
+      "win": 14.8
+     },
+     "signalWhenTradFiOpen": {
+      "n": 43,
+      "avgNetPct": -0.12,
+      "win": 9.3
+     }
+    },
+    "W72_cost0.10": {
+     "period": "2025-12-11~2026-10-03",
+     "trades": 70,
+     "winPct": 38.6,
+     "avgGrossPct": 0.093,
+     "avgNetPct": -0.007,
+     "annNetPctOnNotional": -0.57,
+     "sharpe": -0.24,
+     "mddPct": -2.37,
+     "avgHoldH": 21.9,
+     "timeoutPct": 0,
+     "byYear": {
+      "2025": {
+       "n": 6,
+       "netPct": 0.46
+      },
+      "2026": {
+       "n": 64,
+       "netPct": -0.93
+      }
+     },
+     "signalWhenTradFiClosed": {
+      "n": 27,
+      "avgNetPct": 0.014,
+      "win": 44.4
+     },
+     "signalWhenTradFiOpen": {
+      "n": 43,
+      "avgNetPct": -0.02,
+      "win": 34.9
+     }
+    },
+    "W480_cost0.20": {
+     "period": "2025-12-11~2026-10-03",
+     "trades": 20,
+     "winPct": 35,
+     "avgGrossPct": 0.232,
+     "avgNetPct": 0.032,
+     "annNetPctOnNotional": 0.79,
+     "sharpe": 0.35,
+     "mddPct": -1.34,
+     "avgHoldH": 51.4,
+     "timeoutPct": 15,
+     "byYear": {
+      "2026": {
+       "n": 20,
+       "netPct": 0.64
+      }
+     },
+     "signalWhenTradFiClosed": {
+      "n": 12,
+      "avgNetPct": 0.132,
+      "win": 58.3
+     },
+     "signalWhenTradFiOpen": {
+      "n": 8,
+      "avgNetPct": -0.118,
+      "win": 0
+     }
+    },
+    "W72_cost0.20_twoSided": {
+     "period": "2025-12-11~2026-10-03",
+     "trades": 127,
+     "winPct": 11.8,
+     "avgGrossPct": 0.087,
+     "avgNetPct": -0.113,
+     "annNetPctOnNotional": -17.75,
+     "sharpe": -4.62,
+     "mddPct": -14.38,
+     "avgHoldH": 25.2,
+     "timeoutPct": 0,
+     "byYear": {
+      "2025": {
+       "n": 11,
+       "netPct": -0.75
+      },
+      "2026": {
+       "n": 116,
+       "netPct": -13.63
+      }
+     },
+     "signalWhenTradFiClosed": {
+      "n": 42,
+      "avgNetPct": -0.068,
+      "win": 19
+     },
+     "signalWhenTradFiOpen": {
+      "n": 85,
+      "avgNetPct": -0.136,
+      "win": 8.2
+     }
+    },
+    "W72_gross": {
+     "period": "2025-12-11~2026-10-03",
+     "trades": 70,
+     "winPct": 82.9,
+     "avgGrossPct": 0.093,
+     "avgNetPct": 0.093,
+     "annNetPctOnNotional": 8.07,
+     "sharpe": 3.55,
+     "mddPct": -0.84,
+     "avgHoldH": 21.9,
+     "timeoutPct": 0,
+     "byYear": {
+      "2025": {
+       "n": 6,
+       "netPct": 1.06
+      },
+      "2026": {
+       "n": 64,
+       "netPct": 5.47
+      }
+     },
+     "signalWhenTradFiClosed": {
+      "n": 27,
+      "avgNetPct": 0.114,
+      "win": 81.5
+     },
+     "signalWhenTradFiOpen": {
+      "n": 43,
+      "avgNetPct": 0.08,
+      "win": 83.7
+     }
+    }
+   }
+  },
+  "A1b_XAUTspotBybit_vs_BNperpXAU": {
+   "desc": "Bybit XAUT/USDT spot / Binance XAUUSDT perp - 1",
+   "obs": 7101,
+   "premiumStats": {
+    "n": 7101,
+    "meanPct": -0.2686,
+    "sdPct": 0.2693,
+    "p01": -0.914,
+    "p50": -0.257,
+    "p99": 0.335,
+    "minPct": -1.726,
+    "maxPct": 1.548
+   },
+   "premTradFiOpen": {
+    "n": 5035,
+    "meanPct": -0.2585,
+    "sdPct": 0.2376,
+    "p01": -0.792,
+    "p50": -0.243,
+    "p99": 0.276,
+    "minPct": -1.188,
+    "maxPct": 0.749
+   },
+   "premTradFiClosed": {
+    "n": 2066,
+    "meanPct": -0.2932,
+    "sdPct": 0.3328,
+    "p01": -1.118,
+    "p50": -0.283,
+    "p99": 0.701,
+    "minPct": -1.726,
+    "maxPct": 1.548
+   },
+   "halfLifeBars": 22.4,
+   "results": {
+    "W72_cost0.30": {
+     "period": "2025-12-11~2026-10-03",
+     "trades": 65,
+     "winPct": 4.6,
+     "avgGrossPct": 0.101,
+     "avgNetPct": -0.199,
+     "annNetPctOnNotional": -15.93,
+     "sharpe": -4.59,
+     "mddPct": -13.24,
+     "avgHoldH": 22.8,
+     "timeoutPct": 0,
+     "byYear": {
+      "2025": {
+       "n": 6,
+       "netPct": -0.43
+      },
+      "2026": {
+       "n": 59,
+       "netPct": -12.48
+      }
+     },
+     "signalWhenTradFiClosed": {
+      "n": 29,
+      "avgNetPct": -0.188,
+      "win": 3.4
+     },
+     "signalWhenTradFiOpen": {
+      "n": 36,
+      "avgNetPct": -0.207,
+      "win": 5.6
+     }
+    },
+    "W72_cost0.20": {
+     "period": "2025-12-11~2026-10-03",
+     "trades": 65,
+     "winPct": 20,
+     "avgGrossPct": 0.101,
+     "avgNetPct": -0.099,
+     "annNetPctOnNotional": -7.91,
+     "sharpe": -2.75,
+     "mddPct": -6.85,
+     "avgHoldH": 22.8,
+     "timeoutPct": 0,
+     "byYear": {
+      "2025": {
+       "n": 6,
+       "netPct": 0.17
+      },
+      "2026": {
+       "n": 59,
+       "netPct": -6.58
+      }
+     },
+     "signalWhenTradFiClosed": {
+      "n": 29,
+      "avgNetPct": -0.088,
+      "win": 24.1
+     },
+     "signalWhenTradFiOpen": {
+      "n": 36,
+      "avgNetPct": -0.107,
+      "win": 16.7
+     }
+    },
+    "W72_cost0.10": {
+     "period": "2025-12-11~2026-10-03",
+     "trades": 65,
+     "winPct": 52.3,
+     "avgGrossPct": 0.101,
+     "avgNetPct": 0.001,
+     "annNetPctOnNotional": 0.12,
+     "sharpe": 0,
+     "mddPct": -1.65,
+     "avgHoldH": 22.8,
+     "timeoutPct": 0,
+     "byYear": {
+      "2025": {
+       "n": 6,
+       "netPct": 0.77
+      },
+      "2026": {
+       "n": 59,
+       "netPct": -0.68
+      }
+     },
+     "signalWhenTradFiClosed": {
+      "n": 29,
+      "avgNetPct": 0.012,
+      "win": 58.6
+     },
+     "signalWhenTradFiOpen": {
+      "n": 36,
+      "avgNetPct": -0.007,
+      "win": 47.2
+     }
+    },
+    "W480_cost0.20": {
+     "period": "2025-12-11~2026-10-03",
+     "trades": 17,
+     "winPct": 47.1,
+     "avgGrossPct": 0.17,
+     "avgNetPct": -0.03,
+     "annNetPctOnNotional": -0.63,
+     "sharpe": -0.24,
+     "mddPct": -2.21,
+     "avgHoldH": 79.4,
+     "timeoutPct": 47.1,
+     "byYear": {
+      "2026": {
+       "n": 17,
+       "netPct": -0.51
+      }
+     },
+     "signalWhenTradFiClosed": {
+      "n": 11,
+      "avgNetPct": 0.024,
+      "win": 54.5
+     },
+     "signalWhenTradFiOpen": {
+      "n": 6,
+      "avgNetPct": -0.129,
+      "win": 33.3
+     }
+    },
+    "W72_cost0.20_twoSided": {
+     "period": "2025-12-11~2026-10-03",
+     "trades": 133,
+     "winPct": 16.5,
+     "avgGrossPct": 0.093,
+     "avgNetPct": -0.107,
+     "annNetPctOnNotional": -17.59,
+     "sharpe": -4.8,
+     "mddPct": -14.87,
+     "avgHoldH": 24.3,
+     "timeoutPct": 0,
+     "byYear": {
+      "2025": {
+       "n": 11,
+       "netPct": -0.15
+      },
+      "2026": {
+       "n": 122,
+       "netPct": -14.1
+      }
+     },
+     "signalWhenTradFiClosed": {
+      "n": 43,
+      "avgNetPct": -0.104,
+      "win": 18.6
+     },
+     "signalWhenTradFiOpen": {
+      "n": 90,
+      "avgNetPct": -0.109,
+      "win": 15.6
+     }
+    },
+    "W72_gross": {
+     "period": "2025-12-11~2026-10-03",
+     "trades": 65,
+     "winPct": 84.6,
+     "avgGrossPct": 0.101,
+     "avgNetPct": 0.101,
+     "annNetPctOnNotional": 8.15,
+     "sharpe": 3.49,
+     "mddPct": -1.19,
+     "avgHoldH": 22.8,
+     "timeoutPct": 0,
+     "byYear": {
+      "2025": {
+       "n": 6,
+       "netPct": 1.37
+      },
+      "2026": {
+       "n": 59,
+       "netPct": 5.22
+      }
+     },
+     "signalWhenTradFiClosed": {
+      "n": 29,
+      "avgNetPct": 0.112,
+      "win": 86.2
+     },
+     "signalWhenTradFiOpen": {
+      "n": 36,
+      "avgNetPct": 0.093,
+      "win": 83.3
+     }
+    }
+   }
+  },
+  "A1c_PAXGperp_vs_XAUperp_BN": {
+   "desc": "Binance PAXG perp / XAU perp - 1",
+   "obs": 7101,
+   "premiumStats": {
+    "n": 7101,
+    "meanPct": -0.0596,
+    "sdPct": 0.3135,
+    "p01": -0.587,
+    "p50": -0.163,
+    "p99": 0.986,
+    "minPct": -1.047,
+    "maxPct": 3.171
+   },
+   "premTradFiOpen": {
+    "n": 5035,
+    "meanPct": -0.0587,
+    "sdPct": 0.2442,
+    "p01": -0.417,
+    "p50": -0.149,
+    "p99": 0.574,
+    "minPct": -0.633,
+    "maxPct": 1.208
+   },
+   "premTradFiClosed": {
+    "n": 2066,
+    "meanPct": -0.062,
+    "sdPct": 0.4387,
+    "p01": -0.816,
+    "p50": -0.204,
+    "p99": 1.706,
+    "minPct": -1.047,
+    "maxPct": 3.171
+   },
+   "halfLifeBars": 32,
+   "results": {
+    "W72_cost0.30": {
+     "period": "2025-12-11~2026-10-03",
+     "trades": 67,
+     "winPct": 6,
+     "avgGrossPct": 0.093,
+     "avgNetPct": -0.207,
+     "annNetPctOnNotional": -17.15,
+     "sharpe": -5.02,
+     "mddPct": -13.89,
+     "avgHoldH": 24.2,
+     "timeoutPct": 0,
+     "byYear": {
+      "2025": {
+       "n": 5,
+       "netPct": -0.45
+      },
+      "2026": {
+       "n": 62,
+       "netPct": -13.44
+      }
+     },
+     "signalWhenTradFiClosed": {
+      "n": 26,
+      "avgNetPct": -0.191,
+      "win": 7.7
+     },
+     "signalWhenTradFiOpen": {
+      "n": 41,
+      "avgNetPct": -0.217,
+      "win": 4.9
+     }
+    },
+    "W72_cost0.20": {
+     "period": "2025-12-11~2026-10-03",
+     "trades": 67,
+     "winPct": 11.9,
+     "avgGrossPct": 0.093,
+     "avgNetPct": -0.107,
+     "annNetPctOnNotional": -8.88,
+     "sharpe": -3.16,
+     "mddPct": -7.4,
+     "avgHoldH": 24.2,
+     "timeoutPct": 0,
+     "byYear": {
+      "2025": {
+       "n": 5,
+       "netPct": 0.05
+      },
+      "2026": {
+       "n": 62,
+       "netPct": -7.24
+      }
+     },
+     "signalWhenTradFiClosed": {
+      "n": 26,
+      "avgNetPct": -0.091,
+      "win": 19.2
+     },
+     "signalWhenTradFiOpen": {
+      "n": 41,
+      "avgNetPct": -0.117,
+      "win": 7.3
+     }
+    },
+    "W72_cost0.10": {
+     "period": "2025-12-11~2026-10-03",
+     "trades": 67,
+     "winPct": 29.9,
+     "avgGrossPct": 0.093,
+     "avgNetPct": -0.007,
+     "annNetPctOnNotional": -0.6,
+     "sharpe": -0.26,
+     "mddPct": -2.2,
+     "avgHoldH": 24.2,
+     "timeoutPct": 0,
+     "byYear": {
+      "2025": {
+       "n": 5,
+       "netPct": 0.55
+      },
+      "2026": {
+       "n": 62,
+       "netPct": -1.04
+      }
+     },
+     "signalWhenTradFiClosed": {
+      "n": 26,
+      "avgNetPct": 0.009,
+      "win": 34.6
+     },
+     "signalWhenTradFiOpen": {
+      "n": 41,
+      "avgNetPct": -0.017,
+      "win": 26.8
+     }
+    },
+    "W480_cost0.20": {
+     "period": "2025-12-11~2026-10-03",
+     "trades": 21,
+     "winPct": 33.3,
+     "avgGrossPct": 0.233,
+     "avgNetPct": 0.033,
+     "annNetPctOnNotional": 0.85,
+     "sharpe": 0.39,
+     "mddPct": -1.29,
+     "avgHoldH": 50.1,
+     "timeoutPct": 14.3,
+     "byYear": {
+      "2026": {
+       "n": 21,
+       "netPct": 0.69
+      }
+     },
+     "signalWhenTradFiClosed": {
+      "n": 13,
+      "avgNetPct": 0.111,
+      "win": 53.8
+     },
+     "signalWhenTradFiOpen": {
+      "n": 8,
+      "avgNetPct": -0.093,
+      "win": 0
+     }
+    },
+    "W72_cost0.20_twoSided": {
+     "period": "2025-12-11~2026-10-03",
+     "trades": 125,
+     "winPct": 15.2,
+     "avgGrossPct": 0.089,
+     "avgNetPct": -0.111,
+     "annNetPctOnNotional": -17.1,
+     "sharpe": -4.52,
+     "mddPct": -13.85,
+     "avgHoldH": 26,
+     "timeoutPct": 0,
+     "byYear": {
+      "2025": {
+       "n": 9,
+       "netPct": -0.65
+      },
+      "2026": {
+       "n": 116,
+       "netPct": -13.2
+      }
+     },
+     "signalWhenTradFiClosed": {
+      "n": 42,
+      "avgNetPct": -0.077,
+      "win": 26.2
+     },
+     "signalWhenTradFiOpen": {
+      "n": 83,
+      "avgNetPct": -0.128,
+      "win": 9.6
+     }
+    },
+    "W72_gross": {
+     "period": "2025-12-11~2026-10-03",
+     "trades": 67,
+     "winPct": 85.1,
+     "avgGrossPct": 0.093,
+     "avgNetPct": 0.093,
+     "annNetPctOnNotional": 7.67,
+     "sharpe": 3.49,
+     "mddPct": -0.81,
+     "avgHoldH": 24.2,
+     "timeoutPct": 0,
+     "byYear": {
+      "2025": {
+       "n": 5,
+       "netPct": 1.05
+      },
+      "2026": {
+       "n": 62,
+       "netPct": 5.16
+      }
+     },
+     "signalWhenTradFiClosed": {
+      "n": 26,
+      "avgNetPct": 0.109,
+      "win": 80.8
+     },
+     "signalWhenTradFiOpen": {
+      "n": 41,
+      "avgNetPct": 0.083,
+      "win": 87.8
+     }
+    }
+   }
+  },
+  "A2_PAXGspot_vs_GCF_1h": {
+   "desc": "Binance PAXG/USDT / COMEX GC=F front (Yahoo 1h) - 1; includes futures carry basis & USDT/USD",
+   "obs": 13714,
+   "premiumStats": {
+    "n": 13714,
+    "meanPct": -0.5028,
+    "sdPct": 0.6112,
+    "p01": -2.071,
+    "p50": -0.392,
+    "p99": 0.611,
+    "minPct": -3.493,
+    "maxPct": 1.323
+   },
+   "premTradFiOpen": {
+    "n": 13680,
+    "meanPct": -0.5034,
+    "sdPct": 0.6112,
+    "p01": -2.071,
+    "p50": -0.392,
+    "p99": 0.609,
+    "minPct": -3.493,
+    "maxPct": 1.323
+   },
+   "premTradFiClosed": {
+    "n": 34,
+    "meanPct": -0.235,
+    "sdPct": 0.5589,
+    "p01": -1.353,
+    "p50": -0.139,
+    "p99": 0.904,
+    "minPct": -1.353,
+    "maxPct": 0.904
+   },
+   "halfLifeBars": 34.1,
+   "results": {
+    "W72_cost0.30": {
+     "period": "2024-05-10~2026-10-02",
+     "trades": 123,
+     "winPct": 20.3,
+     "avgGrossPct": 0.165,
+     "avgNetPct": -0.135,
+     "annNetPctOnNotional": -6.94,
+     "sharpe": -2.07,
+     "mddPct": -17.24,
+     "avgHoldH": 38.7,
+     "timeoutPct": 6.5,
+     "byYear": {
+      "2024": {
+       "n": 37,
+       "netPct": -1.96
+      },
+      "2025": {
+       "n": 54,
+       "netPct": -7.23
+      },
+      "2026": {
+       "n": 32,
+       "netPct": -7.44
+      }
+     },
+     "signalWhenTradFiClosed": {
+      "n": 2,
+      "avgNetPct": -0.244,
+      "win": 0
+     },
+     "signalWhenTradFiOpen": {
+      "n": 121,
+      "avgNetPct": -0.133,
+      "win": 20.7
+     }
+    },
+    "W72_cost0.20": {
+     "period": "2024-05-10~2026-10-02",
+     "trades": 123,
+     "winPct": 35,
+     "avgGrossPct": 0.165,
+     "avgNetPct": -0.035,
+     "annNetPctOnNotional": -1.81,
+     "sharpe": -0.58,
+     "mddPct": -8.2,
+     "avgHoldH": 38.7,
+     "timeoutPct": 6.5,
+     "byYear": {
+      "2024": {
+       "n": 37,
+       "netPct": 1.74
+      },
+      "2025": {
+       "n": 54,
+       "netPct": -1.83
+      },
+      "2026": {
+       "n": 32,
+       "netPct": -4.24
+      }
+     },
+     "signalWhenTradFiClosed": {
+      "n": 2,
+      "avgNetPct": -0.144,
+      "win": 0
+     },
+     "signalWhenTradFiOpen": {
+      "n": 121,
+      "avgNetPct": -0.033,
+      "win": 35.5
+     }
+    },
+    "W72_cost0.10": {
+     "period": "2024-05-10~2026-10-02",
+     "trades": 123,
+     "winPct": 56.9,
+     "avgGrossPct": 0.165,
+     "avgNetPct": 0.065,
+     "annNetPctOnNotional": 3.32,
+     "sharpe": 1.12,
+     "mddPct": -2.08,
+     "avgHoldH": 38.7,
+     "timeoutPct": 6.5,
+     "byYear": {
+      "2024": {
+       "n": 37,
+       "netPct": 5.44
+      },
+      "2025": {
+       "n": 54,
+       "netPct": 3.57
+      },
+      "2026": {
+       "n": 32,
+       "netPct": -1.04
+      }
+     },
+     "signalWhenTradFiClosed": {
+      "n": 2,
+      "avgNetPct": -0.044,
+      "win": 0
+     },
+     "signalWhenTradFiOpen": {
+      "n": 121,
+      "avgNetPct": 0.067,
+      "win": 57.9
+     }
+    },
+    "W480_cost0.20": {
+     "period": "2024-05-10~2026-10-02",
+     "trades": 32,
+     "winPct": 50,
+     "avgGrossPct": 0.318,
+     "avgNetPct": 0.118,
+     "annNetPctOnNotional": 1.58,
+     "sharpe": 0.58,
+     "mddPct": -3.4,
+     "avgHoldH": 88.6,
+     "timeoutPct": 53.1,
+     "byYear": {
+      "2024": {
+       "n": 8,
+       "netPct": 4.36
+      },
+      "2025": {
+       "n": 15,
+       "netPct": 1.35
+      },
+      "2026": {
+       "n": 9,
+       "netPct": -1.93
+      }
+     },
+     "signalWhenTradFiClosed": {
+      "n": 0,
+      "avgNetPct": null,
+      "win": null
+     },
+     "signalWhenTradFiOpen": {
+      "n": 32,
+      "avgNetPct": 0.118,
+      "win": 50
+     }
+    },
+    "W72_cost0.20_twoSided": {
+     "period": "2024-05-10~2026-10-02",
+     "trades": 263,
+     "winPct": 35,
+     "avgGrossPct": 0.165,
+     "avgNetPct": -0.035,
+     "annNetPctOnNotional": -3.89,
+     "sharpe": -0.85,
+     "mddPct": -17.36,
+     "avgHoldH": 41.3,
+     "timeoutPct": 6.8,
+     "byYear": {
+      "2024": {
+       "n": 77,
+       "netPct": 3.69
+      },
+      "2025": {
+       "n": 113,
+       "netPct": -4.13
+      },
+      "2026": {
+       "n": 73,
+       "netPct": -8.88
+      }
+     },
+     "signalWhenTradFiClosed": {
+      "n": 6,
+      "avgNetPct": 0.009,
+      "win": 16.7
+     },
+     "signalWhenTradFiOpen": {
+      "n": 257,
+      "avgNetPct": -0.036,
+      "win": 35.4
+     }
+    },
+    "W72_gross": {
+     "period": "2024-05-10~2026-10-02",
+     "trades": 123,
+     "winPct": 80.5,
+     "avgGrossPct": 0.165,
+     "avgNetPct": 0.165,
+     "annNetPctOnNotional": 8.45,
+     "sharpe": 2.87,
+     "mddPct": -1.69,
+     "avgHoldH": 38.7,
+     "timeoutPct": 6.5,
+     "byYear": {
+      "2024": {
+       "n": 37,
+       "netPct": 9.14
+      },
+      "2025": {
+       "n": 54,
+       "netPct": 8.97
+      },
+      "2026": {
+       "n": 32,
+       "netPct": 2.16
+      }
+     },
+     "signalWhenTradFiClosed": {
+      "n": 2,
+      "avgNetPct": 0.056,
+      "win": 100
+     },
+     "signalWhenTradFiOpen": {
+      "n": 121,
+      "avgNetPct": 0.167,
+      "win": 80.2
+     }
+    }
+   }
+  },
+  "A3_PAXG_vs_GCF_daily": {
+   "desc": "PAXG 20:00UTC / GC=F daily close - 1, 2020-08~",
+   "obs": 1534,
+   "premiumStats": {
+    "n": 1534,
+    "meanPct": -0.3676,
+    "sdPct": 0.8716,
+    "p01": -2.374,
+    "p50": -0.265,
+    "p99": 1.851,
+    "minPct": -3.306,
+    "maxPct": 3.111
+   },
+   "premTradFiOpen": {
+    "n": 1534,
+    "meanPct": -0.3676,
+    "sdPct": 0.8716,
+    "p01": -2.374,
+    "p50": -0.265,
+    "p99": 1.851,
+    "minPct": -3.306,
+    "maxPct": 3.111
+   },
+   "premTradFiClosed": null,
+   "halfLifeBars": 2.9,
+   "results": {
+    "D20_cost0.30": {
+     "period": "2020-08-28~2026-10-02",
+     "trades": 41,
+     "winPct": 34.1,
+     "avgGrossPct": -0.011,
+     "avgNetPct": -0.311,
+     "annNetPctOnNotional": -2.09,
+     "sharpe": -0.87,
+     "mddPct": -13.04,
+     "avgHoldH": 110.6,
+     "timeoutPct": 39,
+     "byYear": {
+      "2020": {
+       "n": 1,
+       "netPct": -0.6
+      },
+      "2021": {
+       "n": 4,
+       "netPct": -1.41
+      },
+      "2022": {
+       "n": 9,
+       "netPct": -1.86
+      },
+      "2023": {
+       "n": 8,
+       "netPct": 1.99
+      },
+      "2024": {
+       "n": 5,
+       "netPct": -2.55
+      },
+      "2025": {
+       "n": 6,
+       "netPct": 0.03
+      },
+      "2026": {
+       "n": 8,
+       "netPct": -8.35
+      }
+     },
+     "signalWhenTradFiClosed": {
+      "n": 0,
+      "avgNetPct": null,
+      "win": null
+     },
+     "signalWhenTradFiOpen": {
+      "n": 41,
+      "avgNetPct": -0.311,
+      "win": 34.1
+     }
+    },
+    "D20_cost0.20": {
+     "period": "2020-08-28~2026-10-02",
+     "trades": 41,
+     "winPct": 39,
+     "avgGrossPct": -0.011,
+     "avgNetPct": -0.211,
+     "annNetPctOnNotional": -1.42,
+     "sharpe": -0.6,
+     "mddPct": -11.08,
+     "avgHoldH": 110.6,
+     "timeoutPct": 39,
+     "byYear": {
+      "2020": {
+       "n": 1,
+       "netPct": -0.5
+      },
+      "2021": {
+       "n": 4,
+       "netPct": -1.01
+      },
+      "2022": {
+       "n": 9,
+       "netPct": -0.96
+      },
+      "2023": {
+       "n": 8,
+       "netPct": 2.79
+      },
+      "2024": {
+       "n": 5,
+       "netPct": -2.05
+      },
+      "2025": {
+       "n": 6,
+       "netPct": 0.63
+      },
+      "2026": {
+       "n": 8,
+       "netPct": -7.55
+      }
+     },
+     "signalWhenTradFiClosed": {
+      "n": 0,
+      "avgNetPct": null,
+      "win": null
+     },
+     "signalWhenTradFiOpen": {
+      "n": 41,
+      "avgNetPct": -0.211,
+      "win": 39
+     }
+    },
+    "D20_cost0.20_twoSided": {
+     "period": "2020-08-28~2026-10-02",
+     "trades": 96,
+     "winPct": 44.8,
+     "avgGrossPct": 0.159,
+     "avgNetPct": -0.041,
+     "annNetPctOnNotional": -0.64,
+     "sharpe": -0.2,
+     "mddPct": -10.7,
+     "avgHoldH": 115.8,
+     "timeoutPct": 44.8,
+     "byYear": {
+      "2020": {
+       "n": 3,
+       "netPct": -0.28
+      },
+      "2021": {
+       "n": 14,
+       "netPct": -0.17
+      },
+      "2022": {
+       "n": 16,
+       "netPct": 0.08
+      },
+      "2023": {
+       "n": 19,
+       "netPct": 3.01
+      },
+      "2024": {
+       "n": 14,
+       "netPct": 0.21
+      },
+      "2025": {
+       "n": 16,
+       "netPct": 1.04
+      },
+      "2026": {
+       "n": 14,
+       "netPct": -7.8
+      }
+     },
+     "signalWhenTradFiClosed": {
+      "n": 0,
+      "avgNetPct": null,
+      "win": null
+     },
+     "signalWhenTradFiOpen": {
+      "n": 96,
+      "avgNetPct": -0.041,
+      "win": 44.8
+     }
+    },
+    "D20_gross": {
+     "period": "2020-08-28~2026-10-02",
+     "trades": 41,
+     "winPct": 48.8,
+     "avgGrossPct": -0.011,
+     "avgNetPct": -0.011,
+     "annNetPctOnNotional": -0.07,
+     "sharpe": -0.03,
+     "mddPct": -7.68,
+     "avgHoldH": 110.6,
+     "timeoutPct": 39,
+     "byYear": {
+      "2020": {
+       "n": 1,
+       "netPct": -0.3
+      },
+      "2021": {
+       "n": 4,
+       "netPct": -0.21
+      },
+      "2022": {
+       "n": 9,
+       "netPct": 0.84
+      },
+      "2023": {
+       "n": 8,
+       "netPct": 4.39
+      },
+      "2024": {
+       "n": 5,
+       "netPct": -1.05
+      },
+      "2025": {
+       "n": 6,
+       "netPct": 1.83
+      },
+      "2026": {
+       "n": 8,
+       "netPct": -5.95
+      }
+     },
+     "signalWhenTradFiClosed": {
+      "n": 0,
+      "avgNetPct": null,
+      "win": null
+     },
+     "signalWhenTradFiOpen": {
+      "n": 41,
+      "avgNetPct": -0.011,
+      "win": 48.8
+     }
+    }
+   }
+  },
+  "A4a_PAXG_BN_vs_XAUT_BFX": {
+   "desc": "Binance PAXG/USDT / Bitfinex XAUT/USDT - 1",
+   "obs": 49128,
+   "premiumStats": {
+    "n": 49128,
+    "meanPct": 0.0582,
+    "sdPct": 0.7138,
+    "p01": -1.712,
+    "p50": 0.13,
+    "p99": 1.833,
+    "minPct": -4.205,
+    "maxPct": 22.351
+   },
+   "premTradFiOpen": {
+    "n": 36256,
+    "meanPct": 0.0493,
+    "sdPct": 0.6654,
+    "p01": -1.62,
+    "p50": 0.129,
+    "p99": 1.657,
+    "minPct": -4.205,
+    "maxPct": 8.761
+   },
+   "premTradFiClosed": {
+    "n": 12872,
+    "meanPct": 0.0831,
+    "sdPct": 0.8346,
+    "p01": -1.872,
+    "p50": 0.134,
+    "p99": 2.386,
+    "minPct": -3.458,
+    "maxPct": 22.351
+   },
+   "halfLifeBars": 10.5,
+   "results": {
+    "W72_cost0.30": {
+     "period": "2020-08-28~2026-10-03",
+     "trades": 607,
+     "winPct": 23.6,
+     "avgGrossPct": 0.15,
+     "avgNetPct": -0.15,
+     "annNetPctOnNotional": -14.93,
+     "sharpe": -2.93,
+     "mddPct": -97.36,
+     "avgHoldH": 17.2,
+     "timeoutPct": 0.2,
+     "byYear": {
+      "2020": {
+       "n": 32,
+       "netPct": 2.95
+      },
+      "2021": {
+       "n": 139,
+       "netPct": -20.98
+      },
+      "2022": {
+       "n": 84,
+       "netPct": -13.92
+      },
+      "2023": {
+       "n": 66,
+       "netPct": -8.5
+      },
+      "2024": {
+       "n": 76,
+       "netPct": -5.37
+      },
+      "2025": {
+       "n": 114,
+       "netPct": -20.22
+      },
+      "2026": {
+       "n": 96,
+       "netPct": -24.99
+      }
+     },
+     "signalWhenTradFiClosed": {
+      "n": 158,
+      "avgNetPct": -0.128,
+      "win": 25.9
+     },
+     "signalWhenTradFiOpen": {
+      "n": 449,
+      "avgNetPct": -0.158,
+      "win": 22.7
+     }
+    },
+    "W72_cost0.20": {
+     "period": "2020-08-28~2026-10-03",
+     "trades": 607,
+     "winPct": 32.9,
+     "avgGrossPct": 0.15,
+     "avgNetPct": -0.05,
+     "annNetPctOnNotional": -4.98,
+     "sharpe": -1.07,
+     "mddPct": -41.46,
+     "avgHoldH": 17.2,
+     "timeoutPct": 0.2,
+     "byYear": {
+      "2020": {
+       "n": 32,
+       "netPct": 6.15
+      },
+      "2021": {
+       "n": 139,
+       "netPct": -7.08
+      },
+      "2022": {
+       "n": 84,
+       "netPct": -5.52
+      },
+      "2023": {
+       "n": 66,
+       "netPct": -1.9
+      },
+      "2024": {
+       "n": 76,
+       "netPct": 2.23
+      },
+      "2025": {
+       "n": 114,
+       "netPct": -8.82
+      },
+      "2026": {
+       "n": 96,
+       "netPct": -15.39
+      }
+     },
+     "signalWhenTradFiClosed": {
+      "n": 158,
+      "avgNetPct": -0.028,
+      "win": 36.1
+     },
+     "signalWhenTradFiOpen": {
+      "n": 449,
+      "avgNetPct": -0.058,
+      "win": 31.8
+     }
+    },
+    "W72_cost0.10": {
+     "period": "2020-08-28~2026-10-03",
+     "trades": 607,
+     "winPct": 49.8,
+     "avgGrossPct": 0.15,
+     "avgNetPct": 0.05,
+     "annNetPctOnNotional": 4.98,
+     "sharpe": 1.13,
+     "mddPct": -9.2,
+     "avgHoldH": 17.2,
+     "timeoutPct": 0.2,
+     "byYear": {
+      "2020": {
+       "n": 32,
+       "netPct": 9.35
+      },
+      "2021": {
+       "n": 139,
+       "netPct": 6.82
+      },
+      "2022": {
+       "n": 84,
+       "netPct": 2.88
+      },
+      "2023": {
+       "n": 66,
+       "netPct": 4.7
+      },
+      "2024": {
+       "n": 76,
+       "netPct": 9.83
+      },
+      "2025": {
+       "n": 114,
+       "netPct": 2.58
+      },
+      "2026": {
+       "n": 96,
+       "netPct": -5.79
+      }
+     },
+     "signalWhenTradFiClosed": {
+      "n": 158,
+      "avgNetPct": 0.072,
+      "win": 50
+     },
+     "signalWhenTradFiOpen": {
+      "n": 449,
+      "avgNetPct": 0.042,
+      "win": 49.7
+     }
+    },
+    "W480_cost0.20": {
+     "period": "2020-08-28~2026-10-03",
+     "trades": 200,
+     "winPct": 53,
+     "avgGrossPct": 0.246,
+     "avgNetPct": 0.046,
+     "annNetPctOnNotional": 1.52,
+     "sharpe": 0.43,
+     "mddPct": -8.27,
+     "avgHoldH": 47.6,
+     "timeoutPct": 18.5,
+     "byYear": {
+      "2020": {
+       "n": 18,
+       "netPct": 6.71
+      },
+      "2021": {
+       "n": 44,
+       "netPct": -2.74
+      },
+      "2022": {
+       "n": 40,
+       "netPct": 4.17
+      },
+      "2023": {
+       "n": 23,
+       "netPct": 1.16
+      },
+      "2024": {
+       "n": 20,
+       "netPct": 6.4
+      },
+      "2025": {
+       "n": 27,
+       "netPct": -1.48
+      },
+      "2026": {
+       "n": 28,
+       "netPct": -4.98
+      }
+     },
+     "signalWhenTradFiClosed": {
+      "n": 56,
+      "avgNetPct": 0.082,
+      "win": 62.5
+     },
+     "signalWhenTradFiOpen": {
+      "n": 144,
+      "avgNetPct": 0.032,
+      "win": 49.3
+     }
+    },
+    "W72_cost0.20_twoSided": {
+     "period": "2020-08-28~2026-10-03",
+     "trades": 1267,
+     "winPct": 38.2,
+     "avgGrossPct": 0.166,
+     "avgNetPct": -0.034,
+     "annNetPctOnNotional": -7.12,
+     "sharpe": -0.87,
+     "mddPct": -70.26,
+     "avgHoldH": 17.7,
+     "timeoutPct": 0.5,
+     "byYear": {
+      "2020": {
+       "n": 73,
+       "netPct": 15.15
+      },
+      "2021": {
+       "n": 265,
+       "netPct": -10.64
+      },
+      "2022": {
+       "n": 209,
+       "netPct": -7.57
+      },
+      "2023": {
+       "n": 147,
+       "netPct": -3.93
+      },
+      "2024": {
+       "n": 173,
+       "netPct": 5.75
+      },
+      "2025": {
+       "n": 224,
+       "netPct": -13.77
+      },
+      "2026": {
+       "n": 176,
+       "netPct": -28.38
+      }
+     },
+     "signalWhenTradFiClosed": {
+      "n": 343,
+      "avgNetPct": -0.024,
+      "win": 43.4
+     },
+     "signalWhenTradFiOpen": {
+      "n": 924,
+      "avgNetPct": -0.038,
+      "win": 36.3
+     }
+    },
+    "W72_gross": {
+     "period": "2020-08-28~2026-10-03",
+     "trades": 607,
+     "winPct": 70.8,
+     "avgGrossPct": 0.15,
+     "avgNetPct": 0.15,
+     "annNetPctOnNotional": 14.94,
+     "sharpe": 3.43,
+     "mddPct": -3.66,
+     "avgHoldH": 17.2,
+     "timeoutPct": 0.2,
+     "byYear": {
+      "2020": {
+       "n": 32,
+       "netPct": 12.55
+      },
+      "2021": {
+       "n": 139,
+       "netPct": 20.72
+      },
+      "2022": {
+       "n": 84,
+       "netPct": 11.28
+      },
+      "2023": {
+       "n": 66,
+       "netPct": 11.3
+      },
+      "2024": {
+       "n": 76,
+       "netPct": 17.43
+      },
+      "2025": {
+       "n": 114,
+       "netPct": 13.98
+      },
+      "2026": {
+       "n": 96,
+       "netPct": 3.81
+      }
+     },
+     "signalWhenTradFiClosed": {
+      "n": 158,
+      "avgNetPct": 0.172,
+      "win": 69.6
+     },
+     "signalWhenTradFiOpen": {
+      "n": 449,
+      "avgNetPct": 0.142,
+      "win": 71.3
+     }
+    }
+   }
+  },
+  "A4b_PAXG_BN_vs_XAUT_OKX": {
+   "desc": "Binance PAXG/USDT / OKX XAUT/USDT - 1",
+   "obs": 36884,
+   "premiumStats": {
+    "n": 36884,
+    "meanPct": -0.0673,
+    "sdPct": 0.6664,
+    "p01": -1.83,
+    "p50": 0.064,
+    "p99": 1.478,
+    "minPct": -4.029,
+    "maxPct": 21.821
+   },
+   "premTradFiOpen": {
+    "n": 26145,
+    "meanPct": -0.0733,
+    "sdPct": 0.6238,
+    "p01": -1.751,
+    "p50": 0.058,
+    "p99": 1.447,
+    "minPct": -4.029,
+    "maxPct": 3.736
+   },
+   "premTradFiClosed": {
+    "n": 10739,
+    "meanPct": -0.0527,
+    "sdPct": 0.7601,
+    "p01": -1.974,
+    "p50": 0.077,
+    "p99": 1.559,
+    "minPct": -3.626,
+    "maxPct": 21.821
+   },
+   "halfLifeBars": 11,
+   "results": {
+    "W72_cost0.30": {
+     "period": "2022-07-19~2026-10-03",
+     "trades": 437,
+     "winPct": 28.8,
+     "avgGrossPct": 0.213,
+     "avgNetPct": -0.087,
+     "annNetPctOnNotional": -9.02,
+     "sharpe": -1.79,
+     "mddPct": -49.34,
+     "avgHoldH": 18.3,
+     "timeoutPct": 0,
+     "byYear": {
+      "2022": {
+       "n": 61,
+       "netPct": 2.59
+      },
+      "2023": {
+       "n": 118,
+       "netPct": 0.7
+      },
+      "2024": {
+       "n": 96,
+       "netPct": -6.96
+      },
+      "2025": {
+       "n": 100,
+       "netPct": -18.04
+      },
+      "2026": {
+       "n": 62,
+       "netPct": -16.25
+      }
+     },
+     "signalWhenTradFiClosed": {
+      "n": 95,
+      "avgNetPct": -0.058,
+      "win": 28.4
+     },
+     "signalWhenTradFiOpen": {
+      "n": 342,
+      "avgNetPct": -0.095,
+      "win": 28.9
+     }
+    },
+    "W72_cost0.20": {
+     "period": "2022-07-19~2026-10-03",
+     "trades": 437,
+     "winPct": 36.6,
+     "avgGrossPct": 0.213,
+     "avgNetPct": 0.013,
+     "annNetPctOnNotional": 1.36,
+     "sharpe": 0.29,
+     "mddPct": -19.33,
+     "avgHoldH": 18.3,
+     "timeoutPct": 0,
+     "byYear": {
+      "2022": {
+       "n": 61,
+       "netPct": 8.69
+      },
+      "2023": {
+       "n": 118,
+       "netPct": 12.5
+      },
+      "2024": {
+       "n": 96,
+       "netPct": 2.64
+      },
+      "2025": {
+       "n": 100,
+       "netPct": -8.04
+      },
+      "2026": {
+       "n": 62,
+       "netPct": -10.05
+      }
+     },
+     "signalWhenTradFiClosed": {
+      "n": 95,
+      "avgNetPct": 0.042,
+      "win": 37.9
+     },
+     "signalWhenTradFiOpen": {
+      "n": 342,
+      "avgNetPct": 0.005,
+      "win": 36.3
+     }
+    },
+    "W72_cost0.10": {
+     "period": "2022-07-19~2026-10-03",
+     "trades": 437,
+     "winPct": 54.7,
+     "avgGrossPct": 0.213,
+     "avgNetPct": 0.113,
+     "annNetPctOnNotional": 11.75,
+     "sharpe": 2.54,
+     "mddPct": -5.99,
+     "avgHoldH": 18.3,
+     "timeoutPct": 0,
+     "byYear": {
+      "2022": {
+       "n": 61,
+       "netPct": 14.79
+      },
+      "2023": {
+       "n": 118,
+       "netPct": 24.3
+      },
+      "2024": {
+       "n": 96,
+       "netPct": 12.24
+      },
+      "2025": {
+       "n": 100,
+       "netPct": 1.96
+      },
+      "2026": {
+       "n": 62,
+       "netPct": -3.85
+      }
+     },
+     "signalWhenTradFiClosed": {
+      "n": 95,
+      "avgNetPct": 0.142,
+      "win": 60
+     },
+     "signalWhenTradFiOpen": {
+      "n": 342,
+      "avgNetPct": 0.105,
+      "win": 53.2
+     }
+    },
+    "W480_cost0.20": {
+     "period": "2022-07-19~2026-10-03",
+     "trades": 128,
+     "winPct": 62.5,
+     "avgGrossPct": 0.374,
+     "avgNetPct": 0.174,
+     "annNetPctOnNotional": 5.28,
+     "sharpe": 1.34,
+     "mddPct": -3.85,
+     "avgHoldH": 53.5,
+     "timeoutPct": 21.1,
+     "byYear": {
+      "2022": {
+       "n": 32,
+       "netPct": 6.07
+      },
+      "2023": {
+       "n": 32,
+       "netPct": 8.04
+      },
+      "2024": {
+       "n": 27,
+       "netPct": 8.15
+      },
+      "2025": {
+       "n": 20,
+       "netPct": 2.47
+      },
+      "2026": {
+       "n": 17,
+       "netPct": -2.51
+      }
+     },
+     "signalWhenTradFiClosed": {
+      "n": 37,
+      "avgNetPct": 0.203,
+      "win": 67.6
+     },
+     "signalWhenTradFiOpen": {
+      "n": 91,
+      "avgNetPct": 0.162,
+      "win": 60.4
+     }
+    },
+    "W72_cost0.20_twoSided": {
+     "period": "2022-07-19~2026-10-03",
+     "trades": 867,
+     "winPct": 38.4,
+     "avgGrossPct": 0.212,
+     "avgNetPct": 0.012,
+     "annNetPctOnNotional": 2.37,
+     "sharpe": 0.32,
+     "mddPct": -38.27,
+     "avgHoldH": 19,
+     "timeoutPct": 0.1,
+     "byYear": {
+      "2022": {
+       "n": 110,
+       "netPct": 22.94
+      },
+      "2023": {
+       "n": 231,
+       "netPct": 13.76
+      },
+      "2024": {
+       "n": 196,
+       "netPct": 6.36
+      },
+      "2025": {
+       "n": 201,
+       "netPct": -12.98
+      },
+      "2026": {
+       "n": 129,
+       "netPct": -20.09
+      }
+     },
+     "signalWhenTradFiClosed": {
+      "n": 203,
+      "avgNetPct": 0.029,
+      "win": 38.4
+     },
+     "signalWhenTradFiOpen": {
+      "n": 664,
+      "avgNetPct": 0.006,
+      "win": 38.4
+     }
+    },
+    "W72_gross": {
+     "period": "2022-07-19~2026-10-03",
+     "trades": 437,
+     "winPct": 78.9,
+     "avgGrossPct": 0.213,
+     "avgNetPct": 0.213,
+     "annNetPctOnNotional": 22.13,
+     "sharpe": 4.68,
+     "mddPct": -1.21,
+     "avgHoldH": 18.3,
+     "timeoutPct": 0,
+     "byYear": {
+      "2022": {
+       "n": 61,
+       "netPct": 20.89
+      },
+      "2023": {
+       "n": 118,
+       "netPct": 36.1
+      },
+      "2024": {
+       "n": 96,
+       "netPct": 21.84
+      },
+      "2025": {
+       "n": 100,
+       "netPct": 11.96
+      },
+      "2026": {
+       "n": 62,
+       "netPct": 2.35
+      }
+     },
+     "signalWhenTradFiClosed": {
+      "n": 95,
+      "avgNetPct": 0.242,
+      "win": 83.2
+     },
+     "signalWhenTradFiOpen": {
+      "n": 342,
+      "avgNetPct": 0.205,
+      "win": 77.8
+     }
+    }
+   }
+  },
+  "A4c_PAXG_BN_vs_XAUT_Bybit": {
+   "desc": "Binance PAXG/USDT / Bybit XAUT/USDT - 1",
+   "obs": 12955,
+   "premiumStats": {
+    "n": 12955,
+    "meanPct": 0.2194,
+    "sdPct": 0.2363,
+    "p01": -0.304,
+    "p50": 0.195,
+    "p99": 0.871,
+    "minPct": -0.815,
+    "maxPct": 1.999
+   },
+   "premTradFiOpen": {
+    "n": 9174,
+    "meanPct": 0.2165,
+    "sdPct": 0.2181,
+    "p01": -0.265,
+    "p50": 0.195,
+    "p99": 0.855,
+    "minPct": -0.815,
+    "maxPct": 1.418
+   },
+   "premTradFiClosed": {
+    "n": 3781,
+    "meanPct": 0.2264,
+    "sdPct": 0.2755,
+    "p01": -0.376,
+    "p50": 0.19,
+    "p99": 1.101,
+    "minPct": -0.813,
+    "maxPct": 1.999
+   },
+   "halfLifeBars": 24.8,
+   "results": {
+    "W72_cost0.30": {
+     "period": "2025-04-11~2026-10-03",
+     "trades": 136,
+     "winPct": 3.7,
+     "avgGrossPct": 0.061,
+     "avgNetPct": -0.239,
+     "annNetPctOnNotional": -21.96,
+     "sharpe": -7.75,
+     "mddPct": -32.94,
+     "avgHoldH": 22.4,
+     "timeoutPct": 0.7,
+     "byYear": {
+      "2025": {
+       "n": 75,
+       "netPct": -16.63
+      },
+      "2026": {
+       "n": 61,
+       "netPct": -15.82
+      }
+     },
+     "signalWhenTradFiClosed": {
+      "n": 40,
+      "avgNetPct": -0.211,
+      "win": 5
+     },
+     "signalWhenTradFiOpen": {
+      "n": 96,
+      "avgNetPct": -0.25,
+      "win": 3.1
+     }
+    },
+    "W72_cost0.20": {
+     "period": "2025-04-11~2026-10-03",
+     "trades": 136,
+     "winPct": 8.1,
+     "avgGrossPct": 0.061,
+     "avgNetPct": -0.139,
+     "annNetPctOnNotional": -12.76,
+     "sharpe": -6.06,
+     "mddPct": -19.62,
+     "avgHoldH": 22.4,
+     "timeoutPct": 0.7,
+     "byYear": {
+      "2025": {
+       "n": 75,
+       "netPct": -9.13
+      },
+      "2026": {
+       "n": 61,
+       "netPct": -9.72
+      }
+     },
+     "signalWhenTradFiClosed": {
+      "n": 40,
+      "avgNetPct": -0.111,
+      "win": 15
+     },
+     "signalWhenTradFiOpen": {
+      "n": 96,
+      "avgNetPct": -0.15,
+      "win": 5.2
+     }
+    },
+    "W72_cost0.10": {
+     "period": "2025-04-11~2026-10-03",
+     "trades": 136,
+     "winPct": 28.7,
+     "avgGrossPct": 0.061,
+     "avgNetPct": -0.039,
+     "annNetPctOnNotional": -3.55,
+     "sharpe": -2.26,
+     "mddPct": -6.43,
+     "avgHoldH": 22.4,
+     "timeoutPct": 0.7,
+     "byYear": {
+      "2025": {
+       "n": 75,
+       "netPct": -1.63
+      },
+      "2026": {
+       "n": 61,
+       "netPct": -3.62
+      }
+     },
+     "signalWhenTradFiClosed": {
+      "n": 40,
+      "avgNetPct": -0.011,
+      "win": 40
+     },
+     "signalWhenTradFiOpen": {
+      "n": 96,
+      "avgNetPct": -0.05,
+      "win": 24
+     }
+    },
+    "W480_cost0.20": {
+     "period": "2025-04-11~2026-10-03",
+     "trades": 23,
+     "winPct": 26.1,
+     "avgGrossPct": 0.083,
+     "avgNetPct": -0.117,
+     "annNetPctOnNotional": -1.82,
+     "sharpe": -1.63,
+     "mddPct": -2.86,
+     "avgHoldH": 87.2,
+     "timeoutPct": 47.8,
+     "byYear": {
+      "2025": {
+       "n": 10,
+       "netPct": -0.75
+      },
+      "2026": {
+       "n": 13,
+       "netPct": -1.94
+      }
+     },
+     "signalWhenTradFiClosed": {
+      "n": 8,
+      "avgNetPct": 0.002,
+      "win": 62.5
+     },
+     "signalWhenTradFiOpen": {
+      "n": 15,
+      "avgNetPct": -0.181,
+      "win": 6.7
+     }
+    },
+    "W72_cost0.20_twoSided": {
+     "period": "2025-04-11~2026-10-03",
+     "trades": 265,
+     "winPct": 9.4,
+     "avgGrossPct": 0.068,
+     "avgNetPct": -0.132,
+     "annNetPctOnNotional": -23.67,
+     "sharpe": -7.84,
+     "mddPct": -35.61,
+     "avgHoldH": 23.2,
+     "timeoutPct": 0.4,
+     "byYear": {
+      "2025": {
+       "n": 142,
+       "netPct": -16.24
+      },
+      "2026": {
+       "n": 123,
+       "netPct": -18.73
+      }
+     },
+     "signalWhenTradFiClosed": {
+      "n": 82,
+      "avgNetPct": -0.11,
+      "win": 14.6
+     },
+     "signalWhenTradFiOpen": {
+      "n": 183,
+      "avgNetPct": -0.142,
+      "win": 7.1
+     }
+    },
+    "W72_gross": {
+     "period": "2025-04-11~2026-10-03",
+     "trades": 136,
+     "winPct": 78.7,
+     "avgGrossPct": 0.061,
+     "avgNetPct": 0.061,
+     "annNetPctOnNotional": 5.65,
+     "sharpe": 3.83,
+     "mddPct": -0.57,
+     "avgHoldH": 22.4,
+     "timeoutPct": 0.7,
+     "byYear": {
+      "2025": {
+       "n": 75,
+       "netPct": 5.87
+      },
+      "2026": {
+       "n": 61,
+       "netPct": 2.48
+      }
+     },
+     "signalWhenTradFiClosed": {
+      "n": 40,
+      "avgNetPct": 0.089,
+      "win": 85
+     },
+     "signalWhenTradFiOpen": {
+      "n": 96,
+      "avgNetPct": 0.05,
+      "win": 76
+     }
+    }
+   }
+  },
+  "A4d_PAXGperp_vs_XAUTperp_BN": {
+   "desc": "Binance PAXG perp / XAUT perp - 1 (same venue, both shortable)",
+   "obs": 4575,
+   "premiumStats": {
+    "n": 4575,
+    "meanPct": 0.1386,
+    "sdPct": 0.1348,
+    "p01": -0.158,
+    "p50": 0.128,
+    "p99": 0.432,
+    "minPct": -0.24,
+    "maxPct": 0.65
+   },
+   "premTradFiOpen": {
+    "n": 3244,
+    "meanPct": 0.137,
+    "sdPct": 0.1334,
+    "p01": -0.12,
+    "p50": 0.123,
+    "p99": 0.422,
+    "minPct": -0.21,
+    "maxPct": 0.498
+   },
+   "premTradFiClosed": {
+    "n": 1331,
+    "meanPct": 0.1426,
+    "sdPct": 0.1379,
+    "p01": -0.197,
+    "p50": 0.134,
+    "p99": 0.461,
+    "minPct": -0.24,
+    "maxPct": 0.65
+   },
+   "halfLifeBars": 34.8,
+   "results": {
+    "W72_cost0.30": {
+     "period": "2026-03-26~2026-10-03",
+     "trades": 40,
+     "winPct": 0,
+     "avgGrossPct": 0.036,
+     "avgNetPct": -0.264,
+     "annNetPctOnNotional": -20.22,
+     "sharpe": -8.89,
+     "mddPct": -10.55,
+     "avgHoldH": 31.4,
+     "timeoutPct": 0,
+     "byYear": {
+      "2026": {
+       "n": 40,
+       "netPct": -10.55
+      }
+     },
+     "signalWhenTradFiClosed": {
+      "n": 11,
+      "avgNetPct": -0.267,
+      "win": 0
+     },
+     "signalWhenTradFiOpen": {
+      "n": 29,
+      "avgNetPct": -0.262,
+      "win": 0
+     }
+    },
+    "W72_cost0.20": {
+     "period": "2026-03-26~2026-10-03",
+     "trades": 40,
+     "winPct": 0,
+     "avgGrossPct": 0.036,
+     "avgNetPct": -0.164,
+     "annNetPctOnNotional": -12.55,
+     "sharpe": -8.03,
+     "mddPct": -6.55,
+     "avgHoldH": 31.4,
+     "timeoutPct": 0,
+     "byYear": {
+      "2026": {
+       "n": 40,
+       "netPct": -6.55
+      }
+     },
+     "signalWhenTradFiClosed": {
+      "n": 11,
+      "avgNetPct": -0.167,
+      "win": 0
+     },
+     "signalWhenTradFiOpen": {
+      "n": 29,
+      "avgNetPct": -0.162,
+      "win": 0
+     }
+    },
+    "W72_cost0.10": {
+     "period": "2026-03-26~2026-10-03",
+     "trades": 40,
+     "winPct": 17.5,
+     "avgGrossPct": 0.036,
+     "avgNetPct": -0.064,
+     "annNetPctOnNotional": -4.88,
+     "sharpe": -5.07,
+     "mddPct": -2.58,
+     "avgHoldH": 31.4,
+     "timeoutPct": 0,
+     "byYear": {
+      "2026": {
+       "n": 40,
+       "netPct": -2.55
+      }
+     },
+     "signalWhenTradFiClosed": {
+      "n": 11,
+      "avgNetPct": -0.067,
+      "win": 18.2
+     },
+     "signalWhenTradFiOpen": {
+      "n": 29,
+      "avgNetPct": -0.062,
+      "win": 17.2
+     }
+    },
+    "W480_cost0.20": {
+     "period": "2026-03-26~2026-10-03",
+     "trades": 10,
+     "winPct": 0,
+     "avgGrossPct": 0.007,
+     "avgNetPct": -0.193,
+     "annNetPctOnNotional": -3.69,
+     "sharpe": -3.15,
+     "mddPct": -2.12,
+     "avgHoldH": 113.8,
+     "timeoutPct": 70,
+     "byYear": {
+      "2026": {
+       "n": 10,
+       "netPct": -1.93
+      }
+     },
+     "signalWhenTradFiClosed": {
+      "n": 3,
+      "avgNetPct": -0.262,
+      "win": 0
+     },
+     "signalWhenTradFiOpen": {
+      "n": 7,
+      "avgNetPct": -0.163,
+      "win": 0
+     }
+    },
+    "W72_cost0.20_twoSided": {
+     "period": "2026-03-26~2026-10-03",
+     "trades": 81,
+     "winPct": 1.2,
+     "avgGrossPct": 0.041,
+     "avgNetPct": -0.159,
+     "annNetPctOnNotional": -24.72,
+     "sharpe": -11.21,
+     "mddPct": -13.11,
+     "avgHoldH": 28.4,
+     "timeoutPct": 0,
+     "byYear": {
+      "2026": {
+       "n": 81,
+       "netPct": -12.9
+      }
+     },
+     "signalWhenTradFiClosed": {
+      "n": 24,
+      "avgNetPct": -0.158,
+      "win": 4.2
+     },
+     "signalWhenTradFiOpen": {
+      "n": 57,
+      "avgNetPct": -0.16,
+      "win": 0
+     }
+    },
+    "W72_gross": {
+     "period": "2026-03-26~2026-10-03",
+     "trades": 40,
+     "winPct": 80,
+     "avgGrossPct": 0.036,
+     "avgNetPct": 0.036,
+     "annNetPctOnNotional": 2.78,
+     "sharpe": 3.48,
+     "mddPct": -0.2,
+     "avgHoldH": 31.4,
+     "timeoutPct": 0,
+     "byYear": {
+      "2026": {
+       "n": 40,
+       "netPct": 1.45
+      }
+     },
+     "signalWhenTradFiClosed": {
+      "n": 11,
+      "avgNetPct": 0.033,
+      "win": 72.7
+     },
+     "signalWhenTradFiOpen": {
+      "n": 29,
+      "avgNetPct": 0.038,
+      "win": 82.8
+     }
+    }
+   }
+  },
+  "A4e_PAXGspot_vs_XAUTspot_BN": {
+   "desc": "Binance PAXG spot / XAUT spot - 1",
+   "obs": 4575,
+   "premiumStats": {
+    "n": 4575,
+    "meanPct": 0.134,
+    "sdPct": 0.1365,
+    "p01": -0.171,
+    "p50": 0.123,
+    "p99": 0.425,
+    "minPct": -0.241,
+    "maxPct": 0.625
+   },
+   "premTradFiOpen": {
+    "n": 3244,
+    "meanPct": 0.1328,
+    "sdPct": 0.1348,
+    "p01": -0.125,
+    "p50": 0.119,
+    "p99": 0.419,
+    "minPct": -0.221,
+    "maxPct": 0.484
+   },
+   "premTradFiClosed": {
+    "n": 1331,
+    "meanPct": 0.1369,
+    "sdPct": 0.1405,
+    "p01": -0.211,
+    "p50": 0.128,
+    "p99": 0.466,
+    "minPct": -0.241,
+    "maxPct": 0.625
+   },
+   "halfLifeBars": 30.4,
+   "results": {
+    "W72_cost0.30": {
+     "period": "2026-03-26~2026-10-03",
+     "trades": 44,
+     "winPct": 0,
+     "avgGrossPct": 0.032,
+     "avgNetPct": -0.268,
+     "annNetPctOnNotional": -22.59,
+     "sharpe": -9.12,
+     "mddPct": -11.79,
+     "avgHoldH": 27.8,
+     "timeoutPct": 0,
+     "byYear": {
+      "2026": {
+       "n": 44,
+       "netPct": -11.79
+      }
+     },
+     "signalWhenTradFiClosed": {
+      "n": 11,
+      "avgNetPct": -0.277,
+      "win": 0
+     },
+     "signalWhenTradFiOpen": {
+      "n": 33,
+      "avgNetPct": -0.265,
+      "win": 0
+     }
+    },
+    "W72_cost0.20": {
+     "period": "2026-03-26~2026-10-03",
+     "trades": 44,
+     "winPct": 0,
+     "avgGrossPct": 0.032,
+     "avgNetPct": -0.168,
+     "annNetPctOnNotional": -14.16,
+     "sharpe": -8.42,
+     "mddPct": -7.39,
+     "avgHoldH": 27.8,
+     "timeoutPct": 0,
+     "byYear": {
+      "2026": {
+       "n": 44,
+       "netPct": -7.39
+      }
+     },
+     "signalWhenTradFiClosed": {
+      "n": 11,
+      "avgNetPct": -0.177,
+      "win": 0
+     },
+     "signalWhenTradFiOpen": {
+      "n": 33,
+      "avgNetPct": -0.165,
+      "win": 0
+     }
+    },
+    "W72_cost0.10": {
+     "period": "2026-03-26~2026-10-03",
+     "trades": 44,
+     "winPct": 13.6,
+     "avgGrossPct": 0.032,
+     "avgNetPct": -0.068,
+     "annNetPctOnNotional": -5.73,
+     "sharpe": -5.8,
+     "mddPct": -2.99,
+     "avgHoldH": 27.8,
+     "timeoutPct": 0,
+     "byYear": {
+      "2026": {
+       "n": 44,
+       "netPct": -2.99
+      }
+     },
+     "signalWhenTradFiClosed": {
+      "n": 11,
+      "avgNetPct": -0.077,
+      "win": 9.1
+     },
+     "signalWhenTradFiOpen": {
+      "n": 33,
+      "avgNetPct": -0.065,
+      "win": 15.2
+     }
+    },
+    "W480_cost0.20": {
+     "period": "2026-03-26~2026-10-03",
+     "trades": 11,
+     "winPct": 9.1,
+     "avgGrossPct": 0.031,
+     "avgNetPct": -0.169,
+     "annNetPctOnNotional": -3.57,
+     "sharpe": -3.02,
+     "mddPct": -2.1,
+     "avgHoldH": 105.4,
+     "timeoutPct": 72.7,
+     "byYear": {
+      "2026": {
+       "n": 11,
+       "netPct": -1.86
+      }
+     },
+     "signalWhenTradFiClosed": {
+      "n": 2,
+      "avgNetPct": -0.196,
+      "win": 0
+     },
+     "signalWhenTradFiOpen": {
+      "n": 9,
+      "avgNetPct": -0.163,
+      "win": 11.1
+     }
+    },
+    "W72_cost0.20_twoSided": {
+     "period": "2026-03-26~2026-10-03",
+     "trades": 88,
+     "winPct": 1.1,
+     "avgGrossPct": 0.043,
+     "avgNetPct": -0.157,
+     "annNetPctOnNotional": -26.52,
+     "sharpe": -12.4,
+     "mddPct": -14.04,
+     "avgHoldH": 25.6,
+     "timeoutPct": 0,
+     "byYear": {
+      "2026": {
+       "n": 88,
+       "netPct": -13.84
+      }
+     },
+     "signalWhenTradFiClosed": {
+      "n": 22,
+      "avgNetPct": -0.157,
+      "win": 4.5
+     },
+     "signalWhenTradFiOpen": {
+      "n": 66,
+      "avgNetPct": -0.157,
+      "win": 0
+     }
+    },
+    "W72_gross": {
+     "period": "2026-03-26~2026-10-03",
+     "trades": 44,
+     "winPct": 75,
+     "avgGrossPct": 0.032,
+     "avgNetPct": 0.032,
+     "annNetPctOnNotional": 2.7,
+     "sharpe": 3.52,
+     "mddPct": -0.17,
+     "avgHoldH": 27.8,
+     "timeoutPct": 0,
+     "byYear": {
+      "2026": {
+       "n": 44,
+       "netPct": 1.41
+      }
+     },
+     "signalWhenTradFiClosed": {
+      "n": 11,
+      "avgNetPct": 0.023,
+      "win": 54.5
+     },
+     "signalWhenTradFiOpen": {
+      "n": 33,
+      "avgNetPct": 0.035,
+      "win": 81.8
+     }
+    }
+   }
+  }
+ },
+ "backtest_A_liquidity_filter": {
+  "A4b_minVol0": {
+   "rows": 36884,
+   "period": "2022-07-19~2026-10-03",
+   "gross": {
+    "n": 437,
+    "avg": 0.213,
+    "ann": 22.13
+   },
+   "cost020": {
+    "ann": 1.36,
+    "sharpe": 0.29,
+    "mdd": -19.33
+   },
+   "W480cost020": {
+    "n": 128,
+    "ann": 5.28,
+    "sharpe": 1.34,
+    "byYear": {
+     "2022": {
+      "n": 32,
+      "netPct": 6.07
+     },
+     "2023": {
+      "n": 32,
+      "netPct": 8.04
+     },
+     "2024": {
+      "n": 27,
+      "netPct": 8.15
+     },
+     "2025": {
+      "n": 20,
+      "netPct": 2.47
+     },
+     "2026": {
+      "n": 17,
+      "netPct": -2.51
+     }
+    }
+   }
+  },
+  "A4b_minVol20000": {
+   "rows": 12808,
+   "period": "2022-07-19~2026-10-03",
+   "gross": {
+    "n": 130,
+    "avg": 0.095,
+    "ann": 2.95
+   },
+   "cost020": {
+    "ann": -3.23,
+    "sharpe": -2.02,
+    "mdd": -17.24
+   },
+   "W480cost020": {
+    "n": 26,
+    "ann": -0.5,
+    "sharpe": -0.79,
+    "byYear": {
+     "2024": {
+      "n": 1,
+      "netPct": 1
+     },
+     "2025": {
+      "n": 10,
+      "netPct": -0.85
+     },
+     "2026": {
+      "n": 15,
+      "netPct": -2.25
+     }
+    }
+   }
+  },
+  "A4b_minVol100000": {
+   "rows": 8003,
+   "period": "2022-07-19~2026-10-03",
+   "gross": {
+    "n": 69,
+    "avg": 0.052,
+    "ann": 0.85
+   },
+   "cost020": {
+    "ann": -2.43,
+    "sharpe": -3.69,
+    "mdd": -10.24
+   },
+   "W480cost020": {
+    "n": 20,
+    "ann": -0.49,
+    "sharpe": -1.13,
+    "byYear": {
+     "2025": {
+      "n": 7,
+      "netPct": -0.55
+     },
+     "2026": {
+      "n": 13,
+      "netPct": -1.54
+     }
+    }
+   }
+  },
+  "A4b_minVol500000": {
+   "rows": 2802,
+   "period": "2024-07-19~2026-10-02",
+   "gross": {
+    "n": 28,
+    "avg": 0.087,
+    "ann": 1.11
+   },
+   "cost020": {
+    "ann": -1.43,
+    "sharpe": -1.87,
+    "mdd": -3.47
+   },
+   "W480cost020": {
+    "n": 6,
+    "ann": -0.42,
+    "sharpe": -1.34,
+    "byYear": {
+     "2026": {
+      "n": 6,
+      "netPct": -0.92
+     }
+    }
+   }
+  },
+  "A4a_minVol0": {
+   "rows": 49128,
+   "period": "2020-08-28~2026-10-03",
+   "gross": {
+    "n": 607,
+    "avg": 0.15,
+    "ann": 14.94
+   },
+   "cost020": {
+    "ann": -4.98,
+    "sharpe": -1.07,
+    "mdd": -41.46
+   },
+   "W480cost020": {
+    "n": 200,
+    "ann": 1.52,
+    "sharpe": 0.43,
+    "byYear": {
+     "2020": {
+      "n": 18,
+      "netPct": 6.71
+     },
+     "2021": {
+      "n": 44,
+      "netPct": -2.74
+     },
+     "2022": {
+      "n": 40,
+      "netPct": 4.17
+     },
+     "2023": {
+      "n": 23,
+      "netPct": 1.16
+     },
+     "2024": {
+      "n": 20,
+      "netPct": 6.4
+     },
+     "2025": {
+      "n": 27,
+      "netPct": -1.48
+     },
+     "2026": {
+      "n": 28,
+      "netPct": -4.98
+     }
+    }
+   }
+  },
+  "A4a_minVol20000": {
+   "rows": 9136,
+   "period": "2020-08-30~2026-10-03",
+   "gross": {
+    "n": 114,
+    "avg": 0.134,
+    "ann": 2.51
+   },
+   "cost020": {
+    "ann": -1.23,
+    "sharpe": -0.55,
+    "mdd": -14.65
+   },
+   "W480cost020": {
+    "n": 36,
+    "ann": 0.17,
+    "sharpe": 0.11,
+    "byYear": {
+     "2022": {
+      "n": 6,
+      "netPct": 3.48
+     },
+     "2023": {
+      "n": 2,
+      "netPct": 0.21
+     },
+     "2024": {
+      "n": 1,
+      "netPct": 1.2
+     },
+     "2025": {
+      "n": 9,
+      "netPct": -0.41
+     },
+     "2026": {
+      "n": 18,
+      "netPct": -3.46
+     }
+    }
+   }
+  },
+  "A4a_minVol100000": {
+   "rows": 3221,
+   "period": "2021-02-05~2026-10-02",
+   "gross": {
+    "n": 40,
+    "avg": 0.129,
+    "ann": 0.92
+   },
+   "cost020": {
+    "ann": -0.5,
+    "sharpe": -0.7,
+    "mdd": -3.99
+   },
+   "W480cost020": {
+    "n": 9,
+    "ann": -0.25,
+    "sharpe": -1.2,
+    "byYear": {
+     "2025": {
+      "n": 1,
+      "netPct": -0.27
+     },
+     "2026": {
+      "n": 8,
+      "netPct": -1.13
+     }
+    }
+   }
+  },
+  "A4a_minVol500000": {
+   "rows": 605,
+   "period": "2021-10-28~2026-09-28",
+   "gross": {
+    "n": 7,
+    "avg": 0.151,
+    "ann": 0.21
+   },
+   "cost020": {
+    "ann": -0.07,
+    "sharpe": -0.56,
+    "mdd": -0.73
+   },
+   "W480cost020": {
+    "n": 0,
+    "ann": 0,
+    "sharpe": null,
+    "byYear": {}
+   }
+  }
+ },
+ "backtest_B_stocks": {
+  "B_by30_TSLAX_vs_TSLA": {
+   "desc": "Bybit TSLAx / TSLA at Yahoo 1h RTH bar closes - 1 (crypto 30m close aligned)",
+   "obs": 2177,
+   "premiumStats": {
+    "n": 2177,
+    "meanPct": 0.0527,
+    "sdPct": 0.1689,
+    "p01": -0.373,
+    "p50": 0.049,
+    "p99": 0.605,
+    "minPct": -0.862,
+    "maxPct": 1.683
+   },
+   "premTradFiOpen": {
+    "n": 2161,
+    "meanPct": 0.0523,
+    "sdPct": 0.1684,
+    "p01": -0.373,
+    "p50": 0.048,
+    "p99": 0.603,
+    "minPct": -0.862,
+    "maxPct": 1.683
+   },
+   "premTradFiClosed": {
+    "n": 16,
+    "meanPct": 0.1015,
+    "sdPct": 0.227,
+    "p01": -0.163,
+    "p50": 0.087,
+    "p99": 0.851,
+    "minPct": -0.163,
+    "maxPct": 0.851
+   },
+   "halfLifeBars": 0.5,
+   "results": {
+    "RTH72_cost0.30": {
+     "period": "2025-07-08~2026-10-02",
+     "trades": 54,
+     "winPct": 9.3,
+     "avgGrossPct": 0.047,
+     "avgNetPct": -0.253,
+     "annNetPctOnNotional": -11.06,
+     "sharpe": -5.37,
+     "mddPct": -14.41,
+     "avgHoldH": 15.6,
+     "timeoutPct": 0,
+     "byYear": {
+      "2025": {
+       "n": 16,
+       "netPct": -3.14
+      },
+      "2026": {
+       "n": 38,
+       "netPct": -10.52
+      }
+     },
+     "signalWhenTradFiClosed": {
+      "n": 0,
+      "avgNetPct": null,
+      "win": null
+     },
+     "signalWhenTradFiOpen": {
+      "n": 54,
+      "avgNetPct": -0.253,
+      "win": 9.3
+     }
+    },
+    "RTH72_cost0.20": {
+     "period": "2025-07-08~2026-10-02",
+     "trades": 54,
+     "winPct": 18.5,
+     "avgGrossPct": 0.047,
+     "avgNetPct": -0.153,
+     "annNetPctOnNotional": -6.69,
+     "sharpe": -3.89,
+     "mddPct": -9.11,
+     "avgHoldH": 15.6,
+     "timeoutPct": 0,
+     "byYear": {
+      "2025": {
+       "n": 16,
+       "netPct": -1.54
+      },
+      "2026": {
+       "n": 38,
+       "netPct": -6.72
+      }
+     },
+     "signalWhenTradFiClosed": {
+      "n": 0,
+      "avgNetPct": null,
+      "win": null
+     },
+     "signalWhenTradFiOpen": {
+      "n": 54,
+      "avgNetPct": -0.153,
+      "win": 18.5
+     }
+    },
+    "RTH72_cost0.10": {
+     "period": "2025-07-08~2026-10-02",
+     "trades": 54,
+     "winPct": 29.6,
+     "avgGrossPct": 0.047,
+     "avgNetPct": -0.053,
+     "annNetPctOnNotional": -2.32,
+     "sharpe": -1.55,
+     "mddPct": -3.81,
+     "avgHoldH": 15.6,
+     "timeoutPct": 0,
+     "byYear": {
+      "2025": {
+       "n": 16,
+       "netPct": 0.06
+      },
+      "2026": {
+       "n": 38,
+       "netPct": -2.92
+      }
+     },
+     "signalWhenTradFiClosed": {
+      "n": 0,
+      "avgNetPct": null,
+      "win": null
+     },
+     "signalWhenTradFiOpen": {
+      "n": 54,
+      "avgNetPct": -0.053,
+      "win": 29.6
+     }
+    },
+    "RTH72_twoSided_cost0.20": {
+     "period": "2025-07-08~2026-10-02",
+     "trades": 104,
+     "winPct": 16.3,
+     "avgGrossPct": 0.041,
+     "avgNetPct": -0.159,
+     "annNetPctOnNotional": -13.34,
+     "sharpe": -6.41,
+     "mddPct": -16.49,
+     "avgHoldH": 18.3,
+     "timeoutPct": 1,
+     "byYear": {
+      "2025": {
+       "n": 35,
+       "netPct": -4.59
+      },
+      "2026": {
+       "n": 69,
+       "netPct": -11.89
+      }
+     },
+     "signalWhenTradFiClosed": {
+      "n": 1,
+      "avgNetPct": -0.349,
+      "win": 0
+     },
+     "signalWhenTradFiOpen": {
+      "n": 103,
+      "avgNetPct": -0.157,
+      "win": 16.5
+     }
+    },
+    "RTH72_gross": {
+     "period": "2025-07-08~2026-10-02",
+     "trades": 54,
+     "winPct": 55.6,
+     "avgGrossPct": 0.047,
+     "avgNetPct": 0.047,
+     "annNetPctOnNotional": 2.05,
+     "sharpe": 1.42,
+     "mddPct": -0.66,
+     "avgHoldH": 15.6,
+     "timeoutPct": 0,
+     "byYear": {
+      "2025": {
+       "n": 16,
+       "netPct": 1.66
+      },
+      "2026": {
+       "n": 38,
+       "netPct": 0.88
+      }
+     },
+     "signalWhenTradFiClosed": {
+      "n": 0,
+      "avgNetPct": null,
+      "win": null
+     },
+     "signalWhenTradFiOpen": {
+      "n": 54,
+      "avgNetPct": 0.047,
+      "win": 55.6
+     }
+    }
+   }
+  },
+  "B_by30_AAPLX_vs_AAPL": {
+   "desc": "Bybit AAPLx / AAPL at Yahoo 1h RTH bar closes - 1 (crypto 30m close aligned)",
+   "obs": 2201,
+   "premiumStats": {
+    "n": 2201,
+    "meanPct": 0.1683,
+    "sdPct": 0.2165,
+    "p01": -0.353,
+    "p50": 0.193,
+    "p99": 0.612,
+    "minPct": -1.893,
+    "maxPct": 0.98
+   },
+   "premTradFiOpen": {
+    "n": 2185,
+    "meanPct": 0.1683,
+    "sdPct": 0.2167,
+    "p01": -0.361,
+    "p50": 0.193,
+    "p99": 0.619,
+    "minPct": -1.893,
+    "maxPct": 0.98
+   },
+   "premTradFiClosed": {
+    "n": 16,
+    "meanPct": 0.1649,
+    "sdPct": 0.1879,
+    "p01": -0.086,
+    "p50": 0.158,
+    "p99": 0.504,
+    "minPct": -0.086,
+    "maxPct": 0.504
+   },
+   "halfLifeBars": 1.3,
+   "results": {
+    "RTH72_cost0.30": {
+     "period": "2025-07-01~2026-10-02",
+     "trades": 53,
+     "winPct": 17,
+     "avgGrossPct": 0.087,
+     "avgNetPct": -0.213,
+     "annNetPctOnNotional": -9.01,
+     "sharpe": -3.92,
+     "mddPct": -11.3,
+     "avgHoldH": 14.7,
+     "timeoutPct": 0,
+     "byYear": {
+      "2025": {
+       "n": 20,
+       "netPct": -3.14
+      },
+      "2026": {
+       "n": 33,
+       "netPct": -8.15
+      }
+     },
+     "signalWhenTradFiClosed": {
+      "n": 0,
+      "avgNetPct": null,
+      "win": null
+     },
+     "signalWhenTradFiOpen": {
+      "n": 53,
+      "avgNetPct": -0.213,
+      "win": 17
+     }
+    },
+    "RTH72_cost0.20": {
+     "period": "2025-07-01~2026-10-02",
+     "trades": 53,
+     "winPct": 28.3,
+     "avgGrossPct": 0.087,
+     "avgNetPct": -0.113,
+     "annNetPctOnNotional": -4.78,
+     "sharpe": -2.34,
+     "mddPct": -6.48,
+     "avgHoldH": 14.7,
+     "timeoutPct": 0,
+     "byYear": {
+      "2025": {
+       "n": 20,
+       "netPct": -1.14
+      },
+      "2026": {
+       "n": 33,
+       "netPct": -4.85
+      }
+     },
+     "signalWhenTradFiClosed": {
+      "n": 0,
+      "avgNetPct": null,
+      "win": null
+     },
+     "signalWhenTradFiOpen": {
+      "n": 53,
+      "avgNetPct": -0.113,
+      "win": 28.3
+     }
+    },
+    "RTH72_cost0.10": {
+     "period": "2025-07-01~2026-10-02",
+     "trades": 53,
+     "winPct": 49.1,
+     "avgGrossPct": 0.087,
+     "avgNetPct": -0.013,
+     "annNetPctOnNotional": -0.56,
+     "sharpe": -0.29,
+     "mddPct": -2.77,
+     "avgHoldH": 14.7,
+     "timeoutPct": 0,
+     "byYear": {
+      "2025": {
+       "n": 20,
+       "netPct": 0.86
+      },
+      "2026": {
+       "n": 33,
+       "netPct": -1.55
+      }
+     },
+     "signalWhenTradFiClosed": {
+      "n": 0,
+      "avgNetPct": null,
+      "win": null
+     },
+     "signalWhenTradFiOpen": {
+      "n": 53,
+      "avgNetPct": -0.013,
+      "win": 49.1
+     }
+    },
+    "RTH72_twoSided_cost0.20": {
+     "period": "2025-07-01~2026-10-02",
+     "trades": 102,
+     "winPct": 22.5,
+     "avgGrossPct": 0.054,
+     "avgNetPct": -0.146,
+     "annNetPctOnNotional": -11.85,
+     "sharpe": -4.46,
+     "mddPct": -14.87,
+     "avgHoldH": 19.3,
+     "timeoutPct": 0,
+     "byYear": {
+      "2025": {
+       "n": 35,
+       "netPct": -3.34
+      },
+      "2026": {
+       "n": 67,
+       "netPct": -11.53
+      }
+     },
+     "signalWhenTradFiClosed": {
+      "n": 1,
+      "avgNetPct": -0.082,
+      "win": 0
+     },
+     "signalWhenTradFiOpen": {
+      "n": 101,
+      "avgNetPct": -0.146,
+      "win": 22.8
+     }
+    },
+    "RTH72_gross": {
+     "period": "2025-07-01~2026-10-02",
+     "trades": 53,
+     "winPct": 66,
+     "avgGrossPct": 0.087,
+     "avgNetPct": 0.087,
+     "annNetPctOnNotional": 3.67,
+     "sharpe": 1.94,
+     "mddPct": -1.25,
+     "avgHoldH": 14.7,
+     "timeoutPct": 0,
+     "byYear": {
+      "2025": {
+       "n": 20,
+       "netPct": 2.86
+      },
+      "2026": {
+       "n": 33,
+       "netPct": 1.75
+      }
+     },
+     "signalWhenTradFiClosed": {
+      "n": 0,
+      "avgNetPct": null,
+      "win": null
+     },
+     "signalWhenTradFiOpen": {
+      "n": 53,
+      "avgNetPct": 0.087,
+      "win": 66
+     }
+    }
+   }
+  },
+  "B_by30_NVDAX_vs_NVDA": {
+   "desc": "Bybit NVDAx / NVDA at Yahoo 1h RTH bar closes - 1 (crypto 30m close aligned)",
+   "obs": 610,
+   "premiumStats": {
+    "n": 610,
+    "meanPct": 0.1471,
+    "sdPct": 0.0673,
+    "p01": -0.009,
+    "p50": 0.149,
+    "p99": 0.296,
+    "minPct": -0.101,
+    "maxPct": 0.421
+   },
+   "premTradFiOpen": {
+    "n": 610,
+    "meanPct": 0.1471,
+    "sdPct": 0.0673,
+    "p01": -0.009,
+    "p50": 0.149,
+    "p99": 0.296,
+    "minPct": -0.101,
+    "maxPct": 0.421
+   },
+   "premTradFiClosed": null,
+   "halfLifeBars": 0.9,
+   "results": {
+    "RTH72_cost0.30": {
+     "period": "2026-06-01~2026-10-02",
+     "trades": 15,
+     "winPct": 0,
+     "avgGrossPct": -0.004,
+     "avgNetPct": -0.304,
+     "annNetPctOnNotional": -13.5,
+     "sharpe": -7.64,
+     "mddPct": -4.55,
+     "avgHoldH": 16.5,
+     "timeoutPct": 0,
+     "byYear": {
+      "2026": {
+       "n": 15,
+       "netPct": -4.55
+      }
+     },
+     "signalWhenTradFiClosed": {
+      "n": 0,
+      "avgNetPct": null,
+      "win": null
+     },
+     "signalWhenTradFiOpen": {
+      "n": 15,
+      "avgNetPct": -0.304,
+      "win": 0
+     }
+    },
+    "RTH72_cost0.20": {
+     "period": "2026-06-01~2026-10-02",
+     "trades": 15,
+     "winPct": 0,
+     "avgGrossPct": -0.004,
+     "avgNetPct": -0.204,
+     "annNetPctOnNotional": -9.05,
+     "sharpe": -7.32,
+     "mddPct": -3.05,
+     "avgHoldH": 16.5,
+     "timeoutPct": 0,
+     "byYear": {
+      "2026": {
+       "n": 15,
+       "netPct": -3.05
+      }
+     },
+     "signalWhenTradFiClosed": {
+      "n": 0,
+      "avgNetPct": null,
+      "win": null
+     },
+     "signalWhenTradFiOpen": {
+      "n": 15,
+      "avgNetPct": -0.204,
+      "win": 0
+     }
+    },
+    "RTH72_cost0.10": {
+     "period": "2026-06-01~2026-10-02",
+     "trades": 15,
+     "winPct": 6.7,
+     "avgGrossPct": -0.004,
+     "avgNetPct": -0.104,
+     "annNetPctOnNotional": -4.61,
+     "sharpe": -6.25,
+     "mddPct": -1.55,
+     "avgHoldH": 16.5,
+     "timeoutPct": 0,
+     "byYear": {
+      "2026": {
+       "n": 15,
+       "netPct": -1.55
+      }
+     },
+     "signalWhenTradFiClosed": {
+      "n": 0,
+      "avgNetPct": null,
+      "win": null
+     },
+     "signalWhenTradFiOpen": {
+      "n": 15,
+      "avgNetPct": -0.104,
+      "win": 6.7
+     }
+    },
+    "RTH72_twoSided_cost0.20": {
+     "period": "2026-06-01~2026-10-02",
+     "trades": 26,
+     "winPct": 0,
+     "avgGrossPct": -0.008,
+     "avgNetPct": -0.208,
+     "annNetPctOnNotional": -16.02,
+     "sharpe": -9.99,
+     "mddPct": -5.41,
+     "avgHoldH": 24.5,
+     "timeoutPct": 3.8,
+     "byYear": {
+      "2026": {
+       "n": 26,
+       "netPct": -5.41
+      }
+     },
+     "signalWhenTradFiClosed": {
+      "n": 0,
+      "avgNetPct": null,
+      "win": null
+     },
+     "signalWhenTradFiOpen": {
+      "n": 26,
+      "avgNetPct": -0.208,
+      "win": 0
+     }
+    },
+    "RTH72_gross": {
+     "period": "2026-06-01~2026-10-02",
+     "trades": 15,
+     "winPct": 46.7,
+     "avgGrossPct": -0.004,
+     "avgNetPct": -0.004,
+     "annNetPctOnNotional": -0.16,
+     "sharpe": -0.4,
+     "mddPct": -0.37,
+     "avgHoldH": 16.5,
+     "timeoutPct": 0,
+     "byYear": {
+      "2026": {
+       "n": 15,
+       "netPct": -0.05
+      }
+     },
+     "signalWhenTradFiClosed": {
+      "n": 0,
+      "avgNetPct": null,
+      "win": null
+     },
+     "signalWhenTradFiOpen": {
+      "n": 15,
+      "avgNetPct": -0.004,
+      "win": 46.7
+     }
+    }
+   }
+  },
+  "B_bn30_perp_TSLA_vs_TSLA": {
+   "desc": "Binance TSLA perp / TSLA at Yahoo 1h RTH bar closes - 1 (crypto 30m close aligned)",
+   "obs": 1196,
+   "premiumStats": {
+    "n": 1196,
+    "meanPct": 0.0684,
+    "sdPct": 0.0596,
+    "p01": -0.048,
+    "p50": 0.065,
+    "p99": 0.181,
+    "minPct": -0.098,
+    "maxPct": 1.31
+   },
+   "premTradFiOpen": {
+    "n": 1191,
+    "meanPct": 0.0684,
+    "sdPct": 0.0596,
+    "p01": -0.048,
+    "p50": 0.065,
+    "p99": 0.181,
+    "minPct": -0.098,
+    "maxPct": 1.31
+   },
+   "premTradFiClosed": null,
+   "halfLifeBars": 0.9,
+   "results": {
+    "RTH72_cost0.30": {
+     "period": "2026-01-28~2026-10-02",
+     "trades": 17,
+     "winPct": 0,
+     "avgGrossPct": 0.04,
+     "avgNetPct": -0.26,
+     "annNetPctOnNotional": -6.54,
+     "sharpe": -5.85,
+     "mddPct": -4.73,
+     "avgHoldH": 52.6,
+     "timeoutPct": 5.9,
+     "byYear": {
+      "2026": {
+       "n": 17,
+       "netPct": -4.43
+      }
+     },
+     "signalWhenTradFiClosed": {
+      "n": 0,
+      "avgNetPct": null,
+      "win": null
+     },
+     "signalWhenTradFiOpen": {
+      "n": 17,
+      "avgNetPct": -0.26,
+      "win": 0
+     }
+    },
+    "RTH72_cost0.20": {
+     "period": "2026-01-28~2026-10-02",
+     "trades": 17,
+     "winPct": 0,
+     "avgGrossPct": 0.04,
+     "avgNetPct": -0.16,
+     "annNetPctOnNotional": -4.03,
+     "sharpe": -5.37,
+     "mddPct": -2.93,
+     "avgHoldH": 52.6,
+     "timeoutPct": 5.9,
+     "byYear": {
+      "2026": {
+       "n": 17,
+       "netPct": -2.73
+      }
+     },
+     "signalWhenTradFiClosed": {
+      "n": 0,
+      "avgNetPct": null,
+      "win": null
+     },
+     "signalWhenTradFiOpen": {
+      "n": 17,
+      "avgNetPct": -0.16,
+      "win": 0
+     }
+    },
+    "RTH72_cost0.10": {
+     "period": "2026-01-28~2026-10-02",
+     "trades": 17,
+     "winPct": 11.8,
+     "avgGrossPct": 0.04,
+     "avgNetPct": -0.06,
+     "annNetPctOnNotional": -1.52,
+     "sharpe": -3.7,
+     "mddPct": -1.13,
+     "avgHoldH": 52.6,
+     "timeoutPct": 5.9,
+     "byYear": {
+      "2026": {
+       "n": 17,
+       "netPct": -1.03
+      }
+     },
+     "signalWhenTradFiClosed": {
+      "n": 0,
+      "avgNetPct": null,
+      "win": null
+     },
+     "signalWhenTradFiOpen": {
+      "n": 17,
+      "avgNetPct": -0.06,
+      "win": 11.8
+     }
+    },
+    "RTH72_twoSided_cost0.20": {
+     "period": "2026-01-28~2026-10-02",
+     "trades": 32,
+     "winPct": 0,
+     "avgGrossPct": 0.049,
+     "avgNetPct": -0.151,
+     "annNetPctOnNotional": -7.16,
+     "sharpe": -7.12,
+     "mddPct": -5.04,
+     "avgHoldH": 61.4,
+     "timeoutPct": 12.5,
+     "byYear": {
+      "2026": {
+       "n": 32,
+       "netPct": -4.84
+      }
+     },
+     "signalWhenTradFiClosed": {
+      "n": 0,
+      "avgNetPct": null,
+      "win": null
+     },
+     "signalWhenTradFiOpen": {
+      "n": 32,
+      "avgNetPct": -0.151,
+      "win": 0
+     }
+    },
+    "RTH72_gross": {
+     "period": "2026-01-28~2026-10-02",
+     "trades": 17,
+     "winPct": 82.4,
+     "avgGrossPct": 0.04,
+     "avgNetPct": 0.04,
+     "annNetPctOnNotional": 0.99,
+     "sharpe": 3.34,
+     "mddPct": -0.08,
+     "avgHoldH": 52.6,
+     "timeoutPct": 5.9,
+     "byYear": {
+      "2026": {
+       "n": 17,
+       "netPct": 0.67
+      }
+     },
+     "signalWhenTradFiClosed": {
+      "n": 0,
+      "avgNetPct": null,
+      "win": null
+     },
+     "signalWhenTradFiOpen": {
+      "n": 17,
+      "avgNetPct": 0.04,
+      "win": 82.4
+     }
+    }
+   }
+  },
+  "B_bn30_perp_NVDA_vs_NVDA": {
+   "desc": "Binance NVDA perp / NVDA at Yahoo 1h RTH bar closes - 1 (crypto 30m close aligned)",
+   "obs": 924,
+   "premiumStats": {
+    "n": 924,
+    "meanPct": 0.0726,
+    "sdPct": 0.043,
+    "p01": -0.033,
+    "p50": 0.076,
+    "p99": 0.165,
+    "minPct": -0.132,
+    "maxPct": 0.25
+   },
+   "premTradFiOpen": {
+    "n": 924,
+    "meanPct": 0.0726,
+    "sdPct": 0.043,
+    "p01": -0.033,
+    "p50": 0.076,
+    "p99": 0.165,
+    "minPct": -0.132,
+    "maxPct": 0.25
+   },
+   "premTradFiClosed": null,
+   "halfLifeBars": 1.4,
+   "results": {
+    "RTH72_cost0.30": {
+     "period": "2026-03-26~2026-10-02",
+     "trades": 9,
+     "winPct": 0,
+     "avgGrossPct": 0.058,
+     "avgNetPct": -0.242,
+     "annNetPctOnNotional": -4.19,
+     "sharpe": -3.83,
+     "mddPct": -2.24,
+     "avgHoldH": 40.9,
+     "timeoutPct": 0,
+     "byYear": {
+      "2026": {
+       "n": 9,
+       "netPct": -2.18
+      }
+     },
+     "signalWhenTradFiClosed": {
+      "n": 0,
+      "avgNetPct": null,
+      "win": null
+     },
+     "signalWhenTradFiOpen": {
+      "n": 9,
+      "avgNetPct": -0.242,
+      "win": 0
+     }
+    },
+    "RTH72_cost0.20": {
+     "period": "2026-03-26~2026-10-02",
+     "trades": 9,
+     "winPct": 0,
+     "avgGrossPct": 0.058,
+     "avgNetPct": -0.142,
+     "annNetPctOnNotional": -2.46,
+     "sharpe": -3.13,
+     "mddPct": -1.37,
+     "avgHoldH": 40.9,
+     "timeoutPct": 0,
+     "byYear": {
+      "2026": {
+       "n": 9,
+       "netPct": -1.28
+      }
+     },
+     "signalWhenTradFiClosed": {
+      "n": 0,
+      "avgNetPct": null,
+      "win": null
+     },
+     "signalWhenTradFiOpen": {
+      "n": 9,
+      "avgNetPct": -0.142,
+      "win": 0
+     }
+    },
+    "RTH72_cost0.10": {
+     "period": "2026-03-26~2026-10-02",
+     "trades": 9,
+     "winPct": 11.1,
+     "avgGrossPct": 0.058,
+     "avgNetPct": -0.042,
+     "annNetPctOnNotional": -0.73,
+     "sharpe": -1.44,
+     "mddPct": -0.57,
+     "avgHoldH": 40.9,
+     "timeoutPct": 0,
+     "byYear": {
+      "2026": {
+       "n": 9,
+       "netPct": -0.38
+      }
+     },
+     "signalWhenTradFiClosed": {
+      "n": 0,
+      "avgNetPct": null,
+      "win": null
+     },
+     "signalWhenTradFiOpen": {
+      "n": 9,
+      "avgNetPct": -0.042,
+      "win": 11.1
+     }
+    },
+    "RTH72_twoSided_cost0.20": {
+     "period": "2026-03-26~2026-10-02",
+     "trades": 21,
+     "winPct": 0,
+     "avgGrossPct": 0.035,
+     "avgNetPct": -0.165,
+     "annNetPctOnNotional": -6.64,
+     "sharpe": -5.86,
+     "mddPct": -3.46,
+     "avgHoldH": 52.5,
+     "timeoutPct": 9.5,
+     "byYear": {
+      "2026": {
+       "n": 21,
+       "netPct": -3.46
+      }
+     },
+     "signalWhenTradFiClosed": {
+      "n": 0,
+      "avgNetPct": null,
+      "win": null
+     },
+     "signalWhenTradFiOpen": {
+      "n": 21,
+      "avgNetPct": -0.165,
+      "win": 0
+     }
+    },
+    "RTH72_gross": {
+     "period": "2026-03-26~2026-10-02",
+     "trades": 9,
+     "winPct": 88.9,
+     "avgGrossPct": 0.058,
+     "avgNetPct": 0.058,
+     "annNetPctOnNotional": 0.99,
+     "sharpe": 2.81,
+     "mddPct": -0.1,
+     "avgHoldH": 40.9,
+     "timeoutPct": 0,
+     "byYear": {
+      "2026": {
+       "n": 9,
+       "netPct": 0.52
+      }
+     },
+     "signalWhenTradFiClosed": {
+      "n": 0,
+      "avgNetPct": null,
+      "win": null
+     },
+     "signalWhenTradFiOpen": {
+      "n": 9,
+      "avgNetPct": 0.058,
+      "win": 88.9
+     }
+    }
+   }
+  },
+  "B_bn30_perp_SPY_vs_SPY": {
+   "desc": "Binance SPY perp / SPY at Yahoo 1h RTH bar closes - 1 (crypto 30m close aligned)",
+   "obs": 883,
+   "premiumStats": {
+    "n": 883,
+    "meanPct": 0.0398,
+    "sdPct": 0.0602,
+    "p01": -0.107,
+    "p50": 0.046,
+    "p99": 0.169,
+    "minPct": -0.158,
+    "maxPct": 0.203
+   },
+   "premTradFiOpen": {
+    "n": 883,
+    "meanPct": 0.0398,
+    "sdPct": 0.0602,
+    "p01": -0.107,
+    "p50": 0.046,
+    "p99": 0.169,
+    "minPct": -0.158,
+    "maxPct": 0.203
+   },
+   "premTradFiClosed": null,
+   "halfLifeBars": 7.2,
+   "results": {
+    "RTH72_cost0.30": {
+     "period": "2026-04-06~2026-10-02",
+     "trades": 6,
+     "winPct": 0,
+     "avgGrossPct": 0.025,
+     "avgNetPct": -0.275,
+     "annNetPctOnNotional": -3.37,
+     "sharpe": -3.95,
+     "mddPct": -1.69,
+     "avgHoldH": 82.4,
+     "timeoutPct": 16.7,
+     "byYear": {
+      "2026": {
+       "n": 6,
+       "netPct": -1.65
+      }
+     },
+     "signalWhenTradFiClosed": {
+      "n": 0,
+      "avgNetPct": null,
+      "win": null
+     },
+     "signalWhenTradFiOpen": {
+      "n": 6,
+      "avgNetPct": -0.275,
+      "win": 0
+     }
+    },
+    "RTH72_cost0.20": {
+     "period": "2026-04-06~2026-10-02",
+     "trades": 6,
+     "winPct": 0,
+     "avgGrossPct": 0.025,
+     "avgNetPct": -0.175,
+     "annNetPctOnNotional": -2.14,
+     "sharpe": -3.74,
+     "mddPct": -1.09,
+     "avgHoldH": 82.4,
+     "timeoutPct": 16.7,
+     "byYear": {
+      "2026": {
+       "n": 6,
+       "netPct": -1.05
+      }
+     },
+     "signalWhenTradFiClosed": {
+      "n": 0,
+      "avgNetPct": null,
+      "win": null
+     },
+     "signalWhenTradFiOpen": {
+      "n": 6,
+      "avgNetPct": -0.175,
+      "win": 0
+     }
+    },
+    "RTH72_cost0.10": {
+     "period": "2026-04-06~2026-10-02",
+     "trades": 6,
+     "winPct": 0,
+     "avgGrossPct": 0.025,
+     "avgNetPct": -0.075,
+     "annNetPctOnNotional": -0.92,
+     "sharpe": -3.04,
+     "mddPct": -0.49,
+     "avgHoldH": 82.4,
+     "timeoutPct": 16.7,
+     "byYear": {
+      "2026": {
+       "n": 6,
+       "netPct": -0.45
+      }
+     },
+     "signalWhenTradFiClosed": {
+      "n": 0,
+      "avgNetPct": null,
+      "win": null
+     },
+     "signalWhenTradFiOpen": {
+      "n": 6,
+      "avgNetPct": -0.075,
+      "win": 0
+     }
+    },
+    "RTH72_twoSided_cost0.20": {
+     "period": "2026-04-06~2026-10-02",
+     "trades": 17,
+     "winPct": 0,
+     "avgGrossPct": 0.017,
+     "avgNetPct": -0.183,
+     "annNetPctOnNotional": -6.33,
+     "sharpe": -6.2,
+     "mddPct": -3.15,
+     "avgHoldH": 75.6,
+     "timeoutPct": 29.4,
+     "byYear": {
+      "2026": {
+       "n": 17,
+       "netPct": -3.11
+      }
+     },
+     "signalWhenTradFiClosed": {
+      "n": 0,
+      "avgNetPct": null,
+      "win": null
+     },
+     "signalWhenTradFiOpen": {
+      "n": 17,
+      "avgNetPct": -0.183,
+      "win": 0
+     }
+    },
+    "RTH72_gross": {
+     "period": "2026-04-06~2026-10-02",
+     "trades": 6,
+     "winPct": 66.7,
+     "avgGrossPct": 0.025,
+     "avgNetPct": 0.025,
+     "annNetPctOnNotional": 0.3,
+     "sharpe": 2.13,
+     "mddPct": -0.05,
+     "avgHoldH": 82.4,
+     "timeoutPct": 16.7,
+     "byYear": {
+      "2026": {
+       "n": 6,
+       "netPct": 0.15
+      }
+     },
+     "signalWhenTradFiClosed": {
+      "n": 0,
+      "avgNetPct": null,
+      "win": null
+     },
+     "signalWhenTradFiOpen": {
+      "n": 6,
+      "avgNetPct": 0.025,
+      "win": 66.7
+     }
+    }
+   }
+  }
+ },
+ "weekend_gold": {
+  "bn_spot_PAXG": {
+   "n": 137,
+   "tokenWeekendRet_vs_GCreopenRet": {
+    "corr": 0.929,
+    "beta": 0.936
+   },
+   "meanAbsGCgapPct": 0.481,
+   "meanAbsTokenMinusGCPct": 0.265,
+   "premFriCloseMeanPct": -0.534,
+   "premSunReopenMeanPct": -0.443,
+   "premReopenPlus24hMeanPct": -0.468,
+   "sdPremChangeOverWeekendPct": 0.347
+  },
+  "by_spot_XAUT": {
+   "n": 81,
+   "tokenWeekendRet_vs_GCreopenRet": {
+    "corr": 0.956,
+    "beta": 1.008
+   },
+   "meanAbsGCgapPct": 0.686,
+   "meanAbsTokenMinusGCPct": 0.237,
+   "premFriCloseMeanPct": -0.666,
+   "premSunReopenMeanPct": -0.62,
+   "premReopenPlus24hMeanPct": -0.644,
+   "sdPremChangeOverWeekendPct": 0.346
+  },
+  "bn_perp_XAU": {
+   "n": 46,
+   "tokenWeekendRet_vs_GCreopenRet": {
+    "corr": 0.971,
+    "beta": 1.036
+   },
+   "meanAbsGCgapPct": 0.859,
+   "meanAbsTokenMinusGCPct": 0.241,
+   "premFriCloseMeanPct": -0.457,
+   "premSunReopenMeanPct": -0.457,
+   "premReopenPlus24hMeanPct": -0.425,
+   "sdPremChangeOverWeekendPct": 0.354
+  },
+  "hl_GOLD": {
+   "n": 29,
+   "tokenWeekendRet_vs_GCreopenRet": {
+    "corr": 0.936,
+    "beta": 0.919
+   },
+   "meanAbsGCgapPct": 0.511,
+   "meanAbsTokenMinusGCPct": 0.205,
+   "premFriCloseMeanPct": -0.672,
+   "premSunReopenMeanPct": -0.526,
+   "premReopenPlus24hMeanPct": -0.515,
+   "sdPremChangeOverWeekendPct": 0.231
+  }
+ },
+ "weekend_stocks": {
+  "by30_TSLAX_vs_TSLA": {
+   "n": 64,
+   "tokenWeekendRet_vs_MondayGap": {
+    "corr": 0.983,
+    "beta": 0.955
+   },
+   "meanAbsGapPct": 1.315,
+   "meanAbsTokenMinusGapPct": 0.182,
+   "premAtFriClose": {
+    "n": 64,
+    "meanPct": 0.0534,
+    "sdPct": 0.1806,
+    "p01": -0.385,
+    "p50": 0.014,
+    "p99": 0.88,
+    "minPct": -0.385,
+    "maxPct": 0.88
+   },
+   "premAtMonOpen": {
+    "n": 64,
+    "meanPct": 0.0797,
+    "sdPct": 0.2407,
+    "p01": -0.209,
+    "p50": 0.02,
+    "p99": 1.413,
+    "minPct": -0.209,
+    "maxPct": 1.413
+   }
+  },
+  "by30_AAPLX_vs_AAPL": {
+   "n": 65,
+   "tokenWeekendRet_vs_MondayGap": {
+    "corr": 0.936,
+    "beta": 0.909
+   },
+   "meanAbsGapPct": 0.587,
+   "meanAbsTokenMinusGapPct": 0.193,
+   "premAtFriClose": {
+    "n": 65,
+    "meanPct": 0.1509,
+    "sdPct": 0.2657,
+    "p01": -0.712,
+    "p50": 0.161,
+    "p99": 0.644,
+    "minPct": -0.712,
+    "maxPct": 0.644
+   },
+   "premAtMonOpen": {
+    "n": 65,
+    "meanPct": 0.1361,
+    "sdPct": 0.2376,
+    "p01": -0.328,
+    "p50": 0.136,
+    "p99": 1.138,
+    "minPct": -0.328,
+    "maxPct": 1.138
+   }
+  },
+  "by30_NVDAX_vs_NVDA": {
+   "n": 17,
+   "tokenWeekendRet_vs_MondayGap": {
+    "corr": 0.995,
+    "beta": 1.021
+   },
+   "meanAbsGapPct": 1.105,
+   "meanAbsTokenMinusGapPct": 0.108,
+   "premAtFriClose": {
+    "n": 17,
+    "meanPct": 0.0791,
+    "sdPct": 0.1107,
+    "p01": -0.208,
+    "p50": 0.069,
+    "p99": 0.271,
+    "minPct": -0.208,
+    "maxPct": 0.271
+   },
+   "premAtMonOpen": {
+    "n": 17,
+    "meanPct": 0.1333,
+    "sdPct": 0.0811,
+    "p01": -0.014,
+    "p50": 0.142,
+    "p99": 0.279,
+    "minPct": -0.014,
+    "maxPct": 0.279
+   }
+  },
+  "bn30_perp_TSLA_vs_TSLA": {
+   "n": 35,
+   "tokenWeekendRet_vs_MondayGap": {
+    "corr": 0.999,
+    "beta": 0.998
+   },
+   "meanAbsGapPct": 1.039,
+   "meanAbsTokenMinusGapPct": 0.049,
+   "premAtFriClose": {
+    "n": 35,
+    "meanPct": 0.0498,
+    "sdPct": 0.056,
+    "p01": -0.064,
+    "p50": 0.06,
+    "p99": 0.161,
+    "minPct": -0.064,
+    "maxPct": 0.161
+   },
+   "premAtMonOpen": {
+    "n": 35,
+    "meanPct": 0.0697,
+    "sdPct": 0.0564,
+    "p01": -0.041,
+    "p50": 0.072,
+    "p99": 0.175,
+    "minPct": -0.041,
+    "maxPct": 0.175
+   }
+  },
+  "bn30_perp_NVDA_vs_NVDA": {
+   "n": 27,
+   "tokenWeekendRet_vs_MondayGap": {
+    "corr": 0.996,
+    "beta": 1.007
+   },
+   "meanAbsGapPct": 1.051,
+   "meanAbsTokenMinusGapPct": 0.086,
+   "premAtFriClose": {
+    "n": 27,
+    "meanPct": 0.0453,
+    "sdPct": 0.1024,
+    "p01": -0.338,
+    "p50": 0.069,
+    "p99": 0.223,
+    "minPct": -0.338,
+    "maxPct": 0.223
+   },
+   "premAtMonOpen": {
+    "n": 27,
+    "meanPct": 0.0953,
+    "sdPct": 0.0506,
+    "p01": 0.014,
+    "p50": 0.103,
+    "p99": 0.214,
+    "minPct": 0.014,
+    "maxPct": 0.214
+   }
+  },
+  "bn30_perp_SPY_vs_SPY": {
+   "n": 25,
+   "tokenWeekendRet_vs_MondayGap": {
+    "corr": 0.997,
+    "beta": 0.987
+   },
+   "meanAbsGapPct": 0.392,
+   "meanAbsTokenMinusGapPct": 0.04,
+   "premAtFriClose": {
+    "n": 25,
+    "meanPct": 0.02,
+    "sdPct": 0.0659,
+    "p01": -0.119,
+    "p50": 0.03,
+    "p99": 0.129,
+    "minPct": -0.119,
+    "maxPct": 0.129
+   },
+   "premAtMonOpen": {
+    "n": 25,
+    "meanPct": 0.0411,
+    "sdPct": 0.0579,
+    "p01": -0.077,
+    "p50": 0.059,
+    "p99": 0.125,
+    "minPct": -0.077,
+    "maxPct": 0.125
+   }
+  }
+ },
+ "backtest_C_oil_and_crossvenue": {
+  "C1_BrentWTI_BNperp": {
+   "desc": "ln(Binance BZUSDT / CLUSDT)",
+   "obs": 4436,
+   "premiumStats": {
+    "n": 4436,
+    "meanPct": 4.3244,
+    "sdPct": 2.0295,
+    "p01": -2.671,
+    "p50": 4.575,
+    "p99": 8.637,
+    "minPct": -4.927,
+    "maxPct": 11.787
+   },
+   "premTradFiOpen": {
+    "n": 3154,
+    "meanPct": 4.336,
+    "sdPct": 2.0276,
+    "p01": -2.718,
+    "p50": 4.609,
+    "p99": 9.005,
+    "minPct": -4.927,
+    "maxPct": 11.787
+   },
+   "premTradFiClosed": {
+    "n": 1282,
+    "meanPct": 4.2958,
+    "sdPct": 2.0346,
+    "p01": -2.611,
+    "p50": 4.545,
+    "p99": 6.494,
+    "minPct": -2.743,
+    "maxPct": 11.633
+   },
+   "halfLifeBars": 195.5,
+   "results": {
+    "W72_cost0.30": {
+     "period": "2026-04-01~2026-10-03",
+     "trades": 33,
+     "winPct": 39.4,
+     "avgGrossPct": 0.133,
+     "avgNetPct": -0.167,
+     "annNetPctOnNotional": -10.92,
+     "sharpe": -1.45,
+     "mddPct": -9.31,
+     "avgHoldH": 38.4,
+     "timeoutPct": 0,
+     "byYear": {
+      "2026": {
+       "n": 33,
+       "netPct": -5.53
+      }
+     },
+     "signalWhenTradFiClosed": {
+      "n": 5,
+      "avgNetPct": 0.001,
+      "win": 60
+     },
+     "signalWhenTradFiOpen": {
+      "n": 28,
+      "avgNetPct": -0.198,
+      "win": 35.7
+     }
+    },
+    "W72_cost0.20": {
+     "period": "2026-04-01~2026-10-03",
+     "trades": 33,
+     "winPct": 60.6,
+     "avgGrossPct": 0.133,
+     "avgNetPct": -0.067,
+     "annNetPctOnNotional": -4.4,
+     "sharpe": -0.59,
+     "mddPct": -6.31,
+     "avgHoldH": 38.4,
+     "timeoutPct": 0,
+     "byYear": {
+      "2026": {
+       "n": 33,
+       "netPct": -2.23
+      }
+     },
+     "signalWhenTradFiClosed": {
+      "n": 5,
+      "avgNetPct": 0.101,
+      "win": 60
+     },
+     "signalWhenTradFiOpen": {
+      "n": 28,
+      "avgNetPct": -0.098,
+      "win": 60.7
+     }
+    },
+    "W72_cost0.10": {
+     "period": "2026-04-01~2026-10-03",
+     "trades": 33,
+     "winPct": 69.7,
+     "avgGrossPct": 0.133,
+     "avgNetPct": 0.033,
+     "annNetPctOnNotional": 2.12,
+     "sharpe": 0.28,
+     "mddPct": -3.71,
+     "avgHoldH": 38.4,
+     "timeoutPct": 0,
+     "byYear": {
+      "2026": {
+       "n": 33,
+       "netPct": 1.07
+      }
+     },
+     "signalWhenTradFiClosed": {
+      "n": 5,
+      "avgNetPct": 0.201,
+      "win": 80
+     },
+     "signalWhenTradFiOpen": {
+      "n": 28,
+      "avgNetPct": 0.002,
+      "win": 67.9
+     }
+    },
+    "W480_cost0.20": {
+     "period": "2026-04-01~2026-10-03",
+     "trades": 7,
+     "winPct": 42.9,
+     "avgGrossPct": 0.095,
+     "avgNetPct": -0.105,
+     "annNetPctOnNotional": -1.45,
+     "sharpe": -0.3,
+     "mddPct": -3.57,
+     "avgHoldH": 118,
+     "timeoutPct": 85.7,
+     "byYear": {
+      "2026": {
+       "n": 7,
+       "netPct": -0.73
+      }
+     },
+     "signalWhenTradFiClosed": {
+      "n": 0,
+      "avgNetPct": null,
+      "win": null
+     },
+     "signalWhenTradFiOpen": {
+      "n": 7,
+      "avgNetPct": -0.105,
+      "win": 42.9
+     }
+    },
+    "W72_cost0.20_twoSided": {
+     "period": "2026-04-01~2026-10-03",
+     "trades": 68,
+     "winPct": 51.5,
+     "avgGrossPct": 0.027,
+     "avgNetPct": -0.173,
+     "annNetPctOnNotional": -23.23,
+     "sharpe": -3.33,
+     "mddPct": -20.18,
+     "avgHoldH": 39.2,
+     "timeoutPct": 4.4,
+     "byYear": {
+      "2026": {
+       "n": 68,
+       "netPct": -11.75
+      }
+     },
+     "signalWhenTradFiClosed": {
+      "n": 12,
+      "avgNetPct": 0.058,
+      "win": 41.7
+     },
+     "signalWhenTradFiOpen": {
+      "n": 56,
+      "avgNetPct": -0.222,
+      "win": 53.6
+     }
+    },
+    "W72_gross": {
+     "period": "2026-04-01~2026-10-03",
+     "trades": 33,
+     "winPct": 78.8,
+     "avgGrossPct": 0.133,
+     "avgNetPct": 0.133,
+     "annNetPctOnNotional": 8.65,
+     "sharpe": 1.13,
+     "mddPct": -3.08,
+     "avgHoldH": 38.4,
+     "timeoutPct": 0,
+     "byYear": {
+      "2026": {
+       "n": 33,
+       "netPct": 4.37
+      }
+     },
+     "signalWhenTradFiClosed": {
+      "n": 5,
+      "avgNetPct": 0.301,
+      "win": 100
+     },
+     "signalWhenTradFiOpen": {
+      "n": 28,
+      "avgNetPct": 0.102,
+      "win": 75
+     }
+    }
+   }
+  },
+  "C2_BrentWTI_HLxyz": {
+   "desc": "ln(Hyperliquid xyz:BRENTOIL / xyz:CL)",
+   "obs": 5001,
+   "premiumStats": {
+    "n": 5001,
+    "meanPct": 4.4942,
+    "sdPct": 2.1165,
+    "p01": -2.46,
+    "p50": 4.617,
+    "p99": 9.869,
+    "minPct": -4.85,
+    "maxPct": 13.194
+   },
+   "premTradFiOpen": {
+    "n": 3570,
+    "meanPct": 4.4769,
+    "sdPct": 2.1205,
+    "p01": -2.695,
+    "p50": 4.616,
+    "p99": 9.68,
+    "minPct": -4.85,
+    "maxPct": 13.194
+   },
+   "premTradFiClosed": {
+    "n": 1431,
+    "meanPct": 4.5373,
+    "sdPct": 2.1067,
+    "p01": -2.119,
+    "p50": 4.622,
+    "p99": 10.239,
+    "minPct": -2.543,
+    "maxPct": 11.75
+   },
+   "halfLifeBars": 127.2,
+   "results": {
+    "W72_cost0.30": {
+     "period": "2026-03-08~2026-10-03",
+     "trades": 37,
+     "winPct": 43.2,
+     "avgGrossPct": -0.029,
+     "avgNetPct": -0.329,
+     "annNetPctOnNotional": -21.34,
+     "sharpe": -2.34,
+     "mddPct": -13.84,
+     "avgHoldH": 40.6,
+     "timeoutPct": 2.7,
+     "byYear": {
+      "2026": {
+       "n": 37,
+       "netPct": -12.17
+      }
+     },
+     "signalWhenTradFiClosed": {
+      "n": 5,
+      "avgNetPct": 0.101,
+      "win": 80
+     },
+     "signalWhenTradFiOpen": {
+      "n": 32,
+      "avgNetPct": -0.396,
+      "win": 37.5
+     }
+    },
+    "W72_cost0.20": {
+     "period": "2026-03-08~2026-10-03",
+     "trades": 37,
+     "winPct": 59.5,
+     "avgGrossPct": -0.029,
+     "avgNetPct": -0.229,
+     "annNetPctOnNotional": -14.85,
+     "sharpe": -1.64,
+     "mddPct": -10.54,
+     "avgHoldH": 40.6,
+     "timeoutPct": 2.7,
+     "byYear": {
+      "2026": {
+       "n": 37,
+       "netPct": -8.47
+      }
+     },
+     "signalWhenTradFiClosed": {
+      "n": 5,
+      "avgNetPct": 0.201,
+      "win": 80
+     },
+     "signalWhenTradFiOpen": {
+      "n": 32,
+      "avgNetPct": -0.296,
+      "win": 56.3
+     }
+    },
+    "W72_cost0.10": {
+     "period": "2026-03-08~2026-10-03",
+     "trades": 37,
+     "winPct": 62.2,
+     "avgGrossPct": -0.029,
+     "avgNetPct": -0.129,
+     "annNetPctOnNotional": -8.37,
+     "sharpe": -0.92,
+     "mddPct": -7.73,
+     "avgHoldH": 40.6,
+     "timeoutPct": 2.7,
+     "byYear": {
+      "2026": {
+       "n": 37,
+       "netPct": -4.77
+      }
+     },
+     "signalWhenTradFiClosed": {
+      "n": 5,
+      "avgNetPct": 0.301,
+      "win": 80
+     },
+     "signalWhenTradFiOpen": {
+      "n": 32,
+      "avgNetPct": -0.196,
+      "win": 59.4
+     }
+    },
+    "W480_cost0.20": {
+     "period": "2026-03-08~2026-10-03",
+     "trades": 9,
+     "winPct": 33.3,
+     "avgGrossPct": 0.432,
+     "avgNetPct": 0.232,
+     "annNetPctOnNotional": 3.65,
+     "sharpe": 0.6,
+     "mddPct": -3.02,
+     "avgHoldH": 118.2,
+     "timeoutPct": 77.8,
+     "byYear": {
+      "2026": {
+       "n": 9,
+       "netPct": 2.08
+      }
+     },
+     "signalWhenTradFiClosed": {
+      "n": 1,
+      "avgNetPct": -1.239,
+      "win": 0
+     },
+     "signalWhenTradFiOpen": {
+      "n": 8,
+      "avgNetPct": 0.415,
+      "win": 37.5
+     }
+    },
+    "W72_cost0.20_twoSided": {
+     "period": "2026-03-08~2026-10-03",
+     "trades": 75,
+     "winPct": 58.7,
+     "avgGrossPct": -0.04,
+     "avgNetPct": -0.24,
+     "annNetPctOnNotional": -31.49,
+     "sharpe": -3.46,
+     "mddPct": -24.84,
+     "avgHoldH": 40.5,
+     "timeoutPct": 6.7,
+     "byYear": {
+      "2026": {
+       "n": 75,
+       "netPct": -17.96
+      }
+     },
+     "signalWhenTradFiClosed": {
+      "n": 12,
+      "avgNetPct": 0.023,
+      "win": 66.7
+     },
+     "signalWhenTradFiOpen": {
+      "n": 63,
+      "avgNetPct": -0.29,
+      "win": 57.1
+     }
+    },
+    "W72_gross": {
+     "period": "2026-03-08~2026-10-03",
+     "trades": 37,
+     "winPct": 70.3,
+     "avgGrossPct": -0.029,
+     "avgNetPct": -0.029,
+     "annNetPctOnNotional": -1.88,
+     "sharpe": -0.21,
+     "mddPct": -7.08,
+     "avgHoldH": 40.6,
+     "timeoutPct": 2.7,
+     "byYear": {
+      "2026": {
+       "n": 37,
+       "netPct": -1.07
+      }
+     },
+     "signalWhenTradFiClosed": {
+      "n": 5,
+      "avgNetPct": 0.401,
+      "win": 100
+     },
+     "signalWhenTradFiOpen": {
+      "n": 32,
+      "avgNetPct": -0.096,
+      "win": 65.6
+     }
+    }
+   }
+  },
+  "C3_HLGOLD_vs_BNperpXAU": {
+   "desc": "Hyperliquid xyz:GOLD / Binance XAUUSDT - 1",
+   "obs": 5002,
+   "premiumStats": {
+    "n": 5002,
+    "meanPct": -0.0519,
+    "sdPct": 0.0682,
+    "p01": -0.272,
+    "p50": -0.045,
+    "p99": 0.102,
+    "minPct": -0.681,
+    "maxPct": 0.218
+   },
+   "premTradFiOpen": {
+    "n": 3570,
+    "meanPct": -0.043,
+    "sdPct": 0.0462,
+    "p01": -0.151,
+    "p50": -0.039,
+    "p99": 0.054,
+    "minPct": -0.247,
+    "maxPct": 0.161
+   },
+   "premTradFiClosed": {
+    "n": 1432,
+    "meanPct": -0.0741,
+    "sdPct": 0.1012,
+    "p01": -0.451,
+    "p50": -0.075,
+    "p99": 0.151,
+    "minPct": -0.681,
+    "maxPct": 0.218
+   },
+   "halfLifeBars": 6,
+   "results": {
+    "W72_cost0.30": {
+     "period": "2026-03-08~2026-10-03",
+     "trades": 71,
+     "winPct": 1.4,
+     "avgGrossPct": 0.035,
+     "avgNetPct": -0.265,
+     "annNetPctOnNotional": -32.95,
+     "sharpe": -9.43,
+     "mddPct": -18.8,
+     "avgHoldH": 12.7,
+     "timeoutPct": 0,
+     "byYear": {
+      "2026": {
+       "n": 71,
+       "netPct": -18.8
+      }
+     },
+     "signalWhenTradFiClosed": {
+      "n": 25,
+      "avgNetPct": -0.225,
+      "win": 4
+     },
+     "signalWhenTradFiOpen": {
+      "n": 46,
+      "avgNetPct": -0.286,
+      "win": 0
+     }
+    },
+    "W72_cost0.20": {
+     "period": "2026-03-08~2026-10-03",
+     "trades": 71,
+     "winPct": 1.4,
+     "avgGrossPct": 0.035,
+     "avgNetPct": -0.165,
+     "annNetPctOnNotional": -20.5,
+     "sharpe": -8.04,
+     "mddPct": -11.7,
+     "avgHoldH": 12.7,
+     "timeoutPct": 0,
+     "byYear": {
+      "2026": {
+       "n": 71,
+       "netPct": -11.7
+      }
+     },
+     "signalWhenTradFiClosed": {
+      "n": 25,
+      "avgNetPct": -0.125,
+      "win": 4
+     },
+     "signalWhenTradFiOpen": {
+      "n": 46,
+      "avgNetPct": -0.186,
+      "win": 0
+     }
+    },
+    "W72_cost0.10": {
+     "period": "2026-03-08~2026-10-03",
+     "trades": 71,
+     "winPct": 9.9,
+     "avgGrossPct": 0.035,
+     "avgNetPct": -0.065,
+     "annNetPctOnNotional": -8.06,
+     "sharpe": -4.57,
+     "mddPct": -4.6,
+     "avgHoldH": 12.7,
+     "timeoutPct": 0,
+     "byYear": {
+      "2026": {
+       "n": 71,
+       "netPct": -4.6
+      }
+     },
+     "signalWhenTradFiClosed": {
+      "n": 25,
+      "avgNetPct": -0.025,
+      "win": 24
+     },
+     "signalWhenTradFiOpen": {
+      "n": 46,
+      "avgNetPct": -0.086,
+      "win": 2.2
+     }
+    },
+    "W480_cost0.20": {
+     "period": "2026-03-08~2026-10-03",
+     "trades": 35,
+     "winPct": 8.6,
+     "avgGrossPct": 0.068,
+     "avgNetPct": -0.132,
+     "annNetPctOnNotional": -8.1,
+     "sharpe": -4.53,
+     "mddPct": -4.83,
+     "avgHoldH": 23.7,
+     "timeoutPct": 0,
+     "byYear": {
+      "2026": {
+       "n": 35,
+       "netPct": -4.62
+      }
+     },
+     "signalWhenTradFiClosed": {
+      "n": 15,
+      "avgNetPct": -0.104,
+      "win": 20
+     },
+     "signalWhenTradFiOpen": {
+      "n": 20,
+      "avgNetPct": -0.153,
+      "win": 0
+     }
+    },
+    "W72_cost0.20_twoSided": {
+     "period": "2026-03-08~2026-10-03",
+     "trades": 136,
+     "winPct": 1.5,
+     "avgGrossPct": 0.04,
+     "avgNetPct": -0.16,
+     "annNetPctOnNotional": -38.17,
+     "sharpe": -12.08,
+     "mddPct": -21.78,
+     "avgHoldH": 12.2,
+     "timeoutPct": 0,
+     "byYear": {
+      "2026": {
+       "n": 136,
+       "netPct": -21.78
+      }
+     },
+     "signalWhenTradFiClosed": {
+      "n": 41,
+      "avgNetPct": -0.113,
+      "win": 4.9
+     },
+     "signalWhenTradFiOpen": {
+      "n": 95,
+      "avgNetPct": -0.181,
+      "win": 0
+     }
+    },
+    "W72_gross": {
+     "period": "2026-03-08~2026-10-03",
+     "trades": 71,
+     "winPct": 70.4,
+     "avgGrossPct": 0.035,
+     "avgNetPct": 0.035,
+     "annNetPctOnNotional": 4.39,
+     "sharpe": 3.11,
+     "mddPct": -0.62,
+     "avgHoldH": 12.7,
+     "timeoutPct": 0,
+     "byYear": {
+      "2026": {
+       "n": 71,
+       "netPct": 2.5
+      }
+     },
+     "signalWhenTradFiClosed": {
+      "n": 25,
+      "avgNetPct": 0.075,
+      "win": 92
+     },
+     "signalWhenTradFiOpen": {
+      "n": 46,
+      "avgNetPct": 0.014,
+      "win": 58.7
+     }
+    }
+   }
+  }
+ },
+ "sources": [
+  "https://api.binance.com/api/v3/klines , https://fapi.binance.com/fapi/v1/{klines,exchangeInfo,fundingRate,openInterest,premiumIndex}",
+  "https://api.bybit.com/v5/market/{kline,instruments-info,tickers}",
+  "https://www.okx.com/api/v5/market/history-candles",
+  "https://api-pub.bitfinex.com/v2/candles",
+  "https://api.hyperliquid.xyz/info (perpDexs, metaAndAssetCtxs, candleSnapshot)",
+  "https://query1.finance.yahoo.com/v8/finance/chart/{GC=F,TSLA,NVDA,AAPL,SPY}",
+  "https://metadata-backend.ostium.io/PricePublish/latest-prices",
+  "https://backend-arbitrum.gains.trade/trading-variables",
+  "https://www.paxos.com/pax-gold",
+  "https://hyperliquid.gitbook.io/hyperliquid-docs/hyperliquid-improvement-proposals-hips/hip-3-builder-deployed-perpetuals",
+  "https://cointelegraph.com/news/binance-changes-off-hours-pricing-method-commodity-perpetual-futures",
+  "https://www.coindesk.com/business/2026/07/15/ostium-suffers-usd18-million-exploit-as-oracle-attack-wave-continues-to-hit-defi",
+  "https://cointelegraph.com/markets/trade-xyz-sk-hynix-perp-liquidations-price-anomaly",
+  "https://beincrypto.com/hyperliquid-sk-hynix-perp-oracle-liquidations/ (403, headline/snippet only)",
+  "https://biz.chosun.com/en/en-finance/2026/07/30/NESEWJYAKFETNLIUOVA647GRQI/ (snippet)",
+  "https://www.news2day.co.kr/article/20261001500221",
+  "https://www.newsis.com/view/NISX20261001_0003810086 (snippet)",
+  "Google News RSS / Bing News RSS headlines (news_rss.json, news_bing.json)"
+ ]
+}

@@ -1,0 +1,3 @@
+const j = async (u,o)=>{const r=await fetch(u,o);return r.json()};
+for (const s of ['XAUT-USDT','PAXG-USDT']) { for (const a of [1640000000000,1680000000000,1720000000000,1750000000000]) { const d=await j(`https://www.okx.com/api/v5/market/history-candles?instId=${s}&bar=1Dutc&after=${a}&limit=100`); console.log(s,new Date(a).toISOString().slice(0,10),d.data?.length, d.data?.length?new Date(+d.data.at(-1)[0]).toISOString().slice(0,10):''); } }
+for (const s of ['tXAUT:USD','tPAXG:USD','tXAUT:UST']) { const d=await j(`https://api-pub.bitfinex.com/v2/candles/trade:1D:${s}/hist?limit=3&sort=1`); console.log(s, JSON.stringify(d).slice(0,200)); }
