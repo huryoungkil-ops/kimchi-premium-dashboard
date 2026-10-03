@@ -1,0 +1,4 @@
+(async()=>{const [id,no]=process.argv.slice(2);const r=await fetch(`https://m.blog.naver.com/PostView.naver?blogId=${id}&logNo=${no}`,{headers:{'user-agent':'Mozilla/5.0 (iPhone; CPU iPhone OS 17_0 like Mac OS X) Mobile Safari/604.1'}});let h=await r.text();
+const title=(h.match(/<meta property="og:title" content="(.*?)"/)||[])[1];const date=(h.match(/class="blog_date[^"]*"[^>]*>(.*?)</)||h.match(/se_publishDate[^>]*>(.*?)</)||[])[1];
+h=h.replace(/<script[\s\S]*?<\/script>/g,'').replace(/<style[\s\S]*?<\/style>/g,'').replace(/<br\s*\/?>/g,'\n').replace(/<\/p>/g,'\n').replace(/<[^>]+>/g,' ').replace(/&nbsp;/g,' ').replace(/&quot;/g,'"').replace(/&#39;/g,"'").replace(/&amp;/g,'&').replace(/&lt;/g,'<').replace(/&gt;/g,'>').replace(/[ \t]+/g,' ').replace(/\n\s*\n+/g,'\n');
+console.log('TITLE',title,'DATE',date);console.log(h.slice(0,+process.argv[4]||9000));})();

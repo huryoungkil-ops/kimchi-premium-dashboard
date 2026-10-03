@@ -1,0 +1,8323 @@
+{
+ "universe": "binance",
+ "generated": "2026-10-03T14:17:59.308Z",
+ "dataEnd": "2026-10-03",
+ "nSymbols": 104,
+ "runs": [
+  {
+   "name": "BENCH BTC 보유",
+   "params": {
+    "N": 1,
+    "L": 7,
+    "H": 7,
+    "wd": 1,
+    "lag": 0,
+    "mkt": 0,
+    "posOnly": false,
+    "side": "all",
+    "topK": null,
+    "minTurn": 0,
+    "cost": 0
+   },
+   "full": {
+    "start": "2018-03-05",
+    "end": "2026-10-03",
+    "totalRet": 6.3629,
+    "cagr": 0.2617,
+    "vol": 0.6226,
+    "sharpe": 0.6892,
+    "mdd": -0.7663,
+    "calmar": 0.3415,
+    "winRate": 0.5268,
+    "investedShare": 1,
+    "nPeriods": 448
+   },
+   "is": {
+    "start": "2018-03-05",
+    "end": "2021-12-31",
+    "totalRet": 3.0136,
+    "cagr": 0.4374,
+    "vol": 0.7424,
+    "sharpe": 0.8685,
+    "mdd": -0.7211,
+    "calmar": 0.6066,
+    "winRate": 0.565,
+    "investedShare": 1,
+    "nPeriods": 200
+   },
+   "oos": {
+    "start": "2022-01-01",
+    "end": "2026-10-03",
+    "totalRet": 0.8345,
+    "cagr": 0.136,
+    "vol": 0.5061,
+    "sharpe": 0.5049,
+    "mdd": -0.6693,
+    "calmar": 0.2032,
+    "winRate": 0.496,
+    "investedShare": 1,
+    "nPeriods": 248
+   },
+   "grossCagr": 0.2617,
+   "costDragCagr": 0,
+   "annTurnover": 0.1164,
+   "yearly": {
+    "2018": -0.6784,
+    "2019": 0.9431,
+    "2020": 3.0198,
+    "2021": 0.5979,
+    "2022": -0.6421,
+    "2023": 1.5561,
+    "2024": 1.2131,
+    "2025": -0.0633,
+    "2026": -0.0327
+   },
+   "concentration": {
+    "topK": [
+     {
+      "date": "2023-03-13",
+      "ret": 0.2716,
+      "hold": "BTCUSDT:-2%"
+     },
+     {
+      "date": "2019-04-01",
+      "ret": 0.2603,
+      "hold": "BTCUSDT:3%"
+     },
+     {
+      "date": "2020-12-28",
+      "ret": 0.2556,
+      "hold": "BTCUSDT:12%"
+     },
+     {
+      "date": "2021-02-08",
+      "ret": 0.2521,
+      "hold": "BTCUSDT:17%"
+     },
+     {
+      "date": "2026-08-17",
+      "ret": 0.2358,
+      "hold": "BTCUSDT:-3%"
+     }
+    ],
+    "top5LogShare": 0.5686,
+    "multipleTotal": 7.3728,
+    "multipleWithoutTop5": 2.3677
+   }
+  },
+  {
+   "name": "BENCH BTC + SMA50 필터",
+   "params": {
+    "N": 1,
+    "L": 7,
+    "H": 7,
+    "wd": 1,
+    "lag": 0,
+    "mkt": 50,
+    "posOnly": false,
+    "side": "top",
+    "topK": null,
+    "minTurn": 0,
+    "cost": 0.001
+   },
+   "full": {
+    "start": "2018-03-05",
+    "end": "2026-10-03",
+    "totalRet": 14.0183,
+    "cagr": 0.3709,
+    "vol": 0.4308,
+    "sharpe": 0.9465,
+    "mdd": -0.5886,
+    "calmar": 0.63,
+    "winRate": 0.5494,
+    "investedShare": 0.5201,
+    "nPeriods": 448
+   },
+   "is": {
+    "start": "2018-03-05",
+    "end": "2021-12-31",
+    "totalRet": 7.237,
+    "cagr": 0.7342,
+    "vol": 0.5331,
+    "sharpe": 1.2977,
+    "mdd": -0.5886,
+    "calmar": 1.2472,
+    "winRate": 0.6,
+    "investedShare": 0.55,
+    "nPeriods": 200
+   },
+   "oos": {
+    "start": "2022-01-01",
+    "end": "2026-10-03",
+    "totalRet": 0.8233,
+    "cagr": 0.1345,
+    "vol": 0.3255,
+    "sharpe": 0.55,
+    "mdd": -0.3871,
+    "calmar": 0.3475,
+    "winRate": 0.5041,
+    "investedShare": 0.496,
+    "nPeriods": 248
+   },
+   "grossCagr": 0.3838,
+   "costDragCagr": 0.013,
+   "annTurnover": 9.4306,
+   "yearly": {
+    "2018": -0.5151,
+    "2019": 0.8876,
+    "2020": 2.9477,
+    "2021": 1.2798,
+    "2022": -0.2787,
+    "2023": 0.919,
+    "2024": 0.4207,
+    "2025": -0.0628,
+    "2026": -0.0107
+   },
+   "concentration": {
+    "topK": [
+     {
+      "date": "2019-04-01",
+      "ret": 0.2603,
+      "hold": "BTCUSDT:3%"
+     },
+     {
+      "date": "2020-12-28",
+      "ret": 0.2556,
+      "hold": "BTCUSDT:12%"
+     },
+     {
+      "date": "2021-02-08",
+      "ret": 0.2521,
+      "hold": "BTCUSDT:17%"
+     },
+     {
+      "date": "2020-12-14",
+      "ret": 0.2232,
+      "hold": "BTCUSDT:-1%"
+     },
+     {
+      "date": "2024-02-26",
+      "ret": 0.2201,
+      "hold": "BTCUSDT:-1%"
+     }
+    ],
+    "top5LogShare": 0.3884,
+    "multipleTotal": 16.3116,
+    "multipleWithoutTop5": 5.5158
+   }
+  },
+  {
+   "name": "BENCH BTC + SMA120 필터",
+   "params": {
+    "N": 1,
+    "L": 7,
+    "H": 7,
+    "wd": 1,
+    "lag": 0,
+    "mkt": 120,
+    "posOnly": false,
+    "side": "top",
+    "topK": null,
+    "minTurn": 0,
+    "cost": 0.001
+   },
+   "full": {
+    "start": "2018-03-05",
+    "end": "2026-10-03",
+    "totalRet": 10.9904,
+    "cagr": 0.3354,
+    "vol": 0.4346,
+    "sharpe": 0.8815,
+    "mdd": -0.5063,
+    "calmar": 0.6624,
+    "winRate": 0.5292,
+    "investedShare": 0.5357,
+    "nPeriods": 448
+   },
+   "is": {
+    "start": "2018-03-05",
+    "end": "2021-12-31",
+    "totalRet": 6.9358,
+    "cagr": 0.7174,
+    "vol": 0.5284,
+    "sharpe": 1.2864,
+    "mdd": -0.4669,
+    "calmar": 1.5364,
+    "winRate": 0.5856,
+    "investedShare": 0.555,
+    "nPeriods": 200
+   },
+   "oos": {
+    "start": "2022-01-01",
+    "end": "2026-10-03",
+    "totalRet": 0.5109,
+    "cagr": 0.0906,
+    "vol": 0.3406,
+    "sharpe": 0.424,
+    "mdd": -0.4224,
+    "calmar": 0.2145,
+    "winRate": 0.4806,
+    "investedShare": 0.5202,
+    "nPeriods": 248
+   },
+   "grossCagr": 0.3421,
+   "costDragCagr": 0.0067,
+   "annTurnover": 5.0064,
+   "yearly": {
+    "2018": -0.4595,
+    "2019": 1.5557,
+    "2020": 2.1827,
+    "2021": 0.805,
+    "2022": -0.2995,
+    "2023": 0.498,
+    "2024": 0.665,
+    "2025": -0.0123,
+    "2026": -0.1245
+   },
+   "concentration": {
+    "topK": [
+     {
+      "date": "2023-03-13",
+      "ret": 0.2716,
+      "hold": "BTCUSDT:-2%"
+     },
+     {
+      "date": "2019-04-01",
+      "ret": 0.2603,
+      "hold": "BTCUSDT:3%"
+     },
+     {
+      "date": "2020-12-28",
+      "ret": 0.2556,
+      "hold": "BTCUSDT:12%"
+     },
+     {
+      "date": "2021-02-08",
+      "ret": 0.2521,
+      "hold": "BTCUSDT:17%"
+     },
+     {
+      "date": "2020-12-14",
+      "ret": 0.2232,
+      "hold": "BTCUSDT:-1%"
+     }
+    ],
+    "top5LogShare": 0.4451,
+    "multipleTotal": 12.5422,
+    "multipleWithoutTop5": 4.0693
+   }
+  },
+  {
+   "name": "BENCH 동일가중 유니버스(필터없음)",
+   "params": {
+    "N": 3,
+    "L": 7,
+    "H": 7,
+    "wd": 1,
+    "lag": 0,
+    "mkt": 0,
+    "posOnly": false,
+    "side": "all",
+    "topK": null,
+    "minTurn": 5000000,
+    "cost": 0.001
+   },
+   "full": {
+    "start": "2018-03-05",
+    "end": "2026-10-03",
+    "totalRet": 3.0898,
+    "cagr": 0.1782,
+    "vol": 0.8412,
+    "sharpe": 0.6265,
+    "mdd": -0.8548,
+    "calmar": 0.2085,
+    "winRate": 0.5335,
+    "investedShare": 1,
+    "nPeriods": 448
+   },
+   "is": {
+    "start": "2018-03-05",
+    "end": "2021-12-31",
+    "totalRet": 8.7449,
+    "cagr": 0.812,
+    "vol": 0.9399,
+    "sharpe": 1.1201,
+    "mdd": -0.8232,
+    "calmar": 0.9864,
+    "winRate": 0.58,
+    "investedShare": 1,
+    "nPeriods": 200
+   },
+   "oos": {
+    "start": "2022-01-01",
+    "end": "2026-10-03",
+    "totalRet": -0.5803,
+    "cagr": -0.1668,
+    "vol": 0.752,
+    "sharpe": 0.1382,
+    "mdd": -0.828,
+    "calmar": -0.2014,
+    "winRate": 0.496,
+    "investedShare": 1,
+    "nPeriods": 248
+   },
+   "grossCagr": 0.1915,
+   "costDragCagr": 0.0133,
+   "annTurnover": 11.2199,
+   "yearly": {
+    "2018": -0.7724,
+    "2019": 0.1047,
+    "2020": 1.9997,
+    "2021": 11.9228,
+    "2022": -0.8173,
+    "2023": 1.4271,
+    "2024": 0.7115,
+    "2025": -0.5157,
+    "2026": 0.142
+   },
+   "concentration": {
+    "topK": [
+     {
+      "date": "2021-02-08",
+      "ret": 0.4894,
+      "hold": "BTCUSDT:17% ETHUSDT:23% SOLUSDT:57% XRPUSDT:-15% ZECUSDT:8% NEARUSDT:59% SANDUSDT:52% DOGEUSDT:111% BNBUSDT:54% UNIUSDT:5% AVAXUSDT:76% LINKUSDT:10% ADAUSDT:92% LTCUSDT:17% AAVEUSDT:58% TRXUSDT:14% FETUSDT:86% HBARUSDT:17% INJUSDT:21% ENJUSDT:11% DOTUSDT:22% XLMUSDT:26% MANAUSDT:53% FILUSDT:8% AXSUSDT:24% DASHUSDT:16% BCHUSDT:11% LUNAUSDT:111% SRMUSDT:16% BTTUSDT:31% XMRUSDT:9% WAVESUSDT:23% OMGUSDT:31% EOSUSDT:17% MATICUSDT:73% FTMUSDT:4% CVCUSDT:52% XEMUSDT:32% DNTUSDT:50% BZRXUSDT:40% GTOUSDT:64% OCEANUSDT:29%"
+     },
+     {
+      "date": "2018-12-17",
+      "ret": 0.3689,
+      "hold": "BTCUSDT:-9% ETHUSDT:-9% XRPUSDT:-7% EOSUSDT:-4% BCHSVUSDT:-19%"
+     },
+     {
+      "date": "2021-04-26",
+      "ret": 0.3571,
+      "hold": "BTCUSDT:-13% ETHUSDT:4% SOLUSDT:47% XRPUSDT:-26% ZECUSDT:-22% NEARUSDT:-10% SANDUSDT:-26% DOGEUSDT:-22% BNBUSDT:5% UNIUSDT:9% AVAXUSDT:-26% LINKUSDT:-19% ADAUSDT:-15% LTCUSDT:-18% AAVEUSDT:-9% TRXUSDT:-29% FETUSDT:-34% ONEUSDT:-25% HBARUSDT:-21% INJUSDT:32% ENJUSDT:-25% DOTUSDT:-20% XLMUSDT:-24% MANAUSDT:-19% FILUSDT:-14% AXSUSDT:-1% DASHUSDT:-22% BCHUSDT:-22% SUPERUSDT:-33% LUNAUSDT:32% FTTUSDT:-8% SRMUSDT:20% BTTUSDT:-20% XMRUSDT:5% WAVESUSDT:-5% HNTUSDT:-16% OMGUSDT:-26% EOSUSDT:-31% MATICUSDT:6% FTMUSDT:-28% CVCUSDT:-25% XEMUSDT:-33% WTCUSDT:-32% DNTUSDT:-15% REPUSDT:-34% BZRXUSDT:-25% GTOUSDT:-25% OCEANUSDT:-27%"
+     },
+     {
+      "date": "2026-08-17",
+      "ret": 0.3548,
+      "hold": "BTCUSDT:-3% ETHUSDT:-2% SOLUSDT:-2% XRPUSDT:-4% ZECUSDT:-5% NEARUSDT:0% WLDUSDT:14% SUIUSDT:-2% DOGEUSDT:0% BNBUSDT:0% UNIUSDT:-18% AVAXUSDT:-1% TAOUSDT:-3% LINKUSDT:15% ADAUSDT:-10% PUMPUSDT:-0% LTCUSDT:-3% ENAUSDT:-5% PEPEUSDT:-11% ONDOUSDT:-5% TRXUSDT:0% FETUSDT:-10% XPLUSDT:-2% XLMUSDT:-4%"
+     },
+     {
+      "date": "2021-02-01",
+      "ret": 0.3372,
+      "hold": "BTCUSDT:3% ETHUSDT:-6% SOLUSDT:17% XRPUSDT:81% ZECUSDT:-5% NEARUSDT:-16% SANDUSDT:-13% DOGEUSDT:325% BNBUSDT:6% UNIUSDT:47% AVAXUSDT:8% LINKUSDT:-9% ADAUSDT:-2% LTCUSDT:-8% AAVEUSDT:13% TRXUSDT:5% HBARUSDT:-12% INJUSDT:8% ENJUSDT:-18% DOTUSDT:-10% XLMUSDT:13% MANAUSDT:-10% FILUSDT:-2% AXSUSDT:10% DASHUSDT:-4% BCHUSDT:-9% LUNAUSDT:61% SRMUSDT:26% BTTUSDT:1% XMRUSDT:-0% WAVESUSDT:-6% OMGUSDT:-2% EOSUSDT:8% MATICUSDT:16% FTMUSDT:125% CVCUSDT:-3% XEMUSDT:10% BZRXUSDT:-4% OCEANUSDT:-4%"
+     }
+    ],
+    "top5LogShare": 1.0777,
+    "multipleTotal": 4.463,
+    "multipleWithoutTop5": 0.8903
+   }
+  },
+  {
+   "name": "BENCH 동일가중 유니버스 + SMA50",
+   "params": {
+    "N": 3,
+    "L": 7,
+    "H": 7,
+    "wd": 1,
+    "lag": 0,
+    "mkt": 50,
+    "posOnly": false,
+    "side": "all",
+    "topK": null,
+    "minTurn": 5000000,
+    "cost": 0.001
+   },
+   "full": {
+    "start": "2018-03-05",
+    "end": "2026-10-03",
+    "totalRet": 27.1748,
+    "cagr": 0.475,
+    "vol": 0.5767,
+    "sharpe": 0.9648,
+    "mdd": -0.7179,
+    "calmar": 0.6617,
+    "winRate": 0.5536,
+    "investedShare": 0.5201,
+    "nPeriods": 448
+   },
+   "is": {
+    "start": "2018-03-05",
+    "end": "2021-12-31",
+    "totalRet": 23.6986,
+    "cagr": 1.31,
+    "vol": 0.6354,
+    "sharpe": 1.6386,
+    "mdd": -0.7114,
+    "calmar": 1.8413,
+    "winRate": 0.6091,
+    "investedShare": 0.55,
+    "nPeriods": 200
+   },
+   "oos": {
+    "start": "2022-01-01",
+    "end": "2026-10-03",
+    "totalRet": 0.1407,
+    "cagr": 0.0281,
+    "vol": 0.524,
+    "sharpe": 0.3172,
+    "mdd": -0.7179,
+    "calmar": 0.0391,
+    "winRate": 0.5041,
+    "investedShare": 0.496,
+    "nPeriods": 248
+   },
+   "grossCagr": 0.4962,
+   "costDragCagr": 0.0211,
+   "annTurnover": 14.2091,
+   "yearly": {
+    "2018": -0.6097,
+    "2019": 0.2356,
+    "2020": 1.7792,
+    "2021": 17.4271,
+    "2022": -0.3284,
+    "2023": 1.4661,
+    "2024": 0.0378,
+    "2025": -0.3682,
+    "2026": 0.0505
+   },
+   "concentration": {
+    "topK": [
+     {
+      "date": "2021-02-08",
+      "ret": 0.4894,
+      "hold": "BTCUSDT:17% ETHUSDT:23% SOLUSDT:57% XRPUSDT:-15% ZECUSDT:8% NEARUSDT:59% SANDUSDT:52% DOGEUSDT:111% BNBUSDT:54% UNIUSDT:5% AVAXUSDT:76% LINKUSDT:10% ADAUSDT:92% LTCUSDT:17% AAVEUSDT:58% TRXUSDT:14% FETUSDT:86% HBARUSDT:17% INJUSDT:21% ENJUSDT:11% DOTUSDT:22% XLMUSDT:26% MANAUSDT:53% FILUSDT:8% AXSUSDT:24% DASHUSDT:16% BCHUSDT:11% LUNAUSDT:111% SRMUSDT:16% BTTUSDT:31% XMRUSDT:9% WAVESUSDT:23% OMGUSDT:31% EOSUSDT:17% MATICUSDT:73% FTMUSDT:4% CVCUSDT:52% XEMUSDT:32% DNTUSDT:50% BZRXUSDT:40% GTOUSDT:64% OCEANUSDT:29%"
+     },
+     {
+      "date": "2021-02-01",
+      "ret": 0.3372,
+      "hold": "BTCUSDT:3% ETHUSDT:-6% SOLUSDT:17% XRPUSDT:81% ZECUSDT:-5% NEARUSDT:-16% SANDUSDT:-13% DOGEUSDT:325% BNBUSDT:6% UNIUSDT:47% AVAXUSDT:8% LINKUSDT:-9% ADAUSDT:-2% LTCUSDT:-8% AAVEUSDT:13% TRXUSDT:5% HBARUSDT:-12% INJUSDT:8% ENJUSDT:-18% DOTUSDT:-10% XLMUSDT:13% MANAUSDT:-10% FILUSDT:-2% AXSUSDT:10% DASHUSDT:-4% BCHUSDT:-9% LUNAUSDT:61% SRMUSDT:26% BTTUSDT:1% XMRUSDT:-0% WAVESUSDT:-6% OMGUSDT:-2% EOSUSDT:8% MATICUSDT:16% FTMUSDT:125% CVCUSDT:-3% XEMUSDT:10% BZRXUSDT:-4% OCEANUSDT:-4%"
+     },
+     {
+      "date": "2024-11-04",
+      "ret": 0.3368,
+      "hold": "BTCUSDT:1% ETHUSDT:-2% SOLUSDT:-8% XRPUSDT:-3% NEARUSDT:-14% WLDUSDT:-15% SUIUSDT:11% DOGEUSDT:5% BNBUSDT:-5% UNIUSDT:-6% AVAXUSDT:-9% TAOUSDT:-15% LINKUSDT:-2% ADAUSDT:-2% LTCUSDT:-6% AAVEUSDT:-10% ZROUSDT:-9% ENAUSDT:-7% PEPEUSDT:-11% TRXUSDT:1% FETUSDT:-10% ARBUSDT:-7% HBARUSDT:-12% INJUSDT:-11% DOTUSDT:-8% GALAUSDT:-13% FILUSDT:-6% ARUSDT:-14% BCHUSDT:-3% APTUSDT:-11% ICPUSDT:-8% SUPERUSDT:-8% FTTUSDT#2:-14% EOSUSDT:-8% FTMUSDT:-12%"
+     },
+     {
+      "date": "2024-11-18",
+      "ret": 0.3205,
+      "hold": "BTCUSDT:12% ETHUSDT:-3% SOLUSDT:13% XRPUSDT:79% ZECUSDT:-2% NEARUSDT:21% WLDUSDT:5% SUIUSDT:25% SANDUSDT:21% DOGEUSDT:32% BNBUSDT:-1% QNTUSDT:18% UNIUSDT:-5% AVAXUSDT:9% TAOUSDT:-12% LINKUSDT:-3% ADAUSDT:19% LTCUSDT:14% AAVEUSDT:-15% ZROUSDT:-7% ENAUSDT:-0% PEPEUSDT:72% TRXUSDT:22% MOVRUSDT:-5% FETUSDT:-13% ARBUSDT:7% ONEUSDT:-5% HBARUSDT:64% INJUSDT:-5% ENJUSDT:5% DOTUSDT:3% GALAUSDT:12% XLMUSDT:81% MANAUSDT:12% FILUSDT:2% AXSUSDT:-0% ARUSDT:-7% DASHUSDT:6% BCHUSDT:-2% APTUSDT:8% ICPUSDT:-0% SUPERUSDT:-10% LUNAUSDT#2:11% FTTUSDT#2:-0% EOSUSDT:6% FTMUSDT:-11%"
+     },
+     {
+      "date": "2023-01-09",
+      "ret": 0.3192,
+      "hold": "BTCUSDT:3% ETHUSDT:7% SOLUSDT:45% XRPUSDT:2% NEARUSDT:29% SANDUSDT:27% DOGEUSDT:5% BNBUSDT:12% UNIUSDT:6% AVAXUSDT:11% LINKUSDT:6% ADAUSDT:19% LTCUSDT:11% AAVEUSDT:14% TRXUSDT:-1% FETUSDT:53% DOTUSDT:10% GALAUSDT:104% MANAUSDT:25% FILUSDT:11% AXSUSDT:14% APTUSDT:12% ICPUSDT:2% XMRUSDT:5% MATICUSDT:11% FTMUSDT:18% OCEANUSDT:32%"
+     }
+    ],
+    "top5LogShare": 0.4436,
+    "multipleTotal": 31.7689,
+    "multipleWithoutTop5": 6.8503
+   }
+  },
+  {
+   "name": "MOM top1 L7 H7 SMA50 월",
+   "params": {
+    "N": 1,
+    "L": 7,
+    "H": 7,
+    "wd": 1,
+    "lag": 0,
+    "mkt": 50,
+    "posOnly": false,
+    "side": "top",
+    "topK": null,
+    "minTurn": 5000000,
+    "cost": 0.001
+   },
+   "full": {
+    "start": "2018-03-05",
+    "end": "2026-10-03",
+    "totalRet": 0.283,
+    "cagr": 0.0294,
+    "vol": 1.3249,
+    "sharpe": 0.6185,
+    "mdd": -0.9701,
+    "calmar": 0.0303,
+    "winRate": 0.4378,
+    "investedShare": 0.5201,
+    "nPeriods": 448
+   },
+   "is": {
+    "start": "2018-03-05",
+    "end": "2021-12-31",
+    "totalRet": 0.4619,
+    "cagr": 0.1042,
+    "vol": 1.4011,
+    "sharpe": 0.682,
+    "mdd": -0.8198,
+    "calmar": 0.1271,
+    "winRate": 0.4364,
+    "investedShare": 0.55,
+    "nPeriods": 200
+   },
+   "oos": {
+    "start": "2022-01-01",
+    "end": "2026-10-03",
+    "totalRet": -0.1224,
+    "cagr": -0.0271,
+    "vol": 1.2606,
+    "sharpe": 0.5632,
+    "mdd": -0.8993,
+    "calmar": -0.0301,
+    "winRate": 0.439,
+    "investedShare": 0.496,
+    "nPeriods": 248
+   },
+   "grossCagr": 0.0817,
+   "costDragCagr": 0.0523,
+   "annTurnover": 49.4817,
+   "yearly": {
+    "2018": -0.3731,
+    "2019": -0.2216,
+    "2020": 0.3005,
+    "2021": 1.3035,
+    "2022": -0.7164,
+    "2023": 0.3382,
+    "2024": 1.648,
+    "2025": 0.8821,
+    "2026": -0.536
+   },
+   "concentration": {
+    "topK": [
+     {
+      "date": "2024-11-18",
+      "ret": 1.7301,
+      "hold": "XLMUSDT:81%"
+     },
+     {
+      "date": "2021-01-25",
+      "ret": 1.2476,
+      "hold": "FTMUSDT:90%"
+     },
+     {
+      "date": "2021-02-01",
+      "ret": 1.1082,
+      "hold": "DOGEUSDT:325%"
+     },
+     {
+      "date": "2023-10-09",
+      "ret": 0.9897,
+      "hold": "LOOMUSDT:26%"
+     },
+     {
+      "date": "2025-07-07",
+      "ret": 0.8852,
+      "hold": "PENGUUSDT:13%"
+     }
+    ],
+    "top5LogShare": 5.6511,
+    "multipleTotal": 1.9877,
+    "multipleWithoutTop5": 0.041
+   }
+  },
+  {
+   "name": "MOM top3 L7 H7 SMA50 월",
+   "params": {
+    "N": 3,
+    "L": 7,
+    "H": 7,
+    "wd": 1,
+    "lag": 0,
+    "mkt": 50,
+    "posOnly": false,
+    "side": "top",
+    "topK": null,
+    "minTurn": 5000000,
+    "cost": 0.001
+   },
+   "full": {
+    "start": "2018-03-05",
+    "end": "2026-10-03",
+    "totalRet": 24.2601,
+    "cagr": 0.4564,
+    "vol": 0.8455,
+    "sharpe": 0.8566,
+    "mdd": -0.8268,
+    "calmar": 0.552,
+    "winRate": 0.5279,
+    "investedShare": 0.5201,
+    "nPeriods": 448
+   },
+   "is": {
+    "start": "2018-03-05",
+    "end": "2021-12-31",
+    "totalRet": 18.8177,
+    "cagr": 1.1809,
+    "vol": 0.9162,
+    "sharpe": 1.2958,
+    "mdd": -0.7352,
+    "calmar": 1.6062,
+    "winRate": 0.6091,
+    "investedShare": 0.55,
+    "nPeriods": 200
+   },
+   "oos": {
+    "start": "2022-01-01",
+    "end": "2026-10-03",
+    "totalRet": 0.2746,
+    "cagr": 0.0523,
+    "vol": 0.7837,
+    "sharpe": 0.4487,
+    "mdd": -0.7836,
+    "calmar": 0.0668,
+    "winRate": 0.4553,
+    "investedShare": 0.496,
+    "nPeriods": 248
+   },
+   "grossCagr": 0.5247,
+   "costDragCagr": 0.0683,
+   "annTurnover": 45.782,
+   "yearly": {
+    "2018": -0.6435,
+    "2019": 0.1567,
+    "2020": 9.2497,
+    "2021": 3.6891,
+    "2022": -0.6974,
+    "2023": 1.7682,
+    "2024": 0.6593,
+    "2025": 0.1513,
+    "2026": -0.2036
+   },
+   "concentration": {
+    "topK": [
+     {
+      "date": "2025-07-07",
+      "ret": 0.7593,
+      "hold": "PENGUUSDT:13% HBARUSDT:4% XLMUSDT:4%"
+     },
+     {
+      "date": "2024-11-18",
+      "ret": 0.6805,
+      "hold": "XLMUSDT:81% XRPUSDT:79% PEPEUSDT:72%"
+     },
+     {
+      "date": "2021-03-08",
+      "ret": 0.6046,
+      "hold": "ENJUSDT:145% AXSUSDT:92% OCEANUSDT:78%"
+     },
+     {
+      "date": "2020-08-10",
+      "ret": 0.5962,
+      "hold": "LINKUSDT:67% WAVESUSDT:22% LENDUSDT:17%"
+     },
+     {
+      "date": "2023-01-09",
+      "ret": 0.5433,
+      "hold": "GALAUSDT:104% FETUSDT:53% SOLUSDT:45%"
+     }
+    ],
+    "top5LogShare": 0.6782,
+    "multipleTotal": 37.5252,
+    "multipleWithoutTop5": 3.211
+   }
+  },
+  {
+   "name": "MOM top5 L7 H7 SMA50 월",
+   "params": {
+    "N": 5,
+    "L": 7,
+    "H": 7,
+    "wd": 1,
+    "lag": 0,
+    "mkt": 50,
+    "posOnly": false,
+    "side": "top",
+    "topK": null,
+    "minTurn": 5000000,
+    "cost": 0.001
+   },
+   "full": {
+    "start": "2018-03-05",
+    "end": "2026-10-03",
+    "totalRet": 53.4459,
+    "cagr": 0.5926,
+    "vol": 0.7403,
+    "sharpe": 0.9932,
+    "mdd": -0.7451,
+    "calmar": 0.7953,
+    "winRate": 0.5579,
+    "investedShare": 0.5201,
+    "nPeriods": 448
+   },
+   "is": {
+    "start": "2018-03-05",
+    "end": "2021-12-31",
+    "totalRet": 26.5708,
+    "cagr": 1.3773,
+    "vol": 0.8069,
+    "sharpe": 1.4695,
+    "mdd": -0.743,
+    "calmar": 1.8538,
+    "winRate": 0.6182,
+    "investedShare": 0.55,
+    "nPeriods": 200
+   },
+   "oos": {
+    "start": "2022-01-01",
+    "end": "2026-10-03",
+    "totalRet": 0.9748,
+    "cagr": 0.1537,
+    "vol": 0.6817,
+    "sharpe": 0.5468,
+    "mdd": -0.7451,
+    "calmar": 0.2063,
+    "winRate": 0.5041,
+    "investedShare": 0.496,
+    "nPeriods": 248
+   },
+   "grossCagr": 0.6618,
+   "costDragCagr": 0.0691,
+   "annTurnover": 42.4697,
+   "yearly": {
+    "2018": -0.6435,
+    "2019": 0.1336,
+    "2020": 5.0293,
+    "2021": 10.3152,
+    "2022": -0.5778,
+    "2023": 1.4734,
+    "2024": 0.7395,
+    "2025": 0.1025,
+    "2026": -0.014
+   },
+   "concentration": {
+    "topK": [
+     {
+      "date": "2021-03-08",
+      "ret": 0.827,
+      "hold": "ENJUSDT:145% AXSUSDT:92% OCEANUSDT:78% SANDUSDT:72% MANAUSDT:69%"
+     },
+     {
+      "date": "2024-11-18",
+      "ret": 0.5684,
+      "hold": "XLMUSDT:81% XRPUSDT:79% PEPEUSDT:72% HBARUSDT:64% DOGEUSDT:32%"
+     },
+     {
+      "date": "2025-07-07",
+      "ret": 0.4794,
+      "hold": "PENGUUSDT:13% HBARUSDT:4% XLMUSDT:4% TRXUSDT:4% AAVEUSDT:3%"
+     },
+     {
+      "date": "2024-11-04",
+      "ret": 0.4643,
+      "hold": "SUIUSDT:11% DOGEUSDT:5% BTCUSDT:1% TRXUSDT:1% ADAUSDT:-2%"
+     },
+     {
+      "date": "2023-01-09",
+      "ret": 0.4457,
+      "hold": "GALAUSDT:104% FETUSDT:53% SOLUSDT:45% OCEANUSDT:32% NEARUSDT:29%"
+     }
+    ],
+    "top5LogShare": 0.5024,
+    "multipleTotal": 78.8323,
+    "multipleWithoutTop5": 8.7843
+   }
+  },
+  {
+   "name": "MOM top1 L7 H7 필터없음",
+   "params": {
+    "N": 1,
+    "L": 7,
+    "H": 7,
+    "wd": 1,
+    "lag": 0,
+    "mkt": 0,
+    "posOnly": false,
+    "side": "top",
+    "topK": null,
+    "minTurn": 5000000,
+    "cost": 0.001
+   },
+   "full": {
+    "start": "2018-03-05",
+    "end": "2026-10-03",
+    "totalRet": -0.9859,
+    "cagr": -0.3912,
+    "vol": 1.7338,
+    "sharpe": 0.5211,
+    "mdd": -0.9986,
+    "calmar": -0.3917,
+    "winRate": 0.4397,
+    "investedShare": 1,
+    "nPeriods": 448
+   },
+   "is": {
+    "start": "2018-03-05",
+    "end": "2021-12-31",
+    "totalRet": -0.5244,
+    "cagr": -0.1764,
+    "vol": 1.7861,
+    "sharpe": 0.7141,
+    "mdd": -0.9585,
+    "calmar": -0.184,
+    "winRate": 0.465,
+    "investedShare": 1,
+    "nPeriods": 200
+   },
+   "oos": {
+    "start": "2022-01-01",
+    "end": "2026-10-03",
+    "totalRet": -0.9704,
+    "cagr": -0.5226,
+    "vol": 1.6908,
+    "sharpe": 0.3573,
+    "mdd": -0.9902,
+    "calmar": -0.5278,
+    "winRate": 0.4194,
+    "investedShare": 1,
+    "nPeriods": 248
+   },
+   "grossCagr": -0.3318,
+   "costDragCagr": 0.0594,
+   "annTurnover": 93.0255,
+   "yearly": {
+    "2018": -0.4006,
+    "2019": -0.559,
+    "2020": -0.1958,
+    "2021": 1.237,
+    "2022": -0.9858,
+    "2023": 1.6216,
+    "2024": 0.8932,
+    "2025": 2.9672,
+    "2026": -0.8939
+   },
+   "concentration": {
+    "topK": [
+     {
+      "date": "2024-11-18",
+      "ret": 1.7301,
+      "hold": "XLMUSDT:81%"
+     },
+     {
+      "date": "2025-09-29",
+      "ret": 1.7058,
+      "hold": "ZECUSDT:18%"
+     },
+     {
+      "date": "2021-01-25",
+      "ret": 1.2476,
+      "hold": "FTMUSDT:90%"
+     },
+     {
+      "date": "2021-07-05",
+      "ret": 1.1607,
+      "hold": "AXSUSDT:135%"
+     },
+     {
+      "date": "2021-02-01",
+      "ret": 1.1082,
+      "hold": "DOGEUSDT:325%"
+     }
+    ],
+    "top5LogShare": -1.2484,
+    "multipleTotal": 0.0313,
+    "multipleWithoutTop5": 0.0004
+   }
+  },
+  {
+   "name": "MOM top3 L7 H7 필터없음",
+   "params": {
+    "N": 3,
+    "L": 7,
+    "H": 7,
+    "wd": 1,
+    "lag": 0,
+    "mkt": 0,
+    "posOnly": false,
+    "side": "top",
+    "topK": null,
+    "minTurn": 5000000,
+    "cost": 0.001
+   },
+   "full": {
+    "start": "2018-03-05",
+    "end": "2026-10-03",
+    "totalRet": 1.9683,
+    "cagr": 0.135,
+    "vol": 1.1403,
+    "sharpe": 0.6739,
+    "mdd": -0.9543,
+    "calmar": 0.1415,
+    "winRate": 0.5201,
+    "investedShare": 1,
+    "nPeriods": 448
+   },
+   "is": {
+    "start": "2018-03-05",
+    "end": "2021-12-31",
+    "totalRet": 5.0951,
+    "cagr": 0.6031,
+    "vol": 1.2063,
+    "sharpe": 0.9974,
+    "mdd": -0.8314,
+    "calmar": 0.7253,
+    "winRate": 0.585,
+    "investedShare": 1,
+    "nPeriods": 200
+   },
+   "oos": {
+    "start": "2022-01-01",
+    "end": "2026-10-03",
+    "totalRet": -0.513,
+    "cagr": -0.1403,
+    "vol": 1.0842,
+    "sharpe": 0.3861,
+    "mdd": -0.9085,
+    "calmar": -0.1544,
+    "winRate": 0.4677,
+    "investedShare": 1,
+    "nPeriods": 248
+   },
+   "grossCagr": 0.2343,
+   "costDragCagr": 0.0993,
+   "annTurnover": 83.7711,
+   "yearly": {
+    "2018": -0.7862,
+    "2019": 0.0639,
+    "2020": 6.1861,
+    "2021": 2.7287,
+    "2022": -0.8981,
+    "2023": 2.3657,
+    "2024": 1.4434,
+    "2025": 0.4569,
+    "2026": -0.6009
+   },
+   "concentration": {
+    "topK": [
+     {
+      "date": "2022-09-05",
+      "ret": 0.7655,
+      "hold": "ADAUSDT:17% LUNAUSDT#2:17% LINKUSDT:14%"
+     },
+     {
+      "date": "2025-07-07",
+      "ret": 0.7593,
+      "hold": "PENGUUSDT:13% HBARUSDT:4% XLMUSDT:4%"
+     },
+     {
+      "date": "2024-11-18",
+      "ret": 0.6805,
+      "hold": "XLMUSDT:81% XRPUSDT:79% PEPEUSDT:72%"
+     },
+     {
+      "date": "2021-07-05",
+      "ret": 0.6608,
+      "hold": "AXSUSDT:135% SANDUSDT:45% FETUSDT:44%"
+     },
+     {
+      "date": "2021-03-08",
+      "ret": 0.6046,
+      "hold": "ENJUSDT:145% AXSUSDT:92% OCEANUSDT:78%"
+     }
+    ],
+    "top5LogShare": 1.4616,
+    "multipleTotal": 6.0568,
+    "multipleWithoutTop5": 0.4354
+   }
+  },
+  {
+   "name": "MOM top5 L7 H7 필터없음",
+   "params": {
+    "N": 5,
+    "L": 7,
+    "H": 7,
+    "wd": 1,
+    "lag": 0,
+    "mkt": 0,
+    "posOnly": false,
+    "side": "top",
+    "topK": null,
+    "minTurn": 5000000,
+    "cost": 0.001
+   },
+   "full": {
+    "start": "2018-03-05",
+    "end": "2026-10-03",
+    "totalRet": 5.3707,
+    "cagr": 0.2406,
+    "vol": 0.9983,
+    "sharpe": 0.7167,
+    "mdd": -0.9344,
+    "calmar": 0.2575,
+    "winRate": 0.529,
+    "investedShare": 1,
+    "nPeriods": 448
+   },
+   "is": {
+    "start": "2018-03-05",
+    "end": "2021-12-31",
+    "totalRet": 7.7261,
+    "cagr": 0.7605,
+    "vol": 1.0849,
+    "sharpe": 1.0726,
+    "mdd": -0.8605,
+    "calmar": 0.8837,
+    "winRate": 0.575,
+    "investedShare": 1,
+    "nPeriods": 200
+   },
+   "oos": {
+    "start": "2022-01-01",
+    "end": "2026-10-03",
+    "totalRet": -0.2699,
+    "cagr": -0.064,
+    "vol": 0.9225,
+    "sharpe": 0.3845,
+    "mdd": -0.876,
+    "calmar": -0.073,
+    "winRate": 0.4919,
+    "investedShare": 1,
+    "nPeriods": 248
+   },
+   "grossCagr": 0.3381,
+   "costDragCagr": 0.0975,
+   "annTurnover": 75.5807,
+   "yearly": {
+    "2018": -0.8213,
+    "2019": -0.0158,
+    "2020": 4.8129,
+    "2021": 7.5368,
+    "2022": -0.8649,
+    "2023": 1.4117,
+    "2024": 1.3172,
+    "2025": 0.047,
+    "2026": -0.0763
+   },
+   "concentration": {
+    "topK": [
+     {
+      "date": "2021-03-08",
+      "ret": 0.827,
+      "hold": "ENJUSDT:145% AXSUSDT:92% OCEANUSDT:78% SANDUSDT:72% MANAUSDT:69%"
+     },
+     {
+      "date": "2024-11-18",
+      "ret": 0.5684,
+      "hold": "XLMUSDT:81% XRPUSDT:79% PEPEUSDT:72% HBARUSDT:64% DOGEUSDT:32%"
+     },
+     {
+      "date": "2025-07-07",
+      "ret": 0.4794,
+      "hold": "PENGUUSDT:13% HBARUSDT:4% XLMUSDT:4% TRXUSDT:4% AAVEUSDT:3%"
+     },
+     {
+      "date": "2024-11-04",
+      "ret": 0.4643,
+      "hold": "SUIUSDT:11% DOGEUSDT:5% BTCUSDT:1% TRXUSDT:1% ADAUSDT:-2%"
+     },
+     {
+      "date": "2022-09-05",
+      "ret": 0.4631,
+      "hold": "ADAUSDT:17% LUNAUSDT#2:17% LINKUSDT:14% MATICUSDT:14% LTCUSDT:14%"
+     }
+    ],
+    "top5LogShare": 0.883,
+    "multipleTotal": 12.1652,
+    "multipleWithoutTop5": 1.3394
+   }
+  },
+  {
+   "name": "REV bottom1 L7 H7 SMA50",
+   "params": {
+    "N": 1,
+    "L": 7,
+    "H": 7,
+    "wd": 1,
+    "lag": 0,
+    "mkt": 50,
+    "posOnly": false,
+    "side": "bottom",
+    "topK": null,
+    "minTurn": 5000000,
+    "cost": 0.001
+   },
+   "full": {
+    "start": "2018-03-05",
+    "end": "2026-10-03",
+    "totalRet": -0.6261,
+    "cagr": -0.1082,
+    "vol": 0.9879,
+    "sharpe": 0.3581,
+    "mdd": -0.9536,
+    "calmar": -0.1135,
+    "winRate": 0.4764,
+    "investedShare": 0.5201,
+    "nPeriods": 448
+   },
+   "is": {
+    "start": "2018-03-05",
+    "end": "2021-12-31",
+    "totalRet": 0.3475,
+    "cagr": 0.081,
+    "vol": 0.9301,
+    "sharpe": 0.5368,
+    "mdd": -0.8186,
+    "calmar": 0.0989,
+    "winRate": 0.5,
+    "investedShare": 0.55,
+    "nPeriods": 200
+   },
+   "oos": {
+    "start": "2022-01-01",
+    "end": "2026-10-03",
+    "totalRet": -0.7225,
+    "cagr": -0.2362,
+    "vol": 1.0322,
+    "sharpe": 0.2292,
+    "mdd": -0.9536,
+    "calmar": -0.2477,
+    "winRate": 0.4553,
+    "investedShare": 0.496,
+    "nPeriods": 248
+   },
+   "grossCagr": -0.061,
+   "costDragCagr": 0.0472,
+   "annTurnover": 51.5774,
+   "yearly": {
+    "2018": -0.6358,
+    "2019": -0.0256,
+    "2020": 0.4361,
+    "2021": 1.644,
+    "2022": -0.3969,
+    "2023": 0.0319,
+    "2024": -0.2613,
+    "2025": -0.4405,
+    "2026": 0.0786
+   },
+   "concentration": {
+    "topK": [
+     {
+      "date": "2023-11-06",
+      "ret": 2.0035,
+      "hold": "FTTUSDT#2:-11%"
+     },
+     {
+      "date": "2021-01-11",
+      "ret": 0.8377,
+      "hold": "DOTUSDT:-8%"
+     },
+     {
+      "date": "2026-09-14",
+      "ret": 0.6364,
+      "hold": "ARBUSDT:-30%"
+     },
+     {
+      "date": "2021-02-08",
+      "ret": 0.4149,
+      "hold": "XRPUSDT:-15%"
+     },
+     {
+      "date": "2024-02-26",
+      "ret": 0.3998,
+      "hold": "SUPERUSDT:-12%"
+     }
+    ],
+    "top5LogShare": -5.1462,
+    "multipleTotal": 0.571,
+    "multipleWithoutTop5": 0.0319
+   }
+  },
+  {
+   "name": "REV bottom3 L7 H7 SMA50",
+   "params": {
+    "N": 3,
+    "L": 7,
+    "H": 7,
+    "wd": 1,
+    "lag": 0,
+    "mkt": 50,
+    "posOnly": false,
+    "side": "bottom",
+    "topK": null,
+    "minTurn": 5000000,
+    "cost": 0.001
+   },
+   "full": {
+    "start": "2018-03-05",
+    "end": "2026-10-03",
+    "totalRet": 0.0045,
+    "cagr": 0.0005,
+    "vol": 0.7018,
+    "sharpe": 0.3489,
+    "mdd": -0.8426,
+    "calmar": 0.0006,
+    "winRate": 0.4764,
+    "investedShare": 0.5201,
+    "nPeriods": 448
+   },
+   "is": {
+    "start": "2018-03-05",
+    "end": "2021-12-31",
+    "totalRet": 1.5843,
+    "cagr": 0.2813,
+    "vol": 0.7238,
+    "sharpe": 0.7063,
+    "mdd": -0.701,
+    "calmar": 0.4013,
+    "winRate": 0.5364,
+    "investedShare": 0.55,
+    "nPeriods": 200
+   },
+   "oos": {
+    "start": "2022-01-01",
+    "end": "2026-10-03",
+    "totalRet": -0.6113,
+    "cagr": -0.1801,
+    "vol": 0.6836,
+    "sharpe": 0.0446,
+    "mdd": -0.8426,
+    "calmar": -0.2138,
+    "winRate": 0.4228,
+    "investedShare": 0.496,
+    "nPeriods": 248
+   },
+   "grossCagr": 0.0505,
+   "costDragCagr": 0.05,
+   "annTurnover": 48.6772,
+   "yearly": {
+    "2018": -0.591,
+    "2019": 0.0426,
+    "2020": 0.5352,
+    "2021": 2.9478,
+    "2022": -0.3015,
+    "2023": 0.6551,
+    "2024": -0.4767,
+    "2025": -0.3312,
+    "2026": -0.0394
+   },
+   "concentration": {
+    "topK": [
+     {
+      "date": "2023-11-06",
+      "ret": 0.7291,
+      "hold": "FTTUSDT#2:-11% LOOMUSDT:-10% RNDRUSDT:-7%"
+     },
+     {
+      "date": "2026-09-14",
+      "ret": 0.4389,
+      "hold": "ARBUSDT:-30% DASHUSDT:-26% ENAUSDT:-23%"
+     },
+     {
+      "date": "2021-02-01",
+      "ret": 0.4074,
+      "hold": "ENJUSDT:-18% NEARUSDT:-16% SANDUSDT:-13%"
+     },
+     {
+      "date": "2021-01-04",
+      "ret": 0.4018,
+      "hold": "XRPUSDT:-21% DASHUSDT:-17% WAVESUSDT:-13%"
+     },
+     {
+      "date": "2025-04-21",
+      "ret": 0.3471,
+      "hold": "ENAUSDT:-7% SUIUSDT:-5% DOGEUSDT:-5%"
+     }
+    ],
+    "top5LogShare": 4.5251,
+    "multipleTotal": 1.5181,
+    "multipleWithoutTop5": 0.2296
+   }
+  },
+  {
+   "name": "REV bottom5 L7 H7 SMA50",
+   "params": {
+    "N": 5,
+    "L": 7,
+    "H": 7,
+    "wd": 1,
+    "lag": 0,
+    "mkt": 50,
+    "posOnly": false,
+    "side": "bottom",
+    "topK": null,
+    "minTurn": 5000000,
+    "cost": 0.001
+   },
+   "full": {
+    "start": "2018-03-05",
+    "end": "2026-10-03",
+    "totalRet": 0.406,
+    "cagr": 0.0405,
+    "vol": 0.6547,
+    "sharpe": 0.3864,
+    "mdd": -0.8261,
+    "calmar": 0.049,
+    "winRate": 0.5021,
+    "investedShare": 0.5201,
+    "nPeriods": 448
+   },
+   "is": {
+    "start": "2018-03-05",
+    "end": "2021-12-31",
+    "totalRet": 2.69,
+    "cagr": 0.4062,
+    "vol": 0.6815,
+    "sharpe": 0.844,
+    "mdd": -0.6775,
+    "calmar": 0.5995,
+    "winRate": 0.5636,
+    "investedShare": 0.55,
+    "nPeriods": 200
+   },
+   "oos": {
+    "start": "2022-01-01",
+    "end": "2026-10-03",
+    "totalRet": -0.619,
+    "cagr": -0.1835,
+    "vol": 0.6321,
+    "sharpe": -0.01,
+    "mdd": -0.8261,
+    "calmar": -0.2221,
+    "winRate": 0.4472,
+    "investedShare": 0.496,
+    "nPeriods": 248
+   },
+   "grossCagr": 0.0885,
+   "costDragCagr": 0.0481,
+   "annTurnover": 45.1185,
+   "yearly": {
+    "2018": -0.5764,
+    "2019": 0.106,
+    "2020": 0.419,
+    "2021": 4.5509,
+    "2022": -0.391,
+    "2023": 0.7473,
+    "2024": -0.4452,
+    "2025": -0.4468,
+    "2026": 0.1666
+   },
+   "concentration": {
+    "topK": [
+     {
+      "date": "2023-11-06",
+      "ret": 0.5846,
+      "hold": "FTTUSDT#2:-11% LOOMUSDT:-10% RNDRUSDT:-7% BCHUSDT:-3% LUNAUSDT#2:-3%"
+     },
+     {
+      "date": "2021-02-08",
+      "ret": 0.4914,
+      "hold": "XRPUSDT:-15% FTMUSDT:4% UNIUSDT:5% ZECUSDT:8% FILUSDT:8%"
+     },
+     {
+      "date": "2021-01-04",
+      "ret": 0.4333,
+      "hold": "XRPUSDT:-21% DASHUSDT:-17% WAVESUSDT:-13% XMRUSDT:-12% ZECUSDT:-11%"
+     },
+     {
+      "date": "2019-05-13",
+      "ret": 0.3513,
+      "hold": "BNBUSDT:-9% TRXUSDT:2% XRPUSDT:3% BTTUSDT:5% ADAUSDT:6%"
+     },
+     {
+      "date": "2025-05-05",
+      "ret": 0.3252,
+      "hold": "TRUMPUSDT:-26% PENGUUSDT:-18% WLDUSDT:-18% ENAUSDT:-17% ZROUSDT:-14%"
+     }
+    ],
+    "top5LogShare": 2.4916,
+    "multipleTotal": 2.0616,
+    "multipleWithoutTop5": 0.3399
+   }
+  },
+  {
+   "name": "REV bottom1 L7 H7 필터없음",
+   "params": {
+    "N": 1,
+    "L": 7,
+    "H": 7,
+    "wd": 1,
+    "lag": 0,
+    "mkt": 0,
+    "posOnly": false,
+    "side": "bottom",
+    "topK": null,
+    "minTurn": 5000000,
+    "cost": 0.001
+   },
+   "full": {
+    "start": "2018-03-05",
+    "end": "2026-10-03",
+    "totalRet": -1,
+    "cagr": -0.8979,
+    "vol": 1.5738,
+    "sharpe": -0.0616,
+    "mdd": -1,
+    "calmar": -0.8979,
+    "winRate": 0.4688,
+    "investedShare": 1,
+    "nPeriods": 448
+   },
+   "is": {
+    "start": "2018-03-05",
+    "end": "2021-12-31",
+    "totalRet": -0.8836,
+    "cagr": -0.4297,
+    "vol": 1.3193,
+    "sharpe": 0.2228,
+    "mdd": -0.9247,
+    "calmar": -0.4647,
+    "winRate": 0.5,
+    "investedShare": 1,
+    "nPeriods": 200
+   },
+   "oos": {
+    "start": "2022-01-01",
+    "end": "2026-10-03",
+    "totalRet": -1,
+    "cagr": -0.9744,
+    "vol": 1.7523,
+    "sharpe": -0.2349,
+    "mdd": -1,
+    "calmar": -0.9744,
+    "winRate": 0.4435,
+    "investedShare": 1,
+    "nPeriods": 248
+   },
+   "grossCagr": -0.8873,
+   "costDragCagr": 0.0105,
+   "annTurnover": 98.1483,
+   "yearly": {
+    "2018": -0.808,
+    "2019": -0.3319,
+    "2020": 0.1913,
+    "2021": -0.2383,
+    "2022": -1,
+    "2023": -0.0395,
+    "2024": 0.3565,
+    "2025": -0.8256,
+    "2026": -0.3141
+   },
+   "concentration": {
+    "topK": [
+     {
+      "date": "2023-11-06",
+      "ret": 2.0035,
+      "hold": "FTTUSDT#2:-11%"
+     },
+     {
+      "date": "2021-01-11",
+      "ret": 0.8377,
+      "hold": "DOTUSDT:-8%"
+     },
+     {
+      "date": "2022-05-30",
+      "ret": 0.8143,
+      "hold": "WAVESUSDT:-25%"
+     },
+     {
+      "date": "2026-09-14",
+      "ret": 0.6364,
+      "hold": "ARBUSDT:-30%"
+     },
+     {
+      "date": "2021-05-24",
+      "ret": 0.5174,
+      "hold": "LUNAUSDT:-75%"
+     }
+    ],
+    "top5LogShare": -0.1709,
+    "multipleTotal": 0,
+    "multipleWithoutTop5": 0
+   }
+  },
+  {
+   "name": "REV bottom3 L7 H7 필터없음",
+   "params": {
+    "N": 3,
+    "L": 7,
+    "H": 7,
+    "wd": 1,
+    "lag": 0,
+    "mkt": 0,
+    "posOnly": false,
+    "side": "bottom",
+    "topK": null,
+    "minTurn": 5000000,
+    "cost": 0.001
+   },
+   "full": {
+    "start": "2018-03-05",
+    "end": "2026-10-03",
+    "totalRet": -0.9572,
+    "cagr": -0.3072,
+    "vol": 1.0626,
+    "sharpe": 0.1865,
+    "mdd": -0.9874,
+    "calmar": -0.3111,
+    "winRate": 0.4866,
+    "investedShare": 1,
+    "nPeriods": 448
+   },
+   "is": {
+    "start": "2018-03-05",
+    "end": "2021-12-31",
+    "totalRet": -0.2868,
+    "cagr": -0.0845,
+    "vol": 1.0957,
+    "sharpe": 0.4757,
+    "mdd": -0.8472,
+    "calmar": -0.0997,
+    "winRate": 0.535,
+    "investedShare": 1,
+    "nPeriods": 200
+   },
+   "oos": {
+    "start": "2022-01-01",
+    "end": "2026-10-03",
+    "totalRet": -0.9401,
+    "cagr": -0.4464,
+    "vol": 1.0352,
+    "sharpe": -0.0597,
+    "mdd": -0.9776,
+    "calmar": -0.4567,
+    "winRate": 0.4476,
+    "investedShare": 1,
+    "nPeriods": 248
+   },
+   "grossCagr": -0.2426,
+   "costDragCagr": 0.0646,
+   "annTurnover": 89.1141,
+   "yearly": {
+    "2018": -0.76,
+    "2019": -0.0475,
+    "2020": 0.2624,
+    "2021": 1.4712,
+    "2022": -0.9098,
+    "2023": 0.8361,
+    "2024": 0.0147,
+    "2025": -0.6528,
+    "2026": 0.0269
+   },
+   "concentration": {
+    "topK": [
+     {
+      "date": "2023-11-06",
+      "ret": 0.7291,
+      "hold": "FTTUSDT#2:-11% LOOMUSDT:-10% RNDRUSDT:-7%"
+     },
+     {
+      "date": "2021-04-26",
+      "ret": 0.6279,
+      "hold": "REPUSDT:-34% FETUSDT:-34% SUPERUSDT:-33%"
+     },
+     {
+      "date": "2023-01-02",
+      "ret": 0.5867,
+      "hold": "SOLUSDT:-12% SANDUSDT:-12% GALAUSDT:-8%"
+     },
+     {
+      "date": "2018-09-17",
+      "ret": 0.4696,
+      "hold": "ADAUSDT:-8% BCCUSDT:-6% XRPUSDT:2%"
+     },
+     {
+      "date": "2026-08-17",
+      "ret": 0.4475,
+      "hold": "UNIUSDT:-18% PEPEUSDT:-11% FETUSDT:-10%"
+     }
+    ],
+    "top5LogShare": -0.937,
+    "multipleTotal": 0.0905,
+    "multipleWithoutTop5": 0.0095
+   }
+  },
+  {
+   "name": "REV bottom5 L7 H7 필터없음",
+   "params": {
+    "N": 5,
+    "L": 7,
+    "H": 7,
+    "wd": 1,
+    "lag": 0,
+    "mkt": 0,
+    "posOnly": false,
+    "side": "bottom",
+    "topK": null,
+    "minTurn": 5000000,
+    "cost": 0.001
+   },
+   "full": {
+    "start": "2018-03-05",
+    "end": "2026-10-03",
+    "totalRet": -0.9118,
+    "cagr": -0.2462,
+    "vol": 0.9729,
+    "sharpe": 0.2024,
+    "mdd": -0.9787,
+    "calmar": -0.2516,
+    "winRate": 0.5112,
+    "investedShare": 1,
+    "nPeriods": 448
+   },
+   "is": {
+    "start": "2018-03-05",
+    "end": "2021-12-31",
+    "totalRet": 0.261,
+    "cagr": 0.0624,
+    "vol": 1.0206,
+    "sharpe": 0.5835,
+    "mdd": -0.8489,
+    "calmar": 0.0735,
+    "winRate": 0.56,
+    "investedShare": 1,
+    "nPeriods": 200
+   },
+   "oos": {
+    "start": "2022-01-01",
+    "end": "2026-10-03",
+    "totalRet": -0.93,
+    "cagr": -0.4282,
+    "vol": 0.9327,
+    "sharpe": -0.1328,
+    "mdd": -0.9713,
+    "calmar": -0.4408,
+    "winRate": 0.4718,
+    "investedShare": 1,
+    "nPeriods": 248
+   },
+   "grossCagr": -0.1833,
+   "costDragCagr": 0.063,
+   "annTurnover": 80.144,
+   "yearly": {
+    "2018": -0.7567,
+    "2019": -0.0263,
+    "2020": 0.3812,
+    "2021": 2.8546,
+    "2022": -0.9125,
+    "2023": 0.7363,
+    "2024": 0.097,
+    "2025": -0.6709,
+    "2026": 0.2759
+   },
+   "concentration": {
+    "topK": [
+     {
+      "date": "2023-11-06",
+      "ret": 0.5846,
+      "hold": "FTTUSDT#2:-11% LOOMUSDT:-10% RNDRUSDT:-7% BCHUSDT:-3% LUNAUSDT#2:-3%"
+     },
+     {
+      "date": "2021-04-26",
+      "ret": 0.496,
+      "hold": "REPUSDT:-34% FETUSDT:-34% SUPERUSDT:-33% XEMUSDT:-33% WTCUSDT:-32%"
+     },
+     {
+      "date": "2021-02-08",
+      "ret": 0.4914,
+      "hold": "XRPUSDT:-15% FTMUSDT:4% UNIUSDT:5% ZECUSDT:8% FILUSDT:8%"
+     },
+     {
+      "date": "2021-01-04",
+      "ret": 0.4333,
+      "hold": "XRPUSDT:-21% DASHUSDT:-17% WAVESUSDT:-13% XMRUSDT:-12% ZECUSDT:-11%"
+     },
+     {
+      "date": "2023-01-02",
+      "ret": 0.3895,
+      "hold": "SOLUSDT:-12% SANDUSDT:-12% GALAUSDT:-8% AXSUSDT:-8% DOGEUSDT:-8%"
+     }
+    ],
+    "top5LogShare": -1.1136,
+    "multipleTotal": 0.1733,
+    "multipleWithoutTop5": 0.0246
+   }
+  },
+  {
+   "name": "KANG 원형근사 top20유동성 SMA120 양수만 top3",
+   "params": {
+    "N": 3,
+    "L": 7,
+    "H": 7,
+    "wd": 1,
+    "lag": 0,
+    "mkt": 120,
+    "posOnly": true,
+    "side": "top",
+    "topK": 20,
+    "minTurn": 5000000,
+    "cost": 0.001
+   },
+   "full": {
+    "start": "2018-03-05",
+    "end": "2026-10-03",
+    "totalRet": 22.2083,
+    "cagr": 0.4421,
+    "vol": 0.7562,
+    "sharpe": 0.8517,
+    "mdd": -0.7221,
+    "calmar": 0.6123,
+    "winRate": 0.5459,
+    "investedShare": 0.5112,
+    "nPeriods": 448
+   },
+   "is": {
+    "start": "2018-03-05",
+    "end": "2021-12-31",
+    "totalRet": 19.687,
+    "cagr": 1.2055,
+    "vol": 0.8588,
+    "sharpe": 1.3362,
+    "mdd": -0.5679,
+    "calmar": 2.1228,
+    "winRate": 0.6226,
+    "investedShare": 0.53,
+    "nPeriods": 200
+   },
+   "oos": {
+    "start": "2022-01-01",
+    "end": "2026-10-03",
+    "totalRet": 0.1219,
+    "cagr": 0.0245,
+    "vol": 0.6616,
+    "sharpe": 0.361,
+    "mdd": -0.7221,
+    "calmar": 0.0339,
+    "winRate": 0.4797,
+    "investedShare": 0.496,
+    "nPeriods": 248
+   },
+   "grossCagr": 0.502,
+   "costDragCagr": 0.0599,
+   "annTurnover": 40.658,
+   "yearly": {
+    "2018": -0.5192,
+    "2019": -0.0392,
+    "2020": 2.6892,
+    "2021": 11.1379,
+    "2022": -0.3587,
+    "2023": 0.2839,
+    "2024": 0.6486,
+    "2025": -0.0334,
+    "2026": -0.145
+   },
+   "concentration": {
+    "topK": [
+     {
+      "date": "2020-08-10",
+      "ret": 0.5962,
+      "hold": "LINKUSDT:67% WAVESUSDT:22% LENDUSDT:17%"
+     },
+     {
+      "date": "2021-11-22",
+      "ret": 0.5508,
+      "hold": "GALAUSDT:297% SANDUSDT:41% AVAXUSDT:35%"
+     },
+     {
+      "date": "2024-11-04",
+      "ret": 0.5206,
+      "hold": "SUIUSDT:11% DOGEUSDT:5% BTCUSDT:1%"
+     },
+     {
+      "date": "2021-02-15",
+      "ret": 0.4021,
+      "hold": "BNBUSDT:99% FILUSDT:96% LUNAUSDT:83%"
+     },
+     {
+      "date": "2024-03-04",
+      "ret": 0.3708,
+      "hold": "PEPEUSDT:333% DOGEUSDT:78% FETUSDT:60%"
+     }
+    ],
+    "top5LogShare": 0.566,
+    "multipleTotal": 32.9926,
+    "multipleWithoutTop5": 4.5605
+   }
+  },
+  {
+   "name": "KANG 원형근사 + 20주(140일)MA",
+   "params": {
+    "N": 3,
+    "L": 7,
+    "H": 7,
+    "wd": 1,
+    "lag": 0,
+    "mkt": 140,
+    "posOnly": true,
+    "side": "top",
+    "topK": 20,
+    "minTurn": 5000000,
+    "cost": 0.001
+   },
+   "full": {
+    "start": "2018-03-05",
+    "end": "2026-10-03",
+    "totalRet": 12.5875,
+    "cagr": 0.355,
+    "vol": 0.7466,
+    "sharpe": 0.7705,
+    "mdd": -0.7221,
+    "calmar": 0.4916,
+    "winRate": 0.5422,
+    "investedShare": 0.5022,
+    "nPeriods": 448
+   },
+   "is": {
+    "start": "2018-03-05",
+    "end": "2021-12-31",
+    "totalRet": 13.4732,
+    "cagr": 1.0091,
+    "vol": 0.8357,
+    "sharpe": 1.2389,
+    "mdd": -0.6475,
+    "calmar": 1.5586,
+    "winRate": 0.61,
+    "investedShare": 0.5,
+    "nPeriods": 200
+   },
+   "oos": {
+    "start": "2022-01-01",
+    "end": "2026-10-03",
+    "totalRet": -0.0612,
+    "cagr": -0.0132,
+    "vol": 0.666,
+    "sharpe": 0.3078,
+    "mdd": -0.7221,
+    "calmar": -0.0183,
+    "winRate": 0.488,
+    "investedShare": 0.504,
+    "nPeriods": 248
+   },
+   "grossCagr": 0.4102,
+   "costDragCagr": 0.0553,
+   "annTurnover": 39.9542,
+   "yearly": {
+    "2018": -0.275,
+    "2019": -0.3239,
+    "2020": 1.7624,
+    "2021": 9.689,
+    "2022": -0.3587,
+    "2023": 0.4861,
+    "2024": 0.6486,
+    "2025": -0.3187,
+    "2026": -0.123
+   },
+   "concentration": {
+    "topK": [
+     {
+      "date": "2020-08-10",
+      "ret": 0.5962,
+      "hold": "LINKUSDT:67% WAVESUSDT:22% LENDUSDT:17%"
+     },
+     {
+      "date": "2021-11-22",
+      "ret": 0.5508,
+      "hold": "GALAUSDT:297% SANDUSDT:41% AVAXUSDT:35%"
+     },
+     {
+      "date": "2024-11-04",
+      "ret": 0.5206,
+      "hold": "SUIUSDT:11% DOGEUSDT:5% BTCUSDT:1%"
+     },
+     {
+      "date": "2021-02-15",
+      "ret": 0.4021,
+      "hold": "BNBUSDT:99% FILUSDT:96% LUNAUSDT:83%"
+     },
+     {
+      "date": "2024-03-04",
+      "ret": 0.3708,
+      "hold": "PEPEUSDT:333% DOGEUSDT:78% FETUSDT:60%"
+     }
+    ],
+    "top5LogShare": 0.6707,
+    "multipleTotal": 19.1159,
+    "multipleWithoutTop5": 2.6423
+   }
+  },
+  {
+   "name": "KANG 원형근사 필터없음(시장필터X)",
+   "params": {
+    "N": 3,
+    "L": 7,
+    "H": 7,
+    "wd": 1,
+    "lag": 0,
+    "mkt": 0,
+    "posOnly": true,
+    "side": "top",
+    "topK": 20,
+    "minTurn": 5000000,
+    "cost": 0.001
+   },
+   "full": {
+    "start": "2018-03-05",
+    "end": "2026-10-03",
+    "totalRet": 0.223,
+    "cagr": 0.0237,
+    "vol": 0.944,
+    "sharpe": 0.4979,
+    "mdd": -0.9306,
+    "calmar": 0.0255,
+    "winRate": 0.5113,
+    "investedShare": 0.8862,
+    "nPeriods": 448
+   },
+   "is": {
+    "start": "2018-03-05",
+    "end": "2021-12-31",
+    "totalRet": 3.331,
+    "cagr": 0.4662,
+    "vol": 1.0596,
+    "sharpe": 0.8982,
+    "mdd": -0.7993,
+    "calmar": 0.5833,
+    "winRate": 0.5607,
+    "investedShare": 0.865,
+    "nPeriods": 200
+   },
+   "oos": {
+    "start": "2022-01-01",
+    "end": "2026-10-03",
+    "totalRet": -0.7176,
+    "cagr": -0.2333,
+    "vol": 0.8393,
+    "sharpe": 0.098,
+    "mdd": -0.875,
+    "calmar": -0.2667,
+    "winRate": 0.4732,
+    "investedShare": 0.9032,
+    "nPeriods": 248
+   },
+   "grossCagr": 0.0958,
+   "costDragCagr": 0.0721,
+   "annTurnover": 68.0303,
+   "yearly": {
+    "2018": -0.6834,
+    "2019": -0.1275,
+    "2020": 2.7721,
+    "2021": 3.1567,
+    "2022": -0.8525,
+    "2023": 1.4794,
+    "2024": 1.9076,
+    "2025": -0.4317,
+    "2026": -0.5326
+   },
+   "concentration": {
+    "topK": [
+     {
+      "date": "2020-08-10",
+      "ret": 0.5962,
+      "hold": "LINKUSDT:67% WAVESUSDT:22% LENDUSDT:17%"
+     },
+     {
+      "date": "2021-11-22",
+      "ret": 0.5508,
+      "hold": "GALAUSDT:297% SANDUSDT:41% AVAXUSDT:35%"
+     },
+     {
+      "date": "2024-11-04",
+      "ret": 0.5206,
+      "hold": "SUIUSDT:11% DOGEUSDT:5% BTCUSDT:1%"
+     },
+     {
+      "date": "2023-01-09",
+      "ret": 0.4545,
+      "hold": "GALAUSDT:104% SOLUSDT:45% NEARUSDT:29%"
+     },
+     {
+      "date": "2021-02-15",
+      "ret": 0.4021,
+      "hold": "BNBUSDT:99% FILUSDT:96% LUNAUSDT:83%"
+     }
+    ],
+    "top5LogShare": 2.6062,
+    "multipleTotal": 2.1859,
+    "multipleWithoutTop5": 0.2848
+   }
+  },
+  {
+   "name": "MOM top3 SMA120",
+   "params": {
+    "N": 3,
+    "L": 7,
+    "H": 7,
+    "wd": 1,
+    "lag": 0,
+    "mkt": 120,
+    "posOnly": false,
+    "side": "top",
+    "topK": null,
+    "minTurn": 5000000,
+    "cost": 0.001
+   },
+   "full": {
+    "start": "2018-03-05",
+    "end": "2026-10-03",
+    "totalRet": 12.1772,
+    "cagr": 0.3501,
+    "vol": 0.8472,
+    "sharpe": 0.7665,
+    "mdd": -0.81,
+    "calmar": 0.4323,
+    "winRate": 0.5333,
+    "investedShare": 0.5357,
+    "nPeriods": 448
+   },
+   "is": {
+    "start": "2018-03-05",
+    "end": "2021-12-31",
+    "totalRet": 21.107,
+    "cagr": 1.2441,
+    "vol": 0.9354,
+    "sharpe": 1.3161,
+    "mdd": -0.5999,
+    "calmar": 2.0738,
+    "winRate": 0.6306,
+    "investedShare": 0.555,
+    "nPeriods": 200
+   },
+   "oos": {
+    "start": "2022-01-01",
+    "end": "2026-10-03",
+    "totalRet": -0.4039,
+    "cagr": -0.103,
+    "vol": 0.7684,
+    "sharpe": 0.2359,
+    "mdd": -0.8006,
+    "calmar": -0.1287,
+    "winRate": 0.4496,
+    "investedShare": 0.5202,
+    "nPeriods": 248
+   },
+   "grossCagr": 0.4149,
+   "costDragCagr": 0.0647,
+   "annTurnover": 46.7889,
+   "yearly": {
+    "2018": -0.5192,
+    "2019": -0.0499,
+    "2020": 6.6186,
+    "2021": 5.3514,
+    "2022": -0.5442,
+    "2023": 0.3965,
+    "2024": 0.328,
+    "2025": 0.0545,
+    "2026": -0.3313
+   },
+   "concentration": {
+    "topK": [
+     {
+      "date": "2025-07-07",
+      "ret": 0.7593,
+      "hold": "PENGUUSDT:13% HBARUSDT:4% XLMUSDT:4%"
+     },
+     {
+      "date": "2024-11-18",
+      "ret": 0.6805,
+      "hold": "XLMUSDT:81% XRPUSDT:79% PEPEUSDT:72%"
+     },
+     {
+      "date": "2021-03-08",
+      "ret": 0.6046,
+      "hold": "ENJUSDT:145% AXSUSDT:92% OCEANUSDT:78%"
+     },
+     {
+      "date": "2020-08-10",
+      "ret": 0.5962,
+      "hold": "LINKUSDT:67% WAVESUSDT:22% LENDUSDT:17%"
+     },
+     {
+      "date": "2021-11-22",
+      "ret": 0.5508,
+      "hold": "GALAUSDT:297% SANDUSDT:41% AVAXUSDT:35%"
+     }
+    ],
+    "top5LogShare": 0.8271,
+    "multipleTotal": 19.652,
+    "multipleWithoutTop5": 1.6734
+   }
+  },
+  {
+   "name": "MOM top3 SMA140(20주)",
+   "params": {
+    "N": 3,
+    "L": 7,
+    "H": 7,
+    "wd": 1,
+    "lag": 0,
+    "mkt": 140,
+    "posOnly": false,
+    "side": "top",
+    "topK": null,
+    "minTurn": 5000000,
+    "cost": 0.001
+   },
+   "full": {
+    "start": "2018-03-05",
+    "end": "2026-10-03",
+    "totalRet": 12.5454,
+    "cagr": 0.3545,
+    "vol": 0.8483,
+    "sharpe": 0.7703,
+    "mdd": -0.8124,
+    "calmar": 0.4363,
+    "winRate": 0.5294,
+    "investedShare": 0.5313,
+    "nPeriods": 448
+   },
+   "is": {
+    "start": "2018-03-05",
+    "end": "2021-12-31",
+    "totalRet": 13.8116,
+    "cagr": 1.0213,
+    "vol": 0.9152,
+    "sharpe": 1.2112,
+    "mdd": -0.6403,
+    "calmar": 1.5951,
+    "winRate": 0.619,
+    "investedShare": 0.525,
+    "nPeriods": 200
+   },
+   "oos": {
+    "start": "2022-01-01",
+    "end": "2026-10-03",
+    "totalRet": -0.0855,
+    "cagr": -0.0186,
+    "vol": 0.7901,
+    "sharpe": 0.3635,
+    "mdd": -0.8124,
+    "calmar": -0.0229,
+    "winRate": 0.4586,
+    "investedShare": 0.5363,
+    "nPeriods": 248
+   },
+   "grossCagr": 0.419,
+   "costDragCagr": 0.0645,
+   "annTurnover": 46.4732,
+   "yearly": {
+    "2018": -0.275,
+    "2019": -0.3314,
+    "2020": 4.7046,
+    "2021": 4.3564,
+    "2022": -0.5442,
+    "2023": 0.5942,
+    "2024": 0.328,
+    "2025": 0.1379,
+    "2026": -0.1671
+   },
+   "concentration": {
+    "topK": [
+     {
+      "date": "2025-07-07",
+      "ret": 0.7593,
+      "hold": "PENGUUSDT:13% HBARUSDT:4% XLMUSDT:4%"
+     },
+     {
+      "date": "2024-11-18",
+      "ret": 0.6805,
+      "hold": "XLMUSDT:81% XRPUSDT:79% PEPEUSDT:72%"
+     },
+     {
+      "date": "2021-03-08",
+      "ret": 0.6046,
+      "hold": "ENJUSDT:145% AXSUSDT:92% OCEANUSDT:78%"
+     },
+     {
+      "date": "2020-08-10",
+      "ret": 0.5962,
+      "hold": "LINKUSDT:67% WAVESUSDT:22% LENDUSDT:17%"
+     },
+     {
+      "date": "2021-11-22",
+      "ret": 0.5508,
+      "hold": "GALAUSDT:297% SANDUSDT:41% AVAXUSDT:35%"
+     }
+    ],
+    "top5LogShare": 0.8214,
+    "multipleTotal": 20.064,
+    "multipleWithoutTop5": 1.7085
+   }
+  },
+  {
+   "name": "MOM top3 SMA50 체결1일지연",
+   "params": {
+    "N": 3,
+    "L": 7,
+    "H": 7,
+    "wd": 1,
+    "lag": 1,
+    "mkt": 50,
+    "posOnly": false,
+    "side": "top",
+    "topK": null,
+    "minTurn": 5000000,
+    "cost": 0.001
+   },
+   "full": {
+    "start": "2018-03-05",
+    "end": "2026-10-03",
+    "totalRet": 2.3705,
+    "cagr": 0.152,
+    "vol": 0.8246,
+    "sharpe": 0.5754,
+    "mdd": -0.8444,
+    "calmar": 0.18,
+    "winRate": 0.5216,
+    "investedShare": 0.5179,
+    "nPeriods": 448
+   },
+   "is": {
+    "start": "2018-03-05",
+    "end": "2021-12-31",
+    "totalRet": 2.4248,
+    "cagr": 0.3791,
+    "vol": 0.8954,
+    "sharpe": 0.7952,
+    "mdd": -0.6225,
+    "calmar": 0.6089,
+    "winRate": 0.6019,
+    "investedShare": 0.54,
+    "nPeriods": 200
+   },
+   "oos": {
+    "start": "2022-01-01",
+    "end": "2026-10-03",
+    "totalRet": -0.0159,
+    "cagr": -0.0034,
+    "vol": 0.7631,
+    "sharpe": 0.3712,
+    "mdd": -0.7645,
+    "calmar": -0.0044,
+    "winRate": 0.4516,
+    "investedShare": 0.5,
+    "nPeriods": 248
+   },
+   "grossCagr": 0.2062,
+   "costDragCagr": 0.0542,
+   "annTurnover": 45.9736,
+   "yearly": {
+    "2018": -0.5743,
+    "2019": 0.0359,
+    "2020": 1.7309,
+    "2021": 1.8438,
+    "2022": -0.7118,
+    "2023": 1.5255,
+    "2024": 0.666,
+    "2025": 0.2302,
+    "2026": -0.3403
+   },
+   "concentration": {
+    "topK": [
+     {
+      "date": "2024-11-04",
+      "ret": 0.72,
+      "hold": "DOGEUSDT:16% SUIUSDT:6% ADAUSDT:4%"
+     },
+     {
+      "date": "2024-11-18",
+      "ret": 0.6805,
+      "hold": "XLMUSDT:116% XRPUSDT:100% PEPEUSDT:90%"
+     },
+     {
+      "date": "2021-03-08",
+      "ret": 0.6046,
+      "hold": "ENJUSDT:103% AXSUSDT:60% OCEANUSDT:47%"
+     },
+     {
+      "date": "2020-08-10",
+      "ret": 0.5962,
+      "hold": "LINKUSDT:53% LENDUSDT:29% WAVESUSDT:16%"
+     },
+     {
+      "date": "2023-01-09",
+      "ret": 0.5433,
+      "hold": "FETUSDT:72% GALAUSDT:40% SOLUSDT:31%"
+     }
+    ],
+    "top5LogShare": 1.5053,
+    "multipleTotal": 5.044,
+    "multipleWithoutTop5": 0.4415
+   }
+  },
+  {
+   "name": "MOM top3 SMA50 비용0.10%/편도",
+   "params": {
+    "N": 3,
+    "L": 7,
+    "H": 7,
+    "wd": 1,
+    "lag": 0,
+    "mkt": 50,
+    "posOnly": false,
+    "side": "top",
+    "topK": null,
+    "minTurn": 5000000,
+    "cost": 0.001
+   },
+   "full": {
+    "start": "2018-03-05",
+    "end": "2026-10-03",
+    "totalRet": 24.2601,
+    "cagr": 0.4564,
+    "vol": 0.8455,
+    "sharpe": 0.8566,
+    "mdd": -0.8268,
+    "calmar": 0.552,
+    "winRate": 0.5279,
+    "investedShare": 0.5201,
+    "nPeriods": 448
+   },
+   "is": {
+    "start": "2018-03-05",
+    "end": "2021-12-31",
+    "totalRet": 18.8177,
+    "cagr": 1.1809,
+    "vol": 0.9162,
+    "sharpe": 1.2958,
+    "mdd": -0.7352,
+    "calmar": 1.6062,
+    "winRate": 0.6091,
+    "investedShare": 0.55,
+    "nPeriods": 200
+   },
+   "oos": {
+    "start": "2022-01-01",
+    "end": "2026-10-03",
+    "totalRet": 0.2746,
+    "cagr": 0.0523,
+    "vol": 0.7837,
+    "sharpe": 0.4487,
+    "mdd": -0.7836,
+    "calmar": 0.0668,
+    "winRate": 0.4553,
+    "investedShare": 0.496,
+    "nPeriods": 248
+   },
+   "grossCagr": 0.5247,
+   "costDragCagr": 0.0683,
+   "annTurnover": 45.782,
+   "yearly": {
+    "2018": -0.6435,
+    "2019": 0.1567,
+    "2020": 9.2497,
+    "2021": 3.6891,
+    "2022": -0.6974,
+    "2023": 1.7682,
+    "2024": 0.6593,
+    "2025": 0.1513,
+    "2026": -0.2036
+   },
+   "concentration": {
+    "topK": [
+     {
+      "date": "2025-07-07",
+      "ret": 0.7593,
+      "hold": "PENGUUSDT:13% HBARUSDT:4% XLMUSDT:4%"
+     },
+     {
+      "date": "2024-11-18",
+      "ret": 0.6805,
+      "hold": "XLMUSDT:81% XRPUSDT:79% PEPEUSDT:72%"
+     },
+     {
+      "date": "2021-03-08",
+      "ret": 0.6046,
+      "hold": "ENJUSDT:145% AXSUSDT:92% OCEANUSDT:78%"
+     },
+     {
+      "date": "2020-08-10",
+      "ret": 0.5962,
+      "hold": "LINKUSDT:67% WAVESUSDT:22% LENDUSDT:17%"
+     },
+     {
+      "date": "2023-01-09",
+      "ret": 0.5433,
+      "hold": "GALAUSDT:104% FETUSDT:53% SOLUSDT:45%"
+     }
+    ],
+    "top5LogShare": 0.6782,
+    "multipleTotal": 37.5252,
+    "multipleWithoutTop5": 3.211
+   }
+  },
+  {
+   "name": "MOM top3 SMA50 비용0.20%/편도",
+   "params": {
+    "N": 3,
+    "L": 7,
+    "H": 7,
+    "wd": 1,
+    "lag": 0,
+    "mkt": 50,
+    "posOnly": false,
+    "side": "top",
+    "topK": null,
+    "minTurn": 5000000,
+    "cost": 0.002
+   },
+   "full": {
+    "start": "2018-03-05",
+    "end": "2026-10-03",
+    "totalRet": 16.2171,
+    "cagr": 0.3928,
+    "vol": 0.8453,
+    "sharpe": 0.8039,
+    "mdd": -0.8359,
+    "calmar": 0.4699,
+    "winRate": 0.5279,
+    "investedShare": 0.5201,
+    "nPeriods": 448
+   },
+   "is": {
+    "start": "2018-03-05",
+    "end": "2021-12-31",
+    "totalRet": 15.772,
+    "cagr": 1.088,
+    "vol": 0.9156,
+    "sharpe": 1.2486,
+    "mdd": -0.7396,
+    "calmar": 1.471,
+    "winRate": 0.6091,
+    "investedShare": 0.55,
+    "nPeriods": 200
+   },
+   "oos": {
+    "start": "2022-01-01",
+    "end": "2026-10-03",
+    "totalRet": 0.0265,
+    "cagr": 0.0055,
+    "vol": 0.7839,
+    "sharpe": 0.3909,
+    "mdd": -0.7907,
+    "calmar": 0.007,
+    "winRate": 0.4553,
+    "investedShare": 0.496,
+    "nPeriods": 248
+   },
+   "grossCagr": 0.5247,
+   "costDragCagr": 0.1319,
+   "annTurnover": 45.782,
+   "yearly": {
+    "2018": -0.6494,
+    "2019": 0.1122,
+    "2020": 8.7424,
+    "2021": 3.4154,
+    "2022": -0.7034,
+    "2023": 1.6179,
+    "2024": 0.5659,
+    "2025": 0.1022,
+    "2026": -0.2341
+   },
+   "concentration": {
+    "topK": [
+     {
+      "date": "2025-07-07",
+      "ret": 0.7593,
+      "hold": "PENGUUSDT:13% HBARUSDT:4% XLMUSDT:4%"
+     },
+     {
+      "date": "2024-11-18",
+      "ret": 0.6805,
+      "hold": "XLMUSDT:81% XRPUSDT:79% PEPEUSDT:72%"
+     },
+     {
+      "date": "2021-03-08",
+      "ret": 0.6046,
+      "hold": "ENJUSDT:145% AXSUSDT:92% OCEANUSDT:78%"
+     },
+     {
+      "date": "2020-08-10",
+      "ret": 0.5962,
+      "hold": "LINKUSDT:67% WAVESUSDT:22% LENDUSDT:17%"
+     },
+     {
+      "date": "2023-01-09",
+      "ret": 0.5433,
+      "hold": "GALAUSDT:104% FETUSDT:53% SOLUSDT:45%"
+     }
+    ],
+    "top5LogShare": 0.6782,
+    "multipleTotal": 37.5252,
+    "multipleWithoutTop5": 3.211
+   }
+  },
+  {
+   "name": "MOM top3 SMA50 리밸 일",
+   "params": {
+    "N": 3,
+    "L": 7,
+    "H": 7,
+    "wd": 0,
+    "lag": 0,
+    "mkt": 50,
+    "posOnly": false,
+    "side": "top",
+    "topK": null,
+    "minTurn": 5000000,
+    "cost": 0.001
+   },
+   "full": {
+    "start": "2018-03-04",
+    "end": "2026-10-03",
+    "totalRet": 9.3338,
+    "cagr": 0.3124,
+    "vol": 0.8585,
+    "sharpe": 0.7333,
+    "mdd": -0.8753,
+    "calmar": 0.3568,
+    "winRate": 0.5172,
+    "investedShare": 0.5179,
+    "nPeriods": 448
+   },
+   "is": {
+    "start": "2018-03-04",
+    "end": "2021-12-31",
+    "totalRet": 3.3802,
+    "cagr": 0.4702,
+    "vol": 0.937,
+    "sharpe": 0.8642,
+    "mdd": -0.7019,
+    "calmar": 0.6699,
+    "winRate": 0.5648,
+    "investedShare": 0.54,
+    "nPeriods": 200
+   },
+   "oos": {
+    "start": "2022-01-01",
+    "end": "2026-10-03",
+    "totalRet": 1.3592,
+    "cagr": 0.1976,
+    "vol": 0.7897,
+    "sharpe": 0.6133,
+    "mdd": -0.799,
+    "calmar": 0.2474,
+    "winRate": 0.4758,
+    "investedShare": 0.5,
+    "nPeriods": 248
+   },
+   "grossCagr": 0.374,
+   "costDragCagr": 0.0617,
+   "annTurnover": 45.9012,
+   "yearly": {
+    "2018": -0.6166,
+    "2019": -0.1538,
+    "2020": 1.6157,
+    "2021": 4.1624,
+    "2022": -0.7508,
+    "2023": 3.0956,
+    "2024": 0.1677,
+    "2025": 0.3797,
+    "2026": 0.4348
+   },
+   "concentration": {
+    "topK": [
+     {
+      "date": "2023-01-08",
+      "ret": 0.8315,
+      "hold": "FETUSDT:72% GALAUSDT:40% SOLUSDT:31%"
+     },
+     {
+      "date": "2021-03-07",
+      "ret": 0.6262,
+      "hold": "ENJUSDT:103% AXSUSDT:60% OCEANUSDT:47%"
+     },
+     {
+      "date": "2021-02-07",
+      "ret": 0.5557,
+      "hold": "DOGEUSDT:104% LUNAUSDT:88% ADAUSDT:74%"
+     },
+     {
+      "date": "2024-11-17",
+      "ret": 0.5453,
+      "hold": "XLMUSDT:116% XRPUSDT:100% PEPEUSDT:90%"
+     },
+     {
+      "date": "2020-08-09",
+      "ret": 0.5133,
+      "hold": "LINKUSDT:53% LENDUSDT:29% WAVESUSDT:16%"
+     }
+    ],
+    "top5LogShare": 0.875,
+    "multipleTotal": 15.2301,
+    "multipleWithoutTop5": 1.4056
+   }
+  },
+  {
+   "name": "MOM top3 SMA50 리밸 월",
+   "params": {
+    "N": 3,
+    "L": 7,
+    "H": 7,
+    "wd": 1,
+    "lag": 0,
+    "mkt": 50,
+    "posOnly": false,
+    "side": "top",
+    "topK": null,
+    "minTurn": 5000000,
+    "cost": 0.001
+   },
+   "full": {
+    "start": "2018-03-05",
+    "end": "2026-10-03",
+    "totalRet": 24.2601,
+    "cagr": 0.4564,
+    "vol": 0.8455,
+    "sharpe": 0.8566,
+    "mdd": -0.8268,
+    "calmar": 0.552,
+    "winRate": 0.5279,
+    "investedShare": 0.5201,
+    "nPeriods": 448
+   },
+   "is": {
+    "start": "2018-03-05",
+    "end": "2021-12-31",
+    "totalRet": 18.8177,
+    "cagr": 1.1809,
+    "vol": 0.9162,
+    "sharpe": 1.2958,
+    "mdd": -0.7352,
+    "calmar": 1.6062,
+    "winRate": 0.6091,
+    "investedShare": 0.55,
+    "nPeriods": 200
+   },
+   "oos": {
+    "start": "2022-01-01",
+    "end": "2026-10-03",
+    "totalRet": 0.2746,
+    "cagr": 0.0523,
+    "vol": 0.7837,
+    "sharpe": 0.4487,
+    "mdd": -0.7836,
+    "calmar": 0.0668,
+    "winRate": 0.4553,
+    "investedShare": 0.496,
+    "nPeriods": 248
+   },
+   "grossCagr": 0.5247,
+   "costDragCagr": 0.0683,
+   "annTurnover": 45.782,
+   "yearly": {
+    "2018": -0.6435,
+    "2019": 0.1567,
+    "2020": 9.2497,
+    "2021": 3.6891,
+    "2022": -0.6974,
+    "2023": 1.7682,
+    "2024": 0.6593,
+    "2025": 0.1513,
+    "2026": -0.2036
+   },
+   "concentration": {
+    "topK": [
+     {
+      "date": "2025-07-07",
+      "ret": 0.7593,
+      "hold": "PENGUUSDT:13% HBARUSDT:4% XLMUSDT:4%"
+     },
+     {
+      "date": "2024-11-18",
+      "ret": 0.6805,
+      "hold": "XLMUSDT:81% XRPUSDT:79% PEPEUSDT:72%"
+     },
+     {
+      "date": "2021-03-08",
+      "ret": 0.6046,
+      "hold": "ENJUSDT:145% AXSUSDT:92% OCEANUSDT:78%"
+     },
+     {
+      "date": "2020-08-10",
+      "ret": 0.5962,
+      "hold": "LINKUSDT:67% WAVESUSDT:22% LENDUSDT:17%"
+     },
+     {
+      "date": "2023-01-09",
+      "ret": 0.5433,
+      "hold": "GALAUSDT:104% FETUSDT:53% SOLUSDT:45%"
+     }
+    ],
+    "top5LogShare": 0.6782,
+    "multipleTotal": 37.5252,
+    "multipleWithoutTop5": 3.211
+   }
+  },
+  {
+   "name": "MOM top3 SMA50 리밸 화",
+   "params": {
+    "N": 3,
+    "L": 7,
+    "H": 7,
+    "wd": 2,
+    "lag": 0,
+    "mkt": 50,
+    "posOnly": false,
+    "side": "top",
+    "topK": null,
+    "minTurn": 5000000,
+    "cost": 0.001
+   },
+   "full": {
+    "start": "2018-03-06",
+    "end": "2026-10-03",
+    "totalRet": 136.613,
+    "cagr": 0.7745,
+    "vol": 0.8671,
+    "sharpe": 1.0809,
+    "mdd": -0.7913,
+    "calmar": 0.9787,
+    "winRate": 0.4792,
+    "investedShare": 0.5357,
+    "nPeriods": 448
+   },
+   "is": {
+    "start": "2018-03-06",
+    "end": "2021-12-31",
+    "totalRet": 24.1858,
+    "cagr": 1.3232,
+    "vol": 0.9035,
+    "sharpe": 1.3654,
+    "mdd": -0.7913,
+    "calmar": 1.6721,
+    "winRate": 0.5229,
+    "investedShare": 0.545,
+    "nPeriods": 200
+   },
+   "oos": {
+    "start": "2022-01-01",
+    "end": "2026-10-03",
+    "totalRet": 4.4639,
+    "cagr": 0.4288,
+    "vol": 0.8366,
+    "sharpe": 0.8352,
+    "mdd": -0.7883,
+    "calmar": 0.544,
+    "winRate": 0.4427,
+    "investedShare": 0.5282,
+    "nPeriods": 248
+   },
+   "grossCagr": 0.861,
+   "costDragCagr": 0.0865,
+   "annTurnover": 47.5612,
+   "yearly": {
+    "2018": -0.6904,
+    "2019": -0.2722,
+    "2020": 2.9235,
+    "2021": 27.4909,
+    "2022": -0.7328,
+    "2023": 2.1999,
+    "2024": 0.3109,
+    "2025": 1.0256,
+    "2026": 1.4069
+   },
+   "concentration": {
+    "topK": [
+     {
+      "date": "2021-02-02",
+      "ret": 1.2713,
+      "hold": "DOGEUSDT:317% LUNAUSDT:107% FTMUSDT:106%"
+     },
+     {
+      "date": "2024-02-27",
+      "ret": 1.0914,
+      "hold": "PEPEUSDT:47% UNIUSDT:38% AGIXUSDT:35%"
+     },
+     {
+      "date": "2021-11-16",
+      "ret": 0.7245,
+      "hold": "GALAUSDT:35% MANAUSDT:22% LTCUSDT:15%"
+     },
+     {
+      "date": "2024-11-05",
+      "ret": 0.6732,
+      "hold": "SUIUSDT:4% TRXUSDT:-1% DOGEUSDT:-2%"
+     },
+     {
+      "date": "2023-11-28",
+      "ret": 0.5833,
+      "hold": "SUPERUSDT:120% UNIUSDT:21% LUNAUSDT#2:19%"
+     }
+    ],
+    "top5LogShare": 0.5771,
+    "multipleTotal": 207.0256,
+    "multipleWithoutTop5": 9.5392
+   }
+  },
+  {
+   "name": "MOM top3 SMA50 리밸 수",
+   "params": {
+    "N": 3,
+    "L": 7,
+    "H": 7,
+    "wd": 3,
+    "lag": 0,
+    "mkt": 50,
+    "posOnly": false,
+    "side": "top",
+    "topK": null,
+    "minTurn": 5000000,
+    "cost": 0.001
+   },
+   "full": {
+    "start": "2018-03-07",
+    "end": "2026-10-03",
+    "totalRet": 527.2391,
+    "cagr": 1.0759,
+    "vol": 0.8823,
+    "sharpe": 1.2521,
+    "mdd": -0.7652,
+    "calmar": 1.406,
+    "winRate": 0.5126,
+    "investedShare": 0.5313,
+    "nPeriods": 448
+   },
+   "is": {
+    "start": "2018-03-07",
+    "end": "2021-12-31",
+    "totalRet": 44.1573,
+    "cagr": 1.708,
+    "vol": 0.963,
+    "sharpe": 1.4927,
+    "mdd": -0.6668,
+    "calmar": 2.5615,
+    "winRate": 0.5556,
+    "investedShare": 0.54,
+    "nPeriods": 200
+   },
+   "oos": {
+    "start": "2022-01-01",
+    "end": "2026-10-03",
+    "totalRet": 10.6978,
+    "cagr": 0.6767,
+    "vol": 0.8117,
+    "sharpe": 1.0316,
+    "mdd": -0.7652,
+    "calmar": 0.8842,
+    "winRate": 0.4769,
+    "investedShare": 0.5242,
+    "nPeriods": 248
+   },
+   "grossCagr": 1.1752,
+   "costDragCagr": 0.0992,
+   "annTurnover": 46.6571,
+   "yearly": {
+    "2018": -0.5821,
+    "2019": 0.2959,
+    "2020": 3.6946,
+    "2021": 16.7625,
+    "2022": -0.5762,
+    "2023": 2.3244,
+    "2024": 1.0658,
+    "2025": 0.9614,
+    "2026": 1.0494
+   },
+   "concentration": {
+    "topK": [
+     {
+      "date": "2021-11-17",
+      "ret": 1.0589,
+      "hold": "SANDUSDT:36% GALAUSDT:28% MANAUSDT:27%"
+     },
+     {
+      "date": "2021-02-03",
+      "ret": 1.0488,
+      "hold": "DOGEUSDT:280% LUNAUSDT:86% FTMUSDT:73%"
+     },
+     {
+      "date": "2024-11-06",
+      "ret": 0.7348,
+      "hold": "XRPUSDT:-3% SUIUSDT:-3% DOGEUSDT:-3%"
+     },
+     {
+      "date": "2021-04-14",
+      "ret": 0.732,
+      "hold": "XRPUSDT:64% DOGEUSDT:47% BNBUSDT:37%"
+     },
+     {
+      "date": "2024-02-14",
+      "ret": 0.6779,
+      "hold": "SUPERUSDT:81% FETUSDT:26% WLDUSDT:25%"
+     }
+    ],
+    "top5LogShare": 0.4588,
+    "multipleTotal": 783.3736,
+    "multipleWithoutTop5": 36.8373
+   }
+  },
+  {
+   "name": "MOM top3 SMA50 리밸 목",
+   "params": {
+    "N": 3,
+    "L": 7,
+    "H": 7,
+    "wd": 4,
+    "lag": 0,
+    "mkt": 50,
+    "posOnly": false,
+    "side": "top",
+    "topK": null,
+    "minTurn": 5000000,
+    "cost": 0.001
+   },
+   "full": {
+    "start": "2018-03-01",
+    "end": "2026-10-03",
+    "totalRet": 293.7688,
+    "cagr": 0.9371,
+    "vol": 0.8736,
+    "sharpe": 1.1799,
+    "mdd": -0.7473,
+    "calmar": 1.254,
+    "winRate": 0.5339,
+    "investedShare": 0.5256,
+    "nPeriods": 449
+   },
+   "is": {
+    "start": "2018-03-01",
+    "end": "2021-12-31",
+    "totalRet": 15.42,
+    "cagr": 1.0721,
+    "vol": 0.9352,
+    "sharpe": 1.2277,
+    "mdd": -0.7473,
+    "calmar": 1.4347,
+    "winRate": 0.4952,
+    "investedShare": 0.5224,
+    "nPeriods": 201
+   },
+   "oos": {
+    "start": "2022-01-01",
+    "end": "2026-10-03",
+    "totalRet": 16.9518,
+    "cagr": 0.8345,
+    "vol": 0.8207,
+    "sharpe": 1.1405,
+    "mdd": -0.6958,
+    "calmar": 1.1994,
+    "winRate": 0.5649,
+    "investedShare": 0.5282,
+    "nPeriods": 248
+   },
+   "grossCagr": 1.0304,
+   "costDragCagr": 0.0934,
+   "annTurnover": 47.0327,
+   "yearly": {
+    "2018": -0.562,
+    "2019": -0.2114,
+    "2020": 2.7373,
+    "2021": 11.7189,
+    "2022": -0.4948,
+    "2023": 6.2099,
+    "2024": 1.994,
+    "2025": 0.0403,
+    "2026": 0.5822
+   },
+   "concentration": {
+    "topK": [
+     {
+      "date": "2021-11-18",
+      "ret": 1.0198,
+      "hold": "GALAUSDT:181% SANDUSDT:64% MANAUSDT:35%"
+     },
+     {
+      "date": "2021-02-04",
+      "ret": 0.8202,
+      "hold": "DOGEUSDT:403% GTOUSDT:206% LUNAUSDT:88%"
+     },
+     {
+      "date": "2020-01-09",
+      "ret": 0.6863,
+      "hold": "DASHUSDT:25% LINKUSDT:21% BCHUSDT:17%"
+     },
+     {
+      "date": "2024-02-29",
+      "ret": 0.6415,
+      "hold": "PEPEUSDT:177% ARUSDT:112% UNIUSDT:48%"
+     },
+     {
+      "date": "2023-01-19",
+      "ret": 0.5269,
+      "hold": "MANAUSDT:57% APTUSDT:44% FETUSDT:38%"
+     }
+    ],
+    "top5LogShare": 0.4514,
+    "multipleTotal": 435.827,
+    "multipleWithoutTop5": 28.0484
+   }
+  },
+  {
+   "name": "MOM top3 SMA50 리밸 금",
+   "params": {
+    "N": 3,
+    "L": 7,
+    "H": 7,
+    "wd": 5,
+    "lag": 0,
+    "mkt": 50,
+    "posOnly": false,
+    "side": "top",
+    "topK": null,
+    "minTurn": 5000000,
+    "cost": 0.001
+   },
+   "full": {
+    "start": "2018-03-02",
+    "end": "2026-10-03",
+    "totalRet": 64.9383,
+    "cagr": 0.6278,
+    "vol": 0.8452,
+    "sharpe": 0.9867,
+    "mdd": -0.8446,
+    "calmar": 0.7433,
+    "winRate": 0.547,
+    "investedShare": 0.5212,
+    "nPeriods": 449
+   },
+   "is": {
+    "start": "2018-03-02",
+    "end": "2021-12-31",
+    "totalRet": 4.2867,
+    "cagr": 0.5432,
+    "vol": 0.8415,
+    "sharpe": 0.9251,
+    "mdd": -0.5989,
+    "calmar": 0.907,
+    "winRate": 0.5049,
+    "investedShare": 0.5124,
+    "nPeriods": 201
+   },
+   "oos": {
+    "start": "2022-01-01",
+    "end": "2026-10-03",
+    "totalRet": 11.4726,
+    "cagr": 0.6994,
+    "vol": 0.8484,
+    "sharpe": 1.0358,
+    "mdd": -0.6989,
+    "calmar": 1.0008,
+    "winRate": 0.5802,
+    "investedShare": 0.5282,
+    "nPeriods": 248
+   },
+   "grossCagr": 0.7046,
+   "costDragCagr": 0.0768,
+   "annTurnover": 46.0482,
+   "yearly": {
+    "2018": -0.5538,
+    "2019": 0.2684,
+    "2020": 2.6357,
+    "2021": 1.5694,
+    "2022": -0.519,
+    "2023": 3.0699,
+    "2024": 1.2401,
+    "2025": 0.2627,
+    "2026": 1.2525
+   },
+   "concentration": {
+    "topK": [
+     {
+      "date": "2024-03-01",
+      "ret": 0.7411,
+      "hold": "PEPEUSDT:126% ARUSDT:97% UNIUSDT:51%"
+     },
+     {
+      "date": "2020-01-10",
+      "ret": 0.6784,
+      "hold": "DASHUSDT:26% LINKUSDT:26% BCHUSDT:22%"
+     },
+     {
+      "date": "2021-09-03",
+      "ret": 0.5208,
+      "hold": "ARUSDT:122% FTMUSDT:96% SOLUSDT:71%"
+     },
+     {
+      "date": "2026-04-10",
+      "ret": 0.5032,
+      "hold": "ZECUSDT:52% ENJUSDT:45% DASHUSDT:19%"
+     },
+     {
+      "date": "2024-02-16",
+      "ret": 0.467,
+      "hold": "SUPERUSDT:73% WLDUSDT:45% ARUSDT:45%"
+     }
+    ],
+    "top5LogShare": 0.499,
+    "multipleTotal": 96.8765,
+    "multipleWithoutTop5": 9.8857
+   }
+  },
+  {
+   "name": "MOM top3 SMA50 리밸 토",
+   "params": {
+    "N": 3,
+    "L": 7,
+    "H": 7,
+    "wd": 6,
+    "lag": 0,
+    "mkt": 50,
+    "posOnly": false,
+    "side": "top",
+    "topK": null,
+    "minTurn": 5000000,
+    "cost": 0.001
+   },
+   "full": {
+    "start": "2018-03-03",
+    "end": "2026-10-02",
+    "totalRet": 227.5835,
+    "cagr": 0.8818,
+    "vol": 0.9274,
+    "sharpe": 1.1176,
+    "mdd": -0.6987,
+    "calmar": 1.262,
+    "winRate": 0.5455,
+    "investedShare": 0.5156,
+    "nPeriods": 448
+   },
+   "is": {
+    "start": "2018-03-03",
+    "end": "2021-12-31",
+    "totalRet": 31.3705,
+    "cagr": 1.4758,
+    "vol": 1.0118,
+    "sharpe": 1.3648,
+    "mdd": -0.6391,
+    "calmar": 2.3091,
+    "winRate": 0.6,
+    "investedShare": 0.525,
+    "nPeriods": 200
+   },
+   "oos": {
+    "start": "2022-01-01",
+    "end": "2026-10-02",
+    "totalRet": 6.0615,
+    "cagr": 0.5083,
+    "vol": 0.8534,
+    "sharpe": 0.8892,
+    "mdd": -0.6987,
+    "calmar": 0.7274,
+    "winRate": 0.5,
+    "investedShare": 0.5081,
+    "nPeriods": 248
+   },
+   "grossCagr": 0.9695,
+   "costDragCagr": 0.0877,
+   "annTurnover": 45.526,
+   "yearly": {
+    "2018": -0.5716,
+    "2019": 0.4171,
+    "2020": 1.4128,
+    "2021": 21.1012,
+    "2022": -0.62,
+    "2023": 4.7222,
+    "2024": 0.7835,
+    "2025": 0.2433,
+    "2026": 0.4647
+   },
+   "concentration": {
+    "topK": [
+     {
+      "date": "2023-01-07",
+      "ret": 0.8142,
+      "hold": "GALAUSDT:42% SOLUSDT:36% FETUSDT:32%"
+     },
+     {
+      "date": "2021-10-30",
+      "ret": 0.7491,
+      "hold": "MANAUSDT:77% SANDUSDT:54% ENJUSDT:34%"
+     },
+     {
+      "date": "2021-03-06",
+      "ret": 0.7365,
+      "hold": "ENJUSDT:107% FETUSDT:66% AXSUSDT:60%"
+     },
+     {
+      "date": "2024-03-02",
+      "ret": 0.677,
+      "hold": "PEPEUSDT:235% ARUSDT:106% DOGEUSDT:65%"
+     },
+     {
+      "date": "2023-12-23",
+      "ret": 0.6765,
+      "hold": "NEARUSDT:53% WLDUSDT:50% MOVRUSDT:45%"
+     }
+    ],
+    "top5LogShare": 0.4708,
+    "multipleTotal": 336.9571,
+    "multipleWithoutTop5": 21.751
+   }
+  },
+  {
+   "name": "KANG 원형근사 리밸 일",
+   "params": {
+    "N": 3,
+    "L": 7,
+    "H": 7,
+    "wd": 0,
+    "lag": 0,
+    "mkt": 120,
+    "posOnly": true,
+    "side": "top",
+    "topK": 20,
+    "minTurn": 5000000,
+    "cost": 0.001
+   },
+   "full": {
+    "start": "2018-03-04",
+    "end": "2026-10-03",
+    "totalRet": 0.7245,
+    "cagr": 0.0655,
+    "vol": 0.75,
+    "sharpe": 0.4602,
+    "mdd": -0.8683,
+    "calmar": 0.0754,
+    "winRate": 0.5204,
+    "investedShare": 0.4933,
+    "nPeriods": 448
+   },
+   "is": {
+    "start": "2018-03-04",
+    "end": "2021-12-31",
+    "totalRet": 3.5441,
+    "cagr": 0.4843,
+    "vol": 0.8672,
+    "sharpe": 0.8947,
+    "mdd": -0.8191,
+    "calmar": 0.5913,
+    "winRate": 0.581,
+    "investedShare": 0.525,
+    "nPeriods": 200
+   },
+   "oos": {
+    "start": "2022-01-01",
+    "end": "2026-10-03",
+    "totalRet": -0.6205,
+    "cagr": -0.1842,
+    "vol": 0.6399,
+    "sharpe": -0.0028,
+    "mdd": -0.8683,
+    "calmar": -0.2122,
+    "winRate": 0.4655,
+    "investedShare": 0.4677,
+    "nPeriods": 248
+   },
+   "grossCagr": 0.1098,
+   "costDragCagr": 0.0443,
+   "annTurnover": 40.7026,
+   "yearly": {
+    "2018": -0.6122,
+    "2019": -0.0681,
+    "2020": -0.3199,
+    "2021": 17.4881,
+    "2022": -0.3038,
+    "2023": 0.0389,
+    "2024": -0.1811,
+    "2025": -0.5055,
+    "2026": 0.2957
+   },
+   "concentration": {
+    "topK": [
+     {
+      "date": "2024-03-03",
+      "ret": 0.6557,
+      "hold": "PEPEUSDT:232% FETUSDT:67% DOGEUSDT:65%"
+     },
+     {
+      "date": "2021-02-07",
+      "ret": 0.5557,
+      "hold": "DOGEUSDT:104% LUNAUSDT:88% ADAUSDT:74%"
+     },
+     {
+      "date": "2020-08-09",
+      "ret": 0.5133,
+      "hold": "LINKUSDT:53% LENDUSDT:29% WAVESUSDT:16%"
+     },
+     {
+      "date": "2021-01-24",
+      "ret": 0.5069,
+      "hold": "LINKUSDT:23% AAVEUSDT:18% UNIUSDT:11%"
+     },
+     {
+      "date": "2021-11-21",
+      "ret": 0.4403,
+      "hold": "GALAUSDT:276% SANDUSDT:50% AVAXUSDT:29%"
+     }
+    ],
+    "top5LogShare": 2.4053,
+    "multipleTotal": 2.4297,
+    "multipleWithoutTop5": 0.2872
+   }
+  },
+  {
+   "name": "KANG 원형근사 리밸 월",
+   "params": {
+    "N": 3,
+    "L": 7,
+    "H": 7,
+    "wd": 1,
+    "lag": 0,
+    "mkt": 120,
+    "posOnly": true,
+    "side": "top",
+    "topK": 20,
+    "minTurn": 5000000,
+    "cost": 0.001
+   },
+   "full": {
+    "start": "2018-03-05",
+    "end": "2026-10-03",
+    "totalRet": 22.2083,
+    "cagr": 0.4421,
+    "vol": 0.7562,
+    "sharpe": 0.8517,
+    "mdd": -0.7221,
+    "calmar": 0.6123,
+    "winRate": 0.5459,
+    "investedShare": 0.5112,
+    "nPeriods": 448
+   },
+   "is": {
+    "start": "2018-03-05",
+    "end": "2021-12-31",
+    "totalRet": 19.687,
+    "cagr": 1.2055,
+    "vol": 0.8588,
+    "sharpe": 1.3362,
+    "mdd": -0.5679,
+    "calmar": 2.1228,
+    "winRate": 0.6226,
+    "investedShare": 0.53,
+    "nPeriods": 200
+   },
+   "oos": {
+    "start": "2022-01-01",
+    "end": "2026-10-03",
+    "totalRet": 0.1219,
+    "cagr": 0.0245,
+    "vol": 0.6616,
+    "sharpe": 0.361,
+    "mdd": -0.7221,
+    "calmar": 0.0339,
+    "winRate": 0.4797,
+    "investedShare": 0.496,
+    "nPeriods": 248
+   },
+   "grossCagr": 0.502,
+   "costDragCagr": 0.0599,
+   "annTurnover": 40.658,
+   "yearly": {
+    "2018": -0.5192,
+    "2019": -0.0392,
+    "2020": 2.6892,
+    "2021": 11.1379,
+    "2022": -0.3587,
+    "2023": 0.2839,
+    "2024": 0.6486,
+    "2025": -0.0334,
+    "2026": -0.145
+   },
+   "concentration": {
+    "topK": [
+     {
+      "date": "2020-08-10",
+      "ret": 0.5962,
+      "hold": "LINKUSDT:67% WAVESUSDT:22% LENDUSDT:17%"
+     },
+     {
+      "date": "2021-11-22",
+      "ret": 0.5508,
+      "hold": "GALAUSDT:297% SANDUSDT:41% AVAXUSDT:35%"
+     },
+     {
+      "date": "2024-11-04",
+      "ret": 0.5206,
+      "hold": "SUIUSDT:11% DOGEUSDT:5% BTCUSDT:1%"
+     },
+     {
+      "date": "2021-02-15",
+      "ret": 0.4021,
+      "hold": "BNBUSDT:99% FILUSDT:96% LUNAUSDT:83%"
+     },
+     {
+      "date": "2024-03-04",
+      "ret": 0.3708,
+      "hold": "PEPEUSDT:333% DOGEUSDT:78% FETUSDT:60%"
+     }
+    ],
+    "top5LogShare": 0.566,
+    "multipleTotal": 32.9926,
+    "multipleWithoutTop5": 4.5605
+   }
+  },
+  {
+   "name": "KANG 원형근사 리밸 화",
+   "params": {
+    "N": 3,
+    "L": 7,
+    "H": 7,
+    "wd": 2,
+    "lag": 0,
+    "mkt": 120,
+    "posOnly": true,
+    "side": "top",
+    "topK": 20,
+    "minTurn": 5000000,
+    "cost": 0.001
+   },
+   "full": {
+    "start": "2018-03-06",
+    "end": "2026-10-03",
+    "totalRet": 3.898,
+    "cagr": 0.2033,
+    "vol": 0.7227,
+    "sharpe": 0.6091,
+    "mdd": -0.7648,
+    "calmar": 0.2658,
+    "winRate": 0.4732,
+    "investedShare": 0.5,
+    "nPeriods": 448
+   },
+   "is": {
+    "start": "2018-03-06",
+    "end": "2021-12-31",
+    "totalRet": 5.0149,
+    "cagr": 0.5981,
+    "vol": 0.8253,
+    "sharpe": 0.9702,
+    "mdd": -0.5892,
+    "calmar": 1.015,
+    "winRate": 0.5333,
+    "investedShare": 0.525,
+    "nPeriods": 200
+   },
+   "oos": {
+    "start": "2022-01-01",
+    "end": "2026-10-03",
+    "totalRet": -0.1857,
+    "cagr": -0.0422,
+    "vol": 0.6279,
+    "sharpe": 0.2393,
+    "mdd": -0.7648,
+    "calmar": -0.0552,
+    "winRate": 0.4202,
+    "investedShare": 0.4798,
+    "nPeriods": 248
+   },
+   "grossCagr": 0.2528,
+   "costDragCagr": 0.0495,
+   "annTurnover": 40.3102,
+   "yearly": {
+    "2018": -0.303,
+    "2019": -0.3154,
+    "2020": 1.4427,
+    "2021": 4.1605,
+    "2022": -0.2462,
+    "2023": -0.0175,
+    "2024": -0.3818,
+    "2025": 0.0016,
+    "2026": 0.7761
+   },
+   "concentration": {
+    "topK": [
+     {
+      "date": "2021-02-02",
+      "ret": 0.4731,
+      "hold": "DOGEUSDT:317% UNIUSDT:81% XRPUSDT:39%"
+     },
+     {
+      "date": "2020-01-14",
+      "ret": 0.365,
+      "hold": "DASHUSDT:23% LINKUSDT:13% BCHUSDT:9%"
+     },
+     {
+      "date": "2026-09-15",
+      "ret": 0.358,
+      "hold": "NEARUSDT:7% ZECUSDT:2% XRPUSDT:2%"
+     },
+     {
+      "date": "2020-12-29",
+      "ret": 0.355,
+      "hold": "DOTUSDT:35% LTCUSDT:24% ETHUSDT:20%"
+     },
+     {
+      "date": "2021-02-16",
+      "ret": 0.3405,
+      "hold": "DASHUSDT:106% BNBUSDT:63% FILUSDT:55%"
+     }
+    ],
+    "top5LogShare": 0.827,
+    "multipleTotal": 6.934,
+    "multipleWithoutTop5": 1.398
+   }
+  },
+  {
+   "name": "KANG 원형근사 리밸 수",
+   "params": {
+    "N": 3,
+    "L": 7,
+    "H": 7,
+    "wd": 3,
+    "lag": 0,
+    "mkt": 120,
+    "posOnly": true,
+    "side": "top",
+    "topK": 20,
+    "minTurn": 5000000,
+    "cost": 0.001
+   },
+   "full": {
+    "start": "2018-03-07",
+    "end": "2026-10-03",
+    "totalRet": 108.6029,
+    "cagr": 0.7284,
+    "vol": 0.7413,
+    "sharpe": 1.0978,
+    "mdd": -0.7628,
+    "calmar": 0.9549,
+    "winRate": 0.5471,
+    "investedShare": 0.4978,
+    "nPeriods": 448
+   },
+   "is": {
+    "start": "2018-03-07",
+    "end": "2021-12-31",
+    "totalRet": 71.0316,
+    "cagr": 2.0596,
+    "vol": 0.8717,
+    "sharpe": 1.7034,
+    "mdd": -0.6318,
+    "calmar": 3.2597,
+    "winRate": 0.5833,
+    "investedShare": 0.54,
+    "nPeriods": 200
+   },
+   "oos": {
+    "start": "2022-01-01",
+    "end": "2026-10-03",
+    "totalRet": 0.5216,
+    "cagr": 0.0922,
+    "vol": 0.6157,
+    "sharpe": 0.4458,
+    "mdd": -0.7628,
+    "calmar": 0.1209,
+    "winRate": 0.513,
+    "investedShare": 0.4637,
+    "nPeriods": 248
+   },
+   "grossCagr": 0.7972,
+   "costDragCagr": 0.0688,
+   "annTurnover": 38.9921,
+   "yearly": {
+    "2018": -0.3464,
+    "2019": -0.0155,
+    "2020": 1.4793,
+    "2021": 44.151,
+    "2022": -0.2135,
+    "2023": 0.8304,
+    "2024": -0.3465,
+    "2025": -0.0333,
+    "2026": 0.6732
+   },
+   "concentration": {
+    "topK": [
+     {
+      "date": "2021-04-14",
+      "ret": 0.732,
+      "hold": "XRPUSDT:64% DOGEUSDT:47% BNBUSDT:37%"
+     },
+     {
+      "date": "2020-08-12",
+      "ret": 0.6424,
+      "hold": "LINKUSDT:32% LENDUSDT:26% WAVESUSDT:13%"
+     },
+     {
+      "date": "2021-02-03",
+      "ret": 0.5137,
+      "hold": "DOGEUSDT:280% XRPUSDT:39% UNIUSDT:36%"
+     },
+     {
+      "date": "2021-09-29",
+      "ret": 0.4718,
+      "hold": "AXSUSDT:37% LUNAUSDT:32% FTMUSDT:19%"
+     },
+     {
+      "date": "2021-09-01",
+      "ret": 0.4478,
+      "hold": "SANDUSDT:55% SOLUSDT:54% FTMUSDT:50%"
+     }
+    ],
+    "top5LogShare": 0.441,
+    "multipleTotal": 152.3758,
+    "multipleWithoutTop5": 16.6075
+   }
+  },
+  {
+   "name": "KANG 원형근사 리밸 목",
+   "params": {
+    "N": 3,
+    "L": 7,
+    "H": 7,
+    "wd": 4,
+    "lag": 0,
+    "mkt": 120,
+    "posOnly": true,
+    "side": "top",
+    "topK": 20,
+    "minTurn": 5000000,
+    "cost": 0.001
+   },
+   "full": {
+    "start": "2018-03-01",
+    "end": "2026-10-03",
+    "totalRet": 218.1625,
+    "cagr": 0.8715,
+    "vol": 0.7165,
+    "sharpe": 1.2234,
+    "mdd": -0.6056,
+    "calmar": 1.4391,
+    "winRate": 0.5204,
+    "investedShare": 0.4922,
+    "nPeriods": 449
+   },
+   "is": {
+    "start": "2018-03-01",
+    "end": "2021-12-31",
+    "totalRet": 40.4939,
+    "cagr": 1.6377,
+    "vol": 0.819,
+    "sharpe": 1.5823,
+    "mdd": -0.5994,
+    "calmar": 2.7321,
+    "winRate": 0.5437,
+    "investedShare": 0.5124,
+    "nPeriods": 201
+   },
+   "oos": {
+    "start": "2022-01-01",
+    "end": "2026-10-03",
+    "totalRet": 4.2818,
+    "cagr": 0.4187,
+    "vol": 0.6213,
+    "sharpe": 0.8662,
+    "mdd": -0.6056,
+    "calmar": 0.6913,
+    "winRate": 0.5,
+    "investedShare": 0.4758,
+    "nPeriods": 248
+   },
+   "grossCagr": 0.9485,
+   "costDragCagr": 0.077,
+   "annTurnover": 40.2887,
+   "yearly": {
+    "2018": -0.1332,
+    "2019": 0.3263,
+    "2020": -0.0228,
+    "2021": 35.9333,
+    "2022": -0.2543,
+    "2023": 1.3332,
+    "2024": 1.1356,
+    "2025": -0.2269,
+    "2026": 0.8386
+   },
+   "concentration": {
+    "topK": [
+     {
+      "date": "2024-02-29",
+      "ret": 0.6812,
+      "hold": "PEPEUSDT:177% UNIUSDT:48% DOGEUSDT:37%"
+     },
+     {
+      "date": "2021-11-18",
+      "ret": 0.5329,
+      "hold": "SANDUSDT:64% MANAUSDT:35% AVAXUSDT:26%"
+     },
+     {
+      "date": "2023-01-19",
+      "ret": 0.5326,
+      "hold": "APTUSDT:44% FETUSDT:38% SANDUSDT:31%"
+     },
+     {
+      "date": "2021-03-11",
+      "ret": 0.5182,
+      "hold": "LUNAUSDT:54% ENJUSDT:40% MATICUSDT:29%"
+     },
+     {
+      "date": "2020-12-31",
+      "ret": 0.4892,
+      "hold": "DOTUSDT:53% ADAUSDT:35% BCHUSDT:30%"
+     }
+    ],
+    "top5LogShare": 0.3818,
+    "multipleTotal": 309.1344,
+    "multipleWithoutTop5": 34.6179
+   }
+  },
+  {
+   "name": "KANG 원형근사 리밸 금",
+   "params": {
+    "N": 3,
+    "L": 7,
+    "H": 7,
+    "wd": 5,
+    "lag": 0,
+    "mkt": 120,
+    "posOnly": true,
+    "side": "top",
+    "topK": 20,
+    "minTurn": 5000000,
+    "cost": 0.001
+   },
+   "full": {
+    "start": "2018-03-02",
+    "end": "2026-10-03",
+    "totalRet": 35.5476,
+    "cagr": 0.5198,
+    "vol": 0.7736,
+    "sharpe": 0.9258,
+    "mdd": -0.8055,
+    "calmar": 0.6453,
+    "winRate": 0.5111,
+    "investedShare": 0.5011,
+    "nPeriods": 449
+   },
+   "is": {
+    "start": "2018-03-02",
+    "end": "2021-12-31",
+    "totalRet": 12.0982,
+    "cagr": 0.9546,
+    "vol": 0.894,
+    "sharpe": 1.1995,
+    "mdd": -0.8055,
+    "calmar": 1.1851,
+    "winRate": 0.5143,
+    "investedShare": 0.5224,
+    "nPeriods": 201
+   },
+   "oos": {
+    "start": "2022-01-01",
+    "end": "2026-10-03",
+    "totalRet": 1.7903,
+    "cagr": 0.2406,
+    "vol": 0.6606,
+    "sharpe": 0.6494,
+    "mdd": -0.7371,
+    "calmar": 0.3265,
+    "winRate": 0.5083,
+    "investedShare": 0.4839,
+    "nPeriods": 248
+   },
+   "grossCagr": 0.5827,
+   "costDragCagr": 0.0629,
+   "annTurnover": 40.5144,
+   "yearly": {
+    "2018": -0.1011,
+    "2019": 0.1124,
+    "2020": -0.4224,
+    "2021": 21.6778,
+    "2022": -0.2111,
+    "2023": 0.3969,
+    "2024": 0.825,
+    "2025": -0.5214,
+    "2026": 1.899
+   },
+   "concentration": {
+    "topK": [
+     {
+      "date": "2024-03-01",
+      "ret": 0.722,
+      "hold": "PEPEUSDT:126% UNIUSDT:51% DOGEUSDT:40%"
+     },
+     {
+      "date": "2024-11-08",
+      "ret": 0.604,
+      "hold": "ENAUSDT:40% PEPEUSDT:21% DOGEUSDT:20%"
+     },
+     {
+      "date": "2021-01-22",
+      "ret": 0.5893,
+      "hold": "DOTUSDT:10% UNIUSDT:9% AAVEUSDT:9%"
+     },
+     {
+      "date": "2021-03-26",
+      "ret": 0.5698,
+      "hold": "BTTUSDT:92% ONEUSDT:88% FILUSDT:15%"
+     },
+     {
+      "date": "2021-01-29",
+      "ret": 0.4821,
+      "hold": "DOGEUSDT:347% UNIUSDT:86% AAVEUSDT:85%"
+     }
+    ],
+    "top5LogShare": 0.591,
+    "multipleTotal": 50.9859,
+    "multipleWithoutTop5": 4.9922
+   }
+  },
+  {
+   "name": "KANG 원형근사 리밸 토",
+   "params": {
+    "N": 3,
+    "L": 7,
+    "H": 7,
+    "wd": 6,
+    "lag": 0,
+    "mkt": 120,
+    "posOnly": true,
+    "side": "top",
+    "topK": 20,
+    "minTurn": 5000000,
+    "cost": 0.001
+   },
+   "full": {
+    "start": "2018-03-03",
+    "end": "2026-10-02",
+    "totalRet": 22.4482,
+    "cagr": 0.4437,
+    "vol": 0.7858,
+    "sharpe": 0.8587,
+    "mdd": -0.7097,
+    "calmar": 0.6251,
+    "winRate": 0.5442,
+    "investedShare": 0.5045,
+    "nPeriods": 448
+   },
+   "is": {
+    "start": "2018-03-03",
+    "end": "2021-12-31",
+    "totalRet": 15.8126,
+    "cagr": 1.0871,
+    "vol": 0.9072,
+    "sharpe": 1.2688,
+    "mdd": -0.6503,
+    "calmar": 1.6718,
+    "winRate": 0.6226,
+    "investedShare": 0.53,
+    "nPeriods": 200
+   },
+   "oos": {
+    "start": "2022-01-01",
+    "end": "2026-10-02",
+    "totalRet": 0.3947,
+    "cagr": 0.0724,
+    "vol": 0.6717,
+    "sharpe": 0.4327,
+    "mdd": -0.7065,
+    "calmar": 0.1025,
+    "winRate": 0.475,
+    "investedShare": 0.4839,
+    "nPeriods": 248
+   },
+   "grossCagr": 0.5031,
+   "costDragCagr": 0.0594,
+   "annTurnover": 40.3137,
+   "yearly": {
+    "2018": -0.2277,
+    "2019": 0.289,
+    "2020": 0.0506,
+    "2021": 15.0751,
+    "2022": -0.3763,
+    "2023": 0.3845,
+    "2024": 1.2604,
+    "2025": -0.4497,
+    "2026": 0.2985
+   },
+   "concentration": {
+    "topK": [
+     {
+      "date": "2024-03-02",
+      "ret": 0.6772,
+      "hold": "PEPEUSDT:235% DOGEUSDT:65% FETUSDT:63%"
+     },
+     {
+      "date": "2024-11-09",
+      "ret": 0.5202,
+      "hold": "ENAUSDT:34% DOGEUSDT:27% ADAUSDT:24%"
+     },
+     {
+      "date": "2020-01-11",
+      "ret": 0.5185,
+      "hold": "DASHUSDT:30% LINKUSDT:23% BCHUSDT:22%"
+     },
+     {
+      "date": "2021-02-06",
+      "ret": 0.4612,
+      "hold": "LUNAUSDT:95% AAVEUSDT:76% XRPUSDT:60%"
+     },
+     {
+      "date": "2021-02-13",
+      "ret": 0.4464,
+      "hold": "AVAXUSDT:170% BNBUSDT:102% LUNAUSDT:99%"
+     }
+    ],
+    "top5LogShare": 0.6025,
+    "multipleTotal": 32.7498,
+    "multipleWithoutTop5": 4.0022
+   }
+  },
+  {
+   "name": "GRID top N3 L3 H7 SMA50",
+   "params": {
+    "N": 3,
+    "L": 3,
+    "H": 7,
+    "wd": 1,
+    "lag": 0,
+    "mkt": 50,
+    "posOnly": false,
+    "side": "top",
+    "topK": null,
+    "minTurn": 5000000,
+    "cost": 0.001
+   },
+   "full": {
+    "start": "2018-03-05",
+    "end": "2026-10-03",
+    "totalRet": 8.1031,
+    "cagr": 0.2932,
+    "vol": 0.834,
+    "sharpe": 0.7114,
+    "mdd": -0.9054,
+    "calmar": 0.3239,
+    "winRate": 0.4721,
+    "investedShare": 0.5201,
+    "nPeriods": 448
+   },
+   "is": {
+    "start": "2018-03-05",
+    "end": "2021-12-31",
+    "totalRet": 17.6091,
+    "cagr": 1.1454,
+    "vol": 0.8933,
+    "sharpe": 1.2827,
+    "mdd": -0.7767,
+    "calmar": 1.4747,
+    "winRate": 0.5455,
+    "investedShare": 0.55,
+    "nPeriods": 200
+   },
+   "oos": {
+    "start": "2022-01-01",
+    "end": "2026-10-03",
+    "totalRet": -0.5108,
+    "cagr": -0.1395,
+    "vol": 0.7825,
+    "sharpe": 0.19,
+    "mdd": -0.8983,
+    "calmar": -0.1553,
+    "winRate": 0.4065,
+    "investedShare": 0.496,
+    "nPeriods": 248
+   },
+   "grossCagr": 0.3558,
+   "costDragCagr": 0.0626,
+   "annTurnover": 47.2428,
+   "yearly": {
+    "2018": -0.7041,
+    "2019": -0.0566,
+    "2020": 8.7256,
+    "2021": 5.8542,
+    "2022": -0.4908,
+    "2023": -0.2256,
+    "2024": -0.0153,
+    "2025": 0.0819,
+    "2026": 0.1642
+   },
+   "concentration": {
+    "topK": [
+     {
+      "date": "2024-11-18",
+      "ret": 0.9059,
+      "hold": "XLMUSDT:50% HBARUSDT:41% XRPUSDT:36%"
+     },
+     {
+      "date": "2021-03-15",
+      "ret": 0.7016,
+      "hold": "MANAUSDT:95% ONEUSDT:93% NPXSUSDT:59%"
+     },
+     {
+      "date": "2023-01-09",
+      "ret": 0.632,
+      "hold": "GALAUSDT:91% FETUSDT:31% MANAUSDT:18%"
+     },
+     {
+      "date": "2021-01-25",
+      "ret": 0.6175,
+      "hold": "FTMUSDT:116% AAVEUSDT:65% UNIUSDT:59%"
+     },
+     {
+      "date": "2020-08-10",
+      "ret": 0.5962,
+      "hold": "LINKUSDT:35% WAVESUSDT:14% LENDUSDT:5%"
+     }
+    ],
+    "top5LogShare": 0.9948,
+    "multipleTotal": 13.8538,
+    "multipleWithoutTop5": 1.0138
+   }
+  },
+  {
+   "name": "GRID bottom N3 L3 H7 SMA50",
+   "params": {
+    "N": 3,
+    "L": 3,
+    "H": 7,
+    "wd": 1,
+    "lag": 0,
+    "mkt": 50,
+    "posOnly": false,
+    "side": "bottom",
+    "topK": null,
+    "minTurn": 5000000,
+    "cost": 0.001
+   },
+   "full": {
+    "start": "2018-03-05",
+    "end": "2026-10-03",
+    "totalRet": -0.1282,
+    "cagr": -0.0158,
+    "vol": 0.7286,
+    "sharpe": 0.3393,
+    "mdd": -0.9122,
+    "calmar": -0.0174,
+    "winRate": 0.5064,
+    "investedShare": 0.5201,
+    "nPeriods": 448
+   },
+   "is": {
+    "start": "2018-03-05",
+    "end": "2021-12-31",
+    "totalRet": 3.6396,
+    "cagr": 0.4928,
+    "vol": 0.7648,
+    "sharpe": 0.8996,
+    "mdd": -0.7082,
+    "calmar": 0.6959,
+    "winRate": 0.5364,
+    "investedShare": 0.55,
+    "nPeriods": 200
+   },
+   "oos": {
+    "start": "2022-01-01",
+    "end": "2026-10-03",
+    "totalRet": -0.8121,
+    "cagr": -0.2962,
+    "vol": 0.6978,
+    "sharpe": -0.1541,
+    "mdd": -0.8794,
+    "calmar": -0.3369,
+    "winRate": 0.4797,
+    "investedShare": 0.496,
+    "nPeriods": 248
+   },
+   "grossCagr": 0.0322,
+   "costDragCagr": 0.0481,
+   "annTurnover": 47.6334,
+   "yearly": {
+    "2018": -0.5746,
+    "2019": -0.094,
+    "2020": 0.5585,
+    "2021": 6.7241,
+    "2022": -0.6173,
+    "2023": 0.4621,
+    "2024": -0.4303,
+    "2025": -0.4061,
+    "2026": -0.0075
+   },
+   "concentration": {
+    "topK": [
+     {
+      "date": "2021-03-08",
+      "ret": 1.0819,
+      "hold": "NEARUSDT:-6% AXSUSDT:-5% MANAUSDT:-4%"
+     },
+     {
+      "date": "2023-11-06",
+      "ret": 0.7629,
+      "hold": "FTTUSDT#2:-9% LOOMUSDT:-4% AAVEUSDT:-3%"
+     },
+     {
+      "date": "2019-05-13",
+      "ret": 0.3789,
+      "hold": "TRXUSDT:2% BTTUSDT:4% XRPUSDT:5%"
+     },
+     {
+      "date": "2021-08-09",
+      "ret": 0.3699,
+      "hold": "FETUSDT:-9% LUNAUSDT:-8% OCEANUSDT:-6%"
+     },
+     {
+      "date": "2024-11-04",
+      "ret": 0.3597,
+      "hold": "FETUSDT:-12% INJUSDT:-11% TAOUSDT:-10%"
+     }
+    ],
+    "top5LogShare": 8.5704,
+    "multipleTotal": 1.2992,
+    "multipleWithoutTop5": 0.1378
+   }
+  },
+  {
+   "name": "GRID top N3 L3 H14 SMA50",
+   "params": {
+    "N": 3,
+    "L": 3,
+    "H": 14,
+    "wd": 1,
+    "lag": 0,
+    "mkt": 50,
+    "posOnly": false,
+    "side": "top",
+    "topK": null,
+    "minTurn": 5000000,
+    "cost": 0.001
+   },
+   "full": {
+    "start": "2018-03-05",
+    "end": "2026-10-03",
+    "totalRet": 1.6111,
+    "cagr": 0.1182,
+    "vol": 0.8035,
+    "sharpe": 0.5334,
+    "mdd": -0.9286,
+    "calmar": 0.1273,
+    "winRate": 0.4828,
+    "investedShare": 0.5179,
+    "nPeriods": 224
+   },
+   "is": {
+    "start": "2018-03-05",
+    "end": "2021-12-31",
+    "totalRet": 1.8167,
+    "cagr": 0.3105,
+    "vol": 0.8972,
+    "sharpe": 0.7418,
+    "mdd": -0.8514,
+    "calmar": 0.3646,
+    "winRate": 0.5,
+    "investedShare": 0.56,
+    "nPeriods": 100
+   },
+   "oos": {
+    "start": "2022-01-01",
+    "end": "2026-10-03",
+    "totalRet": -0.073,
+    "cagr": -0.0158,
+    "vol": 0.7195,
+    "sharpe": 0.3307,
+    "mdd": -0.9226,
+    "calmar": -0.0171,
+    "winRate": 0.4667,
+    "investedShare": 0.4839,
+    "nPeriods": 124
+   },
+   "grossCagr": 0.1454,
+   "costDragCagr": 0.0272,
+   "annTurnover": 24.0292,
+   "yearly": {
+    "2018": -0.7668,
+    "2019": -0.3629,
+    "2020": 2.9078,
+    "2021": 3.8519,
+    "2022": -0.682,
+    "2023": -0.2874,
+    "2024": 0.395,
+    "2025": 0.539,
+    "2026": 0.9052
+   },
+   "concentration": {
+    "topK": [
+     {
+      "date": "2024-11-18",
+      "ret": 1.4474,
+      "hold": "XLMUSDT:50% HBARUSDT:41% XRPUSDT:36%"
+     },
+     {
+      "date": "2021-03-15",
+      "ret": 0.8646,
+      "hold": "MANAUSDT:95% ONEUSDT:93% NPXSUSDT:59%"
+     },
+     {
+      "date": "2024-02-26",
+      "ret": 0.8155,
+      "hold": "UNIUSDT:51% ONEUSDT:24% ARUSDT:16%"
+     },
+     {
+      "date": "2024-11-04",
+      "ret": 0.7491,
+      "hold": "SUIUSDT:-1% XRPUSDT:-1% TRXUSDT:-2%"
+     },
+     {
+      "date": "2020-12-21",
+      "ret": 0.5753,
+      "hold": "DOGEUSDT:25% BNBUSDT:14% LTCUSDT:13%"
+     }
+    ],
+    "top5LogShare": 2.7058,
+    "multipleTotal": 3.1772,
+    "multipleWithoutTop5": 0.1392
+   }
+  },
+  {
+   "name": "GRID bottom N3 L3 H14 SMA50",
+   "params": {
+    "N": 3,
+    "L": 3,
+    "H": 14,
+    "wd": 1,
+    "lag": 0,
+    "mkt": 50,
+    "posOnly": false,
+    "side": "bottom",
+    "topK": null,
+    "minTurn": 5000000,
+    "cost": 0.001
+   },
+   "full": {
+    "start": "2018-03-05",
+    "end": "2026-10-03",
+    "totalRet": -0.3993,
+    "cagr": -0.0576,
+    "vol": 0.7604,
+    "sharpe": 0.3027,
+    "mdd": -0.9308,
+    "calmar": -0.0619,
+    "winRate": 0.5,
+    "investedShare": 0.5179,
+    "nPeriods": 224
+   },
+   "is": {
+    "start": "2018-03-05",
+    "end": "2021-12-31",
+    "totalRet": -0.2204,
+    "cagr": -0.0629,
+    "vol": 0.842,
+    "sharpe": 0.3464,
+    "mdd": -0.776,
+    "calmar": -0.0811,
+    "winRate": 0.4821,
+    "investedShare": 0.56,
+    "nPeriods": 100
+   },
+   "oos": {
+    "start": "2022-01-01",
+    "end": "2026-10-03",
+    "totalRet": -0.2295,
+    "cagr": -0.0533,
+    "vol": 0.6879,
+    "sharpe": 0.2627,
+    "mdd": -0.7731,
+    "calmar": -0.0689,
+    "winRate": 0.5167,
+    "investedShare": 0.4839,
+    "nPeriods": 124
+   },
+   "grossCagr": -0.0342,
+   "costDragCagr": 0.0234,
+   "annTurnover": 24.5364,
+   "yearly": {
+    "2018": -0.6973,
+    "2019": -0.1338,
+    "2020": 0.7605,
+    "2021": 0.6891,
+    "2022": -0.709,
+    "2023": 0.9951,
+    "2024": 0.2551,
+    "2025": -0.2211,
+    "2026": 0.3575
+   },
+   "concentration": {
+    "topK": [
+     {
+      "date": "2021-02-01",
+      "ret": 1.1194,
+      "hold": "HBARUSDT:-10% ENJUSDT:-8% SANDUSDT:-6%"
+     },
+     {
+      "date": "2023-11-06",
+      "ret": 0.7065,
+      "hold": "FTTUSDT#2:-9% LOOMUSDT:-4% AAVEUSDT:-3%"
+     },
+     {
+      "date": "2019-05-13",
+      "ret": 0.5969,
+      "hold": "TRXUSDT:2% BTTUSDT:4% XRPUSDT:5%"
+     },
+     {
+      "date": "2026-08-10",
+      "ret": 0.4322,
+      "hold": "ENAUSDT:-7% NEARUSDT:-3% ADAUSDT:-3%"
+     },
+     {
+      "date": "2021-08-02",
+      "ret": 0.4109,
+      "hold": "AXSUSDT:-15% SANDUSDT:-11% SUPERUSDT:-10%"
+     }
+    ],
+    "top5LogShare": -8.2757,
+    "multipleTotal": 0.7431,
+    "multipleWithoutTop5": 0.0637
+   }
+  },
+  {
+   "name": "GRID top N3 L7 H7 SMA50",
+   "params": {
+    "N": 3,
+    "L": 7,
+    "H": 7,
+    "wd": 1,
+    "lag": 0,
+    "mkt": 50,
+    "posOnly": false,
+    "side": "top",
+    "topK": null,
+    "minTurn": 5000000,
+    "cost": 0.001
+   },
+   "full": {
+    "start": "2018-03-05",
+    "end": "2026-10-03",
+    "totalRet": 24.2601,
+    "cagr": 0.4564,
+    "vol": 0.8455,
+    "sharpe": 0.8566,
+    "mdd": -0.8268,
+    "calmar": 0.552,
+    "winRate": 0.5279,
+    "investedShare": 0.5201,
+    "nPeriods": 448
+   },
+   "is": {
+    "start": "2018-03-05",
+    "end": "2021-12-31",
+    "totalRet": 18.8177,
+    "cagr": 1.1809,
+    "vol": 0.9162,
+    "sharpe": 1.2958,
+    "mdd": -0.7352,
+    "calmar": 1.6062,
+    "winRate": 0.6091,
+    "investedShare": 0.55,
+    "nPeriods": 200
+   },
+   "oos": {
+    "start": "2022-01-01",
+    "end": "2026-10-03",
+    "totalRet": 0.2746,
+    "cagr": 0.0523,
+    "vol": 0.7837,
+    "sharpe": 0.4487,
+    "mdd": -0.7836,
+    "calmar": 0.0668,
+    "winRate": 0.4553,
+    "investedShare": 0.496,
+    "nPeriods": 248
+   },
+   "grossCagr": 0.5247,
+   "costDragCagr": 0.0683,
+   "annTurnover": 45.782,
+   "yearly": {
+    "2018": -0.6435,
+    "2019": 0.1567,
+    "2020": 9.2497,
+    "2021": 3.6891,
+    "2022": -0.6974,
+    "2023": 1.7682,
+    "2024": 0.6593,
+    "2025": 0.1513,
+    "2026": -0.2036
+   },
+   "concentration": {
+    "topK": [
+     {
+      "date": "2025-07-07",
+      "ret": 0.7593,
+      "hold": "PENGUUSDT:13% HBARUSDT:4% XLMUSDT:4%"
+     },
+     {
+      "date": "2024-11-18",
+      "ret": 0.6805,
+      "hold": "XLMUSDT:81% XRPUSDT:79% PEPEUSDT:72%"
+     },
+     {
+      "date": "2021-03-08",
+      "ret": 0.6046,
+      "hold": "ENJUSDT:145% AXSUSDT:92% OCEANUSDT:78%"
+     },
+     {
+      "date": "2020-08-10",
+      "ret": 0.5962,
+      "hold": "LINKUSDT:67% WAVESUSDT:22% LENDUSDT:17%"
+     },
+     {
+      "date": "2023-01-09",
+      "ret": 0.5433,
+      "hold": "GALAUSDT:104% FETUSDT:53% SOLUSDT:45%"
+     }
+    ],
+    "top5LogShare": 0.6782,
+    "multipleTotal": 37.5252,
+    "multipleWithoutTop5": 3.211
+   }
+  },
+  {
+   "name": "GRID bottom N3 L7 H7 SMA50",
+   "params": {
+    "N": 3,
+    "L": 7,
+    "H": 7,
+    "wd": 1,
+    "lag": 0,
+    "mkt": 50,
+    "posOnly": false,
+    "side": "bottom",
+    "topK": null,
+    "minTurn": 5000000,
+    "cost": 0.001
+   },
+   "full": {
+    "start": "2018-03-05",
+    "end": "2026-10-03",
+    "totalRet": 0.0045,
+    "cagr": 0.0005,
+    "vol": 0.7018,
+    "sharpe": 0.3489,
+    "mdd": -0.8426,
+    "calmar": 0.0006,
+    "winRate": 0.4764,
+    "investedShare": 0.5201,
+    "nPeriods": 448
+   },
+   "is": {
+    "start": "2018-03-05",
+    "end": "2021-12-31",
+    "totalRet": 1.5843,
+    "cagr": 0.2813,
+    "vol": 0.7238,
+    "sharpe": 0.7063,
+    "mdd": -0.701,
+    "calmar": 0.4013,
+    "winRate": 0.5364,
+    "investedShare": 0.55,
+    "nPeriods": 200
+   },
+   "oos": {
+    "start": "2022-01-01",
+    "end": "2026-10-03",
+    "totalRet": -0.6113,
+    "cagr": -0.1801,
+    "vol": 0.6836,
+    "sharpe": 0.0446,
+    "mdd": -0.8426,
+    "calmar": -0.2138,
+    "winRate": 0.4228,
+    "investedShare": 0.496,
+    "nPeriods": 248
+   },
+   "grossCagr": 0.0505,
+   "costDragCagr": 0.05,
+   "annTurnover": 48.6772,
+   "yearly": {
+    "2018": -0.591,
+    "2019": 0.0426,
+    "2020": 0.5352,
+    "2021": 2.9478,
+    "2022": -0.3015,
+    "2023": 0.6551,
+    "2024": -0.4767,
+    "2025": -0.3312,
+    "2026": -0.0394
+   },
+   "concentration": {
+    "topK": [
+     {
+      "date": "2023-11-06",
+      "ret": 0.7291,
+      "hold": "FTTUSDT#2:-11% LOOMUSDT:-10% RNDRUSDT:-7%"
+     },
+     {
+      "date": "2026-09-14",
+      "ret": 0.4389,
+      "hold": "ARBUSDT:-30% DASHUSDT:-26% ENAUSDT:-23%"
+     },
+     {
+      "date": "2021-02-01",
+      "ret": 0.4074,
+      "hold": "ENJUSDT:-18% NEARUSDT:-16% SANDUSDT:-13%"
+     },
+     {
+      "date": "2021-01-04",
+      "ret": 0.4018,
+      "hold": "XRPUSDT:-21% DASHUSDT:-17% WAVESUSDT:-13%"
+     },
+     {
+      "date": "2025-04-21",
+      "ret": 0.3471,
+      "hold": "ENAUSDT:-7% SUIUSDT:-5% DOGEUSDT:-5%"
+     }
+    ],
+    "top5LogShare": 4.5251,
+    "multipleTotal": 1.5181,
+    "multipleWithoutTop5": 0.2296
+   }
+  },
+  {
+   "name": "GRID top N3 L7 H14 SMA50",
+   "params": {
+    "N": 3,
+    "L": 7,
+    "H": 14,
+    "wd": 1,
+    "lag": 0,
+    "mkt": 50,
+    "posOnly": false,
+    "side": "top",
+    "topK": null,
+    "minTurn": 5000000,
+    "cost": 0.001
+   },
+   "full": {
+    "start": "2018-03-05",
+    "end": "2026-10-03",
+    "totalRet": 7.2183,
+    "cagr": 0.2779,
+    "vol": 0.8093,
+    "sharpe": 0.703,
+    "mdd": -0.8888,
+    "calmar": 0.3127,
+    "winRate": 0.5345,
+    "investedShare": 0.5179,
+    "nPeriods": 224
+   },
+   "is": {
+    "start": "2018-03-05",
+    "end": "2021-12-31",
+    "totalRet": 1.9381,
+    "cagr": 0.325,
+    "vol": 0.9037,
+    "sharpe": 0.7622,
+    "mdd": -0.7761,
+    "calmar": 0.4187,
+    "winRate": 0.5714,
+    "investedShare": 0.56,
+    "nPeriods": 100
+   },
+   "oos": {
+    "start": "2022-01-01",
+    "end": "2026-10-03",
+    "totalRet": 1.7972,
+    "cagr": 0.2413,
+    "vol": 0.7246,
+    "sharpe": 0.652,
+    "mdd": -0.734,
+    "calmar": 0.3287,
+    "winRate": 0.5,
+    "investedShare": 0.4839,
+    "nPeriods": 124
+   },
+   "grossCagr": 0.3089,
+   "costDragCagr": 0.0309,
+   "annTurnover": 23.8967,
+   "yearly": {
+    "2018": -0.7329,
+    "2019": 0.3468,
+    "2020": 2.228,
+    "2021": 1.5297,
+    "2022": -0.7252,
+    "2023": 1.346,
+    "2024": 0.8461,
+    "2025": 0.831,
+    "2026": 0.2835
+   },
+   "concentration": {
+    "topK": [
+     {
+      "date": "2024-11-18",
+      "ret": 1.0265,
+      "hold": "XLMUSDT:81% XRPUSDT:79% PEPEUSDT:72%"
+     },
+     {
+      "date": "2024-11-04",
+      "ret": 0.8917,
+      "hold": "SUIUSDT:11% DOGEUSDT:5% BTCUSDT:1%"
+     },
+     {
+      "date": "2020-12-21",
+      "ret": 0.6696,
+      "hold": "DOGEUSDT:42% LTCUSDT:39% INJUSDT:32%"
+     },
+     {
+      "date": "2026-08-10",
+      "ret": 0.6022,
+      "hold": "PUMPUSDT:28% TAOUSDT:5% ZECUSDT:4%"
+     },
+     {
+      "date": "2023-01-16",
+      "ret": 0.5797,
+      "hold": "APTUSDT:102% MANAUSDT:85% FETUSDT:63%"
+     }
+    ],
+    "top5LogShare": 1.206,
+    "multipleTotal": 10.0672,
+    "multipleWithoutTop5": 0.6214
+   }
+  },
+  {
+   "name": "GRID bottom N3 L7 H14 SMA50",
+   "params": {
+    "N": 3,
+    "L": 7,
+    "H": 14,
+    "wd": 1,
+    "lag": 0,
+    "mkt": 50,
+    "posOnly": false,
+    "side": "bottom",
+    "topK": null,
+    "minTurn": 5000000,
+    "cost": 0.001
+   },
+   "full": {
+    "start": "2018-03-05",
+    "end": "2026-10-03",
+    "totalRet": -0.783,
+    "cagr": -0.1629,
+    "vol": 0.7553,
+    "sharpe": 0.1389,
+    "mdd": -0.906,
+    "calmar": -0.1798,
+    "winRate": 0.4569,
+    "investedShare": 0.5179,
+    "nPeriods": 224
+   },
+   "is": {
+    "start": "2018-03-05",
+    "end": "2021-12-31",
+    "totalRet": -0.4764,
+    "cagr": -0.1554,
+    "vol": 0.81,
+    "sharpe": 0.1972,
+    "mdd": -0.848,
+    "calmar": -0.1833,
+    "winRate": 0.5,
+    "investedShare": 0.56,
+    "nPeriods": 100
+   },
+   "oos": {
+    "start": "2022-01-01",
+    "end": "2026-10-03",
+    "totalRet": -0.5855,
+    "cagr": -0.1689,
+    "vol": 0.7085,
+    "sharpe": 0.0859,
+    "mdd": -0.861,
+    "calmar": -0.1962,
+    "winRate": 0.4167,
+    "investedShare": 0.4839,
+    "nPeriods": 124
+   },
+   "grossCagr": -0.1425,
+   "costDragCagr": 0.0205,
+   "annTurnover": 24.1463,
+   "yearly": {
+    "2018": -0.6733,
+    "2019": -0.3784,
+    "2020": 0.1615,
+    "2021": 1.22,
+    "2022": -0.6441,
+    "2023": 0.19,
+    "2024": -0.247,
+    "2025": -0.0416,
+    "2026": 0.3561
+   },
+   "concentration": {
+    "topK": [
+     {
+      "date": "2021-02-01",
+      "ret": 1.2773,
+      "hold": "ENJUSDT:-18% NEARUSDT:-16% SANDUSDT:-13%"
+     },
+     {
+      "date": "2021-11-08",
+      "ret": 0.9184,
+      "hold": "BZRXUSDT:-10% QNTUSDT:-8% GALAUSDT:-5%"
+     },
+     {
+      "date": "2023-11-06",
+      "ret": 0.8371,
+      "hold": "FTTUSDT#2:-11% LOOMUSDT:-10% RNDRUSDT:-7%"
+     },
+     {
+      "date": "2019-05-13",
+      "ret": 0.3929,
+      "hold": "BNBUSDT:-9% TRXUSDT:2% XRPUSDT:3%"
+     },
+     {
+      "date": "2021-08-30",
+      "ret": 0.3924,
+      "hold": "MATICUSDT:-13% ONEUSDT:-12% INJUSDT:-12%"
+     }
+    ],
+    "top5LogShare": -2.0673,
+    "multipleTotal": 0.265,
+    "multipleWithoutTop5": 0.017
+   }
+  },
+  {
+   "name": "GRID top N3 L14 H7 SMA50",
+   "params": {
+    "N": 3,
+    "L": 14,
+    "H": 7,
+    "wd": 1,
+    "lag": 0,
+    "mkt": 50,
+    "posOnly": false,
+    "side": "top",
+    "topK": null,
+    "minTurn": 5000000,
+    "cost": 0.001
+   },
+   "full": {
+    "start": "2018-03-05",
+    "end": "2026-10-03",
+    "totalRet": 5.7465,
+    "cagr": 0.2489,
+    "vol": 0.8425,
+    "sharpe": 0.6736,
+    "mdd": -0.8824,
+    "calmar": 0.2821,
+    "winRate": 0.5107,
+    "investedShare": 0.5201,
+    "nPeriods": 448
+   },
+   "is": {
+    "start": "2018-03-05",
+    "end": "2021-12-31",
+    "totalRet": 7.2148,
+    "cagr": 0.733,
+    "vol": 0.893,
+    "sharpe": 1.0485,
+    "mdd": -0.7674,
+    "calmar": 0.9551,
+    "winRate": 0.5636,
+    "investedShare": 0.55,
+    "nPeriods": 200
+   },
+   "oos": {
+    "start": "2022-01-01",
+    "end": "2026-10-03",
+    "totalRet": -0.1787,
+    "cagr": -0.0405,
+    "vol": 0.7995,
+    "sharpe": 0.3385,
+    "mdd": -0.8824,
+    "calmar": -0.0459,
+    "winRate": 0.4634,
+    "investedShare": 0.496,
+    "nPeriods": 248
+   },
+   "grossCagr": 0.2949,
+   "costDragCagr": 0.046,
+   "annTurnover": 36.1554,
+   "yearly": {
+    "2018": -0.6397,
+    "2019": 0.082,
+    "2020": 1.679,
+    "2021": 6.8649,
+    "2022": -0.6003,
+    "2023": 2.1624,
+    "2024": -0.2393,
+    "2025": 0.0771,
+    "2026": -0.2071
+   },
+   "concentration": {
+    "topK": [
+     {
+      "date": "2021-03-08",
+      "ret": 0.9137,
+      "hold": "ENJUSDT:146% AXSUSDT:46% LUNAUSDT:35%"
+     },
+     {
+      "date": "2021-03-29",
+      "ret": 0.6988,
+      "hold": "ONEUSDT:148% FILUSDT:133% BTTUSDT:115%"
+     },
+     {
+      "date": "2024-11-18",
+      "ret": 0.6182,
+      "hold": "PEPEUSDT:159% DOGEUSDT:142% XLMUSDT:117%"
+     },
+     {
+      "date": "2024-03-04",
+      "ret": 0.456,
+      "hold": "PEPEUSDT:382% ARUSDT:153% FETUSDT:115%"
+     },
+     {
+      "date": "2023-01-09",
+      "ret": 0.4285,
+      "hold": "GALAUSDT:87% FETUSDT:47% OCEANUSDT:31%"
+     }
+    ],
+    "top5LogShare": 1.0739,
+    "multipleTotal": 9.2804,
+    "multipleWithoutTop5": 0.8482
+   }
+  },
+  {
+   "name": "GRID bottom N3 L14 H7 SMA50",
+   "params": {
+    "N": 3,
+    "L": 14,
+    "H": 7,
+    "wd": 1,
+    "lag": 0,
+    "mkt": 50,
+    "posOnly": false,
+    "side": "bottom",
+    "topK": null,
+    "minTurn": 5000000,
+    "cost": 0.001
+   },
+   "full": {
+    "start": "2018-03-05",
+    "end": "2026-10-03",
+    "totalRet": -0.7897,
+    "cagr": -0.166,
+    "vol": 0.6638,
+    "sharpe": 0.0618,
+    "mdd": -0.9692,
+    "calmar": -0.1713,
+    "winRate": 0.4764,
+    "investedShare": 0.5201,
+    "nPeriods": 448
+   },
+   "is": {
+    "start": "2018-03-05",
+    "end": "2021-12-31",
+    "totalRet": 2.0223,
+    "cagr": 0.3348,
+    "vol": 0.6935,
+    "sharpe": 0.7641,
+    "mdd": -0.68,
+    "calmar": 0.4923,
+    "winRate": 0.5545,
+    "investedShare": 0.55,
+    "nPeriods": 200
+   },
+   "oos": {
+    "start": "2022-01-01",
+    "end": "2026-10-03",
+    "totalRet": -0.9304,
+    "cagr": -0.4288,
+    "vol": 0.6384,
+    "sharpe": -0.5521,
+    "mdd": -0.9574,
+    "calmar": -0.4479,
+    "winRate": 0.4065,
+    "investedShare": 0.496,
+    "nPeriods": 248
+   },
+   "grossCagr": -0.1307,
+   "costDragCagr": 0.0353,
+   "annTurnover": 41.453,
+   "yearly": {
+    "2018": -0.5923,
+    "2019": 0.1203,
+    "2020": 0.2937,
+    "2021": 4.1157,
+    "2022": -0.6065,
+    "2023": -0.2253,
+    "2024": -0.4019,
+    "2025": -0.6567,
+    "2026": 0.1113
+   },
+   "concentration": {
+    "topK": [
+     {
+      "date": "2021-02-08",
+      "ret": 0.4698,
+      "hold": "ENJUSDT:-10% LINKUSDT:-0% BCHUSDT:1%"
+     },
+     {
+      "date": "2021-02-15",
+      "ret": 0.4521,
+      "hold": "UNIUSDT:17% XRPUSDT:20% FTMUSDT:32%"
+     },
+     {
+      "date": "2019-05-13",
+      "ret": 0.3958,
+      "hold": "BNBUSDT:-9% BTTUSDT:0% TRXUSDT:2%"
+     },
+     {
+      "date": "2026-01-12",
+      "ret": 0.346,
+      "hold": "ZECUSDT:-28% DASHUSDT:-15% UNIUSDT:-12%"
+     },
+     {
+      "date": "2021-08-23",
+      "ret": 0.3061,
+      "hold": "GTCUSDT:5% UNIUSDT:6% SANDUSDT:7%"
+     }
+    ],
+    "top5LogShare": -1.3683,
+    "multipleTotal": 0.2982,
+    "multipleWithoutTop5": 0.0569
+   }
+  },
+  {
+   "name": "GRID top N3 L14 H14 SMA50",
+   "params": {
+    "N": 3,
+    "L": 14,
+    "H": 14,
+    "wd": 1,
+    "lag": 0,
+    "mkt": 50,
+    "posOnly": false,
+    "side": "top",
+    "topK": null,
+    "minTurn": 5000000,
+    "cost": 0.001
+   },
+   "full": {
+    "start": "2018-03-05",
+    "end": "2026-10-03",
+    "totalRet": -0.0698,
+    "cagr": -0.0084,
+    "vol": 0.8253,
+    "sharpe": 0.3962,
+    "mdd": -0.8698,
+    "calmar": -0.0096,
+    "winRate": 0.5086,
+    "investedShare": 0.5179,
+    "nPeriods": 224
+   },
+   "is": {
+    "start": "2018-03-05",
+    "end": "2021-12-31",
+    "totalRet": 0.4448,
+    "cagr": 0.1008,
+    "vol": 0.9065,
+    "sharpe": 0.5544,
+    "mdd": -0.7984,
+    "calmar": 0.1263,
+    "winRate": 0.5536,
+    "investedShare": 0.56,
+    "nPeriods": 100
+   },
+   "oos": {
+    "start": "2022-01-01",
+    "end": "2026-10-03",
+    "totalRet": -0.3562,
+    "cagr": -0.0884,
+    "vol": 0.7538,
+    "sharpe": 0.2463,
+    "mdd": -0.8319,
+    "calmar": -0.1062,
+    "winRate": 0.4667,
+    "investedShare": 0.4839,
+    "nPeriods": 124
+   },
+   "grossCagr": 0.0153,
+   "costDragCagr": 0.0237,
+   "annTurnover": 23.5774,
+   "yearly": {
+    "2018": -0.7405,
+    "2019": -0.0443,
+    "2020": 0.8267,
+    "2021": 2.1893,
+    "2022": -0.7223,
+    "2023": 0.7848,
+    "2024": -0.171,
+    "2025": 0.5455,
+    "2026": 0.0139
+   },
+   "concentration": {
+    "topK": [
+     {
+      "date": "2024-02-26",
+      "ret": 0.8193,
+      "hold": "WLDUSDT:247% AGIXUSDT:154% ARUSDT:81%"
+     },
+     {
+      "date": "2024-11-18",
+      "ret": 0.7015,
+      "hold": "PEPEUSDT:159% DOGEUSDT:142% XLMUSDT:117%"
+     },
+     {
+      "date": "2024-11-04",
+      "ret": 0.646,
+      "hold": "DOGEUSDT:7% TRXUSDT:5% BTCUSDT:-0%"
+     },
+     {
+      "date": "2021-08-02",
+      "ret": 0.5605,
+      "hold": "AXSUSDT:103% LUNAUSDT:85% FETUSDT:68%"
+     },
+     {
+      "date": "2021-03-01",
+      "ret": 0.5307,
+      "hold": "FTMUSDT:151% MATICUSDT:133% NPXSUSDT:91%"
+     }
+    ],
+    "top5LogShare": 20.095,
+    "multipleTotal": 1.1324,
+    "multipleWithoutTop5": 0.093
+   }
+  },
+  {
+   "name": "GRID bottom N3 L14 H14 SMA50",
+   "params": {
+    "N": 3,
+    "L": 14,
+    "H": 14,
+    "wd": 1,
+    "lag": 0,
+    "mkt": 50,
+    "posOnly": false,
+    "side": "bottom",
+    "topK": null,
+    "minTurn": 5000000,
+    "cost": 0.001
+   },
+   "full": {
+    "start": "2018-03-05",
+    "end": "2026-10-03",
+    "totalRet": -0.9371,
+    "cagr": -0.2753,
+    "vol": 0.8545,
+    "sharpe": 0.0038,
+    "mdd": -0.9849,
+    "calmar": -0.2796,
+    "winRate": 0.4224,
+    "investedShare": 0.5179,
+    "nPeriods": 224
+   },
+   "is": {
+    "start": "2018-03-05",
+    "end": "2021-12-31",
+    "totalRet": 0.2226,
+    "cagr": 0.0539,
+    "vol": 1.045,
+    "sharpe": 0.4845,
+    "mdd": -0.8069,
+    "calmar": 0.0668,
+    "winRate": 0.4643,
+    "investedShare": 0.56,
+    "nPeriods": 100
+   },
+   "oos": {
+    "start": "2022-01-01",
+    "end": "2026-10-03",
+    "totalRet": -0.9486,
+    "cagr": -0.4639,
+    "vol": 0.6621,
+    "sharpe": -0.6068,
+    "mdd": -0.9682,
+    "calmar": -0.4792,
+    "winRate": 0.3833,
+    "investedShare": 0.4839,
+    "nPeriods": 124
+   },
+   "grossCagr": -0.2575,
+   "costDragCagr": 0.0178,
+   "annTurnover": 24.3131,
+   "yearly": {
+    "2018": -0.6368,
+    "2019": -0.4685,
+    "2020": 0.1206,
+    "2021": 4.6516,
+    "2022": -0.6959,
+    "2023": -0.3614,
+    "2024": -0.625,
+    "2025": -0.452,
+    "2026": 0.2892
+   },
+   "concentration": {
+    "topK": [
+     {
+      "date": "2021-01-18",
+      "ret": 1.0108,
+      "hold": "LTCUSDT:-11% DOGEUSDT:-7% EOSUSDT:-1%"
+     },
+     {
+      "date": "2021-02-01",
+      "ret": 0.9613,
+      "hold": "DASHUSDT:-18% BCHUSDT:-17% ZECUSDT:-16%"
+     },
+     {
+      "date": "2019-05-13",
+      "ret": 0.6907,
+      "hold": "BNBUSDT:-9% BTTUSDT:0% TRXUSDT:2%"
+     },
+     {
+      "date": "2021-03-29",
+      "ret": 0.4402,
+      "hold": "SRMUSDT:-21% AXSUSDT:-16% NEARUSDT:-15%"
+     },
+     {
+      "date": "2021-08-02",
+      "ret": 0.4373,
+      "hold": "KEEPUSDT:5% INJUSDT:5% EOSUSDT:8%"
+     }
+    ],
+    "top5LogShare": -1.0249,
+    "multipleTotal": 0.0772,
+    "multipleWithoutTop5": 0.0056
+   }
+  },
+  {
+   "name": "GRID top N3 L28 H7 SMA50",
+   "params": {
+    "N": 3,
+    "L": 28,
+    "H": 7,
+    "wd": 1,
+    "lag": 0,
+    "mkt": 50,
+    "posOnly": false,
+    "side": "top",
+    "topK": null,
+    "minTurn": 5000000,
+    "cost": 0.001
+   },
+   "full": {
+    "start": "2018-03-05",
+    "end": "2026-10-03",
+    "totalRet": 29.1591,
+    "cagr": 0.4868,
+    "vol": 0.8317,
+    "sharpe": 0.882,
+    "mdd": -0.7779,
+    "calmar": 0.6258,
+    "winRate": 0.5236,
+    "investedShare": 0.5201,
+    "nPeriods": 448
+   },
+   "is": {
+    "start": "2018-03-05",
+    "end": "2021-12-31",
+    "totalRet": 7.2411,
+    "cagr": 0.7344,
+    "vol": 0.8696,
+    "sharpe": 1.0559,
+    "mdd": -0.7337,
+    "calmar": 1.001,
+    "winRate": 0.5364,
+    "investedShare": 0.55,
+    "nPeriods": 200
+   },
+   "oos": {
+    "start": "2022-01-01",
+    "end": "2026-10-03",
+    "totalRet": 2.6596,
+    "cagr": 0.3134,
+    "vol": 0.8001,
+    "sharpe": 0.7312,
+    "mdd": -0.7117,
+    "calmar": 0.4404,
+    "winRate": 0.5122,
+    "investedShare": 0.496,
+    "nPeriods": 248
+   },
+   "grossCagr": 0.53,
+   "costDragCagr": 0.0433,
+   "annTurnover": 28.6718,
+   "yearly": {
+    "2018": -0.6255,
+    "2019": 0.8896,
+    "2020": 1.6384,
+    "2021": 3.4141,
+    "2022": -0.6041,
+    "2023": 2.1354,
+    "2024": 0.7774,
+    "2025": 1.1192,
+    "2026": -0.2172
+   },
+   "concentration": {
+    "topK": [
+     {
+      "date": "2021-02-01",
+      "ret": 0.6339,
+      "hold": "FTMUSDT:584% AVAXUSDT:288% DOGEUSDT:277%"
+     },
+     {
+      "date": "2024-11-18",
+      "ret": 0.6182,
+      "hold": "DOGEUSDT:158% XLMUSDT:102% PEPEUSDT:99%"
+     },
+     {
+      "date": "2020-08-10",
+      "ret": 0.5962,
+      "hold": "LINKUSDT:88% LENDUSDT:69% WAVESUSDT:61%"
+     },
+     {
+      "date": "2024-11-04",
+      "ret": 0.5785,
+      "hold": "DOGEUSDT:36% ENAUSDT:14% SUPERUSDT:12%"
+     },
+     {
+      "date": "2021-03-08",
+      "ret": 0.528,
+      "hold": "NPXSUSDT:283% ENJUSDT:271% BNBUSDT:251%"
+     }
+    ],
+    "top5LogShare": 0.6352,
+    "multipleTotal": 38.5915,
+    "multipleWithoutTop5": 3.7911
+   }
+  },
+  {
+   "name": "GRID bottom N3 L28 H7 SMA50",
+   "params": {
+    "N": 3,
+    "L": 28,
+    "H": 7,
+    "wd": 1,
+    "lag": 0,
+    "mkt": 50,
+    "posOnly": false,
+    "side": "bottom",
+    "topK": null,
+    "minTurn": 5000000,
+    "cost": 0.001
+   },
+   "full": {
+    "start": "2018-03-05",
+    "end": "2026-10-03",
+    "totalRet": -0.083,
+    "cagr": -0.01,
+    "vol": 0.6923,
+    "sharpe": 0.3215,
+    "mdd": -0.891,
+    "calmar": -0.0113,
+    "winRate": 0.4764,
+    "investedShare": 0.5201,
+    "nPeriods": 448
+   },
+   "is": {
+    "start": "2018-03-05",
+    "end": "2021-12-31",
+    "totalRet": 2.319,
+    "cagr": 0.3678,
+    "vol": 0.6987,
+    "sharpe": 0.7959,
+    "mdd": -0.699,
+    "calmar": 0.5262,
+    "winRate": 0.5455,
+    "investedShare": 0.55,
+    "nPeriods": 200
+   },
+   "oos": {
+    "start": "2022-01-01",
+    "end": "2026-10-03",
+    "totalRet": -0.7237,
+    "cagr": -0.2369,
+    "vol": 0.687,
+    "sharpe": -0.0666,
+    "mdd": -0.891,
+    "calmar": -0.2658,
+    "winRate": 0.4146,
+    "investedShare": 0.496,
+    "nPeriods": 248
+   },
+   "grossCagr": 0.0253,
+   "costDragCagr": 0.0354,
+   "annTurnover": 35.0672,
+   "yearly": {
+    "2018": -0.6392,
+    "2019": -0.0606,
+    "2020": 0.3447,
+    "2021": 6.283,
+    "2022": -0.2114,
+    "2023": 0.3349,
+    "2024": -0.418,
+    "2025": -0.519,
+    "2026": -0.0626
+   },
+   "concentration": {
+    "topK": [
+     {
+      "date": "2023-11-06",
+      "ret": 0.7211,
+      "hold": "LOOMUSDT:-34% FTTUSDT#2:-2% BCHUSDT:4%"
+     },
+     {
+      "date": "2021-02-08",
+      "ret": 0.7002,
+      "hold": "BCHUSDT:-26% DASHUSDT:-19% XMRUSDT:-19%"
+     },
+     {
+      "date": "2023-01-09",
+      "ret": 0.516,
+      "hold": "DOGEUSDT:-21% FILUSDT:-19% APTUSDT:-16%"
+     },
+     {
+      "date": "2025-04-21",
+      "ret": 0.4005,
+      "hold": "TRUMPUSDT:-29% AAVEUSDT:-24% ENAUSDT:-23%"
+     },
+     {
+      "date": "2024-12-02",
+      "ret": 0.3614,
+      "hold": "BNBUSDT:18% TRXUSDT:25% SUPERUSDT:30%"
+     }
+    ],
+    "top5LogShare": 10.3626,
+    "multipleTotal": 1.2288,
+    "multipleWithoutTop5": 0.1453
+   }
+  },
+  {
+   "name": "GRID top N3 L28 H14 SMA50",
+   "params": {
+    "N": 3,
+    "L": 28,
+    "H": 14,
+    "wd": 1,
+    "lag": 0,
+    "mkt": 50,
+    "posOnly": false,
+    "side": "top",
+    "topK": null,
+    "minTurn": 5000000,
+    "cost": 0.001
+   },
+   "full": {
+    "start": "2018-03-05",
+    "end": "2026-10-03",
+    "totalRet": 11.6491,
+    "cagr": 0.3437,
+    "vol": 0.8469,
+    "sharpe": 0.7627,
+    "mdd": -0.8264,
+    "calmar": 0.4159,
+    "winRate": 0.5431,
+    "investedShare": 0.5179,
+    "nPeriods": 224
+   },
+   "is": {
+    "start": "2018-03-05",
+    "end": "2021-12-31",
+    "totalRet": 6.1559,
+    "cagr": 0.6716,
+    "vol": 0.9435,
+    "sharpe": 1.0048,
+    "mdd": -0.7557,
+    "calmar": 0.8888,
+    "winRate": 0.5357,
+    "investedShare": 0.56,
+    "nPeriods": 100
+   },
+   "oos": {
+    "start": "2022-01-01",
+    "end": "2026-10-03",
+    "totalRet": 0.7676,
+    "cagr": 0.1272,
+    "vol": 0.7603,
+    "sharpe": 0.5297,
+    "mdd": -0.8264,
+    "calmar": 0.1539,
+    "winRate": 0.55,
+    "investedShare": 0.4839,
+    "nPeriods": 124
+   },
+   "grossCagr": 0.3702,
+   "costDragCagr": 0.0265,
+   "annTurnover": 19.5188,
+   "yearly": {
+    "2018": -0.7049,
+    "2019": 0.4736,
+    "2020": 0.6885,
+    "2021": 8.7472,
+    "2022": -0.7248,
+    "2023": 0.5557,
+    "2024": 0.3599,
+    "2025": 0.9641,
+    "2026": 0.546
+   },
+   "concentration": {
+    "topK": [
+     {
+      "date": "2021-02-01",
+      "ret": 0.9732,
+      "hold": "FTMUSDT:584% AVAXUSDT:288% DOGEUSDT:277%"
+     },
+     {
+      "date": "2024-11-04",
+      "ret": 0.7314,
+      "hold": "DOGEUSDT:36% ENAUSDT:14% SUPERUSDT:12%"
+     },
+     {
+      "date": "2024-11-18",
+      "ret": 0.7015,
+      "hold": "DOGEUSDT:158% XLMUSDT:102% PEPEUSDT:99%"
+     },
+     {
+      "date": "2021-03-01",
+      "ret": 0.641,
+      "hold": "MATICUSDT:508% BNBUSDT:374% NPXSUSDT:330%"
+     },
+     {
+      "date": "2020-08-03",
+      "ret": 0.6231,
+      "hold": "LENDUSDT:127% LINKUSDT:75% ZECUSDT:65%"
+     }
+    ],
+    "top5LogShare": 1.0137,
+    "multipleTotal": 14.9188,
+    "multipleWithoutTop5": 0.9636
+   }
+  },
+  {
+   "name": "GRID bottom N3 L28 H14 SMA50",
+   "params": {
+    "N": 3,
+    "L": 28,
+    "H": 14,
+    "wd": 1,
+    "lag": 0,
+    "mkt": 50,
+    "posOnly": false,
+    "side": "bottom",
+    "topK": null,
+    "minTurn": 5000000,
+    "cost": 0.001
+   },
+   "full": {
+    "start": "2018-03-05",
+    "end": "2026-10-03",
+    "totalRet": -0.8177,
+    "cagr": -0.1798,
+    "vol": 0.7134,
+    "sharpe": 0.0752,
+    "mdd": -0.937,
+    "calmar": -0.1919,
+    "winRate": 0.4655,
+    "investedShare": 0.5179,
+    "nPeriods": 224
+   },
+   "is": {
+    "start": "2018-03-05",
+    "end": "2021-12-31",
+    "totalRet": -0.3786,
+    "cagr": -0.1168,
+    "vol": 0.7322,
+    "sharpe": 0.2059,
+    "mdd": -0.8333,
+    "calmar": -0.1402,
+    "winRate": 0.5,
+    "investedShare": 0.56,
+    "nPeriods": 100
+   },
+   "oos": {
+    "start": "2022-01-01",
+    "end": "2026-10-03",
+    "totalRet": -0.7067,
+    "cagr": -0.2272,
+    "vol": 0.6981,
+    "sharpe": -0.0351,
+    "mdd": -0.9075,
+    "calmar": -0.2503,
+    "winRate": 0.4333,
+    "investedShare": 0.4839,
+    "nPeriods": 124
+   },
+   "grossCagr": -0.1622,
+   "costDragCagr": 0.0176,
+   "annTurnover": 21.1608,
+   "yearly": {
+    "2018": -0.732,
+    "2019": -0.3337,
+    "2020": 0.1622,
+    "2021": 1.9937,
+    "2022": -0.5542,
+    "2023": -0.1502,
+    "2024": -0.4897,
+    "2025": -0.0898,
+    "2026": 0.6673
+   },
+   "concentration": {
+    "topK": [
+     {
+      "date": "2021-02-01",
+      "ret": 0.7085,
+      "hold": "LTCUSDT:-20% BCHUSDT:-6% XMRUSDT:-0%"
+     },
+     {
+      "date": "2023-11-06",
+      "ret": 0.6867,
+      "hold": "LOOMUSDT:-34% FTTUSDT#2:-2% BCHUSDT:4%"
+     },
+     {
+      "date": "2021-08-02",
+      "ret": 0.6214,
+      "hold": "DOGEUSDT:-17% ICPUSDT:-13% ADAUSDT:-10%"
+     },
+     {
+      "date": "2019-05-13",
+      "ret": 0.5672,
+      "hold": "ADAUSDT:-17% BTTUSDT:-16% TRXUSDT:-12%"
+     },
+     {
+      "date": "2024-11-18",
+      "ret": 0.5033,
+      "hold": "TAOUSDT:-19% FETUSDT:-14% ZROUSDT:-12%"
+     }
+    ],
+    "top5LogShare": -1.5626,
+    "multipleTotal": 0.2155,
+    "multipleWithoutTop5": 0.0196
+   }
+  },
+  {
+   "name": "BTC + SMA50",
+   "stagger": true,
+   "full": {
+    "start": "2018-03-07",
+    "end": "2026-10-02",
+    "totalRet": 18.4311,
+    "cagr": 0.4131,
+    "vol": 0.412,
+    "sharpe": 1.044,
+    "mdd": -0.4901,
+    "calmar": 0.8428,
+    "winRate": null,
+    "investedShare": null,
+    "nPeriods": 0
+   },
+   "is": {
+    "start": "2018-03-07",
+    "end": "2021-12-31",
+    "totalRet": 7.2603,
+    "cagr": 0.7368,
+    "vol": 0.5045,
+    "sharpe": 1.3448,
+    "mdd": -0.4871,
+    "calmar": 1.5127,
+    "winRate": null,
+    "investedShare": null,
+    "nPeriods": 0
+   },
+   "oos": {
+    "start": "2022-01-01",
+    "end": "2026-10-02",
+    "totalRet": 1.3523,
+    "cagr": 0.197,
+    "vol": 0.3184,
+    "sharpe": 0.7236,
+    "mdd": -0.4074,
+    "calmar": 0.4836,
+    "winRate": null,
+    "investedShare": null,
+    "nPeriods": 0
+   },
+   "yearly": {
+    "2018": -0.4139,
+    "2019": 0.7986,
+    "2020": 2.7957,
+    "2021": 1.0644,
+    "2022": -0.3756,
+    "2023": 1.0256,
+    "2024": 0.6439,
+    "2025": 0.0039,
+    "2026": 0.1269
+   },
+   "byWeekday": [
+    {
+     "wd": 0,
+     "cagr": 0.3708,
+     "sharpe": 0.9531,
+     "mdd": -0.5677,
+     "oosCagr": 0.2049,
+     "oosSharpe": 0.7391
+    },
+    {
+     "wd": 1,
+     "cagr": 0.3709,
+     "sharpe": 0.9465,
+     "mdd": -0.5886,
+     "oosCagr": 0.1345,
+     "oosSharpe": 0.55
+    },
+    {
+     "wd": 2,
+     "cagr": 0.3167,
+     "sharpe": 0.851,
+     "mdd": -0.6324,
+     "oosCagr": 0.089,
+     "oosSharpe": 0.4196
+    },
+    {
+     "wd": 3,
+     "cagr": 0.4218,
+     "sharpe": 1.0443,
+     "mdd": -0.5574,
+     "oosCagr": 0.2013,
+     "oosSharpe": 0.7225
+    },
+    {
+     "wd": 4,
+     "cagr": 0.3746,
+     "sharpe": 0.9586,
+     "mdd": -0.5611,
+     "oosCagr": 0.2185,
+     "oosSharpe": 0.7486
+    },
+    {
+     "wd": 5,
+     "cagr": 0.4788,
+     "sharpe": 1.1267,
+     "mdd": -0.4933,
+     "oosCagr": 0.2911,
+     "oosSharpe": 0.9042
+    },
+    {
+     "wd": 6,
+     "cagr": 0.3971,
+     "sharpe": 0.9974,
+     "mdd": -0.5243,
+     "oosCagr": 0.2046,
+     "oosSharpe": 0.7292
+    }
+   ],
+   "weekdayRange": {
+    "cagrMin": 0.3167,
+    "cagrMed": 0.3746,
+    "cagrMax": 0.4788,
+    "oosCagrMin": 0.089,
+    "oosCagrMed": 0.2046,
+    "oosCagrMax": 0.2911
+   }
+  },
+  {
+   "name": "BTC + SMA120",
+   "stagger": true,
+   "full": {
+    "start": "2018-03-07",
+    "end": "2026-10-02",
+    "totalRet": 15.546,
+    "cagr": 0.3868,
+    "vol": 0.4234,
+    "sharpe": 0.983,
+    "mdd": -0.4888,
+    "calmar": 0.7914,
+    "winRate": null,
+    "investedShare": null,
+    "nPeriods": 0
+   },
+   "is": {
+    "start": "2018-03-07",
+    "end": "2021-12-31",
+    "totalRet": 6.2432,
+    "cagr": 0.6782,
+    "vol": 0.5244,
+    "sharpe": 1.2487,
+    "mdd": -0.4888,
+    "calmar": 1.3875,
+    "winRate": null,
+    "investedShare": null,
+    "nPeriods": 0
+   },
+   "oos": {
+    "start": "2022-01-01",
+    "end": "2026-10-02",
+    "totalRet": 1.2844,
+    "cagr": 0.1897,
+    "vol": 0.3196,
+    "sharpe": 0.7018,
+    "mdd": -0.3192,
+    "calmar": 0.5943,
+    "winRate": null,
+    "investedShare": null,
+    "nPeriods": 0
+   },
+   "yearly": {
+    "2018": -0.2862,
+    "2019": 1.2083,
+    "2020": 1.5925,
+    "2021": 0.7724,
+    "2022": -0.1898,
+    "2023": 0.6465,
+    "2024": 0.8329,
+    "2025": 0.0127,
+    "2026": -0.0775
+   },
+   "byWeekday": [
+    {
+     "wd": 0,
+     "cagr": 0.2288,
+     "sharpe": 0.6867,
+     "mdd": -0.625,
+     "oosCagr": 0.1045,
+     "oosSharpe": 0.4631
+    },
+    {
+     "wd": 1,
+     "cagr": 0.3354,
+     "sharpe": 0.8815,
+     "mdd": -0.5063,
+     "oosCagr": 0.0906,
+     "oosSharpe": 0.424
+    },
+    {
+     "wd": 2,
+     "cagr": 0.4584,
+     "sharpe": 1.0998,
+     "mdd": -0.4076,
+     "oosCagr": 0.2295,
+     "oosSharpe": 0.7996
+    },
+    {
+     "wd": 3,
+     "cagr": 0.4061,
+     "sharpe": 1.013,
+     "mdd": -0.4506,
+     "oosCagr": 0.2377,
+     "oosSharpe": 0.8195
+    },
+    {
+     "wd": 4,
+     "cagr": 0.4526,
+     "sharpe": 1.0951,
+     "mdd": -0.4374,
+     "oosCagr": 0.2487,
+     "oosSharpe": 0.8502
+    },
+    {
+     "wd": 5,
+     "cagr": 0.363,
+     "sharpe": 0.9232,
+     "mdd": -0.699,
+     "oosCagr": 0.2232,
+     "oosSharpe": 0.7709
+    },
+    {
+     "wd": 6,
+     "cagr": 0.3367,
+     "sharpe": 0.8718,
+     "mdd": -0.6351,
+     "oosCagr": 0.1283,
+     "oosSharpe": 0.5261
+    }
+   ],
+   "weekdayRange": {
+    "cagrMin": 0.2288,
+    "cagrMed": 0.363,
+    "cagrMax": 0.4584,
+    "oosCagrMin": 0.0906,
+    "oosCagrMed": 0.2232,
+    "oosCagrMax": 0.2487
+   }
+  },
+  {
+   "name": "EW 유니버스 + SMA50",
+   "stagger": true,
+   "full": {
+    "start": "2018-03-07",
+    "end": "2026-10-02",
+    "totalRet": 37.6203,
+    "cagr": 0.5308,
+    "vol": 0.553,
+    "sharpe": 1.0488,
+    "mdd": -0.6474,
+    "calmar": 0.8199,
+    "winRate": null,
+    "investedShare": null,
+    "nPeriods": 0
+   },
+   "is": {
+    "start": "2018-03-07",
+    "end": "2021-12-31",
+    "totalRet": 24.5082,
+    "cagr": 1.3323,
+    "vol": 0.6003,
+    "sharpe": 1.7134,
+    "mdd": -0.6435,
+    "calmar": 2.0704,
+    "winRate": null,
+    "investedShare": null,
+    "nPeriods": 0
+   },
+   "oos": {
+    "start": "2022-01-01",
+    "end": "2026-10-02",
+    "totalRet": 0.514,
+    "cagr": 0.0911,
+    "vol": 0.5112,
+    "sharpe": 0.4288,
+    "mdd": -0.6474,
+    "calmar": 0.1408,
+    "winRate": null,
+    "investedShare": null,
+    "nPeriods": 0
+   },
+   "yearly": {
+    "2018": -0.5272,
+    "2019": 0.1889,
+    "2020": 1.6571,
+    "2021": 16.0781,
+    "2022": -0.3931,
+    "2023": 1.5321,
+    "2024": 0.2171,
+    "2025": -0.3791,
+    "2026": 0.3037
+   },
+   "byWeekday": [
+    {
+     "wd": 0,
+     "cagr": 0.4325,
+     "sharpe": 0.9175,
+     "mdd": -0.6828,
+     "oosCagr": 0.0448,
+     "oosSharpe": 0.3463
+    },
+    {
+     "wd": 1,
+     "cagr": 0.475,
+     "sharpe": 0.9648,
+     "mdd": -0.7179,
+     "oosCagr": 0.0281,
+     "oosSharpe": 0.3172
+    },
+    {
+     "wd": 2,
+     "cagr": 0.3843,
+     "sharpe": 0.8515,
+     "mdd": -0.7215,
+     "oosCagr": -0.0391,
+     "oosSharpe": 0.202
+    },
+    {
+     "wd": 3,
+     "cagr": 0.4679,
+     "sharpe": 0.9626,
+     "mdd": -0.6664,
+     "oosCagr": 0.0388,
+     "oosSharpe": 0.3351
+    },
+    {
+     "wd": 4,
+     "cagr": 0.5253,
+     "sharpe": 1.0228,
+     "mdd": -0.7369,
+     "oosCagr": 0.1392,
+     "oosSharpe": 0.5138
+    },
+    {
+     "wd": 5,
+     "cagr": 0.6302,
+     "sharpe": 1.1408,
+     "mdd": -0.6043,
+     "oosCagr": 0.2272,
+     "oosSharpe": 0.6493
+    },
+    {
+     "wd": 6,
+     "cagr": 0.5708,
+     "sharpe": 1.0762,
+     "mdd": -0.6758,
+     "oosCagr": 0.1102,
+     "oosSharpe": 0.4645
+    }
+   ],
+   "weekdayRange": {
+    "cagrMin": 0.3843,
+    "cagrMed": 0.475,
+    "cagrMax": 0.6302,
+    "oosCagrMin": -0.0391,
+    "oosCagrMed": 0.0448,
+    "oosCagrMax": 0.2272
+   }
+  },
+  {
+   "name": "MOM top1 L7 H7 SMA50",
+   "stagger": true,
+   "full": {
+    "start": "2018-03-07",
+    "end": "2026-10-02",
+    "totalRet": 28.9087,
+    "cagr": 0.4859,
+    "vol": 1.1104,
+    "sharpe": 0.8779,
+    "mdd": -0.8713,
+    "calmar": 0.5577,
+    "winRate": null,
+    "investedShare": null,
+    "nPeriods": 0
+   },
+   "is": {
+    "start": "2018-03-07",
+    "end": "2021-12-31",
+    "totalRet": 0.9067,
+    "cagr": 0.1838,
+    "vol": 1.0326,
+    "sharpe": 0.6537,
+    "mdd": -0.7541,
+    "calmar": 0.2438,
+    "winRate": null,
+    "investedShare": null,
+    "nPeriods": 0
+   },
+   "oos": {
+    "start": "2022-01-01",
+    "end": "2026-10-02",
+    "totalRet": 14.6864,
+    "cagr": 0.7839,
+    "vol": 1.1694,
+    "sharpe": 1.0399,
+    "mdd": -0.8449,
+    "calmar": 0.9278,
+    "winRate": null,
+    "investedShare": null,
+    "nPeriods": 0
+   },
+   "yearly": {
+    "2018": -0.487,
+    "2019": -0.0659,
+    "2020": 0.9544,
+    "2021": 1.0358,
+    "2022": -0.5073,
+    "2023": 3.5347,
+    "2024": 0.025,
+    "2025": 3.8614,
+    "2026": 0.409
+   },
+   "byWeekday": [
+    {
+     "wd": 0,
+     "cagr": -0.003,
+     "sharpe": 0.5916,
+     "mdd": -0.9916,
+     "oosCagr": 0.3923,
+     "oosSharpe": 0.8471
+    },
+    {
+     "wd": 1,
+     "cagr": 0.0294,
+     "sharpe": 0.6185,
+     "mdd": -0.9701,
+     "oosCagr": -0.0271,
+     "oosSharpe": 0.5632
+    },
+    {
+     "wd": 2,
+     "cagr": -0.2031,
+     "sharpe": 0.4014,
+     "mdd": -0.9801,
+     "oosCagr": -0.0773,
+     "oosSharpe": 0.5268
+    },
+    {
+     "wd": 3,
+     "cagr": 0.8066,
+     "sharpe": 1.0492,
+     "mdd": -0.9173,
+     "oosCagr": 1.1951,
+     "oosSharpe": 1.1918
+    },
+    {
+     "wd": 4,
+     "cagr": 0.0375,
+     "sharpe": 0.6302,
+     "mdd": -0.9397,
+     "oosCagr": 0.1976,
+     "oosSharpe": 0.7308
+    },
+    {
+     "wd": 5,
+     "cagr": 0.4351,
+     "sharpe": 0.8703,
+     "mdd": -0.8884,
+     "oosCagr": 0.5474,
+     "oosSharpe": 0.9356
+    },
+    {
+     "wd": 6,
+     "cagr": 0.2712,
+     "sharpe": 0.7851,
+     "mdd": -0.8705,
+     "oosCagr": 0.2331,
+     "oosSharpe": 0.758
+    }
+   ],
+   "weekdayRange": {
+    "cagrMin": -0.2031,
+    "cagrMed": 0.0375,
+    "cagrMax": 0.8066,
+    "oosCagrMin": -0.0773,
+    "oosCagrMed": 0.2331,
+    "oosCagrMax": 1.1951
+   }
+  },
+  {
+   "name": "MOM top3 L7 H7 SMA50",
+   "stagger": true,
+   "full": {
+    "start": "2018-03-07",
+    "end": "2026-10-02",
+    "totalRet": 189.2123,
+    "cagr": 0.8434,
+    "vol": 0.7552,
+    "sharpe": 1.1796,
+    "mdd": -0.702,
+    "calmar": 1.2014,
+    "winRate": null,
+    "investedShare": null,
+    "nPeriods": 0
+   },
+   "is": {
+    "start": "2018-03-07",
+    "end": "2021-12-31",
+    "totalRet": 22.6192,
+    "cagr": 1.2859,
+    "vol": 0.7913,
+    "sharpe": 1.4311,
+    "mdd": -0.6657,
+    "calmar": 1.9315,
+    "winRate": null,
+    "investedShare": null,
+    "nPeriods": 0
+   },
+   "oos": {
+    "start": "2022-01-01",
+    "end": "2026-10-02",
+    "totalRet": 7.0533,
+    "cagr": 0.5505,
+    "vol": 0.7249,
+    "sharpe": 0.9608,
+    "mdd": -0.702,
+    "calmar": 0.7842,
+    "winRate": null,
+    "investedShare": null,
+    "nPeriods": 0
+   },
+   "yearly": {
+    "2018": -0.5572,
+    "2019": 0.0911,
+    "2020": 3.4314,
+    "2021": 10.0334,
+    "2022": -0.6253,
+    "2023": 3.3562,
+    "2024": 1.0807,
+    "2025": 0.4041,
+    "2026": 0.6887
+   },
+   "byWeekday": [
+    {
+     "wd": 0,
+     "cagr": 0.3124,
+     "sharpe": 0.7333,
+     "mdd": -0.8753,
+     "oosCagr": 0.1976,
+     "oosSharpe": 0.6133
+    },
+    {
+     "wd": 1,
+     "cagr": 0.4564,
+     "sharpe": 0.8566,
+     "mdd": -0.8268,
+     "oosCagr": 0.0523,
+     "oosSharpe": 0.4487
+    },
+    {
+     "wd": 2,
+     "cagr": 0.7745,
+     "sharpe": 1.0809,
+     "mdd": -0.7913,
+     "oosCagr": 0.4288,
+     "oosSharpe": 0.8352
+    },
+    {
+     "wd": 3,
+     "cagr": 1.0759,
+     "sharpe": 1.2521,
+     "mdd": -0.7652,
+     "oosCagr": 0.6767,
+     "oosSharpe": 1.0316
+    },
+    {
+     "wd": 4,
+     "cagr": 0.9371,
+     "sharpe": 1.1799,
+     "mdd": -0.7473,
+     "oosCagr": 0.8345,
+     "oosSharpe": 1.1405
+    },
+    {
+     "wd": 5,
+     "cagr": 0.6278,
+     "sharpe": 0.9867,
+     "mdd": -0.8446,
+     "oosCagr": 0.6994,
+     "oosSharpe": 1.0358
+    },
+    {
+     "wd": 6,
+     "cagr": 0.8818,
+     "sharpe": 1.1176,
+     "mdd": -0.6987,
+     "oosCagr": 0.5083,
+     "oosSharpe": 0.8892
+    }
+   ],
+   "weekdayRange": {
+    "cagrMin": 0.3124,
+    "cagrMed": 0.7745,
+    "cagrMax": 1.0759,
+    "oosCagrMin": 0.0523,
+    "oosCagrMed": 0.5083,
+    "oosCagrMax": 0.8345
+   }
+  },
+  {
+   "name": "MOM top5 L7 H7 SMA50",
+   "stagger": true,
+   "full": {
+    "start": "2018-03-07",
+    "end": "2026-10-02",
+    "totalRet": 168.3607,
+    "cagr": 0.8186,
+    "vol": 0.6674,
+    "sharpe": 1.2263,
+    "mdd": -0.6929,
+    "calmar": 1.1815,
+    "winRate": null,
+    "investedShare": null,
+    "nPeriods": 0
+   },
+   "is": {
+    "start": "2018-03-07",
+    "end": "2021-12-31",
+    "totalRet": 34.4239,
+    "cagr": 1.5414,
+    "vol": 0.7136,
+    "sharpe": 1.6591,
+    "mdd": -0.6627,
+    "calmar": 2.3258,
+    "winRate": null,
+    "investedShare": null,
+    "nPeriods": 0
+   },
+   "oos": {
+    "start": "2022-01-01",
+    "end": "2026-10-02",
+    "totalRet": 3.781,
+    "cagr": 0.3895,
+    "vol": 0.6275,
+    "sharpe": 0.8357,
+    "mdd": -0.6929,
+    "calmar": 0.5622,
+    "winRate": null,
+    "investedShare": null,
+    "nPeriods": 0
+   },
+   "yearly": {
+    "2018": -0.5533,
+    "2019": 0.1343,
+    "2020": 2.7297,
+    "2021": 17.7437,
+    "2022": -0.5718,
+    "2023": 2.403,
+    "2024": 0.7882,
+    "2025": 0.1394,
+    "2026": 0.6103
+   },
+   "byWeekday": [
+    {
+     "wd": 0,
+     "cagr": 0.3977,
+     "sharpe": 0.8185,
+     "mdd": -0.8121,
+     "oosCagr": 0.2183,
+     "oosSharpe": 0.6262
+    },
+    {
+     "wd": 1,
+     "cagr": 0.5926,
+     "sharpe": 0.9932,
+     "mdd": -0.7451,
+     "oosCagr": 0.1537,
+     "oosSharpe": 0.5468
+    },
+    {
+     "wd": 2,
+     "cagr": 0.59,
+     "sharpe": 0.9925,
+     "mdd": -0.7904,
+     "oosCagr": 0.2032,
+     "oosSharpe": 0.6119
+    },
+    {
+     "wd": 3,
+     "cagr": 1.0047,
+     "sharpe": 1.3051,
+     "mdd": -0.7525,
+     "oosCagr": 0.3497,
+     "oosSharpe": 0.7784
+    },
+    {
+     "wd": 4,
+     "cagr": 0.8215,
+     "sharpe": 1.1783,
+     "mdd": -0.7389,
+     "oosCagr": 0.8247,
+     "oosSharpe": 1.2132
+    },
+    {
+     "wd": 5,
+     "cagr": 0.8884,
+     "sharpe": 1.2201,
+     "mdd": -0.7295,
+     "oosCagr": 0.5759,
+     "oosSharpe": 0.985
+    },
+    {
+     "wd": 6,
+     "cagr": 0.8528,
+     "sharpe": 1.1727,
+     "mdd": -0.6646,
+     "oosCagr": 0.4374,
+     "oosSharpe": 0.8594
+    }
+   ],
+   "weekdayRange": {
+    "cagrMin": 0.3977,
+    "cagrMed": 0.8215,
+    "cagrMax": 1.0047,
+    "oosCagrMin": 0.1537,
+    "oosCagrMed": 0.3497,
+    "oosCagrMax": 0.8247
+   }
+  },
+  {
+   "name": "MOM top3 L7 H7 필터없음",
+   "stagger": true,
+   "full": {
+    "start": "2018-03-07",
+    "end": "2026-10-02",
+    "totalRet": 10.7427,
+    "cagr": 0.3325,
+    "vol": 1.0762,
+    "sharpe": 0.8023,
+    "mdd": -0.9462,
+    "calmar": 0.3514,
+    "winRate": null,
+    "investedShare": null,
+    "nPeriods": 0
+   },
+   "is": {
+    "start": "2018-03-07",
+    "end": "2021-12-31",
+    "totalRet": 13.1693,
+    "cagr": 1,
+    "vol": 1.1523,
+    "sharpe": 1.182,
+    "mdd": -0.8142,
+    "calmar": 1.2282,
+    "winRate": null,
+    "investedShare": null,
+    "nPeriods": 0
+   },
+   "oos": {
+    "start": "2022-01-01",
+    "end": "2026-10-02",
+    "totalRet": -0.1713,
+    "cagr": -0.0387,
+    "vol": 1.0107,
+    "sharpe": 0.4575,
+    "mdd": -0.9193,
+    "calmar": -0.0421,
+    "winRate": null,
+    "investedShare": null,
+    "nPeriods": 0
+   },
+   "yearly": {
+    "2018": -0.7127,
+    "2019": 0.1436,
+    "2020": 2.2016,
+    "2021": 12.4688,
+    "2022": -0.9054,
+    "2023": 5.2967,
+    "2024": 0.88,
+    "2025": -0.2742,
+    "2026": 0.0198
+   },
+   "byWeekday": [
+    {
+     "wd": 0,
+     "cagr": -0.0078,
+     "sharpe": 0.5585,
+     "mdd": -0.9487,
+     "oosCagr": -0.1595,
+     "oosSharpe": 0.3666
+    },
+    {
+     "wd": 1,
+     "cagr": 0.135,
+     "sharpe": 0.6739,
+     "mdd": -0.9543,
+     "oosCagr": -0.1403,
+     "oosSharpe": 0.3861
+    },
+    {
+     "wd": 2,
+     "cagr": 0.3106,
+     "sharpe": 0.8027,
+     "mdd": -0.9535,
+     "oosCagr": -0.0799,
+     "oosSharpe": 0.4567
+    },
+    {
+     "wd": 3,
+     "cagr": 0.303,
+     "sharpe": 0.8002,
+     "mdd": -0.9357,
+     "oosCagr": -0.1173,
+     "oosSharpe": 0.4241
+    },
+    {
+     "wd": 4,
+     "cagr": 0.5247,
+     "sharpe": 0.9336,
+     "mdd": -0.9412,
+     "oosCagr": 0.0793,
+     "oosSharpe": 0.593
+    },
+    {
+     "wd": 5,
+     "cagr": 0.1539,
+     "sharpe": 0.6965,
+     "mdd": -0.9556,
+     "oosCagr": -0.0438,
+     "oosSharpe": 0.4862
+    },
+    {
+     "wd": 6,
+     "cagr": 0.3244,
+     "sharpe": 0.8195,
+     "mdd": -0.9651,
+     "oosCagr": -0.0841,
+     "oosSharpe": 0.4727
+    }
+   ],
+   "weekdayRange": {
+    "cagrMin": -0.0078,
+    "cagrMed": 0.303,
+    "cagrMax": 0.5247,
+    "oosCagrMin": -0.1595,
+    "oosCagrMed": -0.0841,
+    "oosCagrMax": 0.0793
+   }
+  },
+  {
+   "name": "KANG 원형근사(top20유동성,SMA120,양수만,top3)",
+   "stagger": true,
+   "full": {
+    "start": "2018-03-07",
+    "end": "2026-10-02",
+    "totalRet": 57.244,
+    "cagr": 0.6059,
+    "vol": 0.6659,
+    "sharpe": 1.0398,
+    "mdd": -0.6187,
+    "calmar": 0.9794,
+    "winRate": null,
+    "investedShare": null,
+    "nPeriods": 0
+   },
+   "is": {
+    "start": "2018-03-07",
+    "end": "2021-12-31",
+    "totalRet": 24.5412,
+    "cagr": 1.3331,
+    "vol": 0.7618,
+    "sharpe": 1.4888,
+    "mdd": -0.6062,
+    "calmar": 2.1992,
+    "winRate": null,
+    "investedShare": null,
+    "nPeriods": 0
+   },
+   "oos": {
+    "start": "2022-01-01",
+    "end": "2026-10-02",
+    "totalRet": 1.2804,
+    "cagr": 0.1892,
+    "vol": 0.577,
+    "sharpe": 0.5844,
+    "mdd": -0.6187,
+    "calmar": 0.3059,
+    "winRate": null,
+    "investedShare": null,
+    "nPeriods": 0
+   },
+   "yearly": {
+    "2018": -0.3006,
+    "2019": 0.0663,
+    "2020": 0.4897,
+    "2021": 21.9903,
+    "2022": -0.2614,
+    "2023": 0.7639,
+    "2024": 0.3724,
+    "2025": -0.2139,
+    "2026": 0.6225
+   },
+   "byWeekday": [
+    {
+     "wd": 0,
+     "cagr": 0.0655,
+     "sharpe": 0.4602,
+     "mdd": -0.8683,
+     "oosCagr": -0.1842,
+     "oosSharpe": -0.0028
+    },
+    {
+     "wd": 1,
+     "cagr": 0.4421,
+     "sharpe": 0.8517,
+     "mdd": -0.7221,
+     "oosCagr": 0.0245,
+     "oosSharpe": 0.361
+    },
+    {
+     "wd": 2,
+     "cagr": 0.2033,
+     "sharpe": 0.6091,
+     "mdd": -0.7648,
+     "oosCagr": -0.0422,
+     "oosSharpe": 0.2393
+    },
+    {
+     "wd": 3,
+     "cagr": 0.7284,
+     "sharpe": 1.0978,
+     "mdd": -0.7628,
+     "oosCagr": 0.0922,
+     "oosSharpe": 0.4458
+    },
+    {
+     "wd": 4,
+     "cagr": 0.8715,
+     "sharpe": 1.2234,
+     "mdd": -0.6056,
+     "oosCagr": 0.4187,
+     "oosSharpe": 0.8662
+    },
+    {
+     "wd": 5,
+     "cagr": 0.5198,
+     "sharpe": 0.9258,
+     "mdd": -0.8055,
+     "oosCagr": 0.2406,
+     "oosSharpe": 0.6494
+    },
+    {
+     "wd": 6,
+     "cagr": 0.4437,
+     "sharpe": 0.8587,
+     "mdd": -0.7097,
+     "oosCagr": 0.0724,
+     "oosSharpe": 0.4327
+    }
+   ],
+   "weekdayRange": {
+    "cagrMin": 0.0655,
+    "cagrMed": 0.4437,
+    "cagrMax": 0.8715,
+    "oosCagrMin": -0.1842,
+    "oosCagrMed": 0.0724,
+    "oosCagrMax": 0.4187
+   }
+  },
+  {
+   "name": "KANG 원형근사 체결1일지연",
+   "stagger": true,
+   "full": {
+    "start": "2018-03-07",
+    "end": "2026-10-02",
+    "totalRet": 22.2134,
+    "cagr": 0.4427,
+    "vol": 0.6612,
+    "sharpe": 0.8824,
+    "mdd": -0.6492,
+    "calmar": 0.6819,
+    "winRate": null,
+    "investedShare": null,
+    "nPeriods": 0
+   },
+   "is": {
+    "start": "2018-03-07",
+    "end": "2021-12-31",
+    "totalRet": 9.4501,
+    "cagr": 0.847,
+    "vol": 0.7527,
+    "sharpe": 1.1915,
+    "mdd": -0.6492,
+    "calmar": 1.3047,
+    "winRate": null,
+    "investedShare": null,
+    "nPeriods": 0
+   },
+   "oos": {
+    "start": "2022-01-01",
+    "end": "2026-10-02",
+    "totalRet": 1.2213,
+    "cagr": 0.1827,
+    "vol": 0.5771,
+    "sharpe": 0.5743,
+    "mdd": -0.5975,
+    "calmar": 0.3058,
+    "winRate": null,
+    "investedShare": null,
+    "nPeriods": 0
+   },
+   "yearly": {
+    "2018": -0.3123,
+    "2019": 0.0265,
+    "2020": 0.0198,
+    "2021": 13.5173,
+    "2022": -0.2561,
+    "2023": 0.471,
+    "2024": 0.4683,
+    "2025": -0.1952,
+    "2026": 0.7178
+   },
+   "byWeekday": [
+    {
+     "wd": 0,
+     "cagr": 0.3978,
+     "sharpe": 0.8186,
+     "mdd": -0.7298,
+     "oosCagr": 0.0534,
+     "oosSharpe": 0.4042
+    },
+    {
+     "wd": 1,
+     "cagr": 0.136,
+     "sharpe": 0.5464,
+     "mdd": -0.7766,
+     "oosCagr": -0.0802,
+     "oosSharpe": 0.197
+    },
+    {
+     "wd": 2,
+     "cagr": 0.2147,
+     "sharpe": 0.6248,
+     "mdd": -0.7224,
+     "oosCagr": -0.0061,
+     "oosSharpe": 0.3155
+    },
+    {
+     "wd": 3,
+     "cagr": 0.1203,
+     "sharpe": 0.5091,
+     "mdd": -0.7582,
+     "oosCagr": 0.0391,
+     "oosSharpe": 0.3657
+    },
+    {
+     "wd": 4,
+     "cagr": 0.7221,
+     "sharpe": 1.1071,
+     "mdd": -0.6666,
+     "oosCagr": 0.2842,
+     "oosSharpe": 0.7085
+    },
+    {
+     "wd": 5,
+     "cagr": 0.4529,
+     "sharpe": 0.8808,
+     "mdd": -0.7839,
+     "oosCagr": 0.2241,
+     "oosSharpe": 0.6278
+    },
+    {
+     "wd": 6,
+     "cagr": 0.1981,
+     "sharpe": 0.6175,
+     "mdd": -0.794,
+     "oosCagr": 0.0618,
+     "oosSharpe": 0.4107
+    }
+   ],
+   "weekdayRange": {
+    "cagrMin": 0.1203,
+    "cagrMed": 0.2147,
+    "cagrMax": 0.7221,
+    "oosCagrMin": -0.0802,
+    "oosCagrMed": 0.0534,
+    "oosCagrMax": 0.2842
+   }
+  },
+  {
+   "name": "MOM top3 SMA50 체결1일지연",
+   "stagger": true,
+   "full": {
+    "start": "2018-03-07",
+    "end": "2026-10-02",
+    "totalRet": 93.9763,
+    "cagr": 0.7001,
+    "vol": 0.7353,
+    "sharpe": 1.0834,
+    "mdd": -0.7192,
+    "calmar": 0.9734,
+    "winRate": null,
+    "investedShare": null,
+    "nPeriods": 0
+   },
+   "is": {
+    "start": "2018-03-07",
+    "end": "2021-12-31",
+    "totalRet": 10.3615,
+    "cagr": 0.8878,
+    "vol": 0.7668,
+    "sharpe": 1.2049,
+    "mdd": -0.6607,
+    "calmar": 1.3438,
+    "winRate": null,
+    "investedShare": null,
+    "nPeriods": 0
+   },
+   "oos": {
+    "start": "2022-01-01",
+    "end": "2026-10-02",
+    "totalRet": 7.3595,
+    "cagr": 0.5628,
+    "vol": 0.7091,
+    "sharpe": 0.9791,
+    "mdd": -0.6848,
+    "calmar": 0.8218,
+    "winRate": null,
+    "investedShare": null,
+    "nPeriods": 0
+   },
+   "yearly": {
+    "2018": -0.5824,
+    "2019": 0.0642,
+    "2020": 2.1511,
+    "2021": 7.1122,
+    "2022": -0.6099,
+    "2023": 2.5804,
+    "2024": 1.5231,
+    "2025": 0.4604,
+    "2026": 0.6244
+   },
+   "byWeekday": [
+    {
+     "wd": 0,
+     "cagr": 0.4989,
+     "sharpe": 0.8895,
+     "mdd": -0.7923,
+     "oosCagr": 0.2312,
+     "oosSharpe": 0.6463
+    },
+    {
+     "wd": 1,
+     "cagr": 0.152,
+     "sharpe": 0.5754,
+     "mdd": -0.8444,
+     "oosCagr": -0.0034,
+     "oosSharpe": 0.3712
+    },
+    {
+     "wd": 2,
+     "cagr": 0.4666,
+     "sharpe": 0.867,
+     "mdd": -0.7566,
+     "oosCagr": 0.3216,
+     "oosSharpe": 0.7378
+    },
+    {
+     "wd": 3,
+     "cagr": 0.5948,
+     "sharpe": 0.9607,
+     "mdd": -0.8286,
+     "oosCagr": 0.3979,
+     "oosSharpe": 0.8085
+    },
+    {
+     "wd": 4,
+     "cagr": 0.966,
+     "sharpe": 1.2037,
+     "mdd": -0.7337,
+     "oosCagr": 0.7486,
+     "oosSharpe": 1.0947
+    },
+    {
+     "wd": 5,
+     "cagr": 0.8528,
+     "sharpe": 1.1399,
+     "mdd": -0.6632,
+     "oosCagr": 0.8137,
+     "oosSharpe": 1.1274
+    },
+    {
+     "wd": 6,
+     "cagr": 0.5244,
+     "sharpe": 0.9129,
+     "mdd": -0.8091,
+     "oosCagr": 0.4858,
+     "oosSharpe": 0.8819
+    }
+   ],
+   "weekdayRange": {
+    "cagrMin": 0.152,
+    "cagrMed": 0.5244,
+    "cagrMax": 0.966,
+    "oosCagrMin": -0.0034,
+    "oosCagrMed": 0.3979,
+    "oosCagrMax": 0.8137
+   }
+  },
+  {
+   "name": "REV bottom1 L7 H7 SMA50",
+   "stagger": true,
+   "full": {
+    "start": "2018-03-07",
+    "end": "2026-10-02",
+    "totalRet": -0.9327,
+    "cagr": -0.2699,
+    "vol": 0.7835,
+    "sharpe": 0.0028,
+    "mdd": -0.9756,
+    "calmar": -0.2766,
+    "winRate": null,
+    "investedShare": null,
+    "nPeriods": 0
+   },
+   "is": {
+    "start": "2018-03-07",
+    "end": "2021-12-31",
+    "totalRet": 0.191,
+    "cagr": 0.0468,
+    "vol": 0.7357,
+    "sharpe": 0.4285,
+    "mdd": -0.6325,
+    "calmar": 0.0739,
+    "winRate": null,
+    "investedShare": null,
+    "nPeriods": 0
+   },
+   "oos": {
+    "start": "2022-01-01",
+    "end": "2026-10-02",
+    "totalRet": -0.9435,
+    "cagr": -0.4535,
+    "vol": 0.8199,
+    "sharpe": -0.3044,
+    "mdd": -0.968,
+    "calmar": -0.4685,
+    "winRate": null,
+    "investedShare": null,
+    "nPeriods": 0
+   },
+   "yearly": {
+    "2018": -0.3899,
+    "2019": -0.202,
+    "2020": 0.0238,
+    "2021": 1.3893,
+    "2022": -0.5987,
+    "2023": -0.4403,
+    "2024": -0.4057,
+    "2025": -0.4939,
+    "2026": -0.164
+   },
+   "byWeekday": [
+    {
+     "wd": 0,
+     "cagr": -0.2691,
+     "sharpe": 0.1098,
+     "mdd": -0.983,
+     "oosCagr": -0.4401,
+     "oosSharpe": -0.1931
+    },
+    {
+     "wd": 1,
+     "cagr": -0.1082,
+     "sharpe": 0.3581,
+     "mdd": -0.9536,
+     "oosCagr": -0.2362,
+     "oosSharpe": 0.2292
+    },
+    {
+     "wd": 2,
+     "cagr": -0.5449,
+     "sharpe": -0.272,
+     "mdd": -0.9997,
+     "oosCagr": -0.7495,
+     "oosSharpe": -0.758
+    },
+    {
+     "wd": 3,
+     "cagr": -0.4023,
+     "sharpe": -0.1602,
+     "mdd": -0.9978,
+     "oosCagr": -0.6785,
+     "oosSharpe": -0.9821
+    },
+    {
+     "wd": 4,
+     "cagr": -0.5049,
+     "sharpe": -0.3462,
+     "mdd": -0.999,
+     "oosCagr": -0.6933,
+     "oosSharpe": -0.9731
+    },
+    {
+     "wd": 5,
+     "cagr": -0.4581,
+     "sharpe": -0.2569,
+     "mdd": -0.9977,
+     "oosCagr": -0.6297,
+     "oosSharpe": -0.6976
+    },
+    {
+     "wd": 6,
+     "cagr": -0.3382,
+     "sharpe": 0.0417,
+     "mdd": -0.9885,
+     "oosCagr": -0.4347,
+     "oosSharpe": -0.0605
+    }
+   ],
+   "weekdayRange": {
+    "cagrMin": -0.5449,
+    "cagrMed": -0.4023,
+    "cagrMax": -0.1082,
+    "oosCagrMin": -0.7495,
+    "oosCagrMed": -0.6297,
+    "oosCagrMax": -0.2362
+   }
+  },
+  {
+   "name": "REV bottom3 L7 H7 SMA50",
+   "stagger": true,
+   "full": {
+    "start": "2018-03-07",
+    "end": "2026-10-02",
+    "totalRet": -0.2589,
+    "cagr": -0.0343,
+    "vol": 0.6102,
+    "sharpe": 0.2482,
+    "mdd": -0.8739,
+    "calmar": -0.0393,
+    "winRate": null,
+    "investedShare": null,
+    "nPeriods": 0
+   },
+   "is": {
+    "start": "2018-03-07",
+    "end": "2021-12-31",
+    "totalRet": 2.3276,
+    "cagr": 0.3694,
+    "vol": 0.6409,
+    "sharpe": 0.8119,
+    "mdd": -0.6337,
+    "calmar": 0.5829,
+    "winRate": null,
+    "investedShare": null,
+    "nPeriods": 0
+   },
+   "oos": {
+    "start": "2022-01-01",
+    "end": "2026-10-02",
+    "totalRet": -0.7773,
+    "cagr": -0.2708,
+    "vol": 0.584,
+    "sharpe": -0.2487,
+    "mdd": -0.853,
+    "calmar": -0.3174,
+    "winRate": null,
+    "investedShare": null,
+    "nPeriods": 0
+   },
+   "yearly": {
+    "2018": -0.5069,
+    "2019": 0.0524,
+    "2020": 0.3554,
+    "2021": 3.731,
+    "2022": -0.5171,
+    "2023": 0.664,
+    "2024": -0.4355,
+    "2025": -0.5691,
+    "2026": 0.1393
+   },
+   "byWeekday": [
+    {
+     "wd": 0,
+     "cagr": 0.0145,
+     "sharpe": 0.3694,
+     "mdd": -0.8346,
+     "oosCagr": -0.1163,
+     "oosSharpe": 0.1741
+    },
+    {
+     "wd": 1,
+     "cagr": 0.0005,
+     "sharpe": 0.3489,
+     "mdd": -0.8426,
+     "oosCagr": -0.1801,
+     "oosSharpe": 0.0446
+    },
+    {
+     "wd": 2,
+     "cagr": -0.1081,
+     "sharpe": 0.1925,
+     "mdd": -0.9634,
+     "oosCagr": -0.3993,
+     "oosSharpe": -0.4027
+    },
+    {
+     "wd": 3,
+     "cagr": -0.1122,
+     "sharpe": 0.1441,
+     "mdd": -0.9486,
+     "oosCagr": -0.3834,
+     "oosSharpe": -0.4918
+    },
+    {
+     "wd": 4,
+     "cagr": -0.1283,
+     "sharpe": 0.159,
+     "mdd": -0.9625,
+     "oosCagr": -0.387,
+     "oosSharpe": -0.4295
+    },
+    {
+     "wd": 5,
+     "cagr": -0.0914,
+     "sharpe": 0.2028,
+     "mdd": -0.9509,
+     "oosCagr": -0.3241,
+     "oosSharpe": -0.2781
+    },
+    {
+     "wd": 6,
+     "cagr": 0.0215,
+     "sharpe": 0.3681,
+     "mdd": -0.8454,
+     "oosCagr": -0.1423,
+     "oosSharpe": 0.0928
+    }
+   ],
+   "weekdayRange": {
+    "cagrMin": -0.1283,
+    "cagrMed": -0.0914,
+    "cagrMax": 0.0215,
+    "oosCagrMin": -0.3993,
+    "oosCagrMed": -0.3241,
+    "oosCagrMax": -0.1163
+   }
+  },
+  {
+   "name": "REV bottom5 L7 H7 SMA50",
+   "stagger": true,
+   "full": {
+    "start": "2018-03-07",
+    "end": "2026-10-02",
+    "totalRet": 1.2453,
+    "cagr": 0.0988,
+    "vol": 0.5802,
+    "sharpe": 0.4539,
+    "mdd": -0.8232,
+    "calmar": 0.1201,
+    "winRate": null,
+    "investedShare": null,
+    "nPeriods": 0
+   },
+   "is": {
+    "start": "2018-03-07",
+    "end": "2021-12-31",
+    "totalRet": 6.3543,
+    "cagr": 0.6849,
+    "vol": 0.6192,
+    "sharpe": 1.1535,
+    "mdd": -0.6268,
+    "calmar": 1.0927,
+    "winRate": null,
+    "investedShare": null,
+    "nPeriods": 0
+   },
+   "oos": {
+    "start": "2022-01-01",
+    "end": "2026-10-02",
+    "totalRet": -0.6947,
+    "cagr": -0.2208,
+    "vol": 0.5464,
+    "sharpe": -0.1814,
+    "mdd": -0.8232,
+    "calmar": -0.2682,
+    "winRate": null,
+    "investedShare": null,
+    "nPeriods": 0
+   },
+   "yearly": {
+    "2018": -0.5026,
+    "2019": 0.1523,
+    "2020": 0.5862,
+    "2021": 7.0894,
+    "2022": -0.479,
+    "2023": 0.7631,
+    "2024": -0.3943,
+    "2025": -0.5449,
+    "2026": 0.2059
+   },
+   "byWeekday": [
+    {
+     "wd": 0,
+     "cagr": 0.0839,
+     "sharpe": 0.4465,
+     "mdd": -0.7859,
+     "oosCagr": -0.034,
+     "oosSharpe": 0.2605
+    },
+    {
+     "wd": 1,
+     "cagr": 0.0405,
+     "sharpe": 0.3864,
+     "mdd": -0.8261,
+     "oosCagr": -0.1835,
+     "oosSharpe": -0.01
+    },
+    {
+     "wd": 2,
+     "cagr": -0.0323,
+     "sharpe": 0.2798,
+     "mdd": -0.9314,
+     "oosCagr": -0.3306,
+     "oosSharpe": -0.2895
+    },
+    {
+     "wd": 3,
+     "cagr": 0.1363,
+     "sharpe": 0.5166,
+     "mdd": -0.8731,
+     "oosCagr": -0.2639,
+     "oosSharpe": -0.246
+    },
+    {
+     "wd": 4,
+     "cagr": 0.0536,
+     "sharpe": 0.4069,
+     "mdd": -0.9232,
+     "oosCagr": -0.3123,
+     "oosSharpe": -0.3172
+    },
+    {
+     "wd": 5,
+     "cagr": 0.1554,
+     "sharpe": 0.544,
+     "mdd": -0.8449,
+     "oosCagr": -0.1415,
+     "oosSharpe": 0.0569
+    },
+    {
+     "wd": 6,
+     "cagr": 0.1126,
+     "sharpe": 0.4846,
+     "mdd": -0.8448,
+     "oosCagr": -0.1803,
+     "oosSharpe": -0.0441
+    }
+   ],
+   "weekdayRange": {
+    "cagrMin": -0.0323,
+    "cagrMed": 0.0839,
+    "cagrMax": 0.1554,
+    "oosCagrMin": -0.3306,
+    "oosCagrMed": -0.1835,
+    "oosCagrMax": -0.034
+   }
+  },
+  {
+   "name": "GRID top N3 L3 H7 SMA50",
+   "stagger": true,
+   "full": {
+    "start": "2018-03-07",
+    "end": "2026-10-02",
+    "totalRet": 402.8682,
+    "cagr": 1.0125,
+    "vol": 0.7437,
+    "sharpe": 1.305,
+    "mdd": -0.6816,
+    "calmar": 1.4855,
+    "winRate": null,
+    "investedShare": null,
+    "nPeriods": 0
+   },
+   "is": {
+    "start": "2018-03-07",
+    "end": "2021-12-31",
+    "totalRet": 62.4163,
+    "cagr": 1.9594,
+    "vol": 0.7505,
+    "sharpe": 1.8149,
+    "mdd": -0.6743,
+    "calmar": 2.9059,
+    "winRate": null,
+    "investedShare": null,
+    "nPeriods": 0
+   },
+   "oos": {
+    "start": "2022-01-01",
+    "end": "2026-10-02",
+    "totalRet": 5.3685,
+    "cagr": 0.4759,
+    "vol": 0.7381,
+    "sharpe": 0.8885,
+    "mdd": -0.6816,
+    "calmar": 0.6982,
+    "winRate": null,
+    "investedShare": null,
+    "nPeriods": 0
+   },
+   "yearly": {
+    "2018": -0.5597,
+    "2019": 0.2594,
+    "2020": 2.5508,
+    "2021": 31.2081,
+    "2022": -0.585,
+    "2023": 2.3518,
+    "2024": 1.4243,
+    "2025": 0.072,
+    "2026": 0.7618
+   },
+   "byWeekday": [
+    {
+     "wd": 0,
+     "cagr": 0.4881,
+     "sharpe": 0.879,
+     "mdd": -0.7712,
+     "oosCagr": 0.028,
+     "oosSharpe": 0.4169
+    },
+    {
+     "wd": 1,
+     "cagr": 0.2932,
+     "sharpe": 0.7114,
+     "mdd": -0.9054,
+     "oosCagr": -0.1395,
+     "oosSharpe": 0.19
+    },
+    {
+     "wd": 2,
+     "cagr": 0.3326,
+     "sharpe": 0.7496,
+     "mdd": -0.8393,
+     "oosCagr": 0.2124,
+     "oosSharpe": 0.6372
+    },
+    {
+     "wd": 3,
+     "cagr": 0.9639,
+     "sharpe": 1.1875,
+     "mdd": -0.7834,
+     "oosCagr": 0.2584,
+     "oosSharpe": 0.6772
+    },
+    {
+     "wd": 4,
+     "cagr": 1.006,
+     "sharpe": 1.2172,
+     "mdd": -0.7512,
+     "oosCagr": 0.7853,
+     "oosSharpe": 1.1061
+    },
+    {
+     "wd": 5,
+     "cagr": 0.5621,
+     "sharpe": 0.9414,
+     "mdd": -0.7865,
+     "oosCagr": 0.4259,
+     "oosSharpe": 0.8321
+    },
+    {
+     "wd": 6,
+     "cagr": 1.3808,
+     "sharpe": 1.3696,
+     "mdd": -0.7052,
+     "oosCagr": 0.5697,
+     "oosSharpe": 0.935
+    }
+   ],
+   "weekdayRange": {
+    "cagrMin": 0.2932,
+    "cagrMed": 0.5621,
+    "cagrMax": 1.3808,
+    "oosCagrMin": -0.1395,
+    "oosCagrMed": 0.2584,
+    "oosCagrMax": 0.7853
+   }
+  },
+  {
+   "name": "GRID top N3 L3 H14 SMA50",
+   "stagger": true,
+   "full": {
+    "start": "2018-03-07",
+    "end": "2026-10-02",
+    "totalRet": 66.4289,
+    "cagr": 0.6335,
+    "vol": 0.6909,
+    "sharpe": 1.05,
+    "mdd": -0.7998,
+    "calmar": 0.7921,
+    "winRate": null,
+    "investedShare": null,
+    "nPeriods": 0
+   },
+   "is": {
+    "start": "2018-03-07",
+    "end": "2021-12-31",
+    "totalRet": 22.0415,
+    "cagr": 1.2711,
+    "vol": 0.7532,
+    "sharpe": 1.4572,
+    "mdd": -0.7054,
+    "calmar": 1.802,
+    "winRate": null,
+    "investedShare": null,
+    "nPeriods": 0
+   },
+   "oos": {
+    "start": "2022-01-01",
+    "end": "2026-10-02",
+    "totalRet": 1.9264,
+    "cagr": 0.2533,
+    "vol": 0.6361,
+    "sharpe": 0.6699,
+    "mdd": -0.7292,
+    "calmar": 0.3473,
+    "winRate": null,
+    "investedShare": null,
+    "nPeriods": 0
+   },
+   "yearly": {
+    "2018": -0.6805,
+    "2019": 0.4424,
+    "2020": 1.635,
+    "2021": 17.9731,
+    "2022": -0.6256,
+    "2023": 0.6186,
+    "2024": 1.1901,
+    "2025": 0.0203,
+    "2026": 1.1609
+   },
+   "byWeekday": [
+    {
+     "wd": 0,
+     "cagr": 0.0859,
+     "sharpe": 0.4874,
+     "mdd": -0.9284,
+     "oosCagr": 0.0688,
+     "oosSharpe": 0.4494
+    },
+    {
+     "wd": 1,
+     "cagr": 0.1182,
+     "sharpe": 0.5334,
+     "mdd": -0.9286,
+     "oosCagr": -0.0158,
+     "oosSharpe": 0.3307
+    },
+    {
+     "wd": 2,
+     "cagr": 0.2163,
+     "sharpe": 0.6358,
+     "mdd": -0.9196,
+     "oosCagr": 0.1811,
+     "oosSharpe": 0.5989
+    },
+    {
+     "wd": 3,
+     "cagr": 0.8571,
+     "sharpe": 1.129,
+     "mdd": -0.8723,
+     "oosCagr": 0.1872,
+     "oosSharpe": 0.5988
+    },
+    {
+     "wd": 4,
+     "cagr": 0.8164,
+     "sharpe": 1.1449,
+     "mdd": -0.7383,
+     "oosCagr": 0.6939,
+     "oosSharpe": 1.0879
+    },
+    {
+     "wd": 5,
+     "cagr": 0.5072,
+     "sharpe": 0.9059,
+     "mdd": -0.8344,
+     "oosCagr": 0.3678,
+     "oosSharpe": 0.7834
+    },
+    {
+     "wd": 6,
+     "cagr": 0.5614,
+     "sharpe": 0.9496,
+     "mdd": -0.8927,
+     "oosCagr": 0.1034,
+     "oosSharpe": 0.4874
+    }
+   ],
+   "weekdayRange": {
+    "cagrMin": 0.0859,
+    "cagrMed": 0.5072,
+    "cagrMax": 0.8571,
+    "oosCagrMin": -0.0158,
+    "oosCagrMed": 0.1811,
+    "oosCagrMax": 0.6939
+   }
+  },
+  {
+   "name": "GRID top N3 L7 H7 SMA50",
+   "stagger": true,
+   "full": {
+    "start": "2018-03-07",
+    "end": "2026-10-02",
+    "totalRet": 189.2123,
+    "cagr": 0.8434,
+    "vol": 0.7552,
+    "sharpe": 1.1796,
+    "mdd": -0.702,
+    "calmar": 1.2014,
+    "winRate": null,
+    "investedShare": null,
+    "nPeriods": 0
+   },
+   "is": {
+    "start": "2018-03-07",
+    "end": "2021-12-31",
+    "totalRet": 22.6192,
+    "cagr": 1.2859,
+    "vol": 0.7913,
+    "sharpe": 1.4311,
+    "mdd": -0.6657,
+    "calmar": 1.9315,
+    "winRate": null,
+    "investedShare": null,
+    "nPeriods": 0
+   },
+   "oos": {
+    "start": "2022-01-01",
+    "end": "2026-10-02",
+    "totalRet": 7.0533,
+    "cagr": 0.5505,
+    "vol": 0.7249,
+    "sharpe": 0.9608,
+    "mdd": -0.702,
+    "calmar": 0.7842,
+    "winRate": null,
+    "investedShare": null,
+    "nPeriods": 0
+   },
+   "yearly": {
+    "2018": -0.5572,
+    "2019": 0.0911,
+    "2020": 3.4314,
+    "2021": 10.0334,
+    "2022": -0.6253,
+    "2023": 3.3562,
+    "2024": 1.0807,
+    "2025": 0.4041,
+    "2026": 0.6887
+   },
+   "byWeekday": [
+    {
+     "wd": 0,
+     "cagr": 0.3124,
+     "sharpe": 0.7333,
+     "mdd": -0.8753,
+     "oosCagr": 0.1976,
+     "oosSharpe": 0.6133
+    },
+    {
+     "wd": 1,
+     "cagr": 0.4564,
+     "sharpe": 0.8566,
+     "mdd": -0.8268,
+     "oosCagr": 0.0523,
+     "oosSharpe": 0.4487
+    },
+    {
+     "wd": 2,
+     "cagr": 0.7745,
+     "sharpe": 1.0809,
+     "mdd": -0.7913,
+     "oosCagr": 0.4288,
+     "oosSharpe": 0.8352
+    },
+    {
+     "wd": 3,
+     "cagr": 1.0759,
+     "sharpe": 1.2521,
+     "mdd": -0.7652,
+     "oosCagr": 0.6767,
+     "oosSharpe": 1.0316
+    },
+    {
+     "wd": 4,
+     "cagr": 0.9371,
+     "sharpe": 1.1799,
+     "mdd": -0.7473,
+     "oosCagr": 0.8345,
+     "oosSharpe": 1.1405
+    },
+    {
+     "wd": 5,
+     "cagr": 0.6278,
+     "sharpe": 0.9867,
+     "mdd": -0.8446,
+     "oosCagr": 0.6994,
+     "oosSharpe": 1.0358
+    },
+    {
+     "wd": 6,
+     "cagr": 0.8818,
+     "sharpe": 1.1176,
+     "mdd": -0.6987,
+     "oosCagr": 0.5083,
+     "oosSharpe": 0.8892
+    }
+   ],
+   "weekdayRange": {
+    "cagrMin": 0.3124,
+    "cagrMed": 0.7745,
+    "cagrMax": 1.0759,
+    "oosCagrMin": 0.0523,
+    "oosCagrMed": 0.5083,
+    "oosCagrMax": 0.8345
+   }
+  },
+  {
+   "name": "GRID top N3 L7 H14 SMA50",
+   "stagger": true,
+   "full": {
+    "start": "2018-03-07",
+    "end": "2026-10-02",
+    "totalRet": 98.5107,
+    "cagr": 0.7093,
+    "vol": 0.7159,
+    "sharpe": 1.102,
+    "mdd": -0.7165,
+    "calmar": 0.9901,
+    "winRate": null,
+    "investedShare": null,
+    "nPeriods": 0
+   },
+   "is": {
+    "start": "2018-03-07",
+    "end": "2021-12-31",
+    "totalRet": 12.5201,
+    "cagr": 0.9756,
+    "vol": 0.731,
+    "sharpe": 1.2935,
+    "mdd": -0.716,
+    "calmar": 1.3626,
+    "winRate": null,
+    "investedShare": null,
+    "nPeriods": 0
+   },
+   "oos": {
+    "start": "2022-01-01",
+    "end": "2026-10-02",
+    "totalRet": 6.3602,
+    "cagr": 0.5215,
+    "vol": 0.7036,
+    "sharpe": 0.9421,
+    "mdd": -0.7053,
+    "calmar": 0.7394,
+    "winRate": null,
+    "investedShare": null,
+    "nPeriods": 0
+   },
+   "yearly": {
+    "2018": -0.6733,
+    "2019": 0.2584,
+    "2020": 1.3791,
+    "2021": 12.824,
+    "2022": -0.6124,
+    "2023": 1.0962,
+    "2024": 2.8474,
+    "2025": 0.8925,
+    "2026": 0.2443
+   },
+   "byWeekday": [
+    {
+     "wd": 0,
+     "cagr": 0.0532,
+     "sharpe": 0.4595,
+     "mdd": -0.9117,
+     "oosCagr": 0.2077,
+     "oosSharpe": 0.6182
+    },
+    {
+     "wd": 1,
+     "cagr": 0.2779,
+     "sharpe": 0.703,
+     "mdd": -0.8888,
+     "oosCagr": 0.2413,
+     "oosSharpe": 0.652
+    },
+    {
+     "wd": 2,
+     "cagr": 0.7821,
+     "sharpe": 1.1054,
+     "mdd": -0.8715,
+     "oosCagr": 0.4631,
+     "oosSharpe": 0.8693
+    },
+    {
+     "wd": 3,
+     "cagr": 1.0472,
+     "sharpe": 1.2475,
+     "mdd": -0.7492,
+     "oosCagr": 0.6187,
+     "oosSharpe": 1.0019
+    },
+    {
+     "wd": 4,
+     "cagr": 0.3463,
+     "sharpe": 0.7651,
+     "mdd": -0.8464,
+     "oosCagr": 0.3907,
+     "oosSharpe": 0.8056
+    },
+    {
+     "wd": 5,
+     "cagr": 0.4062,
+     "sharpe": 0.8206,
+     "mdd": -0.8407,
+     "oosCagr": 0.4217,
+     "oosSharpe": 0.8312
+    },
+    {
+     "wd": 6,
+     "cagr": 0.3999,
+     "sharpe": 0.8135,
+     "mdd": -0.7958,
+     "oosCagr": 0.3217,
+     "oosSharpe": 0.7368
+    }
+   ],
+   "weekdayRange": {
+    "cagrMin": 0.0532,
+    "cagrMed": 0.3999,
+    "cagrMax": 1.0472,
+    "oosCagrMin": 0.2077,
+    "oosCagrMed": 0.3907,
+    "oosCagrMax": 0.6187
+   }
+  },
+  {
+   "name": "GRID top N3 L14 H7 SMA50",
+   "stagger": true,
+   "full": {
+    "start": "2018-03-07",
+    "end": "2026-10-02",
+    "totalRet": 516.3316,
+    "cagr": 1.0714,
+    "vol": 0.7858,
+    "sharpe": 1.3107,
+    "mdd": -0.6974,
+    "calmar": 1.5363,
+    "winRate": null,
+    "investedShare": null,
+    "nPeriods": 0
+   },
+   "is": {
+    "start": "2018-03-07",
+    "end": "2021-12-31",
+    "totalRet": 19.7212,
+    "cagr": 1.209,
+    "vol": 0.805,
+    "sharpe": 1.3772,
+    "mdd": -0.6974,
+    "calmar": 1.7336,
+    "winRate": null,
+    "investedShare": null,
+    "nPeriods": 0
+   },
+   "oos": {
+    "start": "2022-01-01",
+    "end": "2026-10-02",
+    "totalRet": 23.9663,
+    "cagr": 0.967,
+    "vol": 0.7702,
+    "sharpe": 1.255,
+    "mdd": -0.6449,
+    "calmar": 1.4995,
+    "winRate": null,
+    "investedShare": null,
+    "nPeriods": 0
+   },
+   "yearly": {
+    "2018": -0.5727,
+    "2019": 0.4139,
+    "2020": 1.2179,
+    "2021": 14.4634,
+    "2022": -0.5566,
+    "2023": 4.4733,
+    "2024": 2.2063,
+    "2025": 0.6714,
+    "2026": 0.9196
+   },
+   "byWeekday": [
+    {
+     "wd": 0,
+     "cagr": 0.462,
+     "sharpe": 0.8593,
+     "mdd": -0.7678,
+     "oosCagr": 0.5776,
+     "oosSharpe": 0.9531
+    },
+    {
+     "wd": 1,
+     "cagr": 0.2489,
+     "sharpe": 0.6736,
+     "mdd": -0.8824,
+     "oosCagr": -0.0405,
+     "oosSharpe": 0.3385
+    },
+    {
+     "wd": 2,
+     "cagr": 0.4209,
+     "sharpe": 0.8267,
+     "mdd": -0.8429,
+     "oosCagr": 0.2759,
+     "oosSharpe": 0.6995
+    },
+    {
+     "wd": 3,
+     "cagr": 0.7682,
+     "sharpe": 1.0775,
+     "mdd": -0.7522,
+     "oosCagr": 0.4936,
+     "oosSharpe": 0.8909
+    },
+    {
+     "wd": 4,
+     "cagr": 1.1045,
+     "sharpe": 1.2672,
+     "mdd": -0.7576,
+     "oosCagr": 0.925,
+     "oosSharpe": 1.1862
+    },
+    {
+     "wd": 5,
+     "cagr": 1.3465,
+     "sharpe": 1.4073,
+     "mdd": -0.6625,
+     "oosCagr": 1.5056,
+     "oosSharpe": 1.4898
+    },
+    {
+     "wd": 6,
+     "cagr": 1.2395,
+     "sharpe": 1.3251,
+     "mdd": -0.6721,
+     "oosCagr": 0.8959,
+     "oosSharpe": 1.1787
+    }
+   ],
+   "weekdayRange": {
+    "cagrMin": 0.2489,
+    "cagrMed": 0.7682,
+    "cagrMax": 1.3465,
+    "oosCagrMin": -0.0405,
+    "oosCagrMed": 0.5776,
+    "oosCagrMax": 1.5056
+   }
+  },
+  {
+   "name": "GRID top N3 L14 H14 SMA50",
+   "stagger": true,
+   "full": {
+    "start": "2018-03-07",
+    "end": "2026-10-02",
+    "totalRet": 23.1116,
+    "cagr": 0.449,
+    "vol": 0.7347,
+    "sharpe": 0.8666,
+    "mdd": -0.7304,
+    "calmar": 0.6148,
+    "winRate": null,
+    "investedShare": null,
+    "nPeriods": 0
+   },
+   "is": {
+    "start": "2018-03-07",
+    "end": "2021-12-31",
+    "totalRet": 5.4902,
+    "cagr": 0.6307,
+    "vol": 0.7732,
+    "sharpe": 1.0132,
+    "mdd": -0.7304,
+    "calmar": 0.8635,
+    "winRate": null,
+    "investedShare": null,
+    "nPeriods": 0
+   },
+   "oos": {
+    "start": "2022-01-01",
+    "end": "2026-10-02",
+    "totalRet": 2.7151,
+    "cagr": 0.3178,
+    "vol": 0.7024,
+    "sharpe": 0.7386,
+    "mdd": -0.6844,
+    "calmar": 0.4643,
+    "winRate": null,
+    "investedShare": null,
+    "nPeriods": 0
+   },
+   "yearly": {
+    "2018": -0.6828,
+    "2019": 0.4102,
+    "2020": 0.7605,
+    "2021": 7.2408,
+    "2022": -0.6628,
+    "2023": 1.3567,
+    "2024": 0.8185,
+    "2025": 0.6134,
+    "2026": 0.5935
+   },
+   "byWeekday": [
+    {
+     "wd": 0,
+     "cagr": 0.0187,
+     "sharpe": 0.4188,
+     "mdd": -0.8992,
+     "oosCagr": 0.1743,
+     "oosSharpe": 0.581
+    },
+    {
+     "wd": 1,
+     "cagr": -0.0084,
+     "sharpe": 0.3962,
+     "mdd": -0.8698,
+     "oosCagr": -0.0884,
+     "oosSharpe": 0.2463
+    },
+    {
+     "wd": 2,
+     "cagr": 0.2453,
+     "sharpe": 0.6729,
+     "mdd": -0.8856,
+     "oosCagr": 0.086,
+     "oosSharpe": 0.5011
+    },
+    {
+     "wd": 3,
+     "cagr": 0.5557,
+     "sharpe": 0.9356,
+     "mdd": -0.8233,
+     "oosCagr": 0.2406,
+     "oosSharpe": 0.6607
+    },
+    {
+     "wd": 4,
+     "cagr": 0.6284,
+     "sharpe": 0.9928,
+     "mdd": -0.7309,
+     "oosCagr": 0.4501,
+     "oosSharpe": 0.8595
+    },
+    {
+     "wd": 5,
+     "cagr": 0.5346,
+     "sharpe": 0.9261,
+     "mdd": -0.7485,
+     "oosCagr": 0.498,
+     "oosSharpe": 0.9007
+    },
+    {
+     "wd": 6,
+     "cagr": 0.2776,
+     "sharpe": 0.701,
+     "mdd": -0.7283,
+     "oosCagr": 0.2504,
+     "oosSharpe": 0.668
+    }
+   ],
+   "weekdayRange": {
+    "cagrMin": -0.0084,
+    "cagrMed": 0.2776,
+    "cagrMax": 0.6284,
+    "oosCagrMin": -0.0884,
+    "oosCagrMed": 0.2406,
+    "oosCagrMax": 0.498
+   }
+  },
+  {
+   "name": "GRID top N3 L28 H7 SMA50",
+   "stagger": true,
+   "full": {
+    "start": "2018-03-07",
+    "end": "2026-10-02",
+    "totalRet": 159.5189,
+    "cagr": 0.8073,
+    "vol": 0.7754,
+    "sharpe": 1.143,
+    "mdd": -0.6744,
+    "calmar": 1.1971,
+    "winRate": null,
+    "investedShare": null,
+    "nPeriods": 0
+   },
+   "is": {
+    "start": "2018-03-07",
+    "end": "2021-12-31",
+    "totalRet": 16.4357,
+    "cagr": 1.1115,
+    "vol": 0.7893,
+    "sharpe": 1.3331,
+    "mdd": -0.6586,
+    "calmar": 1.6877,
+    "winRate": null,
+    "investedShare": null,
+    "nPeriods": 0
+   },
+   "oos": {
+    "start": "2022-01-01",
+    "end": "2026-10-02",
+    "totalRet": 8.2063,
+    "cagr": 0.5948,
+    "vol": 0.7641,
+    "sharpe": 0.9851,
+    "mdd": -0.6744,
+    "calmar": 0.882,
+    "winRate": null,
+    "investedShare": null,
+    "nPeriods": 0
+   },
+   "yearly": {
+    "2018": -0.5382,
+    "2019": 0.6863,
+    "2020": 0.9049,
+    "2021": 10.7525,
+    "2022": -0.558,
+    "2023": 3.0098,
+    "2024": 1.2774,
+    "2025": 0.4036,
+    "2026": 0.6252
+   },
+   "byWeekday": [
+    {
+     "wd": 0,
+     "cagr": 0.5715,
+     "sharpe": 0.9506,
+     "mdd": -0.7721,
+     "oosCagr": 0.4306,
+     "oosSharpe": 0.8386
+    },
+    {
+     "wd": 1,
+     "cagr": 0.4868,
+     "sharpe": 0.882,
+     "mdd": -0.7779,
+     "oosCagr": 0.3134,
+     "oosSharpe": 0.7312
+    },
+    {
+     "wd": 2,
+     "cagr": 0.6106,
+     "sharpe": 0.9767,
+     "mdd": -0.7854,
+     "oosCagr": 0.3399,
+     "oosSharpe": 0.7567
+    },
+    {
+     "wd": 3,
+     "cagr": 0.7723,
+     "sharpe": 1.0861,
+     "mdd": -0.7363,
+     "oosCagr": 0.485,
+     "oosSharpe": 0.8823
+    },
+    {
+     "wd": 4,
+     "cagr": 0.5278,
+     "sharpe": 0.9146,
+     "mdd": -0.761,
+     "oosCagr": 0.4587,
+     "oosSharpe": 0.8644
+    },
+    {
+     "wd": 5,
+     "cagr": 0.7166,
+     "sharpe": 1.051,
+     "mdd": -0.6808,
+     "oosCagr": 0.5814,
+     "oosSharpe": 0.9552
+    },
+    {
+     "wd": 6,
+     "cagr": 1.1082,
+     "sharpe": 1.2915,
+     "mdd": -0.6736,
+     "oosCagr": 0.7908,
+     "oosSharpe": 1.1091
+    }
+   ],
+   "weekdayRange": {
+    "cagrMin": 0.4868,
+    "cagrMed": 0.6106,
+    "cagrMax": 1.1082,
+    "oosCagrMin": 0.3134,
+    "oosCagrMed": 0.4587,
+    "oosCagrMax": 0.7908
+   }
+  },
+  {
+   "name": "GRID top N3 L28 H14 SMA50",
+   "stagger": true,
+   "full": {
+    "start": "2018-03-07",
+    "end": "2026-10-02",
+    "totalRet": 42.5279,
+    "cagr": 0.5523,
+    "vol": 0.7544,
+    "sharpe": 0.9532,
+    "mdd": -0.7531,
+    "calmar": 0.7334,
+    "winRate": null,
+    "investedShare": null,
+    "nPeriods": 0
+   },
+   "is": {
+    "start": "2018-03-07",
+    "end": "2021-12-31",
+    "totalRet": 15.5141,
+    "cagr": 1.0817,
+    "vol": 0.8007,
+    "sharpe": 1.3082,
+    "mdd": -0.6928,
+    "calmar": 1.5613,
+    "winRate": null,
+    "investedShare": null,
+    "nPeriods": 0
+   },
+   "oos": {
+    "start": "2022-01-01",
+    "end": "2026-10-02",
+    "totalRet": 1.6358,
+    "cagr": 0.226,
+    "vol": 0.7149,
+    "sharpe": 0.6364,
+    "mdd": -0.7531,
+    "calmar": 0.3001,
+    "winRate": null,
+    "investedShare": null,
+    "nPeriods": 0
+   },
+   "yearly": {
+    "2018": -0.639,
+    "2019": 0.3745,
+    "2020": 0.9165,
+    "2021": 16.365,
+    "2022": -0.6384,
+    "2023": 1.2131,
+    "2024": 0.541,
+    "2025": 0.4813,
+    "2026": 0.4428
+   },
+   "byWeekday": [
+    {
+     "wd": 0,
+     "cagr": 0.5167,
+     "sharpe": 0.9091,
+     "mdd": -0.7851,
+     "oosCagr": 0.3978,
+     "oosSharpe": 0.8087
+    },
+    {
+     "wd": 1,
+     "cagr": 0.3437,
+     "sharpe": 0.7627,
+     "mdd": -0.8264,
+     "oosCagr": 0.1272,
+     "oosSharpe": 0.5297
+    },
+    {
+     "wd": 2,
+     "cagr": 0.5376,
+     "sharpe": 0.9187,
+     "mdd": -0.8851,
+     "oosCagr": 0.1469,
+     "oosSharpe": 0.562
+    },
+    {
+     "wd": 3,
+     "cagr": 0.6866,
+     "sharpe": 1.0263,
+     "mdd": -0.6949,
+     "oosCagr": 0.3453,
+     "oosSharpe": 0.7612
+    },
+    {
+     "wd": 4,
+     "cagr": 0.5763,
+     "sharpe": 0.9565,
+     "mdd": -0.7103,
+     "oosCagr": 0.2903,
+     "oosSharpe": 0.7088
+    },
+    {
+     "wd": 5,
+     "cagr": 0.405,
+     "sharpe": 0.8138,
+     "mdd": -0.7247,
+     "oosCagr": 0.2065,
+     "oosSharpe": 0.619
+    },
+    {
+     "wd": 6,
+     "cagr": 0.57,
+     "sharpe": 0.916,
+     "mdd": -0.777,
+     "oosCagr": 0.1509,
+     "oosSharpe": 0.5636
+    }
+   ],
+   "weekdayRange": {
+    "cagrMin": 0.3437,
+    "cagrMed": 0.5376,
+    "cagrMax": 0.6866,
+    "oosCagrMin": 0.1272,
+    "oosCagrMed": 0.2065,
+    "oosCagrMax": 0.3978
+   }
+  },
+  {
+   "name": "MOM top3 SMA50 비용0.10%",
+   "stagger": true,
+   "full": {
+    "start": "2018-03-07",
+    "end": "2026-10-02",
+    "totalRet": 189.2123,
+    "cagr": 0.8434,
+    "vol": 0.7552,
+    "sharpe": 1.1796,
+    "mdd": -0.702,
+    "calmar": 1.2014,
+    "winRate": null,
+    "investedShare": null,
+    "nPeriods": 0
+   },
+   "is": {
+    "start": "2018-03-07",
+    "end": "2021-12-31",
+    "totalRet": 22.6192,
+    "cagr": 1.2859,
+    "vol": 0.7913,
+    "sharpe": 1.4311,
+    "mdd": -0.6657,
+    "calmar": 1.9315,
+    "winRate": null,
+    "investedShare": null,
+    "nPeriods": 0
+   },
+   "oos": {
+    "start": "2022-01-01",
+    "end": "2026-10-02",
+    "totalRet": 7.0533,
+    "cagr": 0.5505,
+    "vol": 0.7249,
+    "sharpe": 0.9608,
+    "mdd": -0.702,
+    "calmar": 0.7842,
+    "winRate": null,
+    "investedShare": null,
+    "nPeriods": 0
+   },
+   "yearly": {
+    "2018": -0.5572,
+    "2019": 0.0911,
+    "2020": 3.4314,
+    "2021": 10.0334,
+    "2022": -0.6253,
+    "2023": 3.3562,
+    "2024": 1.0807,
+    "2025": 0.4041,
+    "2026": 0.6887
+   },
+   "byWeekday": [
+    {
+     "wd": 0,
+     "cagr": 0.3124,
+     "sharpe": 0.7333,
+     "mdd": -0.8753,
+     "oosCagr": 0.1976,
+     "oosSharpe": 0.6133
+    },
+    {
+     "wd": 1,
+     "cagr": 0.4564,
+     "sharpe": 0.8566,
+     "mdd": -0.8268,
+     "oosCagr": 0.0523,
+     "oosSharpe": 0.4487
+    },
+    {
+     "wd": 2,
+     "cagr": 0.7745,
+     "sharpe": 1.0809,
+     "mdd": -0.7913,
+     "oosCagr": 0.4288,
+     "oosSharpe": 0.8352
+    },
+    {
+     "wd": 3,
+     "cagr": 1.0759,
+     "sharpe": 1.2521,
+     "mdd": -0.7652,
+     "oosCagr": 0.6767,
+     "oosSharpe": 1.0316
+    },
+    {
+     "wd": 4,
+     "cagr": 0.9371,
+     "sharpe": 1.1799,
+     "mdd": -0.7473,
+     "oosCagr": 0.8345,
+     "oosSharpe": 1.1405
+    },
+    {
+     "wd": 5,
+     "cagr": 0.6278,
+     "sharpe": 0.9867,
+     "mdd": -0.8446,
+     "oosCagr": 0.6994,
+     "oosSharpe": 1.0358
+    },
+    {
+     "wd": 6,
+     "cagr": 0.8818,
+     "sharpe": 1.1176,
+     "mdd": -0.6987,
+     "oosCagr": 0.5083,
+     "oosSharpe": 0.8892
+    }
+   ],
+   "weekdayRange": {
+    "cagrMin": 0.3124,
+    "cagrMed": 0.7745,
+    "cagrMax": 1.0759,
+    "oosCagrMin": 0.0523,
+    "oosCagrMed": 0.5083,
+    "oosCagrMax": 0.8345
+   }
+  },
+  {
+   "name": "MOM top3 SMA50 비용0.20%",
+   "stagger": true,
+   "full": {
+    "start": "2018-03-07",
+    "end": "2026-10-02",
+    "totalRet": 128.2163,
+    "cagr": 0.7622,
+    "vol": 0.7548,
+    "sharpe": 1.1201,
+    "mdd": -0.7089,
+    "calmar": 1.0751,
+    "winRate": null,
+    "investedShare": null,
+    "nPeriods": 0
+   },
+   "is": {
+    "start": "2018-03-07",
+    "end": "2021-12-31",
+    "totalRet": 19.0229,
+    "cagr": 1.1893,
+    "vol": 0.7908,
+    "sharpe": 1.3769,
+    "mdd": -0.6718,
+    "calmar": 1.7703,
+    "winRate": null,
+    "investedShare": null,
+    "nPeriods": 0
+   },
+   "oos": {
+    "start": "2022-01-01",
+    "end": "2026-10-02",
+    "totalRet": 5.4534,
+    "cagr": 0.48,
+    "vol": 0.7247,
+    "sharpe": 0.8966,
+    "mdd": -0.7089,
+    "calmar": 0.6771,
+    "winRate": null,
+    "investedShare": null,
+    "nPeriods": 0
+   },
+   "yearly": {
+    "2018": -0.5642,
+    "2019": 0.0495,
+    "2020": 3.2067,
+    "2021": 9.4063,
+    "2022": -0.6339,
+    "2023": 3.1088,
+    "2024": 0.9567,
+    "2025": 0.3482,
+    "2026": 0.6261
+   },
+   "byWeekday": [
+    {
+     "wd": 0,
+     "cagr": 0.2548,
+     "sharpe": 0.6811,
+     "mdd": -0.8795,
+     "oosCagr": 0.1446,
+     "oosSharpe": 0.5559
+    },
+    {
+     "wd": 1,
+     "cagr": 0.3928,
+     "sharpe": 0.8039,
+     "mdd": -0.8359,
+     "oosCagr": 0.0055,
+     "oosSharpe": 0.3909
+    },
+    {
+     "wd": 2,
+     "cagr": 0.6946,
+     "sharpe": 1.0278,
+     "mdd": -0.8033,
+     "oosCagr": 0.3623,
+     "oosSharpe": 0.7783
+    },
+    {
+     "wd": 3,
+     "cagr": 0.9846,
+     "sharpe": 1.2014,
+     "mdd": -0.7723,
+     "oosCagr": 0.6008,
+     "oosSharpe": 0.9747
+    },
+    {
+     "wd": 4,
+     "cagr": 0.8508,
+     "sharpe": 1.1278,
+     "mdd": -0.7514,
+     "oosCagr": 0.7496,
+     "oosSharpe": 1.0827
+    },
+    {
+     "wd": 5,
+     "cagr": 0.5568,
+     "sharpe": 0.9341,
+     "mdd": -0.8508,
+     "oosCagr": 0.6218,
+     "oosSharpe": 0.9809
+    },
+    {
+     "wd": 6,
+     "cagr": 0.8002,
+     "sharpe": 1.0703,
+     "mdd": -0.7153,
+     "oosCagr": 0.4406,
+     "oosSharpe": 0.8357
+    }
+   ],
+   "weekdayRange": {
+    "cagrMin": 0.2548,
+    "cagrMed": 0.6946,
+    "cagrMax": 0.9846,
+    "oosCagrMin": 0.0055,
+    "oosCagrMed": 0.4406,
+    "oosCagrMax": 0.7496
+   }
+  }
+ ]
+}
