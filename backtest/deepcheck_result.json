@@ -1,0 +1,621 @@
+{
+  "range": {
+    "from": "2020-09-14",
+    "to": "2026-09-19",
+    "days": 2197
+  },
+  "concentration": {
+    "tradingDays": 1005,
+    "total": 13076.599999999977,
+    "top10DaysShare": 0.11855834085312718,
+    "top1pctShare": 0.12720661333985922,
+    "top5pctShare": 0.3595108820335567,
+    "top10pctShare": 0.5383631830904068,
+    "top15": [
+      {
+        "d": "2021-05-13",
+        "v": 272.06,
+        "n": 4
+      },
+      {
+        "d": "2021-10-27",
+        "v": 203.76,
+        "n": 10
+      },
+      {
+        "d": "2021-04-14",
+        "v": 155.34,
+        "n": 10
+      },
+      {
+        "d": "2021-01-07",
+        "v": 141.23,
+        "n": 5
+      },
+      {
+        "d": "2021-02-23",
+        "v": 140.6,
+        "n": 7
+      },
+      {
+        "d": "2024-12-04",
+        "v": 140.16,
+        "n": 4
+      },
+      {
+        "d": "2021-04-16",
+        "v": 134.23,
+        "n": 5
+      },
+      {
+        "d": "2022-11-11",
+        "v": 123.45,
+        "n": 2
+      },
+      {
+        "d": "2021-04-23",
+        "v": 122.31,
+        "n": 3
+      },
+      {
+        "d": "2021-05-25",
+        "v": 117.2,
+        "n": 4
+      },
+      {
+        "d": "2025-07-18",
+        "v": 113.09,
+        "n": 8
+      },
+      {
+        "d": "2021-03-17",
+        "v": 110.31,
+        "n": 4
+      },
+      {
+        "d": "2021-05-06",
+        "v": 108.84,
+        "n": 3
+      },
+      {
+        "d": "2021-05-08",
+        "v": 108.39,
+        "n": 4
+      },
+      {
+        "d": "2024-04-13",
+        "v": 103.48,
+        "n": 4
+      }
+    ],
+    "worst10": [
+      {
+        "d": "2021-02-01",
+        "v": -44.36
+      },
+      {
+        "d": "2024-01-18",
+        "v": -45.72
+      },
+      {
+        "d": "2025-10-22",
+        "v": -48
+      },
+      {
+        "d": "2025-08-11",
+        "v": -50.46
+      },
+      {
+        "d": "2024-09-22",
+        "v": -51.53
+      },
+      {
+        "d": "2025-05-11",
+        "v": -63.8
+      },
+      {
+        "d": "2024-11-08",
+        "v": -67.68
+      },
+      {
+        "d": "2025-11-20",
+        "v": -73.74
+      },
+      {
+        "d": "2021-04-17",
+        "v": -80.17
+      },
+      {
+        "d": "2021-01-29",
+        "v": -98.38
+      }
+    ],
+    "entryTop10": [
+      {
+        "d": "2021-05-13",
+        "v": 272
+      },
+      {
+        "d": "2021-10-27",
+        "v": 198
+      },
+      {
+        "d": "2021-05-17",
+        "v": 177
+      },
+      {
+        "d": "2021-02-22",
+        "v": 162
+      },
+      {
+        "d": "2024-12-03",
+        "v": 153
+      },
+      {
+        "d": "2021-04-22",
+        "v": 125
+      },
+      {
+        "d": "2022-11-11",
+        "v": 123
+      },
+      {
+        "d": "2025-07-18",
+        "v": 121
+      },
+      {
+        "d": "2021-04-14",
+        "v": 118
+      },
+      {
+        "d": "2021-05-24",
+        "v": 117
+      }
+    ],
+    "entryTop5pctShare": 0.3511608522092905,
+    "withoutTop5pctAnnual": 13.93580698835271
+  },
+  "ci": {
+    "trades": 3631,
+    "meanPerTrade": 3.6013770311209083,
+    "sd": 8.800477727998846,
+    "t": 24.659000344716365,
+    "boot95": [
+      3.31067749931149,
+      3.8876480308454853
+    ],
+    "byYear": {
+      "2020": {
+        "n": 211,
+        "mean": 2.7962559241706164,
+        "t": 6.233821070492099,
+        "boot95": [
+          1.9534597156398081,
+          3.6894312796208575
+        ]
+      },
+      "2021": {
+        "n": 622,
+        "mean": 8.680996784565918,
+        "t": 15.596957585545864,
+        "boot95": [
+          7.6327491961414875,
+          9.779437299035363
+        ]
+      },
+      "2022": {
+        "n": 653,
+        "mean": 3.5521898928024536,
+        "t": 12.331060878280338,
+        "boot95": [
+          2.9966615620214436,
+          4.100290964777948
+        ]
+      },
+      "2023": {
+        "n": 818,
+        "mean": 2.5677139364303176,
+        "t": 11.440295819905014,
+        "boot95": [
+          2.1311491442542816,
+          2.9902078239608794
+        ]
+      },
+      "2024": {
+        "n": 421,
+        "mean": 2.5367220902612835,
+        "t": 6.128333029063572,
+        "boot95": [
+          1.7919002375296897,
+          3.318028503562947
+        ]
+      },
+      "2025": {
+        "n": 448,
+        "mean": 2.192745535714283,
+        "t": 6.60575669061272,
+        "boot95": [
+          1.5662723214285712,
+          2.8720089285714248
+        ]
+      },
+      "2026": {
+        "n": 458,
+        "mean": 1.3465720524017466,
+        "t": 6.026741868940492,
+        "boot95": [
+          0.910458515283843,
+          1.7834934497816592
+        ]
+      }
+    },
+    "dailySharpe": 5.911522272050406,
+    "paper": {
+      "n": 27,
+      "mean": 0.7122222222222221,
+      "sd": 10.110665097704933,
+      "t": 0.366030838697799,
+      "boot95": [
+        -3.2900000000000005,
+        4.280740740740741
+      ],
+      "tradesNeededFor95": 775
+    }
+  },
+  "sensitivity": [
+    {
+      "param": "ENTRY_SIGMA",
+      "value": 1.5,
+      "label": "ENTRY_SIGMA=1.5",
+      "trades": 6831,
+      "win": 65.2,
+      "net": 14966.77,
+      "cagr": 16.42,
+      "mdd": 1.5
+    },
+    {
+      "param": "ENTRY_SIGMA",
+      "value": 1.75,
+      "label": "ENTRY_SIGMA=1.75",
+      "trades": 4962,
+      "win": 68.7,
+      "net": 14362.64,
+      "cagr": 15.95,
+      "mdd": 1.35
+    },
+    {
+      "param": "ENTRY_SIGMA",
+      "value": 2,
+      "label": "ENTRY_SIGMA=2",
+      "trades": 3631,
+      "win": 72.2,
+      "net": 13076.49,
+      "cagr": 14.91,
+      "mdd": 1.41
+    },
+    {
+      "param": "ENTRY_SIGMA",
+      "value": 2.25,
+      "label": "ENTRY_SIGMA=2.25",
+      "trades": 2636,
+      "win": 75.5,
+      "net": 11464.76,
+      "cagr": 13.53,
+      "mdd": 0.95
+    },
+    {
+      "param": "ENTRY_SIGMA",
+      "value": 2.5,
+      "label": "ENTRY_SIGMA=2.5",
+      "trades": 1981,
+      "win": 78.1,
+      "net": 10084.88,
+      "cagr": 12.29,
+      "mdd": 0.98
+    },
+    {
+      "param": "EXIT_SIGMA_OFFSET",
+      "value": 0,
+      "label": "EXIT_SIGMA_OFFSET=0",
+      "trades": 4154,
+      "win": 69.6,
+      "net": 11898.03,
+      "cagr": 13.91,
+      "mdd": 1.13
+    },
+    {
+      "param": "EXIT_SIGMA_OFFSET",
+      "value": 0.25,
+      "label": "EXIT_SIGMA_OFFSET=0.25",
+      "trades": 3631,
+      "win": 72.2,
+      "net": 13076.49,
+      "cagr": 14.91,
+      "mdd": 1.41
+    },
+    {
+      "param": "EXIT_SIGMA_OFFSET",
+      "value": 0.5,
+      "label": "EXIT_SIGMA_OFFSET=0.5",
+      "trades": 3249,
+      "win": 73,
+      "net": 13145.74,
+      "cagr": 14.96,
+      "mdd": 1.68
+    },
+    {
+      "param": "EXIT_SIGMA_OFFSET",
+      "value": 1,
+      "label": "EXIT_SIGMA_OFFSET=1",
+      "trades": 2666,
+      "win": 71.6,
+      "net": 12811.98,
+      "cagr": 14.69,
+      "mdd": 1.18
+    },
+    {
+      "param": "EDGE_MULTIPLE",
+      "value": 1,
+      "label": "EDGE_MULTIPLE=1",
+      "trades": 3682,
+      "win": 71.8,
+      "net": 12712.8,
+      "cagr": 14.6,
+      "mdd": 1.41
+    },
+    {
+      "param": "EDGE_MULTIPLE",
+      "value": 2,
+      "label": "EDGE_MULTIPLE=2",
+      "trades": 3667,
+      "win": 72.2,
+      "net": 12819.38,
+      "cagr": 14.69,
+      "mdd": 1.41
+    },
+    {
+      "param": "EDGE_MULTIPLE",
+      "value": 3,
+      "label": "EDGE_MULTIPLE=3",
+      "trades": 3631,
+      "win": 72.2,
+      "net": 13076.49,
+      "cagr": 14.91,
+      "mdd": 1.41
+    },
+    {
+      "param": "EDGE_MULTIPLE",
+      "value": 4,
+      "label": "EDGE_MULTIPLE=4",
+      "trades": 3494,
+      "win": 72.4,
+      "net": 13140.05,
+      "cagr": 14.96,
+      "mdd": 1.4
+    },
+    {
+      "param": "EDGE_MULTIPLE",
+      "value": 5,
+      "label": "EDGE_MULTIPLE=5",
+      "trades": 3227,
+      "win": 72.6,
+      "net": 12830.77,
+      "cagr": 14.7,
+      "mdd": 1.72
+    },
+    {
+      "param": "MAX_HOLD_DAYS",
+      "value": 2,
+      "label": "MAX_HOLD_DAYS=2",
+      "trades": 3700,
+      "win": 72.2,
+      "net": 12875.82,
+      "cagr": 14.74,
+      "mdd": 1.4
+    },
+    {
+      "param": "MAX_HOLD_DAYS",
+      "value": 3,
+      "label": "MAX_HOLD_DAYS=3",
+      "trades": 3641,
+      "win": 72.2,
+      "net": 12833.14,
+      "cagr": 14.7,
+      "mdd": 1.41
+    },
+    {
+      "param": "MAX_HOLD_DAYS",
+      "value": 5,
+      "label": "MAX_HOLD_DAYS=5",
+      "trades": 3631,
+      "win": 72.2,
+      "net": 13076.49,
+      "cagr": 14.91,
+      "mdd": 1.41
+    },
+    {
+      "param": "MAX_HOLD_DAYS",
+      "value": 7,
+      "label": "MAX_HOLD_DAYS=7",
+      "trades": 3631,
+      "win": 72.2,
+      "net": 13076.49,
+      "cagr": 14.91,
+      "mdd": 1.41
+    },
+    {
+      "param": "MAX_HOLD_DAYS",
+      "value": 10,
+      "label": "MAX_HOLD_DAYS=10",
+      "trades": 3631,
+      "win": 72.2,
+      "net": 13076.49,
+      "cagr": 14.91,
+      "mdd": 1.41
+    },
+    {
+      "param": "SOFT_HOLD_DAYS",
+      "value": 1,
+      "label": "SOFT_HOLD_DAYS=1",
+      "trades": 4008,
+      "win": 66,
+      "net": 12123.63,
+      "cagr": 14.1,
+      "mdd": 1.17
+    },
+    {
+      "param": "SOFT_HOLD_DAYS",
+      "value": 2,
+      "label": "SOFT_HOLD_DAYS=2",
+      "trades": 3631,
+      "win": 72.2,
+      "net": 13076.49,
+      "cagr": 14.91,
+      "mdd": 1.41
+    },
+    {
+      "param": "SOFT_HOLD_DAYS",
+      "value": 3,
+      "label": "SOFT_HOLD_DAYS=3",
+      "trades": 3556,
+      "win": 73.1,
+      "net": 13102.16,
+      "cagr": 14.93,
+      "mdd": 1.65
+    },
+    {
+      "param": "SOFT_HOLD_DAYS",
+      "value": 99,
+      "label": "SOFT_HOLD_DAYS=99",
+      "trades": 3527,
+      "win": 73.1,
+      "net": 13091.75,
+      "cagr": 14.92,
+      "mdd": 1.65
+    },
+    {
+      "param": "MAX_POSITIONS",
+      "value": 1,
+      "label": "MAX_POSITIONS=1",
+      "trades": 1390,
+      "win": 66.8,
+      "net": 4273.34,
+      "cagr": 6.09,
+      "mdd": 0.44
+    },
+    {
+      "param": "MAX_POSITIONS",
+      "value": 2,
+      "label": "MAX_POSITIONS=2",
+      "trades": 2289,
+      "win": 69.7,
+      "net": 7901.97,
+      "cagr": 10.16,
+      "mdd": 0.57
+    },
+    {
+      "param": "MAX_POSITIONS",
+      "value": 4,
+      "label": "MAX_POSITIONS=4",
+      "trades": 3631,
+      "win": 72.2,
+      "net": 13076.49,
+      "cagr": 14.91,
+      "mdd": 1.41
+    },
+    {
+      "param": "MAX_POSITIONS",
+      "value": 6,
+      "label": "MAX_POSITIONS=6",
+      "trades": 4787,
+      "win": 72.8,
+      "net": 17518.36,
+      "cagr": 18.32,
+      "mdd": 1.82
+    }
+  ],
+  "walkForward": [
+    {
+      "year": 2023,
+      "chosen": {
+        "ENTRY_SIGMA": 1.5,
+        "EXIT_SIGMA_OFFSET": 0.25,
+        "EDGE_MULTIPLE": 4
+      },
+      "trainNet": 9712.11,
+      "testNet": 2436.32,
+      "liveParamsNet": 2100.49,
+      "hindsightBest": {
+        "c": {
+          "ENTRY_SIGMA": 1.5,
+          "EXIT_SIGMA_OFFSET": 0.5,
+          "EDGE_MULTIPLE": 3
+        },
+        "net": 2516.57
+      }
+    },
+    {
+      "year": 2024,
+      "chosen": {
+        "ENTRY_SIGMA": 1.5,
+        "EXIT_SIGMA_OFFSET": 0.5,
+        "EDGE_MULTIPLE": 4
+      },
+      "trainNet": 5519.21,
+      "testNet": 1327.19,
+      "liveParamsNet": 1066.48,
+      "hindsightBest": {
+        "c": {
+          "ENTRY_SIGMA": 1.5,
+          "EXIT_SIGMA_OFFSET": 0.25,
+          "EDGE_MULTIPLE": 4
+        },
+        "net": 1395.94
+      }
+    },
+    {
+      "year": 2025,
+      "chosen": {
+        "ENTRY_SIGMA": 1.5,
+        "EXIT_SIGMA_OFFSET": 0.25,
+        "EDGE_MULTIPLE": 4
+      },
+      "trainNet": 3832.27,
+      "testNet": 1120.33,
+      "liveParamsNet": 983.74,
+      "hindsightBest": {
+        "c": {
+          "ENTRY_SIGMA": 1.5,
+          "EXIT_SIGMA_OFFSET": 0.25,
+          "EDGE_MULTIPLE": 4
+        },
+        "net": 1120.33
+      }
+    },
+    {
+      "year": 2026,
+      "chosen": {
+        "ENTRY_SIGMA": 1.5,
+        "EXIT_SIGMA_OFFSET": 0.25,
+        "EDGE_MULTIPLE": 4
+      },
+      "trainNet": 2516.28,
+      "testNet": 204.25,
+      "liveParamsNet": 616.57,
+      "hindsightBest": {
+        "c": {
+          "ENTRY_SIGMA": 2.5,
+          "EXIT_SIGMA_OFFSET": 0.25,
+          "EDGE_MULTIPLE": 3
+        },
+        "net": 698.44
+      }
+    }
+  ],
+  "capital": {
+    "avgUtilizationOfSeed": 0.10393171296296295,
+    "netAnnualOnSeedPct": 21.751326907508563,
+    "netAnnualOnDeployedPct": 209.28479178689042,
+    "note": "해외 1배 증거금까지 치면 운용 자본은 국내 다리의 2배"
+  }
+}

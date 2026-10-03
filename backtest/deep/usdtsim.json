@@ -1,0 +1,38 @@
+{
+  "BTC": {
+    "trades": 19,
+    "twoLegNetPct": 0.08408758217324494,
+    "usdtGrossPct": 0.28250022892965376,
+    "usdtNetUpbit": 0.10850022892965377,
+    "usdtNetZeroFee": 0.20850022892965375,
+    "corrTwoLegVsUsdt": 0.9875347052726339,
+    "twoLegWin": 0.42105263157894735
+  },
+  "ETH": {
+    "trades": 19,
+    "twoLegNetPct": 0.07276870632393741,
+    "usdtGrossPct": 0.27215124170381194,
+    "usdtNetUpbit": 0.09815124170381195,
+    "usdtNetZeroFee": 0.19815124170381193,
+    "corrTwoLegVsUsdt": 0.9800781630794861,
+    "twoLegWin": 0.5789473684210527
+  },
+  "XRP": {
+    "trades": 21,
+    "twoLegNetPct": 0.12285875525444072,
+    "usdtGrossPct": 0.2875900750399806,
+    "usdtNetUpbit": 0.11359007503998059,
+    "usdtNetZeroFee": 0.21359007503998056,
+    "corrTwoLegVsUsdt": 0.9705823030161841,
+    "twoLegWin": 0.47619047619047616
+  },
+  "SOL": {
+    "trades": 20,
+    "twoLegNetPct": 0.025340809591843073,
+    "usdtGrossPct": 0.24335552708017075,
+    "usdtNetUpbit": 0.06935552708017076,
+    "usdtNetZeroFee": 0.16935552708017076,
+    "corrTwoLegVsUsdt": 0.97171864158201,
+    "twoLegWin": 0.45
+  }
+}
