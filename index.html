@@ -368,6 +368,18 @@
   .rebalance b{ font-family:var(--font-mono); }
   .ledger-note{ font-size:12px; color:var(--ink-soft); margin:10px 2px 0; line-height:1.6; }
   .ledger-note b{ font-family:var(--font-mono); font-weight:600; }
+  /* ---------- 매매 기록 (버튼을 눌러야 펼쳐진다) ---------- */
+  .history-summary{ display:flex; flex-wrap:wrap; gap:6px 18px; align-items:baseline; margin:0 0 12px; font-size:13px; color:var(--ink-soft); }
+  .history-summary b{ font-family:var(--font-mono); font-weight:600; color:var(--ink); }
+  table.trades-history{ min-width:720px; }
+  table.trades-history tbody tr{ opacity:1; animation:none; }
+  table.trades-history tbody td{ font-family:var(--font-mono); font-variant-numeric:tabular-nums; font-size:13px; white-space:nowrap; }
+  table.trades-history tbody td.coin{ font-family:inherit; font-weight:600; }
+  table.trades-history td.num, table.trades-history th.num{ text-align:right; }
+  table.trades-history td.pos{ color:var(--good); }
+  table.trades-history td.neg{ color:var(--danger); }
+  table.trades-history td.empty-row{ color:var(--ink-soft); text-align:center; padding:20px 16px; font-family:inherit; }
+  .history-note{ font-size:12px; color:var(--ink-soft); margin:10px 2px 0; }
 </style>
 </head>
 <body>
@@ -474,6 +486,34 @@
         </thead>
         <tbody id="open-tbody"><!--OPEN_POSITIONS--><tr><td class="empty-row" colspan="5">현재 보유 중인 포지션이 없습니다.</td></tr><!--/OPEN_POSITIONS--></tbody>
       </table>
+    </div>
+  </section>
+
+  <section aria-labelledby="history-h" id="history">
+    <h2 id="history-h">매매 기록 — 최근 30일</h2>
+    <p class="section-sub">청산이 끝난 거래만 모았습니다. 손익은 봇이 청산할 때 기록한 순손익(수수료 차감)입니다.</p>
+    <div class="live-refresh">
+      <button type="button" id="history-toggle" class="refresh-btn" aria-expanded="false" aria-controls="history-panel">매매 기록 보기</button>
+    </div>
+    <div id="history-panel" hidden>
+      <div class="history-summary" id="history-summary" aria-live="polite">불러오는 중…</div>
+      <div class="table-scroll">
+        <table class="coins trades-history">
+          <thead>
+            <tr>
+              <th>청산 시각</th>
+              <th>코인</th>
+              <th class="num">진입 김프</th>
+              <th class="num">청산 김프</th>
+              <th class="num">보유</th>
+              <th class="num">손익</th>
+              <th>결과</th>
+            </tr>
+          </thead>
+          <tbody id="history-tbody"></tbody>
+        </table>
+      </div>
+      <p class="history-note" id="history-note"></p>
     </div>
   </section>
 
@@ -1250,6 +1290,7 @@ var coins = [
     getJSON('https://open.er-api.com/v6/latest/USD').catch(function(){ return null; })
   ]).then(function(res){
     state.cfg = res[0]; state.backfill = res[1]; state.trades = res[2];
+    window.__kimchiTrades = state.trades; // «매매 기록» 버튼이 다시 받지 않고 재사용한다
     var fxBody = res[3];
     if (fxBody && fxBody.rates && fxBody.rates.KRW) {
       state.fx = Number(fxBody.rates.KRW);
@@ -1271,6 +1312,79 @@ var coins = [
     state.liveAt = data.checkedAt || new Date().toISOString();
     if (Number(data.usdKrw) > 0) state.fx = Number(data.usdKrw);
     draw();
+  });
+})();
+</script>
+
+<script>
+/* ─────────────────────────────────────────────────────────────
+   매매 기록 — 버튼을 누르면 최근 30일 청산 거래를 펼친다.
+   거래 기록은 «거래소별 잔액» 섹션이 이미 받아 둔 것(window.__kimchiTrades)을 재사용하고,
+   아직 없을 때만 같은 파일을 받는다. 자동 갱신(마커 치환)과 무관한 영역이다.
+   ───────────────────────────────────────────────────────────── */
+(function(){
+  var btn = document.getElementById('history-toggle');
+  var panel = document.getElementById('history-panel');
+  if (!btn || !panel) return;
+  var $ = function(id){ return document.getElementById(id); };
+  var rendered = false;
+
+  function esc(s){ return String(s).replace(/[&<>"]/g, function(c){ return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+  function kst(iso){
+    var d = new Date(new Date(iso).getTime() + 9 * 3600000);
+    return d.toISOString().slice(5, 16).replace('T', ' ');
+  }
+  function pct(v){ return (v >= 0 ? '+' : '−') + Math.abs(v).toFixed(2) + '%'; }
+  function usd(v){ return (v >= 0 ? '+$' : '−$') + Math.abs(v).toFixed(2); }
+  function held(a, b){
+    var m = Math.round((new Date(b) - new Date(a)) / 60000);
+    if (m < 60) return m + '분';
+    var h = Math.floor(m / 60);
+    if (h < 24) return h + '시간 ' + (m % 60) + '분';
+    return Math.floor(h / 24) + '일 ' + (h % 24) + '시간';
+  }
+
+  function render(trades){
+    var since = Date.now() - 30 * 86400000;
+    var rows = trades.filter(function(t){ return t.status === 'CLOSED' && t.exitTime && new Date(t.exitTime).getTime() >= since; })
+      .sort(function(a, b){ return new Date(b.exitTime) - new Date(a.exitTime); });   // 최근 청산이 위로
+    var wins = rows.filter(function(t){ return Number(t.netProfit) > 0; }).length;
+    var net = rows.reduce(function(s, t){ return s + Number(t.netProfit || 0); }, 0);
+    var open = trades.filter(function(t){ return t.status === 'OPEN'; }).length;
+
+    $('history-summary').innerHTML = rows.length
+      ? '청산 <b>' + rows.length + '건</b> · 승 <b>' + wins + '</b> / 패 <b>' + (rows.length - wins) + '</b> · 승률 <b>' + (wins / rows.length * 100).toFixed(1) + '%</b>'
+        + ' · 합계 <b class="' + (net >= 0 ? 'pos-t' : 'neg-t') + '">' + usd(net) + '</b>'
+        + (open ? ' · 보유 중 <b>' + open + '건</b>(아직 손익 미확정)' : '')
+      : '최근 30일 동안 청산된 거래가 없습니다.';
+
+    $('history-tbody').innerHTML = rows.length ? rows.map(function(t){
+      var p = Number(t.netProfit), win = p > 0;
+      return '<tr><td>' + kst(t.exitTime) + '</td><td class="coin">' + esc(t.coin) + '</td>'
+        + '<td class="num">' + pct(Number(t.entryPremium)) + '</td><td class="num">' + pct(Number(t.exitPremium)) + '</td>'
+        + '<td class="num">' + held(t.entryTime, t.exitTime) + '</td>'
+        + '<td class="num ' + (win ? 'pos' : 'neg') + '">' + usd(p) + '</td>'
+        + '<td><span class="pill ' + (win ? 'calm' : 'danger') + '">' + (win ? '승' : '패') + '</span></td></tr>';
+    }).join('') : '<tr><td class="empty-row" colspan="7">최근 30일 동안 청산된 거래가 없습니다.</td></tr>';
+
+    $('history-note').textContent = '시각은 KST · 한 건당 투입금 $1,000 · 거래 기록은 매매 봇 백업본 기준이라 몇 시간 늦을 수 있습니다.';
+    rendered = true;
+  }
+
+  function load(){
+    if (window.__kimchiTrades) return Promise.resolve(window.__kimchiTrades);
+    return fetch('backup/data/paper-trades.json?t=' + Math.floor(Date.now() / 300000), { cache: 'no-store' })
+      .then(function(r){ if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); });
+  }
+
+  btn.addEventListener('click', function(){
+    var opening = panel.hidden;
+    panel.hidden = !opening;
+    btn.setAttribute('aria-expanded', String(opening));
+    btn.textContent = opening ? '매매 기록 접기' : '매매 기록 보기';
+    if (opening && !rendered) {
+      load().then(render).catch(function(e){ $('history-summary').textContent = '불러오지 못했습니다 — ' + e.message; });
+    }
   });
 })();
 </script>
