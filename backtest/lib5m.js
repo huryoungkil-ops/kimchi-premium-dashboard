@@ -652,7 +652,8 @@ function simulate(dataset, params, range) {
   // record=false: 후보 거르기용 미리보기(통계에 안 센다)
   function entrySize(c, i, fraction, record = true) {
     if (!EQUITY) return POSITION_SIZE * fraction;
-    const want = (SEED + cumNet) * SIZING_PCT * fraction;
+    // FIXED_SIZE_USD: 자산과 무관하게 이 금액으로 (규모별 수용 한계 실험용, capacity.js)
+    const want = (P.FIXED_SIZE_USD || (SEED + cumNet) * SIZING_PCT) * fraction;
     const cap = liqCapUsd(c, i);
     const sz = Math.min(want, cap);
     if (record) { if (cap < want) cappedByLiquidity++; if (sz > maxSizeUsed) maxSizeUsed = sz; }
