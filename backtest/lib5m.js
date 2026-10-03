@@ -492,7 +492,7 @@ async function buildDataset(opts) {
       const minValueKrw = POSITION_SIZE * b.rate * MIN_BAR_VALUE_MULTIPLE;
       const tradable = b.value >= minValueKrw;
       if (!tradable) thinBars++;
-      rows.push({ ts: b.ts, premium, tradable, foreign: b.okxClose });
+      rows.push({ ts: b.ts, premium, tradable, foreign: b.okxClose, valueKrw: b.value, rate: b.rate });
     }
     if (rows.length < MIN_DATA_POINTS) { log(`  ${name}: 매칭 부족(${rows.length}) — 제외`); continue; }
 
@@ -555,10 +555,14 @@ async function buildDataset(opts) {
     c.premium = new Float64Array(n);
     c.foreign = new Float64Array(n);   // OKX 무기한선물 가격(숏 다리)
     c.tradable = new Uint8Array(n);
+    c.valueKrw = new Float64Array(n); // 봉 거래대금(원) — 복리 모드에서 포지션 크기에 맞춰 유동성을 다시 잰다
+    c.rate = new Float64Array(n);
     for (let i = 0; i < n; i++) {
       c.premium[i] = c.rows[i].premium;
       c.foreign[i] = c.rows[i].foreign;
       c.tradable[i] = c.rows[i].tradable ? 1 : 0;
+      c.valueKrw[i] = c.rows[i].valueKrw;
+      c.rate[i] = c.rows[i].rate;
     }
     c.rows = null; // 메모리 절약: 이후로는 타입배열만 쓴다
   }
@@ -634,6 +638,27 @@ function simulate(dataset, params, range) {
     ptr[k] = i;
   }
 
+  // --- 포지션 크기 (2026-10-03 복리 모드 추가) ---
+  // fixed : 늘 시드의 10% ($1,000). 지금까지의 모든 백테스트·실거래 봇과 같다.
+  // equity: 그 시점 실현 자산(시드 + 누적 손익)의 SIZING_PCT. 벌면 커지고 잃으면 작아진다.
+  //         다만 그 봉 거래대금이 포지션의 MIN_BAR_VALUE_MULTIPLE(5)배를 넘는 만큼까지만 —
+  //         고정 모드의 «거래량 미달» 기준을 포지션 크기에 맞춰 키운 것이다.
+  //         과거 호가창 기록이 없어 거래대금으로 유동성을 대신한다.
+  const EQUITY = P.SIZING === 'equity';
+  const SIZING_PCT = P.SIZING_PCT || POSITION_FRACTION;
+  const MIN_SIZE_USD = P.MIN_SIZE_USD || 50;
+  let maxSizeUsed = 0, cappedByLiquidity = 0;
+  const liqCapUsd = (c, i) => c.valueKrw[i] / (c.rate[i] * MIN_BAR_VALUE_MULTIPLE);
+  // record=false: 후보 거르기용 미리보기(통계에 안 센다)
+  function entrySize(c, i, fraction, record = true) {
+    if (!EQUITY) return POSITION_SIZE * fraction;
+    const want = (SEED + cumNet) * SIZING_PCT * fraction;
+    const cap = liqCapUsd(c, i);
+    const sz = Math.min(want, cap);
+    if (record) { if (cap < want) cappedByLiquidity++; if (sz > maxSizeUsed) maxSizeUsed = sz; }
+    return sz;
+  }
+
   const trades = [];
   let openCount = 0;
   let cumNet = 0, totalFunding = 0, totalSpread = 0, totalFees = 0;
@@ -688,7 +713,8 @@ function simulate(dataset, params, range) {
       // --- 보유 중이면 청산 판단 먼저 ---
       const tr = tranches[k];
       if (tr.length) {
-        if (!tradable) continue; // 못 파는 구간
+        if (!EQUITY && !tradable) continue; // 못 파는 구간
+        if (EQUITY) { let held = 0; for (const x of tr) held += x.size; if (liqCapUsd(c, i) < held) continue; }
 
         // 여러 차수를 들고 있으면 평단은 금액 가중평균이다
         let totalSize = 0, wPrem = 0, wForeign = 0;
@@ -732,7 +758,7 @@ function simulate(dataset, params, range) {
           const halfSpreadAdd = P.PAY_SPREAD ? (c.spreadPp / 2) : 0;
           if (sPrem + halfSpreadAdd < sMa - step.sigma * sSd) {
             const ai = Math.min(i + DELAY, c.premium.length - 1);
-            tr.push({ ts: ts + DELAY * BAR_MS, prem: c.premium[ai], size: POSITION_SIZE * step.fraction, foreign: c.foreign[ai] });
+            tr.push({ ts: ts + DELAY * BAR_MS, prem: c.premium[ai], size: entrySize(c, i, step.fraction), foreign: c.foreign[ai] });
             addOns++;
           }
         }
@@ -775,7 +801,8 @@ function simulate(dataset, params, range) {
 
       // --- 미보유면 진입 후보 판단 ---
       if (sPrem >= sMa - LADDER[0].sigma * sSd) continue; // 진입선 위
-      if (!tradable) { blockedThin++; continue; }
+      if (!EQUITY && !tradable) { blockedThin++; continue; }
+      if (EQUITY && entrySize(c, i, LADDER[0].fraction, false) < MIN_SIZE_USD) { blockedThin++; continue; }
 
       // 실거래 봇은 실제 매수호가로 김프를 다시 계산해 그래도 진입선 아래일 때만 들어간다.
       // 종가를 중간값으로 보면 매수호가는 스프레드의 절반만큼 위에 있다.
@@ -840,7 +867,7 @@ function simulate(dataset, params, range) {
         tranches[k].push({
           ts: ts + DELAY * BAR_MS,
           prem: c.premium[ei],          // 신호 다음 봉 종가에 체결
-          size: POSITION_SIZE * LADDER[0].fraction,
+          size: entrySize(c, ei, LADDER[0].fraction),
           foreign: c.foreign[ei],
         });
         openCount++;
@@ -891,6 +918,11 @@ function simulate(dataset, params, range) {
   for (const k of Object.keys(byCoin)) byCoin[k].net = Math.round(byCoin[k].net * 100) / 100;
 
   const days = (endGrid - startGrid) * BAR_MS / 86400000;
+  // 복리 비교용: 연복리 수익률(CAGR)과 자산 대비 최대 낙폭(%)
+  const finalEquity = SEED + cumNet;
+  const cagrPct = days > 0 && finalEquity > 0 ? (Math.pow(finalEquity / SEED, 365 / days) - 1) * 100 : null;
+  let peakE = SEED, maxDDPct = 0;
+  for (const e of equity) { const v = SEED + e.mtm; if (v > peakE) peakE = v; const dd = (peakE - v) / peakE * 100; if (dd > maxDDPct) maxDDPct = dd; }
 
   return {
     params: P,
@@ -907,6 +939,11 @@ function simulate(dataset, params, range) {
     avgHoldHours: total ? Math.round(trades.reduce((s, t) => s + t.holdHours, 0) / total * 100) / 100 : null,
     maxDrawdown: Math.round(maxDD * 100) / 100,
     maxDrawdownMTM: Math.round(maxDDM * 100) / 100,
+    sizing: EQUITY ? 'equity' : 'fixed',
+    cagrPct: cagrPct === null ? null : Math.round(cagrPct * 100) / 100,
+    maxDrawdownPctMTM: Math.round(maxDDPct * 100) / 100,
+    maxSizeUsd: Math.round((EQUITY ? maxSizeUsed : POSITION_SIZE) * 100) / 100,
+    cappedByLiquidity,
     totalFees: Math.round(totalFees * 100) / 100,
     totalSpreadCost: Math.round(totalSpread * 100) / 100,
     totalFunding: Math.round(totalFunding * 100) / 100,
