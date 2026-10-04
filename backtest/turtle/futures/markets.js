@@ -1,0 +1,33 @@
+// pv = USD per 1.0 price point (Yahoo quote units), tick = min price increment in Yahoo quote units
+// micro: CME micro contract multiplier (same quote units). Micro availability/launch dates NOT verified here.
+// from = first date new entries allowed (Yahoo OHLC before this is electronic-session-only / stale; TR/|dC| < 1.5)
+module.exports = [
+ {s:'ZB',pv:1000,tick:1/32,g:'rates',roll:[3,6,9,12]},
+ {s:'ZN',pv:1000,tick:1/64,g:'rates',roll:[3,6,9,12]},
+ {s:'ZF',pv:1000,tick:1/128,g:'rates',roll:[3,6,9,12]},
+ {s:'ZT',from:'2003-01-01',pv:2000,tick:1/256,g:'rates',roll:[3,6,9,12]},
+ {s:'6E',pv:125000,tick:0.00005,g:'fx',roll:[3,6,9,12],micro:{n:'M6E',pv:12500}},
+ {s:'6J',pv:12500000,tick:0.0000005,g:'fx',roll:[3,6,9,12],micro:{n:'MJY',pv:1250000}},
+ {s:'6B',pv:62500,tick:0.0001,g:'fx',roll:[3,6,9,12],micro:{n:'M6B',pv:6250}},
+ {s:'6S',pv:125000,tick:0.00005,g:'fx',roll:[3,6,9,12],micro:{n:'MSF',pv:12500}},
+ {s:'6C',pv:100000,tick:0.00005,g:'fx',roll:[3,6,9,12],micro:{n:'MCD',pv:10000}},
+ {s:'6A',pv:100000,tick:0.00005,g:'fx',roll:[3,6,9,12],micro:{n:'M6A',pv:10000}},
+ {s:'GC',from:'2008-01-01',pv:100,tick:0.1,g:'metals',roll:[1,3,5,7,9,11],micro:{n:'MGC',pv:10}},
+ {s:'SI',from:'2008-01-01',pv:5000,tick:0.005,g:'metals',roll:[1,2,3,4,5,6,7,8,9,10,11,12],micro:{n:'SIL',pv:1000}},
+ {s:'HG',from:'2005-01-01',pv:25000,tick:0.0005,g:'metals',roll:[1,2,3,4,5,6,7,8,9,10,11,12],micro:{n:'MHG',pv:2500}},
+ {s:'CL',pv:1000,tick:0.01,g:'energy',roll:[1,2,3,4,5,6,7,8,9,10,11,12],micro:{n:'MCL',pv:100}},
+ {s:'HO',pv:42000,tick:0.0001,g:'energy',roll:[1,2,3,4,5,6,7,8,9,10,11,12]},
+ {s:'RB',pv:42000,tick:0.0001,g:'energy',roll:[1,2,3,4,5,6,7,8,9,10,11,12]},
+ {s:'NG',pv:10000,tick:0.001,g:'energy',roll:[1,2,3,4,5,6,7,8,9,10,11,12],micro:{n:'MNG',pv:1000}},
+ {s:'KC',pv:375,tick:0.05,g:'softs',roll:[3,5,7,9,12]},
+ {s:'CC',pv:10,tick:1,g:'softs',roll:[3,5,7,9,12]},
+ {s:'SB',pv:1120,tick:0.01,g:'softs',roll:[3,5,7,10]},
+ {s:'CT',pv:500,tick:0.01,g:'softs',roll:[3,5,7,10,12]},
+ {s:'ZC',from:'2007-01-01',pv:50,tick:0.25,g:'grains',roll:[3,5,7,9,12]},
+ {s:'ZW',from:'2007-01-01',pv:50,tick:0.25,g:'grains',roll:[3,5,7,9,12]},
+ {s:'ZS',from:'2007-01-01',pv:50,tick:0.25,g:'grains',roll:[1,3,5,7,8,9,11]},
+ {s:'ES',pv:50,tick:0.25,g:'stocks',roll:[3,6,9,12],micro:{n:'MES',pv:5}},
+ {s:'NQ',pv:20,tick:0.25,g:'stocks',roll:[3,6,9,12],micro:{n:'MNQ',pv:2}},
+ {s:'LE',from:'2007-01-01',pv:400,tick:0.025,g:'meats',roll:[1,3,5,7,9,11]},
+ {s:'HE',from:'2007-01-01',pv:400,tick:0.025,g:'meats',roll:[2,4,5,6,7,8,10,12]},
+];

@@ -1,0 +1,1128 @@
+
+=====PAGE 1=====
+ 
+ 
+ 
+Fighting the scams, frauds and charlatans 
+The Original 
+Turtle Trading Rules
+=====PAGE 2=====
+ 
+ORIGINALTURTLES.ORG 
+The Original Turtle Trading Rules 
+ 
+ 2003 OrignalTurtles.org 
+ 
+=====PAGE 3=====
+ 
+ 
+Table of Contents
+FOREWORD 
+Free Rules? Are you kidding? 1  
+The Origin of the Free Rules Project 1  
+The Ugly Truth about the System Sellers 2  
+Rules You Won’t Follow Don’t Matter 3  
+The Genesis of the Project 3  
+INTRODUCTION 
+The Turtle Experiment 5  
+CHAPTER ONE 
+A Complete Trading System 7  
+The Components of a Complete System 8  
+Markets – What to buy or sell 8  
+Position Sizing – How much to buy or sell 8  
+Entries – When to buy or sell 8  
+Stops – When to get out of a losing position9 
+Exits – When to get out of a winning 
+position 9  
+Tactics – How to buy or sell 9  
+Summary 9  
+CHAPTER TWO 
+Markets: What the Turtles Traded 10  
+CHAPTER THREE 
+Position Sizing 12  
+Volatility – The Meaning of N 12  
+Dollar Volatility Adjustment 13  
+Volatility Adjusted Position Units 14  
+Examples 14  
+The Importance of Position Sizing 15  
+Units as a measure of Risk 16  
+Adjusting Trading Size 17  
+CHAPTER FOUR 
+Entries 18  
+Breakouts 18  
+Adding Units 19  
+Consistency 20  
+CHAPTER FIVE 
+Stops 21  
+Turtle Stops 21  
+Stop Placement 22  
+Alternate Stop Strategy – The Whipsaw 23  
+Benefits of the Turtle System Stops 24  
+CHAPTER SIX 
+Exits 25  
+Turtle Exits 26  
+These are Difficult Exits 26  
+CHAPTER SEVEN 
+Tactics 27  
+Entering Orders 27  
+Fast Markets 28  
+Simultaneous Entry Signals 28  
+Buy Strength – Sell Weakness 29  
+=====PAGE 4=====
+ 
+ 
+Rolling Over Expiring Contracts 29  
+Finally 30  
+CHAPTER EIGHT 
+Further Study 32  
+Trading Psychology 32  
+Money Management 33  
+Trading Research 33  
+Final Warning 33  
+ 
+=====PAGE 5=====
+ORIGINAL TURTLES 
+1 
+Free Rules? 
+Are you kidding? 
+Why are some of  the Original Turtles giving away Rules for which 
+others have charged thousands of  dollars? Are these the actual 
+Original Turtle Trading System rules? 
+ou probably asked yourself the same questions: “Why would anyone give 
+away the rules to the original Turtle Trading System? How can I be sure that 
+these are the original Turtle Trading System rules as taught by Richard Dennis 
+and William Eckhardt?” The answer to these questions lies in the origin of 
+this project. 
+The Origin of the Free Rules Project 
+This project had its seed in various discussions among a few of the original Turtles, 
+Richard Dennis, and others regarding the sale of the Turtle 
+Trading System rules by a former turtle, and subsequently, on a 
+website by a non-trader. It culminated in this document, which 
+discloses the Original Turtle Trading Rules in their entirety, free 
+of charge. 
+Why? Because many of us believed that we owed an obligation 
+to Richard Dennis not to reveal the rules, even after our contractual 10 year secrecy 
+pact ended in late 1993. For this reason, we did not look kindly upon the sale of those 
+rules by a former turtle. 
+Further, we saw the sale on the web site as crass and opportunistic intellectual property 
+theft, an act that, while technically not illegal, was certainly not honorable. 
+At the same time, having seen others try to follow these rules first-hand, I realized it 
+was unlikely that their publication would result in very many people actually learning to 
+Foreword 
+f 
+Y 
+Richard Dennis and 
+William Eckhardt 
+were not consulted prior to 
+the marketing of the Turtle 
+Trading Rules and did not 
+benefit in any way from the 
+sale of the Turtle Rules they 
+developed. 
+=====PAGE 6=====
+ORIGINAL TURTLES 
+ 2
+trade like the Turtles. In fact, I knew that most of those who spent thousands to learn 
+these heretofore secret rules would end up disappointed, for three reasons: 
+• The rules wouldn’t be clear, since the people selling them didn’t know how to 
+trade. 
+• Even if they were clearly presented, the buyers probably wouldn’t be able to 
+follow the rules. 
+• Most of the Turtles are now trading even better rules. 
+The Ugly Truth about the System Sellers 
+I’ve been trading and hanging around trading circles since high school. One of the sad 
+realities of the trading industry, and the futures trading industry in particular, is that 
+there are far more people making money selling others’ systems and “ways to make 
+money trading,” than there are people actually making money trading. 
+I won’t go into specifics here, but those of us who actually trade for a living know the 
+names of many “famous traders” who are famous as “traders,” but that don’t make 
+money as traders. They make money selling new trading systems, seminars, home 
+study courses, etc. Most of these so called “experts” can’t trade and don’t trade the 
+systems that they sell. 
+Yes, this is also true of those selling the Turtle Trading Rules. 
+Since we offer the rules here for free we don't see why anyone would pay for these 
+rules anymore but that doesn't stop people from trying to sell them. 
+Before taking any advice, buying any courses offering to teach you how to trade,  or 
+purchasing a system, investigate the se llers very thoroughly. There are many 
+unscrupulous vendors who are not what they appear. Before placing an order, search 
+the internet and find out what previous purchasers thought of the course, seminar, or 
+trading system. 
+ 
+=====PAGE 7=====
+ORIGINAL TURTLES 
+ 3
+Rules You Won’t Follow Don’t Matter 
+What TurtleTrader.com and the Former Turtle don't tell you is that trading rules are 
+only a small part of successful trading. The most important 
+aspects of successful trading are confidence, consistency, and 
+discipline.  
+Rules that you can’t or won’t follow will not do you any good. 
+The Turtles had a lot of reasons to be confident in the rules they 
+were given. For the most part, we had the confidence to follow 
+them even during losing periods. Those who didn’t consistently 
+follow the rules didn’t make money and were dropped from the 
+program. 
+Traders who want to be successful will figure out a way to gain 
+enough confidence in their own rules of trading to be able to 
+apply them consistently. 
+As original Turtles, we had it easy. We were given rules by some of the world’s most 
+successful and famous traders, Richard Dennis and his trading partner Bill Eckhardt. 
+They taught us the rules and the reasons why we could trust those rules. Then we were 
+placed into an open office with ten othe r traders who had been taught those same 
+rules. In some respects it was easier to follow the rules than to not follow the rules. 
+On the whole, we had the confidence and the discipline to consistently apply the rules 
+we were given. This was the secret of our success as traders.  
+Those who failed to follow the rules invariably failed as Turtles. Some of them decided 
+they could make more money selling the Turtle rules than they did as Turtles. 
+The Genesis of the Project 
+Like many of the other Turtles, it always bothered me that some were making money 
+off the work of Richard Dennis and Bill Eckhardt without their consent; that these 
+secret-sellers had used the success of the Tu rtles to dupe others into spending 
+thousands of dollars on products that were not what they appeared.    
+I had often thought that a great way to deal with this problem would be to give the 
+Turtle Trading Rules away for free. Since others had already let the cat out of the bag, 
+and since anyone who really wanted the ru les could already get them by paying, it 
+wouldn’t violate my sense of fair play to reveal them. 
+So that is what we have done....with a slight twist. 
+Following Rules 
+As famous trader and father 
+of the Turtles, Richard 
+Dennis said: “I always say 
+that you could publish my 
+trading rules in the 
+newspaper and no one 
+would follow them. The key 
+is consistency and discipline. 
+Almost anybody can make 
+up a list of rules that are 
+80% as good as what we 
+taught our people. What 
+they couldn’t do is give them 
+the confidence to stick to 
+those rules even when things 
+are going bad.” – from 
+Market Wizards, by Jack D. 
+Schwager. 
+=====PAGE 8=====
+ 
+ 4
+While the rules are free, we respectfully ask that those who gain benefit from the rules 
+and find them valuable send a donation supporting a charity in honor of Richard 
+Dennis, Bill Eckhardt and the original Turtles. You can find a copy of the charities 
+favored by the Turtles on the new web site: originalturtles.org. 
+Curtis Faith, an Original Turtle 
+=====PAGE 9=====
+ORIGINAL TURTLES 
+ 5
+The Turtle Experiment 
+Richard Dennis wanted to find out whether great traders are born 
+or made. 
+he age old question: Nature or nurture? 
+In mid-1983, famous commodities speculator Richard Dennis was having an 
+ongoing dispute with his long-time friend Bill Eckhardt about whether great 
+traders were born or made. Richard believed that he could teach people to become 
+great traders. Bill thought that genetics and aptitude were the determining factors. 
+In order to settle the matter, Richard suggested that they recruit and train some traders, 
+and give them actual accounts to trade to see which one of them was correct. 
+They took out a large ad advertising positions for trading apprentices in Barron’s, the 
+Wall Street Journal and the New York Times. The ad stated that 
+after a brief training session, the trainees would be supplied with 
+an account to trade. 
+Since Rich was probably the most famous trader in the world at 
+the time, he received submissions from over 1000 applicants. Of 
+these, he interviewed 80.  
+This group was culled to 10, which became 13 after Rich added three people he already 
+knew to the list. We were invited to Chicago and trained for two weeks at the end of 
+December, 1983, and began trading small accounts at the beginning of January. After 
+we proved ourselves, Dennis funded most of us with $500,000 to $2,000,000 accounts 
+at the start of February. 
+“The students were called the ‘Turtles.’ (Mr. Dennis, who says he had just returned 
+from Asia when he started the program, explains that he described it to someone by 
+saying, ‘We are going to grow traders just like they grow turtles in Singapore.’)” – 
+Stanley W. Angrist, Wall Street Journal 09/05/1989 
+Introduction 
+i 
+T 
+Trading was 
+Teachable 
+"Trading was even more 
+teachable than I imagined," 
+he says. "In a strange sort of 
+way, it was almost 
+humbling." – Richard 
+Dennis, Wall Street Journal. 
+=====PAGE 10=====
+ORIGINAL TURTLES 
+ 6
+The Turtles became the most famous experiment in trading history because over the 
+next four years, we earned an average annual compound rate of return of 80%. 
+Yes, Rich proved that trading could be taught. He proved that with a simple set of 
+rules, he could take people with little or no trading experience and make them excellent 
+traders. 
+Continue reading. The complete set of the rules that Richard Dennis taught his trainees 
+follows, starting with the next chapter. 
+ 
+=====PAGE 11=====
+ORIGINAL TURTLES 
+ 7
+A Complete 
+Trading System 
+The Turtle Trading System was a Complete Trading System, one 
+that covered every aspect of  trading, and left virtually no decision to 
+the subjective whims of  the trader. 
+ost successful traders use a mechanical trading system. This is no 
+coincidence. 
+A good mechanical trading system automates the entire process of trading. 
+The system provides answers for each of the decisions a trader must make while 
+trading. The system makes it easier for a trader to trade consistently because there is a 
+set of rules which specifically define exactly what should be done. The mechanics of 
+trading are not left up to the judgment of the trader. 
+If you know that your system makes money over the long run, it is easier to take the 
+signals and trade according to the system during periods of losses. If you are relying on 
+your own judgment during trading, you may find that you are fearful just when you 
+should be bold, and courageous when you should be cautious. 
+If you have a mechanical tr ading system that works, and you follow it consistently, 
+your trading will be consistent despite the inner emotional struggles that might come 
+from a long series of losses, or a larg e profit. The confidence, consistency, and 
+discipline afforded by a thoroughly tested mechanical system are the key to many of 
+the most profitable traders’ success. 
+The Turtle Trading System was a Complete Trading System. Its rules covered every 
+aspect of trading, and left no decisions to the subjective whims of the trader. It had 
+every component of a Complete Trading System. 
+Chapter 
+1 
+M 
+=====PAGE 12=====
+ORIGINAL TURTLES 
+ 8
+The Components of a Complete System 
+A Complete Trading System covers each of  the decisions required for successful 
+trading: 
+ Markets - What to buy or sell 
+ Position Sizing - How much to buy or sell 
+ Entries - When to buy or sell 
+ Stops - When to get out of a losing position 
+ Exits - When to get out of a winning position  
+ Tactics - How to buy or sell 
+Markets – What to buy or sell 
+The first decision is what to buy and sell, or essentially, what markets to trade. If you 
+trade too few markets you greatly reduce your chances of getting aboard a trend. At the 
+same time, you don’t want to trade markets that have too low a trading volume, or that 
+don’t trend well. 
+Position Sizing – How much to buy or sell 
+The decision about how much to buy or sell is absolutely fundamental, and yet is often 
+glossed over or handled improperly by most traders.  
+How much to buy or sell affects both diversification and money management.  
+Diversification is an attempt to spread risk across many instruments, and to increase 
+the opportunity for profit by increasing the opportunities for catching successful 
+trades. Proper diversification requires making similar, if not identical bets on many 
+different instruments. Money management is really abou t controlling risk by not 
+betting so much that you run out of money before the good trends come.  
+How much to buy or sell is the single most important aspect of trading. Most 
+beginning traders risk far too much on each trade, and greatly increase their chances of 
+going bust, even if they have an otherwise valid trading style. 
+Entries – When to buy or sell 
+The decision of when to buy or sell is often called the entry decision. Automated 
+systems generate entry signals which define the exact price and market conditions to 
+enter the market, whether by buying or selling. 
+=====PAGE 13=====
+ORIGINAL TURTLES 
+ 9
+Stops – When to get out of a losing position 
+Traders who do not cut their losses will not be successful in the long term. The most 
+important thing about cutting your losses is to predefine the point where you will get 
+out before you enter a position. 
+Exits – When to get out of a winning position 
+Many “trading systems” that are sold as complete trading systems do not specifically 
+address the exit of winning positions. Yet the question of when to get out of a winning 
+position is crucial to the profitability of the system. Any trading system that does not 
+address the exit of winning positions is not a Complete Trading System. 
+Tactics – How to buy or sell 
+Once a signal has been generated, tactical considerations regarding the mechanics of 
+execution become important. This is especially true for larger accounts, where the entry 
+and exit of positions can result in sign ificant adverse price movement, or market 
+impact. 
+Summary 
+Using a mechanical system is the best way to consistently make money trading. If you 
+know that your system makes money over the long run, it is easier to take the signals 
+and follow the system during periods of losses. If you rely on your own judgment, 
+during trading you may find that you are fearful just when you should be courageous, 
+or courageous when you should be fearful. 
+If you have a profitable mechanical trading system, and you follow it religiously, then 
+your trading will be profitable, and the sy stem will help you survive the emotional 
+struggles that inevitably result from a long series of losses, or large profits. 
+The trading system that was used by the Turtles was a Complete Trading System. This 
+was a major factor in our success. Our system made it easier to trade consistently, and 
+successfully, because it did not leave important decisions to the discretion of the trader. 
+=====PAGE 14=====
+ORIGINAL TURTLES 
+ 10
+Markets: 
+What the Turtles Traded 
+The Turtles traded liquid futures that traded on U.S. exchanges in 
+Chicago and New York. 
+he Turtles were futures traders, at the time more popularly called commodities 
+traders. We traded futures contracts on the most popular U.S. commodities 
+exchanges.
+Since we were trading millions of dollars, we could not trade markets that only traded a 
+few hundred contracts per day because that would mean that 
+the orders we generated would move the market so much that it 
+would be too difficult to enter and exit positions without taking 
+large losses. The Turtles traded only the most liquid markets. 
+In general, the Turtles traded all liquid U.S. markets except the grains and the meats. 
+Since Richard Dennis was already trading the full position limits for his own account, 
+he could not permit us to trade grains for him without exceeding the exchange’s 
+position limits. 
+We did not trade the meats because of a corruption problem with the floor traders in 
+the meat pits. Some years after the Turtles disbanded, the FBI conducted a major sting 
+operation in the Chicago meat pits and indicted many traders for price manipulation 
+and other forms of corruption. 
+The following is a list of the futures markets traded by the Turtles: 
+Chicago Board of Trade 
+ 30 Year U.S. Treasury Bond 
+ 10 Year U.S. Treasury Note 
+Chapter 
+2 
+T 
+Liquidity 
+The primary criterion used 
+to determine the futures that 
+could be traded by the 
+Turtles was the liquidity of 
+the underlying markets. 
+=====PAGE 15=====
+ORIGINAL TURTLES 
+ 11
+New York Coffee Cocoa and Sugar Exchange 
+ Coffee 
+ Cocoa 
+ Sugar 
+ Cotton 
+Chicago Mercantile Exchange  
+ Swiss Franc 
+ Deutschmark 
+ British Pound 
+ French Franc 
+ Japanese Yen 
+ Canadian Dollar 
+ S&P 500 Stock Index 
+ Eurodollar 
+ 90 Day U.S. Treasury Bill 
+Comex 
+ Gold 
+ Silver 
+ Copper 
+New York Mercantile Exchange 
+ Crude Oil 
+ Heating Oil 
+ Unleaded Gas 
+ 
+The Turtles were given the discretion of not trading any of the commodities on the list. 
+However, if a trader chose not to trade a particular market, then he was not to trade 
+that market at all. We were not supposed to trade markets inconsistently. 
+=====PAGE 16=====
+ORIGINAL TURTLES 
+ 12
+Position Sizing 
+The Turtles used a volatility-based constant percentage risk position 
+sizing algorithm. 
+osition sizing is one of the most important but least understood components 
+of any trading system. 
+The Turtles used a position sizing algorithm that was very advanced for its day, 
+because it normalized the dollar volatility of a position by adjusting the position size 
+based on the dollar volatility of the market. This meant that a given position would 
+tend to move up or down in a given day about the same amount in dollar terms (when 
+compared to positions in other markets), irrespective of the underlying volatility of the 
+particular market. 
+This is true because positions in markets that moved up and down a large amount per 
+contract would have an offsetting smaller number of contracts than positions in 
+markets that had lower volatility. 
+This volatility normalization is very important because it means that different trades in 
+different markets tend to have the same chance for a particular dollar loss or a 
+particular dollar gain. This increased the effectiveness of the diversification of trading 
+across many markets. 
+Even if the volatility of a given market was lower, any significant trend would result in 
+a sizeable win because the Turtles would have held more contracts of that lower 
+volatility commodity. 
+Volatility – The Meaning of N 
+The Turtles used a concept that Richard Dennis and Bill Eckhardt called N to 
+represent the underlying volatility of a particular market. 
+Chapter 
+3 
+P 
+=====PAGE 17=====
+ORIGINAL TURTLES 
+ 13
+N is simply the 20-day exponential moving average of the True Range, which is now 
+more commonly known as the ATR. Conceptually, N represents the average range in 
+price movement that a particular market makes in a single day, accounting for opening 
+gaps. N was measured in the same points as the underlying contract. 
+To compute the daily true range:  
+L) - PDCPDC,-HL,-HRange True (Maximum=  
+where: 
+H – Current High 
+L – Current Low 
+PDC – Previous Day’s Close 
+ 
+To compute N use the following formula:  
+20
+TR  PDN19 N )( +×=  
+where: 
+PDN – Previous Day’s N 
+TR – Current Day’s True Range 
+ 
+Since this formula requires a previous day’s N value, you must start with a 20-day 
+simple average of the True Range for the initial calculation. 
+ 
+Dollar Volatility Adjustment 
+The first step in determining the position size was to determine the dollar volatility 
+represented by the underlying market’s price volatility (defined by its N). 
+This sounds more complicated than it is. It is determined using the simple formula: 
+PointperDollarsNyVolatilitDollar ×=  
+=====PAGE 18=====
+ORIGINAL TURTLES 
+ 14
+Volatility Adjusted Position Units 
+The Turtles built positions in pieces which we called Units. Units were sized so that 1 
+N represented 1% of the account equity. 
+Thus, a unit for a given market or commodity can be calculated using the following 
+formula: 
+y VolatilitDollarMarket 
+ Accountof 1%Unit =  
+or 
+Point per Dollars N
+ Accountof 1%Unit ×=  
+Examples 
+Heating Oil HO03H: 
+Consider the following prices, True Range, and N values for March 2003 Heating Oil: 
+Date High Low Close True Range N 
+11/1/2002 0.7220 0.7124 0.7124 0.0096 0.0134
+11/4/2002 0.7170 0.7073 0.7073 0.0097 0.0132
+11/5/2002 0.7099 0.6923 0.6923 0.0176 0.0134
+11/6/2002 0.6930 0.6800 0.6838 0.0130 0.0134
+11/7/2002 0.6960 0.6736 0.6736 0.0224 0.0139
+11/8/2002 0.6820 0.6706 0.6706 0.0114 0.0137
+11/11/2002 0.6820 0.6710 0.6710 0.0114 0.0136
+11/12/2002 0.6795 0.6720 0.6744 0.0085 0.0134
+11/13/2002 0.6760 0.6550 0.6616 0.0210 0.0138
+11/14/2002 0.6650 0.6585 0.6627 0.0065 0.0134
+11/15/2002 0.6701 0.6620 0.6701 0.0081 0.0131
+11/18/2002 0.6965 0.6750 0.6965 0.0264 0.0138
+11/19/2002 0.7065 0.6944 0.6944 0.0121 0.0137
+11/20/2002 0.7115 0.6944 0.7087 0.0171 0.0139
+11/21/2002 0.7168 0.7100 0.7124 0.0081 0.0136
+11/22/2002 0.7265 0.7120 0.7265 0.0145 0.0136
+11/25/2002 0.7265 0.7098 0.7098 0.0167 0.0138
+11/26/2002 0.7184 0.7110 0.7184 0.0086 0.0135
+11/27/2002 0.7280 0.7200 0.7228 0.0096 0.0133
+=====PAGE 19=====
+ORIGINAL TURTLES 
+ 15
+12/2/2002 0.7375 0.7227 0.7359 0.0148 0.0134
+12/3/2002 0.7447 0.7310 0.7389 0.0137 0.0134
+12/4/2002 0.7420 0.7140 0.7162 0.0280 0.0141
+ 
+The unit size for the 6th of December, 2002 (using the N value of 0.0141 from the 4th 
+of December), is as follows: 
+Heating Oil 
+N = 0.0141 
+Account Size = $1,000,000 
+Dollars per Point = 42,000 (42,000 gallon contracts with price quoted in dollars) 
+ 
+16.8842,000 0.0141
+$1,000,0000.01 SizeUnit =×
+×=  
+Since it isn’t possible to trade partial contracts, this would be truncated to an even 16 
+contracts. 
+You might ask: “How often is it necessary to compute the values for N and the Unit 
+Size?” The Turtles were provided with a Unit size sheet on Monday of each week that 
+listed the N, and the Unit size in contracts for each of the futures that we traded. 
+The Importance of Position Sizing 
+Diversification is an attempt to spread risk across many instruments and to increase the 
+opportunity for profit by increasing the opportunities for catching successful trades. To 
+properly diversify requires making similar if not identical bets  on many different 
+instruments. 
+The Turtle System used market volatility to measure the risk involved in each market. 
+We then used this risk measurement to build positions in increments that represented a 
+constant amount of risk (or volatility). This enhanced the benefits of diversification, 
+and increased the likelihood that winning trades would offset losing trades. 
+Note that this diversification is much harder to achieve when using insufficient trading 
+capital. Consider the above example if a $100,000 account had been used. The unit size 
+would have been a single contract, since 1.688 truncates to 1. For smaller accounts, the 
+granularity of adjustment is too large, an d this greatly reduces the effectiveness of 
+diversification. 
+=====PAGE 20=====
+ORIGINAL TURTLES 
+ 16
+Units as a measure of Risk 
+Since the Turtles used the Unit as the base measure for position size, and since those 
+units were volatility risk adjusted, the Unit was a measure of both the risk of a position, 
+and of the entire portfolio of positions. 
+The Turtles were given risk management rules that limited the number of Units that 
+we could maintain at any given time, on four different levels. In essence, these rules 
+controlled the total risk that a trader co uld carry, and these limits minimized losses 
+during prolonged losing periods, as well as during extraordinary price movements. 
+An example of an extraordinary price movement was the day after the October, 1987 
+stock market crash. The U.S. Federal Re serve lowered interest rates by several 
+percentage points overnight to boost th e confidence of the stock market and the 
+country. The Turtles were loaded long in interest rate futures: Eurodollars, TBills and 
+Bonds. The losses the following day were enormous. In some cases, 20% to 40% of 
+account equity was lost in a single day. But these losses would have been 
+correspondingly higher without the maximum position limits. 
+The limits were: 
+Level Type Maximum Units  
+1 Single Market 4 Units 
+2 Closely Correlated  Markets 6 Units 
+3 Loosely Correlated Markets 10 Units 
+4 Single Direction – Long or Short 12 Units 
+ 
+Single Markets – A maximum of four Units per market. 
+Closely Correlated Markets – For markets that were closely correlated there could be 
+a maximum of 6 Units in one particular dir ection (i.e.6 long units or 6 short units). 
+Closely correlated markets include: heating oil and crude oil; gold and silver; Swiss 
+franc and Deutschmark; TBill and Eurodollar, etc. 
+Loosely Correlated Markets – For loosely correlated markets, there could be a 
+maximum of 10 Units in one particular direction. Loosely correlated markets included: 
+gold and copper; silver and copper, and many grain combinations that the Turtles did 
+not trade because of positions limits. 
+Single Direction – The maximum number of total Units in one direction long or short 
+was 12 Units. Thus, one could theoretically have had 12 Units long and 12 Units short 
+at the same time. 
+The Turtles used the term loaded to represent having the maximum permitted 
+number of Units for a given risk level. Thus, “loaded in yen” meant having the 
+=====PAGE 21=====
+ORIGINAL TURTLES 
+ 17
+maximum 4 units of Japanese Yen contra cts. Completely loaded meant having 12 
+Units. Etc. 
+Adjusting Trading Size 
+There will be times when the market does not trend for many months. During these 
+times, it is possible to lose a significant percentage of the equity of the account. 
+After large winning trades close out, one might want to increase the size of the equity 
+used to compute position size. 
+The Turtles did not trade normal accounts with a running balance based on the initial 
+equity. We were given notional accounts with a starting equity of zero and a specific 
+account size. For example, many Turtles received a notional account size of $1,000,000 
+when we first started trading in February, 1983. This account size was then adjusted 
+each year at the beginning of the year. It was adjusted up or down depending on the 
+success of the trader as measured subjectively by Rich. The increase/decrease typically 
+represented something close to the addition of the gains or losses that were made in 
+the account during the preceding year. 
+The Turtles were instructed to decrease the size of the notional account by 20% each 
+time we went down 10% of the original account. So if a Turtle trading a $1,000,000 
+account was ever was down 10%, or $100,000, we would then begin trading as if we 
+had a $800,000 account until such time as we reached the yearly starting equity. If we 
+lost another 10% (10% of $800,000 or $80,000 for a total loss of $180,000) we were to 
+reduce the account size by another 20% for a notional account size of $640,000. 
+There are other, perhaps better strategies fo r reducing or increa sing equity as the 
+account goes up or down. These are simply the rules that the Turtles used. 
+ 
+=====PAGE 22=====
+ORIGINAL TURTLES 
+ 18
+Entries 
+The Turtles used two related system entries, each based on 
+Donchian’s channel breakout system. 
+he typical trader thinks mostly in ter ms of the entry signals when thinking 
+about a particular trading system. They believe that the entry is the most 
+important aspect of any trading system. 
+They might be very surprised to find that the Turtles used a very simple entry system 
+based on the Channel Breakout systems taught by Richard Donchian. 
+The Turtles were given rules for two different but related breakout systems we called 
+System 1 and System 2. We were given full discretion to allocate as much of our equity 
+to either system as we wanted. Some of us chose to trade all our equity using System 2, 
+some chose to use a 50% System 1, 50% System 2 split, while others chose different 
+mixes. 
+System 1 – A shorter-term system based on a 20-day breakout 
+System 2 – A simpler long-term system based on a 55-day breakout.  
+Breakouts 
+A breakout is defined as the price exceeding the high or low of a particular number of 
+days. Thus a 20-day breakout would be defined as exceeding the high or low of the 
+preceding 20 days. 
+Turtles always traded at the breakout when it was exceeded during the day, and did not 
+wait until the daily close or the open of the following day. In the case of opening gaps, 
+the Turtles would enter positions on the open if a market opened through the price of 
+the breakout. 
+Chapter 
+4 
+T 
+=====PAGE 23=====
+ORIGINAL TURTLES 
+ 19
+System 1 Entry - Turtles entered positions when the price exceeded by a single tick the 
+high or low of the preceding 20 days. If the price exceeded the 20-day high, then the 
+Turtles would buy one Unit to initiate a long position in the corresponding 
+commodity. If the price dropped one tick below the low of the last 20-days, the Turtles 
+would sell one Unit to initiate a short position. 
+System 1 breakout entry signals would be ignored if the last breakout would have 
+resulted in a winning trade. NOTE: For the purposes of this test, the last breakout was 
+considered the last breakout in the particular commodity irrespective of whether or not 
+that particular breakout was actually taken, or was skipped because of this rule. This 
+breakout would be considered a losing breakout if the price subsequent to the date of 
+the breakout moved 2N against the position before a profitable 10-day exit occurred. 
+The direction of the last breakout was irre levant to this rule. Thus, a losing long 
+breakout or a losing short breakout would enable the subsequent new breakout to be 
+taken as a valid entry, regardless of its direction (long or short). 
+However, in the event that a System 1 entry breakout was skipped because the 
+previous trade had been a winner, an entry would be made at the 55-day breakout to 
+avoid missing major moves. This 55-day breakout was considered the Failsafe 
+Breakout point. 
+At any given point, if you were out of the market, there would always be some price 
+which would trigger a short entry and another different and higher price which would 
+trigger a long entry. If the last breakout was a loser, then the entry signal would be 
+closer to the current price (i.e. the 20 day breakout), than if it had been a winner, in 
+which case the entry signal would likely be farther away, at the 55 day breakout. 
+System 2 Entry - Entered when the price exceeded by a single tick the high or low of 
+the preceding 55 days. If the price exceeded the 55 day high, then the Turtles would 
+buy one Unit to initiate a long position in the corresponding commodity. If the price 
+dropped one tick below the low of the last 55 days, the Turtles would sell one Unit to 
+initiate a short position. 
+All breakouts for System 2 would be taken whether the previous breakout had been a 
+winner or not. 
+Adding Units 
+Turtles entered single Unit  long positions at the breakouts and added to those 
+positions at ½ N intervals following their initial entry. This ½ N interval was based on 
+the actual fill price of the previous order. So if an initial breakout order slipped by ½ N, 
+then the new order would be 1 full N past the breakout to account for the ½ N 
+slippage, plus the normal ½ N unit add interval. 
+=====PAGE 24=====
+ORIGINAL TURTLES 
+ 20
+This would continue right up  to the maximum permitted number of units. If the 
+market moved quickly enough it was possible to add the maximum four Units in a 
+single day. 
+Example: 
+Gold 
+N = 2.50 
+55 day breakout = 310 
+ 
+First Unit added 310.00 
+Second Unit 310.00 + ½ 2.50 or 311.25 
+Third Unit  311.25 + ½ 2.50 or 312.50 
+Fourth Unit  312.50 + ½ 2.50 or 313.75 
+ 
+Crude Oil 
+N = 1.20 
+55 day breakout = 28.30 
+ 
+First Unit added 28.30 
+Second Unit 28.30 + ½ 1.20 or 28.90 
+Third Unit  28.90 + ½ 1.20 or 29.50 
+Fourth Unit  29.50 + ½ 1.20 or 30.10 
+Consistency 
+The Turtles were told to be very consistent in taking entry signals, because most of the 
+profits in a given year might come from only two or three large winning trades. If a 
+signal was skipped or missed, this could greatly affect the returns for the year. 
+The Turtles with the best trading records consistently applied the entry rules. The 
+Turtles with the worst records, and all those who were dropped from the program, 
+failed to consistently enter positions when the rules indicated. 
+=====PAGE 25=====
+ORIGINAL TURTLES 
+ 21
+Stops 
+The Turtles used N-based stops to avoid large losses in equity. 
+here is an expression that, “There are old traders; and there are bold traders; 
+but there are no old bold traders.” Traders that don’t use stops go broke.  
+The Turtles always used stops.  
+For most people, it is far easier to cling to the hope that a losing trade will turn around 
+than it is to simply get out of a losing position and admit that the trade did not work 
+out.  
+Let us make one thing very clear. Getting out of a losing position is absolutely critical. 
+Traders who do not cut their losses will not be successful in the long term. Almost all 
+of the examples of trading that got out of control and jeopardized the health of the 
+financial institution itself, such as Barings, Long-term Capital Management, and others, 
+involved trades that were allowed to develop into large losses because they were not 
+cut short when they were small losses. 
+The most important thing about cutting your losses is to have predefined the point 
+where you will get out, before you enter a position. If the market moves to your price, 
+you must get out, no exceptions, every single time. Wavering from this method will 
+eventually result in disaster. 
+Turtle Stops 
+Having stops didn’t mean that the Turtles always had actual stop orders placed with 
+the broker. 
+Since the Turtles carried such large positions, we did not want to reveal our positions 
+or our trading strategies by placing st op orders with broker s. Instead, we were 
+encouraged to have a particular price, which when hit,  would cause us to exit our 
+positions using either limit orders, or market orders. 
+Chapter 
+5 
+T 
+=====PAGE 26=====
+ORIGINAL TURTLES 
+ 22
+These stops were non-negotiable exits. If a particular commodity traded at the stop 
+price, then the position was exited; each time, every time, without fail. 
+Stop Placement 
+The Turtles placed their stops based on position risk. No trade could incur more than 
+2% risk. 
+Since 1 N of price movement represented 1% of Account Equity, the maximum stop 
+that would allow 2% risk would be 2 N of price movement. Turtle stops were set at 2 
+N below the entry for long positions, and 2 N above the entry for short positions. 
+In order to keep total position risk at a minimum, if additional units were added, the 
+stops for earlier units were raised by ½ N. This generally meant that all the stops for 
+the entire position would be placed at 2 N from the most recently added unit. 
+However, in cases where later units were placed at larger spacing either because of fast 
+markets causing skid, or because of opening gaps, there would be differences in the 
+stops. 
+For example: 
+Crude Oil 
+N = 1.20 
+55 day breakout = 28.30 
+ 
+   Entry Price  Stop  
+First Unit  28.30   25.90 
+ 
+   Entry Price  Stop  
+First Unit  28.30   26.50 
+Second Unit 28.90   26.50 
+ 
+   Entry Price  Stop  
+First Unit  28.30   27.10 
+Second Unit 28.90   27.10 
+Third Unit  29.50   27.10 
+ 
+   Entry Price  Stop  
+First Unit  28.30   27.70 
+Second Unit 28.90   27.70 
+Third Unit  29.50   27.70 
+Fourth Unit  30.10   27.70 
+ 
+=====PAGE 27=====
+ORIGINAL TURTLES 
+ 23
+Case where fourth unit was added at a higher price because the market opened gapping 
+up to 30.80: 
+   Entry Price  Stop  
+First Unit  28.30   27.70 
+Second Unit 28.90   27.70 
+Third Unit  29.50   27.70 
+Fourth Unit  30.80   28.40 
+Alternate Stop Strategy – The Whipsaw 
+The Turtles were told of an alternate stop strategy that resulted in better profitability, 
+but that was harder to execute because it incurred many more losses, which resulted in 
+a lower win/loss ratio. This strategy was called the Whipsaw. 
+Instead of taking a 2% risk on each trad e, the stops were placed at ½ N for ½% 
+account risk. If a given Unit was stopped ou t, the Unit would be re-entered if the 
+market reached the original entry price. A few Turtles traded this method with good 
+success. 
+The Whipsaw also had the added benefit of not requiring the movement of stops for 
+earlier Units as new Units were added, since the total risk would never exceed 2% at 
+the maximum four Units.  
+For example, using Whipsaw stops, the Crude Oil entry stops would be: 
+Crude Oil 
+N = 1.20 
+55 day breakout = 28.30 
+ 
+   Entry Price  Stop  
+First Unit  28.30   27.70 
+ 
+   Entry Price  Stop  
+First Unit  28.30   27.70 
+Second Unit 28.90   28.30 
+ 
+   Entry Price  Stop  
+First Unit  28.30   27.70 
+Second Unit 28.90   28.30 
+Third Unit  29.50   28.90 
+ 
+=====PAGE 28=====
+ORIGINAL TURTLES 
+ 24
+   Entry Price  Stop  
+First Unit  28.30   27.70 
+Second Unit 28.90   28.30 
+Third Unit  29.50   28.90 
+Fourth Unit  30.10   29.50 
+Benefits of the Turtle System Stops 
+Since the Turtle’s stops were based on N, they adjusted to the volatility of the markets. 
+More volatile markets would have wide r stops, but they would also have fewer 
+contracts per Unit. This equalized the risk  across all entries and resulted in better 
+diversification and a more robust risk management. 
+=====PAGE 29=====
+ORIGINAL TURTLES 
+ 25
+Exits 
+The Turtles used breakout based exits for profitable positions. 
+here is another old saying: “you can never go broke taking a profit.” The 
+Turtles would not agree with this statement. Getting out of winning positions 
+too early, i.e. “taking a profit” too early, is one of the most common mistakes 
+when trading trend following systems. 
+Prices never go straight up; therefore it is necessary to let the prices go against you if 
+you are going to ride a tren d. Early in a trend this ca n often mean watching decent 
+profits of 10% to 30% fade to a small loss. In the middle of a trend, it might mean 
+watching a profit of 80% to 100% drop by 30% to 40%. The temptation to lighten the 
+position to “lock in profits” can be very great. 
+The Turtles knew that where you took a profit could make the difference between 
+winning and losing. 
+The Turtle System enters on breakouts. Most breakouts do not result in trends. This 
+means that most of the trades that the Turtles made resulted in losses. If the winning 
+trades did not earn enough on average to offset these losses, the Turtles would have 
+lost money. Every profitable trading system has a different optimal exit point. 
+Consider the Turtle System; if you exit winning positions at a 1 N profit while you 
+exited losing positions at a 2 N loss you would need twice as many winners to offset 
+the losses from the losing trades. 
+There is a complex relationship between the components of a trading system. This 
+means that you can’t consider the proper exit for a profitable position without 
+considering the entry, money management and other factors. 
+The proper exit for winning positions is one of the most important aspects of trading, 
+and the least appreciated. Yet it can make the difference between winning and losing. 
+Chapter 
+6 
+T 
+=====PAGE 30=====
+ORIGINAL TURTLES 
+ 26
+Turtle Exits 
+The System 1 exit was a 10 day low for long positions and a 10 day high for short 
+positions. All the Units in the position would be exited if the price went against the 
+position for a 10 day breakout.  
+The System 2 exit was a 20 day low for long positions and a 20 day high for short 
+positions. All the Units in the position would be exited if the price went against the 
+position for a 20 day breakout. 
+As with entries, the Turtles did not typically place exit stop orders, but instead watched 
+the price during the day, and started to phone in exit orders as soon as the price traded 
+through the exit breakout price. 
+These are Difficult Exits 
+For most traders, the Turtle System Exits were probably the single most difficult part 
+of the Turtle System Rules. Waiting for a 10 or 20 day new low can often mean 
+watching 20%, 40% even 100% of significant profits evaporate. 
+There is a very strong tendency to want to exit earlier. It requires great discipline to 
+watch your profits evaporate in order to hold onto your positions for the really big 
+move. The ability to maintain discipline and stick to the rules during large winning 
+trades is the hallmark of the experienced successful trader. 
+=====PAGE 31=====
+ORIGINAL TURTLES 
+ 27
+Tactics 
+Miscellaneous guidelines to cover the rest of  trading the Turtle 
+System Rules. 
+he famous architect Mies van der Rohe , when speaking about restraint in 
+design, once said: “God is in the details.” This is also true of trading systems. 
+There are some important details which remain that can make a significant 
+difference in the profitability of your trading when using the Turtle Trading Rules. 
+Entering Orders 
+As has been mentioned before, Richard Dennis and William Eckhardt advised the 
+Turtles not to use stops when placing orders. We were advised to watch the market 
+and enter orders when the price hit our stop price. 
+We were also told that, in general, it was better to place limit orders instead of market 
+orders. This is because limit orders offer a chance for better fills and less slippage than 
+do market orders. 
+Any market has at all times a bid and an ask. The bid is the price that buyers are willing 
+to buy at, and the ask is the price that sellers are willing to sell at. If at any time the bid 
+price becomes higher than the ask price, trading takes place. A market order will always 
+fill at the bid or ask when there is sufficient volume, and sometimes at a worse price 
+for larger orders. 
+Typically, there is a certain amount of relatively random price movement that occurs, 
+which is sometimes known as the bounce. The idea behind using limit orders is to 
+place your order at the lower end of the bounce, instead of simply placing a market 
+order. A limit order will not move the market if it is a small order, and it will almost 
+always move it less if it is a larger order. 
+Chapter 
+7 
+T 
+=====PAGE 32=====
+ORIGINAL TURTLES 
+ 28
+It takes some skill to be able to determine the best price for a limit order, but with 
+practice, you should be able to get better fills using limit orders placed near the market 
+than with market orders. 
+Fast Markets 
+At times, the market moves very quickly through the order prices, and if you place a 
+limit order it simply won’t get filled. During fast market conditions, a market can move 
+thousands of dollars per contract in just a few minutes. 
+During these times, the Turtles were advised not to panic, and to wait for the market 
+to trade and stabilize before placing their orders. 
+Most beginning traders find this hard to do. They panic and place market orders. 
+Invariably they do this at the worst possible time, and frequently end up trading on the 
+high or low of the day, at the worst possible price. 
+In a fast market, liquidity temporarily dries up. In the case of a rising fast market, sellers 
+stop selling and hold out for a higher price, and they will not re-commence selling until 
+after the price stops moving up. In this scenario, the asks rise considerably, and the 
+spread between bid and ask widens. 
+Buyers are now forced to pay much higher prices as sellers continue raising their asks, 
+and the price eventually moves so far and so fast that new sellers come into the market, 
+causing the price to stabilize, and often to quickly reverse and collapse partway back. 
+Market orders placed into a fast market usually end up getting filled at the highest price 
+of the run-up, right at the point where the market begins to stabilize as new sellers 
+come in. 
+As Turtles, we waited until some indication of at least a temporary price reversal before 
+placing our orders, and this often resulted in much better fills than would have been 
+achieved with a market order. If the market stabilized at a point which was past our 
+stop price, then we would get out of the market, bu t we would do so without 
+panicking. 
+Simultaneous Entry Signals 
+Many days as traders there was little market movement, and little for us to do besides 
+monitor existing positions. We might go for days without placing a single order. Other 
+days would be moderately busy, with signals occurring intermittently over the stretch 
+of a few hours. In that case, we would simply take the trades as they came, until they 
+reached the position limits for those markets. 
+=====PAGE 33=====
+ORIGINAL TURTLES 
+ 29
+ 
+Then there were days when it seemed like everything was happening at once, and we 
+would go from no positions, to loaded, in a day or two. Often, this frantic pace was 
+intensified by multiple signals in correlated markets. 
+This was especially true when the markets gapped open through the entry signals. You 
+might have a gap opening entry signal in Crude Oil, Heating Oil and Unleaded Gas all 
+on the same day. With futures contracts, it was also extremely common for many 
+different months of the same market to signal at the same time. 
+Buy Strength – Sell Weakness 
+If the signals came all at once, we always bought the strongest markets and sold short 
+the weakest markets in a group.  
+We would also only enter one unit in a single market at the same time. For instance, 
+instead of buying February, March and April Heating Oil at the same time, we would 
+pick the one contract month that was the strongest, and that had sufficient volume and 
+liquidity. 
+This is very important! Within a correlated  group, the best long positions are the 
+strongest markets (which almost always outperform the weaker markets in the same 
+group). Conversely, the biggest winning trades to the short side come from the weakest 
+markets within a correlated group. 
+As Turtles, we used various measures to determine strength and weakness. The 
+simplest and most common way was to simply look at the charts and figure out which 
+one “looked” stronger (or weaker) by visual examination. 
+Some would determine how many N the price had advanced since the breakout, and 
+buy the market that had moved the most (in terms of N). 
+Others would subtract the price 3 months ago from the current price and then divide 
+by the current N to normalize across markets. The strongest markets had the highest 
+values; the weakest markets the lowest. 
+Any of these approaches work well. The important thing is to have long positions in 
+the strongest markets and short positions in the weakest markets. 
+Rolling Over Expiring Contracts 
+When futures contracts expire, there are two major factors that need to be considered 
+before rolling over into a new contract. 
+=====PAGE 34=====
+ORIGINAL TURTLES 
+ 30
+First, there are many instances when the near months trend well, but the more distant 
+contracts fail to display the same level of price movement. So don’t roll into a new 
+contract unless its price action would have resulted in an existing position.  
+Second, contracts should be rolled before the volume and open interest in the expiring 
+contract decline too much. How much is too much depends on the unit size. As a 
+general rule, the Turtles rolled existing positions into the new contract month a few 
+weeks before expiration, unless the (current ly held) near month was performing 
+significantly better than farther out contract months. 
+Finally 
+That concludes the Complete Turtle Tradin g System rules. As you are probably 
+thinking, they are not very complicated.  
+But knowing these rules is not enough to make you rich. You have to be able to follow 
+them. 
+Remember what Richard Dennis said: “I always say that you could publish my trading 
+rules in the newspaper and no one would follow them. The key is consistency and 
+discipline. Almost anybody can make up a list of rules that are 80% as good as what we 
+taught our people. What they couldn’t do is give them the confidence to stick to those 
+rules even when things are going bad.” – From Market Wizards, by Jack D. Schwager.  
+Perhaps the best evidence that this is true is the performance of the Turtles themselves; 
+many of them did not make money. This was not because the rules didn’t work; it was 
+because they could not and did not follow the rules. By virtue of this same fact, few 
+who read this document will be successful trading the Turtle Trading Rules. Again; this 
+is not because the rules don’t work. It is because the reader simply won’t have the 
+confidence to follow them. 
+The Turtle rules are very difficult to follow because they depend on capturing relatively 
+infrequent large trends. As a result, many months can pass between winning periods; at 
+times even a year or two. During these periods it is easy to come up with reasons to 
+doubt the system, and to stop following the rules:  
+What if the rules don’t work anymore? What if the markets have changed? 
+What if there is something important missing from the rules? 
+How can I be really sure that this works? 
+=====PAGE 35=====
+ORIGINAL TURTLES 
+ 31
+One member of the first Turtles class, who was fired from the program before the end 
+of the first year, suspected early on that information had been intentionally withheld 
+from the group, and eventually became convinced that there were hidden secrets 
+which Rich would not reveal . This particular trader 
+could not face up to the simple fact that his poor 
+performance was due to his own doubts and 
+insecurities, which resulted in his inability to follow the 
+rules. 
+Another problem is the tendency to want to change the rules. Many of the Turtles, in 
+an effort to reduce the risk of trading the system, changed the rules in subtle ways 
+which sometimes had the opposite of the desired effect.  
+An example: Failing to enter positions as quickly as the rules specify (1 unit every ½ 
+N). While this may seem like a more conservative approach, the reality could be that, 
+for the type of entry system the Turtles used, adding to positions slowly might increase 
+the chance that a retracement would hit the exit stops—resulting in losses—whereas a 
+faster approach might allow the position to weather the retracement without the stops 
+being hit. This subtle change could have a major impact on the profitability of the 
+system during certain market conditions. 
+In order to build the level of confidence you will need to follow a trading system’s 
+rules, whether it is the Turtle System, so mething similar, or a completely different 
+system, it is imperative that you personally conduct research using historical trading 
+data. It is not enough to hear from others that a system works; it is not enough to read 
+the summary results from research conducted by others. You must do it yourself. 
+Get your hands dirty and get directly involved in the research. Dig into the trades, look 
+at the daily equity logs, get very familiar with the way the system trades, and with the 
+extent and frequency of the losses. 
+It is much easier to weather an 8 month losing period if you know that there have been 
+many periods of equivalent length in the last 20 years. It will be much easier to add to 
+positions quickly if you know that adding quickly is a key part of the profitability of the 
+system. 
+The Shep’s Trading Rule 
+“You can break the rules and get away 
+with it. Eventually, the rules break you 
+for not respecting them.” – From Zen 
+in the Markets, by Edward A.Toppel 
+=====PAGE 36=====
+ORIGINAL TURTLES 
+ 32
+Further Study 
+Where do you go from here? There is no substitute for experience. 
+he humorist Barry Le Platner said: “Good judgment comes from experience, 
+and experience comes from bad judgment.”  
+If you want to become a trader, you must start to trade. There is no substitute. 
+You must also make mistakes. 
+Making mistakes is part of trading. If you don’t start trading using actual money—and 
+enough money that it affects you when you win or lose—you 
+won’t learn all the lessons of trading. 
+Paper trading is not a substitute for trading with real money. If 
+you aren’t using real money, you won’t learn how hope, fear, 
+and greed affect you personally. 
+At the same time, it is important to get a thorough understanding of the fundamentals 
+of trading. Armed with this knowledge you will make fewer mistakes, and you will 
+learn much more quickly from the mistakes that you do make. 
+Here are some suggested areas for further study: 
+Trading Psychology 
+Trading psychology is the most important  aspect of trading, and understanding 
+yourself and your own personality as it relates to your trading is critical. This journey is 
+much more about making a sincere and open-minded attempt to understand your own 
+personal psychology than it is about finding the magic psychology book with all the 
+answers. 
+Chapter 
+8 
+T 
+Experience 
+“Experience is that 
+marvelous thing that enables 
+you to recognize a mistake 
+when you make it again.” - 
+Franklyn P. Jones. 
+=====PAGE 37=====
+ORIGINAL TURTLES 
+ 33
+Money Management 
+Money Management is the most important aspect of a mechanical trading system. 
+Controlling risk in a manner that will allow you to c ontinue trading through the 
+inevitable bad periods, and survive to realize the profit potential of good systems, is 
+absolutely fundamental. Yet, the interplay between entry signals, exits and money 
+management is often non-intuitive. Study and Research into the state-of-the-art in 
+money management will pay enormous dividends. 
+Trading Research 
+There is no substitute for statistically va lid historical resear ch when developing 
+mechanical trading systems. In practice,  this means learning how to program a 
+computer to run simulations of trading system performance. 
+There is a lot of good information on curve-fitting, over-optimization, trading statistics 
+and testing methodologies on the web and in books, but the information is a bit hard 
+to find amongst the hype and bull. Be sk eptical, but keep an open mind, and your 
+research will pay off. 
+Final Warning 
+There are a lot of individuals who try to sell themselves and their advice as “expert.” 
+Don’t blindly accept the advice of these se lf-proclaimed experts. The best advice 
+comes from those who aren’t selling it, and who make their money trading. There are 
+many books and biographies that give insights into the habits of those who have 
+been—or who are—successful traders. 
+Learning how to become a good trader—or even an excellent trader—is possible, but 
+it requires a lot of hard work and a healthy dose of skepticism. For those of us who 
+have chosen this path, the journey never ends. Those who continue to be successful 
+will never reach their destination, but will learn to find joy in the journey itself. 
+ 
