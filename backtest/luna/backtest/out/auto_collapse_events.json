@@ -1,0 +1,4122 @@
+[
+ {
+  "sym": "0GUSDT",
+  "peakDate": "2025-09-23",
+  "troughDate": "2026-02-05",
+  "peak": 5.7079,
+  "trough": 0.491,
+  "decline": 0.914
+ },
+ {
+  "sym": "1000000BOBUSDT",
+  "peakDate": "2025-08-09",
+  "troughDate": "2026-02-05",
+  "peak": 0.0888,
+  "trough": 0.0116,
+  "decline": 0.8697
+ },
+ {
+  "sym": "1000000MOGUSDT",
+  "peakDate": "2024-12-07",
+  "troughDate": "2025-04-06",
+  "peak": 3.8351,
+  "trough": 0.2758,
+  "decline": 0.9281
+ },
+ {
+  "sym": "1000BONKUSDT",
+  "peakDate": "2024-11-21",
+  "troughDate": "2025-04-08",
+  "peak": 0.0537,
+  "trough": 0.0095,
+  "decline": 0.8227
+ },
+ {
+  "sym": "1000CATUSDT",
+  "peakDate": "2024-12-16",
+  "troughDate": "2025-04-08",
+  "peak": 0.0629,
+  "trough": 0.0044,
+  "decline": 0.9306
+ },
+ {
+  "sym": "1000CHEEMSUSDT",
+  "peakDate": "2025-10-09",
+  "troughDate": "2026-04-03",
+  "peak": 0.002,
+  "trough": 0.0004,
+  "decline": 0.8025
+ },
+ {
+  "sym": "1000FLOKIUSDT",
+  "peakDate": "2024-11-20",
+  "troughDate": "2025-04-08",
+  "peak": 0.2647,
+  "trough": 0.0473,
+  "decline": 0.8213
+ },
+ {
+  "sym": "1000PEPEUSDT",
+  "peakDate": "2023-05-05",
+  "troughDate": "2023-09-21",
+  "peak": 0.0037,
+  "trough": 0.0006,
+  "decline": 0.8357
+ },
+ {
+  "sym": "1000RATSUSDT",
+  "peakDate": "2024-09-27",
+  "troughDate": "2025-02-18",
+  "peak": 0.159,
+  "trough": 0.0165,
+  "decline": 0.896
+ },
+ {
+  "sym": "1000SATSUSDT",
+  "peakDate": "2024-12-07",
+  "troughDate": "2025-04-16",
+  "peak": 0.0003,
+  "trough": 0,
+  "decline": 0.8897
+ },
+ {
+  "sym": "1000SHIBUSDT",
+  "peakDate": "2021-05-10",
+  "troughDate": "2021-07-20",
+  "peak": 0.0348,
+  "trough": 0.0059,
+  "decline": 0.8312
+ },
+ {
+  "sym": "1000WHYUSDT",
+  "peakDate": "2025-09-20",
+  "troughDate": "2026-03-17",
+  "peak": 0,
+  "trough": 0,
+  "decline": 0.9086
+ },
+ {
+  "sym": "1000XECUSDT",
+  "peakDate": "2021-11-14",
+  "troughDate": "2022-05-12",
+  "peak": 0.2075,
+  "trough": 0.0318,
+  "decline": 0.8467
+ },
+ {
+  "sym": "1000XUSDT",
+  "peakDate": "2024-12-08",
+  "troughDate": "2025-03-10",
+  "peak": 0.3021,
+  "trough": 0.0407,
+  "decline": 0.8654
+ },
+ {
+  "sym": "1INCHUSDT",
+  "peakDate": "2021-11-14",
+  "troughDate": "2022-05-12",
+  "peak": 4.2756,
+  "trough": 0.808,
+  "decline": 0.811
+ },
+ {
+  "sym": "1MBABYDOGEUSDT",
+  "peakDate": "2024-12-11",
+  "troughDate": "2025-04-06",
+  "peak": 0.0057,
+  "trough": 0.001,
+  "decline": 0.8149
+ },
+ {
+  "sym": "2ZUSDT",
+  "peakDate": "2025-10-02",
+  "troughDate": "2026-03-29",
+  "peak": 0.5969,
+  "trough": 0.0671,
+  "decline": 0.8877
+ },
+ {
+  "sym": "42USDT",
+  "peakDate": "2025-10-27",
+  "troughDate": "2026-01-29",
+  "peak": 0.1565,
+  "trough": 0.0224,
+  "decline": 0.8568
+ },
+ {
+  "sym": "4USDT",
+  "peakDate": "2025-10-08",
+  "troughDate": "2026-03-18",
+  "peak": 0.2432,
+  "trough": 0.0067,
+  "decline": 0.9725
+ },
+ {
+  "sym": "A2ZUSDT",
+  "peakDate": "2025-10-09",
+  "troughDate": "2026-03-18",
+  "peak": 0.0061,
+  "trough": 0.0005,
+  "decline": 0.9204
+ },
+ {
+  "sym": "AAVEUSDT",
+  "peakDate": "2021-12-27",
+  "troughDate": "2022-06-18",
+  "peak": 277.44,
+  "trough": 49.59,
+  "decline": 0.8213
+ },
+ {
+  "sym": "ACEUSDT",
+  "peakDate": "2024-12-08",
+  "troughDate": "2025-04-16",
+  "peak": 3.6249,
+  "trough": 0.4415,
+  "decline": 0.8782
+ },
+ {
+  "sym": "ACTUSDT",
+  "peakDate": "2024-11-14",
+  "troughDate": "2025-05-06",
+  "peak": 0.7566,
+  "trough": 0.0501,
+  "decline": 0.9337
+ },
+ {
+  "sym": "ACXUSDT",
+  "peakDate": "2024-12-06",
+  "troughDate": "2025-04-08",
+  "peak": 1.0849,
+  "trough": 0.1801,
+  "decline": 0.834
+ },
+ {
+  "sym": "AEROUSDT",
+  "peakDate": "2024-12-08",
+  "troughDate": "2025-04-08",
+  "peak": 2.2101,
+  "trough": 0.3125,
+  "decline": 0.8586
+ },
+ {
+  "sym": "AEVOUSDT",
+  "peakDate": "2024-03-27",
+  "troughDate": "2024-08-05",
+  "peak": 3.611,
+  "trough": 0.2976,
+  "decline": 0.9176
+ },
+ {
+  "sym": "AGTUSDT",
+  "peakDate": "2025-05-27",
+  "troughDate": "2025-11-22",
+  "peak": 0.034,
+  "trough": 0.0026,
+  "decline": 0.9232
+ },
+ {
+  "sym": "AI16ZUSDT",
+  "peakDate": "2025-01-02",
+  "troughDate": "2025-04-08",
+  "peak": 2.4,
+  "trough": 0.1047,
+  "decline": 0.9564
+ },
+ {
+  "sym": "AINUSDT",
+  "peakDate": "2026-09-15",
+  "troughDate": "2026-09-18",
+  "peak": 0.1722,
+  "trough": 0.0205,
+  "decline": 0.881
+ },
+ {
+  "sym": "AIOTUSDT",
+  "peakDate": "2025-10-02",
+  "troughDate": "2026-03-28",
+  "peak": 1.0944,
+  "trough": 0.0098,
+  "decline": 0.9911
+ },
+ {
+  "sym": "AIOUSDT",
+  "peakDate": "2026-06-11",
+  "troughDate": "2026-09-13",
+  "peak": 0.1938,
+  "trough": 0.0351,
+  "decline": 0.8187
+ },
+ {
+  "sym": "AIUSDT",
+  "peakDate": "2025-09-09",
+  "troughDate": "2026-03-01",
+  "peak": 0.1588,
+  "trough": 0.019,
+  "decline": 0.8801
+ },
+ {
+  "sym": "AIXBTUSDT",
+  "peakDate": "2025-01-15",
+  "troughDate": "2025-04-08",
+  "peak": 0.8742,
+  "trough": 0.0686,
+  "decline": 0.9216
+ },
+ {
+  "sym": "AKEUSDT",
+  "peakDate": "2025-09-26",
+  "troughDate": "2026-03-13",
+  "peak": 0.0024,
+  "trough": 0.0002,
+  "decline": 0.9196
+ },
+ {
+  "sym": "AKROUSDT",
+  "peakDate": "2021-11-13",
+  "troughDate": "2022-05-12",
+  "peak": 0.0377,
+  "trough": 0.0034,
+  "decline": 0.9087
+ },
+ {
+  "sym": "AKTUSDT",
+  "peakDate": "2024-12-06",
+  "troughDate": "2025-04-08",
+  "peak": 4.763,
+  "trough": 0.906,
+  "decline": 0.8098
+ },
+ {
+  "sym": "ALCHUSDT",
+  "peakDate": "2025-01-07",
+  "troughDate": "2025-02-24",
+  "peak": 0.202,
+  "trough": 0.0147,
+  "decline": 0.9273
+ },
+ {
+  "sym": "ALGOUSDT",
+  "peakDate": "2022-01-03",
+  "troughDate": "2022-06-18",
+  "peak": 1.7957,
+  "trough": 0.2954,
+  "decline": 0.8355
+ },
+ {
+  "sym": "ALICEUSDT",
+  "peakDate": "2021-11-24",
+  "troughDate": "2022-05-12",
+  "peak": 27.276,
+  "trough": 2.194,
+  "decline": 0.9196
+ },
+ {
+  "sym": "ALLOUSDT",
+  "peakDate": "2025-11-11",
+  "troughDate": "2026-02-05",
+  "peak": 0.4612,
+  "trough": 0.052,
+  "decline": 0.8873
+ },
+ {
+  "sym": "ALPACAUSDT",
+  "peakDate": "2024-12-04",
+  "troughDate": "2025-04-17",
+  "peak": 0.2888,
+  "trough": 0.0294,
+  "decline": 0.8982
+ },
+ {
+  "sym": "ALPHAUSDT",
+  "peakDate": "2025-01-06",
+  "troughDate": "2025-07-04",
+  "peak": 0.0908,
+  "trough": 0.0101,
+  "decline": 0.8887
+ },
+ {
+  "sym": "ALPINEUSDT",
+  "peakDate": "2025-09-29",
+  "troughDate": "2026-02-05",
+  "peak": 6.6761,
+  "trough": 0.3853,
+  "decline": 0.9423
+ },
+ {
+  "sym": "ALTUSDT",
+  "peakDate": "2024-03-28",
+  "troughDate": "2024-09-16",
+  "peak": 0.6667,
+  "trough": 0.0732,
+  "decline": 0.8903
+ },
+ {
+  "sym": "AMBUSDT",
+  "peakDate": "2024-12-08",
+  "troughDate": "2025-02-21",
+  "peak": 0.014,
+  "trough": 0.0012,
+  "decline": 0.915
+ },
+ {
+  "sym": "ANCUSDT",
+  "peakDate": "2022-03-09",
+  "troughDate": "2022-05-13",
+  "peak": 4.271,
+  "trough": 0.0555,
+  "decline": 0.987
+ },
+ {
+  "sym": "ANIMEUSDT",
+  "peakDate": "2025-06-09",
+  "troughDate": "2025-12-01",
+  "peak": 0.0441,
+  "trough": 0.0059,
+  "decline": 0.866
+ },
+ {
+  "sym": "ANKRUSDT",
+  "peakDate": "2021-11-26",
+  "troughDate": "2022-05-12",
+  "peak": 0.1759,
+  "trough": 0.0317,
+  "decline": 0.8195
+ },
+ {
+  "sym": "ANTUSDT",
+  "peakDate": "2021-12-31",
+  "troughDate": "2022-05-12",
+  "peak": 13.536,
+  "trough": 1.23,
+  "decline": 0.9091
+ },
+ {
+  "sym": "APEUSDT",
+  "peakDate": "2022-04-28",
+  "troughDate": "2022-06-16",
+  "peak": 23.716,
+  "trough": 3.373,
+  "decline": 0.8578
+ },
+ {
+  "sym": "API3USDT",
+  "peakDate": "2022-03-01",
+  "troughDate": "2022-06-13",
+  "peak": 8.092,
+  "trough": 1.152,
+  "decline": 0.8576
+ },
+ {
+  "sym": "APRUSDT",
+  "peakDate": "2025-10-23",
+  "troughDate": "2026-02-05",
+  "peak": 0.6246,
+  "trough": 0.067,
+  "decline": 0.8928
+ },
+ {
+  "sym": "APTUSDT",
+  "peakDate": "2025-10-05",
+  "troughDate": "2026-02-23",
+  "peak": 5.4552,
+  "trough": 0.8096,
+  "decline": 0.8516
+ },
+ {
+  "sym": "ARBUSDT",
+  "peakDate": "2025-08-23",
+  "troughDate": "2026-02-19",
+  "peak": 0.6131,
+  "trough": 0.0978,
+  "decline": 0.8405
+ },
+ {
+  "sym": "ARCUSDT",
+  "peakDate": "2025-02-12",
+  "troughDate": "2025-08-05",
+  "peak": 0.417,
+  "trough": 0.0176,
+  "decline": 0.9577
+ },
+ {
+  "sym": "ARIAUSDT",
+  "peakDate": "2026-04-12",
+  "troughDate": "2026-07-17",
+  "peak": 0.8153,
+  "trough": 0.0226,
+  "decline": 0.9723
+ },
+ {
+  "sym": "ARKMUSDT",
+  "peakDate": "2025-09-13",
+  "troughDate": "2026-03-08",
+  "peak": 0.6649,
+  "trough": 0.0991,
+  "decline": 0.851
+ },
+ {
+  "sym": "ARPAUSDT",
+  "peakDate": "2021-11-12",
+  "troughDate": "2022-05-11",
+  "peak": 0.2116,
+  "trough": 0.0315,
+  "decline": 0.851
+ },
+ {
+  "sym": "ARUSDT",
+  "peakDate": "2022-01-01",
+  "troughDate": "2022-06-18",
+  "peak": 66.083,
+  "trough": 7.918,
+  "decline": 0.8802
+ },
+ {
+  "sym": "ASRUSDT",
+  "peakDate": "2025-08-08",
+  "troughDate": "2025-12-18",
+  "peak": 7.87,
+  "trough": 1.15,
+  "decline": 0.8539
+ },
+ {
+  "sym": "ATAUSDT",
+  "peakDate": "2021-11-14",
+  "troughDate": "2022-05-12",
+  "peak": 1.3423,
+  "trough": 0.1382,
+  "decline": 0.897
+ },
+ {
+  "sym": "ATHUSDT",
+  "peakDate": "2025-09-28",
+  "troughDate": "2026-02-24",
+  "peak": 0.065,
+  "trough": 0.005,
+  "decline": 0.9234
+ },
+ {
+  "sym": "ATOMUSDT",
+  "peakDate": "2022-01-16",
+  "troughDate": "2022-06-18",
+  "peak": 43.636,
+  "trough": 6.076,
+  "decline": 0.8608
+ },
+ {
+  "sym": "ATUSDT",
+  "peakDate": "2025-11-02",
+  "troughDate": "2025-12-16",
+  "peak": 0.4856,
+  "trough": 0.0848,
+  "decline": 0.8254
+ },
+ {
+  "sym": "AUCTIONUSDT",
+  "peakDate": "2025-03-21",
+  "troughDate": "2025-06-22",
+  "peak": 51.502,
+  "trough": 8.342,
+  "decline": 0.838
+ },
+ {
+  "sym": "AUDIOUSDT",
+  "peakDate": "2022-04-04",
+  "troughDate": "2022-09-25",
+  "peak": 1.7404,
+  "trough": 0.2116,
+  "decline": 0.8784
+ },
+ {
+  "sym": "AUSDT",
+  "peakDate": "2025-08-13",
+  "troughDate": "2026-02-05",
+  "peak": 0.5697,
+  "trough": 0.0768,
+  "decline": 0.8652
+ },
+ {
+  "sym": "AVAAIUSDT",
+  "peakDate": "2025-01-18",
+  "troughDate": "2025-04-08",
+  "peak": 0.2429,
+  "trough": 0.0177,
+  "decline": 0.9273
+ },
+ {
+  "sym": "AVAUSDT",
+  "peakDate": "2024-12-13",
+  "troughDate": "2025-04-08",
+  "peak": 2.4591,
+  "trough": 0.4607,
+  "decline": 0.8127
+ },
+ {
+  "sym": "AVAXUSDT",
+  "peakDate": "2021-12-21",
+  "troughDate": "2022-06-18",
+  "peak": 123.154,
+  "trough": 14.81,
+  "decline": 0.8797
+ },
+ {
+  "sym": "AVNTUSDT",
+  "peakDate": "2025-09-21",
+  "troughDate": "2026-03-08",
+  "peak": 2.3598,
+  "trough": 0.1467,
+  "decline": 0.9378
+ },
+ {
+  "sym": "AXLUSDT",
+  "peakDate": "2025-10-06",
+  "troughDate": "2026-04-03",
+  "peak": 0.3192,
+  "trough": 0.0431,
+  "decline": 0.8651
+ },
+ {
+  "sym": "AXSUSDT",
+  "peakDate": "2021-12-25",
+  "troughDate": "2022-06-18",
+  "peak": 108.95,
+  "trough": 12.91,
+  "decline": 0.8815
+ },
+ {
+  "sym": "B3USDT",
+  "peakDate": "2025-10-06",
+  "troughDate": "2026-04-03",
+  "peak": 0.0028,
+  "trough": 0.0003,
+  "decline": 0.8961
+ },
+ {
+  "sym": "BABYUSDT",
+  "peakDate": "2025-09-21",
+  "troughDate": "2026-03-06",
+  "peak": 0.0622,
+  "trough": 0.011,
+  "decline": 0.8239
+ },
+ {
+  "sym": "BADGERUSDT",
+  "peakDate": "2024-12-08",
+  "troughDate": "2025-04-08",
+  "peak": 4.695,
+  "trough": 0.8168,
+  "decline": 0.826
+ },
+ {
+  "sym": "BAKEUSDT",
+  "peakDate": "2021-11-14",
+  "troughDate": "2022-05-12",
+  "peak": 2.1933,
+  "trough": 0.2241,
+  "decline": 0.8978
+ },
+ {
+  "sym": "BALUSDT",
+  "peakDate": "2022-04-08",
+  "troughDate": "2022-06-18",
+  "peak": 20.232,
+  "trough": 3.941,
+  "decline": 0.8052
+ },
+ {
+  "sym": "BANANAS31USDT",
+  "peakDate": "2025-07-10",
+  "troughDate": "2025-11-14",
+  "peak": 0.0373,
+  "trough": 0.0022,
+  "decline": 0.9398
+ },
+ {
+  "sym": "BANANAUSDT",
+  "peakDate": "2025-08-09",
+  "troughDate": "2026-02-05",
+  "peak": 27.073,
+  "trough": 4.11,
+  "decline": 0.8482
+ },
+ {
+  "sym": "BANDUSDT",
+  "peakDate": "2021-11-13",
+  "troughDate": "2022-05-12",
+  "peak": 8.9104,
+  "trough": 1.519,
+  "decline": 0.8295
+ },
+ {
+  "sym": "BANKUSDT",
+  "peakDate": "2026-07-26",
+  "troughDate": "2026-09-15",
+  "peak": 0.3793,
+  "trough": 0.027,
+  "decline": 0.9287
+ },
+ {
+  "sym": "BANUSDT",
+  "peakDate": "2024-11-18",
+  "troughDate": "2025-02-02",
+  "peak": 0.2836,
+  "trough": 0.0296,
+  "decline": 0.8956
+ },
+ {
+  "sym": "BARDUSDT",
+  "peakDate": "2026-03-05",
+  "troughDate": "2026-08-18",
+  "peak": 1.6558,
+  "trough": 0.1027,
+  "decline": 0.938
+ },
+ {
+  "sym": "BASUSDT",
+  "peakDate": "2025-10-16",
+  "troughDate": "2026-02-05",
+  "peak": 0.1419,
+  "trough": 0.0027,
+  "decline": 0.9807
+ },
+ {
+  "sym": "BBUSDT",
+  "peakDate": "2025-09-24",
+  "troughDate": "2026-03-22",
+  "peak": 0.2352,
+  "trough": 0.0234,
+  "decline": 0.9005
+ },
+ {
+  "sym": "BDXNUSDT",
+  "peakDate": "2025-11-13",
+  "troughDate": "2026-03-17",
+  "peak": 0.0929,
+  "trough": 0.0065,
+  "decline": 0.9303
+ },
+ {
+  "sym": "BEAMXUSDT",
+  "peakDate": "2024-12-11",
+  "troughDate": "2025-03-10",
+  "peak": 0.039,
+  "trough": 0.0052,
+  "decline": 0.8667
+ },
+ {
+  "sym": "BEATUSDT",
+  "peakDate": "2026-06-11",
+  "troughDate": "2026-09-10",
+  "peak": 8.5224,
+  "trough": 0.0766,
+  "decline": 0.991
+ },
+ {
+  "sym": "BELUSDT",
+  "peakDate": "2021-12-03",
+  "troughDate": "2022-05-12",
+  "peak": 2.5002,
+  "trough": 0.2428,
+  "decline": 0.9029
+ },
+ {
+  "sym": "BERAUSDT",
+  "peakDate": "2025-10-03",
+  "troughDate": "2026-02-05",
+  "peak": 3.026,
+  "trough": 0.3741,
+  "decline": 0.8764
+ },
+ {
+  "sym": "BICOUSDT",
+  "peakDate": "2025-08-28",
+  "troughDate": "2026-02-24",
+  "peak": 0.1188,
+  "trough": 0.0205,
+  "decline": 0.8278
+ },
+ {
+  "sym": "BIDUSDT",
+  "peakDate": "2025-09-09",
+  "troughDate": "2026-01-21",
+  "peak": 0.1372,
+  "trough": 0.0141,
+  "decline": 0.8974
+ },
+ {
+  "sym": "BIGTIMEUSDT",
+  "peakDate": "2024-03-09",
+  "troughDate": "2024-08-05",
+  "peak": 0.586,
+  "trough": 0.0623,
+  "decline": 0.8937
+ },
+ {
+  "sym": "BILLUSDT",
+  "peakDate": "2026-05-14",
+  "troughDate": "2026-10-02",
+  "peak": 0.2087,
+  "trough": 0.0111,
+  "decline": 0.947
+ },
+ {
+  "sym": "BIOUSDT",
+  "peakDate": "2025-01-03",
+  "troughDate": "2025-04-15",
+  "peak": 0.8147,
+  "trough": 0.0431,
+  "decline": 0.9471
+ },
+ {
+  "sym": "BIRBUSDT",
+  "peakDate": "2026-02-03",
+  "troughDate": "2026-08-02",
+  "peak": 0.2969,
+  "trough": 0.0468,
+  "decline": 0.8422
+ },
+ {
+  "sym": "BLESSUSDT",
+  "peakDate": "2025-10-15",
+  "troughDate": "2026-03-01",
+  "peak": 0.1963,
+  "trough": 0.0044,
+  "decline": 0.9778
+ },
+ {
+  "sym": "BLUAIUSDT",
+  "peakDate": "2025-10-25",
+  "troughDate": "2025-12-18",
+  "peak": 0.0314,
+  "trough": 0.0042,
+  "decline": 0.8675
+ },
+ {
+  "sym": "BLURUSDT",
+  "peakDate": "2024-02-24",
+  "troughDate": "2024-08-05",
+  "peak": 0.8069,
+  "trough": 0.1258,
+  "decline": 0.8441
+ },
+ {
+  "sym": "BLZUSDT",
+  "peakDate": "2021-11-24",
+  "troughDate": "2022-05-12",
+  "peak": 0.403,
+  "trough": 0.057,
+  "decline": 0.8586
+ },
+ {
+  "sym": "BMTUSDT",
+  "peakDate": "2025-06-25",
+  "troughDate": "2025-12-18",
+  "peak": 0.1435,
+  "trough": 0.021,
+  "decline": 0.8539
+ },
+ {
+  "sym": "BNXUSDT",
+  "peakDate": "2024-09-12",
+  "troughDate": "2025-02-06",
+  "peak": 1.6726,
+  "trough": 0.1635,
+  "decline": 0.9022
+ },
+ {
+  "sym": "BOBUSDT",
+  "peakDate": "2025-12-03",
+  "troughDate": "2026-03-20",
+  "peak": 0.0273,
+  "trough": 0.0052,
+  "decline": 0.8093
+ },
+ {
+  "sym": "BOMEUSDT",
+  "peakDate": "2024-11-13",
+  "troughDate": "2025-04-08",
+  "peak": 0.0113,
+  "trough": 0.001,
+  "decline": 0.913
+ },
+ {
+  "sym": "BRETTUSDT",
+  "peakDate": "2025-08-13",
+  "troughDate": "2026-02-05",
+  "peak": 0.0627,
+  "trough": 0.0069,
+  "decline": 0.8898
+ },
+ {
+  "sym": "BREVUSDT",
+  "peakDate": "2026-01-03",
+  "troughDate": "2026-06-30",
+  "peak": 0.4487,
+  "trough": 0.0693,
+  "decline": 0.8455
+ },
+ {
+  "sym": "BROCCOLIF3BUSDT",
+  "peakDate": "2025-10-14",
+  "troughDate": "2026-03-20",
+  "peak": 0.0285,
+  "trough": 0.0031,
+  "decline": 0.8916
+ },
+ {
+  "sym": "BSBUSDT",
+  "peakDate": "2026-05-23",
+  "troughDate": "2026-09-10",
+  "peak": 1.1073,
+  "trough": 0.087,
+  "decline": 0.9214
+ },
+ {
+  "sym": "BSWUSDT",
+  "peakDate": "2024-12-08",
+  "troughDate": "2025-04-15",
+  "peak": 0.1083,
+  "trough": 0.0111,
+  "decline": 0.8973
+ },
+ {
+  "sym": "BTRUSDT",
+  "peakDate": "2026-02-15",
+  "troughDate": "2026-07-17",
+  "peak": 0.2146,
+  "trough": 0.0164,
+  "decline": 0.9235
+ },
+ {
+  "sym": "BTSUSDT",
+  "peakDate": "2021-11-14",
+  "troughDate": "2022-05-13",
+  "peak": 0.0605,
+  "trough": 0.0115,
+  "decline": 0.8099
+ },
+ {
+  "sym": "BTTUSDT",
+  "peakDate": "2021-04-06",
+  "troughDate": "2021-07-20",
+  "peak": 0.0098,
+  "trough": 0.0019,
+  "decline": 0.8005
+ },
+ {
+  "sym": "BULLAUSDT",
+  "peakDate": "2026-01-31",
+  "troughDate": "2026-06-05",
+  "peak": 0.312,
+  "trough": 0.0044,
+  "decline": 0.986
+ },
+ {
+  "sym": "BUSDT",
+  "peakDate": "2026-05-13",
+  "troughDate": "2026-07-13",
+  "peak": 0.6469,
+  "trough": 0.1084,
+  "decline": 0.8324
+ },
+ {
+  "sym": "BZRXUSDT",
+  "peakDate": "2020-09-12",
+  "troughDate": "2020-11-04",
+  "peak": 0.675,
+  "trough": 0.0916,
+  "decline": 0.8643
+ },
+ {
+  "sym": "C98USDT",
+  "peakDate": "2021-11-14",
+  "troughDate": "2022-05-12",
+  "peak": 3.7897,
+  "trough": 0.4303,
+  "decline": 0.8865
+ },
+ {
+  "sym": "CARVUSDT",
+  "peakDate": "2025-09-12",
+  "troughDate": "2026-03-08",
+  "peak": 0.3239,
+  "trough": 0.0557,
+  "decline": 0.828
+ },
+ {
+  "sym": "CATIUSDT",
+  "peakDate": "2024-11-18",
+  "troughDate": "2025-04-16",
+  "peak": 0.6984,
+  "trough": 0.0727,
+  "decline": 0.8959
+ },
+ {
+  "sym": "CELOUSDT",
+  "peakDate": "2022-04-04",
+  "troughDate": "2022-09-21",
+  "peak": 4.879,
+  "trough": 0.731,
+  "decline": 0.8502
+ },
+ {
+  "sym": "CELRUSDT",
+  "peakDate": "2021-11-21",
+  "troughDate": "2022-05-12",
+  "peak": 0.1459,
+  "trough": 0.0137,
+  "decline": 0.906
+ },
+ {
+  "sym": "CETUSUSDT",
+  "peakDate": "2025-08-13",
+  "troughDate": "2026-02-05",
+  "peak": 0.1162,
+  "trough": 0.0151,
+  "decline": 0.8703
+ },
+ {
+  "sym": "CGPTUSDT",
+  "peakDate": "2025-01-15",
+  "troughDate": "2025-04-08",
+  "peak": 0.4432,
+  "trough": 0.0582,
+  "decline": 0.8688
+ },
+ {
+  "sym": "CHESSUSDT",
+  "peakDate": "2024-12-08",
+  "troughDate": "2025-04-08",
+  "peak": 0.2742,
+  "trough": 0.0476,
+  "decline": 0.8264
+ },
+ {
+  "sym": "CHILLGUYUSDT",
+  "peakDate": "2024-11-27",
+  "troughDate": "2025-04-08",
+  "peak": 0.5655,
+  "trough": 0.0185,
+  "decline": 0.9673
+ },
+ {
+  "sym": "CHIPUSDT",
+  "peakDate": "2026-04-22",
+  "troughDate": "2026-08-09",
+  "peak": 0.1125,
+  "trough": 0.0217,
+  "decline": 0.8073
+ },
+ {
+  "sym": "CHRUSDT",
+  "peakDate": "2021-11-20",
+  "troughDate": "2022-05-11",
+  "peak": 1.413,
+  "trough": 0.181,
+  "decline": 0.8719
+ },
+ {
+  "sym": "CHZUSDT",
+  "peakDate": "2021-11-14",
+  "troughDate": "2022-05-12",
+  "peak": 0.5533,
+  "trough": 0.097,
+  "decline": 0.8248
+ },
+ {
+  "sym": "CKBUSDT",
+  "peakDate": "2024-12-03",
+  "troughDate": "2025-04-08",
+  "peak": 0.0181,
+  "trough": 0.0036,
+  "decline": 0.802
+ },
+ {
+  "sym": "CLOUSDT",
+  "peakDate": "2026-01-16",
+  "troughDate": "2026-02-07",
+  "peak": 0.7692,
+  "trough": 0.056,
+  "decline": 0.9272
+ },
+ {
+  "sym": "COAIUSDT",
+  "peakDate": "2025-10-16",
+  "troughDate": "2026-02-01",
+  "peak": 19.082,
+  "trough": 0.2634,
+  "decline": 0.9862
+ },
+ {
+  "sym": "COLLECTUSDT",
+  "peakDate": "2026-03-24",
+  "troughDate": "2026-09-16",
+  "peak": 0.089,
+  "trough": 0.0156,
+  "decline": 0.8251
+ },
+ {
+  "sym": "COMBOUSDT",
+  "peakDate": "2024-12-13",
+  "troughDate": "2025-03-27",
+  "peak": 0.6682,
+  "trough": 0.0695,
+  "decline": 0.896
+ },
+ {
+  "sym": "COMMONUSDT",
+  "peakDate": "2025-10-27",
+  "troughDate": "2026-01-30",
+  "peak": 0.0183,
+  "trough": 0.0011,
+  "decline": 0.9393
+ },
+ {
+  "sym": "COMPUSDT",
+  "peakDate": "2021-12-27",
+  "troughDate": "2022-06-18",
+  "peak": 236.21,
+  "trough": 28.67,
+  "decline": 0.8786
+ },
+ {
+  "sym": "COOKIEUSDT",
+  "peakDate": "2025-08-10",
+  "troughDate": "2026-02-05",
+  "peak": 0.1661,
+  "trough": 0.0185,
+  "decline": 0.8886
+ },
+ {
+  "sym": "COSUSDT",
+  "peakDate": "2024-12-13",
+  "troughDate": "2025-04-08",
+  "peak": 0.0155,
+  "trough": 0.0028,
+  "decline": 0.8195
+ },
+ {
+  "sym": "COTIUSDT",
+  "peakDate": "2021-03-30",
+  "troughDate": "2021-07-20",
+  "peak": 0.515,
+  "trough": 0.0936,
+  "decline": 0.8183
+ },
+ {
+  "sym": "COWUSDT",
+  "peakDate": "2024-12-25",
+  "troughDate": "2025-04-08",
+  "peak": 1.1603,
+  "trough": 0.2033,
+  "decline": 0.8248
+ },
+ {
+  "sym": "CRVUSDT",
+  "peakDate": "2020-09-01",
+  "troughDate": "2020-10-25",
+  "peak": 5.359,
+  "trough": 0.336,
+  "decline": 0.9373
+ },
+ {
+  "sym": "CTSIUSDT",
+  "peakDate": "2021-11-11",
+  "troughDate": "2022-05-09",
+  "peak": 1.4253,
+  "trough": 0.1923,
+  "decline": 0.8651
+ },
+ {
+  "sym": "CUDISUSDT",
+  "peakDate": "2025-09-14",
+  "troughDate": "2026-01-28",
+  "peak": 0.1548,
+  "trough": 0.02,
+  "decline": 0.8709
+ },
+ {
+  "sym": "CUSDT",
+  "peakDate": "2025-09-15",
+  "troughDate": "2026-03-08",
+  "peak": 0.2733,
+  "trough": 0.0469,
+  "decline": 0.8284
+ },
+ {
+  "sym": "CYBERUSDT",
+  "peakDate": "2025-08-12",
+  "troughDate": "2026-02-05",
+  "peak": 2.984,
+  "trough": 0.4706,
+  "decline": 0.8423
+ },
+ {
+  "sym": "CYSUSDT",
+  "peakDate": "2026-08-12",
+  "troughDate": "2026-09-13",
+  "peak": 1.6751,
+  "trough": 0.1208,
+  "decline": 0.9279
+ },
+ {
+  "sym": "DAMUSDT",
+  "peakDate": "2025-09-18",
+  "troughDate": "2026-02-10",
+  "peak": 0.1362,
+  "trough": 0.0142,
+  "decline": 0.8955
+ },
+ {
+  "sym": "DARUSDT",
+  "peakDate": "2022-05-04",
+  "troughDate": "2022-10-20",
+  "peak": 1.457,
+  "trough": 0.1829,
+  "decline": 0.8745
+ },
+ {
+  "sym": "DEEPUSDT",
+  "peakDate": "2025-08-13",
+  "troughDate": "2026-02-05",
+  "peak": 0.1792,
+  "trough": 0.0236,
+  "decline": 0.8682
+ },
+ {
+  "sym": "DEGENUSDT",
+  "peakDate": "2024-11-15",
+  "troughDate": "2025-04-08",
+  "peak": 0.0263,
+  "trough": 0.0019,
+  "decline": 0.9272
+ },
+ {
+  "sym": "DEGOUSDT",
+  "peakDate": "2025-10-26",
+  "troughDate": "2026-04-21",
+  "peak": 2.1207,
+  "trough": 0.1466,
+  "decline": 0.9309
+ },
+ {
+  "sym": "DENTUSDT",
+  "peakDate": "2021-04-05",
+  "troughDate": "2021-07-20",
+  "peak": 0.0194,
+  "trough": 0.0016,
+  "decline": 0.9166
+ },
+ {
+  "sym": "DEXEUSDT",
+  "peakDate": "2026-07-12",
+  "troughDate": "2026-07-23",
+  "peak": 47.94,
+  "trough": 1.493,
+  "decline": 0.9689
+ },
+ {
+  "sym": "DFUSDT",
+  "peakDate": "2025-08-22",
+  "troughDate": "2026-02-06",
+  "peak": 0.0315,
+  "trough": 0.0042,
+  "decline": 0.8657
+ },
+ {
+  "sym": "DGBUSDT",
+  "peakDate": "2021-11-13",
+  "troughDate": "2022-05-11",
+  "peak": 0.0633,
+  "trough": 0.0112,
+  "decline": 0.8238
+ },
+ {
+  "sym": "DMCUSDT",
+  "peakDate": "2025-07-01",
+  "troughDate": "2025-12-28",
+  "peak": 0.0098,
+  "trough": 0.0012,
+  "decline": 0.8818
+ },
+ {
+  "sym": "DODOUSDT",
+  "peakDate": "2021-11-13",
+  "troughDate": "2022-05-12",
+  "peak": 1.697,
+  "trough": 0.135,
+  "decline": 0.9204
+ },
+ {
+  "sym": "DODOXUSDT",
+  "peakDate": "2024-12-08",
+  "troughDate": "2025-04-17",
+  "peak": 0.2212,
+  "trough": 0.0394,
+  "decline": 0.8217
+ },
+ {
+  "sym": "DOGSUSDT",
+  "peakDate": "2024-08-28",
+  "troughDate": "2025-02-24",
+  "peak": 0.0015,
+  "trough": 0.0001,
+  "decline": 0.8999
+ },
+ {
+  "sym": "DOLOUSDT",
+  "peakDate": "2025-08-31",
+  "troughDate": "2026-02-05",
+  "peak": 0.3262,
+  "trough": 0.0309,
+  "decline": 0.9054
+ },
+ {
+  "sym": "DOTUSDT",
+  "peakDate": "2021-11-13",
+  "troughDate": "2022-05-12",
+  "peak": 47.045,
+  "trough": 8.692,
+  "decline": 0.8152
+ },
+ {
+  "sym": "DRIFTUSDT",
+  "peakDate": "2025-10-09",
+  "troughDate": "2026-04-07",
+  "peak": 0.7726,
+  "trough": 0.0267,
+  "decline": 0.9655
+ },
+ {
+  "sym": "DUSDT",
+  "peakDate": "2025-01-09",
+  "troughDate": "2025-06-22",
+  "peak": 0.1812,
+  "trough": 0.0275,
+  "decline": 0.8484
+ },
+ {
+  "sym": "DUSKUSDT",
+  "peakDate": "2022-01-16",
+  "troughDate": "2022-07-12",
+  "peak": 1.0291,
+  "trough": 0.1036,
+  "decline": 0.8993
+ },
+ {
+  "sym": "DYDXUSDT",
+  "peakDate": "2021-12-28",
+  "troughDate": "2022-06-18",
+  "peak": 10.174,
+  "trough": 1.06,
+  "decline": 0.8958
+ },
+ {
+  "sym": "DYMUSDT",
+  "peakDate": "2024-12-06",
+  "troughDate": "2025-04-06",
+  "peak": 2.7089,
+  "trough": 0.2301,
+  "decline": 0.9151
+ },
+ {
+  "sym": "EDENUSDT",
+  "peakDate": "2025-09-30",
+  "troughDate": "2026-03-29",
+  "peak": 0.3991,
+  "trough": 0.026,
+  "decline": 0.9349
+ },
+ {
+  "sym": "EDGEUSDT",
+  "peakDate": "2026-05-21",
+  "troughDate": "2026-07-05",
+  "peak": 1.5144,
+  "trough": 0.242,
+  "decline": 0.8402
+ },
+ {
+  "sym": "EDUUSDT",
+  "peakDate": "2024-12-08",
+  "troughDate": "2025-04-06",
+  "peak": 0.7561,
+  "trough": 0.1005,
+  "decline": 0.8671
+ },
+ {
+  "sym": "EGLDUSDT",
+  "peakDate": "2021-12-15",
+  "troughDate": "2022-06-13",
+  "peak": 295.58,
+  "trough": 41.67,
+  "decline": 0.859
+ },
+ {
+  "sym": "EIGENUSDT",
+  "peakDate": "2025-10-04",
+  "troughDate": "2026-04-02",
+  "peak": 1.9698,
+  "trough": 0.1514,
+  "decline": 0.9231
+ },
+ {
+  "sym": "ENAUSDT",
+  "peakDate": "2025-09-09",
+  "troughDate": "2026-02-24",
+  "peak": 0.8062,
+  "trough": 0.0979,
+  "decline": 0.8786
+ },
+ {
+  "sym": "ENJUSDT",
+  "peakDate": "2021-12-26",
+  "troughDate": "2022-06-18",
+  "peak": 3.1899,
+  "trough": 0.4121,
+  "decline": 0.8708
+ },
+ {
+  "sym": "ENSOUSDT",
+  "peakDate": "2025-10-14",
+  "troughDate": "2026-01-20",
+  "peak": 3.128,
+  "trough": 0.5425,
+  "decline": 0.8266
+ },
+ {
+  "sym": "ENSUSDT",
+  "peakDate": "2021-11-30",
+  "troughDate": "2022-05-12",
+  "peak": 70.009,
+  "trough": 8.613,
+  "decline": 0.877
+ },
+ {
+  "sym": "EPICUSDT",
+  "peakDate": "2025-08-18",
+  "troughDate": "2026-02-11",
+  "peak": 2.9964,
+  "trough": 0.2911,
+  "decline": 0.9029
+ },
+ {
+  "sym": "EPTUSDT",
+  "peakDate": "2025-10-06",
+  "troughDate": "2026-01-29",
+  "peak": 0.007,
+  "trough": 0.0012,
+  "decline": 0.8366
+ },
+ {
+  "sym": "ERAUSDT",
+  "peakDate": "2025-07-17",
+  "troughDate": "2025-12-18",
+  "peak": 1.6842,
+  "trough": 0.1816,
+  "decline": 0.8922
+ },
+ {
+  "sym": "ESPORTSUSDT",
+  "peakDate": "2026-05-20",
+  "troughDate": "2026-09-17",
+  "peak": 0.7894,
+  "trough": 0.0094,
+  "decline": 0.9881
+ },
+ {
+  "sym": "ETHFIUSDT",
+  "peakDate": "2024-12-06",
+  "troughDate": "2025-04-16",
+  "peak": 2.9666,
+  "trough": 0.4222,
+  "decline": 0.8577
+ },
+ {
+  "sym": "ETHWUSDT",
+  "peakDate": "2025-08-22",
+  "troughDate": "2026-02-05",
+  "peak": 2.0401,
+  "trough": 0.3154,
+  "decline": 0.8454
+ },
+ {
+  "sym": "EULUSDT",
+  "peakDate": "2025-10-13",
+  "troughDate": "2026-03-29",
+  "peak": 9.446,
+  "trough": 0.73,
+  "decline": 0.9227
+ },
+ {
+  "sym": "EVAAUSDT",
+  "peakDate": "2025-10-26",
+  "troughDate": "2026-03-01",
+  "peak": 12.7331,
+  "trough": 0.4237,
+  "decline": 0.9667
+ },
+ {
+  "sym": "FARTCOINUSDT",
+  "peakDate": "2025-01-19",
+  "troughDate": "2025-03-10",
+  "peak": 2.1643,
+  "trough": 0.2187,
+  "decline": 0.899
+ },
+ {
+  "sym": "FETUSDT",
+  "peakDate": "2024-12-06",
+  "troughDate": "2025-04-08",
+  "peak": 2.1385,
+  "trough": 0.3791,
+  "decline": 0.8227
+ },
+ {
+  "sym": "FHEUSDT",
+  "peakDate": "2026-01-20",
+  "troughDate": "2026-04-11",
+  "peak": 0.2297,
+  "trough": 0.0157,
+  "decline": 0.9317
+ },
+ {
+  "sym": "FIDAUSDT",
+  "peakDate": "2024-12-06",
+  "troughDate": "2025-05-07",
+  "peak": 0.3964,
+  "trough": 0.0574,
+  "decline": 0.8553
+ },
+ {
+  "sym": "FIGHTUSDT",
+  "peakDate": "2026-01-24",
+  "troughDate": "2026-03-31",
+  "peak": 0.0248,
+  "trough": 0.0024,
+  "decline": 0.9023
+ },
+ {
+  "sym": "FILUSDT",
+  "peakDate": "2021-11-28",
+  "troughDate": "2022-05-27",
+  "peak": 56.45,
+  "trough": 7.221,
+  "decline": 0.8721
+ },
+ {
+  "sym": "FIOUSDT",
+  "peakDate": "2026-02-28",
+  "troughDate": "2026-04-15",
+  "peak": 0.0189,
+  "trough": 0.0027,
+  "decline": 0.8574
+ },
+ {
+  "sym": "FISUSDT",
+  "peakDate": "2025-07-26",
+  "troughDate": "2025-12-09",
+  "peak": 0.1679,
+  "trough": 0.0265,
+  "decline": 0.8419
+ },
+ {
+  "sym": "FLMUSDT",
+  "peakDate": "2021-11-15",
+  "troughDate": "2022-05-12",
+  "peak": 0.6906,
+  "trough": 0.0913,
+  "decline": 0.8678
+ },
+ {
+  "sym": "FLOCKUSDT",
+  "peakDate": "2025-09-09",
+  "troughDate": "2026-02-05",
+  "peak": 0.4091,
+  "trough": 0.0534,
+  "decline": 0.8695
+ },
+ {
+  "sym": "FLOWUSDT",
+  "peakDate": "2025-10-03",
+  "troughDate": "2026-03-29",
+  "peak": 0.383,
+  "trough": 0.0285,
+  "decline": 0.9257
+ },
+ {
+  "sym": "FOGOUSDT",
+  "peakDate": "2026-01-10",
+  "troughDate": "2026-06-28",
+  "peak": 0.0648,
+  "trough": 0.0089,
+  "decline": 0.8629
+ },
+ {
+  "sym": "FOLKSUSDT",
+  "peakDate": "2025-12-13",
+  "troughDate": "2026-04-06",
+  "peak": 32.847,
+  "trough": 0.868,
+  "decline": 0.9736
+ },
+ {
+  "sym": "FORMUSDT",
+  "peakDate": "2025-09-07",
+  "troughDate": "2026-02-28",
+  "peak": 4.0132,
+  "trough": 0.1901,
+  "decline": 0.9526
+ },
+ {
+  "sym": "FORTHUSDT",
+  "peakDate": "2025-10-06",
+  "troughDate": "2026-03-24",
+  "peak": 2.744,
+  "trough": 0.406,
+  "decline": 0.852
+ },
+ {
+  "sym": "FRAXUSDT",
+  "peakDate": "2026-01-18",
+  "troughDate": "2026-06-30",
+  "peak": 1.2224,
+  "trough": 0.2293,
+  "decline": 0.8124
+ },
+ {
+  "sym": "FRONTUSDT",
+  "peakDate": "2024-03-17",
+  "troughDate": "2024-08-05",
+  "peak": 2.8023,
+  "trough": 0.5257,
+  "decline": 0.8124
+ },
+ {
+  "sym": "FTMUSDT",
+  "peakDate": "2022-01-16",
+  "troughDate": "2022-06-18",
+  "peak": 3.3067,
+  "trough": 0.2196,
+  "decline": 0.9336
+ },
+ {
+  "sym": "FTTUSDT",
+  "peakDate": "2022-05-17",
+  "troughDate": "2022-11-13",
+  "peak": 32.009,
+  "trough": 1.4758,
+  "decline": 0.9539
+ },
+ {
+  "sym": "FUNUSDT",
+  "peakDate": "2025-07-14",
+  "troughDate": "2025-12-18",
+  "peak": 0.0229,
+  "trough": 0.0016,
+  "decline": 0.9287
+ },
+ {
+  "sym": "FXSUSDT",
+  "peakDate": "2025-07-19",
+  "troughDate": "2025-12-18",
+  "peak": 3.7731,
+  "trough": 0.6211,
+  "decline": 0.8354
+ },
+ {
+  "sym": "GALAUSDT",
+  "peakDate": "2021-11-25",
+  "troughDate": "2022-05-11",
+  "peak": 0.744,
+  "trough": 0.0658,
+  "decline": 0.9116
+ },
+ {
+  "sym": "GALUSDT",
+  "peakDate": "2022-05-05",
+  "troughDate": "2022-10-24",
+  "peak": 17.3769,
+  "trough": 1.9542,
+  "decline": 0.8875
+ },
+ {
+  "sym": "GHSTUSDT",
+  "peakDate": "2025-08-13",
+  "troughDate": "2026-02-06",
+  "peak": 0.5161,
+  "trough": 0.0834,
+  "decline": 0.8384
+ },
+ {
+  "sym": "GIGGLEUSDT",
+  "peakDate": "2025-11-05",
+  "troughDate": "2026-04-03",
+  "peak": 260.17,
+  "trough": 21.33,
+  "decline": 0.918
+ },
+ {
+  "sym": "GMTUSDT",
+  "peakDate": "2022-04-29",
+  "troughDate": "2022-10-24",
+  "peak": 3.82,
+  "trough": 0.4589,
+  "decline": 0.8799
+ },
+ {
+  "sym": "GOATUSDT",
+  "peakDate": "2024-11-16",
+  "troughDate": "2025-04-08",
+  "peak": 1.2194,
+  "trough": 0.0386,
+  "decline": 0.9683
+ },
+ {
+  "sym": "GPSUSDT",
+  "peakDate": "2025-03-02",
+  "troughDate": "2025-08-26",
+  "peak": 0.137,
+  "trough": 0.0108,
+  "decline": 0.9214
+ },
+ {
+  "sym": "GRASSUSDT",
+  "peakDate": "2025-05-21",
+  "troughDate": "2025-11-17",
+  "peak": 2.4876,
+  "trough": 0.2722,
+  "decline": 0.8906
+ },
+ {
+  "sym": "GRIFFAINUSDT",
+  "peakDate": "2025-01-15",
+  "troughDate": "2025-04-08",
+  "peak": 0.5599,
+  "trough": 0.0251,
+  "decline": 0.9551
+ },
+ {
+  "sym": "GRTUSDT",
+  "peakDate": "2021-11-13",
+  "troughDate": "2022-05-12",
+  "peak": 1.0972,
+  "trough": 0.1341,
+  "decline": 0.8778
+ },
+ {
+  "sym": "GTCUSDT",
+  "peakDate": "2021-11-26",
+  "troughDate": "2022-05-12",
+  "peak": 24.088,
+  "trough": 2.167,
+  "decline": 0.91
+ },
+ {
+  "sym": "GUAUSDT",
+  "peakDate": "2026-05-25",
+  "troughDate": "2026-09-13",
+  "peak": 1.6194,
+  "trough": 0.0322,
+  "decline": 0.9801
+ },
+ {
+  "sym": "GUNUSDT",
+  "peakDate": "2026-02-26",
+  "troughDate": "2026-08-05",
+  "peak": 0.0313,
+  "trough": 0.0028,
+  "decline": 0.9111
+ },
+ {
+  "sym": "GWEIUSDT",
+  "peakDate": "2026-06-12",
+  "troughDate": "2026-08-01",
+  "peak": 0.1834,
+  "trough": 0.0149,
+  "decline": 0.9188
+ },
+ {
+  "sym": "HAEDALUSDT",
+  "peakDate": "2025-07-16",
+  "troughDate": "2025-12-18",
+  "peak": 0.2697,
+  "trough": 0.0357,
+  "decline": 0.8675
+ },
+ {
+  "sym": "HANAUSDT",
+  "peakDate": "2025-10-06",
+  "troughDate": "2025-12-18",
+  "peak": 0.0869,
+  "trough": 0.009,
+  "decline": 0.8959
+ },
+ {
+  "sym": "HBARUSDT",
+  "peakDate": "2021-12-23",
+  "troughDate": "2022-06-18",
+  "peak": 0.3292,
+  "trough": 0.0622,
+  "decline": 0.8111
+ },
+ {
+  "sym": "HEIUSDT",
+  "peakDate": "2025-08-09",
+  "troughDate": "2026-02-05",
+  "peak": 0.603,
+  "trough": 0.0856,
+  "decline": 0.858
+ },
+ {
+  "sym": "HEMIUSDT",
+  "peakDate": "2025-09-24",
+  "troughDate": "2026-03-22",
+  "peak": 0.1718,
+  "trough": 0.0069,
+  "decline": 0.9599
+ },
+ {
+  "sym": "HFTUSDT",
+  "peakDate": "2025-09-05",
+  "troughDate": "2026-03-02",
+  "peak": 0.0991,
+  "trough": 0.0137,
+  "decline": 0.8616
+ },
+ {
+  "sym": "HIFIUSDT",
+  "peakDate": "2024-12-08",
+  "troughDate": "2025-06-06",
+  "peak": 0.8076,
+  "trough": 0.0734,
+  "decline": 0.9091
+ },
+ {
+  "sym": "HIGHUSDT",
+  "peakDate": "2024-06-07",
+  "troughDate": "2024-11-04",
+  "peak": 8.5157,
+  "trough": 1.0803,
+  "decline": 0.8731
+ },
+ {
+  "sym": "HIPPOUSDT",
+  "peakDate": "2025-11-06",
+  "troughDate": "2026-04-08",
+  "peak": 0.0078,
+  "trough": 0.0002,
+  "decline": 0.9747
+ },
+ {
+  "sym": "HMSTRUSDT",
+  "peakDate": "2025-06-05",
+  "troughDate": "2025-12-01",
+  "peak": 0.002,
+  "trough": 0.0002,
+  "decline": 0.8928
+ },
+ {
+  "sym": "HNTUSDT",
+  "peakDate": "2022-04-03",
+  "troughDate": "2022-09-06",
+  "peak": 26.468,
+  "trough": 3.382,
+  "decline": 0.8722
+ },
+ {
+  "sym": "HOLOUSDT",
+  "peakDate": "2025-09-11",
+  "troughDate": "2026-02-23",
+  "peak": 0.4633,
+  "trough": 0.0537,
+  "decline": 0.8841
+ },
+ {
+  "sym": "HOMEUSDT",
+  "peakDate": "2026-06-04",
+  "troughDate": "2026-07-30",
+  "peak": 0.0558,
+  "trough": 0.0051,
+  "decline": 0.9089
+ },
+ {
+  "sym": "HOOKUSDT",
+  "peakDate": "2025-09-21",
+  "troughDate": "2026-03-20",
+  "peak": 0.1264,
+  "trough": 0.0139,
+  "decline": 0.8902
+ },
+ {
+  "sym": "HOTUSDT",
+  "peakDate": "2021-04-05",
+  "troughDate": "2021-07-20",
+  "peak": 0.0286,
+  "trough": 0.0044,
+  "decline": 0.8445
+ },
+ {
+  "sym": "HUSDT",
+  "peakDate": "2026-06-07",
+  "troughDate": "2026-09-23",
+  "peak": 0.7148,
+  "trough": 0.0574,
+  "decline": 0.9197
+ },
+ {
+  "sym": "ICNTUSDT",
+  "peakDate": "2026-03-28",
+  "troughDate": "2026-09-16",
+  "peak": 0.454,
+  "trough": 0.085,
+  "decline": 0.8128
+ },
+ {
+  "sym": "ICXUSDT",
+  "peakDate": "2021-11-21",
+  "troughDate": "2022-05-12",
+  "peak": 2.5296,
+  "trough": 0.3323,
+  "decline": 0.8686
+ },
+ {
+  "sym": "IDUSDT",
+  "peakDate": "2024-03-17",
+  "troughDate": "2024-09-06",
+  "peak": 1.7317,
+  "trough": 0.312,
+  "decline": 0.8198
+ },
+ {
+  "sym": "ILVUSDT",
+  "peakDate": "2024-12-06",
+  "troughDate": "2025-04-08",
+  "peak": 69.783,
+  "trough": 10.542,
+  "decline": 0.8489
+ },
+ {
+  "sym": "IMXUSDT",
+  "peakDate": "2025-09-18",
+  "troughDate": "2026-02-05",
+  "peak": 0.851,
+  "trough": 0.1451,
+  "decline": 0.8295
+ },
+ {
+  "sym": "INITUSDT",
+  "peakDate": "2025-05-13",
+  "troughDate": "2025-11-04",
+  "peak": 1.3372,
+  "trough": 0.1156,
+  "decline": 0.9136
+ },
+ {
+  "sym": "INJUSDT",
+  "peakDate": "2025-08-13",
+  "troughDate": "2026-02-05",
+  "peak": 16.226,
+  "trough": 2.978,
+  "decline": 0.8165
+ },
+ {
+  "sym": "IOTAUSDT",
+  "peakDate": "2021-12-29",
+  "troughDate": "2022-06-18",
+  "peak": 1.4797,
+  "trough": 0.251,
+  "decline": 0.8304
+ },
+ {
+  "sym": "IOTXUSDT",
+  "peakDate": "2021-11-14",
+  "troughDate": "2022-05-12",
+  "peak": 0.2334,
+  "trough": 0.0255,
+  "decline": 0.8906
+ },
+ {
+  "sym": "IOUSDT",
+  "peakDate": "2024-12-13",
+  "troughDate": "2025-04-08",
+  "peak": 4.2251,
+  "trough": 0.5377,
+  "decline": 0.8727
+ },
+ {
+  "sym": "IPUSDT",
+  "peakDate": "2025-10-06",
+  "troughDate": "2026-04-03",
+  "peak": 10.331,
+  "trough": 0.495,
+  "decline": 0.9521
+ },
+ {
+  "sym": "IRUSDT",
+  "peakDate": "2025-12-21",
+  "troughDate": "2026-04-29",
+  "peak": 0.1916,
+  "trough": 0.0219,
+  "decline": 0.8857
+ },
+ {
+  "sym": "JASMYUSDT",
+  "peakDate": "2024-12-05",
+  "troughDate": "2025-04-06",
+  "peak": 0.0581,
+  "trough": 0.0092,
+  "decline": 0.8411
+ },
+ {
+  "sym": "JCTUSDT",
+  "peakDate": "2025-11-10",
+  "troughDate": "2026-02-05",
+  "peak": 0.0069,
+  "trough": 0.0011,
+  "decline": 0.8371
+ },
+ {
+  "sym": "JELLYJELLYUSDT",
+  "peakDate": "2025-11-04",
+  "troughDate": "2025-11-30",
+  "peak": 0.2786,
+  "trough": 0.0366,
+  "decline": 0.8687
+ },
+ {
+  "sym": "JOEUSDT",
+  "peakDate": "2025-09-18",
+  "troughDate": "2026-02-23",
+  "peak": 0.2083,
+  "trough": 0.034,
+  "decline": 0.837
+ },
+ {
+  "sym": "JTOUSDT",
+  "peakDate": "2025-09-17",
+  "troughDate": "2026-02-05",
+  "peak": 2.0524,
+  "trough": 0.2372,
+  "decline": 0.8844
+ },
+ {
+  "sym": "KAITOUSDT",
+  "peakDate": "2025-09-29",
+  "troughDate": "2026-02-23",
+  "peak": 1.5579,
+  "trough": 0.292,
+  "decline": 0.8126
+ },
+ {
+  "sym": "KATUSDT",
+  "peakDate": "2026-03-02",
+  "troughDate": "2026-07-29",
+  "peak": 0.0257,
+  "trough": 0.0043,
+  "decline": 0.8344
+ },
+ {
+  "sym": "KAVAUSDT",
+  "peakDate": "2025-08-28",
+  "troughDate": "2026-02-24",
+  "peak": 0.3853,
+  "trough": 0.0469,
+  "decline": 0.8783
+ },
+ {
+  "sym": "KDAUSDT",
+  "peakDate": "2025-05-10",
+  "troughDate": "2025-11-06",
+  "peak": 0.687,
+  "trough": 0.0248,
+  "decline": 0.964
+ },
+ {
+  "sym": "KLAYUSDT",
+  "peakDate": "2022-04-24",
+  "troughDate": "2022-10-20",
+  "peak": 0.9224,
+  "trough": 0.1322,
+  "decline": 0.8567
+ },
+ {
+  "sym": "KMNOUSDT",
+  "peakDate": "2025-09-18",
+  "troughDate": "2026-03-11",
+  "peak": 0.0935,
+  "trough": 0.0185,
+  "decline": 0.8023
+ },
+ {
+  "sym": "KNCUSDT",
+  "peakDate": "2022-04-27",
+  "troughDate": "2022-10-24",
+  "peak": 5.561,
+  "trough": 0.839,
+  "decline": 0.8491
+ },
+ {
+  "sym": "KOMAUSDT",
+  "peakDate": "2024-12-24",
+  "troughDate": "2025-06-21",
+  "peak": 0.1672,
+  "trough": 0.0153,
+  "decline": 0.9086
+ },
+ {
+  "sym": "KSMUSDT",
+  "peakDate": "2021-12-27",
+  "troughDate": "2022-06-13",
+  "peak": 322.58,
+  "trough": 46.24,
+  "decline": 0.8567
+ },
+ {
+  "sym": "LABUSDT",
+  "peakDate": "2026-06-26",
+  "troughDate": "2026-09-10",
+  "peak": 19.509,
+  "trough": 0.0473,
+  "decline": 0.9976
+ },
+ {
+  "sym": "LAUSDT",
+  "peakDate": "2026-01-24",
+  "troughDate": "2026-07-20",
+  "peak": 0.3196,
+  "trough": 0.0501,
+  "decline": 0.8432
+ },
+ {
+  "sym": "LAYERUSDT",
+  "peakDate": "2025-05-04",
+  "troughDate": "2025-10-30",
+  "peak": 3.2678,
+  "trough": 0.2547,
+  "decline": 0.9221
+ },
+ {
+  "sym": "LEVERUSDT",
+  "peakDate": "2025-01-06",
+  "troughDate": "2025-07-05",
+  "peak": 0.0019,
+  "trough": 0.0002,
+  "decline": 0.9191
+ },
+ {
+  "sym": "LIGHTUSDT",
+  "peakDate": "2025-12-20",
+  "troughDate": "2026-06-06",
+  "peak": 3.9438,
+  "trough": 0.095,
+  "decline": 0.9759
+ },
+ {
+  "sym": "LINAUSDT",
+  "peakDate": "2024-12-08",
+  "troughDate": "2025-03-26",
+  "peak": 0.0083,
+  "trough": 0.0006,
+  "decline": 0.9231
+ },
+ {
+  "sym": "LINEAUSDT",
+  "peakDate": "2025-09-01",
+  "troughDate": "2026-02-24",
+  "peak": 0.0414,
+  "trough": 0.003,
+  "decline": 0.9273
+ },
+ {
+  "sym": "LINKUSDT",
+  "peakDate": "2021-11-13",
+  "troughDate": "2022-05-12",
+  "peak": 34.01,
+  "trough": 6.562,
+  "decline": 0.8071
+ },
+ {
+  "sym": "LISTAUSDT",
+  "peakDate": "2025-10-08",
+  "troughDate": "2026-03-29",
+  "peak": 0.5278,
+  "trough": 0.0796,
+  "decline": 0.8491
+ },
+ {
+  "sym": "LOKAUSDT",
+  "peakDate": "2024-12-08",
+  "troughDate": "2025-04-17",
+  "peak": 0.3343,
+  "trough": 0.053,
+  "decline": 0.8415
+ },
+ {
+  "sym": "LPTUSDT",
+  "peakDate": "2024-12-06",
+  "troughDate": "2025-04-08",
+  "peak": 23.011,
+  "trough": 3.487,
+  "decline": 0.8485
+ },
+ {
+  "sym": "LQTYUSDT",
+  "peakDate": "2024-12-07",
+  "troughDate": "2025-04-08",
+  "peak": 2.7372,
+  "trough": 0.4612,
+  "decline": 0.8315
+ },
+ {
+  "sym": "LRCUSDT",
+  "peakDate": "2021-11-24",
+  "troughDate": "2022-05-12",
+  "peak": 3.4193,
+  "trough": 0.3948,
+  "decline": 0.8845
+ },
+ {
+  "sym": "LUMIAUSDT",
+  "peakDate": "2024-12-24",
+  "troughDate": "2025-06-22",
+  "peak": 1.502,
+  "trough": 0.2048,
+  "decline": 0.8636
+ },
+ {
+  "sym": "LUNA2USDT",
+  "peakDate": "2022-09-10",
+  "troughDate": "2022-12-19",
+  "peak": 6.4121,
+  "trough": 1.233,
+  "decline": 0.8077
+ },
+ {
+  "sym": "LUNAUSDT",
+  "peakDate": "2022-04-04",
+  "troughDate": "2022-05-12",
+  "peak": 116.383,
+  "trough": 0.008,
+  "decline": 0.9999
+ },
+ {
+  "sym": "LYNUSDT",
+  "peakDate": "2026-03-10",
+  "troughDate": "2026-08-23",
+  "peak": 0.348,
+  "trough": 0.0323,
+  "decline": 0.9071
+ },
+ {
+  "sym": "MAGICUSDT",
+  "peakDate": "2024-12-08",
+  "troughDate": "2025-04-08",
+  "peak": 0.7081,
+  "trough": 0.0683,
+  "decline": 0.9035
+ },
+ {
+  "sym": "MAGMAUSDT",
+  "peakDate": "2026-07-03",
+  "troughDate": "2026-08-16",
+  "peak": 0.8038,
+  "trough": 0.1584,
+  "decline": 0.803
+ },
+ {
+  "sym": "MANAUSDT",
+  "peakDate": "2021-11-25",
+  "troughDate": "2022-05-12",
+  "peak": 5.1963,
+  "trough": 0.7075,
+  "decline": 0.8638
+ },
+ {
+  "sym": "MANTAUSDT",
+  "peakDate": "2024-12-06",
+  "troughDate": "2025-04-08",
+  "peak": 1.3135,
+  "trough": 0.1681,
+  "decline": 0.872
+ },
+ {
+  "sym": "MANTRAUSDT",
+  "peakDate": "2026-03-04",
+  "troughDate": "2026-08-25",
+  "peak": 0.0238,
+  "trough": 0.0041,
+  "decline": 0.8273
+ },
+ {
+  "sym": "MASKUSDT",
+  "peakDate": "2021-11-26",
+  "troughDate": "2022-05-12",
+  "peak": 19.2534,
+  "trough": 1.592,
+  "decline": 0.9173
+ },
+ {
+  "sym": "MATICUSDT",
+  "peakDate": "2021-12-26",
+  "troughDate": "2022-06-18",
+  "peak": 2.8765,
+  "trough": 0.3454,
+  "decline": 0.8799
+ },
+ {
+  "sym": "MAVIAUSDT",
+  "peakDate": "2025-10-27",
+  "troughDate": "2026-04-04",
+  "peak": 0.2571,
+  "trough": 0.0274,
+  "decline": 0.8935
+ },
+ {
+  "sym": "MAVUSDT",
+  "peakDate": "2024-12-06",
+  "troughDate": "2025-04-16",
+  "peak": 0.3191,
+  "trough": 0.0466,
+  "decline": 0.8539
+ },
+ {
+  "sym": "MBOXUSDT",
+  "peakDate": "2024-12-08",
+  "troughDate": "2025-04-16",
+  "peak": 0.3282,
+  "trough": 0.0375,
+  "decline": 0.8857
+ },
+ {
+  "sym": "MEGAUSDT",
+  "peakDate": "2026-04-22",
+  "troughDate": "2026-08-14",
+  "peak": 0.1967,
+  "trough": 0.0311,
+  "decline": 0.8416
+ },
+ {
+  "sym": "MELANIAUSDT",
+  "peakDate": "2025-01-21",
+  "troughDate": "2025-07-08",
+  "peak": 4.162,
+  "trough": 0.1811,
+  "decline": 0.9565
+ },
+ {
+  "sym": "MEMEFIUSDT",
+  "peakDate": "2025-05-07",
+  "troughDate": "2025-06-26",
+  "peak": 0.0058,
+  "trough": 0.001,
+  "decline": 0.8226
+ },
+ {
+  "sym": "MEMEUSDT",
+  "peakDate": "2024-12-07",
+  "troughDate": "2025-04-17",
+  "peak": 0.018,
+  "trough": 0.0014,
+  "decline": 0.921
+ },
+ {
+  "sym": "MERLUSDT",
+  "peakDate": "2025-12-13",
+  "troughDate": "2026-06-10",
+  "peak": 0.454,
+  "trough": 0.0186,
+  "decline": 0.9591
+ },
+ {
+  "sym": "METISUSDT",
+  "peakDate": "2025-08-09",
+  "troughDate": "2026-02-05",
+  "peak": 19.18,
+  "trough": 3.257,
+  "decline": 0.8302
+ },
+ {
+  "sym": "METUSDT",
+  "peakDate": "2025-10-11",
+  "troughDate": "2026-04-04",
+  "peak": 1.5749,
+  "trough": 0.1268,
+  "decline": 0.9195
+ },
+ {
+  "sym": "MEUSDT",
+  "peakDate": "2024-12-10",
+  "troughDate": "2025-04-08",
+  "peak": 5.649,
+  "trough": 0.783,
+  "decline": 0.8614
+ },
+ {
+  "sym": "MEWUSDT",
+  "peakDate": "2024-11-17",
+  "troughDate": "2025-03-10",
+  "peak": 0.0122,
+  "trough": 0.0017,
+  "decline": 0.8584
+ },
+ {
+  "sym": "MILKUSDT",
+  "peakDate": "2025-06-10",
+  "troughDate": "2025-12-05",
+  "peak": 0.0678,
+  "trough": 0.0101,
+  "decline": 0.8513
+ },
+ {
+  "sym": "MINAUSDT",
+  "peakDate": "2024-12-06",
+  "troughDate": "2025-04-08",
+  "peak": 1.0002,
+  "trough": 0.192,
+  "decline": 0.808
+ },
+ {
+  "sym": "MIRAUSDT",
+  "peakDate": "2025-09-26",
+  "troughDate": "2026-03-22",
+  "peak": 1.4402,
+  "trough": 0.0773,
+  "decline": 0.9463
+ },
+ {
+  "sym": "MITOUSDT",
+  "peakDate": "2025-09-14",
+  "troughDate": "2026-03-08",
+  "peak": 0.313,
+  "trough": 0.0347,
+  "decline": 0.8891
+ },
+ {
+  "sym": "MMTUSDT",
+  "peakDate": "2025-11-04",
+  "troughDate": "2026-03-29",
+  "peak": 2.6157,
+  "trough": 0.1052,
+  "decline": 0.9598
+ },
+ {
+  "sym": "MOCAUSDT",
+  "peakDate": "2025-10-09",
+  "troughDate": "2026-03-29",
+  "peak": 0.077,
+  "trough": 0.0121,
+  "decline": 0.8426
+ },
+ {
+  "sym": "MONUSDT",
+  "peakDate": "2025-10-11",
+  "troughDate": "2025-12-18",
+  "peak": 0.0907,
+  "trough": 0.0169,
+  "decline": 0.8136
+ },
+ {
+  "sym": "MOODENGUSDT",
+  "peakDate": "2024-11-15",
+  "troughDate": "2025-04-08",
+  "peak": 0.6201,
+  "trough": 0.0224,
+  "decline": 0.9639
+ },
+ {
+  "sym": "MOVEUSDT",
+  "peakDate": "2024-12-27",
+  "troughDate": "2025-06-22",
+  "peak": 1.1307,
+  "trough": 0.1167,
+  "decline": 0.8968
+ },
+ {
+  "sym": "MOVRUSDT",
+  "peakDate": "2025-10-03",
+  "troughDate": "2026-03-29",
+  "peak": 5.745,
+  "trough": 1.001,
+  "decline": 0.8258
+ },
+ {
+  "sym": "MTLUSDT",
+  "peakDate": "2021-04-04",
+  "troughDate": "2021-06-22",
+  "peak": 6.8858,
+  "trough": 1.0486,
+  "decline": 0.8477
+ },
+ {
+  "sym": "MUBARAKUSDT",
+  "peakDate": "2025-03-17",
+  "troughDate": "2025-04-15",
+  "peak": 0.1735,
+  "trough": 0.0232,
+  "decline": 0.8663
+ },
+ {
+  "sym": "MUSDT",
+  "peakDate": "2026-04-23",
+  "troughDate": "2026-06-29",
+  "peak": 4.578,
+  "trough": 0.5878,
+  "decline": 0.8716
+ },
+ {
+  "sym": "MYROUSDT",
+  "peakDate": "2024-11-15",
+  "troughDate": "2025-04-15",
+  "peak": 0.1489,
+  "trough": 0.0104,
+  "decline": 0.9299
+ },
+ {
+  "sym": "MYXUSDT",
+  "peakDate": "2026-02-06",
+  "troughDate": "2026-07-29",
+  "peak": 6.837,
+  "trough": 0.066,
+  "decline": 0.9904
+ },
+ {
+  "sym": "NAORISUSDT",
+  "peakDate": "2026-05-04",
+  "troughDate": "2026-09-01",
+  "peak": 0.1591,
+  "trough": 0.024,
+  "decline": 0.8493
+ },
+ {
+  "sym": "NEARUSDT",
+  "peakDate": "2022-01-14",
+  "troughDate": "2022-06-18",
+  "peak": 20.1838,
+  "trough": 3.09,
+  "decline": 0.8469
+ },
+ {
+  "sym": "NEIROETHUSDT",
+  "peakDate": "2025-08-04",
+  "troughDate": "2025-09-26",
+  "peak": 0.1656,
+  "trough": 0.0086,
+  "decline": 0.9479
+ },
+ {
+  "sym": "NEIROUSDT",
+  "peakDate": "2024-11-10",
+  "troughDate": "2025-04-06",
+  "peak": 0.0027,
+  "trough": 0.0002,
+  "decline": 0.943
+ },
+ {
+  "sym": "NEOUSDT",
+  "peakDate": "2024-12-03",
+  "troughDate": "2025-04-02",
+  "peak": 26.136,
+  "trough": 4.603,
+  "decline": 0.8239
+ },
+ {
+  "sym": "NEWTUSDT",
+  "peakDate": "2025-07-24",
+  "troughDate": "2025-12-18",
+  "peak": 0.5722,
+  "trough": 0.0902,
+  "decline": 0.8424
+ },
+ {
+  "sym": "NFPUSDT",
+  "peakDate": "2024-12-06",
+  "troughDate": "2025-04-08",
+  "peak": 0.4232,
+  "trough": 0.052,
+  "decline": 0.8771
+ },
+ {
+  "sym": "NILUSDT",
+  "peakDate": "2025-10-09",
+  "troughDate": "2026-03-29",
+  "peak": 0.3623,
+  "trough": 0.0314,
+  "decline": 0.9134
+ },
+ {
+  "sym": "NKNUSDT",
+  "peakDate": "2021-11-14",
+  "troughDate": "2022-05-12",
+  "peak": 0.6907,
+  "trough": 0.0749,
+  "decline": 0.8915
+ },
+ {
+  "sym": "NOMUSDT",
+  "peakDate": "2025-10-01",
+  "troughDate": "2026-03-27",
+  "peak": 0.0398,
+  "trough": 0.0019,
+  "decline": 0.9529
+ },
+ {
+  "sym": "NOTUSDT",
+  "peakDate": "2025-08-09",
+  "troughDate": "2026-02-05",
+  "peak": 0.0023,
+  "trough": 0.0004,
+  "decline": 0.8353
+ },
+ {
+  "sym": "NTRNUSDT",
+  "peakDate": "2025-09-24",
+  "troughDate": "2026-03-23",
+  "peak": 0.0856,
+  "trough": 0.0046,
+  "decline": 0.9464
+ },
+ {
+  "sym": "NULSUSDT",
+  "peakDate": "2024-12-04",
+  "troughDate": "2025-04-14",
+  "peak": 0.5688,
+  "trough": 0.0313,
+  "decline": 0.945
+ },
+ {
+  "sym": "NXPCUSDT",
+  "peakDate": "2025-05-15",
+  "troughDate": "2025-11-04",
+  "peak": 2.6218,
+  "trough": 0.3084,
+  "decline": 0.8824
+ },
+ {
+  "sym": "OBOLUSDT",
+  "peakDate": "2025-09-13",
+  "troughDate": "2025-12-05",
+  "peak": 0.18,
+  "trough": 0.0332,
+  "decline": 0.8155
+ },
+ {
+  "sym": "OCEANUSDT",
+  "peakDate": "2021-11-30",
+  "troughDate": "2022-05-27",
+  "peak": 1.2844,
+  "trough": 0.1947,
+  "decline": 0.8484
+ },
+ {
+  "sym": "OGNUSDT",
+  "peakDate": "2021-11-24",
+  "troughDate": "2022-05-12",
+  "peak": 1.1807,
+  "trough": 0.1885,
+  "decline": 0.8403
+ },
+ {
+  "sym": "OGUSDT",
+  "peakDate": "2025-09-10",
+  "troughDate": "2026-03-07",
+  "peak": 23.449,
+  "trough": 2.707,
+  "decline": 0.8846
+ },
+ {
+  "sym": "OLUSDT",
+  "peakDate": "2025-10-29",
+  "troughDate": "2026-04-06",
+  "peak": 0.0386,
+  "trough": 0.0075,
+  "decline": 0.8067
+ },
+ {
+  "sym": "OMGUSDT",
+  "peakDate": "2024-03-13",
+  "troughDate": "2024-09-01",
+  "peak": 1.3205,
+  "trough": 0.1984,
+  "decline": 0.8498
+ },
+ {
+  "sym": "OMNIUSDT",
+  "peakDate": "2024-12-04",
+  "troughDate": "2025-04-16",
+  "peak": 14.411,
+  "trough": 1.764,
+  "decline": 0.8776
+ },
+ {
+  "sym": "OMUSDT",
+  "peakDate": "2025-04-09",
+  "troughDate": "2025-09-25",
+  "peak": 6.7958,
+  "trough": 0.158,
+  "decline": 0.9768
+ },
+ {
+  "sym": "ONEUSDT",
+  "peakDate": "2022-01-14",
+  "troughDate": "2022-07-03",
+  "peak": 0.3559,
+  "trough": 0.017,
+  "decline": 0.9522
+ },
+ {
+  "sym": "OPENUSDT",
+  "peakDate": "2025-09-08",
+  "troughDate": "2026-03-06",
+  "peak": 1.429,
+  "trough": 0.1416,
+  "decline": 0.9009
+ },
+ {
+  "sym": "OPNUSDT",
+  "peakDate": "2026-02-22",
+  "troughDate": "2026-07-30",
+  "peak": 0.7191,
+  "trough": 0.046,
+  "decline": 0.9361
+ },
+ {
+  "sym": "OPUSDT",
+  "peakDate": "2025-10-06",
+  "troughDate": "2026-03-29",
+  "peak": 0.7581,
+  "trough": 0.1019,
+  "decline": 0.8656
+ },
+ {
+  "sym": "ORDERUSDT",
+  "peakDate": "2025-10-06",
+  "troughDate": "2026-03-29",
+  "peak": 0.4356,
+  "trough": 0.0474,
+  "decline": 0.8913
+ },
+ {
+  "sym": "ORDIUSDT",
+  "peakDate": "2024-12-07",
+  "troughDate": "2025-04-17",
+  "peak": 48.701,
+  "trough": 5.951,
+  "decline": 0.8778
+ },
+ {
+  "sym": "PARTIUSDT",
+  "peakDate": "2025-05-11",
+  "troughDate": "2025-11-04",
+  "peak": 0.3776,
+  "trough": 0.054,
+  "decline": 0.8569
+ },
+ {
+  "sym": "PENDLEUSDT",
+  "peakDate": "2025-08-23",
+  "troughDate": "2026-02-11",
+  "peak": 6.0957,
+  "trough": 1.0997,
+  "decline": 0.8196
+ },
+ {
+  "sym": "PENGUUSDT",
+  "peakDate": "2025-01-06",
+  "troughDate": "2025-04-08",
+  "peak": 0.0431,
+  "trough": 0.0039,
+  "decline": 0.9102
+ },
+ {
+  "sym": "PEOPLEUSDT",
+  "peakDate": "2021-12-24",
+  "troughDate": "2022-05-11",
+  "peak": 0.1576,
+  "trough": 0.0141,
+  "decline": 0.9107
+ },
+ {
+  "sym": "PERPUSDT",
+  "peakDate": "2024-12-08",
+  "troughDate": "2025-04-17",
+  "peak": 1.2776,
+  "trough": 0.1688,
+  "decline": 0.8679
+ },
+ {
+  "sym": "PHAUSDT",
+  "peakDate": "2025-08-22",
+  "troughDate": "2026-02-18",
+  "peak": 0.1425,
+  "trough": 0.0242,
+  "decline": 0.83
+ },
+ {
+  "sym": "PHBUSDT",
+  "peakDate": "2024-12-06",
+  "troughDate": "2025-04-06",
+  "peak": 2.5354,
+  "trough": 0.3598,
+  "decline": 0.8581
+ },
+ {
+  "sym": "PIPPINUSDT",
+  "peakDate": "2026-02-24",
+  "troughDate": "2026-06-05",
+  "peak": 0.812,
+  "trough": 0.0136,
+  "decline": 0.9833
+ },
+ {
+  "sym": "PIXELUSDT",
+  "peakDate": "2024-12-06",
+  "troughDate": "2025-04-08",
+  "peak": 0.2895,
+  "trough": 0.0204,
+  "decline": 0.9296
+ },
+ {
+  "sym": "PLAYUSDT",
+  "peakDate": "2026-01-28",
+  "troughDate": "2026-02-25",
+  "peak": 0.1264,
+  "trough": 0.017,
+  "decline": 0.8654
+ },
+ {
+  "sym": "PLUMEUSDT",
+  "peakDate": "2025-09-12",
+  "troughDate": "2026-03-01",
+  "peak": 0.1321,
+  "trough": 0.0089,
+  "decline": 0.9323
+ },
+ {
+  "sym": "PNUTUSDT",
+  "peakDate": "2024-11-17",
+  "troughDate": "2025-04-15",
+  "peak": 1.7927,
+  "trough": 0.1225,
+  "decline": 0.9316
+ },
+ {
+  "sym": "PONKEUSDT",
+  "peakDate": "2024-11-19",
+  "troughDate": "2025-04-08",
+  "peak": 0.7436,
+  "trough": 0.0678,
+  "decline": 0.9088
+ },
+ {
+  "sym": "POPCATUSDT",
+  "peakDate": "2024-11-13",
+  "troughDate": "2025-04-08",
+  "peak": 1.9653,
+  "trough": 0.1252,
+  "decline": 0.9363
+ },
+ {
+  "sym": "PORT3USDT",
+  "peakDate": "2025-10-04",
+  "troughDate": "2025-11-22",
+  "peak": 0.0772,
+  "trough": 0.0084,
+  "decline": 0.8917
+ },
+ {
+  "sym": "PORTALUSDT",
+  "peakDate": "2024-12-07",
+  "troughDate": "2025-06-05",
+  "peak": 0.5711,
+  "trough": 0.0413,
+  "decline": 0.9277
+ },
+ {
+  "sym": "POWERUSDT",
+  "peakDate": "2026-02-28",
+  "troughDate": "2026-06-06",
+  "peak": 1.8862,
+  "trough": 0.0591,
+  "decline": 0.9687
+ },
+ {
+  "sym": "POWRUSDT",
+  "peakDate": "2024-01-06",
+  "troughDate": "2024-07-04",
+  "peak": 0.966,
+  "trough": 0.1761,
+  "decline": 0.8177
+ },
+ {
+  "sym": "PROMPTUSDT",
+  "peakDate": "2025-08-24",
+  "troughDate": "2026-02-19",
+  "peak": 0.3375,
+  "trough": 0.0438,
+  "decline": 0.8704
+ },
+ {
+  "sym": "PROMUSDT",
+  "peakDate": "2025-09-16",
+  "troughDate": "2026-03-08",
+  "peak": 11.305,
+  "trough": 0.98,
+  "decline": 0.9133
+ },
+ {
+  "sym": "PROVEUSDT",
+  "peakDate": "2025-08-11",
+  "troughDate": "2026-02-05",
+  "peak": 1.6056,
+  "trough": 0.2784,
+  "decline": 0.8266
+ },
+ {
+  "sym": "PTBUSDT",
+  "peakDate": "2025-10-13",
+  "troughDate": "2026-04-03",
+  "peak": 0.0651,
+  "trough": 0.0006,
+  "decline": 0.9903
+ },
+ {
+  "sym": "PUFFERUSDT",
+  "peakDate": "2025-09-13",
+  "troughDate": "2026-03-07",
+  "peak": 0.2299,
+  "trough": 0.0259,
+  "decline": 0.8874
+ },
+ {
+  "sym": "PUMPBTCUSDT",
+  "peakDate": "2025-09-21",
+  "troughDate": "2026-03-07",
+  "peak": 0.2139,
+  "trough": 0.0137,
+  "decline": 0.936
+ },
+ {
+  "sym": "PUMPUSDT",
+  "peakDate": "2025-09-15",
+  "troughDate": "2026-02-24",
+  "peak": 0.0086,
+  "trough": 0.0017,
+  "decline": 0.8039
+ },
+ {
+  "sym": "PYTHUSDT",
+  "peakDate": "2025-08-28",
+  "troughDate": "2026-02-05",
+  "peak": 0.23,
+  "trough": 0.0401,
+  "decline": 0.8258
+ },
+ {
+  "sym": "QTUMUSDT",
+  "peakDate": "2021-05-09",
+  "troughDate": "2021-07-20",
+  "peak": 27.376,
+  "trough": 4.975,
+  "decline": 0.8183
+ },
+ {
+  "sym": "QUSDT",
+  "peakDate": "2025-10-07",
+  "troughDate": "2026-04-05",
+  "peak": 0.0456,
+  "trough": 0.008,
+  "decline": 0.825
+ },
+ {
+  "sym": "RAVEUSDT",
+  "peakDate": "2026-04-17",
+  "troughDate": "2026-09-16",
+  "peak": 21.9445,
+  "trough": 0.1648,
+  "decline": 0.9925
+ },
+ {
+  "sym": "RAYSOLUSDT",
+  "peakDate": "2025-08-28",
+  "troughDate": "2026-02-23",
+  "peak": 3.7976,
+  "trough": 0.5684,
+  "decline": 0.8503
+ },
+ {
+  "sym": "RAYUSDT",
+  "peakDate": "2021-12-02",
+  "troughDate": "2022-05-27",
+  "peak": 11.203,
+  "trough": 0.888,
+  "decline": 0.9207
+ },
+ {
+  "sym": "RDNTUSDT",
+  "peakDate": "2024-03-11",
+  "troughDate": "2024-08-05",
+  "peak": 0.4189,
+  "trough": 0.0611,
+  "decline": 0.8541
+ },
+ {
+  "sym": "RECALLUSDT",
+  "peakDate": "2025-10-18",
+  "troughDate": "2026-03-28",
+  "peak": 0.5372,
+  "trough": 0.0359,
+  "decline": 0.9332
+ },
+ {
+  "sym": "REDUSDT",
+  "peakDate": "2025-09-08",
+  "troughDate": "2026-03-07",
+  "peak": 0.6839,
+  "trough": 0.1275,
+  "decline": 0.8136
+ },
+ {
+  "sym": "REEFUSDT",
+  "peakDate": "2024-10-14",
+  "troughDate": "2025-01-22",
+  "peak": 0.0101,
+  "trough": 0.0009,
+  "decline": 0.9132
+ },
+ {
+  "sym": "REIUSDT",
+  "peakDate": "2024-12-08",
+  "troughDate": "2025-05-30",
+  "peak": 0.0884,
+  "trough": 0.0161,
+  "decline": 0.8178
+ },
+ {
+  "sym": "RENUSDT",
+  "peakDate": "2021-12-23",
+  "troughDate": "2022-06-13",
+  "peak": 0.7053,
+  "trough": 0.0916,
+  "decline": 0.8701
+ },
+ {
+  "sym": "RESOLVUSDT",
+  "peakDate": "2026-01-26",
+  "troughDate": "2026-06-19",
+  "peak": 0.1286,
+  "trough": 0.0146,
+  "decline": 0.8862
+ },
+ {
+  "sym": "REZUSDT",
+  "peakDate": "2024-12-08",
+  "troughDate": "2025-06-05",
+  "peak": 0.0629,
+  "trough": 0.01,
+  "decline": 0.8417
+ },
+ {
+  "sym": "RIVERUSDT",
+  "peakDate": "2026-03-22",
+  "troughDate": "2026-09-10",
+  "peak": 29.352,
+  "trough": 1.06,
+  "decline": 0.9639
+ },
+ {
+  "sym": "RLCUSDT",
+  "peakDate": "2021-11-13",
+  "troughDate": "2022-05-12",
+  "peak": 4.4927,
+  "trough": 0.7221,
+  "decline": 0.8393
+ },
+ {
+  "sym": "RLSUSDT",
+  "peakDate": "2025-12-02",
+  "troughDate": "2026-04-03",
+  "peak": 0.0286,
+  "trough": 0.0024,
+  "decline": 0.9176
+ },
+ {
+  "sym": "ROBOUSDT",
+  "peakDate": "2026-03-02",
+  "troughDate": "2026-07-18",
+  "peak": 0.0566,
+  "trough": 0.0108,
+  "decline": 0.81
+ },
+ {
+  "sym": "RONINUSDT",
+  "peakDate": "2025-08-13",
+  "troughDate": "2026-02-05",
+  "peak": 0.5972,
+  "trough": 0.086,
+  "decline": 0.856
+ },
+ {
+  "sym": "ROSEUSDT",
+  "peakDate": "2022-01-14",
+  "troughDate": "2022-06-18",
+  "peak": 0.5656,
+  "trough": 0.0448,
+  "decline": 0.9209
+ },
+ {
+  "sym": "RPLUSDT",
+  "peakDate": "2025-08-09",
+  "troughDate": "2026-02-05",
+  "peak": 9.09,
+  "trough": 1.479,
+  "decline": 0.8373
+ },
+ {
+  "sym": "RSRUSDT",
+  "peakDate": "2021-11-29",
+  "troughDate": "2022-05-12",
+  "peak": 0.0542,
+  "trough": 0.0041,
+  "decline": 0.9243
+ },
+ {
+  "sym": "RUNEUSDT",
+  "peakDate": "2022-04-01",
+  "troughDate": "2022-09-21",
+  "peak": 12.363,
+  "trough": 1.551,
+  "decline": 0.8745
+ },
+ {
+  "sym": "RVNUSDT",
+  "peakDate": "2022-01-04",
+  "troughDate": "2022-06-18",
+  "peak": 0.1332,
+  "trough": 0.0192,
+  "decline": 0.8558
+ },
+ {
+  "sym": "RVVUSDT",
+  "peakDate": "2025-10-24",
+  "troughDate": "2026-02-10",
+  "peak": 0.0134,
+  "trough": 0.0005,
+  "decline": 0.9621
+ },
+ {
+  "sym": "SAGAUSDT",
+  "peakDate": "2024-10-18",
+  "troughDate": "2025-04-16",
+  "peak": 2.8844,
+  "trough": 0.1888,
+  "decline": 0.9345
+ },
+ {
+  "sym": "SAHARAUSDT",
+  "peakDate": "2025-09-08",
+  "troughDate": "2026-02-23",
+  "peak": 0.0976,
+  "trough": 0.0145,
+  "decline": 0.8513
+ },
+ {
+  "sym": "SANDUSDT",
+  "peakDate": "2021-12-26",
+  "troughDate": "2022-06-18",
+  "peak": 6.7265,
+  "trough": 0.7965,
+  "decline": 0.8816
+ },
+ {
+  "sym": "SAPIENUSDT",
+  "peakDate": "2025-11-06",
+  "troughDate": "2026-03-29",
+  "peak": 0.3461,
+  "trough": 0.0634,
+  "decline": 0.8168
+ },
+ {
+  "sym": "SCRTUSDT",
+  "peakDate": "2026-04-26",
+  "troughDate": "2026-08-26",
+  "peak": 0.1141,
+  "trough": 0.0126,
+  "decline": 0.8894
+ },
+ {
+  "sym": "SCRUSDT",
+  "peakDate": "2025-08-28",
+  "troughDate": "2026-02-23",
+  "peak": 0.3689,
+  "trough": 0.0407,
+  "decline": 0.8897
+ },
+ {
+  "sym": "SCUSDT",
+  "peakDate": "2021-11-27",
+  "troughDate": "2022-05-12",
+  "peak": 0.0264,
+  "trough": 0.0043,
+  "decline": 0.8388
+ },
+ {
+  "sym": "SEIUSDT",
+  "peakDate": "2025-10-06",
+  "troughDate": "2026-03-31",
+  "peak": 0.3011,
+  "trough": 0.0499,
+  "decline": 0.8344
+ },
+ {
+  "sym": "SFPUSDT",
+  "peakDate": "2021-12-01",
+  "troughDate": "2022-05-12",
+  "peak": 2.4453,
+  "trough": 0.3315,
+  "decline": 0.8644
+ },
+ {
+  "sym": "SHELLUSDT",
+  "peakDate": "2025-08-09",
+  "troughDate": "2026-02-05",
+  "peak": 0.1832,
+  "trough": 0.0291,
+  "decline": 0.8413
+ },
+ {
+  "sym": "SIGNUSDT",
+  "peakDate": "2026-03-23",
+  "troughDate": "2026-08-14",
+  "peak": 0.0565,
+  "trough": 0.0064,
+  "decline": 0.887
+ },
+ {
+  "sym": "SIRENUSDT",
+  "peakDate": "2026-03-23",
+  "troughDate": "2026-09-16",
+  "peak": 2.3731,
+  "trough": 0.0241,
+  "decline": 0.9898
+ },
+ {
+  "sym": "SKATEUSDT",
+  "peakDate": "2025-08-05",
+  "troughDate": "2025-12-10",
+  "peak": 0.064,
+  "trough": 0.005,
+  "decline": 0.9214
+ },
+ {
+  "sym": "SKLUSDT",
+  "peakDate": "2022-04-01",
+  "troughDate": "2022-09-18",
+  "peak": 0.3028,
+  "trough": 0.0369,
+  "decline": 0.8782
+ },
+ {
+  "sym": "SKRUSDT",
+  "peakDate": "2026-01-22",
+  "troughDate": "2026-06-23",
+  "peak": 0.0426,
+  "trough": 0.0076,
+  "decline": 0.822
+ },
+ {
+  "sym": "SKYAIUSDT",
+  "peakDate": "2026-05-05",
+  "troughDate": "2026-07-27",
+  "peak": 0.7333,
+  "trough": 0.0234,
+  "decline": 0.9681
+ },
+ {
+  "sym": "SLERFUSDT",
+  "peakDate": "2024-11-21",
+  "troughDate": "2025-04-08",
+  "peak": 0.358,
+  "trough": 0.0481,
+  "decline": 0.8656
+ },
+ {
+  "sym": "SLXUSDT",
+  "peakDate": "2026-06-28",
+  "troughDate": "2026-09-15",
+  "peak": 0.5796,
+  "trough": 0.0586,
+  "decline": 0.8988
+ },
+ {
+  "sym": "SNXUSDT",
+  "peakDate": "2025-10-13",
+  "troughDate": "2026-03-29",
+  "peak": 2.289,
+  "trough": 0.274,
+  "decline": 0.8803
+ },
+ {
+  "sym": "SOLUSDT",
+  "peakDate": "2021-12-26",
+  "troughDate": "2022-06-13",
+  "peak": 197.8,
+  "trough": 28.58,
+  "decline": 0.8555
+ },
+ {
+  "sym": "SOLVUSDT",
+  "peakDate": "2025-09-27",
+  "troughDate": "2026-03-25",
+  "peak": 0.0515,
+  "trough": 0.0032,
+  "decline": 0.938
+ },
+ {
+  "sym": "SOMIUSDT",
+  "peakDate": "2025-09-07",
+  "troughDate": "2026-02-05",
+  "peak": 1.6504,
+  "trough": 0.1695,
+  "decline": 0.8973
+ },
+ {
+  "sym": "SONICUSDT",
+  "peakDate": "2025-09-15",
+  "troughDate": "2026-02-05",
+  "peak": 0.237,
+  "trough": 0.0379,
+  "decline": 0.84
+ },
+ {
+  "sym": "SOONUSDT",
+  "peakDate": "2025-11-14",
+  "troughDate": "2026-04-09",
+  "peak": 2.6894,
+  "trough": 0.102,
+  "decline": 0.9621
+ },
+ {
+  "sym": "SPKUSDT",
+  "peakDate": "2025-07-23",
+  "troughDate": "2025-12-18",
+  "peak": 0.1753,
+  "trough": 0.0195,
+  "decline": 0.8888
+ },
+ {
+  "sym": "SPORTFUNUSDT",
+  "peakDate": "2026-01-16",
+  "troughDate": "2026-07-13",
+  "peak": 0.1026,
+  "trough": 0.019,
+  "decline": 0.8148
+ },
+ {
+  "sym": "SPXUSDT",
+  "peakDate": "2025-08-09",
+  "troughDate": "2026-02-05",
+  "peak": 1.9427,
+  "trough": 0.2489,
+  "decline": 0.8719
+ },
+ {
+  "sym": "SQDUSDT",
+  "peakDate": "2025-10-09",
+  "troughDate": "2026-04-04",
+  "peak": 0.232,
+  "trough": 0.0284,
+  "decline": 0.8778
+ },
+ {
+  "sym": "SRMUSDT",
+  "peakDate": "2022-05-17",
+  "troughDate": "2022-11-13",
+  "peak": 1.255,
+  "trough": 0.1203,
+  "decline": 0.9041
+ },
+ {
+  "sym": "SSVUSDT",
+  "peakDate": "2024-12-06",
+  "troughDate": "2025-04-08",
+  "peak": 34.325,
+  "trough": 4.5,
+  "decline": 0.8689
+ },
+ {
+  "sym": "STABLEUSDT",
+  "peakDate": "2025-11-08",
+  "troughDate": "2025-12-23",
+  "peak": 0.0551,
+  "trough": 0.0095,
+  "decline": 0.8275
+ },
+ {
+  "sym": "STARUSDT",
+  "peakDate": "2026-07-17",
+  "troughDate": "2026-09-20",
+  "peak": 0.2265,
+  "trough": 0.0335,
+  "decline": 0.8522
+ },
+ {
+  "sym": "STBLUSDT",
+  "peakDate": "2025-09-24",
+  "troughDate": "2026-02-01",
+  "peak": 0.5691,
+  "trough": 0.0327,
+  "decline": 0.9426
+ },
+ {
+  "sym": "STGUSDT",
+  "peakDate": "2026-06-11",
+  "troughDate": "2026-08-02",
+  "peak": 0.6453,
+  "trough": 0.1186,
+  "decline": 0.8162
+ },
+ {
+  "sym": "STMXUSDT",
+  "peakDate": "2021-04-02",
+  "troughDate": "2021-06-22",
+  "peak": 0.0851,
+  "trough": 0.0124,
+  "decline": 0.8547
+ },
+ {
+  "sym": "STORJUSDT",
+  "peakDate": "2021-11-29",
+  "troughDate": "2022-05-12",
+  "peak": 2.9526,
+  "trough": 0.4449,
+  "decline": 0.8493
+ },
+ {
+  "sym": "STOUSDT",
+  "peakDate": "2026-04-01",
+  "troughDate": "2026-08-03",
+  "peak": 0.4479,
+  "trough": 0.0365,
+  "decline": 0.9186
+ },
+ {
+  "sym": "STRKUSDT",
+  "peakDate": "2025-11-19",
+  "troughDate": "2026-04-14",
+  "peak": 0.249,
+  "trough": 0.0321,
+  "decline": 0.871
+ },
+ {
+  "sym": "STXUSDT",
+  "peakDate": "2024-12-05",
+  "troughDate": "2025-04-06",
+  "peak": 2.7483,
+  "trough": 0.5316,
+  "decline": 0.8066
+ },
+ {
+  "sym": "SUPERUSDT",
+  "peakDate": "2025-08-13",
+  "troughDate": "2026-02-05",
+  "peak": 0.8349,
+  "trough": 0.1171,
+  "decline": 0.8597
+ },
+ {
+  "sym": "SUSDT",
+  "peakDate": "2025-08-22",
+  "troughDate": "2026-02-10",
+  "peak": 0.349,
+  "trough": 0.0404,
+  "decline": 0.8841
+ },
+ {
+  "sym": "SUSHIUSDT",
+  "peakDate": "2021-12-30",
+  "troughDate": "2022-06-18",
+  "peak": 10.241,
+  "trough": 0.929,
+  "decline": 0.9093
+ },
+ {
+  "sym": "SWARMSUSDT",
+  "peakDate": "2025-01-07",
+  "troughDate": "2025-06-26",
+  "peak": 0.4726,
+  "trough": 0.0152,
+  "decline": 0.9678
+ },
+ {
+  "sym": "SWELLUSDT",
+  "peakDate": "2024-11-09",
+  "troughDate": "2025-04-08",
+  "peak": 0.0616,
+  "trough": 0.0075,
+  "decline": 0.8786
+ },
+ {
+  "sym": "SXPUSDT",
+  "peakDate": "2021-11-15",
+  "troughDate": "2022-05-12",
+  "peak": 2.7703,
+  "trough": 0.3889,
+  "decline": 0.8596
+ },
+ {
+  "sym": "SXTUSDT",
+  "peakDate": "2025-05-02",
+  "troughDate": "2025-10-10",
+  "peak": 0.4136,
+  "trough": 0.0517,
+  "decline": 0.8749
+ },
+ {
+  "sym": "SYNUSDT",
+  "peakDate": "2025-01-05",
+  "troughDate": "2025-07-04",
+  "peak": 0.7396,
+  "trough": 0.0862,
+  "decline": 0.8835
+ },
+ {
+  "sym": "SYSUSDT",
+  "peakDate": "2024-12-08",
+  "troughDate": "2025-04-10",
+  "peak": 0.1816,
+  "trough": 0.0298,
+  "decline": 0.8361
+ },
+ {
+  "sym": "TACUSDT",
+  "peakDate": "2026-06-30",
+  "troughDate": "2026-09-28",
+  "peak": 0.0625,
+  "trough": 0.0015,
+  "decline": 0.9761
+ },
+ {
+  "sym": "TAGUSDT",
+  "peakDate": "2025-08-14",
+  "troughDate": "2025-10-11",
+  "peak": 0.0012,
+  "trough": 0.0002,
+  "decline": 0.8236
+ },
+ {
+  "sym": "TAIKOUSDT",
+  "peakDate": "2026-07-01",
+  "troughDate": "2026-07-27",
+  "peak": 0.47,
+  "trough": 0.0659,
+  "decline": 0.8599
+ },
+ {
+  "sym": "TAKEUSDT",
+  "peakDate": "2025-12-28",
+  "troughDate": "2026-03-29",
+  "peak": 0.4347,
+  "trough": 0.0138,
+  "decline": 0.9683
+ },
+ {
+  "sym": "TANSSIUSDT",
+  "peakDate": "2025-08-09",
+  "troughDate": "2026-01-20",
+  "peak": 0.0714,
+  "trough": 0.0055,
+  "decline": 0.9233
+ },
+ {
+  "sym": "TAUSDT",
+  "peakDate": "2025-09-08",
+  "troughDate": "2025-12-25",
+  "peak": 0.1595,
+  "trough": 0.0203,
+  "decline": 0.8725
+ },
+ {
+  "sym": "THETAUSDT",
+  "peakDate": "2021-11-25",
+  "troughDate": "2022-05-12",
+  "peak": 7.398,
+  "trough": 1.21,
+  "decline": 0.8364
+ },
+ {
+  "sym": "THEUSDT",
+  "peakDate": "2024-11-28",
+  "troughDate": "2025-04-08",
+  "peak": 3.282,
+  "trough": 0.2167,
+  "decline": 0.934
+ },
+ {
+  "sym": "TIAUSDT",
+  "peakDate": "2025-08-13",
+  "troughDate": "2026-02-05",
+  "peak": 2.0034,
+  "trough": 0.3088,
+  "decline": 0.8459
+ },
+ {
+  "sym": "TLMUSDT",
+  "peakDate": "2024-12-08",
+  "troughDate": "2025-04-08",
+  "peak": 0.0219,
+  "trough": 0.0041,
+  "decline": 0.814
+ },
+ {
+  "sym": "TNSRUSDT",
+  "peakDate": "2024-12-06",
+  "troughDate": "2025-04-08",
+  "peak": 0.8178,
+  "trough": 0.1114,
+  "decline": 0.8638
+ },
+ {
+  "sym": "TOKENUSDT",
+  "peakDate": "2024-12-03",
+  "troughDate": "2025-04-08",
+  "peak": 0.0808,
+  "trough": 0.0118,
+  "decline": 0.8534
+ },
+ {
+  "sym": "TOMOUSDT",
+  "peakDate": "2021-11-23",
+  "troughDate": "2022-05-18",
+  "peak": 3.5143,
+  "trough": 0.5354,
+  "decline": 0.8477
+ },
+ {
+  "sym": "TOSHIUSDT",
+  "peakDate": "2025-10-08",
+  "troughDate": "2026-02-05",
+  "peak": 0.001,
+  "trough": 0.0002,
+  "decline": 0.839
+ },
+ {
+  "sym": "TOWNSUSDT",
+  "peakDate": "2025-09-14",
+  "troughDate": "2026-03-01",
+  "peak": 0.0292,
+  "trough": 0.0033,
+  "decline": 0.8879
+ },
+ {
+  "sym": "TRADOORUSDT",
+  "peakDate": "2026-04-21",
+  "troughDate": "2026-06-10",
+  "peak": 8.495,
+  "trough": 0.3621,
+  "decline": 0.9574
+ },
+ {
+  "sym": "TRBUSDT",
+  "peakDate": "2021-11-13",
+  "troughDate": "2022-05-12",
+  "peak": 73.12,
+  "trough": 8.23,
+  "decline": 0.8874
+ },
+ {
+  "sym": "TREEUSDT",
+  "peakDate": "2025-07-29",
+  "troughDate": "2026-01-20",
+  "peak": 0.6701,
+  "trough": 0.0926,
+  "decline": 0.8618
+ },
+ {
+  "sym": "TRIAUSDT",
+  "peakDate": "2026-05-15",
+  "troughDate": "2026-09-13",
+  "peak": 0.0498,
+  "trough": 0.0034,
+  "decline": 0.9311
+ },
+ {
+  "sym": "TROYUSDT",
+  "peakDate": "2025-01-01",
+  "troughDate": "2025-04-14",
+  "peak": 0.0071,
+  "trough": 0.0002,
+  "decline": 0.9736
+ },
+ {
+  "sym": "TRUMPUSDT",
+  "peakDate": "2025-01-19",
+  "troughDate": "2025-04-17",
+  "peak": 46.618,
+  "trough": 7.556,
+  "decline": 0.8379
+ },
+ {
+  "sym": "TRUSTUSDT",
+  "peakDate": "2025-11-21",
+  "troughDate": "2026-03-29",
+  "peak": 0.3467,
+  "trough": 0.0611,
+  "decline": 0.8237
+ },
+ {
+  "sym": "TRUUSDT",
+  "peakDate": "2025-09-18",
+  "troughDate": "2026-03-01",
+  "peak": 0.0333,
+  "trough": 0.0045,
+  "decline": 0.8641
+ },
+ {
+  "sym": "TSTUSDT",
+  "peakDate": "2025-02-09",
+  "troughDate": "2025-08-08",
+  "peak": 0.2252,
+  "trough": 0.0266,
+  "decline": 0.8817
+ },
+ {
+  "sym": "TURBOUSDT",
+  "peakDate": "2024-12-11",
+  "troughDate": "2025-04-08",
+  "peak": 0.0135,
+  "trough": 0.0015,
+  "decline": 0.8908
+ },
+ {
+  "sym": "TURTLEUSDT",
+  "peakDate": "2025-10-26",
+  "troughDate": "2026-03-29",
+  "peak": 0.1999,
+  "trough": 0.0386,
+  "decline": 0.8069
+ },
+ {
+  "sym": "TUTUSDT",
+  "peakDate": "2025-10-05",
+  "troughDate": "2026-03-29",
+  "peak": 0.1038,
+  "trough": 0.0083,
+  "decline": 0.9205
+ },
+ {
+  "sym": "UNFIUSDT",
+  "peakDate": "2021-03-01",
+  "troughDate": "2021-07-20",
+  "peak": 42.064,
+  "trough": 5.186,
+  "decline": 0.8767
+ },
+ {
+  "sym": "UNIUSDT",
+  "peakDate": "2021-11-13",
+  "troughDate": "2022-05-12",
+  "peak": 24.678,
+  "trough": 4.665,
+  "decline": 0.811
+ },
+ {
+  "sym": "USELESSUSDT",
+  "peakDate": "2025-10-14",
+  "troughDate": "2026-03-28",
+  "peak": 0.4167,
+  "trough": 0.0304,
+  "decline": 0.9271
+ },
+ {
+  "sym": "USUALUSDT",
+  "peakDate": "2024-12-25",
+  "troughDate": "2025-06-22",
+  "peak": 1.3995,
+  "trough": 0.0629,
+  "decline": 0.9551
+ },
+ {
+  "sym": "USUSDT",
+  "peakDate": "2025-12-12",
+  "troughDate": "2026-03-07",
+  "peak": 0.0174,
+  "trough": 0.0028,
+  "decline": 0.8393
+ },
+ {
+  "sym": "UXLINKUSDT",
+  "peakDate": "2025-04-10",
+  "troughDate": "2025-09-24",
+  "peak": 0.6629,
+  "trough": 0.066,
+  "decline": 0.9004
+ },
+ {
+  "sym": "VANAUSDT",
+  "peakDate": "2024-12-16",
+  "troughDate": "2025-03-10",
+  "peak": 32.256,
+  "trough": 4.815,
+  "decline": 0.8507
+ },
+ {
+  "sym": "VANRYUSDT",
+  "peakDate": "2024-12-04",
+  "troughDate": "2025-04-08",
+  "peak": 0.1727,
+  "trough": 0.0211,
+  "decline": 0.8778
+ },
+ {
+  "sym": "VELODROMEUSDT",
+  "peakDate": "2024-12-13",
+  "troughDate": "2025-04-08",
+  "peak": 0.2738,
+  "trough": 0.0375,
+  "decline": 0.8631
+ },
+ {
+  "sym": "VELVETUSDT",
+  "peakDate": "2026-06-28",
+  "troughDate": "2026-09-13",
+  "peak": 1.8928,
+  "trough": 0.0511,
+  "decline": 0.973
+ },
+ {
+  "sym": "VETUSDT",
+  "peakDate": "2021-11-15",
+  "troughDate": "2022-05-12",
+  "peak": 0.1631,
+  "trough": 0.0276,
+  "decline": 0.8306
+ },
+ {
+  "sym": "VFYUSDT",
+  "peakDate": "2025-10-08",
+  "troughDate": "2026-03-17",
+  "peak": 0.1656,
+  "trough": 0.013,
+  "decline": 0.9217
+ },
+ {
+  "sym": "VICUSDT",
+  "peakDate": "2025-09-13",
+  "troughDate": "2026-03-07",
+  "peak": 0.2489,
+  "trough": 0.0433,
+  "decline": 0.826
+ },
+ {
+  "sym": "VIDTUSDT",
+  "peakDate": "2024-12-08",
+  "troughDate": "2025-04-13",
+  "peak": 0.054,
+  "trough": 0.0028,
+  "decline": 0.9481
+ },
+ {
+  "sym": "VINEUSDT",
+  "peakDate": "2025-01-25",
+  "troughDate": "2025-03-18",
+  "peak": 0.3823,
+  "trough": 0.025,
+  "decline": 0.9345
+ },
+ {
+  "sym": "VIRTUALUSDT",
+  "peakDate": "2025-01-01",
+  "troughDate": "2025-04-08",
+  "peak": 4.6253,
+  "trough": 0.4386,
+  "decline": 0.9052
+ },
+ {
+  "sym": "VOXELUSDT",
+  "peakDate": "2024-12-08",
+  "troughDate": "2025-04-17",
+  "peak": 0.2918,
+  "trough": 0.0213,
+  "decline": 0.9271
+ },
+ {
+  "sym": "WALUSDT",
+  "peakDate": "2025-09-10",
+  "troughDate": "2026-02-24",
+  "peak": 0.4537,
+  "trough": 0.0727,
+  "decline": 0.8398
+ },
+ {
+  "sym": "WAVESUSDT",
+  "peakDate": "2022-03-31",
+  "troughDate": "2022-09-21",
+  "peak": 54.401,
+  "trough": 3.842,
+  "decline": 0.9294
+ },
+ {
+  "sym": "WCTUSDT",
+  "peakDate": "2025-05-29",
+  "troughDate": "2025-11-06",
+  "peak": 1.1433,
+  "trough": 0.1073,
+  "decline": 0.9061
+ },
+ {
+  "sym": "WETUSDT",
+  "peakDate": "2025-12-10",
+  "troughDate": "2026-06-05",
+  "peak": 0.2904,
+  "trough": 0.0555,
+  "decline": 0.8088
+ },
+ {
+  "sym": "WIFUSDT",
+  "peakDate": "2024-11-13",
+  "troughDate": "2025-04-08",
+  "peak": 4.1672,
+  "trough": 0.3193,
+  "decline": 0.9234
+ },
+ {
+  "sym": "WLDUSDT",
+  "peakDate": "2024-03-09",
+  "troughDate": "2024-09-05",
+  "peak": 11.699,
+  "trough": 1.3875,
+  "decline": 0.8814
+ },
+ {
+  "sym": "WOOUSDT",
+  "peakDate": "2024-12-06",
+  "troughDate": "2025-04-16",
+  "peak": 0.364,
+  "trough": 0.0548,
+  "decline": 0.8494
+ },
+ {
+  "sym": "WUSDT",
+  "peakDate": "2025-10-06",
+  "troughDate": "2026-04-03",
+  "peak": 0.1334,
+  "trough": 0.0132,
+  "decline": 0.9012
+ },
+ {
+  "sym": "XAIUSDT",
+  "peakDate": "2024-12-06",
+  "troughDate": "2025-04-16",
+  "peak": 0.4189,
+  "trough": 0.0403,
+  "decline": 0.9039
+ },
+ {
+  "sym": "XANUSDT",
+  "peakDate": "2025-09-29",
+  "troughDate": "2026-03-08",
+  "peak": 0.2388,
+  "trough": 0.006,
+  "decline": 0.9747
+ },
+ {
+  "sym": "XEMUSDT",
+  "peakDate": "2021-03-03",
+  "troughDate": "2021-06-22",
+  "peak": 0.7904,
+  "trough": 0.0963,
+  "decline": 0.8782
+ },
+ {
+  "sym": "XNYUSDT",
+  "peakDate": "2025-08-16",
+  "troughDate": "2026-01-19",
+  "peak": 0.0261,
+  "trough": 0.003,
+  "decline": 0.8841
+ },
+ {
+  "sym": "XPINUSDT",
+  "peakDate": "2025-10-23",
+  "troughDate": "2026-04-04",
+  "peak": 0.0086,
+  "trough": 0.001,
+  "decline": 0.882
+ },
+ {
+  "sym": "XPLUSDT",
+  "peakDate": "2025-09-27",
+  "troughDate": "2026-02-05",
+  "peak": 1.6287,
+  "trough": 0.079,
+  "decline": 0.9515
+ },
+ {
+  "sym": "XVGUSDT",
+  "peakDate": "2024-12-04",
+  "troughDate": "2025-04-08",
+  "peak": 0.0203,
+  "trough": 0.0036,
+  "decline": 0.8251
+ },
+ {
+  "sym": "YALAUSDT",
+  "peakDate": "2025-08-10",
+  "troughDate": "2026-02-05",
+  "peak": 0.3429,
+  "trough": 0.006,
+  "decline": 0.9825
+ },
+ {
+  "sym": "YBUSDT",
+  "peakDate": "2025-10-10",
+  "troughDate": "2026-03-29",
+  "peak": 1.4197,
+  "trough": 0.0985,
+  "decline": 0.9306
+ },
+ {
+  "sym": "YFIIUSDT",
+  "peakDate": "2020-09-12",
+  "troughDate": "2020-11-04",
+  "peak": 6473,
+  "trough": 1063.2,
+  "decline": 0.8357
+ },
+ {
+  "sym": "YFIUSDT",
+  "peakDate": "2022-01-02",
+  "troughDate": "2022-06-18",
+  "peak": 39086,
+  "trough": 4370,
+  "decline": 0.8882
+ },
+ {
+  "sym": "YGGUSDT",
+  "peakDate": "2025-09-13",
+  "troughDate": "2026-03-08",
+  "peak": 0.2459,
+  "trough": 0.0367,
+  "decline": 0.8507
+ },
+ {
+  "sym": "ZAMAUSDT",
+  "peakDate": "2026-01-09",
+  "troughDate": "2026-02-12",
+  "peak": 0.1225,
+  "trough": 0.0181,
+  "decline": 0.8522
+ },
+ {
+  "sym": "ZBTUSDT",
+  "peakDate": "2025-10-17",
+  "troughDate": "2026-02-05",
+  "peak": 0.4138,
+  "trough": 0.0626,
+  "decline": 0.8487
+ },
+ {
+  "sym": "ZENUSDT",
+  "peakDate": "2021-11-25",
+  "troughDate": "2022-05-18",
+  "peak": 133.026,
+  "trough": 18.959,
+  "decline": 0.8575
+ },
+ {
+  "sym": "ZEREBROUSDT",
+  "peakDate": "2025-01-02",
+  "troughDate": "2025-04-15",
+  "peak": 0.6684,
+  "trough": 0.0191,
+  "decline": 0.9714
+ },
+ {
+  "sym": "ZETAUSDT",
+  "peakDate": "2024-02-15",
+  "troughDate": "2024-08-05",
+  "peak": 2.7193,
+  "trough": 0.379,
+  "decline": 0.8606
+ },
+ {
+  "sym": "ZILUSDT",
+  "peakDate": "2022-04-01",
+  "troughDate": "2022-09-21",
+  "peak": 0.1846,
+  "trough": 0.0311,
+  "decline": 0.8317
+ },
+ {
+  "sym": "ZKCUSDT",
+  "peakDate": "2025-09-15",
+  "troughDate": "2026-03-08",
+  "peak": 0.9366,
+  "trough": 0.0798,
+  "decline": 0.9148
+ },
+ {
+  "sym": "ZKJUSDT",
+  "peakDate": "2025-06-08",
+  "troughDate": "2025-12-05",
+  "peak": 2.007,
+  "trough": 0.0445,
+  "decline": 0.9778
+ },
+ {
+  "sym": "ZKUSDT",
+  "peakDate": "2025-01-06",
+  "troughDate": "2025-06-22",
+  "peak": 0.2244,
+  "trough": 0.0388,
+  "decline": 0.8273
+ },
+ {
+  "sym": "ZORAUSDT",
+  "peakDate": "2025-10-20",
+  "troughDate": "2026-04-12",
+  "peak": 0.1026,
+  "trough": 0.0136,
+  "decline": 0.8672
+ },
+ {
+  "sym": "ZRCUSDT",
+  "peakDate": "2025-07-29",
+  "troughDate": "2026-01-17",
+  "peak": 0.0392,
+  "trough": 0.0029,
+  "decline": 0.925
+ },
+ {
+  "sym": "ZRXUSDT",
+  "peakDate": "2024-03-16",
+  "troughDate": "2024-08-05",
+  "peak": 1.3597,
+  "trough": 0.2606,
+  "decline": 0.8083
+ },
+ {
+  "sym": "币安人生USDT",
+  "peakDate": "2025-10-20",
+  "troughDate": "2026-03-28",
+  "peak": 0.3522,
+  "trough": 0.0409,
+  "decline": 0.8838
+ },
+ {
+  "sym": "我踏马来了USDT",
+  "peakDate": "2026-02-01",
+  "troughDate": "2026-04-02",
+  "peak": 0.0589,
+  "trough": 0.0067,
+  "decline": 0.8866
+ },
+ {
+  "sym": "龙虾USDT",
+  "peakDate": "2026-09-20",
+  "troughDate": "2026-09-30",
+  "peak": 0.2387,
+  "trough": 0.0359,
+  "decline": 0.8497
+ }
+]

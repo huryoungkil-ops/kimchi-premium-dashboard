@@ -1,0 +1,1568 @@
+[
+ {
+  "name": "LUNA (Terra)",
+  "sym": "LUNAUSDT",
+  "event": "2022-05-07",
+  "fundingData": true,
+  "peakDate": "2022-04-04",
+  "peakClose": 116.383,
+  "troughDate": "2022-05-12",
+  "troughLow": 0.0031,
+  "dropPct": 100,
+  "daysPeakToTrough": 38,
+  "firstClose50": "2022-05-09",
+  "firstClose20": "2022-05-10",
+  "barsBeforePeak": 431,
+  "reboundFromTrough30dPct": 44506,
+  "signals": {
+   "d20": {
+    "date": "2022-04-11",
+    "close": 82.477,
+    "entry": 82.483,
+    "dropDonePct": 29.1,
+    "remainingToTroughPct": 100,
+    "trade": {
+     "entryT": "2022-04-12 00:00",
+     "entry": 82.483,
+     "exitT": "2022-05-13 00:00",
+     "exit": 0.008,
+     "why": "end",
+     "gross": 0.9999,
+     "funding": -0.0106,
+     "net": 0.9833,
+     "mae": 0.2051
+    }
+   },
+   "d55": {
+    "date": "2022-05-07",
+    "close": 68.126,
+    "entry": 68.126,
+    "dropDonePct": 41.5,
+    "remainingToTroughPct": 100,
+    "trade": {
+     "entryT": "2022-05-08 00:00",
+     "entry": 68.126,
+     "exitT": "2022-05-13 00:00",
+     "exit": 0.008,
+     "why": "end",
+     "gross": 0.9999,
+     "funding": -0.0021,
+     "net": 0.9918,
+     "mae": 0.0059
+    }
+   },
+   "ma120": {
+    "date": "2022-04-17",
+    "close": 77.128,
+    "entry": 77.125,
+    "dropDonePct": 33.7,
+    "remainingToTroughPct": 100,
+    "trade": {
+     "entryT": "2022-04-18 00:00",
+     "entry": 77.125,
+     "exitT": "2022-05-13 00:00",
+     "exit": 0.008,
+     "why": "end",
+     "gross": 0.9999,
+     "funding": -0.0112,
+     "net": 0.9827,
+     "mae": 0.2888
+    }
+   },
+   "atrx": {
+    "date": "2022-05-09",
+    "close": 30.106,
+    "entry": 30.121,
+    "dropDonePct": 74.1,
+    "remainingToTroughPct": 100,
+    "trade": {
+     "entryT": "2022-05-10 00:00",
+     "entry": 30.121,
+     "exitT": "2022-05-13 00:00",
+     "exit": 0.008,
+     "why": "end",
+     "gross": 0.9997,
+     "funding": -0.0036,
+     "net": 0.9902,
+     "mae": 0.3213
+    }
+   }
+  },
+  "belowMA120AtPeak": false,
+  "systemD20": {
+   "trades": 1,
+   "sumNet": 0.9833,
+   "list": [
+    [
+     "2022-04-12",
+     82.483,
+     "2022-05-13",
+     0.008,
+     0.9833,
+     0.2051
+    ]
+   ]
+  }
+ },
+ {
+  "name": "FTT (FTX)",
+  "sym": "FTTUSDT",
+  "event": "2022-11-06",
+  "fundingData": true,
+  "peakDate": "2022-10-31",
+  "peakClose": 26.073,
+  "troughDate": "2022-11-14",
+  "troughLow": 1.2158,
+  "dropPct": 95.3,
+  "daysPeakToTrough": 14,
+  "firstClose50": "2022-11-08",
+  "firstClose20": "2022-11-09",
+  "barsBeforePeak": 199,
+  "reboundFromTrough30dPct": 36,
+  "signals": {
+   "d20": {
+    "date": "2022-11-08",
+    "close": 5.472,
+    "entry": 5.471,
+    "dropDonePct": 82.9,
+    "remainingToTroughPct": 77.8,
+    "trade": {
+     "entryT": "2022-11-09 00:00",
+     "entry": 5.471,
+     "exitT": "2022-11-15 00:00",
+     "exit": 1.59,
+     "why": "end",
+     "gross": 0.7094,
+     "funding": -0.2141,
+     "net": 0.4893,
+     "mae": 0.1839
+    }
+   },
+   "d55": {
+    "date": "2022-11-08",
+    "close": 5.472,
+    "entry": 5.471,
+    "dropDonePct": 82.9,
+    "remainingToTroughPct": 77.8,
+    "trade": {
+     "entryT": "2022-11-09 00:00",
+     "entry": 5.471,
+     "exitT": "2022-11-15 00:00",
+     "exit": 1.59,
+     "why": "end",
+     "gross": 0.7094,
+     "funding": -0.2141,
+     "net": 0.4893,
+     "mae": 0.1839
+    }
+   },
+   "ma120": {
+    "date": "2022-11-01",
+    "close": 25.83,
+    "entry": 25.831,
+    "dropDonePct": 1,
+    "remainingToTroughPct": 95.3,
+    "trade": {
+     "entryT": "2022-11-02 00:00",
+     "entry": 25.831,
+     "exitT": "2022-11-15 00:00",
+     "exit": 1.59,
+     "why": "end",
+     "gross": 0.9384,
+     "funding": -0.0485,
+     "net": 0.8839,
+     "mae": 0.0168
+    }
+   },
+   "atrx": {
+    "date": "2022-11-06",
+    "close": 22.238,
+    "entry": 22.24,
+    "dropDonePct": 15.4,
+    "remainingToTroughPct": 94.5,
+    "trade": {
+     "entryT": "2022-11-07 00:00",
+     "entry": 22.24,
+     "exitT": "2022-11-15 00:00",
+     "exit": 1.59,
+     "why": "end",
+     "gross": 0.9285,
+     "funding": -0.0561,
+     "net": 0.8664,
+     "mae": 0.0789
+    }
+   }
+  },
+  "belowMA120AtPeak": true,
+  "systemD20": {
+   "trades": 1,
+   "sumNet": 0.4893,
+   "list": [
+    [
+     "2022-11-09",
+     5.471,
+     "2022-11-15",
+     1.59,
+     0.4893,
+     0.1839
+    ]
+   ]
+  }
+ },
+ {
+  "name": "SRM (FTX 생태계)",
+  "sym": "SRMUSDT",
+  "event": "2022-11-06",
+  "fundingData": true,
+  "peakDate": "2022-11-05",
+  "peakClose": 0.8211,
+  "troughDate": "2022-11-13",
+  "troughLow": 0.1045,
+  "dropPct": 87.3,
+  "daysPeakToTrough": 8,
+  "firstClose50": "2022-11-09",
+  "firstClose20": "2022-11-13",
+  "barsBeforePeak": 791,
+  "reboundFromTrough30dPct": 201,
+  "signals": {
+   "d20": {
+    "date": "2022-11-08",
+    "close": 0.547,
+    "entry": 0.5468,
+    "dropDonePct": 38.3,
+    "remainingToTroughPct": 80.9,
+    "trade": {
+     "entryT": "2022-11-09 00:00",
+     "entry": 0.5468,
+     "exitT": "2022-11-16 00:00",
+     "exit": 0.287,
+     "why": "end",
+     "gross": 0.4751,
+     "funding": -0.1162,
+     "net": 0.3529,
+     "mae": 0
+    }
+   },
+   "d55": {
+    "date": "2022-11-08",
+    "close": 0.547,
+    "entry": 0.5468,
+    "dropDonePct": 38.3,
+    "remainingToTroughPct": 80.9,
+    "trade": {
+     "entryT": "2022-11-09 00:00",
+     "entry": 0.5468,
+     "exitT": "2022-11-16 00:00",
+     "exit": 0.287,
+     "why": "end",
+     "gross": 0.4751,
+     "funding": -0.1162,
+     "net": 0.3529,
+     "mae": 0
+    }
+   },
+   "ma120": {
+    "date": "2022-11-06",
+    "close": 0.7589,
+    "entry": 0.7589,
+    "dropDonePct": 8.7,
+    "remainingToTroughPct": 86.2,
+    "trade": {
+     "entryT": "2022-11-07 00:00",
+     "entry": 0.7589,
+     "exitT": "2022-11-16 00:00",
+     "exit": 0.287,
+     "why": "end",
+     "gross": 0.6218,
+     "funding": -0.087,
+     "net": 0.5288,
+     "mae": 0.0133
+    }
+   },
+   "atrx": {
+    "date": "2022-11-08",
+    "close": 0.547,
+    "entry": 0.5468,
+    "dropDonePct": 38.3,
+    "remainingToTroughPct": 80.9,
+    "trade": {
+     "entryT": "2022-11-09 00:00",
+     "entry": 0.5468,
+     "exitT": "2022-11-16 00:00",
+     "exit": 0.287,
+     "why": "end",
+     "gross": 0.4751,
+     "funding": -0.1162,
+     "net": 0.3529,
+     "mae": 0
+    }
+   }
+  },
+  "belowMA120AtPeak": true,
+  "systemD20": {
+   "trades": 1,
+   "sumNet": 0.3529,
+   "list": [
+    [
+     "2022-11-09",
+     0.5468,
+     "2022-11-16",
+     0.287,
+     0.3529,
+     0
+    ]
+   ]
+  }
+ },
+ {
+  "name": "CEL (Celsius) Gate 현물",
+  "sym": "CEL",
+  "event": "2022-06-10",
+  "fundingData": false,
+  "peakDate": "2022-05-31",
+  "peakClose": 0.83087,
+  "troughDate": "2022-06-13",
+  "troughLow": 0.1309,
+  "dropPct": 84.2,
+  "daysPeakToTrough": 13,
+  "firstClose50": "2022-06-10",
+  "firstClose20": null,
+  "barsBeforePeak": 242,
+  "reboundFromTrough30dPct": 1305,
+  "signals": {
+   "d20": {
+    "date": "2022-06-10",
+    "close": 0.39352,
+    "entry": 0.3953,
+    "dropDonePct": 62.2,
+    "remainingToTroughPct": 66.9,
+    "trade": {
+     "entryT": "2022-06-11 00:00",
+     "entry": 0.3953,
+     "exitT": "2022-07-28 00:00",
+     "exit": 1.11777,
+     "why": "donchian10",
+     "gross": -1.8276,
+     "funding": null,
+     "net": -1.8336,
+     "mae": 3.6516
+    }
+   },
+   "d55": {
+    "date": "2022-06-10",
+    "close": 0.39352,
+    "entry": 0.3953,
+    "dropDonePct": 62.2,
+    "remainingToTroughPct": 66.9,
+    "trade": {
+     "entryT": "2022-06-11 00:00",
+     "entry": 0.3953,
+     "exitT": "2022-07-28 00:00",
+     "exit": 1.11777,
+     "why": "donchian10",
+     "gross": -1.8276,
+     "funding": null,
+     "net": -1.8336,
+     "mae": 3.6516
+    }
+   },
+   "ma120": {
+    "date": "2022-06-01",
+    "close": 0.71413,
+    "entry": 0.71101,
+    "dropDonePct": 17.1,
+    "remainingToTroughPct": 81.6,
+    "trade": {
+     "entryT": "2022-06-02 00:00",
+     "entry": 0.71101,
+     "exitT": "2022-07-28 00:00",
+     "exit": 1.11777,
+     "why": "donchian10",
+     "gross": -0.5721,
+     "funding": null,
+     "net": -0.5781,
+     "mae": 1.5861
+    }
+   },
+   "atrx": {
+    "date": "2022-06-10",
+    "close": 0.39352,
+    "entry": 0.3953,
+    "dropDonePct": 62.2,
+    "remainingToTroughPct": 66.9,
+    "trade": {
+     "entryT": "2022-06-11 00:00",
+     "entry": 0.3953,
+     "exitT": "2022-07-28 00:00",
+     "exit": 1.11777,
+     "why": "donchian10",
+     "gross": -1.8276,
+     "funding": null,
+     "net": -1.8336,
+     "mae": 3.6516
+    }
+   }
+  },
+  "belowMA120AtPeak": true,
+  "systemD20": {
+   "trades": 1,
+   "sumNet": -1.8336,
+   "list": [
+    [
+     "2022-06-11",
+     0.3953,
+     "2022-07-28",
+     1.11777,
+     -1.8336,
+     3.6516
+    ]
+   ]
+  }
+ },
+ {
+  "name": "WAVES/USDN",
+  "sym": "WAVESUSDT",
+  "event": "2022-04-01",
+  "fundingData": true,
+  "peakDate": "2022-03-31",
+  "peakClose": 54.401,
+  "troughDate": "2022-05-29",
+  "troughLow": 4.121,
+  "dropPct": 92.4,
+  "daysPeakToTrough": 59,
+  "firstClose50": "2022-04-08",
+  "firstClose20": "2022-05-11",
+  "barsBeforePeak": 596,
+  "reboundFromTrough30dPct": 173,
+  "signals": {
+   "d20": {
+    "date": "2022-04-08",
+    "close": 26.295,
+    "entry": 26.295,
+    "dropDonePct": 55.9,
+    "remainingToTroughPct": 84.3,
+    "trade": {
+     "entryT": "2022-04-09 00:00",
+     "entry": 26.295,
+     "exitT": "2022-05-31 00:00",
+     "exit": 7.596,
+     "why": "donchian10",
+     "gross": 0.7111,
+     "funding": -0.0491,
+     "net": 0.6561,
+     "mae": 0.0071
+    }
+   },
+   "d55": {
+    "date": "2022-04-26",
+    "close": 15.228,
+    "entry": 15.228,
+    "dropDonePct": 77.9,
+    "remainingToTroughPct": 72.9,
+    "trade": {
+     "entryT": "2022-04-27 00:00",
+     "entry": 15.228,
+     "exitT": "2022-05-31 00:00",
+     "exit": 7.596,
+     "why": "donchian10",
+     "gross": 0.5012,
+     "funding": -0.0693,
+     "net": 0.4259,
+     "mae": 0.1206
+    }
+   },
+   "ma120": {
+    "date": "2022-04-21",
+    "close": 19.185,
+    "entry": 19.185,
+    "dropDonePct": 70,
+    "remainingToTroughPct": 78.5,
+    "trade": {
+     "entryT": "2022-04-22 00:00",
+     "entry": 19.185,
+     "exitT": "2022-05-31 00:00",
+     "exit": 7.596,
+     "why": "donchian10",
+     "gross": 0.6041,
+     "funding": -0.0565,
+     "net": 0.5415,
+     "mae": 0.0242
+    }
+   },
+   "atrx": {
+    "date": "2022-04-04",
+    "close": 34.69,
+    "entry": 34.696,
+    "dropDonePct": 39.2,
+    "remainingToTroughPct": 88.1,
+    "trade": {
+     "entryT": "2022-04-05 00:00",
+     "entry": 34.696,
+     "exitT": "2022-05-31 00:00",
+     "exit": 7.596,
+     "why": "donchian10",
+     "gross": 0.7811,
+     "funding": -0.0392,
+     "net": 0.7358,
+     "mae": 0.0313
+    }
+   }
+  },
+  "belowMA120AtPeak": false,
+  "systemD20": {
+   "trades": 1,
+   "sumNet": 0.6561,
+   "list": [
+    [
+     "2022-04-09",
+     26.295,
+     "2022-05-31",
+     7.596,
+     0.6561,
+     0.0071
+    ]
+   ]
+  }
+ },
+ {
+  "name": "OM (MANTRA)",
+  "sym": "OMUSDT",
+  "event": "2025-04-13",
+  "fundingData": true,
+  "peakDate": "2025-02-23",
+  "peakClose": 8.48408,
+  "troughDate": "2025-04-13",
+  "troughLow": 0.36905,
+  "dropPct": 95.7,
+  "daysPeakToTrough": 49,
+  "firstClose50": "2025-04-13",
+  "firstClose20": "2025-04-13",
+  "barsBeforePeak": 376,
+  "reboundFromTrough30dPct": 1620,
+  "signals": {
+   "d20": {
+    "date": "2025-03-07",
+    "close": 6.56777,
+    "entry": 6.5675,
+    "dropDonePct": 23.6,
+    "remainingToTroughPct": 94.4,
+    "trade": {
+     "entryT": "2025-03-08 00:00",
+     "entry": 6.5675,
+     "exitT": "2025-03-18 00:00",
+     "exit": 6.99065,
+     "why": "donchian10",
+     "gross": -0.0644,
+     "funding": -0.008,
+     "net": -0.0785,
+     "mae": 0.0735
+    }
+   },
+   "d55": {
+    "date": "2025-04-13",
+    "close": 1.008,
+    "entry": 1.00806,
+    "dropDonePct": 92.1,
+    "remainingToTroughPct": 63.4,
+    "trade": {
+     "entryT": "2025-04-14 00:00",
+     "entry": 1.00806,
+     "exitT": "2025-06-13 00:00",
+     "exit": 0.26878,
+     "why": "maxhold",
+     "gross": 0.7334,
+     "funding": -0.0196,
+     "net": 0.7077,
+     "mae": 0.0912
+    }
+   },
+   "ma120": {
+    "date": "2025-04-13",
+    "close": 1.008,
+    "entry": 1.00806,
+    "dropDonePct": 92.1,
+    "remainingToTroughPct": 63.4,
+    "trade": {
+     "entryT": "2025-04-14 00:00",
+     "entry": 1.00806,
+     "exitT": "2025-06-13 00:00",
+     "exit": 0.26878,
+     "why": "maxhold",
+     "gross": 0.7334,
+     "funding": -0.0196,
+     "net": 0.7077,
+     "mae": 0.0912
+    }
+   },
+   "atrx": {
+    "date": "2025-04-13",
+    "close": 1.008,
+    "entry": 1.00806,
+    "dropDonePct": 92.1,
+    "remainingToTroughPct": 63.4,
+    "trade": {
+     "entryT": "2025-04-14 00:00",
+     "entry": 1.00806,
+     "exitT": "2025-06-13 00:00",
+     "exit": 0.26878,
+     "why": "maxhold",
+     "gross": 0.7334,
+     "funding": -0.0196,
+     "net": 0.7077,
+     "mae": 0.0912
+    }
+   }
+  },
+  "belowMA120AtPeak": false,
+  "systemD20": {
+   "trades": 3,
+   "sumNet": 0.4392,
+   "list": [
+    [
+     "2025-03-08",
+     6.5675,
+     "2025-03-18",
+     6.99065,
+     -0.0785,
+     0.0735
+    ],
+    [
+     "2025-04-07",
+     5.73517,
+     "2025-04-10",
+     6.7958,
+     -0.19,
+     0.1977
+    ],
+    [
+     "2025-04-14",
+     1.00806,
+     "2025-06-13",
+     0.26878,
+     0.7077,
+     0.0912
+    ]
+   ]
+  }
+ },
+ {
+  "name": "ZKJ (Polyhedra)",
+  "sym": "ZKJUSDT",
+  "event": "2025-06-15",
+  "fundingData": true,
+  "peakDate": "2025-05-13",
+  "peakClose": 2.112,
+  "troughDate": "2025-07-09",
+  "troughLow": 0.1569,
+  "dropPct": 92.6,
+  "daysPeakToTrough": 57,
+  "firstClose50": "2025-06-15",
+  "firstClose20": "2025-06-15",
+  "barsBeforePeak": 0,
+  "reboundFromTrough30dPct": 49,
+  "signals": {
+   "d20": {
+    "date": "2025-06-15",
+    "close": 0.3193,
+    "entry": 0.3193,
+    "dropDonePct": 91.7,
+    "remainingToTroughPct": 50.9,
+    "trade": {
+     "entryT": "2025-06-16 00:00",
+     "entry": 0.3193,
+     "exitT": "2025-08-10 00:00",
+     "exit": 0.1777,
+     "why": "donchian10",
+     "gross": 0.4435,
+     "funding": -0.0632,
+     "net": 0.3742,
+     "mae": 1.3705
+    }
+   },
+   "d55": {
+    "date": "2025-07-08",
+    "close": 0.1617,
+    "entry": 0.1617,
+    "dropDonePct": 99.8,
+    "remainingToTroughPct": 3,
+    "trade": {
+     "entryT": "2025-07-09 00:00",
+     "entry": 0.1617,
+     "exitT": "2025-08-10 00:00",
+     "exit": 0.1777,
+     "why": "donchian10",
+     "gross": -0.0989,
+     "funding": 0.0016,
+     "net": -0.1034,
+     "mae": 0.4447
+    }
+   },
+   "ma120": null,
+   "atrx": {
+    "date": "2025-06-14",
+    "close": 1.976,
+    "entry": 1.976,
+    "dropDonePct": 7,
+    "remainingToTroughPct": 92.1,
+    "trade": {
+     "entryT": "2025-06-15 00:00",
+     "entry": 1.976,
+     "exitT": "2025-08-10 00:00",
+     "exit": 0.1777,
+     "why": "donchian10",
+     "gross": 0.9101,
+     "funding": -0.0098,
+     "net": 0.8942,
+     "mae": 0.002
+    }
+   }
+  },
+  "belowMA120AtPeak": "n/a(<120d)",
+  "systemD20": {
+   "trades": 1,
+   "sumNet": 0.3742,
+   "list": [
+    [
+     "2025-06-16",
+     0.3193,
+     "2025-08-10",
+     0.1777,
+     0.3742,
+     1.3705
+    ]
+   ]
+  }
+ },
+ {
+  "name": "MOVE (Movement)",
+  "sym": "MOVEUSDT",
+  "event": "2024-12-10",
+  "fundingData": true,
+  "peakDate": "2024-12-11",
+  "peakClose": 0.749,
+  "troughDate": "2025-06-22",
+  "troughLow": 0.1107,
+  "dropPct": 85.2,
+  "daysPeakToTrough": 193,
+  "firstClose50": "2025-04-06",
+  "firstClose20": "2025-05-30",
+  "barsBeforePeak": 2,
+  "reboundFromTrough30dPct": 83,
+  "signals": {
+   "d20": {
+    "date": "2025-01-13",
+    "close": 0.8091,
+    "entry": 0.8091,
+    "dropDonePct": -9.4,
+    "remainingToTroughPct": 86.3,
+    "trade": {
+     "entryT": "2025-01-14 00:00",
+     "entry": 0.8091,
+     "exitT": "2025-03-15 00:00",
+     "exit": 0.4507,
+     "why": "maxhold",
+     "gross": 0.443,
+     "funding": -0.0635,
+     "net": 0.3734,
+     "mae": 0.1221
+    }
+   },
+   "d55": {
+    "date": "2025-02-24",
+    "close": 0.42,
+    "entry": 0.4199,
+    "dropDonePct": 51.6,
+    "remainingToTroughPct": 73.6,
+    "trade": {
+     "entryT": "2025-02-25 00:00",
+     "entry": 0.4199,
+     "exitT": "2025-03-26 00:00",
+     "exit": 0.5476,
+     "why": "donchian10",
+     "gross": -0.3041,
+     "funding": -0.1039,
+     "net": -0.414,
+     "mae": 0.396
+    }
+   },
+   "ma120": {
+    "date": "2025-04-08",
+    "close": 0.3079,
+    "entry": 0.3078,
+    "dropDonePct": 69.1,
+    "remainingToTroughPct": 64,
+    "trade": {
+     "entryT": "2025-04-09 00:00",
+     "entry": 0.3078,
+     "exitT": "2025-06-08 00:00",
+     "exit": 0.1442,
+     "why": "maxhold",
+     "gross": 0.5315,
+     "funding": -0.2735,
+     "net": 0.252,
+     "mae": 0.1391
+    }
+   },
+   "atrx": {
+    "date": "2025-05-01",
+    "close": 0.1853,
+    "entry": 0.1852,
+    "dropDonePct": 88.3,
+    "remainingToTroughPct": 40.2,
+    "trade": {
+     "entryT": "2025-05-02 00:00",
+     "entry": 0.1852,
+     "exitT": "2025-06-11 00:00",
+     "exit": 0.1653,
+     "why": "donchian10",
+     "gross": 0.1075,
+     "funding": -0.2223,
+     "net": -0.1208,
+     "mae": 0.3191
+    }
+   }
+  },
+  "belowMA120AtPeak": "n/a(<120d)",
+  "systemD20": {
+   "trades": 3,
+   "sumNet": 0.2422,
+   "list": [
+    [
+     "2025-01-14",
+     0.8091,
+     "2025-03-15",
+     0.4507,
+     0.3734,
+     0.1221
+    ],
+    [
+     "2025-04-01",
+     0.4034,
+     "2025-05-31",
+     0.1411,
+     0.4166,
+     0.057
+    ],
+    [
+     "2025-06-23",
+     0.1166,
+     "2025-06-26",
+     0.175,
+     -0.5478,
+     0.6184
+    ]
+   ]
+  }
+ },
+ {
+  "name": "ALPACA (상폐 펌프)",
+  "sym": "ALPACAUSDT",
+  "event": "2025-04-24",
+  "fundingData": true,
+  "peakDate": "2025-04-26",
+  "peakClose": 0.30174,
+  "troughDate": "2025-04-29",
+  "troughLow": 0.06579,
+  "dropPct": 78.2,
+  "daysPeakToTrough": 3,
+  "firstClose50": null,
+  "firstClose20": null,
+  "barsBeforePeak": 247,
+  "reboundFromTrough30dPct": 2144,
+  "signals": {
+   "d20": null,
+   "d55": null,
+   "ma120": null,
+   "atrx": {
+    "date": "2025-04-27",
+    "close": 0.17769,
+    "entry": 0.17769,
+    "dropDonePct": 52.6,
+    "remainingToTroughPct": 63,
+    "trade": {
+     "entryT": "2025-04-28 00:00",
+     "entry": 0.17769,
+     "exitT": "2025-05-01 00:00",
+     "exit": 1.19,
+     "why": "donchian10",
+     "gross": -5.6971,
+     "funding": 0.564,
+     "net": -5.139,
+     "mae": 7.3083
+    }
+   }
+  },
+  "belowMA120AtPeak": false,
+  "systemD20": {
+   "trades": 0,
+   "sumNet": 0,
+   "list": []
+  }
+ },
+ {
+  "name": "RAVE (RaveDAO)",
+  "sym": "RAVEUSDT",
+  "event": "2026-04-17",
+  "fundingData": true,
+  "peakDate": "2026-04-17",
+  "peakClose": 21.9445,
+  "troughDate": "2026-06-14",
+  "troughLow": 0.2824,
+  "dropPct": 98.7,
+  "daysPeakToTrough": 58,
+  "firstClose50": "2026-04-18",
+  "firstClose20": "2026-04-18",
+  "barsBeforePeak": 124,
+  "reboundFromTrough30dPct": 90,
+  "signals": {
+   "d20": {
+    "date": "2026-05-26",
+    "close": 0.5024,
+    "entry": 0.5025,
+    "dropDonePct": 99,
+    "remainingToTroughPct": 43.8,
+    "trade": {
+     "entryT": "2026-05-27 00:00",
+     "entry": 0.5025,
+     "exitT": "2026-06-29 00:00",
+     "exit": 0.3284,
+     "why": "donchian10",
+     "gross": 0.3465,
+     "funding": 0.0173,
+     "net": 0.3577,
+     "mae": 0.0545
+    }
+   },
+   "d55": {
+    "date": "2026-06-04",
+    "close": 0.3813,
+    "entry": 0.3813,
+    "dropDonePct": 99.5,
+    "remainingToTroughPct": 25.9,
+    "trade": {
+     "entryT": "2026-06-05 00:00",
+     "entry": 0.3813,
+     "exitT": "2026-06-29 00:00",
+     "exit": 0.3284,
+     "why": "donchian10",
+     "gross": 0.1387,
+     "funding": 0.0138,
+     "net": 0.1465,
+     "mae": 0.0034
+    }
+   },
+   "ma120": {
+    "date": "2026-04-19",
+    "close": 0.638,
+    "entry": 0.63794,
+    "dropDonePct": 98.4,
+    "remainingToTroughPct": 55.7,
+    "trade": {
+     "entryT": "2026-04-20 00:00",
+     "entry": 0.63794,
+     "exitT": "2026-06-19 00:00",
+     "exit": 0.2751,
+     "why": "maxhold",
+     "gross": 0.5688,
+     "funding": 0.1354,
+     "net": 0.6982,
+     "mae": 3.203
+    }
+   },
+   "atrx": {
+    "date": "2026-04-18",
+    "close": 2.92572,
+    "entry": 2.92603,
+    "dropDonePct": 87.8,
+    "remainingToTroughPct": 90.3,
+    "trade": {
+     "entryT": "2026-04-19 00:00",
+     "entry": 2.92603,
+     "exitT": "2026-06-18 00:00",
+     "exit": 0.2908,
+     "why": "maxhold",
+     "gross": 0.9006,
+     "funding": 0.0324,
+     "net": 0.927,
+     "mae": 0.0646
+    }
+   }
+  },
+  "belowMA120AtPeak": false,
+  "systemD20": {
+   "trades": 1,
+   "sumNet": 0.3577,
+   "list": [
+    [
+     "2026-05-27",
+     0.5025,
+     "2026-06-29",
+     0.3284,
+     0.3577,
+     0.0545
+    ]
+   ]
+  }
+ },
+ {
+  "name": "SIREN (3월 급락)",
+  "sym": "SIRENUSDT",
+  "event": "2026-03-20",
+  "fundingData": true,
+  "peakDate": "2026-03-23",
+  "peakClose": 2.37313,
+  "troughDate": "2026-04-04",
+  "troughLow": 0.13089,
+  "dropPct": 94.5,
+  "daysPeakToTrough": 12,
+  "firstClose50": "2026-03-24",
+  "firstClose20": "2026-04-01",
+  "barsBeforePeak": 366,
+  "reboundFromTrough30dPct": 1610,
+  "signals": {
+   "d20": {
+    "date": "2026-04-01",
+    "close": 0.2575,
+    "entry": 0.2575,
+    "dropDonePct": 94.4,
+    "remainingToTroughPct": 49.2,
+    "trade": {
+     "entryT": "2026-04-02 00:00",
+     "entry": 0.2575,
+     "exitT": "2026-04-17 00:00",
+     "exit": 1.9752,
+     "why": "donchian10",
+     "gross": -6.6707,
+     "funding": -0.914,
+     "net": -7.5907,
+     "mae": 6.708
+    }
+   },
+   "d55": null,
+   "ma120": {
+    "date": "2026-04-01",
+    "close": 0.2575,
+    "entry": 0.2575,
+    "dropDonePct": 94.4,
+    "remainingToTroughPct": 49.2,
+    "trade": {
+     "entryT": "2026-04-02 00:00",
+     "entry": 0.2575,
+     "exitT": "2026-04-17 00:00",
+     "exit": 1.9752,
+     "why": "donchian10",
+     "gross": -6.6707,
+     "funding": -0.914,
+     "net": -7.5907,
+     "mae": 6.708
+    }
+   },
+   "atrx": {
+    "date": "2026-03-24",
+    "close": 1.01138,
+    "entry": 1.01136,
+    "dropDonePct": 60.7,
+    "remainingToTroughPct": 87.1,
+    "trade": {
+     "entryT": "2026-03-25 00:00",
+     "entry": 1.01136,
+     "exitT": "2026-04-17 00:00",
+     "exit": 1.9752,
+     "why": "donchian10",
+     "gross": -0.953,
+     "funding": -0.3903,
+     "net": -1.3493,
+     "mae": 1.8427
+    }
+   }
+  },
+  "belowMA120AtPeak": false,
+  "systemD20": {
+   "trades": 1,
+   "sumNet": -7.5907,
+   "list": [
+    [
+     "2026-04-02",
+     0.2575,
+     "2026-04-17",
+     1.9752,
+     -7.5907,
+     6.708
+    ]
+   ]
+  }
+ },
+ {
+  "name": "SIREN (6월 고래 매도)",
+  "sym": "SIRENUSDT",
+  "event": "2026-06-10",
+  "fundingData": true,
+  "peakDate": "2026-06-07",
+  "peakClose": 1.304,
+  "troughDate": "2026-07-29",
+  "troughLow": 0.02422,
+  "dropPct": 98.1,
+  "daysPeakToTrough": 52,
+  "firstClose50": "2026-06-11",
+  "firstClose20": "2026-06-13",
+  "barsBeforePeak": 442,
+  "reboundFromTrough30dPct": 62,
+  "signals": {
+   "d20": {
+    "date": "2026-06-13",
+    "close": 0.1196,
+    "entry": 0.1195,
+    "dropDonePct": 92.6,
+    "remainingToTroughPct": 79.7,
+    "trade": {
+     "entryT": "2026-06-14 00:00",
+     "entry": 0.1195,
+     "exitT": "2026-07-21 00:00",
+     "exit": 0.03103,
+     "why": "donchian10",
+     "gross": 0.7403,
+     "funding": 0.0558,
+     "net": 0.7901,
+     "mae": 0.2084
+    }
+   },
+   "d55": {
+    "date": "2026-06-13",
+    "close": 0.1196,
+    "entry": 0.1195,
+    "dropDonePct": 92.6,
+    "remainingToTroughPct": 79.7,
+    "trade": {
+     "entryT": "2026-06-14 00:00",
+     "entry": 0.1195,
+     "exitT": "2026-07-21 00:00",
+     "exit": 0.03103,
+     "why": "donchian10",
+     "gross": 0.7403,
+     "funding": 0.0558,
+     "net": 0.7901,
+     "mae": 0.2084
+    }
+   },
+   "ma120": {
+    "date": "2026-06-11",
+    "close": 0.5735,
+    "entry": 0.5735,
+    "dropDonePct": 57.1,
+    "remainingToTroughPct": 95.8,
+    "trade": {
+     "entryT": "2026-06-12 00:00",
+     "entry": 0.5735,
+     "exitT": "2026-07-21 00:00",
+     "exit": 0.03103,
+     "why": "donchian10",
+     "gross": 0.9459,
+     "funding": 0.0111,
+     "net": 0.951,
+     "mae": 0.0603
+    }
+   },
+   "atrx": {
+    "date": "2026-06-09",
+    "close": 0.8923,
+    "entry": 0.8921,
+    "dropDonePct": 32.2,
+    "remainingToTroughPct": 97.3,
+    "trade": {
+     "entryT": "2026-06-10 00:00",
+     "entry": 0.8921,
+     "exitT": "2026-07-21 00:00",
+     "exit": 0.03103,
+     "why": "donchian10",
+     "gross": 0.9652,
+     "funding": 0.0013,
+     "net": 0.9606,
+     "mae": 0.0196
+    }
+   }
+  },
+  "belowMA120AtPeak": false,
+  "systemD20": {
+   "trades": 1,
+   "sumNet": 0.7901,
+   "list": [
+    [
+     "2026-06-14",
+     0.1195,
+     "2026-07-21",
+     0.03103,
+     0.7901,
+     0.2084
+    ]
+   ]
+  }
+ },
+ {
+  "name": "LAB",
+  "sym": "LABUSDT",
+  "event": "2026-07-06",
+  "fundingData": true,
+  "peakDate": "2026-06-26",
+  "peakClose": 19.509,
+  "troughDate": "2026-08-22",
+  "troughLow": 0.05579,
+  "dropPct": 99.7,
+  "daysPeakToTrough": 57,
+  "firstClose50": "2026-07-01",
+  "firstClose20": "2026-07-08",
+  "barsBeforePeak": 252,
+  "reboundFromTrough30dPct": 68,
+  "signals": {
+   "d20": {
+    "date": "2026-07-03",
+    "close": 5.973,
+    "entry": 5.973,
+    "dropDonePct": 69.6,
+    "remainingToTroughPct": 99.1,
+    "trade": {
+     "entryT": "2026-07-04 00:00",
+     "entry": 5.973,
+     "exitT": "2026-09-02 00:00",
+     "exit": 0.06877,
+     "why": "maxhold",
+     "gross": 0.9885,
+     "funding": -0.5234,
+     "net": 0.4591,
+     "mae": 2.0132
+    }
+   },
+   "d55": {
+    "date": "2026-07-08",
+    "close": 1.252,
+    "entry": 1.253,
+    "dropDonePct": 93.8,
+    "remainingToTroughPct": 95.5,
+    "trade": {
+     "entryT": "2026-07-09 00:00",
+     "entry": 1.253,
+     "exitT": "2026-09-07 00:00",
+     "exit": 0.07182,
+     "why": "maxhold",
+     "gross": 0.9427,
+     "funding": 0.0108,
+     "net": 0.9475,
+     "mae": 0.2426
+    }
+   },
+   "ma120": {
+    "date": "2026-07-08",
+    "close": 1.252,
+    "entry": 1.253,
+    "dropDonePct": 93.8,
+    "remainingToTroughPct": 95.5,
+    "trade": {
+     "entryT": "2026-07-09 00:00",
+     "entry": 1.253,
+     "exitT": "2026-09-07 00:00",
+     "exit": 0.07182,
+     "why": "maxhold",
+     "gross": 0.9427,
+     "funding": 0.0108,
+     "net": 0.9475,
+     "mae": 0.2426
+    }
+   },
+   "atrx": {
+    "date": "2026-07-07",
+    "close": 5.752,
+    "entry": 5.755,
+    "dropDonePct": 70.7,
+    "remainingToTroughPct": 99,
+    "trade": {
+     "entryT": "2026-07-08 00:00",
+     "entry": 5.755,
+     "exitT": "2026-09-06 00:00",
+     "exit": 0.07433,
+     "why": "maxhold",
+     "gross": 0.9871,
+     "funding": -0.0012,
+     "net": 0.9799,
+     "mae": 0.2076
+    }
+   }
+  },
+  "belowMA120AtPeak": false,
+  "systemD20": {
+   "trades": 2,
+   "sumNet": -0.0663,
+   "list": [
+    [
+     "2026-07-04",
+     5.973,
+     "2026-09-02",
+     0.06877,
+     0.4591,
+     2.0132
+    ],
+    [
+     "2026-09-10",
+     0.05137,
+     "2026-09-12",
+     0.07811,
+     -0.5254,
+     0.648
+    ]
+   ]
+  }
+ },
+ {
+  "name": "DEXE",
+  "sym": "DEXEUSDT",
+  "event": "2026-07-20",
+  "fundingData": true,
+  "peakDate": "2026-07-12",
+  "peakClose": 47.94,
+  "troughDate": "2026-07-24",
+  "troughLow": 1.287,
+  "dropPct": 97.3,
+  "daysPeakToTrough": 12,
+  "firstClose50": "2026-07-21",
+  "firstClose20": "2026-07-21",
+  "barsBeforePeak": 565,
+  "reboundFromTrough30dPct": 401,
+  "signals": {
+   "d20": {
+    "date": "2026-07-21",
+    "close": 5.8,
+    "entry": 5.8,
+    "dropDonePct": 90.3,
+    "remainingToTroughPct": 77.8,
+    "trade": {
+     "entryT": "2026-07-22 00:00",
+     "entry": 5.8,
+     "exitT": "2026-08-29 00:00",
+     "exit": 2.465,
+     "why": "donchian10",
+     "gross": 0.575,
+     "funding": -0.4576,
+     "net": 0.1114,
+     "mae": 0.1121
+    }
+   },
+   "d55": {
+    "date": "2026-07-21",
+    "close": 5.8,
+    "entry": 5.8,
+    "dropDonePct": 90.3,
+    "remainingToTroughPct": 77.8,
+    "trade": {
+     "entryT": "2026-07-22 00:00",
+     "entry": 5.8,
+     "exitT": "2026-08-29 00:00",
+     "exit": 2.465,
+     "why": "donchian10",
+     "gross": 0.575,
+     "funding": -0.4576,
+     "net": 0.1114,
+     "mae": 0.1121
+    }
+   },
+   "ma120": {
+    "date": "2026-07-21",
+    "close": 5.8,
+    "entry": 5.8,
+    "dropDonePct": 90.3,
+    "remainingToTroughPct": 77.8,
+    "trade": {
+     "entryT": "2026-07-22 00:00",
+     "entry": 5.8,
+     "exitT": "2026-08-29 00:00",
+     "exit": 2.465,
+     "why": "donchian10",
+     "gross": 0.575,
+     "funding": -0.4576,
+     "net": 0.1114,
+     "mae": 0.1121
+    }
+   },
+   "atrx": {
+    "date": "2026-07-13",
+    "close": 42.63,
+    "entry": 42.64,
+    "dropDonePct": 11.4,
+    "remainingToTroughPct": 97,
+    "trade": {
+     "entryT": "2026-07-14 00:00",
+     "entry": 42.64,
+     "exitT": "2026-08-29 00:00",
+     "exit": 2.465,
+     "why": "donchian10",
+     "gross": 0.9422,
+     "funding": -0.0815,
+     "net": 0.8547,
+     "mae": 0.0389
+    }
+   }
+  },
+  "belowMA120AtPeak": false,
+  "systemD20": {
+   "trades": 1,
+   "sumNet": 0.1114,
+   "list": [
+    [
+     "2026-07-22",
+     5.8,
+     "2026-08-29",
+     2.465,
+     0.1114,
+     0.1121
+    ]
+   ]
+  }
+ },
+ {
+  "name": "COAI",
+  "sym": "COAIUSDT",
+  "event": "2025-10-15",
+  "fundingData": true,
+  "peakDate": "2025-10-16",
+  "peakClose": 19.082,
+  "troughDate": "2025-11-21",
+  "troughLow": 0.35,
+  "dropPct": 98.2,
+  "daysPeakToTrough": 36,
+  "firstClose50": "2025-10-19",
+  "firstClose20": "2025-10-29",
+  "barsBeforePeak": 21,
+  "reboundFromTrough30dPct": 101,
+  "signals": {
+   "d20": {
+    "date": "2025-10-29",
+    "close": 3.092,
+    "entry": 3.092,
+    "dropDonePct": 85.4,
+    "remainingToTroughPct": 88.7,
+    "trade": {
+     "entryT": "2025-10-30 00:00",
+     "entry": 3.092,
+     "exitT": "2025-12-29 00:00",
+     "exit": 0.4095,
+     "why": "maxhold",
+     "gross": 0.8676,
+     "funding": 0.0087,
+     "net": 0.8703,
+     "mae": 0.229
+    }
+   },
+   "d55": null,
+   "ma120": null,
+   "atrx": {
+    "date": "2025-10-17",
+    "close": 12.449,
+    "entry": 12.448,
+    "dropDonePct": 35.4,
+    "remainingToTroughPct": 97.2,
+    "trade": {
+     "entryT": "2025-10-18 00:00",
+     "entry": 12.448,
+     "exitT": "2025-12-17 00:00",
+     "exit": 0.5725,
+     "why": "maxhold",
+     "gross": 0.954,
+     "funding": -0.6722,
+     "net": 0.2758,
+     "mae": 0.598
+    }
+   }
+  },
+  "belowMA120AtPeak": "n/a(<120d)",
+  "systemD20": {
+   "trades": 1,
+   "sumNet": 0.8703,
+   "list": [
+    [
+     "2025-10-30",
+     3.092,
+     "2025-12-29",
+     0.4095,
+     0.8703,
+     0.229
+    ]
+   ]
+  }
+ },
+ {
+  "name": "XPL (Plasma)",
+  "sym": "XPLUSDT",
+  "event": "2025-09-28",
+  "fundingData": true,
+  "peakDate": "2025-09-27",
+  "peakClose": 1.6287,
+  "troughDate": "2025-11-24",
+  "troughLow": 0.175,
+  "dropPct": 89.3,
+  "daysPeakToTrough": 58,
+  "firstClose50": "2025-10-09",
+  "firstClose20": "2025-10-30",
+  "barsBeforePeak": 36,
+  "reboundFromTrough30dPct": 31,
+  "signals": {
+   "d20": {
+    "date": "2025-10-10",
+    "close": 0.4718,
+    "entry": 0.4718,
+    "dropDonePct": 79.6,
+    "remainingToTroughPct": 62.9,
+    "trade": {
+     "entryT": "2025-10-11 00:00",
+     "entry": 0.4718,
+     "exitT": "2025-12-10 00:00",
+     "exit": 0.1778,
+     "why": "maxhold",
+     "gross": 0.6231,
+     "funding": 0.0066,
+     "net": 0.6238,
+     "mae": 0.1891
+    }
+   },
+   "d55": {
+    "date": "2025-11-04",
+    "close": 0.2474,
+    "entry": 0.2474,
+    "dropDonePct": 95,
+    "remainingToTroughPct": 29.3,
+    "trade": {
+     "entryT": "2025-11-05 00:00",
+     "entry": 0.2474,
+     "exitT": "2025-12-28 00:00",
+     "exit": 0.1531,
+     "why": "donchian10",
+     "gross": 0.3812,
+     "funding": 0.008,
+     "net": 0.3831,
+     "mae": 0.4236
+    }
+   },
+   "ma120": null,
+   "atrx": null
+  },
+  "belowMA120AtPeak": "n/a(<120d)",
+  "systemD20": {
+   "trades": 2,
+   "sumNet": 0.5885,
+   "list": [
+    [
+     "2025-10-11",
+     0.4718,
+     "2025-12-10",
+     0.1778,
+     0.6238,
+     0.1891
+    ],
+    [
+     "2025-12-13",
+     0.1484,
+     "2025-12-28",
+     0.1531,
+     -0.0353,
+     0.091
+    ]
+   ]
+  }
+ }
+]
