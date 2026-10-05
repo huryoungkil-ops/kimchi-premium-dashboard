@@ -380,6 +380,31 @@
   table.trades-history td.neg{ color:var(--danger); }
   table.trades-history td.empty-row{ color:var(--ink-soft); text-align:center; padding:20px 16px; font-family:inherit; }
   .history-note{ font-size:12px; color:var(--ink-soft); margin:10px 2px 0; }
+
+  /* ---------- 전략 탭 (김치프리미엄 · 터틀 · 제2의 루나) ---------- */
+  nav.strategy-tabs{ display:flex; flex-wrap:wrap; gap:8px; margin:-12px 0 28px; }
+  nav.strategy-tabs a{
+    display:inline-flex; align-items:center; gap:7px; padding:9px 16px; border-radius:999px;
+    border:1px solid var(--line); background:var(--bg-raised); color:var(--ink); text-decoration:none;
+    font-weight:600; font-size:14px; box-shadow:var(--shadow);
+  }
+  nav.strategy-tabs a:hover{ border-color:var(--accent); }
+  nav.strategy-tabs a:focus-visible{ outline:2px solid var(--accent); outline-offset:2px; }
+  nav.strategy-tabs a[aria-current="page"]{ background:var(--accent); color:var(--accent-ink); border-color:var(--accent); }
+  nav.strategy-tabs .sub{ font-weight:400; font-size:12px; opacity:.8; }
+  .tab-panel > section{ margin-bottom:40px; }
+  .paper-note{ font-size:13px; color:var(--ink-soft); background:var(--bg-raised); border:1px solid var(--line); border-radius:var(--radius); padding:12px 16px; margin:0 0 28px; }
+  .paper-note a{ color:var(--accent); }
+  .paper-status{ font-size:12.5px; color:var(--ink-soft); margin:-4px 0 18px; }
+  table.paper td.num, table.paper th.num{ text-align:right; font-family:var(--font-mono); font-variant-numeric:tabular-nums; white-space:nowrap; }
+  table.paper tbody tr{ opacity:1; animation:none; }
+  table.paper td.pos{ color:var(--good); }
+  table.paper td.neg{ color:var(--danger); }
+  table.paper td.empty-row{ color:var(--ink-soft); text-align:center; padding:20px 16px; }
+  .equity-chart{ border:1px solid var(--line); border-radius:var(--radius); background:var(--bg-raised); box-shadow:var(--shadow); padding:12px; }
+  .equity-chart svg{ display:block; width:100%; height:auto; }
+  .equity-chart text{ fill:var(--ink-soft); font-family:var(--font-mono); font-size:11px; }
+  .rule-list{ margin:0; padding-left:18px; font-size:13.5px; line-height:1.7; }
 </style>
 </head>
 <body>
@@ -398,6 +423,14 @@
       <div class="live-badge"><i class="pulse"></i><!--LAST_REFRESH-->마지막 갱신 2026-10-05 09:36 KST 기준<!--/LAST_REFRESH--></div>
     </div>
   </header>
+
+  <nav class="strategy-tabs" aria-label="전략">
+    <a href="#kimchi" data-tab="kimchi" aria-current="page">🌶️ 김치프리미엄 <span class="sub">코빗 × OKX</span></a>
+    <a href="#turtle" data-tab="turtle">🐢 터틀 트레이딩 <span class="sub">빗썸 원화</span></a>
+    <a href="#luna" data-tab="luna">🌙 제2의 루나를 찾아라 <span class="sub">바이낸스 선물</span></a>
+  </nav>
+
+<div class="tab-panel" id="tab-kimchi">
 
   <section class="tiles" aria-label="현재 요약">
     <div class="tile">
@@ -667,6 +700,78 @@
       </div>
     </div>
   </section>
+
+</div><!-- /tab-kimchi -->
+
+<div class="tab-panel" id="tab-turtle" hidden>
+  <p class="paper-note">🐢 <strong>터틀 트레이딩 페이퍼</strong> — 빗썸 원화 BTC·ETH 현물, 롱만. 원본 규칙(시스템 1: 20일 돌파·10일 청산, 시스템 2: 55일·20일)을 계좌 절반씩, 유닛당 위험 0.5%. 시드 $10,000. 실제 돈은 오가지 않습니다. 근거: <a href="https://claude.ai/artifact/UWMDW4sGQ4FGWiina3ZPCh" target="_blank" rel="noopener">터틀 트레이딩 리서치</a></p>
+  <p class="paper-status" id="t-status">불러오는 중…</p>
+  <section class="tiles" aria-label="터틀 요약">
+    <div class="tile"><div class="label">가상 시드</div><div class="value">$10,000</div><div class="sub" id="t-seed">—</div></div>
+    <div class="tile"><div class="label">터틀 평가액</div><div class="value" id="t-eq">—</div><div class="sub" id="t-eq-sub">—</div></div>
+    <div class="tile"><div class="label">비교: BTC 120일선</div><div class="value" id="t-ma">—</div><div class="sub" id="t-ma-sub">—</div></div>
+    <div class="tile"><div class="label">청산 거래</div><div class="value" id="t-closed">—</div><div class="sub" id="t-closed-sub">—</div></div>
+  </section>
+  <section>
+    <h2>보유 포지션</h2>
+    <p class="section-sub">½N마다 추가해 최대 4유닛. 손절은 마지막 체결가 − 2N. 현재가는 봇이 마지막으로 본 빗썸 가격입니다.</p>
+    <div class="table-scroll"><table class="coins paper">
+      <thead><tr><th>시스템</th><th>코인</th><th class="num">유닛</th><th class="num">평균 매수가</th><th class="num">현재가</th><th class="num">손절가</th><th class="num">다음 추가</th><th class="num">평가손익</th></tr></thead>
+      <tbody id="t-pos"></tbody>
+    </table></div>
+  </section>
+  <section>
+    <h2>오늘의 신호 레벨</h2>
+    <p class="section-sub">빗썸 일봉(KST 자정 마감) 기준. 가격이 위 레벨을 넘으면 진입, 아래 레벨을 깨면 청산합니다. N은 매주 월요일 확정.</p>
+    <div class="table-scroll"><table class="coins paper">
+      <thead><tr><th>코인</th><th class="num">현재가</th><th class="num">N (주간)</th><th class="num">20일 고가</th><th class="num">55일 고가</th><th class="num">10일 저가</th><th class="num">20일 저가</th><th>시스템 1 상태</th></tr></thead>
+      <tbody id="t-levels"></tbody>
+    </table></div>
+  </section>
+  <section>
+    <h2>평가액 추이</h2>
+    <p class="section-sub">하루 한 번 기록(원화). 빨강 = 터틀, 회색 = BTC 120일선 비교 장부.</p>
+    <div class="equity-chart" id="t-chart"></div>
+  </section>
+  <section>
+    <h2>거래 기록</h2>
+    <div class="table-scroll"><table class="coins paper">
+      <thead><tr><th>진입</th><th>장부</th><th>코인</th><th class="num">유닛</th><th class="num">진입가</th><th class="num">청산가</th><th class="num">손익</th><th>사유</th></tr></thead>
+      <tbody id="t-trades"></tbody>
+    </table></div>
+  </section>
+</div><!-- /tab-turtle -->
+
+<div class="tab-panel" id="tab-luna" hidden>
+  <p class="paper-note">🌙 <strong>제2의 루나를 찾아라 페이퍼</strong> — 바이낸스 USDT-M 선물. 시드 $10,000을 반으로 나눠, 절반은 «붕괴 사냥꾼 v1» 숏(30일 고가 대비 −40% + 변동성·거래량 급증, 바닥 진입 금지), 절반은 BTC 120일선 롱. 실제 돈은 오가지 않습니다. 근거: <a href="https://claude.ai/artifact/WtjLSBHs8dxdcef3uxgQJm" target="_blank" rel="noopener">제2의 루나를 찾아라 리서치</a></p>
+  <p class="paper-status" id="l-status">불러오는 중…</p>
+  <section class="tiles" aria-label="루나 요약">
+    <div class="tile"><div class="label">가상 시드</div><div class="value">$10,000</div><div class="sub">숏 $5,000 + BTC $5,000</div></div>
+    <div class="tile"><div class="label">평가액</div><div class="value" id="l-eq">—</div><div class="sub" id="l-eq-sub">—</div></div>
+    <div class="tile"><div class="label">숏 장부</div><div class="value" id="l-short">—</div><div class="sub" id="l-short-sub">—</div></div>
+    <div class="tile"><div class="label">BTC 120일선 다리</div><div class="value" id="l-btc">—</div><div class="sub" id="l-btc-sub">—</div></div>
+  </section>
+  <section>
+    <h2>보유 숏</h2>
+    <p class="section-sub">마크가격이 진입가 + 2×ATR에 닿으면 손절(5분마다 확인). 종가가 20일 고가 위로 오거나 60일이 지나면 청산. 펀딩은 실제 바이낸스 기록으로 정산합니다.</p>
+    <div class="table-scroll"><table class="coins paper">
+      <thead><tr><th>종목</th><th>진입</th><th class="num">명목</th><th class="num">진입가</th><th class="num">마크가</th><th class="num">손절가</th><th class="num">펀딩</th><th class="num">평가손익</th></tr></thead>
+      <tbody id="l-pos"></tbody>
+    </table></div>
+  </section>
+  <section>
+    <h2>평가액 추이</h2>
+    <p class="section-sub">하루 한 번 기록(달러). 빨강 = 합계, 회색 = 숏 장부.</p>
+    <div class="equity-chart" id="l-chart"></div>
+  </section>
+  <section>
+    <h2>거래 기록</h2>
+    <div class="table-scroll"><table class="coins paper">
+      <thead><tr><th>진입</th><th>장부</th><th>종목</th><th class="num">진입가</th><th class="num">청산가</th><th class="num">펀딩</th><th class="num">손익</th><th>사유</th></tr></thead>
+      <tbody id="l-trades"></tbody>
+    </table></div>
+  </section>
+</div><!-- /tab-luna -->
 
   <footer>
     <p><strong>이 페이지는 실제 자금이 오가지 않는 페이퍼 트레이딩 기록입니다.</strong> 위 수치는 3시간마다 자동으로 다시 게시되는 스냅샷이며(꺼져있으면 갱신되지 않음), 여는 순간의 실시간 값은 아닙니다. 원본 데이터는 5분마다 수집됩니다.</p>
@@ -1386,6 +1491,117 @@ var coins = [
       load().then(render).catch(function(e){ $('history-summary').textContent = '불러오지 못했습니다 — ' + e.message; });
     }
   });
+})();
+</script>
+
+<script>
+// 전략 탭: #kimchi(기본) · #turtle · #luna. 터틀·루나 데이터는 카페24 봇이 15분마다 GitHub 브랜치에 올리는 JSON을 읽는다.
+(function(){
+  var RAW = 'https://raw.githubusercontent.com/huryoungkil-ops/kimchi-premium-dashboard/';
+  var SRC = { turtle: RAW + 'paper-turtle/turtle.json', luna: RAW + 'paper-luna/luna.json' };
+  var loaded = {};
+  var $ = function(id){ return document.getElementById(id); };
+  var esc = function(s){ return String(s == null ? '' : s).replace(/[&<>"]/g, function(c){ return { '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;' }[c]; }); };
+  var won = function(v){ return v == null ? '—' : Math.round(v).toLocaleString('ko-KR') + '원'; };
+  var usd = function(v, d){ return v == null ? '—' : (v < 0 ? '−$' : '$') + Math.abs(v).toLocaleString('en-US', { minimumFractionDigits: d == null ? 2 : d, maximumFractionDigits: d == null ? 2 : d }); };
+  var pct = function(v){ return v == null || !isFinite(v) ? '—' : (v >= 0 ? '+' : '−') + Math.abs(v * 100).toFixed(2) + '%'; };
+  var cls = function(v){ return v > 0 ? 'pos' : v < 0 ? 'neg' : ''; };
+  var kst = function(iso){ if (!iso) return '—'; var d = new Date(new Date(iso).getTime() + 9 * 3600e3); return d.toISOString().slice(5, 16).replace('T', ' '); };
+  var px = function(v){ if (v == null) return '—'; return v >= 1000 ? Math.round(v).toLocaleString('ko-KR') : Number(v).toPrecision(5); };
+  var empty = function(n, msg){ return '<tr><td class="empty-row" colspan="' + n + '">' + msg + '</td></tr>'; };
+
+  function chart(el, series, fmt){
+    var pts = series[0].v; if (!pts.length) { el.innerHTML = '<p class="section-sub" style="margin:8px">첫 기록이 쌓이면 여기에 추이가 그려집니다.</p>'; return; }
+    var W = 760, H = 220, l = 70, r = 12, t = 12, b = 26, all = [];
+    series.forEach(function(s){ s.v.forEach(function(p){ all.push(p[1]); }); });
+    var mn = Math.min.apply(null, all), mx = Math.max.apply(null, all); if (mx - mn < 1e-9) { mx += 1; mn -= 1; }
+    var pad = (mx - mn) * 0.1; mn -= pad; mx += pad;
+    var n = Math.max(pts.length - 1, 1), X = function(i){ return l + i / n * (W - l - r); }, Y = function(v){ return t + (mx - v) / (mx - mn) * (H - t - b); };
+    var css = getComputedStyle(document.documentElement), col = { a: css.getPropertyValue('--danger').trim(), b: css.getPropertyValue('--ink-soft').trim(), g: css.getPropertyValue('--line').trim() };
+    var svg = '<svg viewBox="0 0 ' + W + ' ' + H + '" role="img" aria-label="평가액 추이">';
+    [0, 0.5, 1].forEach(function(f){ var v = mn + (mx - mn) * f; svg += '<line x1="' + l + '" x2="' + (W - r) + '" y1="' + Y(v) + '" y2="' + Y(v) + '" stroke="' + col.g + '"/><text x="' + (l - 6) + '" y="' + (Y(v) + 4) + '" text-anchor="end">' + fmt(v) + '</text>'; });
+    svg += '<text x="' + l + '" y="' + (H - 6) + '">' + pts[0][0] + '</text><text x="' + (W - r) + '" y="' + (H - 6) + '" text-anchor="end">' + pts[pts.length - 1][0] + '</text>';
+    series.forEach(function(s, k){
+      var d = s.v.map(function(p, i){ return (i ? 'L' : 'M') + X(i).toFixed(1) + ' ' + Y(p[1]).toFixed(1); }).join(' ');
+      svg += '<path d="' + d + '" fill="none" stroke="' + (k ? col.b : col.a) + '" stroke-width="' + (k ? 1.6 : 2.4) + '"' + (k ? ' stroke-dasharray="4 3"' : '') + '/>';
+      var lp = s.v[s.v.length - 1]; svg += '<circle cx="' + X(s.v.length - 1) + '" cy="' + Y(lp[1]) + '" r="3.5" fill="' + (k ? col.b : col.a) + '"/>';
+    });
+    el.innerHTML = svg + '</svg>';
+  }
+  function status(id, d){
+    var age = (Date.now() - new Date(d.updatedAt).getTime()) / 60000;
+    $(id).textContent = '봇 데이터 갱신 ' + kst(d.updatedAt) + ' KST (' + (age < 1 ? '방금' : Math.round(age) + '분 전') + ') · 15분마다 갱신' + (age > 60 ? ' · ⚠️ 한 시간 넘게 갱신이 없습니다' : '');
+  }
+
+  function renderTurtle(d){
+    status('t-status', d);
+    var st = d.state || {}, eq = d.equity.filter(function(e){ return e.strategy === 'turtle'; }), eqM = d.equity.filter(function(e){ return e.strategy === 'ma120'; });
+    var coins = st.coins || {}, price = function(c){ var x = coins[c]; return x && x.tick ? x.tick.p : x && x.close; };
+    var bookEq = function(b){ var s = b.cash; Object.keys(b.pos || {}).forEach(function(c){ (b.pos[c].units || []).forEach(function(u){ s += u.qty * price(c); }); }); return s; };
+    var books = st.books || {}, nowT = (books.S1 ? bookEq(books.S1) : 0) + (books.S2 ? bookEq(books.S2) : 0);
+    var m = st.ma120 || {}, nowM = (m.cash || 0) + (m.qty || 0) * (price('BTC') || 0), fx = st.fx0;
+    $('t-seed').textContent = won(st.seedKrw) + ' (환율 ' + (fx ? fx.toFixed(1) : '—') + ')';
+    $('t-eq').textContent = won(nowT); $('t-eq-sub').textContent = pct(nowT / st.seedKrw - 1) + ' · ≈ ' + usd(nowT / fx, 0);
+    $('t-ma').textContent = won(nowM); $('t-ma-sub').textContent = pct(nowM / st.seedKrw - 1) + ' · ' + (m.qty > 0 ? 'BTC 보유 중' : '현금 (120일선 아래)');
+    var closed = d.trades.filter(function(t){ return t.strategy === 'turtle' && t.status === 'CLOSED'; }), wins = closed.filter(function(t){ return t.pnl > 0; }).length;
+    var sum = closed.reduce(function(s, t){ return s + (t.pnl || 0); }, 0);
+    $('t-closed').textContent = closed.length + '건'; $('t-closed-sub').textContent = closed.length ? '승 ' + wins + ' · 누적 ' + won(sum) : '아직 청산 없음';
+    var rows = [];
+    ['S1', 'S2'].forEach(function(bk){ var B = books[bk] || {}; Object.keys(B.pos || {}).forEach(function(c){
+      var p = B.pos[c], q = 0, cost = 0; p.units.forEach(function(u){ q += u.qty; cost += u.qty * u.px; });
+      var now = price(c), up = q * now - cost;
+      rows.push('<tr><td>' + (bk === 'S1' ? '시스템 1' : '시스템 2') + '</td><td class="coin">' + c + '</td><td class="num">' + p.units.length + ' / 4</td><td class="num">' + px(cost / q) + '</td><td class="num">' + px(now) + '</td><td class="num">' + px(p.stop) + '</td><td class="num">' + (p.units.length < 4 ? px(p.lastFill + 0.5 * p.N) : '—') + '</td><td class="num ' + cls(up) + '">' + won(up) + ' (' + pct(up / cost) + ')</td></tr>');
+    }); });
+    $('t-pos').innerHTML = rows.join('') || empty(8, '보유 포지션이 없습니다. 아래 «오늘의 신호 레벨»을 가격이 넘으면 진입합니다.');
+    $('t-levels').innerHTML = ['BTC', 'ETH'].map(function(c){
+      var x = coins[c]; if (!x) return '';
+      var s1 = x.shadow ? '가상 거래 진행 중 (' + (x.shadow.dir > 0 ? '상승' : '하락') + ' 돌파) → 55일 돌파에서만 진입' : x.lastShadowWin === true ? '직전 돌파 승리 → 다음 20일 돌파 건너뜀' : '20일 돌파 시 진입';
+      return '<tr><td class="coin">' + c + '</td><td class="num">' + px(price(c)) + '</td><td class="num">' + px(x.Nw) + '</td><td class="num">' + px(x.H && x.H[20]) + '</td><td class="num">' + px(x.H && x.H[55]) + '</td><td class="num">' + px(x.Lo && x.Lo[10]) + '</td><td class="num">' + px(x.Lo && x.Lo[20]) + '</td><td>' + s1 + '</td></tr>';
+    }).join('');
+    chart($('t-chart'), [{ v: eq.map(function(e){ return [e.day.slice(5), e.equity]; }) }, { v: eqM.map(function(e){ return [e.day.slice(5), e.equity]; }) }], function(v){ return (v / 1e6).toFixed(1) + 'M'; });
+    var tr = d.trades.slice(0, 50).map(function(t){
+      var book = t.strategy === 'ma120' ? '120일선 비교' : (t.book === 'S1' ? '시스템 1' : '시스템 2');
+      return '<tr><td>' + kst(t.entryTime) + '</td><td>' + book + '</td><td class="coin">' + esc(t.coin) + '</td><td class="num">' + (t.units || 1) + '</td><td class="num">' + px(t.entryPx) + '</td><td class="num">' + px(t.exitPx) + '</td><td class="num ' + cls(t.pnl) + '">' + (t.status === 'OPEN' ? '보유 중' : won(t.pnl)) + '</td><td>' + esc(t.reason || t.note || '') + '</td></tr>';
+    });
+    $('t-trades').innerHTML = tr.join('') || empty(8, '아직 거래가 없습니다.');
+  }
+
+  function renderLuna(d){
+    status('l-status', d);
+    var st = d.state || {}, S = st.short || { pos: {} }, Bk = st.btc || {}, eq = d.equity.filter(function(e){ return e.strategy === 'luna'; });
+    var pos = Object.keys(S.pos || {}).map(function(k){ return S.pos[k]; });
+    var upnl = function(p){ var mk = p.lastMark || p.entry; return p.qty * (p.entry - mk) + (p.funding || 0); };
+    var shortEq = (S.cash || 0) + pos.reduce(function(s, p){ return s + upnl(p); }, 0), btcEq = (Bk.cash || 0) + (Bk.qty || 0) * (st.btcPx || 0), tot = shortEq + btcEq, seed = st.seed || 10000;
+    $('l-eq').textContent = usd(tot); $('l-eq-sub').textContent = pct(tot / seed - 1);
+    $('l-short').textContent = usd(shortEq); $('l-short-sub').textContent = pos.length + '종목 숏' + (S.halted ? ' · ⛔ 신규 중단: ' + S.halted : '');
+    $('l-btc').textContent = usd(btcEq); $('l-btc-sub').textContent = Bk.qty > 0 ? 'BTC 보유 중 (120일선 ' + usd(Bk.ma, 0) + ')' : '현금 (120일선 아래)';
+    $('l-pos').innerHTML = pos.map(function(p){
+      var u = upnl(p);
+      return '<tr><td class="coin">' + esc(p.symbol) + '</td><td>' + kst(p.at) + '</td><td class="num">' + usd(p.qty * p.entry) + '</td><td class="num">' + px(p.entry) + '</td><td class="num">' + px(p.lastMark) + '</td><td class="num">' + px(p.stop) + '</td><td class="num ' + cls(p.funding) + '">' + usd(p.funding) + '</td><td class="num ' + cls(u) + '">' + usd(u) + ' (' + pct(u / (p.qty * p.entry)) + ')</td></tr>';
+    }).join('') || empty(8, '보유 숏이 없습니다. 매일 09:05 KST에 바이낸스 선물 전 종목을 훑어 조건에 맞는 붕괴 코인을 찾습니다.');
+    chart($('l-chart'), [{ v: eq.map(function(e){ return [e.day.slice(5), e.equity]; }) }, { v: eq.map(function(e){ return [e.day.slice(5), (e.detail || {}).short || 0]; }) }], function(v){ return '$' + Math.round(v).toLocaleString('en-US'); });
+    $('l-trades').innerHTML = d.trades.slice(0, 50).map(function(t){
+      return '<tr><td>' + kst(t.entryTime) + '</td><td>' + (t.book === 'btc' ? 'BTC 다리' : '숏') + '</td><td class="coin">' + esc(t.coin) + '</td><td class="num">' + px(t.entryPx) + '</td><td class="num">' + px(t.exitPx) + '</td><td class="num ' + cls(t.funding) + '">' + usd(t.funding || 0) + '</td><td class="num ' + cls(t.pnl) + '">' + (t.status === 'OPEN' ? '보유 중' : usd(t.pnl)) + '</td><td>' + esc(t.reason || t.note || '') + '</td></tr>';
+    }).join('') || empty(8, '아직 거래가 없습니다.');
+  }
+
+  function load(tab){
+    if (!SRC[tab] || loaded[tab]) return;
+    loaded[tab] = true;
+    fetch(SRC[tab] + '?t=' + Math.floor(Date.now() / 300000), { cache: 'no-store' })
+      .then(function(r){ if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
+      .then(function(d){ (tab === 'turtle' ? renderTurtle : renderLuna)(d); })
+      .catch(function(e){ loaded[tab] = false; $(tab === 'turtle' ? 't-status' : 'l-status').textContent = '봇 데이터를 불러오지 못했습니다 — ' + e.message; });
+  }
+  function show(tab){
+    if (['kimchi', 'turtle', 'luna'].indexOf(tab) < 0) tab = 'kimchi';
+    ['kimchi', 'turtle', 'luna'].forEach(function(k){ $('tab-' + k).hidden = k !== tab; });
+    document.querySelectorAll('nav.strategy-tabs a').forEach(function(a){ if (a.dataset.tab === tab) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current'); });
+    load(tab);
+  }
+  document.querySelectorAll('nav.strategy-tabs a').forEach(function(a){ a.addEventListener('click', function(e){ e.preventDefault(); history.replaceState(null, '', '#' + a.dataset.tab); show(a.dataset.tab); }); });
+  window.addEventListener('hashchange', function(){ show(location.hash.slice(1)); });
+  show((location.hash || '#kimchi').slice(1));
 })();
 </script>
 
