@@ -6,10 +6,8 @@
 backup/data/premium-history
 backup/data/state.json
 backup/n8n
-backup/export_history.py
 backup/README.md
 backtest
-.github
 README.md
 ledger/build-backfill.js
 ledger/check.js
