@@ -20,8 +20,10 @@ KST = "Asia/Seoul"
 plt.rcParams["font.family"] = "Malgun Gothic"
 plt.rcParams["axes.unicode_minus"] = False
 
-BG, PANEL, GRID, TEXT, MUTED = "#1e1f22", "#2b2d31", "#3a3d44", "#f2f3f5", "#a3a6ad"
-BLUE, ORANGE, GREEN, RED = "#3987e5", "#eb6834", "#3fb97a", "#e5484d"
+# 한스법칙 알림 차트의 모양을 따른다 — 흰 바탕, 가운데 굵은 제목, 범례는 아래
+BG, PANEL, GRID, TEXT, MUTED = "#ffffff", "#ffffff", "#e3e5e8", "#222222", "#666666"
+NAVY, RED, ORANGE, GREEN, BLUE = "#1f2a44", "#e74c3c", "#f39c12", "#27ae60", "#3498db"
+GUIDE_COLORS = [ORANGE, "#c98a00"]
 
 # ── 자료 ──
 df = pd.concat(pd.read_csv(f) for f in sorted(glob.glob(f"{REPO}/backup/data/premium-history/*.csv")))
@@ -58,7 +60,7 @@ panels = [(c, "보유 중") for c in held] + [(c, f"후보 {i+1}") for i, c in e
 n = len(panels)
 cols = 2 if n > 1 else 1
 rows = (n + cols - 1) // cols
-fig, axes = plt.subplots(rows, cols, figsize=(7.2 * cols, 3.9 * rows), facecolor=BG, squeeze=False)
+fig, axes = plt.subplots(rows, cols, figsize=(7.2 * cols, 4.1 * rows), facecolor=BG, squeeze=False)
 t0 = ASOF - pd.Timedelta(WINDOW)
 
 for ax, (coin, tag) in zip(axes.flat, panels):
@@ -67,28 +69,14 @@ for ax, (coin, tag) in zip(axes.flat, panels):
     x = s.index.tz_convert(KST)
     ax.set_facecolor(PANEL)
 
-    # 진입 구간 띠 (−2σ ~ −3σ) 와 눈금선
-    ax.fill_between(x, m - ENTRY_SIGMA * d, m - GUIDE_SIGMAS[-1] * d, color=ORANGE, alpha=0.13, lw=0)
-    for g in GUIDE_SIGMAS:
-        ax.plot(x, m - g * d, color=ORANGE, lw=0.9, ls=(0, (4, 3)), alpha=0.75)
-    ax.plot(x, m - ENTRY_SIGMA * d, color=ORANGE, lw=2.4)
-    ax.plot(x, m, color=MUTED, lw=1.0, ls=(0, (2, 2)))
-    ax.plot(x, m + EXIT_SIGMA * d, color=GREEN, lw=1.2, ls=(0, (6, 3)))
-    ax.plot(x, s, color=BLUE, lw=1.7)
-    ax.scatter([x[-1]], [s.iloc[-1]], color=BLUE, s=34, zorder=5, edgecolor=PANEL, lw=1.2)
-
-    # 오른쪽 끝 선 이름
-    xr = x[-1] + pd.Timedelta("1h")
-    labels = [(m.iloc[-1] - ENTRY_SIGMA * d.iloc[-1], "-2σ 진입", ORANGE, "bold")]
-    labels += [(m.iloc[-1] - g * d.iloc[-1], f"-{g:g}σ", ORANGE, "normal") for g in GUIDE_SIGMAS]
-    labels += [(m.iloc[-1], "3일 평균", MUTED, "normal"),
-               (m.iloc[-1] + EXIT_SIGMA * d.iloc[-1], "청산선", GREEN, "normal")]
-    # 이름이 겹치지 않게 아래에서부터 최소 간격을 둔다
-    lo, hi = ax.get_ylim(); gapmin = (hi - lo) * 0.062
-    labels.sort(key=lambda l: l[0]); prev = None
-    for y, name, colr, w in labels:
-        yy = y if prev is None else max(y, prev + gapmin); prev = yy
-        ax.text(xr, yy, name, color=colr, fontsize=8.5, va="center", fontweight=w, clip_on=False)
+    # 눈금선(−2.5σ·−3σ)은 가늘게, 봇이 실제로 쓰는 −2σ 만 굵게
+    ax.plot(x, m + EXIT_SIGMA * d, color=GREEN, lw=1.8, label=f"청산선 (+{EXIT_SIGMA:g}σ)")
+    ax.plot(x, m, color=BLUE, lw=1.8, label="3일 평균")
+    for g, gc in zip(GUIDE_SIGMAS, GUIDE_COLORS):
+        ax.plot(x, m - g * d, color=gc, lw=1.1, ls=(0, (5, 3)), label=f"-{g:g}σ")
+    ax.plot(x, m - ENTRY_SIGMA * d, color=RED, lw=3.6, label=f"-{ENTRY_SIGMA:g}σ 진입선")
+    ax.plot(x, s, color=NAVY, lw=1.5, label="김프")
+    ax.scatter([x[-1]], [s.iloc[-1]], color=NAVY, s=30, zorder=5)
 
     cur, zc = s.iloc[-1], z[coin].iloc[-1]
     left_sig = zc + ENTRY_SIGMA
@@ -96,45 +84,41 @@ for ax, (coin, tag) in zip(axes.flat, panels):
     if coin in held:
         tr = held[coin]
         et = pd.Timestamp(tr["entryTime"]).tz_convert(KST)
-        ax.axvline(et, color=RED, lw=1.0, ls=":")
-        ax.scatter([et], [tr["entryPremium"]], marker="v", color=RED, s=70, zorder=6)
+        ax.axvline(et, color=MUTED, lw=1.0, ls=":")
+        ax.scatter([et], [tr["entryPremium"]], marker="v", color=RED, s=80, zorder=6,
+                   edgecolor=NAVY, lw=0.8)
         to_exit = (m.iloc[-1] + EXIT_SIGMA * d.iloc[-1]) - cur
         sub = f"진입 {tr['entryPremium']:+.2f}% → 현재 {cur:+.2f}%  ·  청산선까지 {to_exit:+.2f}%p"
-        tagc = RED
+    elif left_sig <= 0:
+        sub = f"현재 {cur:+.2f}%  ·  진입선 아래 {abs(left_sig):.2f}σ ({abs(left_pp):.2f}%p)"
     else:
-        if left_sig <= 0:
-            sub = f"현재 {cur:+.2f}%  ·  진입선 아래 {abs(left_sig):.2f}σ ({abs(left_pp):.2f}%p)"
-        else:
-            sub = f"현재 {cur:+.2f}%  ·  진입선까지 {left_sig:.2f}σ ({left_pp:.2f}%p)"
-        tagc = ORANGE
-    ax.text(0.0, 1.13, coin, transform=ax.transAxes, color=TEXT, fontsize=15, fontweight="bold", va="bottom")
-    ax.text(0.0 + 0.028 * len(coin) + 0.03, 1.14, tag, transform=ax.transAxes, color=tagc, fontsize=10,
-            fontweight="bold", va="bottom")
-    ax.text(0.0, 1.03, sub, transform=ax.transAxes, color=MUTED, fontsize=10, va="bottom")
-
-    # 진입선 근접도 막대 (3일 평균 0% ↔ 진입선 100%) — 후보 종목만
-    if coin not in held:
         prog = max(0.0, min(1.0, -zc / ENTRY_SIGMA))
-        bx = ax.inset_axes([0.70, 1.05, 0.30, 0.045])
-        bx.barh([0], [1], color=GRID, height=1); bx.barh([0], [prog], color=tagc, height=1)
-        bx.set_xlim(0, 1); bx.axis("off")
-        ax.text(1.0, 1.13, f"근접도 {prog*100:.0f}%", transform=ax.transAxes, color=TEXT, fontsize=9.5,
-                ha="right", va="bottom")
+        sub = f"현재 {cur:+.2f}%  ·  진입선까지 {left_sig:.2f}σ ({left_pp:.2f}%p)  ·  근접도 {prog*100:.0f}%"
+    ax.text(0.5, 1.115, f"{coin} 김프 (최근 3일) — {tag}", transform=ax.transAxes, color=TEXT,
+            fontsize=13, fontweight="bold", ha="center", va="bottom")
+    ax.text(0.5, 1.025, sub, transform=ax.transAxes, color=MUTED, fontsize=9.5, ha="center", va="bottom")
 
     ax.set_xlim(x[0], x[-1])
     ax.xaxis.set_major_locator(mdates.HourLocator(byhour=[0, 12], tz=KST))
-    ax.xaxis.set_major_formatter(mdates.DateFormatter("%m/%d\n%H시", tz=KST))
+    ax.xaxis.set_major_formatter(mdates.DateFormatter("%m/%d %H시", tz=KST))
     ax.yaxis.set_major_formatter(lambda v, _: f"{v:+.1f}%")
     ax.tick_params(colors=MUTED, labelsize=8.5, length=0)
-    ax.grid(color=GRID, lw=0.6)
+    plt.setp(ax.get_xticklabels(), rotation=35, ha="right")
+    ax.grid(color=GRID, lw=0.8)
     for sp in ax.spines.values():
-        sp.set_visible(False)
+        sp.set_color(GRID)
 
 for ax in list(axes.flat)[n:]:
     ax.axis("off")
 
+# 범례는 아래에 한 번만 — 그리는 순서가 아니라 읽는 순서로 놓는다
+h, l = axes.flat[0].get_legend_handles_labels()
+order = [l.index(k) for k in ["김프", f"-{ENTRY_SIGMA:g}σ 진입선"]] +         [l.index(f"-{g:g}σ") for g in GUIDE_SIGMAS] + [l.index("3일 평균"), l.index(f"청산선 (+{EXIT_SIGMA:g}σ)")]
+fig.legend([h[i] for i in order], [l[i] for i in order], loc="lower center", ncol=6, frameon=False,
+           fontsize=10.5, labelcolor=MUTED, handlelength=2.6, bbox_to_anchor=(0.5, 0.004))
+H = 4.1 * rows
 fig.suptitle(f"김프 3일 추이와 진입선  ·  {ASOF.tz_convert(KST):%Y-%m-%d %H:%M} 기준",
-             color=TEXT, fontsize=14, fontweight="bold", x=0.02, ha="left", y=0.995)
-fig.subplots_adjust(left=0.05, right=0.91, top=1 - 0.95 / (3.9 * rows) - 0.02, bottom=0.05, hspace=0.62, wspace=0.34)
+             color=TEXT, fontsize=15, fontweight="bold", y=1 - 0.18 / H)
+fig.subplots_adjust(left=0.06, right=0.975, top=1 - 1.15 / H, bottom=1.25 / H, hspace=0.62, wspace=0.16)
 fig.savefig(OUT, dpi=130, facecolor=BG)
 print("held:", list(held), "top3:", [(c, round(cands[c], 2)) for c in top3], "->", OUT)
