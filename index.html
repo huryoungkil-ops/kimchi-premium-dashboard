@@ -714,7 +714,7 @@
   </section>
   <section>
     <h2>보유 포지션</h2>
-    <p class="section-sub">½N마다 추가해 최대 4유닛. 손절은 마지막 체결가 − 2N. 현재가는 봇이 마지막으로 본 빗썸 가격입니다.</p>
+    <p class="section-sub">½N마다 추가해 최대 4유닛. 손절은 마지막 체결가 − 2N. 가격은 빗썸 원화, 손익은 달러. 현재가는 봇이 마지막으로 본 빗썸 가격입니다.</p>
     <div class="table-scroll"><table class="coins paper">
       <thead><tr><th>시스템</th><th>코인</th><th class="num">유닛</th><th class="num">평균 매수가</th><th class="num">현재가</th><th class="num">손절가</th><th class="num">다음 추가</th><th class="num">평가손익</th></tr></thead>
       <tbody id="t-pos"></tbody>
@@ -730,7 +730,7 @@
   </section>
   <section>
     <h2>평가액 추이</h2>
-    <p class="section-sub">하루 한 번 기록(원화). 빨강 = 터틀, 회색 = BTC 120일선 비교 장부.</p>
+    <p class="section-sub">하루 한 번 기록(달러 — 환율 변동은 뺀 값). 빨강 = 터틀, 회색 = BTC 120일선 비교 장부.</p>
     <div class="equity-chart" id="t-chart"></div>
   </section>
   <section>
@@ -1730,18 +1730,25 @@ var coins = [
     var coins = st.coins || {}, price = function(c){ var x = coins[c]; return x && x.tick ? x.tick.p : x && x.close; };
     var bookEq = function(b){ var s = b.cash; Object.keys(b.pos || {}).forEach(function(c){ (b.pos[c].units || []).forEach(function(u){ s += u.qty * price(c); }); }); return s; };
     var books = st.books || {}, nowT = (books.S1 ? bookEq(books.S1) : 0) + (books.S2 ? bookEq(books.S2) : 0);
-    var m = st.ma120 || {}, nowM = (m.cash || 0) + (m.qty || 0) * (price('BTC') || 0), fx = st.fx0;
-    $('t-seed').textContent = won(st.seedKrw) + ' (환율 ' + (fx ? fx.toFixed(1) : '—') + ')';
-    $('t-eq').textContent = won(nowT); $('t-eq-sub').textContent = pct(nowT / st.seedKrw - 1) + ' · ≈ ' + usd(nowT / fx, 0);
-    $('t-ma').textContent = won(nowM); $('t-ma-sub').textContent = pct(nowM / st.seedKrw - 1) + ' · ' + (m.qty > 0 ? 'BTC 보유 중' : '현금 (120일선 아래)');
+    var m = st.ma120 || {}, nowM = (m.cash || 0) + (m.qty || 0) * (price('BTC') || 0), fx0 = st.fx0;
+    // 달러 장부 — 현금은 달러로 들고 있다고 보고 코인만 최근 환율로 달러 평가한다 (봇 turtle.js usdEquity 와 같은 셈)
+    var lastEq = eq[eq.length - 1], fx = st.fx || (lastEq && lastEq.detail && lastEq.detail.fx) || fx0, seedUsd = st.seedUsd || 10000;
+    var usdNow = function(key, cash, total){
+      var u = (st.usd || {})[key] || { cashUsd: seedUsd + (cash - st.seedKrw) / fx0, cashKrw: cash };
+      return u.cashUsd + (cash - u.cashKrw) / fx + (total - cash) / fx;
+    };
+    var cashT = (books.S1 ? books.S1.cash : 0) + (books.S2 ? books.S2.cash : 0), uT = usdNow('turtle', cashT, nowT), uM = usdNow('ma120', m.cash || 0, nowM);
+    $('t-seed').textContent = won(st.seedKrw) + ' (시작 환율 ' + (fx0 ? fx0.toFixed(1) : '—') + ')';
+    $('t-eq').textContent = usd(uT); $('t-eq-sub').textContent = pct(uT / seedUsd - 1) + ' · ' + won(nowT);
+    $('t-ma').textContent = usd(uM); $('t-ma-sub').textContent = pct(uM / seedUsd - 1) + ' · ' + (m.qty > 0 ? 'BTC 보유 중' : '현금 (120일선 아래)');
     var closed = d.trades.filter(function(t){ return t.strategy === 'turtle' && t.status === 'CLOSED'; }), wins = closed.filter(function(t){ return t.pnl > 0; }).length;
     var sum = closed.reduce(function(s, t){ return s + (t.pnl || 0); }, 0);
-    $('t-closed').textContent = closed.length + '건'; $('t-closed-sub').textContent = closed.length ? '승 ' + wins + ' · 누적 ' + won(sum) : '아직 청산 없음';
+    $('t-closed').textContent = closed.length + '건'; $('t-closed-sub').textContent = closed.length ? '승 ' + wins + ' · 누적 ' + usd(sum / fx) + ' (' + won(sum) + ')' : '아직 청산 없음';
     var rows = [];
     ['S1', 'S2'].forEach(function(bk){ var B = books[bk] || {}; Object.keys(B.pos || {}).forEach(function(c){
       var p = B.pos[c], q = 0, cost = 0; p.units.forEach(function(u){ q += u.qty; cost += u.qty * u.px; });
       var now = price(c), up = q * now - cost;
-      rows.push('<tr><td>' + (bk === 'S1' ? '시스템 1' : '시스템 2') + '</td><td class="coin">' + c + '</td><td class="num">' + p.units.length + ' / 4</td><td class="num">' + px(cost / q) + '</td><td class="num">' + px(now) + '</td><td class="num">' + px(p.stop) + '</td><td class="num">' + (p.units.length < 4 ? px(p.lastFill + 0.5 * p.N) : '—') + '</td><td class="num ' + cls(up) + '">' + won(up) + ' (' + pct(up / cost) + ')</td></tr>');
+      rows.push('<tr><td>' + (bk === 'S1' ? '시스템 1' : '시스템 2') + '</td><td class="coin">' + c + '</td><td class="num">' + p.units.length + ' / 4</td><td class="num">' + px(cost / q) + '</td><td class="num">' + px(now) + '</td><td class="num">' + px(p.stop) + '</td><td class="num">' + (p.units.length < 4 ? px(p.lastFill + 0.5 * p.N) : '—') + '</td><td class="num ' + cls(up) + '">' + usd(up / fx) + ' (' + pct(up / cost) + ')</td></tr>');
     }); });
     $('t-pos').innerHTML = rows.join('') || empty(8, '보유 포지션이 없습니다. 아래 «오늘의 신호 레벨»을 가격이 넘으면 진입합니다.');
     $('t-levels').innerHTML = ['BTC', 'ETH'].map(function(c){
@@ -1749,10 +1756,11 @@ var coins = [
       var s1 = x.shadow ? '가상 거래 진행 중 (' + (x.shadow.dir > 0 ? '상승' : '하락') + ' 돌파) → 55일 돌파에서만 진입' : x.lastShadowWin === true ? '직전 돌파 승리 → 다음 20일 돌파 건너뜀' : '20일 돌파 시 진입';
       return '<tr><td class="coin">' + c + '</td><td class="num">' + px(price(c)) + '</td><td class="num">' + px(x.Nw) + '</td><td class="num">' + px(x.H && x.H[20]) + '</td><td class="num">' + px(x.H && x.H[55]) + '</td><td class="num">' + px(x.Lo && x.Lo[10]) + '</td><td class="num">' + px(x.Lo && x.Lo[20]) + '</td><td>' + s1 + '</td></tr>';
     }).join('');
-    chart($('t-chart'), [{ v: eq.map(function(e){ return [e.day.slice(5), e.equity]; }) }, { v: eqM.map(function(e){ return [e.day.slice(5), e.equity]; }) }], function(v){ return (v / 1e6).toFixed(1) + 'M'; });
+    var uv = function(e){ var d = e.detail || {}; return [e.day.slice(5), d.usd != null ? d.usd : e.equity / (d.fx || fx0)]; };
+    chart($('t-chart'), [{ v: eq.map(uv) }, { v: eqM.map(uv) }], function(v){ return '$' + Math.round(v).toLocaleString('en-US'); });
     var tr = d.trades.slice(0, 50).map(function(t){
       var book = t.strategy === 'ma120' ? '120일선 비교' : (t.book === 'S1' ? '시스템 1' : '시스템 2');
-      return '<tr><td>' + kst(t.entryTime) + '</td><td>' + book + '</td><td class="coin">' + esc(t.coin) + '</td><td class="num">' + (t.units || 1) + '</td><td class="num">' + px(t.entryPx) + '</td><td class="num">' + px(t.exitPx) + '</td><td class="num ' + cls(t.pnl) + '">' + (t.status === 'OPEN' ? '보유 중' : won(t.pnl)) + '</td><td>' + esc(t.reason || t.note || '') + '</td></tr>';
+      return '<tr><td>' + kst(t.entryTime) + '</td><td>' + book + '</td><td class="coin">' + esc(t.coin) + '</td><td class="num">' + (t.units || 1) + '</td><td class="num">' + px(t.entryPx) + '</td><td class="num">' + px(t.exitPx) + '</td><td class="num ' + cls(t.pnl) + '">' + (t.status === 'OPEN' ? '보유 중' : usd(t.pnl / fx)) + '</td><td>' + esc(t.reason || t.note || '') + '</td></tr>';
     });
     $('t-trades').innerHTML = tr.join('') || empty(8, '아직 거래가 없습니다.');
   }
