@@ -78,13 +78,27 @@ python report/kimp_chart.py "2026-09-29T22:40:00Z" report/sample.png
 | | 무엇을 | 어디에 | 언제 | 막는 것 |
 |---|---|---|---|---|
 | 서버 안 | DB 전체 스냅샷 | `/var/backups/kimchi-bot/kimchi-<날짜>.db.gz` (14일 보관) | 매일 03:30 KST (`/etc/cron.d/kimchi-bot-backup`, 봇 설치 때부터 있던 것) | 실수로 지움 · DB 손상 |
-| 서버 밖 | 김프 이력(하루 한 파일) + 거래·거래 대상 | 이 저장소 **`backup-kimchi` 브랜치** | 매일 09:20 KST (`kimchi-backup.timer` → `server/backup-history.js`) | 서버 디스크 고장 · 서버 해지 |
+| 서버 밖 | 김프 이력(하루 한 파일) + 거래·거래 대상 | 이 저장소 **`backup-kimchi-<연-월>` 브랜치** (달마다 하나) | 매일 09:20 KST (`kimchi-backup.timer` → `server/backup-history.js`) | 서버 디스크 고장 · 서버 해지 |
 
-- 서버 밖 사본은 브랜치에 없는 날짜를 전부 채웁니다. 며칠 빠져도 다음 실행이 따라잡습니다.
-- 하루치가 gzip 으로 약 0.5MB — 1년에 약 200MB 가 브랜치에 쌓입니다.
+- 이번 달·지난달 브랜치는 매번 빠진 날을 채웁니다. 며칠 빠져도 다음 실행이 따라잡습니다.
+- 하루치가 gzip 으로 약 0.5MB — 한 달 브랜치가 약 15MB 입니다.
 - 실패하면 Discord 상태 채널로 «⚠️ 김프 봇 DB 백업 실패» 가 갑니다.
+
+### 오래된 백업은 자동으로 지운다 — 3년 (2026-10-08 사용자 요청)
+
+**36개월이 지난 달의 브랜치를 매일 실행 때 지웁니다.** 저장소는 약 600MB 에서 더 커지지 않습니다
+(GitHub 권장 1GB 아래). 기간을 바꾸려면 `kimchi-backup.service` 에
+`Environment=BACKUP_RETAIN_MONTHS=12` 한 줄을 넣습니다.
+
+달마다 브랜치를 나눈 이유가 이것입니다. git 은 파일을 지워도 이력에 남아 저장소가 줄지 않습니다.
+브랜치를 통째로 지워야 실제로 비워집니다. 지우기는 시험용 `backup-kimchi-2020-01` 브랜치를 만들어
+실제로 지워지는 것을 확인했습니다. 이름이 정확히 `backup-kimchi-YYYY-MM` 인 브랜치만 건드립니다.
+
+- 지워지는 것은 GitHub 쪽 사본뿐입니다. **서버의 `kimchi.db` 는 줄이지 않습니다** — 봇 DB 는 그대로 쌓입니다
+  (하루 약 7MB, 디스크 여유 31GB 로 10년쯤).
+- GitHub 가 지워진 브랜치의 용량을 실제로 회수하는 시점은 GitHub 내부 정리에 달려 있어 확인하지 못했습니다.
 - 되살리기: 통째로는 `gunzip kimchi-<날짜>.db.gz` 후 `data/kimchi.db` 자리에 놓고 봇 재시작.
-  서버가 없어졌다면 `git fetch origin backup-kimchi` 로 CSV 를 받아 `premium_history` 에 다시 넣습니다
+  서버가 없어졌다면 `git fetch origin 'refs/heads/backup-kimchi-*:refs/remotes/origin/backup-kimchi-*'` 로 달별 CSV 를 받아 `premium_history` 에 다시 넣습니다
   (넣는 스크립트는 아직 없습니다 — 열 이름이 테이블과 같아 `sqlite3 .import` 로 됩니다).
 
 ## 확인 안 된 것
