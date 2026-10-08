@@ -55,6 +55,37 @@ const top = scored.slice(0, TOP_N);
 const panels = held.map(t => ({ coin: t.coin, tag: '보유 중', trade: t }))
   .concat(top.map((s, i) => ({ coin: s.coin, tag: `후보 ${i + 1}`, cand: s })));
 
+// ── 왜 사지 않았나 — 봇이 회차마다 runs.note 에 적어 둔 보류 사유를 종목별로 센다 ──
+// 형식: «FIL 진입 보류: 스프레드 1.09% > 1% | ADA 진입 보류: 기대수익 0.87%p < 문턱 3.07%p»
+const REASON_KIND = [
+  [/^스프레드/, '호가 스프레드 1% 초과'],
+  [/^기대수익/, `기대수익이 문턱(스프레드+수수료의 ${C.EDGE_MULTIPLE}배) 미달`],
+  [/^실매수 기준/, '실제 살 수 있는 값으로는 진입선 위'],
+  [/^크기/, '살 수 있는 물량이 너무 적음'],
+];
+const holds = {};
+for (const r of db.prepare(`SELECT startedAt, note FROM runs WHERE startedAt > ? AND note LIKE '%진입 보류%' ORDER BY startedAt`).all(since)) {
+  for (const part of r.note.split(' | ')) {
+    const m = part.match(/^(\S+) 진입 보류: (.+)$/);
+    if (!m) continue;
+    const kind = (REASON_KIND.find(([re]) => re.test(m[2])) || [null, m[2]])[1];
+    const h = holds[m[1]] = holds[m[1]] || { n: 0, kinds: {}, last: null };
+    h.n++; h.kinds[kind] = (h.kinds[kind] || 0) + 1; h.last = { at: r.startedAt, text: m[2] };
+  }
+}
+function whyNot(coin, gapSig) {
+  const sigN = db.prepare(`SELECT COUNT(*) n FROM signal_log WHERE coin = ? AND foreign_ex = ? AND checkedAt > ? AND signal = 'ENTRY'`).get(coin, FOREIGN, since).n;
+  const h = holds[coin];
+  if (!sigN && !h) return '🔎 최근 3일 진입 신호 없음 — 아직 진입선에 닿은 적이 없습니다';
+  const L = [`🔎 최근 3일 진입 신호 ${sigN}회${h ? ` · 호가 확인 뒤 보류 ${h.n}회` : ''}`];
+  if (h) {
+    L.push('보류 사유: ' + Object.entries(h.kinds).sort((a, b) => b[1] - a[1]).map(([k, n]) => `${k} ${n}회`).join(' · '));
+    L.push(`마지막 보류 ${kstLabel(h.last.at)} — ${h.last.text}`);
+  } else L.push('보류 기록 없음 — 신호가 떴을 때 자리가 없었거나 다른 종목이 먼저 검토됐습니다');
+  if (gapSig > 0) L.push('지금은 진입선 위라 신호가 없습니다');
+  return L.join('\n');
+}
+
 // ── 차트 한 장 ──
 function build(p) {
   const all = db.prepare(`SELECT checkedAt, premium, ma, sigma FROM signal_log
@@ -93,6 +124,7 @@ function build(p) {
       ? `현재 ${sign(cur.premium)}% · 진입선 아래 ${Math.abs(gapSig).toFixed(2)}σ (${Math.abs(gapPp).toFixed(2)}%p)`
       : `현재 ${sign(cur.premium)}% · 진입선까지 ${gapSig.toFixed(2)}σ (${gapPp.toFixed(2)}%p) · 근접도 ${(prox * 100).toFixed(0)}%`;
     if (!p.cand.edgeOk) desc += ' · ⚠️ 순이익 조건 미달 (스프레드 대비 σ 가 작다)';
+    desc += '\n' + whyNot(p.coin, gapSig);
   }
   const chart = {
     type: 'line',
