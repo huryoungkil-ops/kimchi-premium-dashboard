@@ -1,0 +1,10 @@
+[Unit]
+Description=kimchi-backup (kimchi.db 서버 밖 사본 — GitHub backup-kimchi 브랜치)
+After=network-online.target
+
+[Service]
+Type=oneshot
+User=kimchi
+WorkingDirectory=/opt/kimchi-bot
+Environment=TZ=Asia/Seoul
+ExecStart=/usr/bin/node --disable-warning=ExperimentalWarning --dns-result-order=ipv4first --no-network-family-autoselection scripts/backup-history.js

@@ -11,6 +11,8 @@
 |---|---|
 | `chart-report.js` | `/opt/kimchi-bot/scripts/chart-report.js` |
 | `kimchi-chart.service` · `.timer` | `/etc/systemd/system/` (사본 `/opt/kimchi-bot/deploy/`) |
+| `backup-history.js` | `/opt/kimchi-bot/scripts/backup-history.js` |
+| `kimchi-backup.service` · `.timer` | 위와 같음 |
 
 - **봇 프로세스와 따로 돕니다.** 봇 코드는 고치지 않았고 재시작도 하지 않았습니다. DB 는 읽기 전용으로 엽니다.
 - 그림은 한스법칙 알림과 같은 QuickChart 로 그립니다. 서버에 새로 설치한 것이 없습니다.
@@ -55,14 +57,28 @@ pip install matplotlib pandas
 python report/kimp_chart.py "2026-09-29T22:40:00Z" report/sample.png
 ```
 
-## 이력 보관 — 확인됨 (2026-10-08)
+## 이력 보관과 백업 (2026-10-08)
 
 카페24 봇은 5분 김프를 **지우지 않고 계속 쌓습니다.** `/opt/kimchi-bot/data/kimchi.db` 의 `premium_history`.
 
 - 봇이 직접 잰 값: 2026-10-02 16:00 UTC ~ 현재, 하루 약 3.4만 행 (117~119종목)
 - n8n 에서 옮겨 온 값: 2026-09-28 20:15 ~ 10-02 15:55 UTC
-- 삭제·정리 코드는 봇 어디에도 없습니다. DB 는 9일치에 65MB, 디스크 여유 31GB — 몇 년은 그대로 둬도 됩니다.
+- 삭제·정리 코드는 봇 어디에도 없습니다. DB 는 9일치에 65MB, 디스크 여유 31GB.
 - 그보다 앞선 기록(2026-09-05 ~)은 이 저장소 `backup/data/premium-history` 의 CSV 에만 있습니다.
+
+백업은 두 겹입니다.
+
+| | 무엇을 | 어디에 | 언제 | 막는 것 |
+|---|---|---|---|---|
+| 서버 안 | DB 전체 스냅샷 | `/var/backups/kimchi-bot/kimchi-<날짜>.db.gz` (14일 보관) | 매일 03:30 KST (`/etc/cron.d/kimchi-bot-backup`, 봇 설치 때부터 있던 것) | 실수로 지움 · DB 손상 |
+| 서버 밖 | 김프 이력(하루 한 파일) + 거래·거래 대상 | 이 저장소 **`backup-kimchi` 브랜치** | 매일 09:20 KST (`kimchi-backup.timer` → `server/backup-history.js`) | 서버 디스크 고장 · 서버 해지 |
+
+- 서버 밖 사본은 브랜치에 없는 날짜를 전부 채웁니다. 며칠 빠져도 다음 실행이 따라잡습니다.
+- 하루치가 gzip 으로 약 0.5MB — 1년에 약 200MB 가 브랜치에 쌓입니다.
+- 실패하면 Discord 상태 채널로 «⚠️ 김프 봇 DB 백업 실패» 가 갑니다.
+- 되살리기: 통째로는 `gunzip kimchi-<날짜>.db.gz` 후 `data/kimchi.db` 자리에 놓고 봇 재시작.
+  서버가 없어졌다면 `git fetch origin backup-kimchi` 로 CSV 를 받아 `premium_history` 에 다시 넣습니다
+  (넣는 스크립트는 아직 없습니다 — 열 이름이 테이블과 같아 `sqlite3 .import` 로 됩니다).
 
 ## 확인 안 된 것
 
@@ -70,4 +86,5 @@ python report/kimp_chart.py "2026-09-29T22:40:00Z" report/sample.png
   실제 진입은 선보다 조금 아래에서 일어납니다.
 - 20분 간격이라 그 사이의 짧은 급락은 차트에 안 보일 수 있습니다. 봇의 판정은 5분 값으로 합니다.
 - QuickChart 무료 한도의 정확한 숫자와 하루 호출 한도는 확인하지 않았습니다. 하루 최대 7장을 씁니다.
-- `kimchi.db` 의 백업은 없습니다. 서버 디스크가 깨지면 10/5 이후 이력이 사라집니다.
+- 서버 밖 사본에는 `signal_log`·`runs` 가 없습니다. 이력에서 다시 계산할 수 있는 값이라 뺐습니다.
+- 서버 밖 사본에서 되살리는 연습은 해 보지 않았습니다.

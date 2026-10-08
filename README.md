@@ -42,4 +42,4 @@
 - 카페24 봇의 코드는 서버 `/opt/kimchi-bot` 에만 있습니다 (`kimchi-bot.service`). 원격 저장소에 올라가 있는지는
   확인하지 못했습니다.
 - ~~5분 김프 이력을 봇이 쌓는지~~ → **쌓습니다 (2026-10-08 확인).** `data/kimchi.db` 의 `premium_history`,
-  삭제 코드 없음. 자세한 수치는 `report/README.md`. 다만 그 DB 의 백업은 없습니다.
+  삭제 코드 없음. 백업은 서버 안 스냅샷(매일 03:30) + 이 저장소 `backup-kimchi` 브랜치(매일 09:20) 두 겹 — `report/README.md`.

@@ -1,0 +1,9 @@
+[Unit]
+Description=매일 09:20 KST kimchi.db 백업 (UTC 하루가 닫힌 직후)
+
+[Timer]
+OnCalendar=*-*-* 09:20:00 Asia/Seoul
+Persistent=true
+
+[Install]
+WantedBy=timers.target
