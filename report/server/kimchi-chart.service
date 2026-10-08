@@ -1,0 +1,10 @@
+[Unit]
+Description=kimchi-chart (아침 상태 보고용 김프 차트 — 보유 종목 + 진입 후보 3종목)
+After=network-online.target
+
+[Service]
+Type=oneshot
+User=kimchi
+WorkingDirectory=/opt/kimchi-bot
+Environment=TZ=Asia/Seoul
+ExecStart=/usr/bin/node --disable-warning=ExperimentalWarning --dns-result-order=ipv4first --no-network-family-autoselection scripts/chart-report.js

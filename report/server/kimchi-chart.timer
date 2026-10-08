@@ -1,0 +1,8 @@
+[Unit]
+Description=매일 07:42 KST 김프 차트 (07:40 상태 보고 바로 뒤)
+
+[Timer]
+OnCalendar=*-*-* 07:42:00 Asia/Seoul
+
+[Install]
+WantedBy=timers.target
