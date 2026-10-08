@@ -226,6 +226,18 @@ const DEFAULT_PARAMS = {
   // 다음 자리는 더 싼 가격에 들어가게 된다 — 종목 대신 «시간»으로 나누는 분산이다.
   // 0이면 끔. 물타기(TRANCHES)의 추가 체결은 새 진입이 아니므로 영향받지 않는다.
   ENTRY_GAP_HOURS: 0,
+
+  // --- 자리별 진입 깊이 ---
+  // 이미 n자리를 들고 있으면 다음 새 진입은 SLOT_SIGMAS[n]σ 보다 깊어야 받는다.
+  // 예) [2, 2.5, 3, 3.5] = 첫 자리는 2σ, 둘째는 2.5σ ... 공통 요인이 더 빠질 때만 자리를 더 쓴다.
+  // 시간(ENTRY_GAP_HOURS) 대신 «깊이»로 진입을 나누는 방식이다. null이면 끔.
+  SLOT_SIGMAS: null,
+
+  // --- 코인 대여 수수료 (위쪽 진입 실험용, upside.js) ---
+  // 김프가 높을 때 들어가려면 국내에서 코인을 빌려 팔아야 하고, 빌린 동안 매일 수수료가 붙는다.
+  // 보유 금액 x 이 비율(%) x 보유 일수를 청산 때 뺀다. 0이면 끔(아래쪽 전략은 빌리지 않는다).
+  BORROW_DAILY_PCT: 0,
+  BORROW_CEIL_DAYS: true,    // true면 하루를 못 채워도 하루치를 낸다(보수적)
 };
 
 // ---------------------------------------------------------------------------
@@ -663,6 +675,7 @@ function simulate(dataset, params, range) {
   const trades = [];
   let openCount = 0;
   let cumNet = 0, totalFunding = 0, totalSpread = 0, totalFees = 0;
+  let totalBorrow = 0;
   let blockedThin = 0, blockedEdge = 0, blockedSpreadGate = 0, blockedFunding = 0, blockedRegime = 0;
   // 순위 기준이 실제로 결과를 바꾸는 회차 수. 후보가 남은 자리보다 많을 때만 의미가 있다.
   let rankContested = 0, rankSkipped = 0;
@@ -670,6 +683,7 @@ function simulate(dataset, params, range) {
   const GAP_MS = (P.ENTRY_GAP_HOURS || 0) * 3600000;
   let lastEntryTs = -Infinity;
   let blockedGap = 0;
+  let blockedSlotDepth = 0;
   let addOns = 0;  // 2차 이후 추가 체결 횟수
   const exitReasons = { SIGNAL: 0, SOFT: 0, STOP: 0, MAXHOLD: 0, PRICESTOP: 0 };
   const equity = [];
@@ -678,6 +692,7 @@ function simulate(dataset, params, range) {
   // 후보 버퍼 (매 틱 재사용)
   const candIdx = new Int32Array(K);
   const candZ = new Float64Array(K);
+  const candDepth = new Float64Array(K);  // 매수호가 기준으로 평균보다 몇 σ 아래인가
 
   for (let g = startGrid; g < endGrid; g++) {
     const ts = dataset.gridMin + g * BAR_MS;
@@ -776,7 +791,10 @@ function simulate(dataset, params, range) {
         // 펀딩은 차수마다 진입 시각이 다르므로 각각 계산해 더한다
         let fund = 0;
         for (let t = 0; t < tr.length; t++) fund += fundingBetween(c, tr[t].ts, ts, tr[t].size);
-        const net = gross - fees - spread + fund;
+        const heldDaysB = P.BORROW_CEIL_DAYS ? Math.max(1, Math.ceil(heldMs / 86400000)) : heldMs / 86400000;
+        const borrow = P.BORROW_DAILY_PCT ? totalSize * P.BORROW_DAILY_PCT / 100 * heldDaysB : 0;
+        totalBorrow += borrow;
+        const net = gross - fees - spread + fund - borrow;
 
         cumNet += net; totalFunding += fund; totalSpread += spread; totalFees += fees;
         exitReasons[reason]++;
@@ -821,6 +839,7 @@ function simulate(dataset, params, range) {
       }
 
       candIdx[candN] = k;
+      candDepth[candN] = sSd > 0 ? (sMa - sPrem - halfSpread) / sSd : 0;
       // 저평가 정도에 펀딩비 이득을 더해 순위를 매긴다.
       // tf는 8시간당 비율이라 %p 단위로 맞추려면 100을 곱한다.
       const gapPp = sMa - sPrem;               // 평균까지 회복하면 벌 폭(%p)
@@ -862,6 +881,10 @@ function simulate(dataset, params, range) {
         if (GAP_MS > 0 && ts - lastEntryTs < GAP_MS) break;
         const k = candIdx[oi];
         if (tranches[k].length) continue;
+        if (P.SLOT_SIGMAS) {
+          const need = P.SLOT_SIGMAS[Math.min(openCount, P.SLOT_SIGMAS.length - 1)];
+          if (candDepth[oi] <= need) { blockedSlotDepth++; continue; }
+        }
         const c = coins[k];
         const i = ptr[k] - 1;
         const ei = Math.min(i + DELAY, c.premium.length - 1);
@@ -948,11 +971,13 @@ function simulate(dataset, params, range) {
     totalFees: Math.round(totalFees * 100) / 100,
     totalSpreadCost: Math.round(totalSpread * 100) / 100,
     totalFunding: Math.round(totalFunding * 100) / 100,
+    totalBorrow: Math.round(totalBorrow * 100) / 100,
     exitReasons,
     blocked: { 거래량미달: blockedThin, 스프레드관문: blockedSpreadGate, 기대수익부족: blockedEdge, 펀딩비음수: blockedFunding, 하락국면: blockedRegime },
     rankBy: P.RANK_BY,
     blockedGap,
-    rankContested,   // 후보가 자리보다 많았던 회차 (순위가 결과를 바꾼 횟수)
+    blockedSlotDepth,
+    rankContested,  // 후보가 자리보다 많았던 회차 (순위가 결과를 바꾼 횟수)
     rankSkipped,     // 그때 자리를 못 받고 밀려난 후보 누적
     addOns,
     avgTranches: total ? Math.round(trades.reduce((s, t) => s + t.tranchesFilled, 0) / total * 100) / 100 : null,

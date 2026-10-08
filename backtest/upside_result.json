@@ -1,0 +1,1249 @@
+{
+ "coins": [
+  "BTC",
+  "ETH",
+  "SOL",
+  "XRP",
+  "ADA",
+  "LINK"
+ ],
+ "years": 6,
+ "borrowDailyPct": [
+  0,
+  0.03,
+  0.05
+ ],
+ "rows": [
+  {
+   "label": "아래쪽",
+   "full": {
+    "trades": 2318,
+    "winRate": 79.7,
+    "annualizedPct": 16.91,
+    "avgNet": 4.38,
+    "avgHoldHours": 22.16,
+    "mddMtm": 146.41,
+    "ratio": 11.55,
+    "net": 10148.35,
+    "funding": 11.62,
+    "borrow": 0,
+    "spread": 2866.6,
+    "fees": 927.2,
+    "exits": {
+     "SIGNAL": 2060,
+     "SOFT": 256,
+     "STOP": 0,
+     "MAXHOLD": 0,
+     "PRICESTOP": 2
+    },
+    "byCoin": {
+     "XRP": {
+      "trades": 703,
+      "wins": 564,
+      "net": 3092.71
+     },
+     "ADA": {
+      "trades": 185,
+      "wins": 133,
+      "net": 757.51
+     },
+     "ETH": {
+      "trades": 522,
+      "wins": 423,
+      "net": 2213.61
+     },
+     "BTC": {
+      "trades": 470,
+      "wins": 374,
+      "net": 1886.86
+     },
+     "LINK": {
+      "trades": 43,
+      "wins": 39,
+      "net": 649.09
+     },
+     "SOL": {
+      "trades": 395,
+      "wins": 314,
+      "net": 1548.83
+     }
+    }
+   },
+   "valid": {
+    "trades": 569,
+    "winRate": 77.5,
+    "annualizedPct": 9.01,
+    "avgNet": 2.85,
+    "avgHoldHours": 27.27,
+    "mddMtm": 123.89,
+    "ratio": 7.27,
+    "net": 1622.65,
+    "funding": 11.62,
+    "borrow": 0,
+    "spread": 624.4,
+    "fees": 227.6,
+    "exits": {
+     "SIGNAL": 485,
+     "SOFT": 84,
+     "STOP": 0,
+     "MAXHOLD": 0,
+     "PRICESTOP": 0
+    },
+    "byCoin": {
+     "BTC": {
+      "trades": 118,
+      "wins": 88,
+      "net": 264.82
+     },
+     "ETH": {
+      "trades": 146,
+      "wins": 115,
+      "net": 476.92
+     },
+     "XRP": {
+      "trades": 168,
+      "wins": 135,
+      "net": 491.47
+     },
+     "ADA": {
+      "trades": 16,
+      "wins": 11,
+      "net": 54.91
+     },
+     "SOL": {
+      "trades": 119,
+      "wins": 90,
+      "net": 299.71
+     },
+     "LINK": {
+      "trades": 2,
+      "wins": 2,
+      "net": 35.06
+     }
+    }
+   }
+  },
+  {
+   "label": "위쪽 대여료 0%",
+   "full": {
+    "trades": 2532,
+    "winRate": 81.4,
+    "annualizedPct": 21.38,
+    "avgNet": 5.07,
+    "avgHoldHours": 21.15,
+    "mddMtm": 464.11,
+    "ratio": 4.61,
+    "net": 12829.68,
+    "funding": -12.16,
+    "borrow": 0,
+    "spread": 3402.3,
+    "fees": 1012.8,
+    "exits": {
+     "SIGNAL": 2239,
+     "SOFT": 283,
+     "STOP": 0,
+     "MAXHOLD": 9,
+     "PRICESTOP": 1
+    },
+    "byCoin": {
+     "ADA": {
+      "trades": 280,
+      "wins": 220,
+      "net": 2086.71
+     },
+     "XRP": {
+      "trades": 740,
+      "wins": 616,
+      "net": 3648.6
+     },
+     "ETH": {
+      "trades": 531,
+      "wins": 435,
+      "net": 2304.04
+     },
+     "BTC": {
+      "trades": 474,
+      "wins": 387,
+      "net": 1860.63
+     },
+     "LINK": {
+      "trades": 78,
+      "wins": 65,
+      "net": 1167.19
+     },
+     "SOL": {
+      "trades": 429,
+      "wins": 339,
+      "net": 1762.46
+     }
+    }
+   },
+   "valid": {
+    "trades": 567,
+    "winRate": 78.8,
+    "annualizedPct": 8.61,
+    "avgNet": 2.73,
+    "avgHoldHours": 26.36,
+    "mddMtm": 232.46,
+    "ratio": 3.7,
+    "net": 1548.96,
+    "funding": -12.16,
+    "borrow": 0,
+    "spread": 629.1,
+    "fees": 226.8,
+    "exits": {
+     "SIGNAL": 459,
+     "SOFT": 104,
+     "STOP": 0,
+     "MAXHOLD": 4,
+     "PRICESTOP": 0
+    },
+    "byCoin": {
+     "ETH": {
+      "trades": 134,
+      "wins": 105,
+      "net": 356.27
+     },
+     "XRP": {
+      "trades": 167,
+      "wins": 137,
+      "net": 525.1
+     },
+     "SOL": {
+      "trades": 130,
+      "wins": 99,
+      "net": 312.64
+     },
+     "BTC": {
+      "trades": 117,
+      "wins": 90,
+      "net": 264.86
+     },
+     "LINK": {
+      "trades": 3,
+      "wins": 2,
+      "net": 32.12
+     },
+     "ADA": {
+      "trades": 16,
+      "wins": 14,
+      "net": 57.84
+     }
+    }
+   }
+  },
+  {
+   "label": "위쪽 대여료 0.03%",
+   "full": {
+    "trades": 2532,
+    "winRate": 79.9,
+    "annualizedPct": 19.55,
+    "avgNet": 4.63,
+    "avgHoldHours": 21.15,
+    "mddMtm": 470.41,
+    "ratio": 4.16,
+    "net": 11731.08,
+    "funding": -12.16,
+    "borrow": 1098.6,
+    "spread": 3402.3,
+    "fees": 1012.8,
+    "exits": {
+     "SIGNAL": 2239,
+     "SOFT": 283,
+     "STOP": 0,
+     "MAXHOLD": 9,
+     "PRICESTOP": 1
+    },
+    "byCoin": {
+     "ADA": {
+      "trades": 280,
+      "wins": 216,
+      "net": 1975.11
+     },
+     "XRP": {
+      "trades": 740,
+      "wins": 606,
+      "net": 3345.9
+     },
+     "ETH": {
+      "trades": 531,
+      "wins": 425,
+      "net": 2064.04
+     },
+     "BTC": {
+      "trades": 474,
+      "wins": 379,
+      "net": 1641.33
+     },
+     "LINK": {
+      "trades": 78,
+      "wins": 63,
+      "net": 1134.49
+     },
+     "SOL": {
+      "trades": 429,
+      "wins": 333,
+      "net": 1570.16
+     }
+    }
+   },
+   "valid": {
+    "trades": 567,
+    "winRate": 76.9,
+    "annualizedPct": 7.11,
+    "avgNet": 2.26,
+    "avgHoldHours": 26.36,
+    "mddMtm": 232.46,
+    "ratio": 3.06,
+    "net": 1279.26,
+    "funding": -12.16,
+    "borrow": 269.7,
+    "spread": 629.1,
+    "fees": 226.8,
+    "exits": {
+     "SIGNAL": 459,
+     "SOFT": 104,
+     "STOP": 0,
+     "MAXHOLD": 4,
+     "PRICESTOP": 0
+    },
+    "byCoin": {
+     "ETH": {
+      "trades": 134,
+      "wins": 101,
+      "net": 292.67
+     },
+     "XRP": {
+      "trades": 167,
+      "wins": 133,
+      "net": 449.2
+     },
+     "SOL": {
+      "trades": 130,
+      "wins": 99,
+      "net": 249.34
+     },
+     "BTC": {
+      "trades": 117,
+      "wins": 87,
+      "net": 206.36
+     },
+     "LINK": {
+      "trades": 3,
+      "wins": 2,
+      "net": 30.92
+     },
+     "ADA": {
+      "trades": 16,
+      "wins": 14,
+      "net": 50.64
+     }
+    }
+   }
+  },
+  {
+   "label": "위쪽 대여료 0.05%",
+   "full": {
+    "trades": 2532,
+    "winRate": 78.3,
+    "annualizedPct": 18.33,
+    "avgNet": 4.34,
+    "avgHoldHours": 21.15,
+    "mddMtm": 474.61,
+    "ratio": 3.86,
+    "net": 10998.68,
+    "funding": -12.16,
+    "borrow": 1831,
+    "spread": 3402.3,
+    "fees": 1012.8,
+    "exits": {
+     "SIGNAL": 2239,
+     "SOFT": 283,
+     "STOP": 0,
+     "MAXHOLD": 9,
+     "PRICESTOP": 1
+    },
+    "byCoin": {
+     "ADA": {
+      "trades": 280,
+      "wins": 213,
+      "net": 1900.71
+     },
+     "XRP": {
+      "trades": 740,
+      "wins": 592,
+      "net": 3144.1
+     },
+     "ETH": {
+      "trades": 531,
+      "wins": 418,
+      "net": 1904.04
+     },
+     "BTC": {
+      "trades": 474,
+      "wins": 372,
+      "net": 1495.13
+     },
+     "LINK": {
+      "trades": 78,
+      "wins": 63,
+      "net": 1112.69
+     },
+     "SOL": {
+      "trades": 429,
+      "wins": 325,
+      "net": 1441.96
+     }
+    }
+   },
+   "valid": {
+    "trades": 567,
+    "winRate": 74.6,
+    "annualizedPct": 6.11,
+    "avgNet": 1.94,
+    "avgHoldHours": 26.36,
+    "mddMtm": 237.65,
+    "ratio": 2.57,
+    "net": 1099.46,
+    "funding": -12.16,
+    "borrow": 449.5,
+    "spread": 629.1,
+    "fees": 226.8,
+    "exits": {
+     "SIGNAL": 459,
+     "SOFT": 104,
+     "STOP": 0,
+     "MAXHOLD": 4,
+     "PRICESTOP": 0
+    },
+    "byCoin": {
+     "ETH": {
+      "trades": 134,
+      "wins": 99,
+      "net": 250.27
+     },
+     "XRP": {
+      "trades": 167,
+      "wins": 129,
+      "net": 398.6
+     },
+     "SOL": {
+      "trades": 130,
+      "wins": 94,
+      "net": 207.14
+     },
+     "BTC": {
+      "trades": 117,
+      "wins": 85,
+      "net": 167.36
+     },
+     "LINK": {
+      "trades": 3,
+      "wins": 2,
+      "net": 30.12
+     },
+     "ADA": {
+      "trades": 16,
+      "wins": 14,
+      "net": 45.84
+     }
+    }
+   }
+  },
+  {
+   "label": "위쪽 진입 2.5σ",
+   "full": {
+    "trades": 1817,
+    "winRate": 79.1,
+    "annualizedPct": 17.5,
+    "avgNet": 5.78,
+    "avgHoldHours": 23.49,
+    "mddMtm": 372.85,
+    "ratio": 4.69,
+    "net": 10498.71,
+    "funding": -9.68,
+    "borrow": 1378,
+    "spread": 2596.6,
+    "fees": 726.8,
+    "exits": {
+     "SIGNAL": 1542,
+     "SOFT": 268,
+     "STOP": 0,
+     "MAXHOLD": 6,
+     "PRICESTOP": 1
+    },
+    "byCoin": {
+     "ADA": {
+      "trades": 231,
+      "wins": 176,
+      "net": 1992.41
+     },
+     "XRP": {
+      "trades": 497,
+      "wins": 409,
+      "net": 2894.57
+     },
+     "ETH": {
+      "trades": 382,
+      "wins": 299,
+      "net": 1697.11
+     },
+     "BTC": {
+      "trades": 331,
+      "wins": 260,
+      "net": 1472.73
+     },
+     "LINK": {
+      "trades": 80,
+      "wins": 68,
+      "net": 1181.6
+     },
+     "SOL": {
+      "trades": 296,
+      "wins": 225,
+      "net": 1260.46
+     }
+    }
+   },
+   "valid": {
+    "trades": 420,
+    "winRate": 75.5,
+    "annualizedPct": 6.09,
+    "avgNet": 2.61,
+    "avgHoldHours": 28.57,
+    "mddMtm": 250.45,
+    "ratio": 2.43,
+    "net": 1095.35,
+    "funding": -9.68,
+    "borrow": 350.5,
+    "spread": 501.7,
+    "fees": 168,
+    "exits": {
+     "SIGNAL": 329,
+     "SOFT": 89,
+     "STOP": 0,
+     "MAXHOLD": 2,
+     "PRICESTOP": 0
+    },
+    "byCoin": {
+     "XRP": {
+      "trades": 116,
+      "wins": 92,
+      "net": 346.22
+     },
+     "ETH": {
+      "trades": 97,
+      "wins": 73,
+      "net": 241.41
+     },
+     "SOL": {
+      "trades": 95,
+      "wins": 71,
+      "net": 224.92
+     },
+     "BTC": {
+      "trades": 83,
+      "wins": 63,
+      "net": 225.98
+     },
+     "ADA": {
+      "trades": 26,
+      "wins": 16,
+      "net": 33.47
+     },
+     "LINK": {
+      "trades": 3,
+      "wins": 2,
+      "net": 23.35
+     }
+    }
+   }
+  },
+  {
+   "label": "위쪽 진입 3σ",
+   "full": {
+    "trades": 1248,
+    "winRate": 79.9,
+    "annualizedPct": 16.04,
+    "avgNet": 7.71,
+    "avgHoldHours": 25.64,
+    "mddMtm": 359.55,
+    "ratio": 4.46,
+    "net": 9626.31,
+    "funding": -6.47,
+    "borrow": 990,
+    "spread": 1887.2,
+    "fees": 499.2,
+    "exits": {
+     "SIGNAL": 1031,
+     "SOFT": 214,
+     "STOP": 0,
+     "MAXHOLD": 2,
+     "PRICESTOP": 1
+    },
+    "byCoin": {
+     "BTC": {
+      "trades": 223,
+      "wins": 180,
+      "net": 1239.69
+     },
+     "XRP": {
+      "trades": 318,
+      "wins": 259,
+      "net": 2565.82
+     },
+     "ETH": {
+      "trades": 256,
+      "wins": 201,
+      "net": 1726.44
+     },
+     "ADA": {
+      "trades": 171,
+      "wins": 136,
+      "net": 1744.39
+     },
+     "LINK": {
+      "trades": 75,
+      "wins": 64,
+      "net": 1110.29
+     },
+     "SOL": {
+      "trades": 205,
+      "wins": 157,
+      "net": 1239.71
+     }
+    }
+   },
+   "valid": {
+    "trades": 293,
+    "winRate": 75.8,
+    "annualizedPct": 6.41,
+    "avgNet": 3.94,
+    "avgHoldHours": 29.32,
+    "mddMtm": 177.39,
+    "ratio": 3.61,
+    "net": 1153.67,
+    "funding": -6.47,
+    "borrow": 246.5,
+    "spread": 359.7,
+    "fees": 117.2,
+    "exits": {
+     "SIGNAL": 220,
+     "SOFT": 73,
+     "STOP": 0,
+     "MAXHOLD": 0,
+     "PRICESTOP": 0
+    },
+    "byCoin": {
+     "SOL": {
+      "trades": 64,
+      "wins": 50,
+      "net": 300.31
+     },
+     "ETH": {
+      "trades": 73,
+      "wins": 55,
+      "net": 291.57
+     },
+     "BTC": {
+      "trades": 60,
+      "wins": 48,
+      "net": 225.42
+     },
+     "XRP": {
+      "trades": 74,
+      "wins": 55,
+      "net": 260.16
+     },
+     "LINK": {
+      "trades": 4,
+      "wins": 3,
+      "net": 33.76
+     },
+     "ADA": {
+      "trades": 18,
+      "wins": 11,
+      "net": 42.43
+     }
+    }
+   }
+  },
+  {
+   "label": "위쪽 관문 5배",
+   "full": {
+    "trades": 2099,
+    "winRate": 80.2,
+    "annualizedPct": 18.65,
+    "avgNet": 5.33,
+    "avgHoldHours": 22.81,
+    "mddMtm": 469.23,
+    "ratio": 3.97,
+    "net": 11188.01,
+    "funding": -8.87,
+    "borrow": 1576.5,
+    "spread": 2495.5,
+    "fees": 839.6,
+    "exits": {
+     "SIGNAL": 1821,
+     "SOFT": 269,
+     "STOP": 0,
+     "MAXHOLD": 8,
+     "PRICESTOP": 1
+    },
+    "byCoin": {
+     "XRP": {
+      "trades": 729,
+      "wins": 587,
+      "net": 3172.48
+     },
+     "ETH": {
+      "trades": 459,
+      "wins": 368,
+      "net": 1944.69
+     },
+     "BTC": {
+      "trades": 378,
+      "wins": 299,
+      "net": 1589.98
+     },
+     "LINK": {
+      "trades": 39,
+      "wins": 33,
+      "net": 891.53
+     },
+     "ADA": {
+      "trades": 153,
+      "wins": 129,
+      "net": 1912.71
+     },
+     "SOL": {
+      "trades": 341,
+      "wins": 267,
+      "net": 1676.67
+     }
+    }
+   },
+   "valid": {
+    "trades": 439,
+    "winRate": 74.5,
+    "annualizedPct": 5.96,
+    "avgNet": 2.44,
+    "avgHoldHours": 29.17,
+    "mddMtm": 234.07,
+    "ratio": 2.55,
+    "net": 1073.32,
+    "funding": -8.87,
+    "borrow": 368.5,
+    "spread": 444,
+    "fees": 175.6,
+    "exits": {
+     "SIGNAL": 341,
+     "SOFT": 94,
+     "STOP": 0,
+     "MAXHOLD": 4,
+     "PRICESTOP": 0
+    },
+    "byCoin": {
+     "XRP": {
+      "trades": 158,
+      "wins": 124,
+      "net": 395.28
+     },
+     "ETH": {
+      "trades": 107,
+      "wins": 80,
+      "net": 232.13
+     },
+     "SOL": {
+      "trades": 86,
+      "wins": 60,
+      "net": 213.46
+     },
+     "BTC": {
+      "trades": 82,
+      "wins": 57,
+      "net": 159.76
+     },
+     "LINK": {
+      "trades": 1,
+      "wins": 1,
+      "net": 26.34
+     },
+     "ADA": {
+      "trades": 5,
+      "wins": 5,
+      "net": 46.28
+     }
+    }
+   }
+  },
+  {
+   "label": "위쪽 최대 보유 2일",
+   "full": {
+    "trades": 2865,
+    "winRate": 73.4,
+    "annualizedPct": 19.64,
+    "avgNet": 4.11,
+    "avgHoldHours": 15.55,
+    "mddMtm": 420.85,
+    "ratio": 4.67,
+    "net": 11785.89,
+    "funding": -9.98,
+    "borrow": 1609.5,
+    "spread": 3895.8,
+    "fees": 1146,
+    "exits": {
+     "SIGNAL": 1891,
+     "SOFT": 904,
+     "STOP": 0,
+     "MAXHOLD": 70,
+     "PRICESTOP": 0
+    },
+    "byCoin": {
+     "ADA": {
+      "trades": 327,
+      "wins": 241,
+      "net": 2094.37
+     },
+     "XRP": {
+      "trades": 825,
+      "wins": 627,
+      "net": 3434.07
+     },
+     "BTC": {
+      "trades": 530,
+      "wins": 375,
+      "net": 1480.15
+     },
+     "ETH": {
+      "trades": 603,
+      "wins": 443,
+      "net": 1916.19
+     },
+     "LINK": {
+      "trades": 94,
+      "wins": 74,
+      "net": 1265.08
+     },
+     "SOL": {
+      "trades": 486,
+      "wins": 342,
+      "net": 1595.93
+     }
+    }
+   },
+   "valid": {
+    "trades": 659,
+    "winRate": 68.4,
+    "annualizedPct": 8.22,
+    "avgNet": 2.25,
+    "avgHoldHours": 17.99,
+    "mddMtm": 189.65,
+    "ratio": 4.33,
+    "net": 1480.19,
+    "funding": -9.98,
+    "borrow": 374,
+    "spread": 761.4,
+    "fees": 263.6,
+    "exits": {
+     "SIGNAL": 366,
+     "SOFT": 274,
+     "STOP": 0,
+     "MAXHOLD": 19,
+     "PRICESTOP": 0
+    },
+    "byCoin": {
+     "ETH": {
+      "trades": 156,
+      "wins": 111,
+      "net": 356.24
+     },
+     "XRP": {
+      "trades": 190,
+      "wins": 135,
+      "net": 485.02
+     },
+     "SOL": {
+      "trades": 148,
+      "wins": 98,
+      "net": 276.65
+     },
+     "BTC": {
+      "trades": 130,
+      "wins": 83,
+      "net": 132.54
+     },
+     "ADA": {
+      "trades": 29,
+      "wins": 20,
+      "net": 147.87
+     },
+     "LINK": {
+      "trades": 6,
+      "wins": 4,
+      "net": 81.84
+     }
+    }
+   }
+  }
+ ],
+ "byYear": {
+  "2020": {
+   "down": 499,
+   "up": 629
+  },
+  "2021": {
+   "down": 3818,
+   "up": 3933
+  },
+  "2022": {
+   "down": 1814,
+   "up": 2036
+  },
+  "2023": {
+   "down": 1466,
+   "up": 2088
+  },
+  "2024": {
+   "down": 894,
+   "up": 1148
+  },
+  "2025": {
+   "down": 1004,
+   "up": 646
+  },
+  "2026": {
+   "down": 654,
+   "up": 518
+  }
+ },
+ "both": {
+  "전체 6년": {
+   "down4": {
+    "trades": 2318,
+    "winRate": 79.7,
+    "annualizedPct": 16.91,
+    "avgNet": 4.38,
+    "avgHoldHours": 22.16,
+    "mddMtm": 146.41,
+    "ratio": 11.55,
+    "net": 10148.35,
+    "funding": 11.62,
+    "borrow": 0,
+    "spread": 2866.6,
+    "fees": 927.2,
+    "exits": {
+     "SIGNAL": 2060,
+     "SOFT": 256,
+     "STOP": 0,
+     "MAXHOLD": 0,
+     "PRICESTOP": 2
+    },
+    "byCoin": {
+     "XRP": {
+      "trades": 703,
+      "wins": 564,
+      "net": 3092.71
+     },
+     "ADA": {
+      "trades": 185,
+      "wins": 133,
+      "net": 757.51
+     },
+     "ETH": {
+      "trades": 522,
+      "wins": 423,
+      "net": 2213.61
+     },
+     "BTC": {
+      "trades": 470,
+      "wins": 374,
+      "net": 1886.86
+     },
+     "LINK": {
+      "trades": 43,
+      "wins": 39,
+      "net": 649.09
+     },
+     "SOL": {
+      "trades": 395,
+      "wins": 314,
+      "net": 1548.83
+     }
+    }
+   },
+   "down2": {
+    "trades": 1355,
+    "winRate": 79.3,
+    "annualizedPct": 9.86,
+    "avgNet": 4.37,
+    "avgHoldHours": 20.39,
+    "mddMtm": 72.56,
+    "ratio": 13.59,
+    "net": 5918.58,
+    "funding": 5.97,
+    "borrow": 0,
+    "spread": 1454.6,
+    "fees": 542,
+    "exits": {
+     "SIGNAL": 1219,
+     "SOFT": 134,
+     "STOP": 0,
+     "MAXHOLD": 0,
+     "PRICESTOP": 2
+    },
+    "byCoin": {
+     "XRP": {
+      "trades": 595,
+      "wins": 473,
+      "net": 2457.18
+     },
+     "ADA": {
+      "trades": 94,
+      "wins": 63,
+      "net": 398.64
+     },
+     "ETH": {
+      "trades": 302,
+      "wins": 239,
+      "net": 1283.18
+     },
+     "BTC": {
+      "trades": 174,
+      "wins": 145,
+      "net": 735.17
+     },
+     "LINK": {
+      "trades": 11,
+      "wins": 10,
+      "net": 169.97
+     },
+     "SOL": {
+      "trades": 179,
+      "wins": 145,
+      "net": 874.56
+     }
+    }
+   },
+   "up2": {
+    "trades": 1519,
+    "winRate": 79.5,
+    "annualizedPct": 12.47,
+    "avgNet": 4.93,
+    "avgHoldHours": 19.15,
+    "mddMtm": 276.79,
+    "ratio": 4.51,
+    "net": 7481.22,
+    "funding": -5.85,
+    "borrow": 1053.5,
+    "spread": 1887.3,
+    "fees": 607.6,
+    "exits": {
+     "SIGNAL": 1368,
+     "SOFT": 146,
+     "STOP": 0,
+     "MAXHOLD": 4,
+     "PRICESTOP": 1
+    },
+    "byCoin": {
+     "XRP": {
+      "trades": 612,
+      "wins": 491,
+      "net": 2756.76
+     },
+     "ETH": {
+      "trades": 292,
+      "wins": 239,
+      "net": 1183.85
+     },
+     "BTC": {
+      "trades": 173,
+      "wins": 145,
+      "net": 586.16
+     },
+     "ADA": {
+      "trades": 154,
+      "wins": 118,
+      "net": 1352.3
+     },
+     "LINK": {
+      "trades": 48,
+      "wins": 39,
+      "net": 867.98
+     },
+     "SOL": {
+      "trades": 240,
+      "wins": 175,
+      "net": 734.21
+     }
+    }
+   },
+   "combined": {
+    "annualizedPct": 22.33,
+    "mddMtm": 276.08,
+    "ratio": 8.09
+   }
+  },
+  "검증 구간": {
+   "down4": {
+    "trades": 569,
+    "winRate": 77.5,
+    "annualizedPct": 9.01,
+    "avgNet": 2.85,
+    "avgHoldHours": 27.27,
+    "mddMtm": 123.89,
+    "ratio": 7.27,
+    "net": 1622.65,
+    "funding": 11.62,
+    "borrow": 0,
+    "spread": 624.4,
+    "fees": 227.6,
+    "exits": {
+     "SIGNAL": 485,
+     "SOFT": 84,
+     "STOP": 0,
+     "MAXHOLD": 0,
+     "PRICESTOP": 0
+    },
+    "byCoin": {
+     "BTC": {
+      "trades": 118,
+      "wins": 88,
+      "net": 264.82
+     },
+     "ETH": {
+      "trades": 146,
+      "wins": 115,
+      "net": 476.92
+     },
+     "XRP": {
+      "trades": 168,
+      "wins": 135,
+      "net": 491.47
+     },
+     "ADA": {
+      "trades": 16,
+      "wins": 11,
+      "net": 54.91
+     },
+     "SOL": {
+      "trades": 119,
+      "wins": 90,
+      "net": 299.71
+     },
+     "LINK": {
+      "trades": 2,
+      "wins": 2,
+      "net": 35.06
+     }
+    }
+   },
+   "down2": {
+    "trades": 327,
+    "winRate": 78.9,
+    "annualizedPct": 5.14,
+    "avgNet": 2.83,
+    "avgHoldHours": 26.07,
+    "mddMtm": 62.57,
+    "ratio": 8.21,
+    "net": 924.85,
+    "funding": 5.97,
+    "borrow": 0,
+    "spread": 311.1,
+    "fees": 130.8,
+    "exits": {
+     "SIGNAL": 282,
+     "SOFT": 45,
+     "STOP": 0,
+     "MAXHOLD": 0,
+     "PRICESTOP": 0
+    },
+    "byCoin": {
+     "ETH": {
+      "trades": 90,
+      "wins": 70,
+      "net": 245.48
+     },
+     "XRP": {
+      "trades": 147,
+      "wins": 119,
+      "net": 407.84
+     },
+     "BTC": {
+      "trades": 36,
+      "wins": 26,
+      "net": 86.21
+     },
+     "SOL": {
+      "trades": 45,
+      "wins": 36,
+      "net": 147
+     },
+     "ADA": {
+      "trades": 9,
+      "wins": 7,
+      "net": 38.4
+     }
+    }
+   },
+   "up2": {
+    "trades": 327,
+    "winRate": 77.1,
+    "annualizedPct": 4.07,
+    "avgNet": 2.24,
+    "avgHoldHours": 24.67,
+    "mddMtm": 130.2,
+    "ratio": 3.13,
+    "net": 732.16,
+    "funding": -5.85,
+    "borrow": 250,
+    "spread": 329.5,
+    "fees": 130.8,
+    "exits": {
+     "SIGNAL": 272,
+     "SOFT": 53,
+     "STOP": 0,
+     "MAXHOLD": 2,
+     "PRICESTOP": 0
+    },
+    "byCoin": {
+     "ETH": {
+      "trades": 75,
+      "wins": 57,
+      "net": 162.18
+     },
+     "XRP": {
+      "trades": 145,
+      "wins": 113,
+      "net": 377.53
+     },
+     "SOL": {
+      "trades": 55,
+      "wins": 36,
+      "net": -14.66
+     },
+     "LINK": {
+      "trades": 3,
+      "wins": 2,
+      "net": 30.12
+     },
+     "BTC": {
+      "trades": 38,
+      "wins": 34,
+      "net": 136.78
+     },
+     "ADA": {
+      "trades": 11,
+      "wins": 10,
+      "net": 40.15
+     }
+    }
+   },
+   "combined": {
+    "annualizedPct": 9.21,
+    "mddMtm": 123.08,
+    "ratio": 7.48
+   }
+  }
+ }
+}
