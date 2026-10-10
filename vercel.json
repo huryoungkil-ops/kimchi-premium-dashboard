@@ -1,4 +1,10 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "ignoreCommand": "git diff --quiet HEAD^ HEAD -- index.html ledger backup/data/paper-trades.json vercel.json .vercelignore"
+  "ignoreCommand": "git diff --quiet HEAD^ HEAD -- index.html ledger backup/data/paper-trades.json vercel.json .vercelignore",
+  "git": {
+    "deploymentEnabled": {
+      "paper-*": false,
+      "backup-*": false
+    }
+  }
 }
