@@ -428,6 +428,7 @@
     <a href="#kimchi" data-tab="kimchi" aria-current="page">🌶️ 김치프리미엄 <span class="sub">코빗 × OKX</span></a>
     <a href="#turtle" data-tab="turtle">🐢 터틀 트레이딩 <span class="sub">빗썸 원화</span></a>
     <a href="#luna" data-tab="luna">🌙 제2의 루나를 찾아라 <span class="sub">바이낸스 선물</span></a>
+    <a href="#ls" data-tab="ls">⚖️ 롱숏 모멘텀+캐리 <span class="sub">바이낸스 선물</span></a>
   </nav>
 
 <div class="tab-panel" id="tab-kimchi">
@@ -916,6 +917,110 @@
     </div>
   </section>
 </div><!-- /tab-luna -->
+
+<div class="tab-panel" id="tab-ls" hidden>
+  <p class="paper-note">⚖️ <strong>롱숏 모멘텀+캐리 페이퍼</strong> — 바이낸스 USDT-M 선물. 매주 «최근 2주 오르고 펀딩이 싼 코인 6개»를 롱, «최근 2주 내리고 펀딩이 비싼 코인 6개»를 숏합니다. 롱과 숏을 같은 금액으로 잡아 시장 전체 방향과는 거의 무관합니다. 실제 돈은 오가지 않습니다. 근거: <a href="https://claude.ai/artifact/V1CMBrjBiqr7YvW2NaKKiY" target="_blank" rel="noopener">롱숏 전략 리포트</a></p>
+  <p class="paper-status" id="s-status">불러오는 중…</p>
+  <section class="tiles" aria-label="롱숏 요약">
+    <div class="tile"><div class="label">가상 시드</div><div class="value">$10,000</div><div class="sub" id="s-start">—</div></div>
+    <div class="tile"><div class="label">평가액</div><div class="value" id="s-eq">—</div><div class="sub" id="s-eq-sub">—</div></div>
+    <div class="tile"><div class="label">비교: BTC 1배 보유</div><div class="value" id="s-btc">—</div><div class="sub" id="s-btc-sub">같은 날 $10,000로 시작했다면</div></div>
+    <div class="tile"><div class="label">노출</div><div class="value" id="s-exp">—</div><div class="sub" id="s-exp-sub">—</div></div>
+  </section>
+  <section>
+    <h2>지금 들고 있는 것</h2>
+    <p class="section-sub">하위 책 7개를 합친 코인별 순노출(자기자본 대비). 롱 합 ≈ 50%, 숏 합 ≈ 50%가 목표입니다.</p>
+    <div class="table-scroll"><table class="coins paper">
+      <thead><tr><th>방향</th><th>종목</th><th class="num">비중</th><th class="num">금액</th></tr></thead>
+      <tbody id="s-pos"></tbody>
+    </table></div>
+  </section>
+  <section>
+    <h2>최근 선정 결과</h2>
+    <p class="section-sub" id="s-picks-sub">—</p>
+    <div class="table-scroll"><table class="coins paper">
+      <thead><tr><th>방향</th><th>종목</th><th class="num">목표 비중</th><th class="num">14일 수익률</th><th class="num">펀딩/일</th><th class="num">변동성(일)</th><th class="num">점수</th></tr></thead>
+      <tbody id="s-picks"></tbody>
+    </table></div>
+  </section>
+  <section>
+    <h2>평가액 추이</h2>
+    <p class="section-sub">하루 한 번 기록(달러). 빨강 = 롱숏 전략, 회색 점선 = BTC 1배 보유.</p>
+    <div class="equity-chart" id="s-chart"></div>
+  </section>
+  <section>
+    <h2>거래 기록</h2>
+    <p class="section-sub">하위 책(B1~B7)마다 따로 기록됩니다. 같은 코인이 여러 책에 있을 수 있습니다.</p>
+    <div class="table-scroll"><table class="coins paper">
+      <thead><tr><th>진입</th><th>책</th><th>종목</th><th>방향</th><th class="num">진입가</th><th class="num">청산가</th><th class="num">펀딩</th><th class="num">손익</th><th>사유</th></tr></thead>
+      <tbody id="s-trades"></tbody>
+    </table></div>
+  </section>
+
+  <section aria-labelledby="s-strategy-h">
+    <h2 id="s-strategy-h">전략 — 오르는데 덜 붐비는 코인을 사고, 내리는데 레버리지 롱이 몰린 코인을 판다</h2>
+    <p class="section-sub">주식·선물·채권에서 수십 년 검증된 롱숏 기법 9가지를 바이낸스 무기한선물 318개 코인(상장폐지 55개 포함, 2020-01 ~ 2026-10)에 옮겨 백테스트한 뒤, 코인에서 살아남은 둘인 «모멘텀»과 «펀딩 캐리»를 합친 1순위 후보입니다. 순수 시뮬레이션이며 실제 주문은 내지 않습니다.</p>
+
+    <div class="flow">
+      <div class="flow-step">
+        <span class="num">01</span>
+        <h3>매일 09:05 후보 30개</h3>
+        <p>바이낸스 일봉(UTC 자정 = KST 09:00 마감) 확정 후, 연속 상장 60일 이상인 코인 무기한선물 중 직전 30일 거래대금 상위 30개를 고름 (스테이블·지수·금속 제외)</p>
+      </div>
+      <div class="flow-step">
+        <span class="num">02</span>
+        <h3>두 가지로 줄 세우기</h3>
+        <p>① 최근 14일 수익률(어제 하루는 빼고) 순위 ② 7일 평균 펀딩비가 낮은 순위. 두 순위의 평균이 점수</p>
+      </div>
+      <div class="flow-step">
+        <span class="num">03</span>
+        <h3>롱 6 · 숏 6</h3>
+        <p>점수 상위 6개 롱, 하위 6개 숏. 각 쪽 합이 자기자본의 50%. 많이 출렁이는 코인일수록 작게 담음(역변동성 가중)</p>
+      </div>
+      <div class="flow-step">
+        <span class="num">04</span>
+        <h3>7일마다 갈아타기 · 매일 안전장치</h3>
+        <p>자본을 7개 책으로 나눠 요일마다 한 책씩 다시 맞춤. 매일 어떤 코인이든 목표 비중의 2배를 넘으면 목표로 되돌림(2배 캡)</p>
+      </div>
+    </div>
+
+    <div class="concept">
+      <p class="concept-lead"><strong>코인에서 살아남은 신호는 둘뿐이었습니다.</strong> 단기 반전, 규모(소형주), 저변동성, 페어 트레이딩, «BTC 롱 + 알트 숏»은 모두 손실이었습니다. 남은 것은 <b>모멘텀</b>(오르기 시작한 코인은 사람들이 뒤늦게 따라붙어 몇 주 더 오른다)과 <b>펀딩 캐리</b>(빚내서 롱한 사람이 몰린 코인을 숏하면 그들에게서 펀딩을 받고, 과열이 식는 쪽에도 건다)입니다. 둘의 일간 수익 상관은 약 0.2라, 섞으면 서로의 약한 해를 메웁니다.</p>
+      <div class="concept-steps">
+        <div class="concept-step"><b>① 모멘텀은 짧다</b>주식은 3~12개월이지만 코인은 1~4주. 학술 연구(Liu·Tsyvinski·Wu)와 자체 백테스트가 같은 답을 냈습니다.</div>
+        <div class="concept-step"><b>② 펀딩은 자릿세</b>펀딩이 높다 = 레버리지 롱이 몰렸다. 숏하면 자릿세를 받고, BIS 연구대로 높은 캐리는 이후 하락을 예고합니다.</div>
+        <div class="concept-step"><b>③ 숏 다리가 생사를 가른다</b>안전장치 없는 버전은 2025-09 MYX(+167%, +298%) 같은 펌핑에 원금이 사라졌습니다. 역변동성 가중과 2배 캡은 빼면 안 되는 규칙입니다.</div>
+      </div>
+    </div>
+
+    <div class="rules">
+      <dl>
+        <dt>시드</dt><dd>$10,000 · 롱 $0.5 + 숏 $0.5 / 자기자본 $1 (총노출 1배, 달러중립)</dd>
+        <dt>거래소</dt><dd>바이낸스 USDT-M 무기한 선물 (롱·숏 모두)</dd>
+        <hr>
+        <dt>후보</dt><dd>코인형·거래 중·연속 상장 60일 이상 무기한선물 중 직전 30일 거래대금 상위 30개</dd>
+        <dt>점수</dt><dd>[14일 수익률 순위(최근 1일 제외) + (1 − 7일 평균 일간 펀딩 순위)] ÷ 2 → 상위 20%(6개) 롱, 하위 20%(6개) 숏</dd>
+        <dt>비중</dt><dd>각 다리 안에서 최근 30일 일수익률 표준편차의 역수에 비례 (출렁임이 큰 코인은 작게)</dd>
+        <hr>
+        <dt>리밸런싱</dt><dd>7일마다. 요일 운을 없애려고 자본을 7등분한 하위 책 7개가 요일마다 하나씩 다시 맞춤</dd>
+        <dt>2배 캡</dt><dd>매일 09:05, 어떤 포지션이든 비중이 목표의 2배를 넘으면 목표로 되돌림</dd>
+        <dt>비용</dt><dd>테이커 0.05% + 실제 펀딩비 (롱은 양수 펀딩을 내고 숏은 받음). 수수료 0.15% 가정 잔액도 함께 기록</dd>
+        <dt>감시 주기</dt><dd>판단·체결 매일 09:05 KST · 장중 15분마다 마크가격으로 위험 기록(매매 없음, 순노출 손실이 자기자본 10% 넘으면 경고) · 대시보드 갱신 15분</dd>
+      </dl>
+    </div>
+
+    <div class="rules">
+      <dl>
+        <dt>백테스트 (2020-01 ~ 2026-10)</dt><dd>샤프 1.86 · 연평균 59%(일평균×365) · 변동성 32% · 최대 낙폭 −22.8% · 최악의 달 −8.6% · 7개 연도 모두 플러스 (수수료 0.05% + 실제 펀딩 반영)</dd>
+        <dt>연도별</dt><dd>2020 +47.5% · 2021 +244.1% · 2022 +14.1% · 2023 +42.0% · 2024 +116.1% · 2025 +77.4% · 2026(10/9까지) +23.2%</dd>
+        <dt>흔들어 봐도</dt><dd>리밸런싱 요일 7가지 샤프 1.32~1.87(중앙 1.63) · 하루 늦은 체결 1.62 · 슬리피지 +0.1% 1.65 · 상장 1년 이상 코인만 1.18 · 2023년 이후 1.76</dd>
+        <dt>주의</dt><dd>단일 신호 결과를 본 뒤 고른 조합(표본 밖 검증 없음) · 약 80개 변형 중 최선 · 일봉이라 장중 펌핑·청산 미반영 · 수익이 2021·2024년에 몰림 · 실전 기대치는 백테스트의 절반 이하(샤프 0.8~0.9)</dd>
+        <dt>숏의 위험</dt><dd>숏스퀴즈(하루 +100~+500% 펌프 코인) · 음수 펀딩으로 숏이 하루 −28.7%를 낸 사례 · 크게 이긴 포지션부터 강제축소(ADL)</dd>
+        <dt>자세한 근거</dt><dd><a href="https://claude.ai/artifact/V1CMBrjBiqr7YvW2NaKKiY" target="_blank" rel="noopener">롱숏 전략 리포트</a> (전통 롱숏 100년, 코인 백테스트 3건, 추천 후보와 페이퍼 봇 규칙, 위험과 한계)</dd>
+      </dl>
+    </div>
+  </section>
+</div><!-- /tab-ls -->
 
   <footer>
     <p><strong>이 페이지는 실제 자금이 오가지 않는 페이퍼 트레이딩 기록입니다.</strong> 위 수치는 3시간마다 자동으로 다시 게시되는 스냅샷이며(꺼져있으면 갱신되지 않음), 여는 순간의 실시간 값은 아닙니다. 원본 데이터는 5분마다 수집됩니다.</p>
@@ -1698,10 +1803,10 @@ var coins = [
 </script>
 
 <script>
-// 전략 탭: #kimchi(기본) · #turtle · #luna. 터틀·루나 데이터는 카페24 봇이 15분마다 GitHub 브랜치에 올리는 JSON을 읽는다.
+// 전략 탭: #kimchi(기본) · #turtle · #luna · #ls. 터틀·루나·롱숏 데이터는 카페24 봇이 15분마다 GitHub 브랜치에 올리는 JSON을 읽는다.
 (function(){
   var RAW = 'https://raw.githubusercontent.com/huryoungkil-ops/kimchi-premium-dashboard/';
-  var SRC = { turtle: RAW + 'paper-turtle/turtle.json', luna: RAW + 'paper-luna/luna.json' };
+  var SRC = { turtle: RAW + 'paper-turtle/turtle.json', luna: RAW + 'paper-luna/luna.json', ls: RAW + 'paper-ls/ls.json' };
   var loaded = {};
   var $ = function(id){ return document.getElementById(id); };
   var esc = function(s){ return String(s == null ? '' : s).replace(/[&<>"]/g, function(c){ return { '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;' }[c]; }); };
@@ -1796,17 +1901,46 @@ var coins = [
     }).join('') || empty(8, '아직 거래가 없습니다.');
   }
 
+  function renderLs(d){
+    status('s-status', d);
+    var st = d.state || {}, seed = st.seed || 10000, coin = function(s){ return String(s || '').replace(/USDT$/, ''); };
+    var eq = d.equity.filter(function(e){ return e.strategy === 'ls'; }), bh = d.equity.filter(function(e){ return e.strategy === 'btc_hold'; });
+    var last = eq[eq.length - 1], det = (last && last.detail) || {};
+    var now = st.live && st.live.equity != null ? st.live.equity : st.equity;
+    $('s-start').textContent = st.createdAt ? kst(st.createdAt) + ' KST 시작' : '—';
+    $('s-eq').textContent = usd(now); $('s-eq-sub').textContent = pct(now / seed - 1) + (st.live ? ' · 마크가격 ' + kst(st.live.at) : '') + (det.alt015 != null ? ' · 수수료 0.15% 가정 ' + usd(det.alt015, 0) : '');
+    var b = bh[bh.length - 1];
+    $('s-btc').textContent = b ? usd(b.equity) : '—'; if (b) $('s-btc-sub').textContent = pct(b.equity / seed - 1) + ' · 같은 날 $10,000로 시작했다면';
+    $('s-exp').textContent = det.gross != null ? det.gross.toFixed(2) + '배' : '—';
+    $('s-exp-sub').textContent = det.net != null ? '순노출 ' + pct(det.net) + ' (0에 가까울수록 시장중립)' : '—';
+    var net = st.net || {}, E = st.equity || 1;
+    var rows = Object.keys(net).map(function(k){ return [k, net[k]]; }).sort(function(a, b){ return b[1] - a[1]; });
+    $('s-pos').innerHTML = rows.map(function(r){
+      return '<tr><td class="' + (r[1] > 0 ? 'pos' : 'neg') + '">' + (r[1] > 0 ? '롱' : '숏') + '</td><td class="coin">' + esc(coin(r[0])) + '</td><td class="num">' + (Math.abs(r[1]) / E * 100).toFixed(1) + '%</td><td class="num">' + usd(Math.abs(r[1]), 0) + '</td></tr>';
+    }).join('') || empty(4, '아직 포지션이 없습니다. 매일 09:05 KST에 판단합니다.');
+    var pk = st.picks;
+    if (pk) {
+      $('s-picks-sub').textContent = pk.day + ' 종가 기준 · 오늘 다시 맞춘 하위 책: ' + (pk.rebalanced || []).map(function(k){ return 'B' + (k + 1); }).join(', ') + ' · 후보 ' + (pk.universe || []).length + '개 중 점수 상·하위 6개';
+      var line = function(x, side){ return '<tr><td class="' + (side === '롱' ? 'pos' : 'neg') + '">' + side + '</td><td class="coin">' + esc(coin(x.sym)) + '</td><td class="num">' + (Math.abs(x.w) * 100).toFixed(1) + '%</td><td class="num ' + cls(x.mom) + '">' + pct(x.mom) + '</td><td class="num">' + (x.fund * 100).toFixed(4) + '%</td><td class="num">' + (x.vol * 100).toFixed(1) + '%</td><td class="num">' + x.score.toFixed(2) + '</td></tr>'; };
+      $('s-picks').innerHTML = pk.longs.map(function(x){ return line(x, '롱'); }).concat(pk.shorts.map(function(x){ return line(x, '숏'); })).join('');
+    } else { $('s-picks').innerHTML = empty(7, '첫 선정 전입니다.'); }
+    chart($('s-chart'), [{ v: eq.map(function(e){ return [e.day.slice(5), e.equity]; }) }, { v: bh.map(function(e){ return [e.day.slice(5), e.equity]; }) }], function(v){ return '$' + Math.round(v).toLocaleString('en-US'); });
+    $('s-trades').innerHTML = d.trades.slice(0, 60).map(function(t){
+      return '<tr><td>' + kst(t.entryTime) + '</td><td>' + esc(t.book) + '</td><td class="coin">' + esc(t.coin) + '</td><td class="' + (t.side === 'long' ? 'pos' : 'neg') + '">' + (t.side === 'long' ? '롱' : '숏') + '</td><td class="num">' + px(t.entryPx) + '</td><td class="num">' + px(t.exitPx) + '</td><td class="num ' + cls(t.funding) + '">' + usd(t.funding || 0) + '</td><td class="num ' + cls(t.pnl) + '">' + (t.status === 'OPEN' ? '보유 중' : usd(t.pnl)) + '</td><td>' + esc(t.reason || t.note || '') + '</td></tr>';
+    }).join('') || empty(9, '아직 거래가 없습니다.');
+  }
+
   function load(tab){
     if (!SRC[tab] || loaded[tab]) return;
     loaded[tab] = true;
     fetch(SRC[tab] + '?t=' + Math.floor(Date.now() / 300000), { cache: 'no-store' })
       .then(function(r){ if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
-      .then(function(d){ (tab === 'turtle' ? renderTurtle : renderLuna)(d); })
-      .catch(function(e){ loaded[tab] = false; $(tab === 'turtle' ? 't-status' : 'l-status').textContent = '봇 데이터를 불러오지 못했습니다 — ' + e.message; });
+      .then(function(d){ ({ turtle: renderTurtle, luna: renderLuna, ls: renderLs })[tab](d); })
+      .catch(function(e){ loaded[tab] = false; $({ turtle: 't-status', luna: 'l-status', ls: 's-status' }[tab]).textContent = '봇 데이터를 불러오지 못했습니다 — ' + e.message; });
   }
   function show(tab){
-    if (['kimchi', 'turtle', 'luna'].indexOf(tab) < 0) tab = 'kimchi';
-    ['kimchi', 'turtle', 'luna'].forEach(function(k){ $('tab-' + k).hidden = k !== tab; });
+    if (['kimchi', 'turtle', 'luna', 'ls'].indexOf(tab) < 0) tab = 'kimchi';
+    ['kimchi', 'turtle', 'luna', 'ls'].forEach(function(k){ $('tab-' + k).hidden = k !== tab; });
     document.querySelectorAll('nav.strategy-tabs a').forEach(function(a){ if (a.dataset.tab === tab) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current'); });
     load(tab);
   }
