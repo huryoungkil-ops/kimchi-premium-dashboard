@@ -41,7 +41,7 @@ async function report() {
   lines.push(`보유 ${open.length}건: ${open.map(t => `${t.book || ''} ${t.coin}`.trim()).join(', ') || '없음'}`);
   // 터틀의 건별 실현손익은 원화로 기록된다 — 달러 성과는 위 «시작 대비» 줄이 기준이다
   lines.push(`청산 ${closed.n || 0}건 · 승 ${closed.w || 0}${krw ? '' : ` · 누적 ${L.usd(closed.s || 0)}`}`);
-  lines.push('대시보드: https://kimchi-premium-dashboard-mu.vercel.app');
+  lines.push('대시보드: https://coin-strategy-lab.vercel.app');
   await L.notify(lines.join('\n'));
   return { reported: true };
 }
