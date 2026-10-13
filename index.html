@@ -443,7 +443,7 @@
   <header class="top">
     <div class="brand">
       <span class="mark">🧪</span>
-      <div><h1>허박사의 코인 전략 연구소</h1><span class="lab">Dr. Hur's Coin Strategy Lab · 페이퍼 트레이딩 5개 전략 한눈에</span></div>
+      <div><h1>허박사의 코인 전략 연구소</h1><span class="lab">Dr. Hur's Coin Strategy Lab · 페이퍼 트레이딩 6개 전략 한눈에</span></div>
       <span class="tag">PAPER TRADING</span>
     </div>
     <div class="snapshot-meta" id="h-meta">불러오는 중…</div>
@@ -456,12 +456,13 @@
     <a href="/luna">🌙 제2의 루나를 찾아라 <span class="sub">바이낸스 선물</span></a>
     <a href="/ls">⚖️ 롱숏 모멘텀+캐리 <span class="sub">바이낸스 선물</span></a>
     <a href="/core">🧭 BTC 추세 코어 <span class="sub">업비트 원화</span></a>
+    <a href="/usdt">💵 USDT 웃돈 <span class="sub">빗썸 원화</span></a>
   </nav>
 
-  <p class="paper-note">🧪 <strong>다섯 가지 전략을 각각 가상 시드 $10,000로 돌리는 페이퍼 트레이딩 연구실입니다.</strong> 실제 돈은 오가지 않고, 카페24 서버의 봇들이 5~15분마다 기록을 올립니다. 카드를 누르면 전략별 상세 페이지로 갑니다. 투자 권유가 아닙니다.</p>
+  <p class="paper-note">🧪 <strong>여섯 가지 전략을 각각 가상 시드 $10,000로 돌리는 페이퍼 트레이딩 연구실입니다.</strong> 실제 돈은 오가지 않고, 카페24 서버의 봇들이 5~15분마다 기록을 올립니다. 카드를 누르면 전략별 상세 페이지로 갑니다. 투자 권유가 아닙니다.</p>
 
   <section class="tiles" aria-label="전체 요약">
-    <div class="tile"><div class="label">가상 시드 합계</div><div class="value">$50,000</div><div class="sub">전략 5개 × $10,000</div></div>
+    <div class="tile"><div class="label">가상 시드 합계</div><div class="value">$60,000</div><div class="sub">전략 6개 × $10,000</div></div>
     <div class="tile"><div class="label">현재 합계</div><div class="value" id="h-total">—</div><div class="sub" id="h-total-sub">—</div></div>
     <div class="tile"><div class="label">가장 좋은 전략</div><div class="value" id="h-best">—</div><div class="sub" id="h-best-sub">—</div></div>
     <div class="tile"><div class="label">봇 상태</div><div class="value" id="h-health">—</div><div class="sub" id="h-health-sub">—</div></div>
@@ -491,6 +492,7 @@
         <tr><td>🐢 <a href="/turtle">터틀 트레이딩</a></td><td>빗썸 BTC·ETH가 20일·55일 신고가를 넘으면 따라 사고, 신저가를 깨면 나옴 (+ BTC 120일선 비교)</td><td>바이낸스 BTC·ETH 일봉 백테스트(2020-01~2025-09) 샤프 1.22, 최대낙폭 −28%</td></tr>
         <tr><td>🌙 <a href="/luna">제2의 루나를 찾아라</a></td><td>무너지기 시작한 코인을 선물로 숏 + 절반은 BTC 120일선 롱</td><td>50:50 샤프 1.19, 최대낙폭 −17.2%</td></tr>
         <tr><td>🧭 <a href="/core">BTC 추세 코어</a></td><td>바이낸스 BTC가 120일 평균 위면 업비트에서 BTC 보유, 아래면 원화 현금 (큰 하락 회피)</td><td>처음 보는 2012~2017년 샤프 1.93, 최대낙폭 −70% (보유 1.83, −85%)</td></tr>
+        <tr><td>💵 <a href="/usdt">USDT 웃돈 한 다리</a></td><td>한국 거래소 USDT 웃돈이 평소보다 많이 낮으면 USDT, 평균으로 돌아오면 원화 (김프의 정체를 직접 거래)</td><td>테스트 2025-07~2026-10 연 +8.7%, 샤프 1.45, 최대낙폭 −3.4% (비용에 매우 민감)</td></tr>
         <tr><td>⚖️ <a href="/ls">롱숏 모멘텀+캐리</a></td><td>최근 2주 오르고 펀딩이 싼 코인 롱, 내리고 펀딩이 비싼 코인 숏 (시장중립)</td><td>샤프 1.86, 최대낙폭 −22.8% (실전 기대치는 절반 이하)</td></tr>
       </tbody>
     </table></div>
@@ -585,6 +587,14 @@
         var series = [st.seedUsd || SEED].concat(eq, now != null ? [now] : []);
         var tr = (d.trades || []).filter(function(t){ return t.strategy === 'core'; }), cl = tr.filter(function(t){ return t.status === 'CLOSED'; });
         return { now: now, series: series, open: tr.filter(function(t){ return t.status === 'OPEN'; }).length, closed: cl.length, wins: cl.filter(function(t){ return t.pnl > 0; }).length, start: st.createdAt, updatedAt: d.updatedAt, seed: st.seedUsd || SEED };
+    } },
+    { key: 'usdt', emoji: '💵', name: 'USDT 웃돈', ex: '빗썸 원화', file: 'paper-usdt/usdt.json', limit: 75, parse: function(d){
+        var st = d.state || {}, fx = st.fxNow || st.fx0, krw = st.equityKrw != null ? st.equityKrw : st.seedKrw;
+        var now = krw && fx ? krw / fx : null;
+        var eq = (d.equity || []).filter(function(e){ return e.strategy === 'usdt'; }).map(function(e){ return e.equity; });
+        var series = [st.seedUsd || SEED].concat(eq, now != null ? [now] : []);
+        var done = st.done || [];
+        return { now: now, series: series, open: st.mode === 'usdt' ? 1 : 0, closed: done.length, wins: done.filter(function(t){ return t.pnl > 0; }).length, start: st.createdAt, updatedAt: d.updatedAt, seed: st.seedUsd || SEED };
     } },
     { key: 'ls', emoji: '⚖️', name: '롱숏 모멘텀+캐리', ex: '바이낸스 선물', file: 'paper-ls/ls.json', limit: 30, parse: function(d){
         var st = d.state || {}, now = st.live && st.live.equity != null ? st.live.equity : st.equity;

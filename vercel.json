@@ -1,6 +1,6 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "ignoreCommand": "git diff --quiet HEAD^ HEAD -- index.html kimchi turtle luna ls core ledger backup/data/paper-trades.json vercel.json .vercelignore",
+  "ignoreCommand": "git diff --quiet HEAD^ HEAD -- index.html kimchi turtle luna ls core usdt ledger backup/data/paper-trades.json vercel.json .vercelignore",
   "git": {
     "deploymentEnabled": {
       "paper-*": false,
