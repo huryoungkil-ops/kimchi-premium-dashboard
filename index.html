@@ -416,8 +416,7 @@
 <div class="wrap">
 <style id="home-css">
   .lab-title{font-family:var(--font-display)}
-  .cards{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;margin:8px 0 28px}
-  @media (max-width:1100px){.cards{grid-template-columns:repeat(2,minmax(0,1fr))}}
+  .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px;margin:8px 0 28px}
   @media (max-width:640px){.cards{grid-template-columns:minmax(0,1fr)}}
   #h-best{font-size:22px;line-height:1.3}
   .card-s{display:flex;flex-direction:column;gap:6px;background:var(--bg-raised);border:1px solid var(--line);border-radius:14px;padding:18px 20px;text-decoration:none;color:inherit;transition:border-color .15s, transform .15s}
@@ -444,7 +443,7 @@
   <header class="top">
     <div class="brand">
       <span class="mark">🧪</span>
-      <div><h1>허박사의 코인 전략 연구소</h1><span class="lab">Dr. Hur's Coin Strategy Lab · 페이퍼 트레이딩 4개 전략 한눈에</span></div>
+      <div><h1>허박사의 코인 전략 연구소</h1><span class="lab">Dr. Hur's Coin Strategy Lab · 페이퍼 트레이딩 5개 전략 한눈에</span></div>
       <span class="tag">PAPER TRADING</span>
     </div>
     <div class="snapshot-meta" id="h-meta">불러오는 중…</div>
@@ -456,12 +455,13 @@
     <a href="/turtle">🐢 터틀 트레이딩 <span class="sub">빗썸 원화</span></a>
     <a href="/luna">🌙 제2의 루나를 찾아라 <span class="sub">바이낸스 선물</span></a>
     <a href="/ls">⚖️ 롱숏 모멘텀+캐리 <span class="sub">바이낸스 선물</span></a>
+    <a href="/core">🧭 BTC 추세 코어 <span class="sub">업비트 원화</span></a>
   </nav>
 
-  <p class="paper-note">🧪 <strong>네 가지 전략을 각각 가상 시드 $10,000로 돌리는 페이퍼 트레이딩 연구실입니다.</strong> 실제 돈은 오가지 않고, 카페24 서버의 봇들이 5~15분마다 기록을 올립니다. 카드를 누르면 전략별 상세 페이지로 갑니다. 투자 권유가 아닙니다.</p>
+  <p class="paper-note">🧪 <strong>다섯 가지 전략을 각각 가상 시드 $10,000로 돌리는 페이퍼 트레이딩 연구실입니다.</strong> 실제 돈은 오가지 않고, 카페24 서버의 봇들이 5~15분마다 기록을 올립니다. 카드를 누르면 전략별 상세 페이지로 갑니다. 투자 권유가 아닙니다.</p>
 
   <section class="tiles" aria-label="전체 요약">
-    <div class="tile"><div class="label">가상 시드 합계</div><div class="value">$40,000</div><div class="sub">전략 4개 × $10,000</div></div>
+    <div class="tile"><div class="label">가상 시드 합계</div><div class="value">$50,000</div><div class="sub">전략 5개 × $10,000</div></div>
     <div class="tile"><div class="label">현재 합계</div><div class="value" id="h-total">—</div><div class="sub" id="h-total-sub">—</div></div>
     <div class="tile"><div class="label">가장 좋은 전략</div><div class="value" id="h-best">—</div><div class="sub" id="h-best-sub">—</div></div>
     <div class="tile"><div class="label">봇 상태</div><div class="value" id="h-health">—</div><div class="sub" id="h-health-sub">—</div></div>
@@ -490,6 +490,7 @@
         <tr><td>🌶️ <a href="/kimchi">김치프리미엄</a></td><td>코빗 현물 롱 + 해외 선물 숏. 김프가 평소보다 크게 낮아졌다가 돌아오는 것 (코인 시세 방향과 무관)</td><td>호가·슬리피지 반영 연 4.7% 수준</td></tr>
         <tr><td>🐢 <a href="/turtle">터틀 트레이딩</a></td><td>빗썸 BTC·ETH가 20일·55일 신고가를 넘으면 따라 사고, 신저가를 깨면 나옴 (+ BTC 120일선 비교)</td><td>바이낸스 BTC·ETH 일봉 백테스트(2020-01~2025-09) 샤프 1.22, 최대낙폭 −28%</td></tr>
         <tr><td>🌙 <a href="/luna">제2의 루나를 찾아라</a></td><td>무너지기 시작한 코인을 선물로 숏 + 절반은 BTC 120일선 롱</td><td>50:50 샤프 1.19, 최대낙폭 −17.2%</td></tr>
+        <tr><td>🧭 <a href="/core">BTC 추세 코어</a></td><td>바이낸스 BTC가 120일 평균 위면 업비트에서 BTC 보유, 아래면 원화 현금 (큰 하락 회피)</td><td>처음 보는 2012~2017년 샤프 1.93, 최대낙폭 −70% (보유 1.83, −85%)</td></tr>
         <tr><td>⚖️ <a href="/ls">롱숏 모멘텀+캐리</a></td><td>최근 2주 오르고 펀딩이 싼 코인 롱, 내리고 펀딩이 비싼 코인 숏 (시장중립)</td><td>샤프 1.86, 최대낙폭 −22.8% (실전 기대치는 절반 이하)</td></tr>
       </tbody>
     </table></div>
@@ -577,6 +578,14 @@
         var cl = (d.trades || []).filter(function(t){ return t.status === 'CLOSED'; });
         return { now: now, series: series, open: pos.length + (Bk.qty > 0 ? 1 : 0), closed: cl.length, wins: cl.filter(function(t){ return t.pnl > 0; }).length, start: st.createdAt || ((d.equity || [])[0] && d.equity[0].day + 'T09:05:00+09:00'), updatedAt: d.updatedAt, seed: st.seed || SEED };
     } },
+    { key: 'core', emoji: '🧭', name: 'BTC 추세 코어', ex: '업비트 원화', file: 'paper-core/core.json', limit: 30, parse: function(d){
+        var st = d.state || {}, B = (st.books || {}).core || {}, fx = st.fx || st.fx0;
+        var now = B.krw != null && fx ? B.krw / fx : null;
+        var eq = (d.equity || []).filter(function(e){ return e.strategy === 'core'; }).map(function(e){ return e.equity; });
+        var series = [st.seedUsd || SEED].concat(eq, now != null ? [now] : []);
+        var tr = (d.trades || []).filter(function(t){ return t.strategy === 'core'; }), cl = tr.filter(function(t){ return t.status === 'CLOSED'; });
+        return { now: now, series: series, open: tr.filter(function(t){ return t.status === 'OPEN'; }).length, closed: cl.length, wins: cl.filter(function(t){ return t.pnl > 0; }).length, start: st.createdAt, updatedAt: d.updatedAt, seed: st.seedUsd || SEED };
+    } },
     { key: 'ls', emoji: '⚖️', name: '롱숏 모멘텀+캐리', ex: '바이낸스 선물', file: 'paper-ls/ls.json', limit: 30, parse: function(d){
         var st = d.state || {}, now = st.live && st.live.equity != null ? st.live.equity : st.equity;
         var eq = (d.equity || []).filter(function(e){ return e.strategy === 'ls'; }).map(function(e){ return e.equity; });
@@ -590,12 +599,12 @@
   Promise.all(S.map(function(s){ return get(s.file).then(function(d){ s.r = s.parse(d); }).catch(function(e){ s.err = e.message; }); })).then(function(){
     var ok = S.filter(function(s){ return s.r && isFinite(s.r.now); });
     var total = ok.reduce(function(t, s){ return t + s.r.now; }, 0), seedTot = ok.reduce(function(t, s){ return t + (s.r.seed || SEED); }, 0);
-    $('h-total').textContent = usd(total); $('h-total-sub').innerHTML = '<span class="' + cls(total - seedTot) + '">' + pct(total / seedTot - 1) + ' (' + usd(total - seedTot) + ')</span>' + (ok.length < 4 ? ' · ' + (4 - ok.length) + '개 전략 데이터 없음' : '');
+    $('h-total').textContent = usd(total); $('h-total-sub').innerHTML = '<span class="' + cls(total - seedTot) + '">' + pct(total / seedTot - 1) + ' (' + usd(total - seedTot) + ')</span>' + (ok.length < S.length ? ' · ' + (S.length - ok.length) + '개 전략 데이터 없음' : '');
     var best = ok.slice().sort(function(a, b){ return b.r.now / (b.r.seed || SEED) - a.r.now / (a.r.seed || SEED); })[0];
     if (best) { $('h-best').textContent = best.emoji + ' ' + best.name; $('h-best-sub').textContent = pct(best.r.now / (best.r.seed || SEED) - 1); }
     var hs = S.map(function(s){ return s.r ? health(s.r.updatedAt, s.limit) : { cls: 'bad', txt: '불러오기 실패' }; });
     var bad = hs.filter(function(x){ return x.cls !== 'ok'; }).length;
-    $('h-health').innerHTML = '<span class="dot ' + (bad ? (hs.some(function(x){ return x.cls === 'bad'; }) ? 'bad' : 'warn') : 'ok') + '"></span>' + (4 - bad) + ' / 4 정상';
+    $('h-health').innerHTML = '<span class="dot ' + (bad ? (hs.some(function(x){ return x.cls === 'bad'; }) ? 'bad' : 'warn') : 'ok') + '"></span>' + (S.length - bad) + ' / ' + S.length + ' 정상';
     $('h-health-sub').textContent = bad ? S.filter(function(s, i){ return hs[i].cls !== 'ok'; }).map(function(s, i){ return s.name; }).join(', ') + ' 확인 필요' : '모든 봇이 제때 기록을 올리는 중';
     $('h-meta').innerHTML = '최근 확인 <strong>' + kst(new Date().toISOString()) + ' KST</strong><br>각 봇 데이터는 열 때마다 새로 읽습니다';
 
@@ -616,7 +625,7 @@
       var r = s.r, seed = r.seed || SEED, ret = r.now / seed - 1;
       return '<tr><td>' + s.emoji + ' <a href="/' + s.key + '">' + esc(s.name) + '</a></td><td>' + esc(s.ex) + '</td><td>' + (r.start ? kst(r.start).slice(0, 5) : '—') + '</td><td class="num">' + usd(r.now) + '</td><td class="num ' + cls(ret) + '">' + pct(ret) + '</td><td class="num">' + ddTxt(mdd(r.series)) + '</td><td class="num">' + (r.open == null ? '—' : r.open) + '</td><td class="num">' + r.closed + '</td><td class="num">' + (r.closed ? (r.wins / r.closed * 100).toFixed(0) + '%' : '—') + '</td><td><span class="dot ' + hs[i].cls + '"></span>' + hs[i].txt + '</td></tr>';
     }).join('');
-    var ls = S[3].r;
+    var ls = S.filter(function(x){ return x.key === 'ls'; })[0].r;
     if (ls && ls.btcHold != null) $('h-btc').textContent = '참고: 롱숏 봇 시작일(' + (ls.start ? kst(ls.start).slice(0, 5) : '—') + ')에 BTC를 $10,000어치 그냥 들고 있었다면 지금 ' + usd(ls.btcHold) + ' (' + pct(ls.btcHold / SEED - 1) + ').';
   });
 })();
