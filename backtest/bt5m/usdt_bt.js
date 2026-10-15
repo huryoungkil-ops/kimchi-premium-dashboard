@@ -3,7 +3,8 @@
 //   보유 중 prem > 평균 → 다음 시간봉 종가에 전부 매도. 편도 0.09%.
 //   환율: Yahoo 시간봉이 있는 2023-12-29 부터는 시간봉, 그 전은 전날 일별 종가(봇 규칙상 «하루 1회 환율은 쓰면 안 됨» → 참고용).
 const fs = require('fs');
-const FEE = Number(process.env.FEE || 0.0009), WIN = 336, MIN_N = 268, K = 2;
+const FEE = Number(process.env.FEE || 0.0009), WIN = Number(process.env.WIN || 336), MIN_N = Math.round(WIN * 0.8), K = Number(process.env.K || 2), XO = Number(process.env.XO || 0);
+const FROM = Date.parse((process.env.FROM || '2023-01-01') + 'T00:00:00Z') / 60000, TO = Date.parse((process.env.TO || '2027-01-01') + 'T00:00:00Z') / 60000;
 const buf = fs.readFileSync('data/bithumb/USDT.bin'), n = buf.length / 16;
 const hourly = new Map();
 for (let i = 0; i < n; i++) { const m = buf.readInt32LE(i * 16), c = buf.readDoubleLE(i * 16 + 4); hourly.set(Math.floor(m / 60) * 60, c); }
@@ -20,7 +21,7 @@ function fxAt(tStart) {
 }
 const hs = [...hourly.keys()].sort((x, y) => x - y), t0 = hs[0], t1 = hs.at(-1);
 const ps = []; let lastC = null;
-for (let t = t0; t <= t1; t += 60) { const c = hourly.get(t) ?? lastC; lastC = c; const [f, src] = fxAt(t); if (c && f) ps.push({ t, c, fx: f, src, prem: c / f - 1 }); }
+for (let t = t0; t <= t1; t += 60) { if (t >= TO) break; const c = hourly.get(t) ?? lastC; lastC = c; const [f, src] = fxAt(t); if (c && f) ps.push({ t, c, fx: f, src, prem: c / f - 1 }); }
 // 시뮬레이션
 let krw = 1e8, usdt = 0, mode = 'krw', pending = null, trade = null; const done = [], eq = [];
 const win = []; let sum = 0, sum2 = 0;
@@ -29,11 +30,11 @@ for (let i = 0; i < ps.length; i++) {
   if (pending === 'buy' && mode === 'krw') { usdt = krw / (cur.c * (1 + FEE)); trade = { t: cur.t, c: cur.c, prem: cur.prem, fx: cur.fx, cost: krw, src: cur.src }; krw = 0; mode = 'usdt'; }
   else if (pending === 'sell' && mode === 'usdt') { krw = usdt * cur.c * (1 - FEE); usdt = 0; mode = 'krw';
     done.push({ in: trade.t, out: cur.t, ret: krw / trade.cost - 1, premPart: Math.log((1 + cur.prem) / (1 + trade.prem)), fxPart: Math.log(cur.fx / trade.fx), src: trade.src }); trade = null; }
-  pending = null;
+  pending = null; if (cur.t < FROM) { if (mode === 'usdt') {} }
   win.push(cur.prem); sum += cur.prem; sum2 += cur.prem ** 2;
   while (win.length && ps[i - win.length + 1].t <= cur.t - WIN * 60) { const v = win.shift(); sum -= v; sum2 -= v * v; }
   if (win.length >= MIN_N) { const ma = sum / win.length, sd = Math.sqrt(Math.max(0, sum2 / win.length - ma * ma));
-    if (mode === 'krw' && cur.prem < ma - K * sd) pending = 'buy'; if (mode === 'usdt' && cur.prem > ma) pending = 'sell'; }
+    if (mode === 'krw' && cur.prem < ma - K * sd) pending = 'buy'; if (mode === 'usdt' && cur.prem > ma + XO * sd) pending = 'sell'; }
   eq.push([cur.t, krw + usdt * cur.c, cur.src]);
 }
 // 연도별

@@ -12,7 +12,8 @@ const DELAY = Number(arg('delay') ?? 1), SPREAD_MULT = Number(arg('spread') ?? 0
 const FROM = arg('from') || '2020-01-01', TO = arg('to') || '2026-10-15', LIMIT = Number(arg('coins') || 120), BUDGET_FRAC = Number(arg('budget') ?? 0.397);
 const FRESH = arg('fresh') === '1', MINVOL = Number(arg('minvol') ?? 19e6);
 const MAXPOS = Number(arg('maxpos') ?? 6), SIZE_PCT = Number(arg('size') ?? 0.10), UNIV = arg('univ') || 'live';
-const ENTRY_SIGMA = 2, EXIT_OFF = 0.25, MAX_SIGMA = 2.5, W = 864, MIN_COV = 0.8, EDGE = 3, CHECK = 8;
+const ENTRY_SIGMA = Number(arg('es') ?? 2), EXIT_OFF = Number(arg('xo') ?? 0.25), MAX_SIGMA = Number(arg('maxsig') ?? 2.5), W = Number(arg('wh') ?? 72) * 12, MIN_COV = 0.8, EDGE = Number(arg('edge') ?? 3), CHECK = 8;
+const SOFT_D = Number(arg('softd') ?? 2), MAXHOLD_D = Number(arg('maxhold') ?? 5), SOFT_PP = Number(arg('softpp') ?? 0.5);
 const FEE_RT_PCT = BN_FEE * 2 * 100 + KR_FEE * 2 * 100;
 const D = p => path.join(__dirname, 'data', p);
 const M0 = Date.parse(FROM + 'T00:00:00Z') / 60000, M1 = Date.parse(TO + 'T00:00:00Z') / 60000, S = Math.floor((M1 - M0) / 5);
@@ -96,7 +97,7 @@ for (let s = 0; s < S; s++) {
   const pendingOut = new Set(pendOut.map(o => o.coin));
   for (const t of open.values()) { if (pendingOut.has(t.c.coin)) continue; const c = t.c, g = sigOf(c, s); if (!g) continue;
     const held = (s - t.s) * 5 / 1440, rise = c.bn[s] > 0 ? (c.bn[s] / t.fp - 1) * 100 : 0;
-    let reason = rise >= 50 ? 'PRICESTOP' : held >= 5 ? 'MAXHOLD' : (held >= 2 && g.p - t.entryPrem >= -0.5) ? 'SOFT' : null;
+    let reason = rise >= 50 ? 'PRICESTOP' : held >= MAXHOLD_D ? 'MAXHOLD' : (held >= SOFT_D && g.p - t.entryPrem >= -SOFT_PP) ? 'SOFT' : null;
     if (!reason && !g.tooVol && g.p > g.upper && (!FRESH || c.bv[s] > 0)) { const bid = c.bk[s] * (1 - c.sp / 100 * SPREAD_MULT), ep = (bid / fxSlot[s] / c.bn[s] - 1) * 100; if (ep > g.upper) reason = 'SIGNAL'; }
     if (reason) pendOut.push({ coin: c.coin, at: s + DELAY, reason }); }
   // 진입 판단
@@ -143,3 +144,5 @@ const bc = Object.entries(byCoin).sort((a, b) => b[1].pnl - a[1].pnl);
 console.log('종목별 상위', bc.slice(0, 8).map(([k, o]) => `${k} ${o.n}건 $${o.pnl.toFixed(0)}`).join(' · '));
 console.log('종목별 하위', bc.slice(-5).map(([k, o]) => `${k} ${o.n}건 $${o.pnl.toFixed(0)}`).join(' · '));
 if (arg('out')) fs.writeFileSync(arg('out'), JSON.stringify({ yrs, trades: trades.map(t => ({ ...t, in: M0 + t.in * 5, out: M0 + t.out * 5 })), eqDaily }));
+
+if (arg('json')) console.log('JSON ' + JSON.stringify({ args: process.argv.slice(2).join(' '), cagr: (Math.pow(end / SEED, 1 / years) - 1) * 100, mdd: dmdd * 100, trades: trades.length, win: trades.filter(t => t.pnl > 0).length / Math.max(1, trades.length) * 100, yrs: Object.fromEntries(Object.entries(yrs).map(([y, o]) => [y, +((o.end / o.start - 1) * 100).toFixed(2)])) }));
