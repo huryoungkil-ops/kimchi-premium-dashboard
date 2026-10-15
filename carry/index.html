@@ -1,0 +1,510 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>펀딩 캐리 · 허박사의 코인 전략 연구소</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+  :root{
+    --bg: #f2ede1;
+    --bg-raised: #ffffff;
+    --ink: #241f19;
+    --ink-soft: #5c5346;
+    --line: #d9d0be;
+    --line-soft: #e7e0d1;
+    --accent: #9c6b23;
+    --accent-ink: #ffffff;
+    --accent-soft: #efe0c4;
+    --good: #3f6f57;
+    --good-soft: #dde9e0;
+    --watch: #93641c;
+    --watch-soft: #f0e2c4;
+    --danger: #9a3b28;
+    --danger-soft: #f3ddd4;
+    --shadow: 0 1px 2px rgba(36,31,25,.06), 0 8px 24px -12px rgba(36,31,25,.18);
+    --radius: 14px;
+    --font-display: "Fraunces", "Noto Serif KR", serif;
+    --font-body: "IBM Plex Sans KR", "Pretendard", -apple-system, sans-serif;
+    --font-mono: "IBM Plex Mono", "Noto Sans Mono", monospace;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg: #1b1712;
+      --bg-raised: #24201a;
+      --ink: #f1e9da;
+      --ink-soft: #b9ab95;
+      --line: #3a3327;
+      --line-soft: #2c2720;
+      --accent: #d9a44e;
+      --accent-ink: #241a08;
+      --accent-soft: #3a2c14;
+      --good: #86bd9f;
+      --good-soft: #223229;
+      --watch: #dcb15f;
+      --watch-soft: #3a2f18;
+      --danger: #e08b6f;
+      --danger-soft: #3a241d;
+      --shadow: 0 1px 2px rgba(0,0,0,.3), 0 12px 32px -14px rgba(0,0,0,.55);
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg: #1b1712;
+    --bg-raised: #24201a;
+    --ink: #f1e9da;
+    --ink-soft: #b9ab95;
+    --line: #3a3327;
+    --line-soft: #2c2720;
+    --accent: #d9a44e;
+    --accent-ink: #241a08;
+    --accent-soft: #3a2c14;
+    --good: #86bd9f;
+    --good-soft: #223229;
+    --watch: #dcb15f;
+    --watch-soft: #3a2f18;
+    --danger: #e08b6f;
+    --danger-soft: #3a241d;
+    --shadow: 0 1px 2px rgba(0,0,0,.3), 0 12px 32px -14px rgba(0,0,0,.55);
+  }
+
+  *{ box-sizing:border-box; }
+  html{ background:var(--bg); }
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:var(--font-body);
+    font-size:15px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    word-break:keep-all;
+    overflow-wrap:break-word;
+  }
+  @media (prefers-reduced-motion: reduce){
+    *{ animation-duration:.001ms !important; transition-duration:.001ms !important; }
+  }
+  a{ color:var(--accent); }
+  :focus-visible{ outline:2px solid var(--accent); outline-offset:2px; border-radius:4px; }
+
+  .wrap{ max-width:980px; margin:0 auto; padding:40px 24px 80px; }
+
+  /* ---------- header ---------- */
+  header.top{
+    display:flex; flex-wrap:wrap; align-items:flex-end; justify-content:space-between; gap:16px;
+    padding-bottom:28px; border-bottom:1px solid var(--line);
+    margin-bottom:28px;
+    opacity:0; animation: rise .5s ease-out forwards;
+  }
+  .brand{ display:flex; align-items:baseline; gap:12px; }
+  .brand h1{
+    font-family:var(--font-display); font-weight:600; font-size:32px; letter-spacing:-.01em;
+    margin:0; text-wrap:balance;
+  }
+  .brand .mark{ font-size:26px; }
+  .brand .tag{
+    font-family:var(--font-mono); font-size:12px; color:var(--ink-soft);
+    border:1px solid var(--line); border-radius:999px; padding:3px 10px;
+  }
+  .snapshot-meta{ text-align:right; font-size:12.5px; color:var(--ink-soft); font-family:var(--font-mono); }
+  .snapshot-meta strong{ color:var(--ink); font-weight:600; }
+  .live-badge{ display:inline-flex; align-items:center; gap:6px; font-size:11px; color:var(--good); margin-top:6px; justify-content:flex-end; }
+  .live-badge .pulse{ width:7px; height:7px; border-radius:50%; background:var(--good); position:relative; flex:none; }
+  .live-badge .pulse::after{
+    content:""; position:absolute; inset:-5px; border-radius:50%; border:1.5px solid var(--good);
+    animation: pulse-ring 2.4s ease-out infinite;
+  }
+  @keyframes pulse-ring{ 0%{ transform:scale(.4); opacity:.9; } 100%{ transform:scale(1.8); opacity:0; } }
+
+  /* ---------- stat tiles ---------- */
+  .tiles{
+    display:grid; grid-template-columns:repeat(4,1fr); gap:1px;
+    background:var(--line); border:1px solid var(--line); border-radius:var(--radius);
+    overflow:hidden; margin-bottom:36px; box-shadow:var(--shadow);
+  }
+  .tile{ background:var(--bg-raised); padding:18px 20px; opacity:0; animation: rise .5s ease-out forwards; }
+  .tile:nth-child(1){ animation-delay:.03s; }
+  .tile:nth-child(2){ animation-delay:.08s; }
+  .tile:nth-child(3){ animation-delay:.13s; }
+  .tile:nth-child(4){ animation-delay:.18s; }
+  .tile .label{ font-size:12px; color:var(--ink-soft); text-transform:uppercase; letter-spacing:.08em; margin-bottom:8px; }
+  .tile .value{ font-family:var(--font-mono); font-size:24px; font-weight:600; font-variant-numeric:tabular-nums; }
+  .tile .sub{ font-size:12.5px; color:var(--ink-soft); margin-top:4px; }
+  @media (max-width:720px){ .tiles{ grid-template-columns:repeat(2,1fr); } }
+
+  section{ margin-bottom:40px; }
+  h2{
+    font-family:var(--font-display); font-weight:600; font-size:20px; margin:0 0 4px;
+    text-wrap:balance;
+  }
+  .section-sub{ color:var(--ink-soft); font-size:13.5px; margin:0 0 18px; }
+
+  /* ---------- strategy flow ---------- */
+  .flow{
+    display:grid; grid-template-columns:repeat(4,1fr); gap:12px;
+  }
+  .flow-step{
+    background:var(--bg-raised); border:1px solid var(--line); border-radius:var(--radius);
+    padding:16px 16px 18px; position:relative;
+  }
+  .flow-step .num{
+    font-family:var(--font-mono); font-size:11px; color:var(--accent);
+    letter-spacing:.05em; margin-bottom:8px; display:block;
+  }
+  .flow-step h3{ font-size:14.5px; margin:0 0 6px; font-weight:600; }
+  .flow-step p{ font-size:12.8px; color:var(--ink-soft); margin:0; line-height:1.55; }
+  .flow-arrow{
+    display:none;
+  }
+  @media (min-width:721px){
+    .flow{ position:relative; }
+    .flow-step:not(:last-child)::after{
+      content:"→"; position:absolute; right:-15px; top:16px; color:var(--line);
+      font-size:16px; z-index:1;
+    }
+  }
+  @media (max-width:720px){ .flow{ grid-template-columns:1fr 1fr; } }
+
+  /* ---------- concept explainer ---------- */
+  .concept{
+    margin-top:16px; background:var(--bg-raised); border:1px solid var(--line); border-radius:var(--radius);
+    padding:20px 22px 16px; box-shadow:var(--shadow);
+  }
+  .concept-lead{ font-size:13.5px; color:var(--ink-soft); margin:0 0 14px; }
+  .concept-lead strong{ color:var(--ink); }
+  .nowrap{ white-space:nowrap; }
+  .concept svg{ display:block; width:100%; height:auto; }
+  .concept-caption{ font-family:var(--font-mono); font-size:10.5px; fill:var(--ink-soft); }
+  .line-legend{ display:flex; flex-wrap:wrap; column-gap:18px; row-gap:6px; margin:10px 0 4px; font-size:12px; color:var(--ink-soft); }
+  .line-legend span{ display:inline-flex; align-items:center; gap:7px; white-space:nowrap; }
+  .sw{ display:inline-block; width:22px; height:0; border-top-style:solid; }
+  .sw-long{ border-top:2.2px dashed var(--accent); }
+  .sw-short{ border-top:2.2px dotted var(--ink-soft); }
+  .sw-combined{ border-top:3.4px solid var(--good); }
+  .sw-premium{ border-top:2.6px solid var(--accent); }
+  .sw-ma{ border-top:1.4px dashed var(--ink-soft); }
+  .sw-entryline{ border-top:1.4px dotted var(--danger); }
+  .concept-steps{
+    display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin-top:14px;
+  }
+  .concept-step{ font-size:12.3px; color:var(--ink-soft); line-height:1.5; padding-left:14px; border-left:2px solid var(--line); }
+  .concept-step b{ color:var(--ink); display:block; font-size:12.8px; margin-bottom:2px; }
+  @media (max-width:720px){ .concept-steps{ grid-template-columns:1fr; } }
+
+  .rules{
+    margin-top:16px; background:var(--bg-raised); border:1px solid var(--line); border-radius:var(--radius);
+    padding:18px 22px; box-shadow:var(--shadow);
+  }
+  .rules dl{ display:grid; grid-template-columns:auto 1fr; gap:9px 18px; margin:0; }
+  .rules dt{ font-size:12.5px; color:var(--ink-soft); white-space:nowrap; padding-top:1px; }
+  .rules dd{ margin:0; font-family:var(--font-mono); font-size:13px; }
+  .rules hr{ grid-column:1/-1; border:none; border-top:1px solid var(--line-soft); margin:2px 0; }
+
+  /* ---------- coin table ---------- */
+  .legend{ display:flex; gap:16px; flex-wrap:wrap; margin-bottom:14px; font-size:12.5px; color:var(--ink-soft); }
+  .legend span{ display:inline-flex; align-items:center; gap:6px; }
+  .dot{ width:9px; height:9px; border-radius:50%; display:inline-block; }
+  .dot.calm{ background:var(--good); }
+  .dot.watch{ background:var(--watch); }
+  .dot.danger{ background:var(--danger); }
+
+  .table-scroll{ overflow-x:auto; border:1px solid var(--line); border-radius:var(--radius); box-shadow:var(--shadow); background:var(--bg-raised); }
+  table.coins{ width:100%; border-collapse:collapse; min-width:680px; }
+  table.coins thead th{
+    text-align:left; font-size:11.5px; text-transform:uppercase; letter-spacing:.06em; color:var(--ink-soft);
+    font-weight:600; padding:12px 16px; border-bottom:1px solid var(--line); position:sticky; top:0; background:var(--bg-raised);
+  }
+  table.coins thead th.num{ text-align:right; }
+  table.coins tbody td{ padding:9px 16px; border-bottom:1px solid var(--line-soft); font-size:13.5px; vertical-align:middle; }
+  table.coins tbody tr:last-child td{ border-bottom:none; }
+  table.coins tbody tr{ opacity:0; animation: rise .35s ease-out forwards; }
+  .coin-cell{ display:flex; align-items:center; gap:9px; font-family:var(--font-mono); font-weight:600; }
+  .coin-cell .krw{ font-family:var(--font-body); font-weight:400; color:var(--ink-soft); font-size:12px; }
+  td.premium{ font-family:var(--font-mono); text-align:right; font-variant-numeric:tabular-nums; font-weight:600; white-space:nowrap; }
+  td.premium.pos{ color:var(--good); }
+  td.premium.neg{ color:var(--danger); }
+  td.bar-cell{ min-width:220px; }
+  .bar-track{ position:relative; height:8px; background:var(--line-soft); border-radius:4px; overflow:hidden; }
+  .bar-track .zero{ position:absolute; top:-3px; bottom:-3px; width:1px; background:var(--ink-soft); opacity:.5; }
+  .bar-track .fill{ position:absolute; top:0; bottom:0; border-radius:4px; }
+  .bar-track .fill.calm{ background:var(--good); }
+  .bar-track .fill.watch{ background:var(--watch); }
+  .bar-track .fill.danger{ background:var(--danger); }
+  .pill{
+    display:inline-block; font-size:11px; font-weight:600; padding:3px 9px; border-radius:999px;
+    white-space:nowrap;
+  }
+  .pill.calm{ background:var(--good-soft); color:var(--good); }
+  .pill.watch{ background:var(--watch-soft); color:var(--watch); }
+  .pill.danger{ background:var(--danger-soft); color:var(--danger); }
+  table.coins tfoot td{ padding:6px 16px 10px; border:none; }
+
+  /* 보유 포지션 표는 서버(자동 갱신 작업)가 미리 채워 보내므로 등장 애니메이션을 쓰지 않는다 */
+  #open-tbody tr{ opacity:1; animation:none; }
+  #open-tbody td.empty-row{ color:var(--ink-soft); text-align:center; padding:20px 16px; }
+  #open-tbody td.pos{ color:var(--good); }
+  #open-tbody td.neg{ color:var(--danger); }
+
+  /* ---------- 유니버스 스캐너 ---------- */
+  .rule-grid{
+    display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin:0 0 18px;
+  }
+  .rule-card{
+    background:var(--bg-raised); border:1px solid var(--line); border-radius:var(--radius);
+    padding:15px 17px;
+  }
+  .rule-card .rule-label{
+    font-family:var(--font-mono); font-size:11px; letter-spacing:.06em;
+    text-transform:uppercase; color:var(--ink-soft); margin-bottom:7px;
+  }
+  .rule-card .rule-value{
+    font-family:var(--font-mono); font-size:17px; font-weight:600; margin-bottom:5px;
+    font-variant-numeric:tabular-nums;
+  }
+  .rule-card.admit .rule-value{ color:var(--good); }
+  .rule-card.hold  .rule-value{ color:var(--watch); }
+  .rule-card.drop  .rule-value{ color:var(--danger); }
+  .rule-card p{ font-size:12.3px; color:var(--ink-soft); margin:0; line-height:1.5; }
+  @media (max-width:720px){ .rule-grid{ grid-template-columns:1fr; } }
+
+  #universe-tbody tr{ opacity:1; animation:none; }
+  #universe-tbody td{ font-family:var(--font-mono); font-variant-numeric:tabular-nums; }
+  #universe-tbody td:first-child{ font-family:inherit; font-weight:600; }
+  #universe-tbody td:nth-child(2),
+  #universe-tbody td:nth-child(3){ text-align:right; }
+  #universe-tbody td.empty-row{ color:var(--ink-soft); text-align:center; padding:20px 16px; font-family:inherit; }
+  table.universe{ min-width:620px; }
+  table.open-positions{ min-width:600px; }
+  table.open-positions tbody td{ font-family:var(--font-mono); font-variant-numeric:tabular-nums; }
+  table.open-positions tbody td:first-child{ font-family:inherit; font-weight:600; }
+  table.open-positions tbody td:nth-child(2),
+  table.open-positions tbody td:nth-child(3),
+  table.open-positions tbody td:nth-child(4){ text-align:right; }
+  .scale-axis{ display:flex; justify-content:space-between; font-family:var(--font-mono); font-size:10.5px; color:var(--ink-soft); }
+
+  /* ---------- example alert ---------- */
+  .example-wrap{ display:flex; gap:18px; flex-wrap:wrap; align-items:flex-start; }
+  .example-note{ flex:1 1 220px; font-size:13px; color:var(--ink-soft); max-width:36ch; }
+  .discord-card{
+    flex:1 1 320px; max-width:420px; background:var(--bg-raised); border:1px solid var(--line); border-radius:var(--radius);
+    padding:16px 18px; box-shadow:var(--shadow); position:relative;
+  }
+  .discord-card::before{
+    content:"예시 · 아직 발생 전"; position:absolute; top:-10px; left:16px; background:var(--accent); color:var(--accent-ink);
+    font-size:10.5px; font-weight:700; padding:3px 10px; border-radius:999px; letter-spacing:.02em;
+  }
+  .discord-card pre{
+    margin:6px 0 0; white-space:pre-wrap; font-family:var(--font-mono); font-size:12.8px; line-height:1.65; color:var(--ink);
+  }
+
+  footer{
+    border-top:1px solid var(--line); padding-top:22px; font-size:12.5px; color:var(--ink-soft);
+  }
+  footer p{ margin:0 0 8px; }
+  footer code{ font-family:var(--font-mono); background:var(--line-soft); padding:1px 5px; border-radius:4px; }
+
+  @keyframes rise{ from{ opacity:0; transform:translateY(6px); } to{ opacity:1; transform:translateY(0); } }
+  /* 수동 새로고침 — 자동 갱신(마커 치환)과 무관하게 이 블록은 유지된다 */
+  .live-refresh{ display:flex; flex-wrap:wrap; align-items:center; gap:10px 12px; margin:0 0 16px; }
+  .refresh-btn{
+    font-family:var(--font-body); font-size:13px; font-weight:600; letter-spacing:-.01em;
+    color:var(--accent-ink); background:var(--accent); border:0; border-radius:999px;
+    padding:9px 17px; cursor:pointer; transition:filter .15s ease;
+  }
+  .refresh-btn:hover:not(:disabled){ filter:brightness(1.1); }
+  .refresh-btn:focus-visible{ outline:2px solid var(--ink); outline-offset:2px; }
+  .refresh-btn:disabled{ opacity:.5; cursor:progress; }
+  .refresh-status{ font-size:12.5px; color:var(--ink-soft); line-height:1.5; }
+  .refresh-status.live{ color:var(--good); }
+  .refresh-status.err{ color:var(--danger); }
+  .refresh-status b{ font-family:var(--font-mono); font-weight:600; }
+  /* 진입 이후 평가손익 추이 — 본전선(0) 기준으로 아래 면적을 채워
+     «얼마나 떨어졌나»가 눈으로 바로 읽히게 한다 */
+  td.spark-cell{ width:92px; padding-top:6px !important; padding-bottom:6px !important; }
+  td.spark-cell svg{ display:block; }
+  td.spark-cell .spark-none{ font-family:var(--font-body); font-size:11px; color:var(--ink-soft); opacity:.5; }
+  .hold-left{ color:var(--ink-soft); font-size:12px; }
+  .hold-left.over{ color:var(--danger); }
+  @media (prefers-reduced-motion: reduce){ .refresh-btn{ transition:none; } }
+
+  /* ---------- 거래소별 잔액 ----------
+     자동 갱신(마커 치환)과 무관하다. 값은 페이지가 열릴 때 ledger/ 와 백업 거래기록을 읽어 직접 계산한다. */
+  .ledger-summary{
+    display:flex; flex-wrap:wrap; align-items:baseline; gap:6px 22px;
+    background:var(--bg-raised); border:1px solid var(--line); border-radius:var(--radius);
+    padding:16px 20px; box-shadow:var(--shadow); margin-bottom:12px;
+  }
+  .ledger-total{ font-family:var(--font-mono); font-size:28px; font-weight:600; font-variant-numeric:tabular-nums; }
+  .ledger-delta{ font-family:var(--font-mono); font-size:15px; font-weight:600; font-variant-numeric:tabular-nums; }
+  .ledger-parts{ font-size:12.5px; color:var(--ink-soft); }
+  .ledger-parts b{ font-family:var(--font-mono); font-weight:600; color:var(--ink); }
+  .pos-t{ color:var(--good) !important; }
+  .neg-t{ color:var(--danger) !important; }
+  .ledger-grid{ display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:12px; }
+  @media (max-width:720px){ .ledger-grid{ grid-template-columns:1fr; } }
+  .xcard{
+    background:var(--bg-raised); border:1px solid var(--line); border-radius:var(--radius);
+    padding:15px 18px 12px; box-shadow:var(--shadow);
+  }
+  .xcard-head{ display:flex; justify-content:space-between; align-items:baseline; gap:10px; margin-bottom:8px; }
+  .xcard-head h3{ margin:0; font-size:15px; font-weight:600; }
+  .xcard-head .kind{ font-size:11.5px; color:var(--ink-soft); font-weight:400; margin-left:4px; }
+  .xcard-share{ font-family:var(--font-mono); font-size:13px; font-weight:600; }
+  .xcard dl{ display:grid; grid-template-columns:1fr auto; gap:5px 12px; margin:0; }
+  .xcard dt{ font-size:12.8px; color:var(--ink-soft); }
+  .xcard dt small{ font-size:11px; }
+  .xcard dd{ margin:0; text-align:right; font-family:var(--font-mono); font-size:13px; font-variant-numeric:tabular-nums; white-space:nowrap; }
+  .xcard dd small{ color:var(--ink-soft); font-size:11.5px; margin-right:6px; }
+  .xcard .sum{ border-top:1px solid var(--line-soft); padding-top:6px; font-weight:600; color:var(--ink); }
+  .share-bar{ position:relative; display:flex; height:10px; border-radius:5px; overflow:hidden; background:var(--line-soft); margin:4px 0 6px; }
+  .share-bar .k{ background:var(--accent); }
+  .share-bar .o{ background:var(--ink-soft); opacity:.55; }
+  .share-bar .mid{ position:absolute; left:50%; top:-2px; bottom:-2px; width:2px; margin-left:-1px; background:var(--bg-raised); }
+  .share-legend{ display:flex; justify-content:space-between; font-family:var(--font-mono); font-size:11.5px; color:var(--ink-soft); }
+  .rebalance{
+    display:flex; flex-wrap:wrap; align-items:center; gap:8px 12px; margin-top:12px;
+    border:1px solid var(--line); border-radius:var(--radius); padding:12px 18px; background:var(--bg-raised);
+    font-size:13.5px;
+  }
+  .rebalance b{ font-family:var(--font-mono); }
+  .ledger-note{ font-size:12px; color:var(--ink-soft); margin:10px 2px 0; line-height:1.6; }
+  .ledger-note b{ font-family:var(--font-mono); font-weight:600; }
+  /* ---------- 매매 기록 (버튼을 눌러야 펼쳐진다) ---------- */
+  .history-summary{ display:flex; flex-wrap:wrap; gap:6px 18px; align-items:baseline; margin:0 0 12px; font-size:13px; color:var(--ink-soft); }
+  .history-summary b{ font-family:var(--font-mono); font-weight:600; color:var(--ink); }
+  table.trades-history{ min-width:720px; }
+  table.trades-history tbody tr{ opacity:1; animation:none; }
+  table.trades-history tbody td{ font-family:var(--font-mono); font-variant-numeric:tabular-nums; font-size:13px; white-space:nowrap; }
+  table.trades-history tbody td.coin{ font-family:inherit; font-weight:600; }
+  table.trades-history td.num, table.trades-history th.num{ text-align:right; }
+  table.trades-history td.pos{ color:var(--good); }
+  table.trades-history td.neg{ color:var(--danger); }
+  table.trades-history td.empty-row{ color:var(--ink-soft); text-align:center; padding:20px 16px; font-family:inherit; }
+  .history-note{ font-size:12px; color:var(--ink-soft); margin:10px 2px 0; }
+
+  /* ---------- 전략 탭 (김치프리미엄 · 터틀 · 제2의 루나) ---------- */
+  nav.strategy-tabs{ display:flex; flex-wrap:wrap; gap:8px; margin:-12px 0 28px; }
+  nav.strategy-tabs a{
+    display:inline-flex; align-items:center; gap:7px; padding:9px 16px; border-radius:999px;
+    border:1px solid var(--line); background:var(--bg-raised); color:var(--ink); text-decoration:none;
+    font-weight:600; font-size:14px; box-shadow:var(--shadow);
+  }
+  nav.strategy-tabs a:hover{ border-color:var(--accent); }
+  nav.strategy-tabs a:focus-visible{ outline:2px solid var(--accent); outline-offset:2px; }
+  nav.strategy-tabs a[aria-current="page"]{ background:var(--accent); color:var(--accent-ink); border-color:var(--accent); }
+  nav.strategy-tabs .sub{ font-weight:400; font-size:12px; opacity:.8; }
+  .tab-panel > section{ margin-bottom:40px; }
+  .paper-note{ font-size:13px; color:var(--ink-soft); background:var(--bg-raised); border:1px solid var(--line); border-radius:var(--radius); padding:12px 16px; margin:0 0 28px; }
+  .paper-note a{ color:var(--accent); }
+  .paper-status{ font-size:12.5px; color:var(--ink-soft); margin:-4px 0 18px; }
+  table.paper td.num, table.paper th.num{ text-align:right; font-family:var(--font-mono); font-variant-numeric:tabular-nums; white-space:nowrap; }
+  table.paper tbody tr{ opacity:1; animation:none; }
+  table.paper td.pos{ color:var(--good); }
+  table.paper td.neg{ color:var(--danger); }
+  table.paper td.empty-row{ color:var(--ink-soft); text-align:center; padding:20px 16px; }
+  .equity-chart{ border:1px solid var(--line); border-radius:var(--radius); background:var(--bg-raised); box-shadow:var(--shadow); padding:12px; }
+  .equity-chart svg{ display:block; width:100%; height:auto; }
+  .equity-chart text{ fill:var(--ink-soft); font-family:var(--font-mono); font-size:11px; }
+  .rule-list{ margin:0; padding-left:18px; font-size:13.5px; line-height:1.7; }
+</style>
+<style id="site-css">
+  .brand .lab{font-size:13px;color:var(--ink-soft);letter-spacing:.02em;display:block;margin-top:2px}
+  header.top .brand a{color:inherit;text-decoration:none}
+  table.paper td.num{text-align:right;font-family:var(--font-mono);font-variant-numeric:tabular-nums;white-space:nowrap}
+  table.paper td.pos{color:var(--good)} table.paper td.neg{color:var(--danger)}
+  table.paper tbody tr{opacity:1;animation:none}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <header class="top">
+    <div class="brand">
+      <span class="mark">💸</span>
+      <div><h1>펀딩 상위 5종목 주간 교체</h1><a class="lab" href="/">허박사의 코인 전략 연구소 · Dr. Hur's Coin Strategy Lab</a></div>
+      <span class="tag">BACKTEST · 검토 중</span>
+    </div>
+    <div class="snapshot-meta">백테스트 2020-03 ~ 2026-10<br>페이퍼 봇 없음 · 2026-10-15 작성</div>
+  </header>
+
+  <nav class="strategy-tabs" aria-label="페이지">
+    <a href="/">🏠 전체 대시보드</a>
+    <a href="/kimchi">🌶️ 김치프리미엄 <span class="sub">빗썸 × Binance · 실전</span></a>
+    <a href="/turtle">🐢 터틀 트레이딩 <span class="sub">빗썸 원화</span></a>
+    <a href="/luna">🌙 제2의 루나를 찾아라 <span class="sub">바이낸스 선물</span></a>
+    <a href="/ls">⚖️ 롱숏 모멘텀+캐리 <span class="sub">바이낸스 선물</span></a>
+    <a href="/core">🧭 BTC 추세 코어 <span class="sub">업비트 원화</span></a>
+    <a href="/usdt">💵 USDT 웃돈 <span class="sub">빗썸 원화</span></a>
+    <a href="/carry" aria-current="page">💸 펀딩 캐리 <span class="sub">바이낸스 · 검토 중</span></a>
+  </nav>
+
+<div class="tab-panel" id="tab-carry">
+  <p class="paper-note">💸 <strong>펀딩 캐리 (검토 중, 실제·페이퍼 운용 없음)</strong> — Binance 무기한선물에서 펀딩비를 가장 많이 주는 코인 5개를 골라 현물은 사고 선물은 같은 금액만큼 팔아 둡니다. 가격 움직임은 두 다리가 상쇄하고, 선물 숏이 8시간마다 받는 펀딩비가 수익입니다. 매주 다시 고릅니다. <a href="https://claude.ai/artifact/5i471kycDuBE4WVHsuMveQ" target="_blank" rel="noopener">자세한 보고서</a></p>
+  <p class="paper-status"><strong>판단: 지금 규칙으로는 실전 후보가 아닙니다.</strong> 비용·베이시스까지 넣으면 2024년 +0.5%, 2025년 +1.7%, 2026년 −0.2%입니다.</p>
+  <section class="tiles" aria-label="펀딩 캐리 요약">
+    <div class="tile"><div class="label">연평균 (2020-03~)</div><div class="value">+5.1%</div><div class="sub">1배 증거금 · 자본의 절반이 현물</div></div>
+    <div class="tile"><div class="label">최대낙폭</div><div class="value">−10.8%</div><div class="sub">2025년 −8.9%</div></div>
+    <div class="tile"><div class="label">2024~2026 연평균</div><div class="value">+0.7%</div><div class="sub">펀딩은 줄고 비용은 그대로</div></div>
+    <div class="tile"><div class="label">보유 중 현물가 +100%</div><div class="value">22번</div><div class="sub">1배 격리 증거금이면 강제청산</div></div>
+  </section>
+  <section>
+    <h2>연도별 결과 — 상위 5종목 · 매주 교체</h2>
+    <p class="section-sub">펀딩·베이시스·비용은 그해 시작 자본 대비 %p. 2024년은 펀딩으로 +14%p를 벌었지만 베이시스와 비용이 거의 다 가져갔습니다.</p>
+    <div class="table-scroll"><table class="coins paper">
+      <thead><tr><th>연도</th><th class="num">수익률</th><th class="num">최대낙폭</th><th class="num">펀딩</th><th class="num">베이시스</th><th class="num">비용</th></tr></thead>
+      <tbody>
+<tr><td>2020 (3월~)</td><td class="num pos">+8.8%</td><td class="num neg">−0.6%</td><td class="num">+11.2%</td><td class="num">+0.1%</td><td class="num">−2.5%</td></tr>
+<tr><td>2021</td><td class="num pos">+26.5%</td><td class="num neg">−0.2%</td><td class="num">+34.0%</td><td class="num">+0.2%</td><td class="num">−5.4%</td></tr>
+<tr><td>2022</td><td class="num neg">−2.1%</td><td class="num neg">−2.1%</td><td class="num">+4.0%</td><td class="num">−0.1%</td><td class="num">−6.7%</td></tr>
+<tr><td>2023</td><td class="num pos">+1.5%</td><td class="num neg">−0.6%</td><td class="num">+8.3%</td><td class="num">+0.2%</td><td class="num">−6.4%</td></tr>
+<tr><td>2024</td><td class="num pos">+0.5%</td><td class="num neg">−7.3%</td><td class="num">+14.2%</td><td class="num">−6.7%</td><td class="num">−6.8%</td></tr>
+<tr><td>2025</td><td class="num pos">+1.7%</td><td class="num neg">−8.9%</td><td class="num">+3.7%</td><td class="num">+5.0%</td><td class="num">−6.4%</td></tr>
+<tr><td>2026 (~10/14)</td><td class="num neg">−0.2%</td><td class="num neg">−1.4%</td><td class="num">+1.5%</td><td class="num">+2.2%</td><td class="num">−4.0%</td></tr>
+      </tbody>
+    </table></div>
+  </section>
+  <section>
+    <h2>설정을 바꾸면</h2>
+    <p class="section-sub">BTC만 하면 최대낙폭은 −1% 안쪽이지만 2026년 수익도 0.6%뿐입니다. 30일 교체는 2024~26년이 가장 좋았지만 결과를 보고 고른 변형이라 다시 검증해야 합니다.</p>
+    <div class="table-scroll"><table class="coins paper">
+      <thead><tr><th>설정</th><th class="num">연평균</th><th class="num">최대낙폭</th><th class="num">2024</th><th class="num">2025</th><th class="num">2026</th><th class="num">+100% 사건</th></tr></thead>
+      <tbody>
+<tr><td>상위 5 · 매주 · 1배 증거금 (기준)</td><td class="num pos">+5.2%</td><td class="num neg">−10.8%</td><td class="num pos">+0.5%</td><td class="num pos">+1.7%</td><td class="num neg">−0.2%</td><td class="num">22</td></tr>
+<tr><td>상위 5 · 매주 · 통합 증거금</td><td class="num pos">+9.3%</td><td class="num neg">−19.0%</td><td class="num pos">+0.6%</td><td class="num pos">+2.5%</td><td class="num neg">−0.4%</td><td class="num">22</td></tr>
+<tr><td>상위 10 · 매주</td><td class="num pos">+4.9%</td><td class="num neg">−5.1%</td><td class="num pos">+4.2%</td><td class="num neg">−1.6%</td><td class="num neg">−2.3%</td><td class="num">48</td></tr>
+<tr><td>상위 5 · 30일마다</td><td class="num pos">+10.6%</td><td class="num neg">−5.2%</td><td class="num pos">+13.7%</td><td class="num pos">+7.0%</td><td class="num pos">+5.2%</td><td class="num">35</td></tr>
+<tr><td>상위 5 · 14일마다 · 펀딩 높을 때만</td><td class="num pos">+6.5%</td><td class="num neg">−3.1%</td><td class="num pos">+4.7%</td><td class="num neg">−0.1%</td><td class="num pos">+4.2%</td><td class="num">19</td></tr>
+<tr><td>BTC·ETH만</td><td class="num pos">+6.0%</td><td class="num neg">−0.6%</td><td class="num pos">+6.3%</td><td class="num pos">+2.2%</td><td class="num pos">+0.5%</td><td class="num">4</td></tr>
+<tr><td>BTC만</td><td class="num pos">+5.4%</td><td class="num neg">−0.7%</td><td class="num pos">+6.0%</td><td class="num pos">+2.2%</td><td class="num pos">+0.6%</td><td class="num">2</td></tr>
+      </tbody>
+    </table></div>
+  </section>
+  <section aria-labelledby="c-strategy-h">
+    <h2 id="c-strategy-h">전략 — 레버리지 롱이 내는 자릿세를 받는다</h2>
+    <p class="section-sub">무기한선물은 만기가 없어 선물값을 현물에 붙여 두려고 펀딩비를 주고받습니다. 롱이 몰려 선물이 비싸지면 롱이 숏에게 8시간마다 돈을 냅니다. 기본 0.01%면 연 약 11%, 과열된 코인은 몇 배입니다.</p>
+    <div class="flow">
+      <div class="flow-step"><span class="num">01</span><h3>매주 고르기</h3><p>직전 7일 펀딩비 합이 큰 순서로 5종목 (양수만, 현물·선물 모두 60일 이상 상장)</p></div>
+      <div class="flow-step"><span class="num">02</span><h3>두 다리 걸기</h3><p>종목당 자본 × 0.5 ÷ 5 만큼 현물 매수 + 같은 금액 선물 숏 (1배 증거금)</p></div>
+      <div class="flow-step"><span class="num">03</span><h3>펀딩 받기</h3><p>8시간마다 숏이 펀딩비를 받음. 음수로 바뀌면 오히려 냄</p></div>
+      <div class="flow-step"><span class="num">04</span><h3>바뀐 종목만 교체</h3><p>계속 뽑힌 종목은 그대로, 빠진 종목만 사고팜 (현물 0.1% + 선물 0.05%)</p></div>
+    </div>
+    <div class="rules">
+      <dl>
+        <dt>대상</dt><dd>빗썸·Binance 공통 상위 120종목 중 Binance 현물이 있는 93종목 (현물 없는 27종목은 캐리 불가)</dd>
+        <dt>자본 효율</dt><dd>1배 격리면 증거금이 선물 금액만큼 필요 → 자본의 절반만 일함. 통합 증거금(현물을 담보로)이면 약 0.9 — 연 9.3%·최대낙폭 −19.0%</dd>
+        <dt>비용</dt><dd>누적 비용이 자본의 38% — 펀딩 상위는 매주 바뀌는 소형 코인이 많음 (자주 뽑힌 종목: GTC·ZIL·BAT·CTK·OGN)</dd>
+        <hr>
+        <dt>위험</dt><dd>① 강제청산: 현물과 선물이 다른 지갑이면 급등 때 숏 증거금이 먼저 바닥남 ② 베이시스: 2024년 −6.7%p ③ 음수 펀딩 ④ ADL·거래소 위험 ⑤ 지금 API 키는 현물 거래 권한이 꺼져 있음</dd>
+        <dt>한계</dt><dd>일봉 기준 · 체결 미끄러짐 미반영 · 강제청산 손실 미반영(실제는 더 나쁨) · 투자 권유 아님</dd>
+      </dl>
+    </div>
+  </section>
+</div><!-- /tab-carry -->
+
+  <footer>
+    <p><strong>백테스트 결과만 있는 검토 중 전략입니다.</strong> 실제 자금도 페이퍼 봇도 돌지 않습니다. 코드: 저장소 backtest/bt5m/carry_bt.js. 투자 권유가 아닙니다.</p>
+  </footer>
+
+</div>
+</body>
+</html>
