@@ -451,7 +451,7 @@
 
   <nav class="strategy-tabs" aria-label="페이지">
     <a href="/" aria-current="page">🏠 전체 대시보드</a>
-    <a href="/kimchi">🌶️ 김치프리미엄 <span class="sub">코빗 × OKX</span></a>
+    <a href="/kimchi">🌶️ 김치프리미엄 <span class="sub">빗썸 × Binance · 실전</span></a>
     <a href="/turtle">🐢 터틀 트레이딩 <span class="sub">빗썸 원화</span></a>
     <a href="/luna">🌙 제2의 루나를 찾아라 <span class="sub">바이낸스 선물</span></a>
     <a href="/ls">⚖️ 롱숏 모멘텀+캐리 <span class="sub">바이낸스 선물</span></a>
@@ -459,7 +459,7 @@
     <a href="/usdt">💵 USDT 웃돈 <span class="sub">빗썸 원화</span></a>
   </nav>
 
-  <p class="paper-note">🧪 <strong>여섯 가지 전략을 각각 가상 시드 $10,000로 돌리는 페이퍼 트레이딩 연구실입니다.</strong> 실제 돈은 오가지 않고, 카페24 서버의 봇들이 5~15분마다 기록을 올립니다. 카드를 누르면 전략별 상세 페이지로 갑니다. 투자 권유가 아닙니다.</p>
+  <p class="paper-note">🧪 <strong>여섯 가지 전략을 각각 가상 시드 $10,000로 돌리는 페이퍼 트레이딩 연구실입니다.</strong> 실제 돈은 오가지 않고, 카페24 서버의 봇들이 5~15분마다 기록을 올립니다. 카드를 누르면 전략별 상세 페이지로 갑니다. <strong>단, 김치프리미엄은 2026-10-15부터 실제 자금(빗썸 × Binance)으로 거래합니다.</strong> 투자 권유가 아닙니다.</p>
 
   <section class="tiles" aria-label="전체 요약">
     <div class="tile"><div class="label">가상 시드 합계</div><div class="value">$60,000</div><div class="sub">전략 6개 × $10,000</div></div>
@@ -554,14 +554,15 @@
 
   // ---- 전략별로 «현재 잔액·추이·보유·청산» 뽑기 ----
   var S = [
-    { key: 'kimchi', emoji: '🌶️', name: '김치프리미엄', ex: '코빗 × OKX', file: 'paper-kimchi/kimchi.json', limit: 15, parse: function(d){
+    { key: 'kimchi', emoji: '🌶️', name: '김치프리미엄 · 실전', ex: '빗썸 × Binance', file: 'paper-kimchi/kimchi.json', limit: 15, parse: function(d){
+        var SEED = d.seedUsd || 10000;   // 2026-10-15 실전: 빗썸 원화 + Binance USDT 실제 입금액 (봇이 같이 올린다)
         var tr = (d.trades || []).filter(function(t){ return t.status === 'CLOSED'; }).sort(function(a, b){ return (a.exitTime || '') < (b.exitTime || '') ? -1 : 1; });
         var byDay = {}, cum = 0; tr.forEach(function(t){ cum += t.netProfit || 0; byDay[(t.exitTime || '').slice(0, 10)] = SEED + cum; });
         var series = Object.keys(byDay).sort().map(function(k){ return byDay[k]; });
         var live = d.live || {}, now = SEED + ((d.stats || {}).pnl || 0) + (live.totalUnrealized || 0);
         series.unshift(SEED); series.push(now);
         var first = (d.trades || []).map(function(t){ return t.entryTime; }).filter(Boolean).sort()[0];
-        return { now: now, series: series, open: (d.stats || {}).open, closed: tr.length, wins: tr.filter(function(t){ return t.netProfit > 0; }).length, start: first, updatedAt: d.updatedAt };
+        return { now: now, series: series, open: (d.stats || {}).open, closed: tr.length, wins: tr.filter(function(t){ return t.netProfit > 0; }).length, start: first, updatedAt: d.updatedAt, seed: SEED };
     } },
     { key: 'turtle', emoji: '🐢', name: '터틀 트레이딩', ex: '빗썸 원화', file: 'paper-turtle/turtle.json', limit: 30, parse: function(d){
         var st = d.state || {}, eq = (d.equity || []).filter(function(e){ return e.strategy === 'turtle'; });

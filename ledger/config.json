@@ -1,8 +1,15 @@
 {
-  "seedUsd": 10000,
-  "start": "2026-09-05T13:00:00Z",
-  "startFx": 1348.990395,
-  "segment": { "from": "2026-09-28T13:00:00Z", "fx": 1356.044355, "label": "09-28 이후" },
+  "seedUsd": 20156.42,
+  "seedKrw": 13607749,
+  "seedForeignUsd": 10000,
+  "start": "2026-10-15T04:15:00Z",
+  "startFx": 1339.811585,
+  "segment": {
+    "from": "2026-10-15T04:15:00Z",
+    "fx": 1339.811585,
+    "label": "실전 시작 후"
+  },
+  "note": "2026-10-15 13:15 KST 실전 전환 — 빗썸 원화 13,607,749원 + Binance futures01 10,000 USDT. 봇 config/ledger-bithumb.json 과 같은 값.",
   "rebalanceAlertPct": 55,
   "transfers": []
 }

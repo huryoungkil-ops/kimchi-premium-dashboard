@@ -60,8 +60,9 @@
     var live = opts.live || {};
     var half = cfg.seedUsd / 2;
 
-    var k = { cashKrw: half * cfg.startFx, holdKrw: 0, realizedKrw: 0 };
-    var o = { cashUsd: half, unrealUsd: 0, realizedUsd: 0 };
+    // seedKrw·seedForeignUsd 가 있으면 실제 입금액 그대로 (2026-10-15 실전: 빗썸 원화 + Binance USDT). 없으면 시드 반반.
+    var k = { cashKrw: cfg.seedKrw != null ? Number(cfg.seedKrw) : half * cfg.startFx, holdKrw: 0, realizedKrw: 0 };
+    var o = { cashUsd: cfg.seedForeignUsd != null ? Number(cfg.seedForeignUsd) : half, unrealUsd: 0, realizedUsd: 0 };
     var strategyUsd = 0;      // 거래 손익 합 (봇 공식과 같은 달러 기준)
     var unrealStrategy = 0;   // 보유 포지션 평가손익 (지금 환율)
     // 나머지(총액 − 시드 − 전략 손익)가 환율 효과: 거래에 묶이지 않은 원화 예수금이 환율 따라 움직인 몫
