@@ -447,9 +447,9 @@
   </section>
   <section>
     <h2>지금의 USDT 웃돈</h2>
-    <p class="section-sub">매시 정각 직후, 직전 1시간봉 종가로 계산합니다. 웃돈 = 빗썸 원화 USDT ÷ 장중 원·달러 환율 − 1. 매수선 = 최근 14일 평균 − 2σ, 매도선 = 최근 14일 평균.</p>
+    <p class="section-sub">매시 정각 직후, 직전 1시간봉 종가로 계산합니다. 웃돈 = 빗썸 원화 USDT ÷ 장중 원·달러 환율 − 1. 매수선 = 최근 14일 평균 − 2σ, 매도선 = 최근 14일 평균 + 0.5σ (2026-10-16 평균에서 변경).</p>
     <div class="table-scroll"><table class="coins paper">
-      <thead><tr><th>기준 시각</th><th class="num">원화 USDT</th><th class="num">환율</th><th class="num">웃돈</th><th class="num">14일 평균</th><th class="num">매수선</th><th>판단</th></tr></thead>
+      <thead><tr><th>기준 시각</th><th class="num">원화 USDT</th><th class="num">환율</th><th class="num">웃돈</th><th class="num">14일 평균</th><th class="num">매수선</th><th class="num">매도선</th><th>판단</th></tr></thead>
       <tbody id="u-now"></tbody>
     </table></div>
   </section>
@@ -473,13 +473,14 @@
     <div class="flow">
       <div class="flow-step"><span class="num">01</span><h3>매시간 웃돈 계산</h3><p>빗썸 원화 USDT ÷ 장중 원·달러 환율(Yahoo 시간봉) − 1. 하루 한 번 바뀌는 환율로 재면 수익이 크게 줄어 장중 환율이 필수</p></div>
       <div class="flow-step"><span class="num">02</span><h3>많이 낮으면 USDT</h3><p>원화를 들고 있다가 웃돈이 최근 14일 평균보다 2σ 넘게 낮아지면, 다음 시간에 전액 USDT로</p></div>
-      <div class="flow-step"><span class="num">03</span><h3>평균 오면 원화</h3><p>USDT를 들고 있다가 웃돈이 14일 평균 위로 돌아오면, 다음 시간에 전액 원화로. 손절·최대 보유기간 없음</p></div>
+      <div class="flow-step"><span class="num">03</span><h3>평균+0.5σ 오면 원화</h3><p>USDT를 들고 있다가 웃돈이 14일 평균 + 0.5σ 위로 올라오면, 다음 시간에 전액 원화로. 손절·최대 보유기간 없음</p></div>
       <div class="flow-step"><span class="num">04</span><h3>중단 기준</h3><p>20거래 뒤 거래당 순 웃돈 몫이 0 이하면 신규 매수 중단. 실제 수수료가 편도 0.15%를 넘으면 실전 불가</p></div>
     </div>
     <div class="rules">
       <dl>
         <dt>시드</dt><dd>$10,000 (시작 장중 환율로 원화 환산) · 비교 장부: 원화를 그냥 들고 있기</dd>
         <dt>거래소</dt><dd>빗썸 원화 USDT (업비트·코인원·코빗도 백테스트 결과는 비슷: 연 +8.8~9.2%)</dd>
+        <dt>매도선 변경 (2026-10-16)</dt><dd>평균 → 평균 + 0.5σ. 5분봉 48조합을 2024년으로 고르고 2025~26년으로 확인: 2025 +8.2→+12.8%, 2026 +5.4→+6.6%, 최대낙폭 −3.2→−3.8%</dd>
         <dt>비용</dt><dd>편도 0.09% (수수료+스프레드). 편도 0.25%면 이익이 거의 0, 0.5%면 손실 — 수수료가 낮은 곳에서만 의미</dd>
         <hr>
         <dt>백테스트 (테스트 2025-07~2026-10)</dt><dd>원화 기준 연 +8.7%, 샤프 1.45, 최대낙폭 −3.4%, 연 20회, 평균 4.4일 보유, 자금의 24%만 USDT로 보유. 수익 = 웃돈 몫 +13.4%p · 환율 몫 +2.2%p · 비용 −4.7%p</dd>
@@ -649,13 +650,13 @@
     $('u-seed').textContent = (st.seedKrw ? won(st.seedKrw) : '—') + ' (시작 환율 ' + (st.fx0 ? st.fx0.toFixed(1) : '—') + ')';
     $('u-eq').textContent = won(krw); $('u-eq-sub').textContent = pct(krw / st.seedKrw - 1) + ' · ' + usd(fx ? krw / fx : null);
     $('u-mode').textContent = st.mode === 'usdt' ? 'USDT' : '원화';
-    $('u-mode-sub').textContent = st.halted ? '⛔ 중단 기준 도달 — 신규 매수 중단' : st.mode === 'usdt' ? (st.usdt || 0).toFixed(2) + ' USDT · 웃돈이 평균 위로 오면 매도' : '웃돈이 매수선 아래로 가면 매수' + (st.pending ? ' · 다음 시간 ' + (st.pending === 'buy' ? '매수' : '매도') + ' 예정' : '');
+    $('u-mode-sub').textContent = st.halted ? '⛔ 중단 기준 도달 — 신규 매수 중단' : st.mode === 'usdt' ? (st.usdt || 0).toFixed(2) + ' USDT · 웃돈이 평균 + 0.5σ 위로 오면 매도' : '웃돈이 매수선 아래로 가면 매수' + (st.pending ? ' · 다음 시간 ' + (st.pending === 'buy' ? '매수' : '매도') + ' 예정' : '');
     var done = st.done || [], wins = done.filter(function(t){ return t.pnl > 0; }).length;
     var avgPrem = done.length ? done.reduce(function(a, t){ return a + t.premPart; }, 0) / done.length : null;
     $('u-closed').textContent = done.length + '건';
     $('u-closed-sub').textContent = done.length ? '승 ' + wins + ' · 거래당 웃돈 몫 ' + (avgPrem * 100).toFixed(2) + '%p' : '아직 청산 없음 (백테스트 기준 연 20회 안팎)';
     var L = st.last;
-    $('u-now').innerHTML = L ? '<tr><td>' + kst(L.t) + '</td><td class="num">' + won(L.usdt) + '</td><td class="num">' + (L.fx ? L.fx.toFixed(1) : '—') + '</td><td class="num">' + p2(L.prem) + '</td><td class="num">' + p2(L.ma) + '</td><td class="num">' + (L.ma != null ? p2(L.ma - 2 * L.sd) : '—') + '</td><td>' + (L.signal === 'buy' ? '🟢 매수 신호 (다음 시간 체결)' : L.signal === 'sell' ? '🔴 매도 신호 (다음 시간 체결)' : '대기') + '</td></tr>' : empty(7, '첫 판단 전입니다.');
+    $('u-now').innerHTML = L ? '<tr><td>' + kst(L.t) + '</td><td class="num">' + won(L.usdt) + '</td><td class="num">' + (L.fx ? L.fx.toFixed(1) : '—') + '</td><td class="num">' + p2(L.prem) + '</td><td class="num">' + p2(L.ma) + '</td><td class="num">' + (L.ma != null ? p2(L.ma - 2 * L.sd) : '—') + '</td><td class="num">' + (L.ma != null ? p2(L.ma + 0.5 * L.sd) : '—') + '</td><td>' + (L.signal === 'buy' ? '🟢 매수 신호 (다음 시간 체결)' : L.signal === 'sell' ? '🔴 매도 신호 (다음 시간 체결)' : '대기') + '</td></tr>' : empty(8, '첫 판단 전입니다.');
     var eq = function(k){ return d.equity.filter(function(e){ return e.strategy === k; }).map(function(e){ return [e.day.slice(5), e.equity]; }); };
     chart($('u-chart'), [{ v: eq('usdt') }, { v: eq('krw_cash') }], function(v){ return '$' + Math.round(v).toLocaleString('en-US'); });
     $('u-trades').innerHTML = done.slice().reverse().map(function(t){
