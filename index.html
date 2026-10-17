@@ -443,7 +443,7 @@
   <header class="top">
     <div class="brand">
       <span class="mark">🧪</span>
-      <div><h1>허박사의 코인 전략 연구소</h1><span class="lab">Dr. Hur's Coin Strategy Lab · 9개 전략 한눈에 (실전 1 · 페이퍼 8)</span></div>
+      <div><h1>허박사의 코인 전략 연구소</h1><span class="lab">Dr. Hur's Coin Strategy Lab · 10개 전략 한눈에 (실전 1 · 페이퍼 9)</span></div>
       <span class="tag">PAPER TRADING</span>
     </div>
     <div class="snapshot-meta" id="h-meta">불러오는 중…</div>
@@ -460,13 +460,14 @@
     <a href="/top3">🔝 주간 Top3 <span class="sub">바이낸스 현물</span></a>
     <a href="/listing">📉 상장 공매도 <span class="sub">바이낸스 선물</span></a>
     <a href="/mix">💰 백만장자 배분 <span class="sub">세 전략 섞기</span></a>
+    <a href="/kimlab">🧪 김프 실험실 <span class="sub">김프 봇 변형 7개</span></a>
     <a href="/carry">💸 펀딩 캐리 <span class="sub">바이낸스 · 검토 중</span></a>
   </nav>
 
   <p class="paper-note">🧪 <strong>아홉 가지 전략을 나란히 기록하는 연구실입니다. 페이퍼 전략 8개는 각각 가상 시드 $10,000로 돌립니다(백만장자 배분은 다른 세 페이퍼의 수익을 섞은 합성 장부).</strong> 실제 돈은 오가지 않고, 카페24 서버의 봇들이 5~15분마다 기록을 올립니다. 카드를 누르면 전략별 상세 페이지로 갑니다. <strong>단, 김치프리미엄은 2026-10-15부터 실제 자금(빗썸 × Binance)으로 거래합니다.</strong> 투자 권유가 아닙니다.</p>
 
   <section class="tiles" aria-label="전체 요약">
-    <div class="tile"><div class="label">시드 합계</div><div class="value">$100,156</div><div class="sub">페이퍼 8개 × $10,000 + 김치프리미엄 실전 약 $20,156</div></div>
+    <div class="tile"><div class="label">시드 합계</div><div class="value">$120,313</div><div class="sub">페이퍼 8개 × $10,000 + 김치프리미엄 실전 약 $20,156 + 김프 실험실 BASE 장부 $20,156</div></div>
     <div class="tile"><div class="label">현재 합계</div><div class="value" id="h-total">—</div><div class="sub" id="h-total-sub">—</div></div>
     <div class="tile"><div class="label">가장 좋은 전략</div><div class="value" id="h-best">—</div><div class="sub" id="h-best-sub">—</div></div>
     <div class="tile"><div class="label">봇 상태</div><div class="value" id="h-health">—</div><div class="sub" id="h-health-sub">—</div></div>
@@ -501,6 +502,7 @@
         <tr><td>📉 <a href="/listing">상장 공매도</a></td><td>빗썸·업비트 원화 상장 공지 24시간 뒤 바이낸스 선물로 그 코인을 조금(2.5%) 숏, 7·14일 뒤 갚음 (상장 직후 들뜬 가격이 내려오는 것)</td><td>빗썸 14일: 테스트 2025-01~2026-10 평균 +10.3%, 승률 76% — 하지만 2023~24년엔 효과 없음, 결과를 보고 고른 변형. 사전 등록한 업비트 7일은 실패. 숏의 약 4%는 가격 2배(그 몫 전액 손실)</td></tr>
         <tr><td>⚖️ <a href="/ls">롱숏 모멘텀+캐리</a></td><td>최근 2주 오르고 펀딩이 싼 코인 롱, 내리고 펀딩이 비싼 코인 숏 (시장중립)</td><td>샤프 1.86, 최대낙폭 −22.8% (실전 기대치는 절반 이하)</td></tr>
         <tr><td>💰 <a href="/mix">백만장자 배분</a></td><td>새 매매 없이 롱숏 60% · BTC 추세 코어 25%(현금일 땐 USDT 웃돈) · 주간 Top3 15%의 하루 수익을 섞고 매달 비율을 되돌림, 레버리지 없음 (서로 다르게 움직이는 전략 섞기)</td><td>테스트 2023-01~2026-09 연 +79%, 샤프 2.23, 최대낙폭 −21.6%, 홀드아웃 +53% — 결과를 본 뒤 정한 비율이고 롱숏의 깨끗한 검증은 12개월뿐. 보수 가정 10년 연 +21~41%. 고정 2~3배 레버리지는 10년 안 −80% 확률 78~99%로 탈락</td></tr>
+        <tr><td>🧪 <a href="/kimlab">김프 실험실</a></td><td>실전 김프 봇 규칙 그대로(BASE)와, 물타기 한 번·청산선 +0.75σ·펀딩 반영·놀고 있는 원화로 USDT 웃돈·업비트 추가·모두 합침 여섯 변형을 같은 시세로 나란히 (실전에 넣을 개선안 고르기)</td><td>검증 2024-01~2026-10 기준 대비: USDT 웃돈 월 +$71, 업비트 +$32, 펀딩 +$13, 물타기 2.8년 +$533·청산선 +$425 — 둘은 결과를 본 뒤 고른 사후 관찰이고 물타기 이익은 INJ 한 사건에 몰림. 미리 정한 물타기 설계는 실패</td></tr>
       </tbody>
     </table></div>
   </section>
@@ -623,6 +625,11 @@
         var eq = (d.equity || []).filter(function(e){ return e.strategy === 'mix'; }).map(function(e){ return e.equity; });
         var series = [st.seedUsd || SEED].concat(eq, now != null ? [now] : []);
         return { now: now, series: series, open: null, closed: 0, wins: 0, start: st.createdAt, updatedAt: d.updatedAt, seed: st.seedUsd || SEED };
+    } },
+    { key: 'kimlab', emoji: '🧪', name: '김프 실험실 · BASE', ex: '빗썸 × Binance 페이퍼', file: 'paper-kimlab/kimlab.json', limit: 30, parse: function(d){
+        var B = (d.books || {}).BASE || {}, seed = d.seedUsd || 20156.42, now = B.equity;   // 대조 장부 BASE (변형 6개는 상세 페이지)
+        var series = [seed].concat((d.series || []).map(function(r){ return r[1].BASE; }).filter(function(v){ return v != null; }), now != null ? [now] : []);
+        return { now: now, series: series, open: (B.open || []).length, closed: B.closed || 0, wins: B.wins || 0, start: d.startedAt, updatedAt: d.updatedAt, seed: seed };
     } },
     { key: 'ls', emoji: '⚖️', name: '롱숏 모멘텀+캐리', ex: '바이낸스 선물', file: 'paper-ls/ls.json', limit: 30, parse: function(d){
         var st = d.state || {}, now = st.live && st.live.equity != null ? st.live.equity : st.equity;
