@@ -414,9 +414,9 @@
 <body>
 
 <style id="kimlab-css">
-  :root{ --k1:#9c6b23; --k2:#3f6f57; --k3:#2f5f8a; --k4:#7a4f9a; --k5:#7d7a1e; --k6:#9a3b28; }
-  @media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){ --k1:#d9a44e; --k2:#86bd9f; --k3:#7fb0dc; --k4:#c39be0; --k5:#c9c86a; --k6:#e08b6f; } }
-  :root[data-theme="dark"]{ --k1:#d9a44e; --k2:#86bd9f; --k3:#7fb0dc; --k4:#c39be0; --k5:#c9c86a; --k6:#e08b6f; }
+  :root{ --k1:#9c6b23; --k2:#3f6f57; --k3:#2f5f8a; --k4:#7a4f9a; --k5:#7d7a1e; --k6:#9a3b28; --k7:#5b6770; }
+  @media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){ --k1:#d9a44e; --k2:#86bd9f; --k3:#7fb0dc; --k4:#c39be0; --k5:#c9c86a; --k6:#e08b6f; --k7:#a9b6bf; } }
+  :root[data-theme="dark"]{ --k1:#d9a44e; --k2:#86bd9f; --k3:#7fb0dc; --k4:#c39be0; --k5:#c9c86a; --k6:#e08b6f; --k7:#a9b6bf; }
   .sw-k{ display:inline-block; width:22px; height:0; border-top:2.4px solid currentColor; }
   .sw-base{ display:inline-block; width:22px; height:0; border-top:1.6px dashed var(--ink-soft); }
   .verdict{ display:inline-block; padding:1px 8px; border-radius:999px; font-size:12px; border:1px solid var(--line); white-space:nowrap; }
@@ -555,6 +555,10 @@
         <p class="what">FUND + ADD15 + EXIT075 + IDLE_USDT + UPBIT. 각각의 효과가 서로 더해지는지 보는 장부.</p>
         <p class="num-line">연구에서는 FUND + UPBIT 조합만 탐색: 월 +$68 [+13, +140], 샤프 2.46</p>
         <p class="warn">판정은 하지만, 개별 변형이 모두 기각인데 COMBO 만 좋으면 실전 후보로 올리지 않습니다.</p></div>
+      <div class="variant"><h3>🚦 NOUZ · USDT 웃돈 필터 끔 <span class="tagk">10-18 추가</span></h3>
+        <p class="what">실전 규칙에서 «USDT 웃돈 z &lt; 0이면 새 진입 안 함»만 뺀 장부. 필터가 정말 도움이 되는지 오늘 이후 시세로 확인합니다. 10-18부터 시작해, 같은 기간의 BASE와 비교합니다.</p>
+        <p class="num-line">근거 연구(2024~ 김프 1,209건): 필터를 켜면 연 −1.3% → +1.7%(스프레드 절반), −7.4% → −2.3%(스프레드 전부). z ≥ 0 진입은 거래당 +0.11%·승률 61%, z &lt; −1 은 −0.2~−0.27%·44~46%</p>
+        <p class="warn">NOUZ가 BASE보다 확실히 낫다(P ≥ 0.9, 낙폭 1%p 이내)고 나오면 실전에서 필터를 끕니다. NOUZ가 BASE 이하면 필터 유지 — 사용자 결정(10-18)으로 미리 정한 규칙입니다.</p></div>
     </div>
     <div class="rules">
       <dl>
@@ -593,8 +597,8 @@
   var kst = function(iso){ if (!iso) return '—'; var d = new Date(new Date(iso).getTime() + 9 * 3600e3); return d.toISOString().slice(5, 16).replace('T', ' '); };
   var empty = function(n, msg){ return '<tr><td class="empty-row" colspan="' + n + '">' + msg + '</td></tr>'; };
   var get = function(p){ return fetch(RAW + p + '?t=' + Math.floor(Date.now() / 120000), { cache: 'no-store' }).then(function(r){ if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); }); };
-  var ORDER = ['BASE', 'ADD15', 'EXIT075', 'FUND', 'IDLE_USDT', 'UPBIT', 'COMBO'];
-  var COLOR = { ADD15: '--k1', EXIT075: '--k2', FUND: '--k3', IDLE_USDT: '--k4', UPBIT: '--k5', COMBO: '--k6' };
+  var ORDER = ['BASE', 'ADD15', 'EXIT075', 'FUND', 'IDLE_USDT', 'UPBIT', 'COMBO', 'NOUZ'];
+  var COLOR = { ADD15: '--k1', EXIT075: '--k2', FUND: '--k3', IDLE_USDT: '--k4', UPBIT: '--k5', COMBO: '--k6', NOUZ: '--k7' };
   var VENUE = { bithumb: '빗썸', upbit: '업비트' };
   function mdd(vals){ var pk = -Infinity, m = 0; vals.forEach(function(v){ if (v > pk) pk = v; if (pk > 0) m = Math.min(m, v / pk - 1); }); return m; }
   function badge(j){
