@@ -1,0 +1,654 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>이벤트 호라이즌 · 허박사의 코인 전략 연구소</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+  :root{
+    --bg: #f2ede1;
+    --bg-raised: #ffffff;
+    --ink: #241f19;
+    --ink-soft: #5c5346;
+    --line: #d9d0be;
+    --line-soft: #e7e0d1;
+    --accent: #9c6b23;
+    --accent-ink: #ffffff;
+    --accent-soft: #efe0c4;
+    --good: #3f6f57;
+    --good-soft: #dde9e0;
+    --watch: #93641c;
+    --watch-soft: #f0e2c4;
+    --danger: #9a3b28;
+    --danger-soft: #f3ddd4;
+    --shadow: 0 1px 2px rgba(36,31,25,.06), 0 8px 24px -12px rgba(36,31,25,.18);
+    --radius: 14px;
+    --font-display: "Fraunces", "Noto Serif KR", serif;
+    --font-body: "IBM Plex Sans KR", "Pretendard", -apple-system, sans-serif;
+    --font-mono: "IBM Plex Mono", "Noto Sans Mono", monospace;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg: #1b1712;
+      --bg-raised: #24201a;
+      --ink: #f1e9da;
+      --ink-soft: #b9ab95;
+      --line: #3a3327;
+      --line-soft: #2c2720;
+      --accent: #d9a44e;
+      --accent-ink: #241a08;
+      --accent-soft: #3a2c14;
+      --good: #86bd9f;
+      --good-soft: #223229;
+      --watch: #dcb15f;
+      --watch-soft: #3a2f18;
+      --danger: #e08b6f;
+      --danger-soft: #3a241d;
+      --shadow: 0 1px 2px rgba(0,0,0,.3), 0 12px 32px -14px rgba(0,0,0,.55);
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg: #1b1712;
+    --bg-raised: #24201a;
+    --ink: #f1e9da;
+    --ink-soft: #b9ab95;
+    --line: #3a3327;
+    --line-soft: #2c2720;
+    --accent: #d9a44e;
+    --accent-ink: #241a08;
+    --accent-soft: #3a2c14;
+    --good: #86bd9f;
+    --good-soft: #223229;
+    --watch: #dcb15f;
+    --watch-soft: #3a2f18;
+    --danger: #e08b6f;
+    --danger-soft: #3a241d;
+    --shadow: 0 1px 2px rgba(0,0,0,.3), 0 12px 32px -14px rgba(0,0,0,.55);
+  }
+
+  *{ box-sizing:border-box; }
+  html{ background:var(--bg); }
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:var(--font-body);
+    font-size:15px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    word-break:keep-all;
+    overflow-wrap:break-word;
+  }
+  @media (prefers-reduced-motion: reduce){
+    *{ animation-duration:.001ms !important; transition-duration:.001ms !important; }
+  }
+  a{ color:var(--accent); }
+  :focus-visible{ outline:2px solid var(--accent); outline-offset:2px; border-radius:4px; }
+
+  .wrap{ max-width:980px; margin:0 auto; padding:40px 24px 80px; }
+
+  /* ---------- header ---------- */
+  header.top{
+    display:flex; flex-wrap:wrap; align-items:flex-end; justify-content:space-between; gap:16px;
+    padding-bottom:28px; border-bottom:1px solid var(--line);
+    margin-bottom:28px;
+    opacity:0; animation: rise .5s ease-out forwards;
+  }
+  .brand{ display:flex; align-items:baseline; gap:12px; }
+  .brand h1{
+    font-family:var(--font-display); font-weight:600; font-size:32px; letter-spacing:-.01em;
+    margin:0; text-wrap:balance;
+  }
+  .brand .mark{ font-size:26px; }
+  .brand .tag{
+    font-family:var(--font-mono); font-size:12px; color:var(--ink-soft);
+    border:1px solid var(--line); border-radius:999px; padding:3px 10px;
+  }
+  .snapshot-meta{ text-align:right; font-size:12.5px; color:var(--ink-soft); font-family:var(--font-mono); }
+  .snapshot-meta strong{ color:var(--ink); font-weight:600; }
+  .live-badge{ display:inline-flex; align-items:center; gap:6px; font-size:11px; color:var(--good); margin-top:6px; justify-content:flex-end; }
+  .live-badge .pulse{ width:7px; height:7px; border-radius:50%; background:var(--good); position:relative; flex:none; }
+  .live-badge .pulse::after{
+    content:""; position:absolute; inset:-5px; border-radius:50%; border:1.5px solid var(--good);
+    animation: pulse-ring 2.4s ease-out infinite;
+  }
+  @keyframes pulse-ring{ 0%{ transform:scale(.4); opacity:.9; } 100%{ transform:scale(1.8); opacity:0; } }
+
+  /* ---------- stat tiles ---------- */
+  .tiles{
+    display:grid; grid-template-columns:repeat(4,1fr); gap:1px;
+    background:var(--line); border:1px solid var(--line); border-radius:var(--radius);
+    overflow:hidden; margin-bottom:36px; box-shadow:var(--shadow);
+  }
+  .tile{ background:var(--bg-raised); padding:18px 20px; opacity:0; animation: rise .5s ease-out forwards; }
+  .tile:nth-child(1){ animation-delay:.03s; }
+  .tile:nth-child(2){ animation-delay:.08s; }
+  .tile:nth-child(3){ animation-delay:.13s; }
+  .tile:nth-child(4){ animation-delay:.18s; }
+  .tile .label{ font-size:12px; color:var(--ink-soft); text-transform:uppercase; letter-spacing:.08em; margin-bottom:8px; }
+  .tile .value{ font-family:var(--font-mono); font-size:24px; font-weight:600; font-variant-numeric:tabular-nums; }
+  .tile .sub{ font-size:12.5px; color:var(--ink-soft); margin-top:4px; }
+  @media (max-width:720px){ .tiles{ grid-template-columns:repeat(2,1fr); } }
+
+  section{ margin-bottom:40px; }
+  h2{
+    font-family:var(--font-display); font-weight:600; font-size:20px; margin:0 0 4px;
+    text-wrap:balance;
+  }
+  .section-sub{ color:var(--ink-soft); font-size:13.5px; margin:0 0 18px; }
+
+  /* ---------- strategy flow ---------- */
+  .flow{
+    display:grid; grid-template-columns:repeat(4,1fr); gap:12px;
+  }
+  .flow-step{
+    background:var(--bg-raised); border:1px solid var(--line); border-radius:var(--radius);
+    padding:16px 16px 18px; position:relative;
+  }
+  .flow-step .num{
+    font-family:var(--font-mono); font-size:11px; color:var(--accent);
+    letter-spacing:.05em; margin-bottom:8px; display:block;
+  }
+  .flow-step h3{ font-size:14.5px; margin:0 0 6px; font-weight:600; }
+  .flow-step p{ font-size:12.8px; color:var(--ink-soft); margin:0; line-height:1.55; }
+  .flow-arrow{
+    display:none;
+  }
+  @media (min-width:721px){
+    .flow{ position:relative; }
+    .flow-step:not(:last-child)::after{
+      content:"→"; position:absolute; right:-15px; top:16px; color:var(--line);
+      font-size:16px; z-index:1;
+    }
+  }
+  @media (max-width:720px){ .flow{ grid-template-columns:1fr 1fr; } }
+
+  /* ---------- concept explainer ---------- */
+  .concept{
+    margin-top:16px; background:var(--bg-raised); border:1px solid var(--line); border-radius:var(--radius);
+    padding:20px 22px 16px; box-shadow:var(--shadow);
+  }
+  .concept-lead{ font-size:13.5px; color:var(--ink-soft); margin:0 0 14px; }
+  .concept-lead strong{ color:var(--ink); }
+  .nowrap{ white-space:nowrap; }
+  .concept svg{ display:block; width:100%; height:auto; }
+  .concept-caption{ font-family:var(--font-mono); font-size:10.5px; fill:var(--ink-soft); }
+  .line-legend{ display:flex; flex-wrap:wrap; column-gap:18px; row-gap:6px; margin:10px 0 4px; font-size:12px; color:var(--ink-soft); }
+  .line-legend span{ display:inline-flex; align-items:center; gap:7px; white-space:nowrap; }
+  .sw{ display:inline-block; width:22px; height:0; border-top-style:solid; }
+  .sw-long{ border-top:2.2px dashed var(--accent); }
+  .sw-short{ border-top:2.2px dotted var(--ink-soft); }
+  .sw-combined{ border-top:3.4px solid var(--good); }
+  .sw-premium{ border-top:2.6px solid var(--accent); }
+  .sw-ma{ border-top:1.4px dashed var(--ink-soft); }
+  .sw-entryline{ border-top:1.4px dotted var(--danger); }
+  .concept-steps{
+    display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin-top:14px;
+  }
+  .concept-step{ font-size:12.3px; color:var(--ink-soft); line-height:1.5; padding-left:14px; border-left:2px solid var(--line); }
+  .concept-step b{ color:var(--ink); display:block; font-size:12.8px; margin-bottom:2px; }
+  @media (max-width:720px){ .concept-steps{ grid-template-columns:1fr; } }
+
+  .rules{
+    margin-top:16px; background:var(--bg-raised); border:1px solid var(--line); border-radius:var(--radius);
+    padding:18px 22px; box-shadow:var(--shadow);
+  }
+  .rules dl{ display:grid; grid-template-columns:auto 1fr; gap:9px 18px; margin:0; }
+  .rules dt{ font-size:12.5px; color:var(--ink-soft); white-space:nowrap; padding-top:1px; }
+  .rules dd{ margin:0; font-family:var(--font-mono); font-size:13px; }
+  .rules hr{ grid-column:1/-1; border:none; border-top:1px solid var(--line-soft); margin:2px 0; }
+
+  /* ---------- coin table ---------- */
+  .legend{ display:flex; gap:16px; flex-wrap:wrap; margin-bottom:14px; font-size:12.5px; color:var(--ink-soft); }
+  .legend span{ display:inline-flex; align-items:center; gap:6px; }
+  .dot{ width:9px; height:9px; border-radius:50%; display:inline-block; }
+  .dot.calm{ background:var(--good); }
+  .dot.watch{ background:var(--watch); }
+  .dot.danger{ background:var(--danger); }
+
+  .table-scroll{ overflow-x:auto; border:1px solid var(--line); border-radius:var(--radius); box-shadow:var(--shadow); background:var(--bg-raised); }
+  table.coins{ width:100%; border-collapse:collapse; min-width:680px; }
+  table.coins thead th{
+    text-align:left; font-size:11.5px; text-transform:uppercase; letter-spacing:.06em; color:var(--ink-soft);
+    font-weight:600; padding:12px 16px; border-bottom:1px solid var(--line); position:sticky; top:0; background:var(--bg-raised);
+  }
+  table.coins thead th.num{ text-align:right; }
+  table.coins tbody td{ padding:9px 16px; border-bottom:1px solid var(--line-soft); font-size:13.5px; vertical-align:middle; }
+  table.coins tbody tr:last-child td{ border-bottom:none; }
+  table.coins tbody tr{ opacity:0; animation: rise .35s ease-out forwards; }
+  .coin-cell{ display:flex; align-items:center; gap:9px; font-family:var(--font-mono); font-weight:600; }
+  .coin-cell .krw{ font-family:var(--font-body); font-weight:400; color:var(--ink-soft); font-size:12px; }
+  td.premium{ font-family:var(--font-mono); text-align:right; font-variant-numeric:tabular-nums; font-weight:600; white-space:nowrap; }
+  td.premium.pos{ color:var(--good); }
+  td.premium.neg{ color:var(--danger); }
+  td.bar-cell{ min-width:220px; }
+  .bar-track{ position:relative; height:8px; background:var(--line-soft); border-radius:4px; overflow:hidden; }
+  .bar-track .zero{ position:absolute; top:-3px; bottom:-3px; width:1px; background:var(--ink-soft); opacity:.5; }
+  .bar-track .fill{ position:absolute; top:0; bottom:0; border-radius:4px; }
+  .bar-track .fill.calm{ background:var(--good); }
+  .bar-track .fill.watch{ background:var(--watch); }
+  .bar-track .fill.danger{ background:var(--danger); }
+  .pill{
+    display:inline-block; font-size:11px; font-weight:600; padding:3px 9px; border-radius:999px;
+    white-space:nowrap;
+  }
+  .pill.calm{ background:var(--good-soft); color:var(--good); }
+  .pill.watch{ background:var(--watch-soft); color:var(--watch); }
+  .pill.danger{ background:var(--danger-soft); color:var(--danger); }
+  table.coins tfoot td{ padding:6px 16px 10px; border:none; }
+
+  /* 보유 포지션 표는 서버(자동 갱신 작업)가 미리 채워 보내므로 등장 애니메이션을 쓰지 않는다 */
+  #open-tbody tr{ opacity:1; animation:none; }
+  #open-tbody td.empty-row{ color:var(--ink-soft); text-align:center; padding:20px 16px; }
+  #open-tbody td.pos{ color:var(--good); }
+  #open-tbody td.neg{ color:var(--danger); }
+
+  /* ---------- 유니버스 스캐너 ---------- */
+  .rule-grid{
+    display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin:0 0 18px;
+  }
+  .rule-card{
+    background:var(--bg-raised); border:1px solid var(--line); border-radius:var(--radius);
+    padding:15px 17px;
+  }
+  .rule-card .rule-label{
+    font-family:var(--font-mono); font-size:11px; letter-spacing:.06em;
+    text-transform:uppercase; color:var(--ink-soft); margin-bottom:7px;
+  }
+  .rule-card .rule-value{
+    font-family:var(--font-mono); font-size:17px; font-weight:600; margin-bottom:5px;
+    font-variant-numeric:tabular-nums;
+  }
+  .rule-card.admit .rule-value{ color:var(--good); }
+  .rule-card.hold  .rule-value{ color:var(--watch); }
+  .rule-card.drop  .rule-value{ color:var(--danger); }
+  .rule-card p{ font-size:12.3px; color:var(--ink-soft); margin:0; line-height:1.5; }
+  @media (max-width:720px){ .rule-grid{ grid-template-columns:1fr; } }
+
+  #universe-tbody tr{ opacity:1; animation:none; }
+  #universe-tbody td{ font-family:var(--font-mono); font-variant-numeric:tabular-nums; }
+  #universe-tbody td:first-child{ font-family:inherit; font-weight:600; }
+  #universe-tbody td:nth-child(2),
+  #universe-tbody td:nth-child(3){ text-align:right; }
+  #universe-tbody td.empty-row{ color:var(--ink-soft); text-align:center; padding:20px 16px; font-family:inherit; }
+  table.universe{ min-width:620px; }
+  table.open-positions{ min-width:600px; }
+  table.open-positions tbody td{ font-family:var(--font-mono); font-variant-numeric:tabular-nums; }
+  table.open-positions tbody td:first-child{ font-family:inherit; font-weight:600; }
+  table.open-positions tbody td:nth-child(2),
+  table.open-positions tbody td:nth-child(3),
+  table.open-positions tbody td:nth-child(4){ text-align:right; }
+  .scale-axis{ display:flex; justify-content:space-between; font-family:var(--font-mono); font-size:10.5px; color:var(--ink-soft); }
+
+  /* ---------- example alert ---------- */
+  .example-wrap{ display:flex; gap:18px; flex-wrap:wrap; align-items:flex-start; }
+  .example-note{ flex:1 1 220px; font-size:13px; color:var(--ink-soft); max-width:36ch; }
+  .discord-card{
+    flex:1 1 320px; max-width:420px; background:var(--bg-raised); border:1px solid var(--line); border-radius:var(--radius);
+    padding:16px 18px; box-shadow:var(--shadow); position:relative;
+  }
+  .discord-card::before{
+    content:"예시 · 아직 발생 전"; position:absolute; top:-10px; left:16px; background:var(--accent); color:var(--accent-ink);
+    font-size:10.5px; font-weight:700; padding:3px 10px; border-radius:999px; letter-spacing:.02em;
+  }
+  .discord-card pre{
+    margin:6px 0 0; white-space:pre-wrap; font-family:var(--font-mono); font-size:12.8px; line-height:1.65; color:var(--ink);
+  }
+
+  footer{
+    border-top:1px solid var(--line); padding-top:22px; font-size:12.5px; color:var(--ink-soft);
+  }
+  footer p{ margin:0 0 8px; }
+  footer code{ font-family:var(--font-mono); background:var(--line-soft); padding:1px 5px; border-radius:4px; }
+
+  @keyframes rise{ from{ opacity:0; transform:translateY(6px); } to{ opacity:1; transform:translateY(0); } }
+  /* 수동 새로고침 — 자동 갱신(마커 치환)과 무관하게 이 블록은 유지된다 */
+  .live-refresh{ display:flex; flex-wrap:wrap; align-items:center; gap:10px 12px; margin:0 0 16px; }
+  .refresh-btn{
+    font-family:var(--font-body); font-size:13px; font-weight:600; letter-spacing:-.01em;
+    color:var(--accent-ink); background:var(--accent); border:0; border-radius:999px;
+    padding:9px 17px; cursor:pointer; transition:filter .15s ease;
+  }
+  .refresh-btn:hover:not(:disabled){ filter:brightness(1.1); }
+  .refresh-btn:focus-visible{ outline:2px solid var(--ink); outline-offset:2px; }
+  .refresh-btn:disabled{ opacity:.5; cursor:progress; }
+  .refresh-status{ font-size:12.5px; color:var(--ink-soft); line-height:1.5; }
+  .refresh-status.live{ color:var(--good); }
+  .refresh-status.err{ color:var(--danger); }
+  .refresh-status b{ font-family:var(--font-mono); font-weight:600; }
+  /* 진입 이후 평가손익 추이 — 본전선(0) 기준으로 아래 면적을 채워
+     «얼마나 떨어졌나»가 눈으로 바로 읽히게 한다 */
+  td.spark-cell{ width:92px; padding-top:6px !important; padding-bottom:6px !important; }
+  td.spark-cell svg{ display:block; }
+  td.spark-cell .spark-none{ font-family:var(--font-body); font-size:11px; color:var(--ink-soft); opacity:.5; }
+  .hold-left{ color:var(--ink-soft); font-size:12px; }
+  .hold-left.over{ color:var(--danger); }
+  @media (prefers-reduced-motion: reduce){ .refresh-btn{ transition:none; } }
+
+  /* ---------- 거래소별 잔액 ----------
+     자동 갱신(마커 치환)과 무관하다. 값은 페이지가 열릴 때 ledger/ 와 백업 거래기록을 읽어 직접 계산한다. */
+  .ledger-summary{
+    display:flex; flex-wrap:wrap; align-items:baseline; gap:6px 22px;
+    background:var(--bg-raised); border:1px solid var(--line); border-radius:var(--radius);
+    padding:16px 20px; box-shadow:var(--shadow); margin-bottom:12px;
+  }
+  .ledger-total{ font-family:var(--font-mono); font-size:28px; font-weight:600; font-variant-numeric:tabular-nums; }
+  .ledger-delta{ font-family:var(--font-mono); font-size:15px; font-weight:600; font-variant-numeric:tabular-nums; }
+  .ledger-parts{ font-size:12.5px; color:var(--ink-soft); }
+  .ledger-parts b{ font-family:var(--font-mono); font-weight:600; color:var(--ink); }
+  .pos-t{ color:var(--good) !important; }
+  .neg-t{ color:var(--danger) !important; }
+  .ledger-grid{ display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:12px; }
+  @media (max-width:720px){ .ledger-grid{ grid-template-columns:1fr; } }
+  .xcard{
+    background:var(--bg-raised); border:1px solid var(--line); border-radius:var(--radius);
+    padding:15px 18px 12px; box-shadow:var(--shadow);
+  }
+  .xcard-head{ display:flex; justify-content:space-between; align-items:baseline; gap:10px; margin-bottom:8px; }
+  .xcard-head h3{ margin:0; font-size:15px; font-weight:600; }
+  .xcard-head .kind{ font-size:11.5px; color:var(--ink-soft); font-weight:400; margin-left:4px; }
+  .xcard-share{ font-family:var(--font-mono); font-size:13px; font-weight:600; }
+  .xcard dl{ display:grid; grid-template-columns:1fr auto; gap:5px 12px; margin:0; }
+  .xcard dt{ font-size:12.8px; color:var(--ink-soft); }
+  .xcard dt small{ font-size:11px; }
+  .xcard dd{ margin:0; text-align:right; font-family:var(--font-mono); font-size:13px; font-variant-numeric:tabular-nums; white-space:nowrap; }
+  .xcard dd small{ color:var(--ink-soft); font-size:11.5px; margin-right:6px; }
+  .xcard .sum{ border-top:1px solid var(--line-soft); padding-top:6px; font-weight:600; color:var(--ink); }
+  .share-bar{ position:relative; display:flex; height:10px; border-radius:5px; overflow:hidden; background:var(--line-soft); margin:4px 0 6px; }
+  .share-bar .k{ background:var(--accent); }
+  .share-bar .o{ background:var(--ink-soft); opacity:.55; }
+  .share-bar .mid{ position:absolute; left:50%; top:-2px; bottom:-2px; width:2px; margin-left:-1px; background:var(--bg-raised); }
+  .share-legend{ display:flex; justify-content:space-between; font-family:var(--font-mono); font-size:11.5px; color:var(--ink-soft); }
+  .rebalance{
+    display:flex; flex-wrap:wrap; align-items:center; gap:8px 12px; margin-top:12px;
+    border:1px solid var(--line); border-radius:var(--radius); padding:12px 18px; background:var(--bg-raised);
+    font-size:13.5px;
+  }
+  .rebalance b{ font-family:var(--font-mono); }
+  .ledger-note{ font-size:12px; color:var(--ink-soft); margin:10px 2px 0; line-height:1.6; }
+  .ledger-note b{ font-family:var(--font-mono); font-weight:600; }
+  /* ---------- 매매 기록 (버튼을 눌러야 펼쳐진다) ---------- */
+  .history-summary{ display:flex; flex-wrap:wrap; gap:6px 18px; align-items:baseline; margin:0 0 12px; font-size:13px; color:var(--ink-soft); }
+  .history-summary b{ font-family:var(--font-mono); font-weight:600; color:var(--ink); }
+  table.trades-history{ min-width:720px; }
+  table.trades-history tbody tr{ opacity:1; animation:none; }
+  table.trades-history tbody td{ font-family:var(--font-mono); font-variant-numeric:tabular-nums; font-size:13px; white-space:nowrap; }
+  table.trades-history tbody td.coin{ font-family:inherit; font-weight:600; }
+  table.trades-history td.num, table.trades-history th.num{ text-align:right; }
+  table.trades-history td.pos{ color:var(--good); }
+  table.trades-history td.neg{ color:var(--danger); }
+  table.trades-history td.empty-row{ color:var(--ink-soft); text-align:center; padding:20px 16px; font-family:inherit; }
+  .history-note{ font-size:12px; color:var(--ink-soft); margin:10px 2px 0; }
+
+  /* ---------- 전략 탭 (김치프리미엄 · 터틀 · 제2의 루나) ---------- */
+  nav.strategy-tabs{ display:flex; flex-wrap:wrap; gap:8px; margin:-12px 0 28px; }
+  nav.strategy-tabs a{
+    display:inline-flex; align-items:center; gap:7px; padding:9px 16px; border-radius:999px;
+    border:1px solid var(--line); background:var(--bg-raised); color:var(--ink); text-decoration:none;
+    font-weight:600; font-size:14px; box-shadow:var(--shadow);
+  }
+  nav.strategy-tabs a:hover{ border-color:var(--accent); }
+  nav.strategy-tabs a:focus-visible{ outline:2px solid var(--accent); outline-offset:2px; }
+  nav.strategy-tabs a[aria-current="page"]{ background:var(--accent); color:var(--accent-ink); border-color:var(--accent); }
+  nav.strategy-tabs .sub{ font-weight:400; font-size:12px; opacity:.8; }
+  /* ---------- 실전 / 가상 구분 (실선 = 실전, 점선 = 가상) ---------- */
+  :root{ --live:#07875a; --live-soft:#d5efe2; --live-ink:#ffffff; --paper-line:#b2a68f; --paper-ink:#7d725f; }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){ --live:#3fd99a; --live-soft:#173a2b; --live-ink:#0d2219; --paper-line:#6a5f4c; --paper-ink:#a89a83; }
+  }
+  :root[data-theme="dark"]{ --live:#3fd99a; --live-soft:#173a2b; --live-ink:#0d2219; --paper-line:#6a5f4c; --paper-ink:#a89a83; }
+  nav.strategy-tabs a{ max-width:100%; flex-wrap:wrap; row-gap:3px; }
+  nav.strategy-tabs a.live{ border:2px solid var(--live); padding:8px 15px; }
+  nav.strategy-tabs a.paper{ border:1px dashed var(--paper-line); }
+  nav.strategy-tabs a.live:hover, nav.strategy-tabs a.paper:hover{ border-color:var(--accent); }
+  nav.strategy-tabs a.live[aria-current="page"]{ border-color:var(--live); box-shadow:0 0 0 2px var(--live-soft), var(--shadow); }
+  nav.strategy-tabs a.paper[aria-current="page"]{ border-color:var(--accent-ink); }
+  .lp-badge{ display:inline-flex; align-items:center; gap:5px; font-size:11px; font-weight:700; line-height:1; padding:3px 7px; border-radius:999px; white-space:nowrap; flex:none; }
+  .lp-badge.live{ background:var(--live); color:var(--live-ink); }
+  .lp-badge.paper{ background:transparent; color:var(--paper-ink); border:1px dashed var(--paper-line); font-weight:600; }
+  [aria-current="page"] .lp-badge.paper{ color:inherit; border-color:currentColor; }
+  .lp-dot{ width:6px; height:6px; border-radius:50%; background:currentColor; position:relative; flex:none; }
+  .lp-dot::after{ content:""; position:absolute; inset:-4px; border-radius:50%; border:1.5px solid currentColor; animation: lp-pulse 2.4s ease-out infinite; }
+  @keyframes lp-pulse{ 0%{ transform:scale(.4); opacity:.9; } 100%{ transform:scale(1.8); opacity:0; } }
+  .mode-legend{ font-size:12.5px; color:var(--ink-soft); margin:-16px 0 26px; display:flex; flex-wrap:wrap; align-items:center; gap:6px; }
+  .lp-key{ display:inline-block; padding:1px 9px; border-radius:999px; font-size:12px; font-weight:600; }
+  .lp-key.live{ border:2px solid var(--live); color:var(--live); }
+  .lp-key.paper{ border:1px dashed var(--paper-line); color:var(--paper-ink); }
+  .brand .tag.tag-live{ border:2px solid var(--live); color:var(--live); font-weight:600; display:inline-flex; align-items:center; gap:6px; }
+  .brand .tag.tag-paper{ border:1px dashed var(--paper-line); color:var(--paper-ink); }
+  .tab-panel > section{ margin-bottom:40px; }
+  .paper-note{ font-size:13px; color:var(--ink-soft); background:var(--bg-raised); border:1px solid var(--line); border-radius:var(--radius); padding:12px 16px; margin:0 0 28px; }
+  .paper-note a{ color:var(--accent); }
+  .paper-status{ font-size:12.5px; color:var(--ink-soft); margin:-4px 0 18px; }
+  table.paper td.num, table.paper th.num{ text-align:right; font-family:var(--font-mono); font-variant-numeric:tabular-nums; white-space:nowrap; }
+  table.paper tbody tr{ opacity:1; animation:none; }
+  table.paper td.pos{ color:var(--good); }
+  table.paper td.neg{ color:var(--danger); }
+  table.paper td.empty-row{ color:var(--ink-soft); text-align:center; padding:20px 16px; }
+  .equity-chart{ border:1px solid var(--line); border-radius:var(--radius); background:var(--bg-raised); box-shadow:var(--shadow); padding:12px; }
+  .equity-chart svg{ display:block; width:100%; height:auto; }
+  .equity-chart text{ fill:var(--ink-soft); font-family:var(--font-mono); font-size:11px; }
+  .rule-list{ margin:0; padding-left:18px; font-size:13.5px; line-height:1.7; }
+</style>
+<style id="site-css">
+  .brand .lab{font-size:13px;color:var(--ink-soft);letter-spacing:.02em;display:block;margin-top:2px}
+  header.top .brand a{color:inherit;text-decoration:none}
+  table.paper td.num{text-align:right;font-family:var(--font-mono);font-variant-numeric:tabular-nums;white-space:nowrap}
+  table.paper td.pos{color:var(--good)} table.paper td.neg{color:var(--danger)}
+  table.paper tbody tr{opacity:1;animation:none}
+</style>
+<style>
+  /* 이벤트 호라이즌 전용 — 나머지는 펀딩 캐리 페이지와 같은 스타일 */
+  .eh-why{ font-size:12.5px; color:var(--ink-soft); }
+  table.coins td.mult{ font-family:var(--font-mono); font-variant-numeric:tabular-nums; text-align:right; white-space:nowrap; font-weight:600; }
+  table.coins td.mult.hot{ color:var(--danger); }
+  table.coins td.mult.quiet{ color:var(--good); }
+  .mbar{ display:inline-block; vertical-align:middle; height:7px; border-radius:4px; background:var(--danger); opacity:.75; margin-left:8px; }
+  .mbar.quiet{ background:var(--good); }
+  .mbar.flat{ background:var(--ink-soft); opacity:.45; }
+  #eh-upcoming tr.soon td{ background:var(--watch-soft); }
+  #eh-upcoming td.when{ font-family:var(--font-mono); font-variant-numeric:tabular-nums; white-space:nowrap; }
+  .ev-chip{ display:inline-block; font-family:var(--font-mono); font-size:11.5px; font-weight:600; padding:2px 8px; border-radius:999px; border:1px solid var(--line); white-space:nowrap; }
+  .ev-chip.FOMC{ border-color:var(--danger); color:var(--danger); }
+  .ev-chip.CPI{ border-color:var(--watch); color:var(--watch); }
+  .ev-chip.PRESSER{ color:var(--ink-soft); }
+  .verdict-list{ margin:0; padding-left:18px; font-size:13.5px; line-height:1.75; }
+  .verdict-list li{ margin-bottom:4px; }
+  @media (max-width:720px){ table.coins{ min-width:560px; } }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+
+  <header class="top">
+    <div class="brand">
+      <span class="mark">🕳️</span>
+      <div><h1>이벤트 호라이즌</h1><a class="lab" href="/">허박사의 코인 전략 연구소 · Dr. Hur's Coin Strategy Lab</a></div>
+      <span class="tag tag-paper">연구 · 위험 달력</span>
+    </div>
+    <div class="snapshot-meta">자료 2017-08 ~ 2026-10 · 시험 170개<br>1차·2차 연구 2026-10-19 · 봇 없음</div>
+  </header>
+
+  <nav class="strategy-tabs" aria-label="페이지">
+    <a href="/">🏠 전체 대시보드</a>
+    <a href="/kimchi" class="live">🌶️ 김치프리미엄 <span class="sub">빗썸 × Binance · 실전</span> <span class="lp-badge live"><i class="lp-dot"></i>실전</span></a>
+    <a href="/ls" class="live">⚖️ 롱숏 모멘텀+캐리 <span class="sub">바이낸스 선물 · 실전</span> <span class="lp-badge live"><i class="lp-dot"></i>실전</span></a>
+    <a href="/turtle" class="paper">🐢 터틀 트레이딩 <span class="sub">빗썸 원화</span> <span class="lp-badge paper">가상</span></a>
+    <a href="/luna" class="paper">🌙 제2의 루나를 찾아라 <span class="sub">바이낸스 선물</span> <span class="lp-badge paper">가상</span></a>
+    <a href="/core" class="paper">🧭 BTC 추세 코어 <span class="sub">업비트 원화</span> <span class="lp-badge paper">가상</span></a>
+    <a href="/usdt" class="paper">💵 USDT 웃돈 <span class="sub">빗썸 원화</span> <span class="lp-badge paper">가상</span></a>
+    <a href="/top3" class="paper">🔝 주간 Top3 <span class="sub">바이낸스 현물</span> <span class="lp-badge paper">가상</span></a>
+    <a href="/listing" class="paper">📉 상장 공매도 <span class="sub">바이낸스 선물</span> <span class="lp-badge paper">가상</span></a>
+    <a href="/mix" class="paper">💰 백만장자 배분 <span class="sub">세 전략 섞기</span> <span class="lp-badge paper">가상</span></a>
+    <a href="/kimlab" class="paper">🧪 김프 실험실 <span class="sub">김프 봇 변형 7개</span> <span class="lp-badge paper">가상</span></a>
+    <a href="/carry" class="paper">💸 펀딩 캐리 <span class="sub">바이낸스 · 검토 중</span> <span class="lp-badge paper">가상</span></a>
+    <a href="/eventhorizon" class="paper" aria-current="page">🕳️ 이벤트 호라이즌 <span class="sub">FOMC·CPI 위험 달력</span> <span class="lp-badge paper">연구</span></a>
+  </nav>
+  <p class="mode-legend"><span class="lp-key live">실선</span> = 실전 (실제 돈) · <span class="lp-key paper">점선</span> = 가상 (페이퍼)·연구</p>
+
+<div class="tab-panel" id="tab-eh">
+  <p class="paper-note">🕳️ <strong>이벤트 호라이즌 (연구 카테고리, 실제·페이퍼 운용 없음)</strong> — 코인 바깥에서 미리 날짜가 정해진 사건들(연준 FOMC, 미국 CPI·NFP(고용)·PPI 발표, CME 선물 만기와 주말 갭, 데리비트 옵션 만기, 미국·한국 휴일, 토큰 언락, 현물 ETF 자금 흐름) 앞뒤로 BTC·ETH와 알트가 어떻게 움직이는지 2017-08 ~ 2026-10 자료로 시험했습니다. 규칙과 판정 기준은 가격을 보기 전에 적었고(사전 등록), 개발 구간(2017-08~2022)에서 고른 것만 시험 구간(2023~2026-10)에서 한 번 열었습니다.</p>
+  <p class="paper-status"><strong>판단: 방향을 맞히는 이벤트 매매 규칙은 하나도 살아남지 못했습니다(누적 170개 시험).</strong> 살아남은 것은 «언제 시장이 크게 흔들리고 언제 조용한가»를 알려 주는 <strong>변동성 지도</strong>뿐이고, 이것을 포지션 크기를 바꾸지 않는 <strong>«EH 위험 달력 v2»</strong>(정보·체결 보호용)로 남겼습니다. 아직 어느 봇에도 넣지 않은 설계 단계입니다.</p>
+
+  <section class="tiles" aria-label="이벤트 호라이즌 요약">
+    <div class="tile"><div class="label">살아남은 방향 전략</div><div class="value">0개</div><div class="sub">누적 시험 170개 (1차 94 · 2차 76)</div></div>
+    <div class="tile"><div class="label">FOMC 후 2시간 변동성</div><div class="value">1.95배</div><div class="sub">2025-01 ~ 2026-10, 평소 같은 시각 대비</div></div>
+    <div class="tile"><div class="label">CPI 후 1시간 변동성</div><div class="value">1.44배</div><div class="sub">2022년 2.82배 → 2026년 1.23배로 줄어드는 중</div></div>
+    <div class="tile"><div class="label">미국 증시 휴장 평일</div><div class="value">0.55배</div><div class="sub">누적 170개 보정 후에도 남음 (test p&lt;0.001)</div></div>
+  </section>
+
+  <section aria-labelledby="eh-up-h">
+    <h2 id="eh-up-h">다가오는 이벤트</h2>
+    <p class="section-sub">연준·BLS 일정표에서 옮긴 달력(<code>calendars/upcoming_2026Q4_2027.csv</code>)에서 지금 이후 일정을 최대 20개 보여 줍니다. 시각은 한국 시각(KST)이고 페이지를 열 때마다 다시 계산합니다. 7일 안 일정은 색을 칠합니다.</p>
+    <div class="table-scroll"><table class="coins paper">
+      <thead><tr><th>남은 날</th><th>한국 시각</th><th>이벤트</th><th>고위험 창</th><th class="num">변동성 배수(v2)</th><th>김프 봇 15분 보류(제안)</th></tr></thead>
+      <tbody id="eh-upcoming"><tr><td class="empty-row" colspan="6">계산 중…</td></tr></tbody>
+    </table></div>
+    <p class="section-sub" style="margin-top:10px">NFP·PPI 미래 일정과 미국 증시 휴장·조기폐장일은 아직 달력 파일에 없습니다. BLS 웹사이트가 스크립트 접근을 막아 자동 수집을 하지 않고, 설계상 1년에 한 번 사람이 일정표를 보고 넣습니다. FOMC 시각은 «성명 발표 전 예정 시각»입니다. 2026-10-14 CPI(9월분)는 2차 출처로만 확인돼 시험에서 뺐습니다.</p>
+  </section>
+
+  <section aria-labelledby="eh-map-h">
+    <h2 id="eh-map-h">변동성 지도 — 이벤트 직후 얼마나 더 흔들리나</h2>
+    <p class="section-sub">BTC 실현변동성을 «1~4주 전 같은 요일·같은 시각»과 비교한 배수입니다. 1보다 크면 평소보다 많이 흔들리고, 작으면 조용합니다. v2 값은 최근(2025-01 ~ 2026-10) 중앙 추정이고, 괄호 안은 1차 연구의 2023~2026 시험 구간 값입니다.</p>
+    <div class="table-scroll"><table class="coins paper">
+      <thead><tr><th>이벤트</th><th>창</th><th class="num">배수 (v2)</th><th>2023~ 시험 구간 · 추세</th><th>판정</th></tr></thead>
+      <tbody>
+<tr><td>FOMC 성명 (+기자회견)</td><td>발표 후 2시간</td><td class="mult hot">1.95<span class="mbar" style="width:57px"></span></td><td>1.90배 [1.60, 2.26], 회의의 90%에서 1보다 큼 · 2023 1.60 → 2024 1.93 → 2025 1.95 → 2026 1.96</td><td><span class="pill danger">고위험</span></td></tr>
+<tr><td>CPI</td><td>발표 후 1시간</td><td class="mult hot">1.44<span class="mbar" style="width:42px"></span></td><td>1.79배 [1.53, 2.13] · 2022 2.82 → 2024 1.64 → 2025 1.64 → 2026 1.23 (줄어드는 중)</td><td><span class="pill danger">고위험</span></td></tr>
+<tr><td>NFP (고용 보고서)</td><td>발표 후 1시간</td><td class="mult hot">1.40<span class="mbar" style="width:41px"></span></td><td>1.57배 [1.37, 1.80] · 해마다 1.3~1.5</td><td><span class="pill danger">고위험</span></td></tr>
+<tr><td>PPI</td><td>발표 후 1시간</td><td class="mult hot">1.31<span class="mbar" style="width:38px"></span></td><td>1.32배 [1.12, 1.57] · 해마다 1.1~1.6</td><td><span class="pill watch">약함</span></td></tr>
+<tr><td>FOMC 전 23시간</td><td>발표 전</td><td class="mult quiet">0.87<span class="mbar quiet" style="width:25px"></span></td><td>0.87배 [0.80, 0.94] · 개발 구간 0.88배와 같은 방향</td><td><span class="pill calm">조용</span></td></tr>
+<tr><td>미국 증시 휴장 평일</td><td>09:30~16:00 ET</td><td class="mult quiet">0.55<span class="mbar quiet" style="width:16px"></span></td><td>개발 0.76배 → 시험 0.55배 (p&lt;0.001, 누적 보정 통과)</td><td><span class="pill calm">조용</span></td></tr>
+<tr><td>미국 조기폐장일</td><td>13:00~16:00 ET</td><td class="mult quiet">0.63<span class="mbar quiet" style="width:18px"></span></td><td>개발 0.96배 → 시험 0.63배 (시험 구간만 유의, 정보용)</td><td><span class="pill calm">조용</span></td></tr>
+<tr><td>주말</td><td>토·일 전체</td><td class="mult quiet">0.56<span class="mbar quiet" style="width:16px"></span></td><td>개발 0.80배 → 시험 0.56배 · 현물 ETF 시대에 차이가 커짐</td><td><span class="pill calm">조용</span></td></tr>
+<tr><td>FOMC 의사록</td><td>발표 후 1시간</td><td class="mult">1.17<span class="mbar flat" style="width:34px"></span></td><td>보정에서 탈락 (BH 0.145)</td><td>이벤트 아님</td></tr>
+<tr><td>데리비트·CME 만기</td><td>만기 후 2시간</td><td class="mult">0.92 / 0.93<span class="mbar flat" style="width:27px"></span></td><td>만기 전 24시간도 0.94배 — «핀닝» 속설을 지지하지 않음</td><td>이벤트 아님</td></tr>
+<tr><td>미국 국채 10·30년 입찰</td><td>결과 13:00 ET</td><td class="mult">1.00<span class="mbar flat" style="width:29px"></span></td><td>개발 0.89배 → 시험 1.00배</td><td>이벤트 아님</td></tr>
+<tr><td>쿼드위칭 · MSCI/러셀 리밸런싱 · ETF 흐름일</td><td>당일</td><td class="mult">≈1.0<span class="mbar flat" style="width:29px"></span></td><td>평소와 차이 없음</td><td>이벤트 아님</td></tr>
+      </tbody>
+    </table></div>
+    <div class="rules">
+      <dl>
+        <dt>꼬리 위험</dt><dd>발표 후 1시간 |수익| &gt; 1% 비율: FOMC 33%, CPI 34%, NFP 18%, PPI 7% (평소 같은 시각 6%)</dd>
+        <dt>2시간 최대 이동</dt><dd>중앙값 FOMC 1.75%, CPI 1.79% (평소 0.88%) · 90% 분위 3.6% / 3.5% (평소 2.0%) · 최대 6.5% / 7.1%</dd>
+        <dt>급변 집중</dt><dd>상위 1% 급변 시간 중 FOMC·CPI 창 비중 6.6% — 창이 차지하는 시간은 0.9%라 7.4배 몰림 (2023~)</dd>
+        <dt>알트</dt><dd>이벤트 때 알트 9종 바구니의 BTC 베타 FOMC 1.37 · CPI 1.22 (평소 1.07 / 0.98) — 알트가 더 크게, 더 같이 움직임</dd>
+        <hr>
+        <dt>옛날엔 달랐다</dt><dd>2017~19년 BTC는 FOMC에 무관심했습니다(0.6배). 2022년 금리 인상기에 정점(FOMC 2.89 · CPI 2.82)을 찍었습니다. 배수는 매년 1월 최근 2년 자료로 다시 잽니다.</dd>
+      </dl>
+    </div>
+  </section>
+
+  <section aria-labelledby="eh-v2-h">
+    <h2 id="eh-v2-h">채택: «EH 위험 달력 v2» — 크기는 그대로, 정보와 체결만 지킨다</h2>
+    <p class="section-sub">이벤트가 있는 날 노출을 절반으로 줄여 보니 롱숏(실전)과 주간 Top3 모두 샤프가 낮아졌습니다. 이벤트일 평균 수익이 오히려 평소보다 높았기 때문입니다(6개 비교 모두 플러스, 각각은 유의하지 않음). 그래서 달력은 포지션을 줄이는 도구가 아니라 «오늘 무엇이 있는지 알리고, 발표 직후 몇 분의 나쁜 체결을 피하는» 도구로만 씁니다.</p>
+    <div class="table-scroll"><table class="coins paper">
+      <thead><tr><th>전략</th><th>v2 규칙</th><th>근거</th></tr></thead>
+      <tbody>
+<tr><td>⚖️ 롱숏 (실전)</td><td><b>노출·리밸런싱·장중 손절 모두 바꾸지 않음. 이벤트일 노출 축소 금지.</b></td><td>노출 0.5배 시 시험 구간 샤프 1.651 → 1.460 (개발 1.994 → 1.919). 2020~26 장중 손절 26건 중 이벤트 창 0건(기대 0.35건)</td></tr>
+<tr><td>🔝 주간 Top3 (T1)</td><td>바꾸지 않음. 이벤트일 노출 축소 금지.</td><td>노출 0.5배 시 시험 구간 샤프 1.276 → 1.186 (개발 1.695 → 1.571)</td></tr>
+<tr><td>🧭 BTC 추세 코어 · 변동성 목표 장부</td><td>바꾸지 않음</td><td>하루 1번 00:01 UTC 판정이라 이벤트 창과 겹치지 않음. 이벤트 ±24시간을 비우면 시험 샤프 0.91 → 0.66</td></tr>
+<tr><td>🐢 터틀 · 🌙 루나</td><td>바꾸지 않음</td><td>장중 손절이 이벤트에 몰린다는 증거 없음. 각 봇 기록으로 다시 세 보기를 권장</td></tr>
+<tr><td>🌶️ 김프 봇 (실전)</td><td><b>제안(미적용):</b> FOMC·CPI·NFP 발표 순간부터 15분 동안 신규 진입과 시장가 청산 보류. PPI는 제외. <b>실전 적용은 허박사 승인 대기.</b></td><td>캔들 기준 김프는 이벤트에 거의 안 흔들림(1시간 1.02배, 15분 1.15배). 하지만 2026-10-14 CPI 때 봇이 두 거래소 시세를 읽는 순간 차이가 평소의 4~10배(코빗 평균 15bp, 최대 70bp)였음 — 단 1건. 기회비용 연 약 32회 × 15분</td></tr>
+<tr><td>옵션·변동성 매도</td><td>해당 없음</td><td>실험실은 옵션을 거래하지 않음. 이벤트 스트래들 매도 +0.31%/회지만 평소 날(+0.34%)과 차이 −0.03% (p 0.90)</td></tr>
+      </tbody>
+    </table></div>
+    <div class="rules">
+      <dl>
+        <dt>상태(phase)</dt><dd>고위험 창 = hot · 미국 휴장·조기폐장·주말 = quiet · 나머지 = normal</dd>
+        <dt>알림</dt><dd>하루 1번 상태 채널에 한 줄 (예: «오늘: CPI 13:30 UTC(1.44배) · 미국 휴장(0.55배)») — 체결 채널에는 보내지 않음</dd>
+        <dt>구현</dt><dd>설계만 끝남: <code>eh-calendar.js</code> 모듈 + <code>eh-events.json</code> (state · next · blockEntry). 어느 봇에도 아직 넣지 않았음</dd>
+        <dt>갱신</dt><dd>매년 1월 최근 2년 자료로 배수 재계산 · NFP·PPI·NYSE 휴장 일정은 연 1회 수기 입력</dd>
+      </dl>
+    </div>
+  </section>
+
+  <section aria-labelledby="eh-rej-h">
+    <h2 id="eh-rej-h">기각된 아이디어</h2>
+    <p class="section-sub">평균은 이벤트 1회당 수익입니다. «개발 → 시험»은 2017-08~2022에서 고른 규칙을 2023~2026-10에 한 번 연 결과입니다. 다시 시도하지 않을 목록입니다.</p>
+    <div class="table-scroll"><table class="coins paper">
+      <thead><tr><th>아이디어</th><th>개발 → 시험</th><th>왜 버렸나</th></tr></thead>
+      <tbody>
+<tr><td>FOMC 전 24시간 BTC 롱</td><td>+1.08% → +0.04% (p 0.46)</td><td>2020~22 유동성 국면에만 있었고 사라짐 (주식 문헌의 감쇠와 같은 모양)</td></tr>
+<tr><td>ETH 월초 롱 (유일한 1차 후보)</td><td>+3.16% → −1.34% (p 0.93)</td><td>개발 구간 연도 5/6 플러스였지만 시험 구간 1/4. DSR 0.52 — 운과 구별 안 됨</td></tr>
+<tr><td>CME 갭 메움 매매</td><td>−0.57% → −0.84% (24시간)</td><td>메움률은 39%로 위약(23%)보다 높지만 매매하면 손실. 2026-05-29부터 CME 24/7 거래라 갭 자체가 없음</td></tr>
+<tr><td>데리비트 만기 전후 반전</td><td>월만기 시험 상관 −0.48 → 주간 만기 294건 BTC +0.10</td><td>처음 보는 주간 만기 표본에서 반전 매매 회당 −0.09% (p 0.96)</td></tr>
+<tr><td>토큰 언락 전 7일 숏 (EH-U)</td><td>언락 전 −2.60% → −3.41%</td><td>언락과 무관한 위약 창(−18~−11일)도 −3.08%. 언락 고유 몫은 −0.33% (p 0.29) — 이 토큰들이 평소에 BTC 대비 주당 약 3% 빠질 뿐</td></tr>
+<tr><td>이벤트일 노출 절반으로 줄이기</td><td>롱숏 시험 샤프 1.651 → 1.460</td><td>T1도 1.276 → 1.186. 이벤트일 수익이 오히려 높았음</td></tr>
+<tr><td>거시 서프라이즈(2년물 금리·S&amp;P·달러) 뒤 따라가기</td><td>개발 최소 p 0.127 → 시험 −0.38% ~ +0.42%</td><td>22개 변형 중 유의한 것 없음</td></tr>
+<tr><td>첫 1시간 반응 따라가기 72시간</td><td>시험 −1.0%</td><td>1차의 «FOMC 반응 추종 24시간»을 늘리면 오히려 반전. 24시간 판은 페이퍼 관찰 후보로만 남김</td></tr>
+<tr><td>현물 ETF 흐름 다음 날</td><td>시험 ETH −0.58% (p 0.999)</td><td>흐름은 이어지지만(1일 자기상관 +0.53) 다음 날 가격을 예측하지 못함</td></tr>
+<tr><td>펀딩 과열 이벤트 숏</td><td>시험 24시간 +0.04% / +0.87%</td><td>과열 뒤 하락이 없음</td></tr>
+<tr><td>DVOL이 이벤트일을 싸게 매긴다 (ETH)</td><td>사전 기준 통과 (시험 p 0.085)</td><td>누적 170개 보정(Holm·BH)에서 탈락. 옵션을 거래하지 않아 쓸 곳도 없음</td></tr>
+<tr><td>발표일 프리미엄 · 미국/한국 휴일 · 분기말 · 월말 리밸런싱 · 쿼드위칭</td><td>모두 잡음 수준</td><td>예: 발표일 −0.03% (p 0.55), 한국 공휴일 −0.16% (p 0.56), 월말 −0.34% → −0.11%</td></tr>
+      </tbody>
+    </table></div>
+  </section>
+
+  <section aria-labelledby="eh-past-h">
+    <h2 id="eh-past-h">백테스트는 과거일 뿐</h2>
+    <ul class="rule-list">
+      <li><b>표본이 작습니다.</b> FOMC는 1년에 8번, CPI는 12번입니다. 1차 시험 구간 FOMC는 30번뿐이라 «효과 없음»은 «거래할 만큼 큰 효과가 안 보인다»는 뜻입니다.</li>
+      <li><b>부호가 국면마다 뒤집혔습니다.</b> CPI 후 24시간은 2022 인상기 −1.26%, 2024-09 이후 인하기 +1.03%. FOMC 첫 반응도 2017~19년엔 되돌림, 2020년 이후엔 이어짐이었습니다. 2023~26년의 방향이 2027년에도 맞는다는 근거는 없습니다.</li>
+      <li><b>변동성 배수도 변합니다.</b> 개발 구간(2017~22)에서는 거의 1배였고 2022년 이후 커졌습니다. CPI 배수는 2022년 정점 뒤 계속 줄고 있습니다. 연준이 코인의 주요 변수가 아니게 되면 다시 줄어들 수 있습니다.</li>
+      <li><b>발표 직후 몇 초~몇 분의 실제 체결 품질은 재지 못했습니다.</b> 김프 봇의 두 시세 순간 괴리는 2026-10-14 CPI 단 1건입니다.</li>
+      <li><b>자료의 한계.</b> 토큰 언락은 «일정 모델»(DefiLlama)이라 실제와 다를 수 있습니다. CME 가격 대신 바이낸스 현물을 썼습니다. CPI 컨센서스(서프라이즈) 역사 자료는 무료로 검증 가능한 것을 찾지 못해 시험하지 않았습니다.</li>
+      <li><b>연구 시간을 정직하게 적습니다.</b> 1차는 약 40분, 2차는 약 1시간 33분 걸렸습니다(요청은 3~6시간). 시간을 채우려고 시험 수를 늘리지 않았고, 남은 방향은 3차로 넘겼습니다.</li>
+    </ul>
+  </section>
+
+  <section aria-labelledby="eh-r3-h">
+    <h2 id="eh-r3-h">3차 계획 (시작함)</h2>
+    <div class="flow">
+      <div class="flow-step"><span class="num">01</span><h3>고배출 토큰 상시 약세</h3><p>언락 위약 창에서 본 «BTC 대비 주당 −3%»는 이벤트가 아니라 토큰 성격(낮은 유통·높은 FDV·지속 배출)일 수 있음. 시장중립 숏 바구니로 새로 사전 등록, 2025-10 이후를 처음 보는 구간으로 둠. 생존 편향·차입 비용·펀딩 반영, 롱숏 숏 다리와 겹침 확인</p></div>
+      <div class="flow-step"><span class="num">02</span><h3>김프 봇 체결 괴리</h3><p>서버 김프 기록이 3~6개월 쌓이면 발표 직후 «두 다리 비동시 읽기» 괴리를 이벤트 20건 이상으로 다시 재고, 실제 주문 슬리피지와 붙여 15분 보류의 비용·편익 계산</p></div>
+      <div class="flow-step"><span class="num">03</span><h3>CPI 옵션 고평가 (관찰)</h3><p>시험 구간 CPI 당일 스트래들 매도 +0.57%(연도 4/4)지만 개발 구간은 반대. 옵션을 하지 않으므로 보류</p></div>
+      <div class="flow-step"><span class="num">04</span><h3>FOMC 반응 추종 24시간</h3><p>페이퍼 관찰만 유지. 72시간으로 늘리면 반전(−1.0%)이었으므로 24시간 청산 엄수. 연 8회라 2년 뒤에도 통계 판정은 어려움</p></div>
+    </div>
+  </section>
+</div><!-- /tab-eh -->
+
+  <footer>
+    <p><strong>연구 결과만 있는 카테고리입니다.</strong> 실제 자금도 페이퍼 봇도 돌지 않고, 위험 달력 v2는 설계만 끝났습니다. 김프 봇 15분 보류는 제안일 뿐 실전에 넣지 않았습니다. 원본: 로컬 연구 노트(저장소에 올리지 않음) <code>research_notes/이벤트 호라이즌/</code> (notes.md · spec.md §4 · round2/).</p>
+  </footer>
+
+</div>
+
+<script>
+// 다가오는 이벤트 — calendars/upcoming_2026Q4_2027.csv 를 그대로 옮긴 목록 (UTC). 열 때마다 지금 이후만 골라 보여 준다.
+(function(){
+  var EV = [
+    ['FOMC','2026-10-28T18:00Z'],['FOMC_PRESSER','2026-10-28T18:30Z'],
+    ['CPI','2026-11-10T13:30Z'],
+    ['FOMC','2026-12-09T19:00Z'],['FOMC_PRESSER','2026-12-09T19:30Z'],
+    ['CPI','2026-12-10T13:30Z'],
+    ['CPI','2027-01-13T13:30Z'],['CPI','2027-02-11T13:30Z'],['CPI','2027-03-10T13:30Z'],
+    ['CPI','2027-04-13T12:30Z'],['CPI','2027-05-12T12:30Z'],['CPI','2027-06-10T12:30Z'],
+    ['CPI','2027-07-14T12:30Z'],['CPI','2027-08-11T12:30Z'],['CPI','2027-09-14T12:30Z'],
+    ['CPI','2027-10-14T12:30Z'],['CPI','2027-11-10T13:30Z'],['CPI','2027-12-10T13:30Z']
+  ];
+  var INFO = {
+    FOMC: { name: 'FOMC 성명', cls: 'FOMC', win: '발표 후 2시간', mult: '1.95배', block: '15분 보류 대상' },
+    FOMC_PRESSER: { name: 'FOMC 기자회견', cls: 'PRESSER', win: '성명 창 안 (+30분)', mult: '—', block: '성명 창에 포함' },
+    CPI: { name: 'CPI (소비자물가)', cls: 'CPI', win: '발표 후 1시간', mult: '1.44배', block: '15분 보류 대상' }
+  };
+  var DOW = ['일','월','화','수','목','금','토'];
+  function kst(t){ var d = new Date(t + 9 * 3600e3); var p = function(n){ return (n < 10 ? '0' : '') + n; };
+    return d.getUTCFullYear() + '-' + p(d.getUTCMonth() + 1) + '-' + p(d.getUTCDate()) + ' (' + DOW[d.getUTCDay()] + ') ' + p(d.getUTCHours()) + ':' + p(d.getUTCMinutes()); }
+  var now = Date.now(), rows = EV.map(function(e){ return { type: e[0], t: Date.parse(e[1]) }; })
+    .filter(function(e){ return e.t >= now - 3 * 3600e3; }).sort(function(a, b){ return a.t - b.t; }).slice(0, 20);
+  var tb = document.getElementById('eh-upcoming');
+  if (!rows.length) { tb.innerHTML = '<tr><td class="empty-row" colspan="6">달력 파일의 일정이 모두 지났습니다 — 새 일정을 넣어야 합니다.</td></tr>'; return; }
+  tb.innerHTML = rows.map(function(e){
+    var i = INFO[e.type], ms = e.t - now, d = Math.floor(ms / 86400e3), h = Math.floor((ms % 86400e3) / 3600e3);
+    var left = ms < 0 ? '진행 중' : d > 0 ? 'D−' + d : h > 0 ? h + '시간 뒤' : '곧';
+    return '<tr' + (ms < 7 * 86400e3 ? ' class="soon"' : '') + '><td class="when">' + left + '</td><td class="when">' + kst(e.t) +
+      '</td><td><span class="ev-chip ' + i.cls + '">' + i.name + '</span></td><td>' + i.win + '</td><td class="num">' + i.mult + '</td><td class="eh-why">' + i.block + '</td></tr>';
+  }).join('');
+})();
+</script>
+</body>
+</html>
