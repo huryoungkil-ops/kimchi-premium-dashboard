@@ -405,6 +405,17 @@
   .equity-chart svg{ display:block; width:100%; height:auto; }
   .equity-chart text{ fill:var(--ink-soft); font-family:var(--font-mono); font-size:11px; }
   .rule-list{ margin:0; padding-left:18px; font-size:13.5px; line-height:1.7; }
+  .tiles.five{ grid-template-columns:repeat(5,1fr); }
+  .tiles.five .tile:nth-child(5){ animation-delay:.23s; }
+  @media (max-width:900px){ .tiles.five{ grid-template-columns:repeat(2,1fr); } .tiles.five .tile:nth-child(5){ grid-column:span 2; } }
+  .verdict{ font-weight:600; }
+  .verdict.ok{ color:var(--good); }
+  .verdict.no{ color:var(--danger); }
+  .x-q{ margin:26px 0 8px; font-size:16px; }
+  .x-q:first-of-type{ margin-top:6px; }
+  .x-lead{ font-size:14px; line-height:1.7; margin:0 0 10px; }
+  .x-note{ font-size:12.5px; color:var(--ink-soft); line-height:1.65; margin:8px 2px 0; }
+  .x-legend{ display:inline-block; width:18px; height:0; border-top:2px solid var(--accent); vertical-align:middle; margin:0 4px 2px; }
 </style>
 <style id="site-css">
   .brand .lab{font-size:13px;color:var(--ink-soft);letter-spacing:.02em;display:block;margin-top:2px}
@@ -442,11 +453,12 @@
 <div class="tab-panel" id="tab-top3">
   <p class="paper-note">🔝 <strong>주간 Top3 페이퍼</strong> — «지난주 가장 많이 오른 코인을 사서 들고 있다가 갈아탄다»는 단기 모멘텀 전략입니다. 연구에서 원 규칙(7일 상위 3개, 1주 보유)은 BTC 120일선 하나를 이기지 못했고, 사전 기준을 통과한 유일한 변형 <b>T1</b>(시총 상위 20 중 14일 수익 1위 한 종목, BTC 120일선 아래면 현금)을 검증합니다. 실제 돈은 오가지 않습니다. 근거: <a href="https://claude.ai/artifact/1AQPW8rLHa3hqi5CmK6KJu" target="_blank" rel="noopener">주간 Top3 연구 보고서</a></p>
   <p class="paper-status" id="p-status">불러오는 중…</p>
-  <section class="tiles" aria-label="주간 Top3 요약">
+  <section class="tiles five" aria-label="주간 Top3 요약">
     <div class="tile"><div class="label">T1 (본 규칙)</div><div class="value" id="p-t1">—</div><div class="sub" id="p-t1-sub">—</div></div>
     <div class="tile"><div class="label">비교: 하루 늦게 체결</div><div class="value" id="p-lag">—</div><div class="sub" id="p-lag-sub">—</div></div>
     <div class="tile"><div class="label">비교: 원 규칙 T0 (7일 상위 3)</div><div class="value" id="p-t0">—</div><div class="sub" id="p-t0-sub">—</div></div>
     <div class="tile"><div class="label">비교: BTC 그냥 보유</div><div class="value" id="p-btc">—</div><div class="sub" id="p-btc-sub">—</div></div>
+    <div class="tile"><div class="label">비교: T1_D2 (선물·현물 고르기)</div><div class="value" id="p-d2">—</div><div class="sub" id="p-d2-sub">—</div></div>
   </section>
   <section>
     <h2>오늘의 판단</h2>
@@ -455,6 +467,15 @@
       <thead><tr><th>기준일</th><th class="num">BTC 종가</th><th class="num">120일 평균</th><th>BTC 필터</th><th>T1 선택</th><th>T0 보유 (주 1회 교체)</th></tr></thead>
       <tbody id="p-signal"></tbody>
     </table></div>
+  </section>
+  <section>
+    <h2>T1_D2 — 같은 결정, 체결 장소만 다르게</h2>
+    <p class="section-sub" id="p-d2-note">T1과 똑같은 코인을 같은 날 사고팝니다. 다른 점은 «어디서 사느냐» 하나뿐입니다. 사기 직전 3일 동안 그 코인의 펀딩(선물 롱이 숏에게 내는 이자)이 하루 평균 0.03% 이하로 잔잔하면 바이낸스 선물 1배로, 그보다 뜨거우면 현물로 삽니다. 한 번 정한 장소는 팔 때까지 그대로입니다. 2026-10-18에 시드 $10,000로 새로 시작해서, 앞선 T1과 기간이 다릅니다.</p>
+    <div class="table-scroll"><table class="coins paper">
+      <thead><tr><th>보유</th><th>장소</th><th class="num">직전 3일 평균 펀딩</th><th class="num">낸·받은 펀딩 누계</th><th class="num">수수료 누계</th><th class="num">평가액</th><th>장소를 고른 이유</th></tr></thead>
+      <tbody id="p-d2-table"></tbody>
+    </table></div>
+    <p class="x-note">선물은 수수료가 편도 0.05%(현물 0.1%의 절반)지만, 들고 있는 동안 8시간(코인에 따라 4시간)마다 펀딩을 정산합니다. 펀딩이 플러스면 롱이 내고, 마이너스면 받습니다. 이 장부는 실제 바이낸스 정산 기록으로 그 금액을 더하고 뺍니다.</p>
   </section>
   <section>
     <h2>후보 20개와 14일 수익</h2>
@@ -466,7 +487,7 @@
   </section>
   <section>
     <h2>평가액 추이</h2>
-    <p class="section-sub">하루 한 번 기록(달러). 빨강 = T1, 회색 점선 = 하루 늦게 체결 · 원 규칙 T0 · BTC 보유.</p>
+    <p class="section-sub">하루 한 번 기록(달러). 빨강 = T1, 회색 점선 = 하루 늦게 체결 · 원 규칙 T0 · BTC 보유, <span class="x-legend"></span>노란 실선 = T1_D2(2026-10-18 시작이라 선이 늦게 시작합니다).</p>
     <div class="equity-chart" id="p-chart"></div>
   </section>
   <section>
@@ -488,8 +509,9 @@
     </div>
     <div class="rules">
       <dl>
-        <dt>시드</dt><dd>$10,000 · 장부 4개 각각 (T1 · 하루 늦게 체결 · 원 규칙 T0 · BTC 보유)</dd>
+        <dt>시드</dt><dd>$10,000 · 장부 5개 각각 (T1 · 하루 늦게 체결 · 원 규칙 T0 · BTC 보유 · T1_D2). T1_D2만 2026-10-18 시작</dd>
         <dt>체결</dt><dd>바이낸스 현물 현재가 · 편도 0.1%(수수료) · 매일 KST 09:03</dd>
+        <dt>T1_D2 (비교용)</dt><dd>T1과 같은 결정. 사기 직전 마감된 3일의 평균 펀딩이 하루 0.03% 이하이고 바이낸스 USDT 무기한 선물이 있으면 선물 1배(편도 0.05% + 실제 펀딩), 아니면 현물(0.1%). 장소는 팔 때까지 고정</dd>
         <dt>원 규칙 T0 (비교용)</dt><dd>같은 후보 중 7일 수익 상위 3개를 1/3씩, 봇 시작일과 같은 요일마다 교체, BTC 필터는 매일. 백테스트는 자본을 7등분해 요일마다 한 몫씩 굴렸지만 페이퍼는 단순 주 1회 교체입니다</dd>
         <hr>
         <dt>백테스트 (테스트 2023-01~2026-09)</dt><dd>T1 연 +118% · 샤프 1.28 · 최대낙폭 −75% / 원 규칙 T0 연 +38% · 샤프 0.84 · −59% / BTC 120일선 코어 연 +46% · 샤프 1.22 · −29%</dd>
@@ -498,6 +520,48 @@
         <dt>중단 기준</dt><dd>T1 낙폭 −80% 초과 시 신규 매수 중단 · 12개월 샤프가 코어보다 0.5 이상 낮으면 중단 검토 · 투자 권유 아님</dd>
       </dl>
     </div>
+  </section>
+
+  <section aria-labelledby="p-ext-h">
+    <h2 id="p-ext-h">확장 연구: 현물 vs 선물 · 하락 숏 · 롱숏과의 관계</h2>
+    <p class="section-sub">주간 Top3에 이어 세 가지를 더 물었습니다. 판정 기준은 결과를 보기 전에 정해 두었고(개발 구간 2020-01~2022-12에서 고르고, 테스트 구간 2023-01~2026-09에서 처음 확인), 아래 숫자는 모두 테스트 구간 백테스트입니다. 실제 체결과는 다를 수 있습니다.</p>
+
+    <h3 class="x-q">1. Top3 롱을 현물 대신 선물로 사면 나을까? — <span class="verdict ok">조건부로 조금 낫다</span></h3>
+    <p class="x-lead">선물은 수수료가 절반이지만, 롱은 펀딩을 냅니다. <b>늘 선물</b>로 사면 강세장의 높은 펀딩이 수수료 이득을 먹어 현물을 못 이겼습니다. <b>«직전 3일 평균 펀딩이 하루 0.03% 이하일 때만 선물, 아니면 현물»(D2)</b>은 미리 정한 기준을 T1·T0 모두 통과했습니다. 위의 T1_D2 장부가 이 규칙입니다.</p>
+    <div class="table-scroll"><table class="coins paper">
+      <thead><tr><th>규칙</th><th class="num">연 수익 (CAGR)</th><th class="num">샤프</th><th class="num">최대낙폭</th></tr></thead>
+      <tbody>
+        <tr><td>T1 · 현물 (지금 본 장부)</td><td class="num">+118%</td><td class="num">1.28</td><td class="num">−74%</td></tr>
+        <tr><td>T1 · D2 (펀딩 낮을 때만 선물)</td><td class="num pos">+136%</td><td class="num pos">1.36</td><td class="num">−74% (같음)</td></tr>
+        <tr><td>T0 · 현물 (원 규칙)</td><td class="num">+42%</td><td class="num">0.89</td><td class="num">−57%</td></tr>
+        <tr><td>T0 · D2</td><td class="num pos">+45%</td><td class="num pos">0.92</td><td class="num">−57% (같음)</td></tr>
+      </tbody>
+    </table></div>
+    <p class="x-note">솔직한 단서: 이득은 샤프 +0.08 정도로, T1 신호 자체의 불확실성(테스트 샤프 95% 구간 0.29~2.36)보다 훨씬 작습니다. 선물 수수료가 현물과 같으면(예: 둘 다 0.1%) 이득이 거의 사라집니다. 1배 롱 선물의 청산·자동 감액(ADL)·선물만 거래 정지되는 경우는 모형에 넣지 않았습니다. 그래서 페이퍼 장부로 실제 펀딩과 체결가 차이를 직접 재 보는 중입니다.</p>
+
+    <h3 class="x-q">2. 반대로 많이 떨어진 코인을 숏(Bottom3)하면? — <span class="verdict no">돈이 안 된다</span></h3>
+    <p class="x-lead">조회 기간·종목 수·손절·BTC 필터·펀딩 회피·레버리지를 바꾼 768개 설정을 시험했습니다. 개발 구간 1위 설정(시총 50위 중 14일 꼴찌 1개 숏, BTC 120일선 아래일 때만, 1배)은 테스트에서 무너졌습니다.</p>
+    <div class="table-scroll"><table class="coins paper">
+      <thead><tr><th>설정</th><th class="num">개발 연 수익</th><th class="num">테스트 연 수익</th><th class="num">테스트 최대낙폭</th></tr></thead>
+      <tbody>
+        <tr><td>개발 1위 (14일 꼴찌 1개 숏)</td><td class="num pos">+50%</td><td class="num neg">−36%</td><td class="num neg">−82%</td></tr>
+        <tr><td>768개 중 테스트 흑자</td><td colspan="3">3개뿐 — 그 3개는 모두 개발 구간에서 적자였던 설정</td></tr>
+      </tbody>
+    </table></div>
+    <p class="x-note">손절, BTC 필터, 펀딩이 마이너스인 코인 건너뛰기 어느 것도 결과를 살리지 못했습니다. 2배로 올리면 설정의 72%가 파산했습니다. 많이 떨어진 코인은 급반등(숏 스퀴즈)이 잦아 숏이 오히려 크게 당합니다.</p>
+
+    <h3 class="x-q">3. Top3 롱 + Bottom3 숏 = 지금의 «롱숏 모멘텀+캐리»? — <span class="verdict no">아니다, 사실상 다른 전략</span></h3>
+    <p class="x-lead">오른 코인 롱 + 떨어진 코인 숏을 같은 금액으로 묶은 장부를 기존 <a href="/ls">롱숏 모멘텀+캐리</a>와 비교했습니다.</p>
+    <div class="table-scroll"><table class="coins paper">
+      <thead><tr><th>비교</th><th class="num">값</th></tr></thead>
+      <tbody>
+        <tr><td>두 전략의 하루 수익 상관 (테스트)</td><td class="num">0.34 (부분 겹침의 아래 끝)</td></tr>
+        <tr><td>테스트 샤프: Top3 롱 + Bottom3 숏</td><td class="num">0.47</td></tr>
+        <tr><td>테스트 샤프: 롱숏 모멘텀+캐리</td><td class="num pos">1.65</td></tr>
+        <tr><td>롱숏 방식에 캐리(펀딩) 순위를 넣으면 상관</td><td class="num">0.99 (거의 같은 전략이 됨)</td></tr>
+      </tbody>
+    </table></div>
+    <p class="x-note">차이의 핵심은 <b>캐리(펀딩) 순위</b>입니다. 롱숏 전략의 성과는 상당 부분 «펀딩을 받는 쪽에 서기»에서 나옵니다. Top3 롱 + Bottom3 숏을 롱숏 전략에 섞으면 오히려 샤프가 내려갔습니다(20% 섞으면 1.65 → 1.59). 그래서 새 장부로 만들지 않았습니다.</p>
   </section>
 </div><!-- /tab-top3 -->
 
@@ -530,14 +594,18 @@
     var mn = Math.min.apply(null, all), mx = Math.max.apply(null, all); if (mx - mn < 1e-9) { mx += 1; mn -= 1; }
     var pad = (mx - mn) * 0.1; mn -= pad; mx += pad;
     var n = Math.max(pts.length - 1, 1), X = function(i){ return l + i / n * (W - l - r); }, Y = function(v){ return t + (mx - v) / (mx - mn) * (H - t - b); };
-    var css = getComputedStyle(document.documentElement), col = { a: css.getPropertyValue('--danger').trim(), b: css.getPropertyValue('--ink-soft').trim(), g: css.getPropertyValue('--line').trim() };
+    var css = getComputedStyle(document.documentElement), col = { a: css.getPropertyValue('--danger').trim(), b: css.getPropertyValue('--ink-soft').trim(), g: css.getPropertyValue('--line').trim(), c: css.getPropertyValue('--accent').trim() };
+    var dayIdx = {}; pts.forEach(function(p, i){ dayIdx[p[0]] = i; });
+    var xi = function(p, i){ return dayIdx[p[0]] != null ? dayIdx[p[0]] : i; };
     var svg = '<svg viewBox="0 0 ' + W + ' ' + H + '" role="img" aria-label="평가액 추이">';
     [0, 0.5, 1].forEach(function(f){ var v = mn + (mx - mn) * f; svg += '<line x1="' + l + '" x2="' + (W - r) + '" y1="' + Y(v) + '" y2="' + Y(v) + '" stroke="' + col.g + '"/><text x="' + (l - 6) + '" y="' + (Y(v) + 4) + '" text-anchor="end">' + fmt(v) + '</text>'; });
     svg += '<text x="' + l + '" y="' + (H - 6) + '">' + pts[0][0] + '</text><text x="' + (W - r) + '" y="' + (H - 6) + '" text-anchor="end">' + pts[pts.length - 1][0] + '</text>';
     series.forEach(function(s, k){
-      var d = s.v.map(function(p, i){ return (i ? 'L' : 'M') + X(i).toFixed(1) + ' ' + Y(p[1]).toFixed(1); }).join(' ');
-      svg += '<path d="' + d + '" fill="none" stroke="' + (k ? col.b : col.a) + '" stroke-width="' + (k ? 1.6 : 2.4) + '"' + (k ? ' stroke-dasharray="4 3"' : '') + '/>';
-      var lp = s.v[s.v.length - 1]; svg += '<circle cx="' + X(s.v.length - 1) + '" cy="' + Y(lp[1]) + '" r="3.5" fill="' + (k ? col.b : col.a) + '"/>';
+      if (!s.v.length) return;
+      var c = s.accent ? col.c : k ? col.b : col.a, dash = k && !s.accent;
+      var d = s.v.map(function(p, i){ return (i ? 'L' : 'M') + X(xi(p, i)).toFixed(1) + ' ' + Y(p[1]).toFixed(1); }).join(' ');
+      svg += '<path d="' + d + '" fill="none" stroke="' + c + '" stroke-width="' + (k && !s.accent ? 1.6 : 2.2) + '"' + (dash ? ' stroke-dasharray="4 3"' : '') + '/>';
+      var lp = s.v[s.v.length - 1]; svg += '<circle cx="' + X(xi(lp, s.v.length - 1)) + '" cy="' + Y(lp[1]) + '" r="3.5" fill="' + c + '"/>';
     });
     el.innerHTML = svg + '</svg>';
   }
@@ -558,6 +626,17 @@
     };
     tile('T1', 'p-t1', st.halted ? ' · ⛔ 중단 기준 도달' : '');
     tile('T1_lag', 'p-lag'); tile('T0', 'p-t0'); tile('btc', 'p-btc');
+    var D2 = B.T1_D2;
+    if (D2) {
+      var vn = D2.venue || {}, vh = (D2.target || []).map(function(c){ return c + (vn[c] ? (vn[c].venue === 'perp' ? ' 선물' : ' 현물') : ''); }).join(', ');
+      $('p-d2').textContent = usd(D2.equity);
+      $('p-d2-sub').textContent = pct(D2.equity / seed - 1) + ' · ' + (vh || 'USDT (현금)') + ' · 펀딩 ' + usd(D2.fundingTotal || 0) + ' · ' + (st.d2StartDay || '') + ' 시작';
+      var drows = (D2.target || []).map(function(c){
+        var v = vn[c] || {};
+        return '<tr><td class="coin">' + esc(c) + '</td><td>' + (v.venue === 'perp' ? '선물 1배 (' + esc(v.symbol || '') + ')' : '현물') + '</td><td class="num">' + (v.f3 == null ? '—' : (v.f3 * 100).toFixed(4) + '%/일') + '</td><td class="num ' + cls(v.funding) + '">' + (v.venue === 'perp' ? usd(v.funding || 0) : '—') + '</td><td class="num">' + usd(D2.feesTotal || 0) + '</td><td class="num">' + usd(D2.equity) + '</td><td>' + esc(v.why || '') + '</td></tr>';
+      });
+      $('p-d2-table').innerHTML = drows.join('') || '<tr><td>USDT (현금)</td><td>—</td><td class="num">—</td><td class="num ' + cls(D2.fundingTotal) + '">' + usd(D2.fundingTotal || 0) + '</td><td class="num">' + usd(D2.feesTotal || 0) + '</td><td class="num">' + usd(D2.equity) + '</td><td>T1이 현금일 때는 같이 현금</td></tr>';
+    } else { $('p-d2').textContent = '—'; $('p-d2-sub').textContent = '봇 업데이트 대기'; $('p-d2-table').innerHTML = empty(7, '아직 T1_D2 장부 데이터가 없습니다.'); }
     if (L) {
       var f = L.filter || {};
       $('p-signal').innerHTML = '<tr><td>' + esc(L.day) + ' 종가</td><td class="num">' + usd(f.close, 0) + '</td><td class="num">' + usd(f.ma, 0) + '</td><td class="' + (f.on ? 'pos' : 'neg') + '">' + (f.on ? '🟢 밀물 — 코인 보유' : '🔴 썰물 — 전량 USDT') + '</td><td class="coin">' + (f.on ? esc(L.t1 || '—') : 'USDT') + '</td><td>' + (f.on ? esc((L.t0Pick || []).join(', ')) : 'USDT') + '</td></tr>';
@@ -570,8 +649,8 @@
       $('p-univ').innerHTML = rows.join('') || empty(6, '후보가 없습니다.');
     } else { $('p-signal').innerHTML = empty(6, '첫 판단 전입니다.'); $('p-univ').innerHTML = empty(6, '첫 판단 전입니다.'); }
     var eq = function(k){ return d.equity.filter(function(e){ return e.strategy === k; }).map(function(e){ return [e.day.slice(5), e.equity]; }); };
-    chart($('p-chart'), [{ v: eq('T1') }, { v: eq('T1_lag') }, { v: eq('T0') }, { v: eq('btc') }], function(v){ return '$' + Math.round(v).toLocaleString('en-US'); });
-    var BOOK = { T1: 'T1', T1_lag: '하루 늦게', T0: '원 규칙 T0', btc: 'BTC 보유' };
+    chart($('p-chart'), [{ v: eq('T1') }, { v: eq('T1_lag') }, { v: eq('T0') }, { v: eq('btc') }, { v: eq('T1_D2'), accent: true }], function(v){ return '$' + Math.round(v).toLocaleString('en-US'); });
+    var BOOK = { T1: 'T1', T1_lag: '하루 늦게', T0: '원 규칙 T0', btc: 'BTC 보유', T1_D2: 'T1_D2' };
     $('p-trades').innerHTML = d.trades.slice(0, 60).map(function(t){
       return '<tr><td>' + kst(t.entryTime) + '</td><td>' + esc(BOOK[t.book] || t.book) + '</td><td class="coin">' + esc(t.coin) + '</td><td class="num">' + dollar(t.entryPx) + '</td><td class="num">' + (t.exitPx ? dollar(t.exitPx) : '—') + '</td><td class="num ' + cls(t.pnl) + '">' + (t.status === 'OPEN' ? '보유 중' : usd(t.pnl)) + '</td><td>' + esc(t.reason || t.note || '') + '</td></tr>';
     }).join('') || empty(7, '아직 거래가 없습니다.');
