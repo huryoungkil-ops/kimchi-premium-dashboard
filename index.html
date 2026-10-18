@@ -512,7 +512,7 @@
   </nav>
   <p class="mode-legend"><span class="lp-key live">실선</span> = 실전 (실제 돈) · <span class="lp-key paper">점선</span> = 가상 (페이퍼)</p>
 
-  <p class="paper-note">🧪 <strong>실전 2개와 가상(페이퍼) 전략을 나란히 기록하는 연구실입니다.</strong> <strong>실전(실선 테두리):</strong> 김치프리미엄 — 2026-10-15부터 빗썸 × Binance 실제 자금, 롱숏 모멘텀+캐리 — 2026-10-18 23:44 KST부터 Binance futures02 실제 자금(시드 $4,000). <strong>가상(점선 테두리):</strong> 나머지 전략은 각각 가상 시드 $10,000로 돌리며 실제 돈은 오가지 않습니다(백만장자 배분은 다른 세 페이퍼의 수익을 섞은 합성 장부, 김프 실험실 BASE는 실전 김프와 같은 시드 $20,156의 가상 장부). 카페24 서버의 봇들이 5~15분마다 기록을 올리고, 카드를 누르면 전략별 상세 페이지로 갑니다. 투자 권유가 아닙니다.</p>
+  <p class="paper-note">🧪 <strong>실전 2개와 가상(페이퍼) 전략을 나란히 기록하는 연구실입니다.</strong> <strong>실전(실선 테두리):</strong> 김치프리미엄 — 2026-10-15부터 빗썸 × Binance 실제 자금, 롱숏 모멘텀+캐리 — 2026-10-18 23:44 KST부터 Binance futures02 실제 자금(시드 $4,000). <strong>가상(점선 테두리):</strong> 나머지 전략은 각각 가상 시드 $10,000로 돌리며 실제 돈은 오가지 않습니다(백만장자 배분은 다른 페이퍼의 수익과 롱숏 신호를 섞은 합성 장부, 김프 실험실 BASE는 실전 김프와 같은 시드 $20,156의 가상 장부). 롱숏 모멘텀+캐리는 2026-10-19 에 가상 장부 표시를 걷어내고 실전 기록만 남겼습니다. 카페24 서버의 봇들이 5~15분마다 기록을 올리고, 카드를 누르면 전략별 상세 페이지로 갑니다. 투자 권유가 아닙니다.</p>
 
   <p class="health-line" id="h-health-line">봇 상태 <span id="h-health">—</span> <span id="h-health-sub"></span></p>
 
@@ -530,9 +530,9 @@
 
   <section class="zone paper" aria-labelledby="z-paper-h">
     <div class="zone-head"><h2 id="z-paper-h">가상 운영(페이퍼)</h2><span class="lp-badge paper">가상 · 실제 돈 없음</span></div>
-    <p class="section-sub">실제 돈이 오가지 않는 페이퍼 장부만 따로 합산합니다. 각각 가상 시드 $10,000(김프 실험실 BASE는 $20,156, 백만장자 배분은 세 페이퍼를 섞은 합성 장부). 미니 그래프는 하루 단위 잔액 추이, 최대낙폭은 기록 시작 이후 고점 대비 가장 크게 빠진 폭입니다.</p>
+    <p class="section-sub">실제 돈이 오가지 않는 페이퍼 장부만 따로 합산합니다. 각각 가상 시드 $10,000(김프 실험실 BASE는 $20,156, 백만장자 배분은 다른 장부의 하루 수익을 섞은 합성 장부). 미니 그래프는 하루 단위 잔액 추이, 최대낙폭은 기록 시작 이후 고점 대비 가장 크게 빠진 폭입니다.</p>
     <div class="tiles" aria-label="가상 합계">
-      <div class="tile"><div class="label">가상 시드</div><div class="value" id="pp-seed">$100,156</div><div class="sub" id="pp-seed-sub">페이퍼 8개 × $10,000 + 김프 실험실 BASE $20,156</div></div>
+      <div class="tile"><div class="label">가상 시드</div><div class="value" id="pp-seed">$90,156</div><div class="sub" id="pp-seed-sub">페이퍼 7개 × $10,000 + 김프 실험실 BASE $20,156</div></div>
       <div class="tile"><div class="label">가상 현재 잔액</div><div class="value" id="pp-now">—</div><div class="sub" id="pp-now-sub">—</div></div>
       <div class="tile"><div class="label">가상 손익</div><div class="value" id="pp-pnl">—</div><div class="sub" id="pp-pct">—</div></div>
       <div class="tile"><div class="label">가상 중 가장 좋은 전략</div><div class="value best" id="pp-best">—</div><div class="sub" id="pp-best-sub">—</div></div>
@@ -640,16 +640,11 @@
     { key: 'lslive', href: '/ls', liveOnly: true, live: true, emoji: '⚖️', name: '롱숏 모멘텀+캐리 · 실전', ex: 'Binance futures02', file: 'paper-ls-live/ls-live.json', limit: 30, parse: function(d){
         var seed = d.seedUsd || 4000, acct = d.account || {}, now = d.perf != null ? d.perf : acct.equity;
         var series = [seed].concat((d.equity || []).map(function(e){ return e.perf != null ? e.perf : e.equity; }), now != null ? [now] : []);
-        var ord = (d.orders || []).filter(function(o){ return o.status === 'FILLED' && o.reduceOnly; });
-        return { now: now, series: series, open: (d.positions || []).length, closed: ord.length, wins: 0, noWinRate: true, start: (d.equity || [])[0] && d.equity[0].day + 'T09:06:00+09:00', updatedAt: d.updatedAt, seed: seed, mode: d.mode };
-    } },
-    { key: 'ls', emoji: '⚖️', name: '롱숏 모멘텀+캐리', ex: '바이낸스 선물', file: 'paper-ls/ls.json', limit: 30, parse: function(d){
-        var st = d.state || {}, now = st.live && st.live.equity != null ? st.live.equity : st.equity;
-        var eq = (d.equity || []).filter(function(e){ return e.strategy === 'ls'; }).map(function(e){ return e.equity; });
-        var series = [st.seed || SEED].concat(eq, now != null ? [now] : []);
-        var cl = (d.trades || []).filter(function(t){ return t.status === 'CLOSED'; });
-        var bh = (d.equity || []).filter(function(e){ return e.strategy === 'btc_hold'; });
-        return { now: now, series: series, open: Object.keys(st.net || {}).length, closed: cl.length, wins: cl.filter(function(t){ return t.pnl > 0; }).length, start: st.createdAt, updatedAt: d.updatedAt, seed: st.seed || SEED, btcHold: bh.length ? bh[bh.length - 1].equity : null };
+        var ord = (d.orders || []).filter(function(o){ return o.mode === 'live' && o.status === 'FILLED' && o.reduceOnly; });
+        // BTC 1배 비교: 봇이 평가액과 같이 남기는 실제 BTC 마크가격 (날짜 기록 → 장중 기록 순서)
+        var bt = (d.equity || []).filter(function(e){ return e.btc; }).concat((d.marks || []).filter(function(m){ return m.btc; }));
+        var btcHold = bt.length > 1 ? seed * bt[bt.length - 1].btc / bt[0].btc : null;
+        return { now: now, series: series, open: (d.positions || []).length, closed: ord.length, wins: 0, noWinRate: true, start: (d.equity || [])[0] && d.equity[0].day + 'T09:06:00+09:00', updatedAt: d.updatedAt, seed: seed, mode: d.mode, btcHold: btcHold };
     } },
     { key: 'turtle', emoji: '🐢', name: '터틀 트레이딩', ex: '빗썸 원화', file: 'paper-turtle/turtle.json', limit: 30, parse: function(d){
         var st = d.state || {}, eq = (d.equity || []).filter(function(e){ return e.strategy === 'turtle'; });
@@ -715,13 +710,12 @@
   var jobs = S.map(function(s){ return get(s.file).then(function(d){ s.r = s.parse(d); }).catch(function(e){ s.err = e.message; }); });
   jobs.push(fetch('/ledger/config.json', { cache: 'no-store' }).then(function(r){ return r.ok ? r.json() : null; }).then(function(c){ if (c && c.seedUsd) cfgSeed = Number(c.seedUsd); }).catch(function(){}));
   Promise.all(jobs).then(function(){
-    var lsl = S.filter(function(x){ return x.key === 'lslive'; })[0], lsp = S.filter(function(x){ return x.key === 'ls'; })[0];
+    var lsl = S.filter(function(x){ return x.key === 'lslive'; })[0];
     var kim = S.filter(function(x){ return x.key === 'kimchi'; })[0];
     if (kim && kim.r && !kim.r.seedFromBot && cfgSeed) kim.r.seed = cfgSeed;
     var lsLive = !!(lsl && lsl.r && lsl.r.mode === 'live');
     // 롱숏 실전이 아직 모의 주문이면 카드는 실전 칸에 두되 실전 합계에서는 뺀다
     if (lsl && lsl.r && !lsLive) { lsl.name = '롱숏 모멘텀+캐리 · 실전 (모의 주문 중)'; lsl.noSum = true; }
-    if (lsp) lsp.name = '롱숏 모멘텀+캐리 · 비교용 페이퍼';
     var LIVE = S.filter(function(s){ return s.live; }), PAPER = S.filter(function(s){ return !s.live; });
     var ok = function(s){ return s.r && isFinite(s.r.now); };
     var short = function(s){ return s.name.split(' · ')[0]; };
@@ -739,7 +733,7 @@
       $(px + '-pnl').textContent = usd(now - seed); $(px + '-pnl').className = 'value ' + cls(now - seed);
       $(px + '-pct').innerHTML = '<span class="' + cls(now - seed) + '">' + pct(now / seed - 1) + '</span> · 시드 ' + usd(seed, 0) + ' 대비';
       var best = g.slice().sort(function(a, b){ return b.r.now / (b.r.seed || SEED) - a.r.now / (a.r.seed || SEED); })[0];
-      $(px + '-best').textContent = best.emoji + ' ' + short(best) + (best.key === 'ls' ? ' (페이퍼)' : '');
+      $(px + '-best').textContent = best.emoji + ' ' + short(best);
       $(px + '-best-sub').innerHTML = '<span class="' + cls(best.r.now - (best.r.seed || SEED)) + '">' + pct(best.r.now / (best.r.seed || SEED) - 1) + '</span>';
     }
     sum(LIVE, 'lv'); sum(PAPER, 'pp');
@@ -773,8 +767,8 @@
     }
     $('h-table').innerHTML = '<tr class="grp live"><th colspan="10">● 실전 운영 (실제 돈)</th></tr>' + LIVE.map(row).join('') +
       '<tr class="grp paper"><th colspan="10">가상 운영(페이퍼)</th></tr>' + PAPER.map(row).join('');
-    var ls = S.filter(function(x){ return x.key === 'ls'; })[0].r;
-    if (ls && ls.btcHold != null) $('h-btc').textContent = '참고: 롱숏 봇 시작일(' + (ls.start ? kst(ls.start).slice(0, 5) : '—') + ')에 BTC를 $10,000어치 그냥 들고 있었다면 지금 ' + usd(ls.btcHold) + ' (' + pct(ls.btcHold / SEED - 1) + ').';
+    var lsr = lsl && lsl.r;
+    if (lsr && lsr.btcHold != null) $('h-btc').textContent = '참고: 롱숏 실전 시작일(' + (lsr.start ? kst(lsr.start).slice(0, 5) : '—') + ')에 같은 돈 ' + usd(lsr.seed, 0) + '으로 BTC를 1배로 그냥 들고 있었다면 지금 ' + usd(lsr.btcHold) + ' (' + pct(lsr.btcHold / lsr.seed - 1) + ').';
   });
 })();
 </script>
