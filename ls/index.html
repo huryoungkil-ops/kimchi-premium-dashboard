@@ -392,6 +392,31 @@
   nav.strategy-tabs a:focus-visible{ outline:2px solid var(--accent); outline-offset:2px; }
   nav.strategy-tabs a[aria-current="page"]{ background:var(--accent); color:var(--accent-ink); border-color:var(--accent); }
   nav.strategy-tabs .sub{ font-weight:400; font-size:12px; opacity:.8; }
+  /* ---------- 실전 / 가상 구분 (실선 = 실전, 점선 = 가상) ---------- */
+  :root{ --live:#07875a; --live-soft:#d5efe2; --live-ink:#ffffff; --paper-line:#b2a68f; --paper-ink:#7d725f; }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){ --live:#3fd99a; --live-soft:#173a2b; --live-ink:#0d2219; --paper-line:#6a5f4c; --paper-ink:#a89a83; }
+  }
+  :root[data-theme="dark"]{ --live:#3fd99a; --live-soft:#173a2b; --live-ink:#0d2219; --paper-line:#6a5f4c; --paper-ink:#a89a83; }
+  nav.strategy-tabs a{ max-width:100%; flex-wrap:wrap; row-gap:3px; }
+  nav.strategy-tabs a.live{ border:2px solid var(--live); padding:8px 15px; }
+  nav.strategy-tabs a.paper{ border:1px dashed var(--paper-line); }
+  nav.strategy-tabs a.live:hover, nav.strategy-tabs a.paper:hover{ border-color:var(--accent); }
+  nav.strategy-tabs a.live[aria-current="page"]{ border-color:var(--live); box-shadow:0 0 0 2px var(--live-soft), var(--shadow); }
+  nav.strategy-tabs a.paper[aria-current="page"]{ border-color:var(--accent-ink); }
+  .lp-badge{ display:inline-flex; align-items:center; gap:5px; font-size:11px; font-weight:700; line-height:1; padding:3px 7px; border-radius:999px; white-space:nowrap; flex:none; }
+  .lp-badge.live{ background:var(--live); color:var(--live-ink); }
+  .lp-badge.paper{ background:transparent; color:var(--paper-ink); border:1px dashed var(--paper-line); font-weight:600; }
+  [aria-current="page"] .lp-badge.paper{ color:inherit; border-color:currentColor; }
+  .lp-dot{ width:6px; height:6px; border-radius:50%; background:currentColor; position:relative; flex:none; }
+  .lp-dot::after{ content:""; position:absolute; inset:-4px; border-radius:50%; border:1.5px solid currentColor; animation: lp-pulse 2.4s ease-out infinite; }
+  @keyframes lp-pulse{ 0%{ transform:scale(.4); opacity:.9; } 100%{ transform:scale(1.8); opacity:0; } }
+  .mode-legend{ font-size:12.5px; color:var(--ink-soft); margin:-16px 0 26px; display:flex; flex-wrap:wrap; align-items:center; gap:6px; }
+  .lp-key{ display:inline-block; padding:1px 9px; border-radius:999px; font-size:12px; font-weight:600; }
+  .lp-key.live{ border:2px solid var(--live); color:var(--live); }
+  .lp-key.paper{ border:1px dashed var(--paper-line); color:var(--paper-ink); }
+  .brand .tag.tag-live{ border:2px solid var(--live); color:var(--live); font-weight:600; display:inline-flex; align-items:center; gap:6px; }
+  .brand .tag.tag-paper{ border:1px dashed var(--paper-line); color:var(--paper-ink); }
   .tab-panel > section{ margin-bottom:40px; }
   .paper-note{ font-size:13px; color:var(--ink-soft); background:var(--bg-raised); border:1px solid var(--line); border-radius:var(--radius); padding:12px 16px; margin:0 0 28px; }
   .paper-note a{ color:var(--accent); }
@@ -434,29 +459,30 @@
     <div class="brand">
       <span class="mark">⚖️</span>
       <div><h1>롱숏 모멘텀+캐리</h1><a class="lab" href="/">허박사의 코인 전략 연구소 · Dr. Hur's Coin Strategy Lab</a></div>
-      <span class="tag" id="ls-tag">PAPER TRADING</span>
+      <span class="tag tag-live" id="ls-tag"><i class="lp-dot"></i>LIVE · 실전</span>
     </div>
     <div class="snapshot-meta">카페24 봇이 15분마다 올리는 데이터<br><span id="page-updated">매일 09:05 KST 판단</span></div>
   </header>
 
   <nav class="strategy-tabs" aria-label="페이지">
     <a href="/">🏠 전체 대시보드</a>
-    <a href="/kimchi">🌶️ 김치프리미엄 <span class="sub">빗썸 × Binance · 실전</span></a>
-    <a href="/turtle">🐢 터틀 트레이딩 <span class="sub">빗썸 원화</span></a>
-    <a href="/luna">🌙 제2의 루나를 찾아라 <span class="sub">바이낸스 선물</span></a>
-    <a href="/ls" aria-current="page">⚖️ 롱숏 모멘텀+캐리 <span class="sub">바이낸스 선물</span></a>
-    <a href="/core">🧭 BTC 추세 코어 <span class="sub">업비트 원화</span></a>
-    <a href="/usdt">💵 USDT 웃돈 <span class="sub">빗썸 원화</span></a>
-    <a href="/top3">🔝 주간 Top3 <span class="sub">바이낸스 현물</span></a>
-    <a href="/listing">📉 상장 공매도 <span class="sub">바이낸스 선물</span></a>
-    <a href="/mix">💰 백만장자 배분 <span class="sub">세 전략 섞기</span></a>
-    <a href="/kimlab">🧪 김프 실험실 <span class="sub">김프 봇 변형 7개</span></a>
-    <a href="/carry">💸 펀딩 캐리 <span class="sub">바이낸스 · 검토 중</span></a>
+    <a href="/kimchi" class="live">🌶️ 김치프리미엄 <span class="sub">빗썸 × Binance · 실전</span> <span class="lp-badge live"><i class="lp-dot"></i>실전</span></a>
+    <a href="/ls" class="live" aria-current="page">⚖️ 롱숏 모멘텀+캐리 <span class="sub">바이낸스 선물 · 실전</span> <span class="lp-badge live"><i class="lp-dot"></i>실전</span></a>
+    <a href="/turtle" class="paper">🐢 터틀 트레이딩 <span class="sub">빗썸 원화</span> <span class="lp-badge paper">가상</span></a>
+    <a href="/luna" class="paper">🌙 제2의 루나를 찾아라 <span class="sub">바이낸스 선물</span> <span class="lp-badge paper">가상</span></a>
+    <a href="/core" class="paper">🧭 BTC 추세 코어 <span class="sub">업비트 원화</span> <span class="lp-badge paper">가상</span></a>
+    <a href="/usdt" class="paper">💵 USDT 웃돈 <span class="sub">빗썸 원화</span> <span class="lp-badge paper">가상</span></a>
+    <a href="/top3" class="paper">🔝 주간 Top3 <span class="sub">바이낸스 현물</span> <span class="lp-badge paper">가상</span></a>
+    <a href="/listing" class="paper">📉 상장 공매도 <span class="sub">바이낸스 선물</span> <span class="lp-badge paper">가상</span></a>
+    <a href="/mix" class="paper">💰 백만장자 배분 <span class="sub">세 전략 섞기</span> <span class="lp-badge paper">가상</span></a>
+    <a href="/kimlab" class="paper">🧪 김프 실험실 <span class="sub">김프 봇 변형 7개</span> <span class="lp-badge paper">가상</span></a>
+    <a href="/carry" class="paper">💸 펀딩 캐리 <span class="sub">바이낸스 · 검토 중</span> <span class="lp-badge paper">가상</span></a>
   </nav>
+  <p class="mode-legend"><span class="lp-key live">실선</span> = 실전 (실제 돈) · <span class="lp-key paper">점선</span> = 가상 (페이퍼)</p>
 
 <div class="tab-panel" id="tab-ls">
   <section id="live-sec" aria-labelledby="live-h">
-    <div class="live-head"><h2 id="live-h" style="margin:0">실전 · Binance 서브계정 futures02</h2><span class="mode-badge paper" id="lv-mode"><i class="pulse"></i>페이퍼</span></div>
+    <div class="live-head"><h2 id="live-h" style="margin:0">실전 (실제 돈) · Binance 서브계정 futures02 · 2026-10-18 23:44 KST 시작</h2><span class="mode-badge paper" id="lv-mode"><i class="pulse"></i>확인 중</span></div>
     <p class="paper-status" id="lv-status">실전 데이터를 불러오는 중…</p>
     <div class="tiles" aria-label="실전 요약">
       <div class="tile"><div class="label">실전 시드</div><div class="value" id="lv-seed">$4,000</div><div class="sub" id="lv-seed-sub">USDT-M 선물 지갑</div></div>
@@ -733,8 +759,8 @@
   function renderLive(d){
     var mode = d.mode, acct = d.account || {}, rk = d.risk || {}, lim = rk.limits || {}, seed = d.seedUsd || 4000;
     var badge = $('lv-mode');
-    if (mode === 'live') { badge.className = 'mode-badge live'; badge.innerHTML = '<i class="pulse"></i>실제 운영 중'; $('ls-tag').textContent = 'LIVE TRADING'; }
-    else { badge.className = 'mode-badge dry'; badge.innerHTML = '<i class="pulse"></i>모의 주문 · 실제 주문 없음'; $('ls-tag').textContent = 'PAPER · 실전 모의 주문 중'; }
+    if (mode === 'live') { badge.className = 'mode-badge live'; badge.innerHTML = '<i class="pulse"></i>실제 운영 중'; $('ls-tag').className = 'tag tag-live'; $('ls-tag').innerHTML = '<i class="lp-dot"></i>LIVE · 실전'; }
+    else { badge.className = 'mode-badge dry'; badge.innerHTML = '<i class="pulse"></i>모의 주문 · 실제 주문 없음'; $('ls-tag').className = 'tag tag-paper'; $('ls-tag').textContent = 'PAPER · 실전 모의 주문 중'; }
     var age = (Date.now() - new Date(d.updatedAt).getTime()) / 60000;
     $('lv-status').textContent = '실전 데이터 갱신 ' + kst(d.updatedAt) + ' KST (' + (age < 1 ? '방금' : Math.round(age) + '분 전') + ')' + (age > 60 ? ' · ⚠️ 한 시간 넘게 갱신이 없습니다' : '') +
       (mode === 'live' ? '' : d.keys ? ' · futures02 키 연결됨 — 실제 잔고 기준으로 «낼 주문»만 계산합니다' : ' · futures02 키가 아직 없어 시드 $4,000·빈 계정 기준으로 «낼 주문»만 계산합니다');

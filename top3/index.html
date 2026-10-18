@@ -392,6 +392,31 @@
   nav.strategy-tabs a:focus-visible{ outline:2px solid var(--accent); outline-offset:2px; }
   nav.strategy-tabs a[aria-current="page"]{ background:var(--accent); color:var(--accent-ink); border-color:var(--accent); }
   nav.strategy-tabs .sub{ font-weight:400; font-size:12px; opacity:.8; }
+  /* ---------- 실전 / 가상 구분 (실선 = 실전, 점선 = 가상) ---------- */
+  :root{ --live:#07875a; --live-soft:#d5efe2; --live-ink:#ffffff; --paper-line:#b2a68f; --paper-ink:#7d725f; }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){ --live:#3fd99a; --live-soft:#173a2b; --live-ink:#0d2219; --paper-line:#6a5f4c; --paper-ink:#a89a83; }
+  }
+  :root[data-theme="dark"]{ --live:#3fd99a; --live-soft:#173a2b; --live-ink:#0d2219; --paper-line:#6a5f4c; --paper-ink:#a89a83; }
+  nav.strategy-tabs a{ max-width:100%; flex-wrap:wrap; row-gap:3px; }
+  nav.strategy-tabs a.live{ border:2px solid var(--live); padding:8px 15px; }
+  nav.strategy-tabs a.paper{ border:1px dashed var(--paper-line); }
+  nav.strategy-tabs a.live:hover, nav.strategy-tabs a.paper:hover{ border-color:var(--accent); }
+  nav.strategy-tabs a.live[aria-current="page"]{ border-color:var(--live); box-shadow:0 0 0 2px var(--live-soft), var(--shadow); }
+  nav.strategy-tabs a.paper[aria-current="page"]{ border-color:var(--accent-ink); }
+  .lp-badge{ display:inline-flex; align-items:center; gap:5px; font-size:11px; font-weight:700; line-height:1; padding:3px 7px; border-radius:999px; white-space:nowrap; flex:none; }
+  .lp-badge.live{ background:var(--live); color:var(--live-ink); }
+  .lp-badge.paper{ background:transparent; color:var(--paper-ink); border:1px dashed var(--paper-line); font-weight:600; }
+  [aria-current="page"] .lp-badge.paper{ color:inherit; border-color:currentColor; }
+  .lp-dot{ width:6px; height:6px; border-radius:50%; background:currentColor; position:relative; flex:none; }
+  .lp-dot::after{ content:""; position:absolute; inset:-4px; border-radius:50%; border:1.5px solid currentColor; animation: lp-pulse 2.4s ease-out infinite; }
+  @keyframes lp-pulse{ 0%{ transform:scale(.4); opacity:.9; } 100%{ transform:scale(1.8); opacity:0; } }
+  .mode-legend{ font-size:12.5px; color:var(--ink-soft); margin:-16px 0 26px; display:flex; flex-wrap:wrap; align-items:center; gap:6px; }
+  .lp-key{ display:inline-block; padding:1px 9px; border-radius:999px; font-size:12px; font-weight:600; }
+  .lp-key.live{ border:2px solid var(--live); color:var(--live); }
+  .lp-key.paper{ border:1px dashed var(--paper-line); color:var(--paper-ink); }
+  .brand .tag.tag-live{ border:2px solid var(--live); color:var(--live); font-weight:600; display:inline-flex; align-items:center; gap:6px; }
+  .brand .tag.tag-paper{ border:1px dashed var(--paper-line); color:var(--paper-ink); }
   .tab-panel > section{ margin-bottom:40px; }
   .paper-note{ font-size:13px; color:var(--ink-soft); background:var(--bg-raised); border:1px solid var(--line); border-radius:var(--radius); padding:12px 16px; margin:0 0 28px; }
   .paper-note a{ color:var(--accent); }
@@ -430,25 +455,26 @@
     <div class="brand">
       <span class="mark">🔝</span>
       <div><h1>주간 Top3</h1><a class="lab" href="/">허박사의 코인 전략 연구소 · Dr. Hur's Coin Strategy Lab</a></div>
-      <span class="tag">PAPER TRADING</span>
+      <span class="tag tag-paper">PAPER · 가상</span>
     </div>
     <div class="snapshot-meta">카페24 봇이 15분마다 올리는 데이터<br><span id="page-updated">매일 09:03 KST 판단</span></div>
   </header>
 
   <nav class="strategy-tabs" aria-label="페이지">
     <a href="/">🏠 전체 대시보드</a>
-    <a href="/kimchi">🌶️ 김치프리미엄 <span class="sub">빗썸 × Binance · 실전</span></a>
-    <a href="/turtle">🐢 터틀 트레이딩 <span class="sub">빗썸 원화</span></a>
-    <a href="/luna">🌙 제2의 루나를 찾아라 <span class="sub">바이낸스 선물</span></a>
-    <a href="/ls">⚖️ 롱숏 모멘텀+캐리 <span class="sub">바이낸스 선물</span></a>
-    <a href="/core">🧭 BTC 추세 코어 <span class="sub">업비트 원화</span></a>
-    <a href="/usdt">💵 USDT 웃돈 <span class="sub">빗썸 원화</span></a>
-    <a href="/top3" aria-current="page">🔝 주간 Top3 <span class="sub">바이낸스 현물</span></a>
-    <a href="/listing">📉 상장 공매도 <span class="sub">바이낸스 선물</span></a>
-    <a href="/mix">💰 백만장자 배분 <span class="sub">세 전략 섞기</span></a>
-    <a href="/kimlab">🧪 김프 실험실 <span class="sub">김프 봇 변형 7개</span></a>
-    <a href="/carry">💸 펀딩 캐리 <span class="sub">바이낸스 · 검토 중</span></a>
+    <a href="/kimchi" class="live">🌶️ 김치프리미엄 <span class="sub">빗썸 × Binance · 실전</span> <span class="lp-badge live"><i class="lp-dot"></i>실전</span></a>
+    <a href="/ls" class="live">⚖️ 롱숏 모멘텀+캐리 <span class="sub">바이낸스 선물 · 실전</span> <span class="lp-badge live"><i class="lp-dot"></i>실전</span></a>
+    <a href="/turtle" class="paper">🐢 터틀 트레이딩 <span class="sub">빗썸 원화</span> <span class="lp-badge paper">가상</span></a>
+    <a href="/luna" class="paper">🌙 제2의 루나를 찾아라 <span class="sub">바이낸스 선물</span> <span class="lp-badge paper">가상</span></a>
+    <a href="/core" class="paper">🧭 BTC 추세 코어 <span class="sub">업비트 원화</span> <span class="lp-badge paper">가상</span></a>
+    <a href="/usdt" class="paper">💵 USDT 웃돈 <span class="sub">빗썸 원화</span> <span class="lp-badge paper">가상</span></a>
+    <a href="/top3" class="paper" aria-current="page">🔝 주간 Top3 <span class="sub">바이낸스 현물</span> <span class="lp-badge paper">가상</span></a>
+    <a href="/listing" class="paper">📉 상장 공매도 <span class="sub">바이낸스 선물</span> <span class="lp-badge paper">가상</span></a>
+    <a href="/mix" class="paper">💰 백만장자 배분 <span class="sub">세 전략 섞기</span> <span class="lp-badge paper">가상</span></a>
+    <a href="/kimlab" class="paper">🧪 김프 실험실 <span class="sub">김프 봇 변형 7개</span> <span class="lp-badge paper">가상</span></a>
+    <a href="/carry" class="paper">💸 펀딩 캐리 <span class="sub">바이낸스 · 검토 중</span> <span class="lp-badge paper">가상</span></a>
   </nav>
+  <p class="mode-legend"><span class="lp-key live">실선</span> = 실전 (실제 돈) · <span class="lp-key paper">점선</span> = 가상 (페이퍼)</p>
 
 <div class="tab-panel" id="tab-top3">
   <p class="paper-note">🔝 <strong>주간 Top3 페이퍼</strong> — «지난주 가장 많이 오른 코인을 사서 들고 있다가 갈아탄다»는 단기 모멘텀 전략입니다. 연구에서 원 규칙(7일 상위 3개, 1주 보유)은 BTC 120일선 하나를 이기지 못했고, 사전 기준을 통과한 유일한 변형 <b>T1</b>(시총 상위 20 중 14일 수익 1위 한 종목, BTC 120일선 아래면 현금)을 검증합니다. 실제 돈은 오가지 않습니다. 근거: <a href="https://claude.ai/artifact/1AQPW8rLHa3hqi5CmK6KJu" target="_blank" rel="noopener">주간 Top3 연구 보고서</a></p>

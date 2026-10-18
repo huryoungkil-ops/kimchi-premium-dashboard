@@ -392,6 +392,31 @@
   nav.strategy-tabs a:focus-visible{ outline:2px solid var(--accent); outline-offset:2px; }
   nav.strategy-tabs a[aria-current="page"]{ background:var(--accent); color:var(--accent-ink); border-color:var(--accent); }
   nav.strategy-tabs .sub{ font-weight:400; font-size:12px; opacity:.8; }
+  /* ---------- 실전 / 가상 구분 (실선 = 실전, 점선 = 가상) ---------- */
+  :root{ --live:#07875a; --live-soft:#d5efe2; --live-ink:#ffffff; --paper-line:#b2a68f; --paper-ink:#7d725f; }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){ --live:#3fd99a; --live-soft:#173a2b; --live-ink:#0d2219; --paper-line:#6a5f4c; --paper-ink:#a89a83; }
+  }
+  :root[data-theme="dark"]{ --live:#3fd99a; --live-soft:#173a2b; --live-ink:#0d2219; --paper-line:#6a5f4c; --paper-ink:#a89a83; }
+  nav.strategy-tabs a{ max-width:100%; flex-wrap:wrap; row-gap:3px; }
+  nav.strategy-tabs a.live{ border:2px solid var(--live); padding:8px 15px; }
+  nav.strategy-tabs a.paper{ border:1px dashed var(--paper-line); }
+  nav.strategy-tabs a.live:hover, nav.strategy-tabs a.paper:hover{ border-color:var(--accent); }
+  nav.strategy-tabs a.live[aria-current="page"]{ border-color:var(--live); box-shadow:0 0 0 2px var(--live-soft), var(--shadow); }
+  nav.strategy-tabs a.paper[aria-current="page"]{ border-color:var(--accent-ink); }
+  .lp-badge{ display:inline-flex; align-items:center; gap:5px; font-size:11px; font-weight:700; line-height:1; padding:3px 7px; border-radius:999px; white-space:nowrap; flex:none; }
+  .lp-badge.live{ background:var(--live); color:var(--live-ink); }
+  .lp-badge.paper{ background:transparent; color:var(--paper-ink); border:1px dashed var(--paper-line); font-weight:600; }
+  [aria-current="page"] .lp-badge.paper{ color:inherit; border-color:currentColor; }
+  .lp-dot{ width:6px; height:6px; border-radius:50%; background:currentColor; position:relative; flex:none; }
+  .lp-dot::after{ content:""; position:absolute; inset:-4px; border-radius:50%; border:1.5px solid currentColor; animation: lp-pulse 2.4s ease-out infinite; }
+  @keyframes lp-pulse{ 0%{ transform:scale(.4); opacity:.9; } 100%{ transform:scale(1.8); opacity:0; } }
+  .mode-legend{ font-size:12.5px; color:var(--ink-soft); margin:-16px 0 26px; display:flex; flex-wrap:wrap; align-items:center; gap:6px; }
+  .lp-key{ display:inline-block; padding:1px 9px; border-radius:999px; font-size:12px; font-weight:600; }
+  .lp-key.live{ border:2px solid var(--live); color:var(--live); }
+  .lp-key.paper{ border:1px dashed var(--paper-line); color:var(--paper-ink); }
+  .brand .tag.tag-live{ border:2px solid var(--live); color:var(--live); font-weight:600; display:inline-flex; align-items:center; gap:6px; }
+  .brand .tag.tag-paper{ border:1px dashed var(--paper-line); color:var(--paper-ink); }
   .tab-panel > section{ margin-bottom:40px; }
   .paper-note{ font-size:13px; color:var(--ink-soft); background:var(--bg-raised); border:1px solid var(--line); border-radius:var(--radius); padding:12px 16px; margin:0 0 28px; }
   .paper-note a{ color:var(--accent); }
@@ -418,9 +443,31 @@
   .lab-title{font-family:var(--font-display)}
   .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px;margin:8px 0 28px}
   @media (max-width:640px){.cards{grid-template-columns:minmax(0,1fr)}}
-  #h-best{font-size:22px;line-height:1.3}
   .card-s{display:flex;flex-direction:column;gap:6px;background:var(--bg-raised);border:1px solid var(--line);border-radius:14px;padding:18px 20px;text-decoration:none;color:inherit;transition:border-color .15s, transform .15s}
   .card-s:hover{border-color:var(--accent);transform:translateY(-1px)}
+  .zone{border-radius:var(--radius);padding:20px 20px 4px;margin-bottom:36px}
+  .zone.live{border:2px solid var(--live);background:color-mix(in srgb, var(--live-soft) 35%, transparent)}
+  .zone.paper{border:1px dashed var(--paper-line)}
+  .zone-head{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;margin-bottom:4px}
+  .zone-head h2{margin:0}
+  .zone .tiles{margin-bottom:20px}
+  .zone .tile .value.best{font-size:18px;line-height:1.35;font-family:var(--font-body)}
+  .health-line{font-size:13px;color:var(--ink-soft);margin:-8px 0 22px}
+  .health-line #h-health{font-weight:600;color:var(--ink)}
+  tr.grp th{text-align:left;font-size:13px;padding:10px 14px;background:var(--bg)}
+  tr.grp.live th{color:var(--live);border-top:2px solid var(--live);border-bottom:2px solid var(--live)}
+  tr.grp.paper th{color:var(--paper-ink);border-top:1px dashed var(--paper-line);border-bottom:1px dashed var(--paper-line)}
+  @media (max-width:640px){.zone{padding:14px 12px 2px} .zone .tiles{grid-template-columns:repeat(2,minmax(0,1fr))} .zone .tile{padding:14px 12px} .zone .tile .value{font-size:19px;overflow-wrap:anywhere} .zone .tile .value.best{font-size:15px}}
+  .card-s.live{border:2px solid var(--live);padding:17px 19px}
+  .card-s.paper{border:1px dashed var(--paper-line)}
+  .card-s.live:hover,.card-s.paper:hover{border-color:var(--accent)}
+  .card-s .nm .lp-badge{margin-left:6px;vertical-align:2px}
+  .tile.live{border:2px solid var(--live)}
+  .tile.paper{border:1px dashed var(--paper-line)}
+  .tile .label .lp-badge{margin-left:4px;letter-spacing:0;text-transform:none;vertical-align:1px}
+  tr.live > td:first-child{border-left:2px solid var(--live)}
+  tr.paper > td:first-child{border-left:1px dashed var(--paper-line)}
+  td .lp-badge{margin-left:4px;vertical-align:1px}
   .card-s:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
   .card-s .top{display:flex;justify-content:space-between;align-items:baseline;gap:8px}
   .card-s .nm{font-weight:700;font-size:17px}
@@ -443,44 +490,59 @@
   <header class="top">
     <div class="brand">
       <span class="mark">🧪</span>
-      <div><h1>허박사의 코인 전략 연구소</h1><span class="lab">Dr. Hur's Coin Strategy Lab · 10개 전략 한눈에 (실전 1 · 페이퍼 9)</span></div>
-      <span class="tag">PAPER TRADING</span>
+      <div><h1>허박사의 코인 전략 연구소</h1><span class="lab">Dr. Hur's Coin Strategy Lab · 전략 11개 한눈에 (실전 2 · 가상 9)</span></div>
+      <span class="tag tag-live"><i class="lp-dot"></i>실전 2 · 가상 9</span>
     </div>
     <div class="snapshot-meta" id="h-meta">불러오는 중…</div>
   </header>
 
   <nav class="strategy-tabs" aria-label="페이지">
     <a href="/" aria-current="page">🏠 전체 대시보드</a>
-    <a href="/kimchi">🌶️ 김치프리미엄 <span class="sub">빗썸 × Binance · 실전</span></a>
-    <a href="/turtle">🐢 터틀 트레이딩 <span class="sub">빗썸 원화</span></a>
-    <a href="/luna">🌙 제2의 루나를 찾아라 <span class="sub">바이낸스 선물</span></a>
-    <a href="/ls">⚖️ 롱숏 모멘텀+캐리 <span class="sub">바이낸스 선물</span></a>
-    <a href="/core">🧭 BTC 추세 코어 <span class="sub">업비트 원화</span></a>
-    <a href="/usdt">💵 USDT 웃돈 <span class="sub">빗썸 원화</span></a>
-    <a href="/top3">🔝 주간 Top3 <span class="sub">바이낸스 현물</span></a>
-    <a href="/listing">📉 상장 공매도 <span class="sub">바이낸스 선물</span></a>
-    <a href="/mix">💰 백만장자 배분 <span class="sub">세 전략 섞기</span></a>
-    <a href="/kimlab">🧪 김프 실험실 <span class="sub">김프 봇 변형 7개</span></a>
-    <a href="/carry">💸 펀딩 캐리 <span class="sub">바이낸스 · 검토 중</span></a>
+    <a href="/kimchi" class="live">🌶️ 김치프리미엄 <span class="sub">빗썸 × Binance · 실전</span> <span class="lp-badge live"><i class="lp-dot"></i>실전</span></a>
+    <a href="/ls" class="live">⚖️ 롱숏 모멘텀+캐리 <span class="sub">바이낸스 선물 · 실전</span> <span class="lp-badge live"><i class="lp-dot"></i>실전</span></a>
+    <a href="/turtle" class="paper">🐢 터틀 트레이딩 <span class="sub">빗썸 원화</span> <span class="lp-badge paper">가상</span></a>
+    <a href="/luna" class="paper">🌙 제2의 루나를 찾아라 <span class="sub">바이낸스 선물</span> <span class="lp-badge paper">가상</span></a>
+    <a href="/core" class="paper">🧭 BTC 추세 코어 <span class="sub">업비트 원화</span> <span class="lp-badge paper">가상</span></a>
+    <a href="/usdt" class="paper">💵 USDT 웃돈 <span class="sub">빗썸 원화</span> <span class="lp-badge paper">가상</span></a>
+    <a href="/top3" class="paper">🔝 주간 Top3 <span class="sub">바이낸스 현물</span> <span class="lp-badge paper">가상</span></a>
+    <a href="/listing" class="paper">📉 상장 공매도 <span class="sub">바이낸스 선물</span> <span class="lp-badge paper">가상</span></a>
+    <a href="/mix" class="paper">💰 백만장자 배분 <span class="sub">세 전략 섞기</span> <span class="lp-badge paper">가상</span></a>
+    <a href="/kimlab" class="paper">🧪 김프 실험실 <span class="sub">김프 봇 변형 7개</span> <span class="lp-badge paper">가상</span></a>
+    <a href="/carry" class="paper">💸 펀딩 캐리 <span class="sub">바이낸스 · 검토 중</span> <span class="lp-badge paper">가상</span></a>
   </nav>
+  <p class="mode-legend"><span class="lp-key live">실선</span> = 실전 (실제 돈) · <span class="lp-key paper">점선</span> = 가상 (페이퍼)</p>
 
-  <p class="paper-note">🧪 <strong>아홉 가지 전략을 나란히 기록하는 연구실입니다. 페이퍼 전략 8개는 각각 가상 시드 $10,000로 돌립니다(백만장자 배분은 다른 세 페이퍼의 수익을 섞은 합성 장부).</strong> 실제 돈은 오가지 않고, 카페24 서버의 봇들이 5~15분마다 기록을 올립니다. 카드를 누르면 전략별 상세 페이지로 갑니다. <strong>단, 김치프리미엄은 2026-10-15부터 실제 자금(빗썸 × Binance)으로 거래합니다.</strong> 투자 권유가 아닙니다.</p>
+  <p class="paper-note">🧪 <strong>실전 2개와 가상(페이퍼) 전략을 나란히 기록하는 연구실입니다.</strong> <strong>실전(실선 테두리):</strong> 김치프리미엄 — 2026-10-15부터 빗썸 × Binance 실제 자금, 롱숏 모멘텀+캐리 — 2026-10-18 23:44 KST부터 Binance futures02 실제 자금(시드 $4,000). <strong>가상(점선 테두리):</strong> 나머지 전략은 각각 가상 시드 $10,000로 돌리며 실제 돈은 오가지 않습니다(백만장자 배분은 다른 세 페이퍼의 수익을 섞은 합성 장부, 김프 실험실 BASE는 실전 김프와 같은 시드 $20,156의 가상 장부). 카페24 서버의 봇들이 5~15분마다 기록을 올리고, 카드를 누르면 전략별 상세 페이지로 갑니다. 투자 권유가 아닙니다.</p>
 
-  <section class="tiles" aria-label="전체 요약">
-    <div class="tile"><div class="label">시드 합계</div><div class="value" id="h-seed">$120,313</div><div class="sub" id="h-seed-sub">페이퍼 8개 × $10,000 + 김치프리미엄 실전 약 $20,156 + 김프 실험실 BASE 장부 $20,156</div></div>
-    <div class="tile"><div class="label">현재 합계</div><div class="value" id="h-total">—</div><div class="sub" id="h-total-sub">—</div></div>
-    <div class="tile"><div class="label">가장 좋은 전략</div><div class="value" id="h-best">—</div><div class="sub" id="h-best-sub">—</div></div>
-    <div class="tile"><div class="label">봇 상태</div><div class="value" id="h-health">—</div><div class="sub" id="h-health-sub">—</div></div>
+  <p class="health-line" id="h-health-line">봇 상태 <span id="h-health">—</span> <span id="h-health-sub"></span></p>
+
+  <section class="zone live" aria-labelledby="z-live-h">
+    <div class="zone-head"><h2 id="z-live-h">실전 운영</h2><span class="lp-badge live"><i class="lp-dot"></i>실전 · 실제 돈</span></div>
+    <p class="section-sub">실제 자금으로 거래하는 전략만 따로 합산합니다. 김치프리미엄 — 2026-10-15부터 빗썸 × Binance, 롱숏 모멘텀+캐리 — 2026-10-18 23:44 KST부터 Binance futures02.</p>
+    <div class="tiles" aria-label="실전 합계">
+      <div class="tile"><div class="label">실전 시드</div><div class="value" id="lv-seed">$24,156</div><div class="sub" id="lv-seed-sub">김치프리미엄 $20,156 + 롱숏 $4,000</div></div>
+      <div class="tile"><div class="label">실전 현재 잔액</div><div class="value" id="lv-now">—</div><div class="sub" id="lv-now-sub">—</div></div>
+      <div class="tile"><div class="label">실전 손익</div><div class="value" id="lv-pnl">—</div><div class="sub" id="lv-pct">—</div></div>
+      <div class="tile"><div class="label">실전 중 가장 좋은 전략</div><div class="value best" id="lv-best">—</div><div class="sub" id="lv-best-sub">—</div></div>
+    </div>
+    <div class="cards" id="h-cards-live"></div>
   </section>
 
-  <section>
-    <h2>전략별 현황</h2>
-    <p class="section-sub">잔액은 각 봇의 가장 최근 기록 기준입니다. 미니 그래프는 하루 단위 잔액 추이, 최대낙폭은 기록 시작 이후 고점 대비 가장 크게 빠진 폭입니다.</p>
-    <div class="cards" id="h-cards"></div>
+  <section class="zone paper" aria-labelledby="z-paper-h">
+    <div class="zone-head"><h2 id="z-paper-h">가상 운영(페이퍼)</h2><span class="lp-badge paper">가상 · 실제 돈 없음</span></div>
+    <p class="section-sub">실제 돈이 오가지 않는 페이퍼 장부만 따로 합산합니다. 각각 가상 시드 $10,000(김프 실험실 BASE는 $20,156, 백만장자 배분은 세 페이퍼를 섞은 합성 장부). 미니 그래프는 하루 단위 잔액 추이, 최대낙폭은 기록 시작 이후 고점 대비 가장 크게 빠진 폭입니다.</p>
+    <div class="tiles" aria-label="가상 합계">
+      <div class="tile"><div class="label">가상 시드</div><div class="value" id="pp-seed">$100,156</div><div class="sub" id="pp-seed-sub">페이퍼 8개 × $10,000 + 김프 실험실 BASE $20,156</div></div>
+      <div class="tile"><div class="label">가상 현재 잔액</div><div class="value" id="pp-now">—</div><div class="sub" id="pp-now-sub">—</div></div>
+      <div class="tile"><div class="label">가상 손익</div><div class="value" id="pp-pnl">—</div><div class="sub" id="pp-pct">—</div></div>
+      <div class="tile"><div class="label">가상 중 가장 좋은 전략</div><div class="value best" id="pp-best">—</div><div class="sub" id="pp-best-sub">—</div></div>
+    </div>
+    <div class="cards" id="h-cards-paper"></div>
   </section>
 
   <section>
     <h2>한 표로 비교</h2>
+    <p class="section-sub">실전과 가상은 따로 묶었습니다. 두 묶음을 더한 총합은 보여주지 않습니다.</p>
     <div class="table-scroll"><table class="coins paper">
       <thead><tr><th>전략</th><th>거래소</th><th>시작</th><th class="num">현재 잔액</th><th class="num">수익률</th><th class="num">최대낙폭</th><th class="num">보유</th><th class="num">청산 거래</th><th class="num">승률</th><th>상태</th></tr></thead>
       <tbody id="h-table"><tr><td class="empty-row" colspan="10">불러오는 중…</td></tr></tbody>
@@ -493,16 +555,16 @@
     <div class="table-scroll"><table class="coins paper">
       <thead><tr><th>전략</th><th>무엇에 거나</th><th>백테스트 근거</th></tr></thead>
       <tbody>
-        <tr><td>🌶️ <a href="/kimchi">김치프리미엄</a></td><td>코빗 현물 롱 + 해외 선물 숏. 김프가 평소보다 크게 낮아졌다가 돌아오는 것 (코인 시세 방향과 무관)</td><td>호가·슬리피지 반영 연 4.7% 수준</td></tr>
-        <tr><td>🐢 <a href="/turtle">터틀 트레이딩</a></td><td>빗썸 BTC·ETH가 20일·55일 신고가를 넘으면 따라 사고, 신저가를 깨면 나옴 (+ BTC 120일선 비교)</td><td>바이낸스 BTC·ETH 일봉 백테스트(2020-01~2025-09) 샤프 1.22, 최대낙폭 −28%</td></tr>
-        <tr><td>🌙 <a href="/luna">제2의 루나를 찾아라</a></td><td>무너지기 시작한 코인을 선물로 숏 + 절반은 BTC 120일선 롱</td><td>50:50 샤프 1.19, 최대낙폭 −17.2%</td></tr>
-        <tr><td>🧭 <a href="/core">BTC 추세 코어</a></td><td>바이낸스 BTC가 120일 평균 위면 업비트에서 BTC 보유, 아래면 원화 현금 (큰 하락 회피)</td><td>처음 보는 2012~2017년 샤프 1.93, 최대낙폭 −70% (보유 1.83, −85%)</td></tr>
-        <tr><td>💵 <a href="/usdt">USDT 웃돈 한 다리</a></td><td>한국 거래소 USDT 웃돈이 평소보다 많이 낮으면 USDT, 평균으로 돌아오면 원화 (김프의 정체를 직접 거래)</td><td>테스트 2025-07~2026-10 연 +8.7%, 샤프 1.45, 최대낙폭 −3.4% (비용에 매우 민감)</td></tr>
-        <tr><td>🔝 <a href="/top3">주간 Top3</a></td><td>시총 상위 20개 중 최근 14일 가장 많이 오른 코인 1개를 들고 있다가 1위가 바뀌면 갈아탐, BTC가 120일 평균 아래면 현금 (단기 모멘텀)</td><td>테스트 2023-01~2026-09 연 +118%, 샤프 1.28, 최대낙폭 −75% — BTC 120일선 코어보다 낫다는 증거는 없음. 원 규칙(7일 상위 3개)은 샤프 0.84</td></tr>
-        <tr><td>📉 <a href="/listing">상장 공매도</a></td><td>빗썸·업비트 원화 상장 공지 24시간 뒤 바이낸스 선물로 그 코인을 조금(2.5%) 숏, 7·14일 뒤 갚음 (상장 직후 들뜬 가격이 내려오는 것)</td><td>빗썸 14일: 테스트 2025-01~2026-10 평균 +10.3%, 승률 76% — 하지만 2023~24년엔 효과 없음, 결과를 보고 고른 변형. 사전 등록한 업비트 7일은 실패. 숏의 약 4%는 가격 2배(그 몫 전액 손실)</td></tr>
-        <tr><td>⚖️ <a href="/ls">롱숏 모멘텀+캐리</a></td><td>최근 2주 오르고 펀딩이 싼 코인 롱, 내리고 펀딩이 비싼 코인 숏 (시장중립)</td><td>샤프 1.86, 최대낙폭 −22.8% (실전 기대치는 절반 이하)</td></tr>
-        <tr><td>💰 <a href="/mix">백만장자 배분</a></td><td>새 매매 없이 롱숏 60% · BTC 추세 코어 25%(현금일 땐 USDT 웃돈) · 주간 Top3 15%의 하루 수익을 섞고 매달 비율을 되돌림, 레버리지 없음 (서로 다르게 움직이는 전략 섞기)</td><td>테스트 2023-01~2026-09 연 +79%, 샤프 2.23, 최대낙폭 −21.6%, 홀드아웃 +53% — 결과를 본 뒤 정한 비율이고 롱숏의 깨끗한 검증은 12개월뿐. 보수 가정 10년 연 +21~41%. 고정 2~3배 레버리지는 10년 안 −80% 확률 78~99%로 탈락</td></tr>
-        <tr><td>🧪 <a href="/kimlab">김프 실험실</a></td><td>실전 김프 봇 규칙 그대로(BASE)와, 물타기 한 번·청산선 +0.75σ·펀딩 반영·놀고 있는 원화로 USDT 웃돈·업비트 추가·모두 합침 여섯 변형을 같은 시세로 나란히 (실전에 넣을 개선안 고르기)</td><td>검증 2024-01~2026-10 기준 대비: USDT 웃돈 월 +$71, 업비트 +$32, 펀딩 +$13, 물타기 2.8년 +$533·청산선 +$425 — 둘은 결과를 본 뒤 고른 사후 관찰이고 물타기 이익은 INJ 한 사건에 몰림. 미리 정한 물타기 설계는 실패</td></tr>
+        <tr class="live"><td>🌶️ <a href="/kimchi">김치프리미엄</a> <span class="lp-badge live"><i class="lp-dot"></i>실전</span></td><td>코빗 현물 롱 + 해외 선물 숏. 김프가 평소보다 크게 낮아졌다가 돌아오는 것 (코인 시세 방향과 무관)</td><td>호가·슬리피지 반영 연 4.7% 수준</td></tr>
+        <tr class="live"><td>⚖️ <a href="/ls">롱숏 모멘텀+캐리</a> <span class="lp-badge live"><i class="lp-dot"></i>실전</span></td><td>최근 2주 오르고 펀딩이 싼 코인 롱, 내리고 펀딩이 비싼 코인 숏 (시장중립)</td><td>샤프 1.86, 최대낙폭 −22.8% (실전 기대치는 절반 이하)</td></tr>
+        <tr class="paper"><td>🐢 <a href="/turtle">터틀 트레이딩</a> <span class="lp-badge paper">가상</span></td><td>빗썸 BTC·ETH가 20일·55일 신고가를 넘으면 따라 사고, 신저가를 깨면 나옴 (+ BTC 120일선 비교)</td><td>바이낸스 BTC·ETH 일봉 백테스트(2020-01~2025-09) 샤프 1.22, 최대낙폭 −28%</td></tr>
+        <tr class="paper"><td>🌙 <a href="/luna">제2의 루나를 찾아라</a> <span class="lp-badge paper">가상</span></td><td>무너지기 시작한 코인을 선물로 숏 + 절반은 BTC 120일선 롱</td><td>50:50 샤프 1.19, 최대낙폭 −17.2%</td></tr>
+        <tr class="paper"><td>🧭 <a href="/core">BTC 추세 코어</a> <span class="lp-badge paper">가상</span></td><td>바이낸스 BTC가 120일 평균 위면 업비트에서 BTC 보유, 아래면 원화 현금 (큰 하락 회피)</td><td>처음 보는 2012~2017년 샤프 1.93, 최대낙폭 −70% (보유 1.83, −85%)</td></tr>
+        <tr class="paper"><td>💵 <a href="/usdt">USDT 웃돈 한 다리</a> <span class="lp-badge paper">가상</span></td><td>한국 거래소 USDT 웃돈이 평소보다 많이 낮으면 USDT, 평균으로 돌아오면 원화 (김프의 정체를 직접 거래)</td><td>테스트 2025-07~2026-10 연 +8.7%, 샤프 1.45, 최대낙폭 −3.4% (비용에 매우 민감)</td></tr>
+        <tr class="paper"><td>🔝 <a href="/top3">주간 Top3</a> <span class="lp-badge paper">가상</span></td><td>시총 상위 20개 중 최근 14일 가장 많이 오른 코인 1개를 들고 있다가 1위가 바뀌면 갈아탐, BTC가 120일 평균 아래면 현금 (단기 모멘텀)</td><td>테스트 2023-01~2026-09 연 +118%, 샤프 1.28, 최대낙폭 −75% — BTC 120일선 코어보다 낫다는 증거는 없음. 원 규칙(7일 상위 3개)은 샤프 0.84</td></tr>
+        <tr class="paper"><td>📉 <a href="/listing">상장 공매도</a> <span class="lp-badge paper">가상</span></td><td>빗썸·업비트 원화 상장 공지 24시간 뒤 바이낸스 선물로 그 코인을 조금(2.5%) 숏, 7·14일 뒤 갚음 (상장 직후 들뜬 가격이 내려오는 것)</td><td>빗썸 14일: 테스트 2025-01~2026-10 평균 +10.3%, 승률 76% — 하지만 2023~24년엔 효과 없음, 결과를 보고 고른 변형. 사전 등록한 업비트 7일은 실패. 숏의 약 4%는 가격 2배(그 몫 전액 손실)</td></tr>
+        <tr class="paper"><td>💰 <a href="/mix">백만장자 배분</a> <span class="lp-badge paper">가상</span></td><td>새 매매 없이 롱숏 60% · BTC 추세 코어 25%(현금일 땐 USDT 웃돈) · 주간 Top3 15%의 하루 수익을 섞고 매달 비율을 되돌림, 레버리지 없음 (서로 다르게 움직이는 전략 섞기)</td><td>테스트 2023-01~2026-09 연 +79%, 샤프 2.23, 최대낙폭 −21.6%, 홀드아웃 +53% — 결과를 본 뒤 정한 비율이고 롱숏의 깨끗한 검증은 12개월뿐. 보수 가정 10년 연 +21~41%. 고정 2~3배 레버리지는 10년 안 −80% 확률 78~99%로 탈락</td></tr>
+        <tr class="paper"><td>🧪 <a href="/kimlab">김프 실험실</a> <span class="lp-badge paper">가상</span></td><td>실전 김프 봇 규칙 그대로(BASE)와, 물타기 한 번·청산선 +0.75σ·펀딩 반영·놀고 있는 원화로 USDT 웃돈·업비트 추가·모두 합침 여섯 변형을 같은 시세로 나란히 (실전에 넣을 개선안 고르기)</td><td>검증 2024-01~2026-10 기준 대비: USDT 웃돈 월 +$71, 업비트 +$32, 펀딩 +$13, 물타기 2.8년 +$533·청산선 +$425 — 둘은 결과를 본 뒤 고른 사후 관찰이고 물타기 이익은 INJ 한 사건에 몰림. 미리 정한 물타기 설계는 실패</td></tr>
       </tbody>
     </table></div>
   </section>
@@ -522,7 +584,7 @@
   </section>
 
   <footer>
-    <p><strong>실제 자금이 오가지 않는 페이퍼 트레이딩 기록입니다.</strong> 투자 권유가 아닙니다. 데이터는 카페24 서버의 봇이 GitHub에 올리고(김프 5분, 나머지 15분), 이 페이지는 열 때마다 그 값을 읽습니다.</p>
+    <p><strong>실선 테두리의 김치프리미엄·롱숏 모멘텀+캐리는 실제 자금으로 거래하고, 점선 테두리의 나머지는 실제 자금이 오가지 않는 페이퍼(가상) 기록입니다.</strong> 투자 권유가 아닙니다. 데이터는 카페24 서버의 봇이 GitHub에 올리고(김프 5분, 나머지 15분), 이 페이지는 열 때마다 그 값을 읽습니다.</p>
   </footer>
 
 </div>
@@ -544,6 +606,7 @@
   var kst = function(iso){ if (!iso) return '—'; var d = new Date(new Date(iso).getTime() + 9 * 3600e3); return d.toISOString().slice(5, 16).replace('T', ' '); };
   var get = function(p){ return fetch(RAW + p + '?t=' + Math.floor(Date.now() / 120000), { cache: 'no-store' }).then(function(r){ if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); }); };
 
+  var modeBadge = function(s){ return s.live ? ' <span class="lp-badge live"><i class="lp-dot"></i>실전</span>' : ' <span class="lp-badge paper">가상</span>'; };
   function mdd(vals){ var peak = -Infinity, m = 0; vals.forEach(function(v){ if (v > peak) peak = v; if (peak > 0) m = Math.min(m, v / peak - 1); }); return m; }
   var ddTxt = function(v){ return v > -0.00005 ? '0.00%' : pct(v); };
   function spark(vals){
@@ -563,7 +626,7 @@
 
   // ---- 전략별로 «현재 잔액·추이·보유·청산» 뽑기 ----
   var S = [
-    { key: 'kimchi', emoji: '🌶️', name: '김치프리미엄 · 실전', ex: '빗썸 × Binance', file: 'paper-kimchi/kimchi.json', limit: 15, parse: function(d){
+    { key: 'kimchi', live: true, emoji: '🌶️', name: '김치프리미엄 · 실전', ex: '빗썸 × Binance', file: 'paper-kimchi/kimchi.json', limit: 15, parse: function(d){
         var SEED = d.seedUsd || 10000;   // 2026-10-15 실전: 빗썸 원화 + Binance USDT 실제 입금액 (봇이 같이 올린다)
         var tr = (d.trades || []).filter(function(t){ return t.status === 'CLOSED'; }).sort(function(a, b){ return (a.exitTime || '') < (b.exitTime || '') ? -1 : 1; });
         var byDay = {}, cum = 0; tr.forEach(function(t){ cum += t.netProfit || 0; byDay[(t.exitTime || '').slice(0, 10)] = SEED + cum; });
@@ -571,7 +634,22 @@
         var live = d.live || {}, now = SEED + ((d.stats || {}).pnl || 0) + (live.totalUnrealized || 0);
         series.unshift(SEED); series.push(now);
         var first = (d.trades || []).map(function(t){ return t.entryTime; }).filter(Boolean).sort()[0];
-        return { now: now, series: series, open: (d.stats || {}).open, closed: tr.length, wins: tr.filter(function(t){ return t.netProfit > 0; }).length, start: first, updatedAt: d.updatedAt, seed: SEED };
+        return { now: now, series: series, open: (d.stats || {}).open, closed: tr.length, wins: tr.filter(function(t){ return t.netProfit > 0; }).length, start: first, updatedAt: d.updatedAt, seed: SEED, seedFromBot: !!d.seedUsd };
+    } },
+    // 롱숏 실전 (Binance futures02, 시드 $4,000) — 실제 운영 중(mode live)일 때만 카드·표·합계에 넣는다. 모의 주문 중이면 페이퍼 롱숏 카드에 상태만 붙인다.
+    { key: 'lslive', href: '/ls', liveOnly: true, live: true, emoji: '⚖️', name: '롱숏 모멘텀+캐리 · 실전', ex: 'Binance futures02', file: 'paper-ls-live/ls-live.json', limit: 30, parse: function(d){
+        var seed = d.seedUsd || 4000, acct = d.account || {}, now = d.perf != null ? d.perf : acct.equity;
+        var series = [seed].concat((d.equity || []).map(function(e){ return e.perf != null ? e.perf : e.equity; }), now != null ? [now] : []);
+        var ord = (d.orders || []).filter(function(o){ return o.status === 'FILLED' && o.reduceOnly; });
+        return { now: now, series: series, open: (d.positions || []).length, closed: ord.length, wins: 0, noWinRate: true, start: (d.equity || [])[0] && d.equity[0].day + 'T09:06:00+09:00', updatedAt: d.updatedAt, seed: seed, mode: d.mode };
+    } },
+    { key: 'ls', emoji: '⚖️', name: '롱숏 모멘텀+캐리', ex: '바이낸스 선물', file: 'paper-ls/ls.json', limit: 30, parse: function(d){
+        var st = d.state || {}, now = st.live && st.live.equity != null ? st.live.equity : st.equity;
+        var eq = (d.equity || []).filter(function(e){ return e.strategy === 'ls'; }).map(function(e){ return e.equity; });
+        var series = [st.seed || SEED].concat(eq, now != null ? [now] : []);
+        var cl = (d.trades || []).filter(function(t){ return t.status === 'CLOSED'; });
+        var bh = (d.equity || []).filter(function(e){ return e.strategy === 'btc_hold'; });
+        return { now: now, series: series, open: Object.keys(st.net || {}).length, closed: cl.length, wins: cl.filter(function(t){ return t.pnl > 0; }).length, start: st.createdAt, updatedAt: d.updatedAt, seed: st.seed || SEED, btcHold: bh.length ? bh[bh.length - 1].equity : null };
     } },
     { key: 'turtle', emoji: '🐢', name: '터틀 트레이딩', ex: '빗썸 원화', file: 'paper-turtle/turtle.json', limit: 30, parse: function(d){
         var st = d.state || {}, eq = (d.equity || []).filter(function(e){ return e.strategy === 'turtle'; });
@@ -631,59 +709,70 @@
         var series = [seed].concat((d.series || []).map(function(r){ return r[1].BASE; }).filter(function(v){ return v != null; }), now != null ? [now] : []);
         return { now: now, series: series, open: (B.open || []).length, closed: B.closed || 0, wins: B.wins || 0, start: d.startedAt, updatedAt: d.updatedAt, seed: seed };
     } },
-    { key: 'ls', emoji: '⚖️', name: '롱숏 모멘텀+캐리', ex: '바이낸스 선물', file: 'paper-ls/ls.json', limit: 30, parse: function(d){
-        var st = d.state || {}, now = st.live && st.live.equity != null ? st.live.equity : st.equity;
-        var eq = (d.equity || []).filter(function(e){ return e.strategy === 'ls'; }).map(function(e){ return e.equity; });
-        var series = [st.seed || SEED].concat(eq, now != null ? [now] : []);
-        var cl = (d.trades || []).filter(function(t){ return t.status === 'CLOSED'; });
-        var bh = (d.equity || []).filter(function(e){ return e.strategy === 'btc_hold'; });
-        return { now: now, series: series, open: Object.keys(st.net || {}).length, closed: cl.length, wins: cl.filter(function(t){ return t.pnl > 0; }).length, start: st.createdAt, updatedAt: d.updatedAt, seed: st.seed || SEED, btcHold: bh.length ? bh[bh.length - 1].equity : null };
-    } },
-    // 롱숏 실전 (Binance futures02, 시드 $4,000) — 실제 운영 중(mode live)일 때만 카드·표·합계에 넣는다. 모의 주문 중이면 페이퍼 롱숏 카드에 상태만 붙인다.
-    { key: 'lslive', href: '/ls', liveOnly: true, emoji: '⚖️', name: '롱숏 모멘텀+캐리 · 실전', ex: 'Binance futures02', file: 'paper-ls-live/ls-live.json', limit: 30, parse: function(d){
-        var seed = d.seedUsd || 4000, acct = d.account || {}, now = d.perf != null ? d.perf : acct.equity;
-        var series = [seed].concat((d.equity || []).map(function(e){ return e.perf != null ? e.perf : e.equity; }), now != null ? [now] : []);
-        var ord = (d.orders || []).filter(function(o){ return o.status === 'FILLED' && o.reduceOnly; });
-        return { now: now, series: series, open: (d.positions || []).length, closed: ord.length, wins: 0, noWinRate: true, start: (d.equity || [])[0] && d.equity[0].day + 'T09:06:00+09:00', updatedAt: d.updatedAt, seed: seed, mode: d.mode };
-    } },
   ];
 
-  Promise.all(S.map(function(s){ return get(s.file).then(function(d){ s.r = s.parse(d); }).catch(function(e){ s.err = e.message; }); })).then(function(){
-    // 롱숏 실전: 실제 운영 중이 아니면 목록에서 빼고, 페이퍼 롱숏 카드 이름에 실전 준비 상태만 붙인다
+  var cfgSeed = null;   // 김프 실전 시드: ledger/config.json (봇과 같은 값)
+  var jobs = S.map(function(s){ return get(s.file).then(function(d){ s.r = s.parse(d); }).catch(function(e){ s.err = e.message; }); });
+  jobs.push(fetch('/ledger/config.json', { cache: 'no-store' }).then(function(r){ return r.ok ? r.json() : null; }).then(function(c){ if (c && c.seedUsd) cfgSeed = Number(c.seedUsd); }).catch(function(){}));
+  Promise.all(jobs).then(function(){
     var lsl = S.filter(function(x){ return x.key === 'lslive'; })[0], lsp = S.filter(function(x){ return x.key === 'ls'; })[0];
+    var kim = S.filter(function(x){ return x.key === 'kimchi'; })[0];
+    if (kim && kim.r && !kim.r.seedFromBot && cfgSeed) kim.r.seed = cfgSeed;
     var lsLive = !!(lsl && lsl.r && lsl.r.mode === 'live');
-    if (!lsLive) { S = S.filter(function(x){ return !x.liveOnly; }); if (lsl && lsl.r && lsp) lsp.name = '롱숏 모멘텀+캐리 · 페이퍼 (실전 모의 주문 중)'; }
-    else if (lsp) lsp.name = '롱숏 모멘텀+캐리 · 비교용 페이퍼';
-    if (lsLive) { $('h-seed').textContent = '$124,313'; $('h-seed-sub').textContent = '페이퍼 8개 × $10,000 + 김치프리미엄 실전 약 $20,156 + 김프 실험실 BASE 장부 $20,156 + 롱숏 실전 $4,000'; }
-    else if (lsl && lsl.r) $('h-seed-sub').textContent += ' (롱숏 실전 $4,000은 실제 운영 시작 뒤 합산)';
-    var ok = S.filter(function(s){ return s.r && isFinite(s.r.now); });
-    var total = ok.reduce(function(t, s){ return t + s.r.now; }, 0), seedTot = ok.reduce(function(t, s){ return t + (s.r.seed || SEED); }, 0);
-    $('h-total').textContent = usd(total); $('h-total-sub').innerHTML = '<span class="' + cls(total - seedTot) + '">' + pct(total / seedTot - 1) + ' (' + usd(total - seedTot) + ')</span>' + (ok.length < S.length ? ' · ' + (S.length - ok.length) + '개 전략 데이터 없음' : '');
-    var best = ok.slice().sort(function(a, b){ return b.r.now / (b.r.seed || SEED) - a.r.now / (a.r.seed || SEED); })[0];
-    if (best) { $('h-best').textContent = best.emoji + ' ' + best.name; $('h-best-sub').textContent = pct(best.r.now / (best.r.seed || SEED) - 1); }
-    var hs = S.map(function(s){ return s.r ? health(s.r.updatedAt, s.limit) : { cls: 'bad', txt: '불러오기 실패' }; });
-    var bad = hs.filter(function(x){ return x.cls !== 'ok'; }).length;
-    $('h-health').innerHTML = '<span class="dot ' + (bad ? (hs.some(function(x){ return x.cls === 'bad'; }) ? 'bad' : 'warn') : 'ok') + '"></span>' + (S.length - bad) + ' / ' + S.length + ' 정상';
-    $('h-health-sub').textContent = bad ? S.filter(function(s, i){ return hs[i].cls !== 'ok'; }).map(function(s, i){ return s.name; }).join(', ') + ' 확인 필요' : '모든 봇이 제때 기록을 올리는 중';
+    // 롱숏 실전이 아직 모의 주문이면 카드는 실전 칸에 두되 실전 합계에서는 뺀다
+    if (lsl && lsl.r && !lsLive) { lsl.name = '롱숏 모멘텀+캐리 · 실전 (모의 주문 중)'; lsl.noSum = true; }
+    if (lsp) lsp.name = '롱숏 모멘텀+캐리 · 비교용 페이퍼';
+    var LIVE = S.filter(function(s){ return s.live; }), PAPER = S.filter(function(s){ return !s.live; });
+    var ok = function(s){ return s.r && isFinite(s.r.now); };
+    var short = function(s){ return s.name.split(' · ')[0]; };
+
+    // 실전·가상을 각자 합산 — 두 묶음을 섞은 총합은 만들지 않는다
+    function sum(list, px){
+      var g = list.filter(function(s){ return ok(s) && !s.noSum; }), miss = list.filter(function(s){ return !ok(s); }).length;
+      var now = g.reduce(function(t, s){ return t + s.r.now; }, 0), seed = g.reduce(function(t, s){ return t + (s.r.seed || SEED); }, 0);
+      if (!g.length) { $(px + '-now').textContent = '—'; $(px + '-now-sub').textContent = '데이터 없음'; return; }
+      $(px + '-seed').textContent = usd(seed, 0);
+      if (px === 'lv') $(px + '-seed-sub').textContent = g.map(function(s){ return short(s) + ' ' + usd(s.r.seed || SEED, 0); }).join(' + ') + (list.some(function(s){ return s.noSum; }) ? ' (롱숏 실전은 실제 운영 확인 뒤 합산)' : '');
+      else $(px + '-seed-sub').textContent = g.length + '개 장부 시드 합계';
+      $(px + '-now').textContent = usd(now);
+      $(px + '-now-sub').textContent = g.length + '개 합계' + (miss ? ' · ' + miss + '개 데이터 없음' : '');
+      $(px + '-pnl').textContent = usd(now - seed); $(px + '-pnl').className = 'value ' + cls(now - seed);
+      $(px + '-pct').innerHTML = '<span class="' + cls(now - seed) + '">' + pct(now / seed - 1) + '</span> · 시드 ' + usd(seed, 0) + ' 대비';
+      var best = g.slice().sort(function(a, b){ return b.r.now / (b.r.seed || SEED) - a.r.now / (a.r.seed || SEED); })[0];
+      $(px + '-best').textContent = best.emoji + ' ' + short(best) + (best.key === 'ls' ? ' (페이퍼)' : '');
+      $(px + '-best-sub').innerHTML = '<span class="' + cls(best.r.now - (best.r.seed || SEED)) + '">' + pct(best.r.now / (best.r.seed || SEED) - 1) + '</span>';
+    }
+    sum(LIVE, 'lv'); sum(PAPER, 'pp');
+
+    var hs = {}; S.forEach(function(s){ hs[s.key] = s.r ? health(s.r.updatedAt, s.limit) : { cls: 'bad', txt: '불러오기 실패' }; });
+    var badL = S.filter(function(s){ return hs[s.key].cls !== 'ok'; });
+    $('h-health').innerHTML = '<span class="dot ' + (badL.length ? (badL.some(function(s){ return hs[s.key].cls === 'bad'; }) ? 'bad' : 'warn') : 'ok') + '"></span>' + (S.length - badL.length) + ' / ' + S.length + ' 정상';
+    $('h-health-sub').textContent = badL.length ? '· ' + badL.map(function(s){ return s.name; }).join(', ') + ' 확인 필요' : '· 모든 봇이 제때 기록을 올리는 중';
     $('h-meta').innerHTML = '최근 확인 <strong>' + kst(new Date().toISOString()) + ' KST</strong><br>각 봇 데이터는 열 때마다 새로 읽습니다';
 
-    $('h-cards').innerHTML = S.map(function(s, i){
-      if (!s.r) return '<a class="card-s" href="' + (s.href || '/' + s.key) + '"><div class="top"><span class="nm">' + s.emoji + ' ' + esc(s.name) + '</span><span class="ex">' + esc(s.ex) + '</span></div><div>데이터를 불러오지 못했습니다 (' + esc(s.err) + ')</div><span class="go">상세 페이지 →</span></a>';
+    function card(s){
+      var h = hs[s.key], mode = s.live ? 'live' : 'paper', href = s.href || '/' + s.key;
+      if (!s.r) return '<a class="card-s ' + mode + '" href="' + href + '"><div class="top"><span class="nm">' + s.emoji + ' ' + esc(s.name) + modeBadge(s) + '</span><span class="ex">' + esc(s.ex) + '</span></div><div>데이터를 불러오지 못했습니다 (' + esc(s.err) + ')</div><span class="go">상세 페이지 →</span></a>';
       var r = s.r, seed = r.seed || SEED, ret = r.now / seed - 1, dd = mdd(r.series);
-      return '<a class="card-s" href="' + (s.href || '/' + s.key) + '">' +
-        '<div class="top"><span class="nm">' + s.emoji + ' ' + esc(s.name) + '</span><span class="ex">' + esc(s.ex) + '</span></div>' +
+      return '<a class="card-s ' + mode + '" href="' + href + '">' +
+        '<div class="top"><span class="nm">' + s.emoji + ' ' + esc(s.name) + modeBadge(s) + '</span><span class="ex">' + esc(s.ex) + '</span></div>' +
         '<div class="eq">' + usd(r.now) + '</div>' +
-        '<div class="ret ' + cls(ret) + '">' + pct(ret) + ' · ' + usd(r.now - seed) + '</div>' +
+        '<div class="ret ' + cls(ret) + '">' + pct(ret) + ' · ' + usd(r.now - seed) + ' <span style="color:var(--ink-soft)">(시드 ' + usd(seed, 0) + ')</span></div>' +
         spark(r.series) +
-        '<div class="meta"><span>최대낙폭</span><b>' + ddTxt(dd) + '</b><span>보유</span><b>' + (r.open == null ? '—' : r.open + '건') + '</b><span>청산</span><b>' + r.closed + '건' + (r.closed && !r.noWinRate ? ' · 승률 ' + (r.wins / r.closed * 100).toFixed(0) + '%' : '') + '</b><span>상태</span><b><span class="dot ' + hs[i].cls + '"></span>' + hs[i].txt + '</b></div>' +
+        '<div class="meta"><span>최대낙폭</span><b>' + ddTxt(dd) + '</b><span>보유</span><b>' + (r.open == null ? '—' : r.open + '건') + '</b><span>청산</span><b>' + r.closed + '건' + (r.closed && !r.noWinRate ? ' · 승률 ' + (r.wins / r.closed * 100).toFixed(0) + '%' : '') + '</b><span>상태</span><b><span class="dot ' + h.cls + '"></span>' + h.txt + '</b></div>' +
         '<span class="go">상세 페이지 →</span></a>';
-    }).join('');
+    }
+    $('h-cards-live').innerHTML = LIVE.map(card).join('');
+    $('h-cards-paper').innerHTML = PAPER.map(card).join('');
 
-    $('h-table').innerHTML = S.map(function(s, i){
-      if (!s.r) return '<tr><td>' + s.emoji + ' <a href="' + (s.href || '/' + s.key) + '">' + esc(s.name) + '</a></td><td>' + esc(s.ex) + '</td><td colspan="8">데이터 없음</td></tr>';
+    function row(s){
+      var h = hs[s.key], mode = s.live ? 'live' : 'paper', href = s.href || '/' + s.key;
+      if (!s.r) return '<tr class="' + mode + '"><td>' + s.emoji + ' <a href="' + href + '">' + esc(s.name) + '</a>' + modeBadge(s) + '</td><td>' + esc(s.ex) + '</td><td colspan="8">데이터 없음</td></tr>';
       var r = s.r, seed = r.seed || SEED, ret = r.now / seed - 1;
-      return '<tr><td>' + s.emoji + ' <a href="' + (s.href || '/' + s.key) + '">' + esc(s.name) + '</a></td><td>' + esc(s.ex) + '</td><td>' + (r.start ? kst(r.start).slice(0, 5) : '—') + '</td><td class="num">' + usd(r.now) + '</td><td class="num ' + cls(ret) + '">' + pct(ret) + '</td><td class="num">' + ddTxt(mdd(r.series)) + '</td><td class="num">' + (r.open == null ? '—' : r.open) + '</td><td class="num">' + r.closed + '</td><td class="num">' + (r.closed && !r.noWinRate ? (r.wins / r.closed * 100).toFixed(0) + '%' : '—') + '</td><td><span class="dot ' + hs[i].cls + '"></span>' + hs[i].txt + '</td></tr>';
-    }).join('');
+      return '<tr class="' + mode + '"><td>' + s.emoji + ' <a href="' + href + '">' + esc(s.name) + '</a>' + modeBadge(s) + '</td><td>' + esc(s.ex) + '</td><td>' + (r.start ? kst(r.start).slice(0, 5) : '—') + '</td><td class="num">' + usd(r.now) + '</td><td class="num ' + cls(ret) + '">' + pct(ret) + '</td><td class="num">' + ddTxt(mdd(r.series)) + '</td><td class="num">' + (r.open == null ? '—' : r.open) + '</td><td class="num">' + r.closed + '</td><td class="num">' + (r.closed && !r.noWinRate ? (r.wins / r.closed * 100).toFixed(0) + '%' : '—') + '</td><td><span class="dot ' + h.cls + '"></span>' + h.txt + '</td></tr>';
+    }
+    $('h-table').innerHTML = '<tr class="grp live"><th colspan="10">● 실전 운영 (실제 돈)</th></tr>' + LIVE.map(row).join('') +
+      '<tr class="grp paper"><th colspan="10">가상 운영(페이퍼)</th></tr>' + PAPER.map(row).join('');
     var ls = S.filter(function(x){ return x.key === 'ls'; })[0].r;
     if (ls && ls.btcHold != null) $('h-btc').textContent = '참고: 롱숏 봇 시작일(' + (ls.start ? kst(ls.start).slice(0, 5) : '—') + ')에 BTC를 $10,000어치 그냥 들고 있었다면 지금 ' + usd(ls.btcHold) + ' (' + pct(ls.btcHold / SEED - 1) + ').';
   });
