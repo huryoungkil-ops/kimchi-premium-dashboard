@@ -405,6 +405,21 @@
   .equity-chart svg{ display:block; width:100%; height:auto; }
   .equity-chart text{ fill:var(--ink-soft); font-family:var(--font-mono); font-size:11px; }
   .rule-list{ margin:0; padding-left:18px; font-size:13.5px; line-height:1.7; }
+  /* ---------- 실전(ls-live) ---------- */
+  .live-head{ display:flex; flex-wrap:wrap; align-items:center; gap:8px 12px; margin:0 0 6px; }
+  .mode-badge{ display:inline-flex; align-items:center; gap:7px; font-size:13px; font-weight:700; padding:5px 12px; border-radius:999px; }
+  .mode-badge.live{ background:var(--good-soft); color:var(--good); }
+  .mode-badge.dry{ background:var(--watch-soft); color:var(--watch); }
+  .mode-badge.paper{ background:var(--line-soft); color:var(--ink-soft); }
+  .mode-badge .pulse{ width:7px; height:7px; border-radius:50%; background:currentColor; position:relative; flex:none; }
+  .mode-badge.live .pulse::after{ content:""; position:absolute; inset:-5px; border-radius:50%; border:1.5px solid currentColor; animation: pulse-ring 2.4s ease-out infinite; }
+  .risk-list{ display:flex; flex-wrap:wrap; gap:8px; margin:0 0 14px; padding:0; list-style:none; }
+  .risk-list li{ font-size:12.5px; border:1px solid var(--line); background:var(--bg-raised); border-radius:999px; padding:4px 11px; }
+  .risk-list li.bad{ border-color:var(--danger); color:var(--danger); }
+  .risk-list li.warn{ border-color:var(--watch); color:var(--watch); }
+  .live-note{ font-size:12.5px; color:var(--ink-soft); margin:10px 2px 0; line-height:1.6; }
+  .paper-divider{ border-top:2px dashed var(--line); margin:44px 0 22px; padding-top:18px; }
+  .paper-divider h2{ color:var(--ink-soft); }
 </style>
 <style id="site-css">
   .brand .lab{font-size:13px;color:var(--ink-soft);letter-spacing:.02em;display:block;margin-top:2px}
@@ -419,7 +434,7 @@
     <div class="brand">
       <span class="mark">⚖️</span>
       <div><h1>롱숏 모멘텀+캐리</h1><a class="lab" href="/">허박사의 코인 전략 연구소 · Dr. Hur's Coin Strategy Lab</a></div>
-      <span class="tag">PAPER TRADING</span>
+      <span class="tag" id="ls-tag">PAPER TRADING</span>
     </div>
     <div class="snapshot-meta">카페24 봇이 15분마다 올리는 데이터<br><span id="page-updated">매일 09:05 KST 판단</span></div>
   </header>
@@ -440,7 +455,34 @@
   </nav>
 
 <div class="tab-panel" id="tab-ls">
-  <p class="paper-note">⚖️ <strong>롱숏 모멘텀+캐리 페이퍼</strong> — 바이낸스 USDT-M 선물. 매주 «최근 2주 오르고 펀딩이 싼 코인 6개»를 롱, «최근 2주 내리고 펀딩이 비싼 코인 6개»를 숏합니다. 롱과 숏을 같은 금액으로 잡아 시장 전체 방향과는 거의 무관합니다. 실제 돈은 오가지 않습니다. 근거: <a href="https://claude.ai/artifact/V1CMBrjBiqr7YvW2NaKKiY" target="_blank" rel="noopener">롱숏 전략 리포트</a></p>
+  <section id="live-sec" aria-labelledby="live-h">
+    <div class="live-head"><h2 id="live-h" style="margin:0">실전 · Binance 서브계정 futures02</h2><span class="mode-badge paper" id="lv-mode"><i class="pulse"></i>페이퍼</span></div>
+    <p class="paper-status" id="lv-status">실전 데이터를 불러오는 중…</p>
+    <div class="tiles" aria-label="실전 요약">
+      <div class="tile"><div class="label">실전 시드</div><div class="value" id="lv-seed">$4,000</div><div class="sub" id="lv-seed-sub">USDT-M 선물 지갑</div></div>
+      <div class="tile"><div class="label">자기자본</div><div class="value" id="lv-eq">—</div><div class="sub" id="lv-eq-sub">—</div></div>
+      <div class="tile"><div class="label">오늘 손익 · 낙폭</div><div class="value" id="lv-dd">—</div><div class="sub" id="lv-dd-sub">—</div></div>
+      <div class="tile"><div class="label">포지션</div><div class="value" id="lv-npos">—</div><div class="sub" id="lv-npos-sub">—</div></div>
+    </div>
+    <ul class="risk-list" id="lv-risk"></ul>
+    <h2 style="font-size:17px">실전 포지션</h2>
+    <p class="section-sub">futures02 계정의 실제 포지션 (마크가격 기준, 5분마다 위험 감시 때 갱신).</p>
+    <div class="table-scroll"><table class="coins paper">
+      <thead><tr><th>종목</th><th>방향</th><th class="num">금액</th><th class="num">진입가</th><th class="num">마크가격</th><th class="num">미실현 손익</th></tr></thead>
+      <tbody id="lv-pos"></tbody>
+    </table></div>
+    <h2 style="font-size:17px;margin-top:26px" id="lv-plan-h">오늘 주문</h2>
+    <p class="section-sub" id="lv-plan-sub">—</p>
+    <div class="table-scroll"><table class="coins paper">
+      <thead><tr><th>종목</th><th>주문</th><th class="num">금액</th><th class="num">수량</th><th>결과</th></tr></thead>
+      <tbody id="lv-plan"></tbody>
+    </table></div>
+    <p class="live-note" id="lv-skip"></p>
+    <p class="live-note">규칙: 페이퍼 하위 책 7개를 합친 목표 비중 × 실전 자기자본 − 지금 포지션만큼 매일 09:06 KST 이후 시장가 주문(줄이기·청산은 reduceOnly, 교차 마진·레버리지 2배). 목표가 거래소 최소 주문 미만인 코인은 건너뛰고, 자기자본이 커지면 자동으로 담깁니다. 손절: 숏 +40% · 포지션 손실 > 자기자본 3% · 하루 −6% 전부 정리 · 고점 대비 −20% 전부 정리 후 정지.</p>
+  </section>
+
+  <div class="paper-divider"><h2>비교용 페이퍼 (가상 시드 $10,000)</h2><p class="section-sub" style="margin:0">실전이 따라가는 원본 규칙입니다. 수량 단위·최소 주문액·손절 때문에 실전과 조금 다를 수 있어 나란히 둡니다.</p></div>
+  <p class="paper-note">⚖️ <strong>롱숏 모멘텀+캐리 · 비교용 페이퍼</strong> — 바이낸스 USDT-M 선물. 매주 «최근 2주 오르고 펀딩이 싼 코인 6개»를 롱, «최근 2주 내리고 펀딩이 비싼 코인 6개»를 숏합니다. 롱과 숏을 같은 금액으로 잡아 시장 전체 방향과는 거의 무관합니다. 실제 돈은 오가지 않습니다. 근거: <a href="https://claude.ai/artifact/V1CMBrjBiqr7YvW2NaKKiY" target="_blank" rel="noopener">롱숏 전략 리포트</a></p>
   <p class="paper-status" id="s-status">불러오는 중…</p>
   <section class="tiles" aria-label="롱숏 요약">
     <div class="tile"><div class="label">가상 시드</div><div class="value">$10,000</div><div class="sub" id="s-start">—</div></div>
@@ -544,7 +586,7 @@
 </div><!-- /tab-ls -->
 
   <footer>
-    <p><strong>실제 자금이 오가지 않는 페이퍼 트레이딩 기록입니다.</strong> 투자 권유가 아닙니다. 데이터는 카페24 봇이 GitHub에 15분마다 올리고, 이 페이지는 열 때마다 그 값을 읽습니다.</p>
+    <p><strong>맨 위 «실전» 칸은 실제 운영(또는 실전 전 모의 주문) 기록이고, 그 아래는 실제 자금이 오가지 않는 비교용 페이퍼 기록입니다.</strong> 투자 권유가 아닙니다. 데이터는 카페24 봇이 GitHub에 15분마다 올리고, 이 페이지는 열 때마다 그 값을 읽습니다.</p>
   </footer>
 
 </div>
@@ -686,6 +728,55 @@
       .catch(function(e){ loaded[tab] = false; $({ turtle: 't-status', luna: 'l-status', ls: 's-status' }[tab]).textContent = '봇 데이터를 불러오지 못했습니다 — ' + e.message; });
   }
   load("ls");
+
+  // ---------- 실전(ls-live): 카페24 ls-live 서비스가 15분마다(주문·손절 때는 바로) 올리는 paper-ls-live/ls-live.json ----------
+  function renderLive(d){
+    var mode = d.mode, acct = d.account || {}, rk = d.risk || {}, lim = rk.limits || {}, seed = d.seedUsd || 4000;
+    var badge = $('lv-mode');
+    if (mode === 'live') { badge.className = 'mode-badge live'; badge.innerHTML = '<i class="pulse"></i>실제 운영 중'; $('ls-tag').textContent = 'LIVE TRADING'; }
+    else { badge.className = 'mode-badge dry'; badge.innerHTML = '<i class="pulse"></i>모의 주문 · 실제 주문 없음'; $('ls-tag').textContent = 'PAPER · 실전 모의 주문 중'; }
+    var age = (Date.now() - new Date(d.updatedAt).getTime()) / 60000;
+    $('lv-status').textContent = '실전 데이터 갱신 ' + kst(d.updatedAt) + ' KST (' + (age < 1 ? '방금' : Math.round(age) + '분 전') + ')' + (age > 60 ? ' · ⚠️ 한 시간 넘게 갱신이 없습니다' : '') +
+      (mode === 'live' ? '' : d.keys ? ' · futures02 키 연결됨 — 실제 잔고 기준으로 «낼 주문»만 계산합니다' : ' · futures02 키가 아직 없어 시드 $4,000·빈 계정 기준으로 «낼 주문»만 계산합니다');
+    $('lv-seed').textContent = usd(seed, 0);
+    $('lv-seed-sub').textContent = 'USDT-M 선물 지갑' + (d.netTransfers ? ' · 입출금 ' + usd(d.netTransfers) : '') + (mode === 'live' ? '' : ' · 실제 운영 전');
+    var eq = acct.equity, perf = d.perf != null ? d.perf : eq;
+    $('lv-eq').textContent = usd(eq); $('lv-eq').className = 'value';
+    $('lv-eq-sub').innerHTML = eq == null ? '—' : '<span class="' + cls(perf - seed) + '">' + pct(perf / seed - 1) + ' (' + usd(perf - seed) + ')</span>' + (acct.simulated ? ' · 키 없음 → 시드' : ' · 미실현 ' + usd(acct.upnl));
+    $('lv-dd').textContent = rk.dailyPct != null ? pct(rk.dailyPct) : '—';
+    $('lv-dd-sub').textContent = rk.ddPct != null ? '고점 대비 ' + pct(rk.ddPct) + ' · 한도 하루 −' + (lim.dailyLossPct * 100).toFixed(0) + '% / 낙폭 −' + (lim.maxDdPct * 100).toFixed(0) + '%' : '실제 포지션이 생기면 5분마다 잽니다 (한도 하루 −' + ((lim.dailyLossPct || 0.06) * 100).toFixed(0) + '% · 낙폭 −' + ((lim.maxDdPct || 0.2) * 100).toFixed(0) + '%)';
+    var pos = d.positions || [], L = 0, S = 0; pos.forEach(function(p){ if (p.side === 'long') L += p.notional; else S += p.notional; });
+    $('lv-npos').textContent = pos.length + '종목'; $('lv-npos-sub').textContent = pos.length ? '롱 ' + usd(L, 0) + ' · 숏 ' + usd(S, 0) + (eq ? ' · 총노출 ' + ((L + S) / eq).toFixed(2) + '배' : '') : '아직 실제 포지션 없음';
+    var risk = [];
+    if (d.halt) risk.push(['bad', '🛑 정지: ' + d.halt.reason]);
+    if (d.block) risk.push(['bad', '⛔ 늘리기 막힘: ' + d.block.reason]);
+    if (d.stopFile) risk.push(['bad', '⛔ 비상정지 파일(LS_STOP)']);
+    var pf = d.preflight; if (pf) { (pf.problems || []).forEach(function(x){ risk.push(['bad', '점검: ' + x]); }); (pf.warnings || []).forEach(function(x){ risk.push(['warn', '주의: ' + x]); }); }
+    var ex = Object.keys(d.excluded || {}); if (ex.length) risk.push(['warn', '🧯 손절로 제외 중: ' + ex.map(function(s){ return String(s).replace(/USDT$/, ''); }).join(', ')]);
+    (rk.stops || []).slice(-5).forEach(function(s){ risk.push(['warn', '손절 ' + kst(s.at) + ' ' + String(s.sym).replace(/USDT$/, '') + (s.ok ? '' : ' (실패)')]); });
+    if (!risk.length) risk.push(['', '✅ 막힘·정지·손절 없음']);
+    $('lv-risk').innerHTML = risk.map(function(r){ return '<li class="' + r[0] + '">' + esc(r[1]) + '</li>'; }).join('');
+    $('lv-pos').innerHTML = pos.slice().sort(function(a, b){ return b.notional - a.notional; }).map(function(p){
+      return '<tr><td class="coin">' + esc(p.coin) + '</td><td class="' + (p.side === 'long' ? 'pos' : 'neg') + '">' + (p.side === 'long' ? '롱' : '숏') + '</td><td class="num">' + usd(p.notional) + '</td><td class="num">' + px(p.entry) + '</td><td class="num">' + px(p.mark) + '</td><td class="num ' + cls(p.upnl) + '">' + usd(p.upnl) + (p.notional ? ' (' + pct(p.upnl / p.notional) + ')' : '') + '</td></tr>';
+    }).join('') || empty(6, mode === 'live' ? '보유 포지션이 없습니다.' : '실제 포지션이 없습니다 (모의 주문 중).');
+    var lp = d.lastPlan;
+    if (lp) {
+      var res = {}; (lp.results || []).forEach(function(r){ res[r.sym + r.side + r.kind] = r; });
+      $('lv-plan-h').textContent = (mode === 'live' && !lp.refuse ? '최근 판단 주문 ' : '최근 판단 «낼 주문» (모의) ') + lp.day;
+      $('lv-plan-sub').textContent = '페이퍼 ' + lp.paperDay + ' 판단 기준 · 자기자본 ' + usd(lp.equity) + (lp.simulated ? '(시드)' : '') + ' · 주문 ' + (lp.orders || []).length + '건 · 건너뜀 ' + (lp.skipped || []).length + '개' + (lp.refuse ? ' · 주문 안 함: ' + lp.refuse : '') + (lp.marginNote ? ' · ' + lp.marginNote : '');
+      var KIND = { open: '신규', add: '추가', reduce: '줄임', close: '청산' };
+      $('lv-plan').innerHTML = (lp.orders || []).map(function(o){
+        var r = res[o.sym + o.side + o.kind], long = (o.side === 'BUY') !== !!o.reduceOnly;
+        var out = r ? (r.ok ? '체결 @' + px(r.avgPrice) : '실패: ' + esc(r.error)) : (lp.mode === 'live' && !lp.refuse ? '—' : '모의 (주문 안 냄)');
+        return '<tr><td class="coin">' + esc(String(o.sym).replace(/USDT$/, '')) + '</td><td class="' + (long ? 'pos' : 'neg') + '">' + (long ? '롱' : '숏') + ' ' + (KIND[o.kind] || o.kind) + (o.reduceOnly ? ' · reduceOnly' : '') + '</td><td class="num">' + usd(o.notional) + '</td><td class="num">' + o.qty + '</td><td>' + out + '</td></tr>';
+      }).join('') || empty(5, '이번 판단에서는 낼 주문이 없습니다 (목표와 차이가 작음).');
+      $('lv-skip').textContent = (lp.skipped || []).length ? '⏭️ 최소 주문 미만으로 건너뛴 코인: ' + lp.skipped.map(function(s){ return String(s.sym).replace(/USDT$/, '') + '(' + (s.side === 'long' ? '롱' : '숏') + ' 목표 ' + usd(s.targetNotional) + ' — ' + s.reason + ')'; }).join(', ') + '. 자기자본이 커지면 자동으로 담깁니다.' : '⏭️ 최소 주문 미만으로 건너뛴 코인 없음.';
+    } else { $('lv-plan').innerHTML = empty(5, '첫 판단 전입니다. 매일 09:06 KST 이후 페이퍼 판단을 따라 계산합니다.'); $('lv-plan-sub').textContent = '—'; }
+  }
+  fetch(RAW + 'paper-ls-live/ls-live.json?t=' + Math.floor(Date.now() / 120000), { cache: 'no-store' })
+    .then(function(r){ if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
+    .then(renderLive)
+    .catch(function(e){ $('lv-status').textContent = '실전 데이터가 아직 없습니다 (' + e.message + ') — 실전 서비스가 시작되면 여기에 표시됩니다.'; });
 })();
 </script>
 
