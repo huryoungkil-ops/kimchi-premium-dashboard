@@ -22,6 +22,14 @@ const M0 = Date.parse(FROM + 'T00:00:00Z') / 60000, M1 = Date.parse(TO + 'T00:00
 const fxd = JSON.parse(fs.readFileSync(D('fx.json'))).daily;
 const fxSlot = new Float64Array(S); { let j = 0, last = NaN;
   for (let s = 0; s < S; s++) { const m = M0 + s * 5; while (j < fxd.length && fxd[j][0] + 1440 <= m) { last = fxd[j][1]; j++; } fxSlot[s] = last; } }
+// 환율 (2026-10-19): fxsig=신호용, fxval=평가·체결용. hourly(기본, Yahoo 시간봉 — 끝난 봉의 종가, 주말은 앞값) | daily(옛 봇의 하루 1회 환율)
+const fxH = (() => { const h = JSON.parse(fs.readFileSync(D('fx.json'))).hourly.map(([m, c]) => [Math.floor(m / 60) * 60, c]).sort((a, b) => a[0] - b[0]);
+  const a = new Float64Array(S); let j = 0, last = NaN;
+  for (let s = 0; s < S; s++) { const m = M0 + s * 5; while (j < h.length && h[j][0] + 60 <= m) { last = h[j][1]; j++; } a[s] = isNaN(last) ? fxSlot[s] : last; } return a; })();
+// 2026-10-19 기본값을 바꿨다: 손익은 장부식(원화 다리 = 수량 × (청산가 − 진입가) ÷ 청산 환율 — 환율 착시 없음), 환율은 Yahoo 1시간봉(실전 봇이 감시기로 바꾼 것과 같은 실시간 쪽).
+//   예전 방식은 pnl=old fxsig=daily fxval=daily (원본은 kimchi_bt_old_20261019.js)
+const LEDGER = arg('pnl') !== 'old';
+const fxSig = arg('fxsig') === 'daily' ? fxSlot : fxH, fxVal = arg('fxval') === 'daily' ? fxSlot : fxH;
 
 // ---------- 종목 ----------
 const snap = Object.fromEntries(JSON.parse(fs.readFileSync(D('spread_snapshot.json'))).map(r => [r.coin, r]));
@@ -43,7 +51,7 @@ for (const u of uni) {
   const fund = new Map(); try { for (const [m, r] of JSON.parse(fs.readFileSync(D(`binance/${u.coin}.funding.json`)))) { const s = Math.round((m - M0) / 5); if (s >= 0 && s < S) fund.set(s, r); } } catch (e) {}
   C.push({ coin: u.coin, sp, depth: snap[u.coin].depthKrw || 0, bk, bv, bn, fund, cnt: 0, sum: 0, sum2: 0, vol: 0, prem: new Float32Array(S).fill(NaN) });
 }
-for (const c of C) for (let s = 0; s < S; s++) { const f = fxSlot[s]; if (c.bk[s] > 0 && c.bn[s] > 0 && f > 0) c.prem[s] = (c.bk[s] / f / c.bn[s] - 1) * 100; }
+for (const c of C) for (let s = 0; s < S; s++) { const f = fxSig[s]; if (c.bk[s] > 0 && c.bn[s] > 0 && f > 0) c.prem[s] = (c.bk[s] / f / c.bn[s] - 1) * 100; }
 
 // ---------- USDT 웃돈 z (선택: uz=-1 이면 z < -1 인 동안 김프 진입 안 함). 빗썸 USDT 2023-12~ 만 있음 ----------
 const UZ = arg('uz') != null ? Number(arg('uz')) : null, uzSlot = new Float32Array(S).fill(NaN);
@@ -65,25 +73,25 @@ function sigOf(c, s) {
 }
 function mtm(s) {
   let v = 0;
-  for (const t of open.values()) { const c = t.c, fx = fxSlot[s], bid = c.bk[s] * (1 - c.sp / 100 * SPREAD_MULT), fp = c.bn[s];
-    if (bid > 0 && fp > 0) v += t.q * bid / fx - t.size + t.q * (t.fp - fp) + t.funding; else v += t.lastMtm || 0; }
+  for (const t of open.values()) { const c = t.c, fx = fxVal[s], bid = c.bk[s] * (1 - c.sp / 100 * SPREAD_MULT), fp = c.bn[s];
+    if (bid > 0 && fp > 0) v += (LEDGER ? t.q * (bid - t.ask) / fx : t.q * bid / fx - t.size) + t.q * (t.fp - fp) + t.funding; else v += t.lastMtm || 0; }
   return v;
 }
 for (let s = 0; s < S; s++) {
   // 체결 (지난 판단분)
   for (let k = pendOut.length - 1; k >= 0; k--) if (pendOut[k].at <= s) { const o = pendOut.splice(k, 1)[0], t = open.get(o.coin); if (!t) continue;
-    const c = t.c, fx = fxSlot[s], bid = c.bk[s] * (1 - c.sp / 100 * SPREAD_MULT), fp = c.bn[s];
+    const c = t.c, fx = fxVal[s], bid = c.bk[s] * (1 - c.sp / 100 * SPREAD_MULT), fp = c.bn[s];
     if (!(bid > 0 && fp > 0 && fx > 0) || (FRESH && !(c.bv[s] > 0))) { o.at = s + 1; pendOut.push(o); continue; }
     const fee = t.q * bid / fx * KR_FEE + t.q * fp * BN_FEE;
-    const pnl = t.q * bid / fx - t.size + t.q * (t.fp - fp) + t.funding - t.feeIn - fee;
+    const pnl = (LEDGER ? t.q * (bid - t.ask) / fx : t.q * bid / fx - t.size) + t.q * (t.fp - fp) + t.funding - t.feeIn - fee;
     cash += pnl; open.delete(o.coin); if (pnl < 0) dayLoss += -pnl;
     trades.push({ coin: o.coin, in: t.s, out: s, pnl, ret: pnl / t.size, reason: o.reason, funding: t.funding, fees: t.feeIn + fee, size: t.size, ep: t.entryPrem, xp: (bid / fx / fp - 1) * 100 }); }
   for (let k = pendIn.length - 1; k >= 0; k--) if (pendIn[k].at <= s) { const e = pendIn.splice(k, 1)[0], c = e.c;
     if (open.has(c.coin) || open.size >= MAXPOS) continue;
-    const fx = fxSlot[s], ask = c.bk[s] * (1 + c.sp / 100 * SPREAD_MULT), fp = c.bn[s];
+    const fx = fxVal[s], fxs = fxSig[s], ask = c.bk[s] * (1 + c.sp / 100 * SPREAD_MULT), fp = c.bn[s];
     if (!(ask > 0 && fp > 0 && fx > 0) || (FRESH && !(c.bv[s] > 0))) continue;
     const q = e.size * fx / ask, feeIn = e.size * KR_FEE + q * fp * BN_FEE;
-    open.set(c.coin, { c, s, size: e.size, q, fx, fp, ask, entryPrem: (ask / fx / fp - 1) * 100, feeIn, funding: 0 }); }
+    open.set(c.coin, { c, s, size: e.size, q, fx, fp, ask, entryPrem: (ask / fxs / fp - 1) * 100, feeIn, funding: 0 }); }
   // 펀딩
   for (const t of open.values()) { const r = t.c.fund.get(s); if (r != null && t.c.bn[s] > 0) t.funding += r * t.q * t.c.bn[s]; }
   // 이동 창 갱신
@@ -98,7 +106,7 @@ for (let s = 0; s < S; s++) {
   for (const t of open.values()) { if (pendingOut.has(t.c.coin)) continue; const c = t.c, g = sigOf(c, s); if (!g) continue;
     const held = (s - t.s) * 5 / 1440, rise = c.bn[s] > 0 ? (c.bn[s] / t.fp - 1) * 100 : 0;
     let reason = rise >= 50 ? 'PRICESTOP' : held >= MAXHOLD_D ? 'MAXHOLD' : (held >= SOFT_D && g.p - t.entryPrem >= -SOFT_PP) ? 'SOFT' : null;
-    if (!reason && !g.tooVol && g.p > g.upper && (!FRESH || c.bv[s] > 0)) { const bid = c.bk[s] * (1 - c.sp / 100 * SPREAD_MULT), ep = (bid / fxSlot[s] / c.bn[s] - 1) * 100; if (ep > g.upper) reason = 'SIGNAL'; }
+    if (!reason && !g.tooVol && g.p > g.upper && (!FRESH || c.bv[s] > 0)) { const bid = c.bk[s] * (1 - c.sp / 100 * SPREAD_MULT), ep = (bid / fxSig[s] / c.bn[s] - 1) * 100; if (ep > g.upper) reason = 'SIGNAL'; }
     if (reason) pendOut.push({ coin: c.coin, at: s + DELAY, reason }); }
   // 진입 판단
   if (dayLoss > dayStartEq * 0.001) continue;
@@ -106,7 +114,7 @@ for (let s = 0; s < S; s++) {
   const slots = MAXPOS - open.size - pendIn.length; if (slots <= 0) continue;
   const cands = [];
   for (const c of C) { if (open.has(c.coin)) continue; const g = sigOf(c, s); if (!g || g.tooVol || !(g.p < g.lower) || g.cov < MIN_COV) continue;
-    const fx = fxSlot[s];
+    const fx = fxSig[s];
     const tradable = UNIV === 'all' ? true : (c.vol >= MINVOL && (!FRESH || c.bv[s] > 0) && c.sp <= 0.8 && c.depth >= 8e6);
     if (!tradable) continue;
     cands.push({ c, g, z: (g.ma - g.p) / g.sd, fx }); }
@@ -146,3 +154,5 @@ console.log('종목별 하위', bc.slice(-5).map(([k, o]) => `${k} ${o.n}건 $${
 if (arg('out')) fs.writeFileSync(arg('out'), JSON.stringify({ yrs, trades: trades.map(t => ({ ...t, in: M0 + t.in * 5, out: M0 + t.out * 5 })), eqDaily }));
 
 if (arg('json')) console.log('JSON ' + JSON.stringify({ args: process.argv.slice(2).join(' '), cagr: (Math.pow(end / SEED, 1 / years) - 1) * 100, mdd: dmdd * 100, trades: trades.length, win: trades.filter(t => t.pnl > 0).length / Math.max(1, trades.length) * 100, yrs: Object.fromEntries(Object.entries(yrs).map(([y, o]) => [y, +((o.end / o.start - 1) * 100).toFixed(2)])) }));
+{ const fees = trades.reduce((a, t) => a + t.fees, 0), pnl = trades.reduce((a, t) => a + t.pnl, 0); let ok = 0, n = 0; if (UZ != null) for (let s = 0; s < S; s++) if (!isNaN(uzSlot[s])) { n++; if (uzSlot[s] >= UZ) ok++; }
+  console.log('SUMMARY ' + JSON.stringify({ uz: UZ, cagr: +((Math.pow(end / SEED, 1 / years) - 1) * 100).toFixed(2), mdd: +(dmdd * 100).toFixed(2), mdd5: +(mdd * 100).toFixed(2), tradesPerYr: +(trades.length / years).toFixed(0), avgPnl: +(pnl / Math.max(1, trades.length)).toFixed(2), feesPerYr: +(fees / years).toFixed(0), allowed: n ? +(ok / n * 100).toFixed(1) : 100 })); }
