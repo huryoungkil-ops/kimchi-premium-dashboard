@@ -137,6 +137,8 @@
   .gate-tbl{ overflow-x:auto; } .gate-tbl table{ border-collapse:collapse; width:100%; font-size:13.5px; margin:8px 0; }
   .gate-tbl th, .gate-tbl td{ border-bottom:1px solid var(--line-soft); padding:7px 10px; text-align:left; }
   .gate-tbl .n{ text-align:right; font-family:var(--font-mono); white-space:nowrap; }
+  .gate-why-h{ font-size:15px; margin:18px 0 6px; } .gate-why-list{ max-width:75ch; padding-left:20px; display:grid; gap:6px; margin:4px 0 10px; }
+  .gate-tbl tr.pick td{ background:var(--accent-soft, var(--line-soft)); }
   @media (max-width:640px){ .gate-list li{ grid-template-columns:24px minmax(0,1fr); } .gate-list .vl{ grid-column:2; text-align:left; } }
   /* ---------- stat tiles ---------- */
   .tiles{
@@ -530,12 +532,12 @@
     <ol class="gate-list" id="gate-list"></ol>
     <figure class="gate-fig">
       <div id="gate-chart" class="gate-chart" aria-label="USDT 웃돈 14일 추이"></div>
-      <figcaption>빗썸 USDT 웃돈(빗썸 USDT 원화가 ÷ 원/달러 환율 − 1), 최근 14일 시간별. 점선이 14일 평균, 평균보다 아래(z &lt; 0)인 시간대가 «새 진입 보류» 구간입니다.</figcaption>
+      <figcaption>빗썸 USDT 웃돈(빗썸 USDT 원화가 ÷ 원/달러 환율 − 1), 최근 14일 시간별. 회색 점선이 14일 평균, 빨간 점선이 보류선(평균 − 0.5σ)이고, 그 아래(z &lt; −0.5) 시간대가 «새 진입 보류» 구간입니다. 2026-10-19 전까지는 평균 자체(z &lt; 0)가 보류선이었습니다.</figcaption>
     </figure>
     <details class="gate-why">
       <summary>USDT 웃돈 필터는 왜 있고, 무엇을 기대하나</summary>
       <div class="gate-why-body">
-        <p><b>무엇인가.</b> 한국 거래소의 USDT(달러 코인) 가격이 실제 환율보다 얼마나 비싼지가 «USDT 웃돈»입니다. 원화 시장 전체의 분위기 — 한국 쪽 매수세가 강한지 약한지 — 를 보여 줍니다. 봇은 이 웃돈의 지금 값이 최근 14일 평균보다 낮으면(z &lt; 0) 새 진입을 쉽니다. z는 «평균에서 몇 표준편차 떨어져 있나»입니다.</p>
+        <p><b>무엇인가.</b> 한국 거래소의 USDT(달러 코인) 가격이 실제 환율보다 얼마나 비싼지가 «USDT 웃돈»입니다. 원화 시장 전체의 분위기 — 한국 쪽 매수세가 강한지 약한지 — 를 보여 줍니다. 봇은 이 웃돈의 지금 값이 최근 14일 평균보다 <b>0.5σ 넘게</b> 낮으면(z &lt; −0.5) 새 진입을 쉽니다. z는 «평균에서 몇 표준편차(σ) 떨어져 있나»입니다 — z −0.5 는 «평소 흔들림의 절반만큼 평균보다 낮다»는 뜻입니다. 이미 들고 있는 자리의 청산에는 관여하지 않습니다.</p>
         <p><b>왜 있나.</b> 김프가 갑자기 낮아졌을 때 그 원인이 <b>코인 하나의 일시적 괴리</b>면 평균으로 잘 돌아오지만, <b>원화 시장 전체가 식은 것(USDT 웃돈 하락)</b>이면 잘 돌아오지 않습니다. 김프 봇이 버는 돈은 앞쪽에서 나옵니다.</p>
         <div class="gate-tbl"><table>
           <tr><th>근거 (5분봉 백테스트, 2024년~ 김프 거래 1,209건)</th><th class="n">값</th></tr>
@@ -545,8 +547,28 @@
           <tr><td>필터를 켜면 (스프레드 절반 가정)</td><td class="n">연 −1.3% → +1.7%</td></tr>
           <tr><td>필터를 켜면 (스프레드 전부 가정)</td><td class="n">연 −7.4% → −2.3%</td></tr>
         </table></div>
-        <p><b>기대 효과.</b> 거래 수는 줄지만 «돌아오지 않는 김프»에 들어가는 거래를 걸러 거래당 기대수익과 승률을 올립니다. 이 필터와 7일 평균 · 평균 −1.5σ 진입 · +0.5σ 청산을 함께 쓴 지금 규칙은 2020~23년으로 고르고 2024~26년으로 확인했을 때 연 +3.6%, 최대낙폭 −2.8%였습니다(이전 규칙 −1.3%, −9.9%).</p>
-        <p><b>대가.</b> 원화 시장이 식어 있는 동안은 진입이 거의 없습니다 — 최근 서버 기록 400회차 중 320회차가 이 필터로 보류였습니다. 10/16처럼 필터가 막은 사이 김프가 돌아와 놓친 기회도 생깁니다. 놀고 있는 원화를 USDT 웃돈 전략으로 쓰는 변형(IDLE_USDT)을 <a href="/kimlab">김프 실험실</a>에서 시험하고 있습니다 — 김프 봇이 쉬는 바로 그때 USDT를 사는 전략이라 서로 빈자리를 메웁니다.</p>
+        <p><b>기대 효과.</b> 거래 수는 줄지만 «돌아오지 않는 김프»에 들어가는 거래를 걸러 거래당 기대수익과 승률을 올립니다. 이 필터와 7일 평균 · 평균 −1.5σ 진입 · +0.5σ 청산을 함께 쓴 지금 규칙은 2020~23년으로 고르고 2024~26년으로 확인했을 때 연 +3.6%, 최대낙폭 −2.8%였습니다(이전 규칙 −1.3%, −9.9%). 10-19에 필터 기준을 −0.5로 낮춘 뒤 같은 기간 값은 연 +4.5%, 최대낙폭 −3.3%입니다 (아래 «바꾼 이유»).</p>
+        <p><b>대가.</b> 원화 시장이 식어 있는 동안은 진입이 거의 없습니다 — 기준이 0이던 10/16~19 서버 기록은 대부분의 회차가 이 필터로 보류였습니다. 놀고 있는 원화를 USDT 웃돈 전략으로 쓰는 변형(IDLE_USDT)을 <a href="/kimlab">김프 실험실</a>에서 시험하고 있습니다 — 김프 봇이 쉬는 바로 그때 USDT를 사는 전략이라 서로 빈자리를 메웁니다.</p>
+        <h4 class="gate-why-h">기준을 0에서 −0.5로 바꾼 이유 (2026-10-19)</h4>
+        <p><b>계기.</b> 10/16 규칙 변경 뒤 사흘 동안 진입이 한 건도 없었습니다. z가 −1.14 → −0.65 → −0.46 으로 평균 쪽으로 올라오는 중이었는데도 «0 미만»이라 계속 막혔습니다. 백테스트에서도 기준 0은 진입 가능한 시간이 47%뿐이었습니다. «너무 깐깐한 것 아닌가»를 확인하려고 기준을 여러 값으로 바꿔 같은 기간(2024-01~2026-10, 지금 실거래 규칙)을 다시 돌렸습니다.</p>
+        <div class="gate-tbl"><table>
+          <tr><th>z 기준</th><th class="n">연 수익</th><th class="n">최대낙폭 (일 / 5분)</th><th class="n">거래/년</th><th class="n">거래당</th><th class="n">진입 가능 시간</th><th class="n">앞 절반 / 뒤 절반</th></tr>
+          <tr><td>필터 없음</td><td class="n">+3.0%</td><td class="n">−6.9% / −10.1%</td><td class="n">358</td><td class="n">$1.73</td><td class="n">100%</td><td class="n">+2.2% / +3.3%</td></tr>
+          <tr><td>−1.5</td><td class="n">+4.2%</td><td class="n">−5.8% / −9.2%</td><td class="n">326</td><td class="n">$2.72</td><td class="n">87%</td><td class="n">+3.2% / +4.9%</td></tr>
+          <tr><td>−1.0</td><td class="n">+5.4%</td><td class="n">−3.2% / −6.4%</td><td class="n">269</td><td class="n">$4.22</td><td class="n">75%</td><td class="n">+5.3% / +4.8%</td></tr>
+          <tr class="pick"><td><b>−0.5 (채택)</b></td><td class="n"><b>+4.5%</b></td><td class="n"><b>−3.3% / −7.1%</b></td><td class="n">212</td><td class="n">$4.48</td><td class="n">61%</td><td class="n">+4.4% / +4.4%</td></tr>
+          <tr><td>−0.25</td><td class="n">+4.0%</td><td class="n">−3.0% / −7.0%</td><td class="n">180</td><td class="n">$4.58</td><td class="n">54%</td><td class="n">+3.4% / +4.3%</td></tr>
+          <tr><td>0 (이전)</td><td class="n">+3.6%</td><td class="n">−2.8% / −6.6%</td><td class="n">153</td><td class="n">$4.95</td><td class="n">47%</td><td class="n">+2.8% / +4.5%</td></tr>
+        </table></div>
+        <p><b>고민한 것.</b></p>
+        <ul class="gate-why-list">
+          <li><b>왜 낮추나.</b> 0과 −1 사이에서 새로 허용되는 거래들도 한 건에 평균 약 $3을 벌었습니다. «돌아오지 않는 김프»는 주로 z −1.5 아래에 몰려 있었고, 0~−1 구간은 아직 괜찮은 거래였습니다.</li>
+          <li><b>왜 수익이 가장 높은 −1이 아닌가.</b> −1 바로 다음인 −1.5에서 최대낙폭이 −3.2% → −5.8%로 갑자기 커집니다. 수익이 가장 높은 점은 대개 그 «절벽» 바로 옆이고, 실전에서는 조금만 어긋나도 절벽 쪽으로 넘어갑니다. 절반만 내려간 −0.5가 여유를 둔 선택입니다.</li>
+          <li><b>그래도 −0.5가 우연은 아닌가.</b> 0 → −0.25 → −0.5 → −1로 갈수록 수익이 고르게 오르고 튀는 점이 없습니다. 앞 절반(2024-01~25-06)과 뒤 절반(25-07~26-10)이 둘 다 +4.4%로 고르게 나온 것도 −0.5뿐입니다.</li>
+          <li><b>대가는 무엇인가.</b> 거래가 연 153 → 212건으로 늘어 수수료가 연 $587 → $816로 늘고, 거래당 수익은 $4.95 → $4.48로 조금 줄고, 최대낙폭이 0.5%p 깊어집니다.</li>
+          <li><b>믿기 어려운 부분.</b> 빗썸 USDT 기록이 2023-12부터만 있어 검증 기간이 2.8년 한 구간뿐입니다. 0도 −0.5도 같은 구간을 보고 고른 값이라 따로 떼어 둔 시험 구간이 없습니다. 실전 효과는 표보다 작을 수 있습니다.</li>
+        </ul>
+        <p><b>되돌릴 조건.</b> 실거래에서 −0.5 ~ 0 구간에서 들어간 거래의 승률이 낮게 나오면 −0.25나 0으로 되돌리는 것을 다시 검토합니다. 표의 기준은 0일 때 거래당 $4.95, −0.5일 때 $4.48입니다. 건수가 쌓여야 판단할 수 있으므로, 우선 20건 안팎이 쌓이면 진입 순간 z별로 나눠 봅니다.</p>
       </div>
     </details>
   </section>
@@ -708,7 +730,7 @@
       <div class="flow-step">
         <span class="num">02</span>
         <h3>MA·신호 판정</h3>
-        <p>코인별 최근 7일 이동평균과 표준편차(σ)를 계산해, 평균−1.5σ 아래면 진입, 평균+0.5σ 위로 회복하면 청산 신호로 분류. 빗썸 USDT 웃돈이 14일 평균보다 낮으면 새 진입은 쉰다 (2026-10-16 변경)</p>
+        <p>코인별 최근 7일 이동평균과 표준편차(σ)를 계산해, 평균−1.5σ 아래면 진입, 평균+0.5σ 위로 회복하면 청산 신호로 분류. 빗썸 USDT 웃돈이 14일 평균보다 0.5σ 넘게 낮으면 새 진입은 쉰다 (2026-10-16 도입, 10-19 기준 0 → −0.5)</p>
       </div>
       <div class="flow-step">
         <span class="num">03</span>
@@ -743,12 +765,12 @@
     <div class="rules">
       <dl>
         <dt>진입 조건</dt><dd>현재 프리미엄 &lt; 7일 이동평균 − 1.5σ</dd>
-        <dt>USDT 웃돈 필터</dt><dd>빗썸 원화 USDT ÷ 장중 환율의 14일 z &lt; 0 이면 새 진입 안 함 — 김프 하락이 USDT 몫이면 잘 돌아오지 않는다 (2024~ 김프 1,209건 분석)</dd>
+        <dt>USDT 웃돈 필터</dt><dd>빗썸 원화 USDT ÷ 장중 환율의 14일 z &lt; −0.5 이면 새 진입 안 함 (10-19 전에는 z &lt; 0) — 김프 하락이 USDT 몫이면 잘 돌아오지 않는다 (2024~ 김프 1,209건 분석)</dd>
         <dt>이력 조건</dt><dd>7일 창의 80% 이상 기록이 있어야 진입. 빗썸 기록이 10-13에 시작해, 10-18 00:40부터 10-19 18:00까지는 50%로 한시 완화 (사용자 결정, 자동 복귀)</dd>
         <dt>기대수익 관문</dt><dd>평균 회복 시 기대이익 ≥ 본전문턱 × 3</dd>
         <dt>주문 직전 재확인</dt><dd>주문 직전에 두 거래소 호가를 동시에 다시 받아, 실제로 살·팔 수 있는 평균가로 김프와 기대이익을 다시 계산. 해외가가 회차 시작 뒤 0.5% 넘게 움직였으면 보류. 청산도 실체결 가격으로 청산선을 넘을 때만 (2026-10-16, MEGA 거래의 묵은 시세 착시 진입 이후 추가)</dd>
         <dt>청산 조건</dt><dd>현재 프리미엄 &gt; 7일 이동평균 + 0.5σ</dd>
-        <dt>규칙 근거</dt><dd>5분봉 108조합을 2020~23년으로만 고르고 2024~26년으로 확인: 연 +3.6%, 최대낙폭 −2.8% (이전 규칙 3일·−2σ·+0.25σ는 −1.3%, −9.9%). 2026-10-16 변경</dd>
+        <dt>규칙 근거</dt><dd>5분봉 108조합을 2020~23년으로만 고르고 2024~26년으로 확인: 연 +3.6%, 최대낙폭 −2.8% (이전 규칙 3일·−2σ·+0.25σ는 −1.3%, −9.9%). 2026-10-16 변경. 10-19 USDT 기준 0 → −0.5: 2024-01~26-10 연 +3.6% → +4.5%, 최대낙폭 −2.8% → −3.3%</dd>
         <dt>최대 보유</dt><dd>동시 6자리 (보유 명목 합계 $8,000 이내) · 5일 초과 시 강제 청산</dd>
         <hr>
         <dt>변동성 가드</dt><dd>σ &gt; 2.5%p → 이번 회차 신호 보류 (자동 복귀, 영구 제외 아님)</dd>
@@ -1617,7 +1639,8 @@ var coins = [
   function chart(u){
     var host = $('gate-chart'); if (!host || !u || !u.series || u.series.length < 2) return;
     var NS = 'http://www.w3.org/2000/svg', W = 760, H = 220, l = 48, r = 14, t = 16, b = 28;
-    var s = u.series, ys = s.map(function(p){ return p[1]; }).concat([u.ma]);
+    var s = u.series, cut = Number.isFinite(u.sd) && Number.isFinite(u.min) ? u.ma + u.min * u.sd : u.ma;   // 보류선 = 14일 평균 + 기준 z × σ (2026-10-19 기준 −0.5)
+    var ys = s.map(function(p){ return p[1]; }).concat([u.ma, cut]);
     var mn = Math.min.apply(null, ys), mx = Math.max.apply(null, ys), pad = (mx - mn) * 0.12 || 0.1; mn -= pad; mx += pad;
     var t0 = s[0][0], t1 = s[s.length - 1][0];
     var X = function(v){ return l + (v - t0) / (t1 - t0) * (W - l - r); };
@@ -1626,7 +1649,7 @@ var coins = [
     svg.setAttribute('aria-label', 'USDT 웃돈 14일 추이, 지금 ' + u.prem.toFixed(2) + '%, 14일 평균 ' + u.ma.toFixed(2) + '%');
     function el(tag, a, txt){ var e = document.createElementNS(NS, tag); for (var k in a) e.setAttribute(k, a[k]); if (txt != null) e.textContent = txt; svg.appendChild(e); return e; }
     var css = getComputedStyle(document.documentElement), C = function(n){ return css.getPropertyValue(n).trim(); };
-    el('rect', { x: l, y: Y(u.ma), width: W - l - r, height: Math.max(0, H - b - Y(u.ma)), fill: C('--danger-soft'), opacity: 0.75 });
+    el('rect', { x: l, y: Y(cut), width: W - l - r, height: Math.max(0, H - b - Y(cut)), fill: C('--danger-soft'), opacity: 0.75 });
     var step = (mx - mn) > 1.2 ? 0.5 : 0.25;
     for (var v = Math.ceil(mn / step) * step; v <= mx; v += step) {
       el('line', { x1: l, x2: W - r, y1: Y(v), y2: Y(v), stroke: C('--line-soft') });
@@ -1635,7 +1658,9 @@ var coins = [
     for (var dd = 0; dd <= 14; dd += 2) { var tx = t1 - dd * 86400e3; if (tx < t0) continue;
       el('text', { x: X(tx), y: H - 8, 'text-anchor': 'middle', 'font-size': 11, fill: C('--ink-soft') }, kst(tx).slice(0, 5)); }
     el('line', { x1: l, x2: W - r, y1: Y(u.ma), y2: Y(u.ma), stroke: C('--ink-soft'), 'stroke-dasharray': '5 4' });
-    el('text', { x: l + 6, y: Y(u.ma) + 14, 'font-size': 11, fill: C('--ink-soft') }, '14일 평균 ' + u.ma.toFixed(2) + '% — 이 아래면 새 진입 보류');
+    el('text', { x: l + 6, y: Y(u.ma) - 5, 'font-size': 11, fill: C('--ink-soft') }, '14일 평균 ' + u.ma.toFixed(2) + '%');
+    if (cut !== u.ma) el('line', { x1: l, x2: W - r, y1: Y(cut), y2: Y(cut), stroke: C('--danger'), 'stroke-dasharray': '3 3' });
+    el('text', { x: l + 6, y: Y(cut) + 14, 'font-size': 11, fill: C('--danger') }, '보류선 ' + cut.toFixed(2) + '% (평균 ' + sg(u.min) + 'σ) — 이 아래면 새 진입 보류');
     el('path', { d: s.map(function(p, i){ return (i ? 'L' : 'M') + X(p[0]).toFixed(1) + ' ' + Y(p[1]).toFixed(1); }).join(' '), fill: 'none', stroke: C('--accent'), 'stroke-width': 2 });
     var last = s[s.length - 1];
     el('circle', { cx: X(last[0]), cy: Y(last[1]), r: 5, fill: u.blocked ? C('--danger') : C('--good'), stroke: C('--bg-raised'), 'stroke-width': 1.5 });
@@ -1658,7 +1683,7 @@ var coins = [
         : u && u.error ? 'USDT 웃돈 계산 실패 — 안전하게 보류 · ' : '')
       + (g.checkedAt ? kst(Date.parse(g.checkedAt)) + ' KST 기준' : '') + (g.quickCycle ? ' · 봇은 1분마다 확인' : '');
     list.innerHTML = '';
-    list.appendChild(item(uOk, '① USDT 웃돈 필터', '원화 시장 전체가 평소보다 식어 있으면(z < 0) 새로 사지 않음 — 그런 김프 하락은 잘 돌아오지 않는다',
+    list.appendChild(item(uOk, '① USDT 웃돈 필터', '원화 시장 전체가 평소보다 많이 식어 있으면(z < ' + (u ? u.min : '−0.5') + ') 새로 사지 않음 — 그런 김프 하락은 잘 돌아오지 않는다',
       u && Number.isFinite(u.z) ? 'z ' + sg(u.z) + (u.blocked ? ' < ' : ' ≥ ') + u.min : '—'));
     list.appendChild(item(slotsOk, '② 자리와 예산', '동시 ' + st.maxPositions + '자리 · 보유 명목 합계 $8,000 이내', '보유 ' + st.open + ' / ' + st.maxPositions));
     list.appendChild(item(sig.length > 0, '③ 진입 신호 (평균 − ' + g.entrySigma + 'σ 아래)', '코인별 ' + Math.round(g.historyHours / 24) + '일 평균보다 김프가 ' + g.entrySigma + 'σ 넘게 낮은 종목',
