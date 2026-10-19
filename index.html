@@ -137,6 +137,8 @@
     font-family:var(--font-display); font-weight:600; font-size:20px; margin:0 0 4px;
     text-wrap:balance;
   }
+  table.bt-year td:first-child{ min-width:15em; } table.bt-year td:first-child small, table.bt-year td small{ color:var(--ink-soft); }
+  .bt-notes{ margin:10px 0 0; font-size:13.5px; color:var(--ink-soft); } .bt-notes summary{ cursor:pointer; font-weight:600; color:var(--ink); } .bt-notes ol{ padding-left:20px; display:grid; gap:4px; max-width:90ch; } .bt-take{ margin-top:10px; max-width:90ch; }
   .section-sub{ color:var(--ink-soft); font-size:13.5px; margin:0 0 18px; }
 
   /* ---------- strategy flow ---------- */
@@ -215,6 +217,7 @@
     font-weight:600; padding:12px 16px; border-bottom:1px solid var(--line); position:sticky; top:0; background:var(--bg-raised);
   }
   table.coins thead th.num{ text-align:right; }
+  table.coins td.num{ text-align:right; white-space:nowrap; font-variant-numeric:tabular-nums; }
   table.coins tbody td{ padding:9px 16px; border-bottom:1px solid var(--line-soft); font-size:13.5px; vertical-align:middle; }
   table.coins tbody tr:last-child td{ border-bottom:none; }
   table.coins tbody tr{ opacity:0; animation: rise .35s ease-out forwards; }
@@ -557,7 +560,7 @@
     <div class="table-scroll"><table class="coins paper">
       <thead><tr><th>전략</th><th>무엇에 거나</th><th>백테스트 근거</th></tr></thead>
       <tbody>
-        <tr class="live"><td>🌶️ <a href="/kimchi">김치프리미엄</a> <span class="lp-badge live"><i class="lp-dot"></i>실전</span></td><td>코빗 현물 롱 + 해외 선물 숏. 김프가 평소보다 크게 낮아졌다가 돌아오는 것 (코인 시세 방향과 무관)</td><td>호가·슬리피지 반영 연 4.7% 수준</td></tr>
+        <tr class="live"><td>🌶️ <a href="/kimchi">김치프리미엄</a> <span class="lp-badge live"><i class="lp-dot"></i>실전</span></td><td>빗썸 현물 롱 + Binance 선물 숏. 김프가 평소보다 크게 낮아졌다가 돌아오는 것 (코인 시세 방향과 무관)</td><td>호가·슬리피지 반영 연 4.7% 수준</td></tr>
         <tr class="live"><td>⚖️ <a href="/ls">롱숏 모멘텀+캐리</a> <span class="lp-badge live"><i class="lp-dot"></i>실전</span></td><td>최근 2주 오르고 펀딩이 싼 코인 롱, 내리고 펀딩이 비싼 코인 숏 (시장중립)</td><td>샤프 1.86, 최대낙폭 −22.8% (실전 기대치는 절반 이하)</td></tr>
         <tr class="live"><td>💵 <a href="/usdt">USDT 웃돈 한 다리</a> <span class="lp-badge live"><i class="lp-dot"></i>실전</span></td><td>디지털엑스 원화 USDT 웃돈이 14일 평균보다 크게(2σ) 낮으면 USDT를 사고, 평균 위로 돌아오면 원화로 (김프의 정체를 직접 거래, 상한 1,000만 원)</td><td>디지털엑스 시간봉 2024-04~2026-10, 편도 0.04%: 2025 +14.3% · 2026 +8.7%, 최대낙폭 −4.0%</td></tr>
         <tr class="paper"><td>🐢 <a href="/turtle">터틀 트레이딩</a> <span class="lp-badge paper">가상</span></td><td>빗썸 BTC·ETH가 20일·55일 신고가를 넘으면 따라 사고, 신저가를 깨면 나옴 (+ BTC 120일선 비교)</td><td>바이낸스 BTC·ETH 일봉 백테스트(2020-01~2025-09) 샤프 1.22, 최대낙폭 −28%</td></tr>
@@ -571,6 +574,43 @@
       </tbody>
     </table></div>
   </section>
+
+  <section>
+    <h2>연도별 백테스트 수익률 (2020~2026)</h2>
+    <p class="section-sub">2026-10-19 기준. 모든 숫자는 백테스트이며 실제 수익이 아닙니다. 2026은 자료가 끝나는 날(대부분 9~10월)까지, 연평균은 2020-01부터(늦게 시작한 전략은 괄호의 시점부터), 최대낙폭은 2020년 이후 기준입니다. 김프 실험실·이벤트 호라이즌은 따로 돈을 굴리는 전략이 아니라 뺐습니다.</p>
+    <div class="table-scroll"><table class="coins paper bt-year">
+      <thead><tr><th>전략</th><th class="num">2020</th><th class="num">2021</th><th class="num">2022</th><th class="num">2023</th><th class="num">2024</th><th class="num">2025</th><th class="num">2026 (YTD)</th><th class="num">연평균</th><th class="num">최대낙폭</th></tr></thead>
+      <tbody>
+        <tr><td>🌶️ <a href="/kimchi">김치프리미엄</a> <sup>1</sup></td><td class="num pos">+19.7%</td><td class="num pos">+43.8%</td><td class="num pos">+12.9%</td><td class="num pos">+8.3%</td><td class="num pos">+1.2%</td><td class="num pos">+4.4%</td><td class="num pos">+3.8%</td><td class="num pos">+13.1%</td><td class="num neg">−4.2%</td></tr>
+        <tr><td>⚖️ <a href="/ls">롱숏 모멘텀+캐리</a> <sup>2</sup></td><td class="num pos">+47.5%</td><td class="num pos">+244.1%</td><td class="num pos">+14.1%</td><td class="num pos">+42.0%</td><td class="num pos">+116.1%</td><td class="num pos">+77.4%</td><td class="num pos">+23.2%</td><td class="num pos">+71.7%</td><td class="num neg">−22.8%</td></tr>
+        <tr><td>💵 <a href="/usdt">USDT 웃돈 (디지털엑스)</a> <sup>3</sup></td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num pos">+8.7%</td><td class="num pos">+14.3%</td><td class="num pos">+8.7%</td><td class="num pos">+12.6%<br><small>(2024-04~)</small></td><td class="num neg">−4.0%</td></tr>
+        <tr><td>🐢 <a href="/turtle">터틀 트레이딩</a> <sup>4</sup></td><td class="num pos">+129.0%</td><td class="num pos">+76.7%</td><td class="num neg">−7.9%</td><td class="num pos">+43.5%</td><td class="num pos">+43.0%</td><td class="num pos">+12.8%</td><td class="num pos">+18.4%</td><td class="num pos">+41.1%</td><td class="num neg">−24.7%</td></tr>
+        <tr><td>🌙 <a href="/luna">제2의 루나 (숏 장부)</a> <sup>5</sup></td><td class="num neg">−1.5%</td><td class="num pos">+2.5%</td><td class="num pos">+10.5%</td><td class="num pos">+4.6%</td><td class="num pos">+1.2%</td><td class="num pos">+36.1%</td><td class="num pos">+12.4%</td><td class="num pos">+9.1%</td><td class="num neg">−17.3%</td></tr>
+        <tr><td>🌙 <a href="/luna">제2의 루나 (숏 50 + BTC 120일선 50)</a> <sup>5</sup></td><td class="num pos">+77.7%</td><td class="num pos">+51.0%</td><td class="num pos">+1.7%</td><td class="num pos">+45.6%</td><td class="num pos">+43.8%</td><td class="num pos">+21.8%</td><td class="num pos">+10.2%</td><td class="num pos">+34.9%</td><td class="num neg">−16.5%</td></tr>
+        <tr><td>🧭 <a href="/core">BTC 추세 코어</a> <sup>6</sup></td><td class="num pos">+199.2%</td><td class="num pos">+95.8%</td><td class="num neg">−6.9%</td><td class="num pos">+92.1%</td><td class="num pos">+92.0%</td><td class="num pos">+3.9%</td><td class="num pos">+6.5%</td><td class="num pos">+58.4%</td><td class="num neg">−32.5%</td></tr>
+        <tr><td>🔝 <a href="/top3">주간 Top3 (T1)</a> <sup>7</sup></td><td class="num pos">+4,142%</td><td class="num pos">+1,092%</td><td class="num pos">+9.0%</td><td class="num pos">+197.0%</td><td class="num pos">+62.5%</td><td class="num pos">+33.7%</td><td class="num pos">+188.2%</td><td class="num pos">+293%<br><small>(2023~ +118)</small></td><td class="num neg">−75.0%</td></tr>
+        <tr><td>📉 <a href="/listing">상장 공매도</a> <sup>8</sup></td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">—</td></tr>
+        <tr><td>💰 <a href="/mix">백만장자 배분</a> <sup>9</sup></td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num pos">+87.0%</td><td class="num pos">+123.0%</td><td class="num pos">+55.0%</td><td class="num pos">+43.3%</td><td class="num pos">+81.0%<br><small>(2023~)</small></td><td class="num neg">−21.6%</td></tr>
+        <tr><td>💸 <a href="/carry">펀딩 캐리</a> <sup>10</sup></td><td class="num pos">+8.8%</td><td class="num pos">+26.5%</td><td class="num neg">−2.1%</td><td class="num pos">+1.5%</td><td class="num pos">+0.5%</td><td class="num pos">+1.7%</td><td class="num neg">−0.2%</td><td class="num pos">+5.2%</td><td class="num neg">−10.8%</td></tr>
+        <tr><td>📊 참고: BTC 그냥 보유 <sup>11</sup></td><td class="num pos">+302.0%</td><td class="num pos">+59.8%</td><td class="num neg">−64.2%</td><td class="num pos">+155.6%</td><td class="num pos">+121.3%</td><td class="num neg">−6.3%</td><td class="num neg">−4.5%</td><td class="num pos">+43.9%</td><td class="num neg">−76.7%</td></tr>
+      </tbody>
+    </table></div>
+    <details class="bt-notes"><summary>각 숫자의 근거와 주의점</summary><ol>
+      <li>김치프리미엄 — 빗썸 현물 롱 + Binance 무기한 숏, 5분봉(2020-01~2026-10-15). 지금 실전 규칙(7일·−1.5σ·+0.5σ·USDT z ≥ −0.5). 2020~23년은 USDT 자료가 없어 USDT 필터 없이 돈 값이고, 규칙도 그 구간을 보고 골랐습니다. 처음 보는 2024~26년은 연 1~4%.</li>
+      <li>롱숏 — Binance USDT-M 무기한, 수수료·실제 펀딩 포함, 일봉. 약 80개 변형 중 최고를 고른 값이라 실전 기대치는 절반 이하로 봅니다.</li>
+      <li>USDT 웃돈 — 디지털엑스 원화 USDT 시간봉(2024-04-11~2026-10-15), 편도 0.04% 가정, 14일 −2σ 매수·+0.5σ 매도. 매도선은 빗썸 2024년 자료로 골랐습니다.</li>
+      <li>터틀 — Binance 현물 BTC·ETH 롱만, 유닛당 위험 0.5%(2026은 ~9월). 최대낙폭은 2018년부터 본 값(2020년 이후 월말 기준 −13.1%). 페이퍼 봇은 빗썸 원화로 거래합니다.</li>
+      <li>제2의 루나 — Binance 무기한 682종목(상장폐지 158 포함), 마크가격 1분봉 STOP 손절, 펀딩·수수료 포함(~2026-10-18). 50:50 줄은 매일 비율을 다시 맞춘다고 가정했습니다.</li>
+      <li>BTC 추세 코어 — Binance BTC 일봉이 120일 평균 위면 보유, 아래면 현금(~2026-09). 페이퍼 봇은 업비트 원화로 거래합니다.</li>
+      <li>주간 Top3 — 2018~22년은 규칙을 고른 구간이라 2020년 +4,142%는 그대로 믿으면 안 됩니다. 처음 보는 2023년 이후만 보면 연 +118%, 최대낙폭 −75%.</li>
+      <li>상장 공매도 — 연도별 장부 수익률은 계산된 적이 없습니다. 거래 1건당 평균만 있습니다(2023 −2.2% · 2024 +2.0% · 2025 +12.4% · 2026 +11.3%).</li>
+      <li>백만장자 배분 — 롱숏 60·코어 25·Top3 15, 매달 재조정(2023-01~2026-09). 비율을 같은 기간 결과를 보고 정해 표 전체가 낙관적입니다.</li>
+      <li>펀딩 캐리 — Binance 펀딩 상위 5종목 현물 롱 + 무기한 숏, 1배 격리(2020-03~2026-10-14). 최적화하지 않은 기본 규칙입니다.</li>
+      <li>BTC 그냥 보유 — Binance 현물 종가(~2026-09).</li>
+    </ol></details>
+    <p class="section-sub bt-take"><b>읽는 법.</b> 숫자가 큰 줄일수록 결과를 보고 고른 구간이 섞여 있습니다(Top3·백만장자). 위험 대비로는 롱숏(연 +72%, 낙폭 −23%)과 루나 50:50(연 +35%, 낙폭 −17%)이 BTC 보유(연 +44%, 낙폭 −77%)보다 덜 흔들렸고, 김프·USDT 웃돈·펀딩 캐리는 낙폭이 작은 «이자형»입니다. 실전 기대치는 백테스트보다 낮게 잡습니다.</p>
+  </section>
+
 
   <section>
     <h2>리서치 보고서</h2>
