@@ -35,14 +35,15 @@
 
   // 청산된 거래 하나의 다리별 손익.
   //   korbitKrw : 코빗 원화 잔고가 실제로 늘어난 양 (원장용)
-  //   korbitUsd : 진입 때 $1,000어치였던 코인이 청산 때 몇 달러가 됐나 — 김프가 달러 기준이라
-  //               보유 중 환율 변화도 이 거래의 몫이다. 봇의 «손익 계산» 노드와 같은 공식.
+  //   korbitUsd : 원화로 번 만큼 ÷ 청산 환율 (2026-10-19 장부식으로 수정 — 봇 strategy.closeRecord 와 같다).
+  //               예전에는 «진입 때 $1,000어치가 청산 때 몇 달러» 로 쳐서 원화 원금의 환율 재평가까지 손익에 넣었다.
+  //               그 원화는 거래 전후로 빗썸에 그대로 있는 현금이라 거래 손익이 아니다.
   //   okxUsd    : 숏 손익 − 수수료(진입·청산 모두 OKX)
   function closedLegs(t, backfill) {
     var L = legInputs(t, backfill);
     if (!L.q || !L.entryFp || !L.exitFp || !L.exitFx) return null;
     var korbitKrw = L.q * (Number(t.exitPrice) - Number(t.entryPrice));
-    var korbitUsd = L.q * Number(t.exitPrice) / L.exitFx - Number(t.positionSize);
+    var korbitUsd = korbitKrw / L.exitFx;
     var okxUsd = L.q * (L.entryFp - L.exitFp) - fees(t);
     return { q: L.q, korbitKrw: korbitKrw, korbitUsd: korbitUsd, okxUsd: okxUsd, exitFx: L.exitFx,
              netUsd: korbitUsd + okxUsd };
@@ -104,7 +105,7 @@
       var unreal = fp ? L.q * (L.entryFp - fp) : 0;
       k.holdKrw += value;
       o.unrealUsd += unreal;
-      var korbitUnreal = value / fx - Number(t.positionSize);
+      var korbitUnreal = (value - cost) / fx;   // 장부식 (2026-10-19)
       unrealStrategy += korbitUnreal + unreal;
       open.push({ coin: t.coin, q: L.q, valueKrw: value, costKrw: cost, korbitUnrealUsd: korbitUnreal,
                   okxUnrealUsd: unreal, priced: !!(bid && fp) });
