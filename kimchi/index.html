@@ -1658,14 +1658,47 @@ var coins = [
     for (var dd = 0; dd <= 14; dd += 2) { var tx = t1 - dd * 86400e3; if (tx < t0) continue;
       el('text', { x: X(tx), y: H - 8, 'text-anchor': 'middle', 'font-size': 11, fill: C('--ink-soft') }, kst(tx).slice(0, 5)); }
     el('line', { x1: l, x2: W - r, y1: Y(u.ma), y2: Y(u.ma), stroke: C('--ink-soft'), 'stroke-dasharray': '5 4' });
-    el('text', { x: l + 6, y: Y(u.ma) - 5, 'font-size': 11, fill: C('--ink-soft') }, '14일 평균 ' + u.ma.toFixed(2) + '%');
+    var lbMa = el('text', { 'font-size': 11, fill: C('--ink-soft') }, '14일 평균 ' + u.ma.toFixed(2) + '%');
     if (cut !== u.ma) el('line', { x1: l, x2: W - r, y1: Y(cut), y2: Y(cut), stroke: C('--danger'), 'stroke-dasharray': '3 3' });
-    el('text', { x: l + 6, y: Y(cut) + 14, 'font-size': 11, fill: C('--danger') }, '보류선 ' + cut.toFixed(2) + '% (평균 ' + sg(u.min) + 'σ) — 이 아래면 새 진입 보류');
+    var lbCut = el('text', { 'font-size': 11, fill: C('--danger') }, '보류선 ' + cut.toFixed(2) + '% (평균 ' + sg(u.min) + 'σ) — 이 아래면 새 진입 보류');
     el('path', { d: s.map(function(p, i){ return (i ? 'L' : 'M') + X(p[0]).toFixed(1) + ' ' + Y(p[1]).toFixed(1); }).join(' '), fill: 'none', stroke: C('--accent'), 'stroke-width': 2 });
     var last = s[s.length - 1];
     el('circle', { cx: X(last[0]), cy: Y(last[1]), r: 5, fill: u.blocked ? C('--danger') : C('--good'), stroke: C('--bg-raised'), 'stroke-width': 1.5 });
-    el('text', { x: X(last[0]) - 9, y: Y(last[1]) - 9, 'text-anchor': 'end', 'font-size': 12, 'font-weight': 600, fill: C('--ink') }, '지금 ' + last[1].toFixed(2) + '% (z ' + sg(u.z) + ')');
+    var lbNow = el('text', { 'font-size': 12, 'font-weight': 600, fill: C('--ink') }, '지금 ' + last[1].toFixed(2) + '% (z ' + sg(u.z) + ')');
     host.innerHTML = ''; host.appendChild(svg);
+    // 글씨가 그래프 선과 겹치지 않게 자리를 고른다 (2026-10-19) — 문서에 붙인 뒤라야 글자 폭을 잴 수 있다.
+    // 선 위 점(사이를 촘촘히 메운 것)과 이미 놓은 글씨를 장애물로 보고, 좌우(필요하면 위아래)로 옮겨 가며 가장 덜 겹치는 자리를 쓴다.
+    var pts = [];
+    for (var i = 0; i < s.length; i++) {
+      var x1 = X(s[i][0]), y1 = Y(s[i][1]); pts.push([x1, y1]);
+      if (i + 1 < s.length) { var x2 = X(s[i + 1][0]), y2 = Y(s[i + 1][1]), n = Math.ceil(Math.max(Math.abs(x2 - x1), Math.abs(y2 - y1)) / 3);
+        for (var k = 1; k < n; k++) pts.push([x1 + (x2 - x1) * k / n, y1 + (y2 - y1) * k / n]); }
+    }
+    var boxes = [], hlines = [Y(u.ma), Y(cut)];   // 평균선·보류선 점선도 글씨가 가로지르면 안 된다
+    function hits(bx) {
+      var c = 0;
+      for (var h = 0; h < hlines.length; h++) if (hlines[h] > bx.y && hlines[h] < bx.y + bx.h) c += 50;
+      for (var j = 0; j < pts.length; j++) { var q = pts[j]; if (q[0] >= bx.x - 3 && q[0] <= bx.x + bx.w + 3 && q[1] >= bx.y - 3 && q[1] <= bx.y + bx.h + 3) c++; }
+      for (var m = 0; m < boxes.length; m++) { var o = boxes[m]; if (bx.x < o.x + o.w + 4 && o.x < bx.x + bx.w + 4 && bx.y < o.y + o.h + 2 && o.y < bx.y + bx.h + 2) c += 1000; }
+      return c;
+    }
+    // ys: 글씨 기준선 후보(위·아래), x0: 가장 원하는 왼쪽 끝, lo~hi: 왼쪽 끝이 움직일 수 있는 범위
+    function place(t, ys, x0, lo, hi) {
+      var w = t.getComputedTextLength(), fs = Number(t.getAttribute('font-size')), best = null;
+      hi = Math.min(hi, W - r - w - 2); lo = Math.max(lo, l + 2); if (hi < lo) hi = lo;
+      for (var yi = 0; yi < ys.length; yi++) for (var x = lo; x <= hi + 0.1; x += 4) {
+        var bx = { x: x, y: ys[yi] - fs * 0.85, w: w, h: fs * 1.05 };
+        var sc = hits(bx) * 100 + Math.abs(x - x0) / 10 + yi * 5;
+        if (!best || sc < best.sc) best = { sc: sc, bx: bx, x: x, y: ys[yi] };
+      }
+      t.setAttribute('x', best.x.toFixed(1)); t.setAttribute('y', best.y.toFixed(1)); boxes.push(best.bx);
+    }
+    boxes.push({ x: X(last[0]) - 7, y: Y(last[1]) - 7, w: 14, h: 14 });   // 지금 점
+    var nw = lbNow.getComputedTextLength(), nx = X(last[0]) - 9 - nw;
+    place(lbNow, [Y(last[1]) - 9, Y(last[1]) + 20], nx, nx - 260, nx);
+    place(lbMa, [Y(u.ma) - 5, Y(u.ma) + 14], l + 6, l + 6, W);
+    place(lbCut, [Y(cut) + 14, Y(cut) - 5], l + 6, l + 6, W);
+    [lbNow, lbMa, lbCut].forEach(function(t){ t.setAttribute('paint-order', 'stroke'); t.setAttribute('stroke', C('--bg-raised')); t.setAttribute('stroke-width', 3); t.setAttribute('stroke-linejoin', 'round'); });
   }
   window.__kimchiData.then(function(d){
     var g = d.gate; if (!g) return;
