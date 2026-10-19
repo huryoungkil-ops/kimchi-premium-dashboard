@@ -56,7 +56,13 @@ function crashC(p = {}) {
       if (!(N > P.atrMult * Nm)) return null;
       if (!(S.v[i] > P.volMult * vm)) return null;
       if (!common(S, i, P, ctx)) return null;
-      return { sym: S.sym, score: I(S, 'RET', 20)[i] || 0, N, peakToEntry: 1 - S.c[i] / hh };
+      // 실전 봇과 같은 바닥 진입 금지 (고가 대비 −85% 초과 · 하루 −50% 이하)
+      if (P.maxDrop && S.c[i] < (1 - P.maxDrop) * hh) return null;
+      if (P.maxDay != null && i > 0 && S.c[i - 1] > 0 && S.c[i] / S.c[i - 1] - 1 <= P.maxDay) return null;
+      // 제안 1: 펌프 제외 — 20일 수익률이 이보다 크면 숏하지 않는다
+      const r20 = I(S, 'RET', 20)[i];
+      if (P.maxRet20 != null && r20 > P.maxRet20) return null;
+      return { sym: S.sym, score: r20 || 0, N, peakToEntry: 1 - S.c[i] / hh, ret20: r20 };
     },
     exitSignal(S, i) { return S.c[i] > I(S, 'HH', P.exitHH)[i]; },
   };

@@ -3,7 +3,7 @@ const fs = require('fs'); const path = require('path');
 const { loadAll, DAY } = require('./lib');
 function prep() {
   const D = loadAll();
-  const spot = JSON.parse(fs.readFileSync(path.join(__dirname, '../../classic/data/spot_BTC_1d.json')));
+  const sf = path.join(__dirname, '../../classic/data/spot_BTC_1d.json'); const spot = fs.existsSync(sf) ? JSON.parse(fs.readFileSync(sf)) : [];   // 없으면 BTC 무기한 종가로 대신
   const map = new Map(spot.map(b => [new Date(b[0]).toISOString().slice(0, 10), b[4]]));
   const allDates = [...map.keys()].sort(); const closes = allDates.map(d => map.get(d));
   const ma = {}; for (let k = 119; k < closes.length; k++) { let s = 0; for (let j = k - 119; j <= k; j++) s += closes[j]; ma[allDates[k]] = s / 120; }

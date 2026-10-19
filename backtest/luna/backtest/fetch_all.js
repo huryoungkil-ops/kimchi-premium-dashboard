@@ -1,7 +1,7 @@
 // Fetch daily klines (API, fallback Binance Vision zips) + funding history for all USDT-M perps ever listed
 const fs=require('fs');const {execSync}=require('child_process');
 const sleep=ms=>new Promise(r=>setTimeout(r,ms));
-const START=Date.parse('2019-09-01'),END=Date.parse('2026-10-05');
+const START=Date.parse('2019-09-01'),END=Date.parse('2026-10-19');
 async function j(u){for(let i=0;i<5;i++){try{const r=await fetch(u);if(r.status===429||r.status===418){await sleep(30000);continue;}
  const t=await r.text();try{return JSON.parse(t)}catch(e){return {err:t.slice(0,100)}}}catch(e){await sleep(2000)}}return {err:'net'}}
 async function klines(sym){let out=[],s=START;

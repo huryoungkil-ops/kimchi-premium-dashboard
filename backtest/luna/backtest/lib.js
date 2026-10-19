@@ -13,7 +13,7 @@ const EXCLUDE = new Set(['USDCUSDT', 'BUSDUSDT', 'TUSDUSDT', 'FDUSDUSDT', 'USDPU
 function loadAll() {
   const meta = JSON.parse(fs.readFileSync(path.join(DIR, 'data/meta.json')));
   const files = fs.readdirSync(path.join(DIR, 'data/k')).filter(f => f.endsWith('.json'));
-  const T0 = Date.parse('2019-09-08'), T1 = Date.parse('2026-10-04');
+  const T0 = Date.parse('2019-09-08'), T1 = Date.parse('2026-10-18');
   const ND = Math.round((T1 - T0) / DAY) + 1;
   const dates = Array.from({ length: ND }, (_, i) => iso(T0 + i * DAY));
   const syms = {};
@@ -160,7 +160,7 @@ function run(D, strat, opts) {
     const pnl = pnlGross - fee - p.entryFees + p.funding; // net trade pnl incl entry fees & funding (equity units)
     trades.push({ sym: p.sym, entryDate: dates[p.entryIdx], exitDate: dates[i], entryPx: p.firstPx, avgPx: p.avg, exitPx: fill, units: p.units,
       notional0: p.notional0, maxNotional: p.maxNotional, pnl, pnlPctOfEq: pnl / p.eqAtEntry, funding: p.funding, fees: p.entryFees + fee,
-      ret: (p.avg - fill) / p.avg, reason, days: i - p.entryIdx, mae: (p.maxHigh - p.avg) / p.avg, peakToEntry: p.peakToEntry, entryAge: p.entryAge });
+      ret: (p.avg - fill) / p.avg, reason, days: i - p.entryIdx, mae: (p.maxHigh - p.avg) / p.avg, peakToEntry: p.peakToEntry, entryAge: p.entryAge, ret20: p.ret20, stopPx: p.stop, qty: p.qty, exitIdx: i });
     pos.delete(p.sym);
   }
   for (let i = 0; i < ND; i++) {
@@ -186,7 +186,7 @@ function run(D, strat, opts) {
       if (od.type === 'entry') {
         pos.set(od.sym, { sym: od.sym, qty, avg: fill, firstPx: fill, lastFill: fill, units: 1, N: od.N, stop: od.stopMult ? fill + od.stopMult * od.N : null,
           stopMult: od.stopMult, entryIdx: i, entryFees: fee, realFees: 0, funding: 0, notional0: notional / eqOpen, maxNotional: notional / eqOpen, eqAtEntry: eqOpen,
-          maxHigh: S.h[i], lastPx: S.c[i], lastIdx: i, peakToEntry: od.peakToEntry, entryAge: od.age });
+          maxHigh: S.h[i], lastPx: S.c[i], lastIdx: i, peakToEntry: od.peakToEntry, entryAge: od.age, ret20: od.ret20, stopPx: od.stopMult ? fill + od.stopMult * od.N : null });
       } else { // add unit
         const p = pos.get(od.sym); if (!p) continue;
         p.avg = (p.avg * p.qty + fill * qty) / (p.qty + qty); p.qty += qty; p.units++; p.lastFill = fill; p.entryFees += fee;
@@ -200,8 +200,10 @@ function run(D, strat, opts) {
       const liq = o.lev ? p.avg * (1 + 1 / o.lev - o.mmr) : Infinity;
       const sr = slip(I(S, 'ADV', 20)[i - 1]) * o.stopSlipMult;
       if (S.o[i] >= liq) { liquidate(p, i, liq); continue; }
-      if (p.stop != null && S.h[i] >= p.stop && p.stop < liq) {
-        const px = Math.max(S.o[i], p.stop);
+      // 제안 2 검증: o.stopFn(sym, date, stop, entryDay) 가 마크가격 1분봉으로 그날 손절 체결가를 정한다 ({px}|null=안 걸림|undefined=자료 없음→일봉 규칙)
+      let sfx; if (o.stopFn && p.stop != null && p.stop < liq && S.h[i] >= p.stop) { /* 거래가 일봉 고가가 손절선 아래면 마크도 안 닿았다고 본다 */ sfx = o.stopFn(p.sym, dates[i], p.stop, p.entryIdx === i); if (sfx === null) { p.maxHigh = Math.max(p.maxHigh, S.h[i]); continue; } }
+      if (p.stop != null && (sfx || S.h[i] >= p.stop) && p.stop < liq) {
+        const px = sfx ? sfx.px : Math.max(S.o[i], p.stop);
         // funding for 00:00 event already charged before the stop
         if (o.fundingOn && p.entryIdx !== i) { const f = p.qty * S.o[i] * S.fd0[i]; p.funding += f; cash += f; fundingTot += f; }
         p.maxHigh = Math.max(p.maxHigh, px);
@@ -244,7 +246,7 @@ function run(D, strat, opts) {
     for (const sg of cands.slice(0, Math.max(0, slots))) {
       const S = syms[sg.sym]; const N = sg.N;
       const notional = Math.min(E * strat.riskPerUnit / ((strat.sizeStopMult || 2) * N / S.c[i]), o.unitCap * E);
-      pending.push({ type: 'entry', sym: sg.sym, notional, N, stopMult: strat.stopMult, peakToEntry: sg.peakToEntry, age: I(S, 'AGE')[i] });
+      pending.push({ type: 'entry', sym: sg.sym, notional, N, stopMult: strat.stopMult, peakToEntry: sg.peakToEntry, age: I(S, 'AGE')[i], ret20: sg.ret20 });
     }
   }
   // close open positions at last mark (report as open)
