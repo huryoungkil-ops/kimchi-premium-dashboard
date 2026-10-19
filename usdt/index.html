@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>USDT 웃돈 · 허박사의 코인 전략 연구소</title>
+<title>USDT 웃돈 실전 · 허박사의 코인 전략 연구소</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
 <style>
   :root{
@@ -444,19 +444,19 @@
     <div class="brand">
       <span class="mark">💵</span>
       <div><h1>USDT 웃돈 한 다리</h1><a class="lab" href="/">허박사의 코인 전략 연구소 · Dr. Hur's Coin Strategy Lab</a></div>
-      <span class="tag tag-paper">PAPER · 가상</span>
+      <span class="tag tag-live"><i class="lp-dot"></i>LIVE · 실전</span>
     </div>
-    <div class="snapshot-meta">카페24 봇이 15분마다 올리는 데이터<br><span id="page-updated">매시 정각 직후 판단</span></div>
+    <div class="snapshot-meta">디지털엑스 원화 USDT · 실제 자금<br><span id="page-updated">매시 정각 직후 판단</span></div>
   </header>
 
   <nav class="strategy-tabs" aria-label="페이지">
     <a href="/">🏠 전체 대시보드</a>
     <a href="/kimchi" class="live">🌶️ 김치프리미엄 <span class="sub">빗썸 × Binance · 실전</span> <span class="lp-badge live"><i class="lp-dot"></i>실전</span></a>
     <a href="/ls" class="live">⚖️ 롱숏 모멘텀+캐리 <span class="sub">바이낸스 선물 · 실전</span> <span class="lp-badge live"><i class="lp-dot"></i>실전</span></a>
+    <a href="/usdt" class="live" aria-current="page">💵 USDT 웃돈 <span class="sub">디지털엑스 원화 · 실전</span> <span class="lp-badge live"><i class="lp-dot"></i>실전</span></a>
     <a href="/turtle" class="paper">🐢 터틀 트레이딩 <span class="sub">빗썸 원화</span> <span class="lp-badge paper">가상</span></a>
     <a href="/luna" class="paper">🌙 제2의 루나를 찾아라 <span class="sub">바이낸스 선물</span> <span class="lp-badge paper">가상</span></a>
     <a href="/core" class="paper">🧭 BTC 추세 코어 <span class="sub">업비트 원화</span> <span class="lp-badge paper">가상</span></a>
-    <a href="/usdt" class="paper" aria-current="page">💵 USDT 웃돈 <span class="sub">빗썸 원화</span> <span class="lp-badge paper">가상</span></a>
     <a href="/top3" class="paper">🔝 주간 Top3 <span class="sub">바이낸스 현물</span> <span class="lp-badge paper">가상</span></a>
     <a href="/listing" class="paper">📉 상장 공매도 <span class="sub">바이낸스 선물</span> <span class="lp-badge paper">가상</span></a>
     <a href="/mix" class="paper">💰 백만장자 배분 <span class="sub">세 전략 섞기</span> <span class="lp-badge paper">가상</span></a>
@@ -466,245 +466,208 @@
   </nav>
   <p class="mode-legend"><span class="lp-key live">실선</span> = 실전 (실제 돈) · <span class="lp-key paper">점선</span> = 가상 (페이퍼)</p>
 
+<style id="usdt-live-css">
+  .u-banner{ display:flex; gap:14px; align-items:flex-start; padding:16px 18px; border-radius:var(--radius); border:2px solid var(--live); background:color-mix(in srgb, var(--live-soft) 40%, var(--bg-raised)); margin:0 0 18px; }
+  .u-banner.hold{ border-color:var(--accent); background:color-mix(in srgb, var(--accent-soft) 45%, var(--bg-raised)); }
+  .u-banner.wait{ border-color:var(--line); background:var(--bg-raised); }
+  .u-banner .u-dot{ width:12px; height:12px; border-radius:50%; background:var(--live); margin-top:6px; flex:none; }
+  .u-banner.hold .u-dot{ background:var(--accent); } .u-banner.wait .u-dot{ background:var(--ink-soft); }
+  .u-banner .u-title{ font-weight:600; font-size:16px; text-wrap:balance; }
+  .u-banner .u-sub{ color:var(--ink-soft); font-size:13px; margin-top:4px; }
+  .u-chart{ background:var(--bg-raised); border:1px solid var(--line-soft); border-radius:var(--radius); padding:10px 8px 4px; }
+  .u-chart svg{ width:100%; height:auto; display:block; }
+  .u-meter{ display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:10px; margin:0 0 14px; }
+  .u-meter div{ background:var(--bg-raised); border:1px solid var(--line-soft); border-radius:var(--radius); padding:10px 12px; min-width:0; }
+  .u-meter b{ display:block; font-family:var(--font-mono); font-size:18px; font-variant-numeric:tabular-nums; }
+  .u-meter span{ font-size:12px; color:var(--ink-soft); }
+  @media (max-width:560px){ .u-meter{ grid-template-columns:1fr; } }
+  .u-bt td.n, .u-bt th.n{ text-align:right; font-family:var(--font-mono); white-space:nowrap; }
+</style>
 <div class="tab-panel" id="tab-usdt">
-  <p class="paper-note">💵 <strong>USDT 웃돈 한 다리 페이퍼</strong> — 빗썸에서 원화 USDT 한 종목만 사고팝니다. 한국 거래소에서 USDT에 붙는 웃돈(공식 환율 대비)이 평소보다 많이 낮아지면 USDT를 사고, 평균으로 돌아오면 원화로 팝니다. 실제 돈은 오가지 않습니다. 근거: 김프 타이밍 연구 R4</p>
+  <p class="paper-note">💵 <strong>USDT 웃돈 한 다리 · 실전</strong> — 2026-10-19부터 <strong>디지털엑스</strong>에서 원화 USDT 한 종목만 <strong>실제 돈으로</strong> 사고팝니다(상한 1,000만 원). 한국 거래소에서 USDT에 붙는 웃돈(공식 환율 대비)이 평소보다 많이 낮아지면 USDT를 사고, 평균 위로 돌아오면 원화로 팝니다. 코인 시세 방향과는 상관이 없고, USDT를 들고 있는 동안만 원·달러 환율 위험을 집니다.</p>
   <p class="paper-status" id="u-status">불러오는 중…</p>
-  <section class="tiles" aria-label="USDT 웃돈 요약">
-    <div class="tile"><div class="label">가상 시드</div><div class="value">$10,000</div><div class="sub" id="u-seed">—</div></div>
-    <div class="tile"><div class="label">평가액 (원화)</div><div class="value" id="u-eq">—</div><div class="sub" id="u-eq-sub">—</div></div>
+
+  <div class="u-banner wait" id="u-banner" role="status"><span class="u-dot" aria-hidden="true"></span><div><div class="u-title" id="u-title">상태를 불러오는 중…</div><div class="u-sub" id="u-sub">카페24 봇이 매시 정각 직후 올리는 값입니다.</div></div></div>
+
+  <section class="tiles" aria-label="USDT 웃돈 실전 요약">
+    <div class="tile"><div class="label">실전 시드</div><div class="value">₩10,000,000</div><div class="sub" id="u-seed">디지털엑스 원화 · 상한</div></div>
+    <div class="tile"><div class="label">평가액</div><div class="value" id="u-eq">—</div><div class="sub" id="u-eq-sub">—</div></div>
     <div class="tile"><div class="label">지금 들고 있는 것</div><div class="value" id="u-mode">—</div><div class="sub" id="u-mode-sub">—</div></div>
     <div class="tile"><div class="label">청산 거래</div><div class="value" id="u-closed">—</div><div class="sub" id="u-closed-sub">—</div></div>
   </section>
+
   <section>
-    <h2>지금의 USDT 웃돈</h2>
-    <p class="section-sub">매시 정각 직후, 직전 1시간봉 종가로 계산합니다. 웃돈 = 빗썸 원화 USDT ÷ 장중 원·달러 환율 − 1. 매수선 = 최근 14일 평균 − 2σ, 매도선 = 최근 14일 평균 + 0.5σ (2026-10-16 평균에서 변경).</p>
-    <div class="table-scroll"><table class="coins paper">
-      <thead><tr><th>기준 시각</th><th class="num">원화 USDT</th><th class="num">환율</th><th class="num">웃돈</th><th class="num">14일 평균</th><th class="num">매수선</th><th class="num">매도선</th><th>판단</th></tr></thead>
-      <tbody id="u-now"></tbody>
-    </table></div>
+    <h2>지금의 USDT 웃돈 — 최근 14일</h2>
+    <p class="section-sub">웃돈 = 디지털엑스 원화 USDT ÷ 장중 원·달러 환율(Yahoo 1시간봉) − 1. 매시 정각 직후 직전 1시간봉 종가로 판단하고, 신호가 나면 <b>한 시간 뒤</b> 주문합니다. 초록 점선 = 매수선(14일 평균 − 2σ), 빨간 점선 = 매도선(평균 + 0.5σ), 회색 점선 = 14일 평균.</p>
+    <div class="u-meter">
+      <div><span>지금 웃돈</span><b id="u-prem">—</b><span id="u-prem-sub">—</span></div>
+      <div><span>매수선 (평균 − 2σ)</span><b id="u-buy">—</b><span id="u-buy-sub">—</span></div>
+      <div><span>매도선 (평균 + 0.5σ)</span><b id="u-sell">—</b><span id="u-sell-sub">—</span></div>
+    </div>
+    <div class="u-chart" id="u-chart" aria-label="디지털엑스 USDT 웃돈 14일 추이"></div>
   </section>
-  <section>
-    <h2>평가액 추이</h2>
-    <p class="section-sub">하루 한 번 기록(달러, 그날 장중 환율). 빨강 = USDT 웃돈 전략, 회색 점선 = 원화를 그냥 들고 있었을 때.</p>
-    <div class="equity-chart" id="u-chart"></div>
-  </section>
+
   <section>
     <h2>거래 기록</h2>
-    <p class="section-sub">손익을 «웃돈이 돌아온 몫»과 «환율이 움직인 몫»으로 나눠 기록합니다. 전략이 노리는 것은 웃돈 몫입니다.</p>
-    <div class="table-scroll"><table class="coins paper">
-      <thead><tr><th>매수</th><th>매도</th><th class="num">손익 (원)</th><th class="num">웃돈 몫</th><th class="num">환율 몫</th></tr></thead>
-      <tbody id="u-trades"></tbody>
+    <p class="section-sub">실제 체결 기록입니다. 손익을 «웃돈이 돌아온 몫»과 «환율이 움직인 몫»으로 나눠 적습니다. 전략이 노리는 것은 웃돈 몫입니다. 수수료는 0원(2027-08-24까지 디지털엑스 원화마켓 무료)이고, 호가 차이는 체결가에 들어 있습니다.</p>
+    <div class="table-scroll"><table class="coins">
+      <thead><tr><th>매수</th><th>매도</th><th class="num">수량</th><th class="num">산 값 → 판 값</th><th class="num">손익 (원)</th><th class="num">웃돈 몫</th><th class="num">환율 몫</th></tr></thead>
+      <tbody id="u-trades"><tr><td class="empty-row" colspan="7">불러오는 중…</td></tr></tbody>
     </table></div>
   </section>
 
   <section aria-labelledby="u-strategy-h">
-    <h2 id="u-strategy-h">전략 — 김프의 정체였던 «USDT 웃돈»을 직접 사고판다</h2>
-    <p class="section-sub">김프 타이밍 연구에서 요즘 김프 출렁임의 약 98%가 코인이 아니라 «한국 거래소에서 USDT에 붙는 웃돈»이라는 것을 확인했습니다. 그 웃돈은 평균으로 돌아오는 힘이 강했습니다(반감기 약 13일). 그래서 코인 120종목 대신 USDT 하나로 같은 수익원을 노립니다.</p>
+    <h2 id="u-strategy-h">규칙 — 김프의 정체였던 «USDT 웃돈»을 직접 사고판다</h2>
+    <p class="section-sub">김프 타이밍 연구에서 요즘 김프 출렁임의 약 98%가 코인이 아니라 «한국 거래소에서 USDT에 붙는 웃돈»이라는 것을 확인했습니다. 그 웃돈은 평균으로 돌아오는 힘이 강했습니다(반감기 약 13일). 그래서 코인 대신 USDT 하나만, 수수료가 없는 디지털엑스에서 거래합니다.</p>
     <div class="flow">
-      <div class="flow-step"><span class="num">01</span><h3>매시간 웃돈 계산</h3><p>빗썸 원화 USDT ÷ 장중 원·달러 환율(Yahoo 시간봉) − 1. 하루 한 번 바뀌는 환율로 재면 수익이 크게 줄어 장중 환율이 필수</p></div>
-      <div class="flow-step"><span class="num">02</span><h3>많이 낮으면 USDT</h3><p>원화를 들고 있다가 웃돈이 최근 14일 평균보다 2σ 넘게 낮아지면, 다음 시간에 전액 USDT로</p></div>
-      <div class="flow-step"><span class="num">03</span><h3>평균+0.5σ 오면 원화</h3><p>USDT를 들고 있다가 웃돈이 14일 평균 + 0.5σ 위로 올라오면, 다음 시간에 전액 원화로. 손절·최대 보유기간 없음</p></div>
-      <div class="flow-step"><span class="num">04</span><h3>중단 기준</h3><p>20거래 뒤 거래당 순 웃돈 몫이 0 이하면 신규 매수 중단. 실제 수수료가 편도 0.15%를 넘으면 실전 불가</p></div>
+      <div class="flow-step"><span class="num">01</span><h3>매시간 웃돈 계산</h3><p>디지털엑스 원화 USDT ÷ 장중 원·달러 환율 − 1. 빗썸과 가격이 달라 신호도 디지털엑스 시세로 냅니다</p></div>
+      <div class="flow-step"><span class="num">02</span><h3>많이 낮으면 USDT</h3><p>웃돈이 최근 14일 평균보다 2σ 넘게 낮아지면, 한 시간 뒤 원화 전액(최대 1,000만 원)을 USDT로</p></div>
+      <div class="flow-step"><span class="num">03</span><h3>평균+0.5σ 오면 원화</h3><p>웃돈이 14일 평균 + 0.5σ 위로 올라오면, 한 시간 뒤 이 봇이 산 USDT를 전부 원화로. 손절·최대 보유기간 없음</p></div>
+      <div class="flow-step"><span class="num">04</span><h3>중단 기준</h3><p>20거래 뒤 거래당 웃돈 몫 평균이 0 이하면 신규 매수 중단 (보유분은 규칙대로 매도)</p></div>
     </div>
     <div class="rules">
       <dl>
-        <dt>시드</dt><dd>$10,000 (시작 장중 환율로 원화 환산) · 비교 장부: 원화를 그냥 들고 있기</dd>
-        <dt>거래소</dt><dd>빗썸 원화 USDT (업비트·코인원·코빗도 백테스트 결과는 비슷: 연 +8.8~9.2%)</dd>
-        <dt>매도선 변경 (2026-10-16)</dt><dd>평균 → 평균 + 0.5σ. 5분봉 48조합을 2024년으로 고르고 2025~26년으로 확인: 2025 +8.2→+12.8%, 2026 +5.4→+6.6%, 최대낙폭 −3.2→−3.8%</dd>
-        <dt>비용</dt><dd>편도 0.09% (수수료+스프레드). 편도 0.25%면 이익이 거의 0, 0.5%면 손실 — 수수료가 낮은 곳에서만 의미</dd>
+        <dt>거래소 · 자금</dt><dd>디지털엑스(구 코빗) 원화 USDT · 이 봇이 쓰는 원화는 최대 1,000만 원 · 팔 때는 이 봇이 산 수량만</dd>
+        <dt>주문</dt><dd>최우선 호가 지정가 즉시체결(IOC, 가격 보호 1%)만 — 시장가 없음. 덜 체결되면 호가를 다시 받아 최대 5번</dd>
+        <dt>비용</dt><dd>수수료 0% (디지털엑스 원화마켓, 2027-08-24 09시까지) · 호가 한 칸(1원 ≈ 0.074%)</dd>
+        <dt>알림</dt><dd>매수·매도는 전용 Discord 채널로, 시작·일일 보고(09:10)·오류는 상태 채널로 · 매시 판단이 2시간 연속 실패하면 알림</dd>
+        <dt>API 키</dt><dd>조회·주문 권한만(출금 없음), 허용 IP는 서버 하나 · 키는 1년 유효 — 만료 하루 전(2027-10-18 09:00)에 갱신 알림</dd>
         <hr>
-        <dt>백테스트 (테스트 2025-07~2026-10)</dt><dd>원화 기준 연 +8.7%, 샤프 1.45, 최대낙폭 −3.4%, 연 20회, 평균 4.4일 보유, 자금의 24%만 USDT로 보유. 수익 = 웃돈 몫 +13.4%p · 환율 몫 +2.2%p · 비용 −4.7%p</dd>
-        <dt>주의</dt><dd>테스트에서 거래당 이익이 개발 구간의 절반 이하로 줄었음 · USDT 보유 중 환율·디페그 위험을 그대로 짐 · USDT 관련 세금·규제는 확인하지 못함 · 투자 권유 아님</dd>
+        <dt>백테스트 근거</dt><dd>디지털엑스 1시간봉 2024-04-11 ~ 2026-10-15, 편도 비용 0.04% 가정 · 연 13~15회 거래, 시간의 약 28%만 USDT 보유</dd>
+        <dt>주의</dt><dd>매도선(+0.5σ)은 빗썸 2024년 자료로 고른 값이라 2024년 숫자는 낙관적 · USDT 보유 중 원화가 강해지면 손실(2024년 5월·9월) · 거래소·디페그 위험 · 실전은 백테스트보다 덜 나오는 것이 보통 · 투자 권유 아님</dd>
       </dl>
     </div>
+    <div class="table-scroll"><table class="coins u-bt" style="min-width:0">
+      <thead><tr><th>디지털엑스 백테스트</th><th class="n">2024 (4/11~)</th><th class="n">2025</th><th class="n">2026 (10/15까지)</th><th class="n">최대낙폭</th></tr></thead>
+      <tbody>
+        <tr><td>편도 비용 0.04% 가정</td><td class="n">+8.7%</td><td class="n">+14.3%</td><td class="n">+8.7%</td><td class="n">−4.0%</td></tr>
+        <tr><td>비용 0 가정</td><td class="n">+10.0%</td><td class="n">+15.4%</td><td class="n">+10.0%</td><td class="n">−4.0%</td></tr>
+      </tbody>
+    </table></div>
   </section>
 </div><!-- /tab-usdt -->
-
   <footer>
-    <p><strong>실제 자금이 오가지 않는 페이퍼 트레이딩 기록입니다.</strong> 투자 권유가 아닙니다. 데이터는 카페24 봇이 GitHub에 15분마다 올리고, 이 페이지는 열 때마다 그 값을 읽습니다.</p>
+    <p><strong>실제 자금으로 거래하는 기록입니다.</strong> 투자 권유가 아닙니다. 데이터는 카페24 봇이 매시 정각 직후 GitHub에 올리고, 이 페이지는 열 때마다 그 값을 읽습니다.</p>
   </footer>
-
 </div>
-
 <script>
-// 전략 탭: #kimchi(기본) · #turtle · #luna · #ls. 터틀·루나·롱숏 데이터는 카페24 봇이 15분마다 GitHub 브랜치에 올리는 JSON을 읽는다.
+// USDT 웃돈 실전 (디지털엑스) — 서버 봇 src/usdtdx/run.js 가 매시 live-usdtdx/usdtdx.json 에 올린다 (2026-10-19~).
 (function(){
-  var RAW = 'https://raw.githubusercontent.com/huryoungkil-ops/kimchi-premium-dashboard/';
-  var SRC = { turtle: RAW + 'paper-turtle/turtle.json', luna: RAW + 'paper-luna/luna.json', ls: RAW + 'paper-ls/ls.json', core: RAW + 'paper-core/core.json', usdt: RAW + 'paper-usdt/usdt.json' };
-  var loaded = {};
+  var URL = 'https://raw.githubusercontent.com/huryoungkil-ops/kimchi-premium-dashboard/live-usdtdx/usdtdx.json';
   var $ = function(id){ return document.getElementById(id); };
-  var esc = function(s){ return String(s == null ? '' : s).replace(/[&<>"]/g, function(c){ return { '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;' }[c]; }); };
-  var won = function(v){ return v == null ? '—' : Math.round(v).toLocaleString('ko-KR') + '원'; };
-  var usd = function(v, d){ return v == null ? '—' : (v < 0 ? '−$' : '$') + Math.abs(v).toLocaleString('en-US', { minimumFractionDigits: d == null ? 2 : d, maximumFractionDigits: d == null ? 2 : d }); };
-  var pct = function(v){ return v == null || !isFinite(v) ? '—' : (v >= 0 ? '+' : '−') + Math.abs(v * 100).toFixed(2) + '%'; };
+  var won = function(v){ return v == null || !isFinite(v) ? '—' : (v < 0 ? '−' : '') + Math.abs(Math.round(v)).toLocaleString('ko-KR') + '원'; };
+  var pct = function(v, d){ return v == null || !isFinite(v) ? '—' : (v >= 0 ? '+' : '−') + Math.abs(v * 100).toFixed(d == null ? 2 : d) + '%'; };
+  var pp = function(v){ return v == null || !isFinite(v) ? '—' : (v * 100).toFixed(2) + '%'; };
   var cls = function(v){ return v > 0 ? 'pos' : v < 0 ? 'neg' : ''; };
   var kst = function(iso){ if (!iso) return '—'; var d = new Date(new Date(iso).getTime() + 9 * 3600e3); return d.toISOString().slice(5, 16).replace('T', ' '); };
-  var px = function(v){ if (v == null) return '—'; return v >= 1000 ? Math.round(v).toLocaleString('ko-KR') : Number(v).toPrecision(5); };
   var empty = function(n, msg){ return '<tr><td class="empty-row" colspan="' + n + '">' + msg + '</td></tr>'; };
 
-  function chart(el, series, fmt){
-    var pts = series[0].v; if (!pts.length) { el.innerHTML = '<p class="section-sub" style="margin:8px">첫 기록이 쌓이면 여기에 추이가 그려집니다.</p>'; return; }
-    var W = 760, H = 220, l = 70, r = 12, t = 12, b = 26, all = [];
-    series.forEach(function(s){ s.v.forEach(function(p){ all.push(p[1]); }); });
-    var mn = Math.min.apply(null, all), mx = Math.max.apply(null, all); if (mx - mn < 1e-9) { mx += 1; mn -= 1; }
-    var pad = (mx - mn) * 0.1; mn -= pad; mx += pad;
-    var n = Math.max(pts.length - 1, 1), X = function(i){ return l + i / n * (W - l - r); }, Y = function(v){ return t + (mx - v) / (mx - mn) * (H - t - b); };
-    var css = getComputedStyle(document.documentElement), col = { a: css.getPropertyValue('--danger').trim(), b: css.getPropertyValue('--ink-soft').trim(), g: css.getPropertyValue('--line').trim() };
-    var svg = '<svg viewBox="0 0 ' + W + ' ' + H + '" role="img" aria-label="평가액 추이">';
-    [0, 0.5, 1].forEach(function(f){ var v = mn + (mx - mn) * f; svg += '<line x1="' + l + '" x2="' + (W - r) + '" y1="' + Y(v) + '" y2="' + Y(v) + '" stroke="' + col.g + '"/><text x="' + (l - 6) + '" y="' + (Y(v) + 4) + '" text-anchor="end">' + fmt(v) + '</text>'; });
-    svg += '<text x="' + l + '" y="' + (H - 6) + '">' + pts[0][0] + '</text><text x="' + (W - r) + '" y="' + (H - 6) + '" text-anchor="end">' + pts[pts.length - 1][0] + '</text>';
-    series.forEach(function(s, k){
-      var d = s.v.map(function(p, i){ return (i ? 'L' : 'M') + X(i).toFixed(1) + ' ' + Y(p[1]).toFixed(1); }).join(' ');
-      svg += '<path d="' + d + '" fill="none" stroke="' + (k ? col.b : col.a) + '" stroke-width="' + (k ? 1.6 : 2.4) + '"' + (k ? ' stroke-dasharray="4 3"' : '') + '/>';
-      var lp = s.v[s.v.length - 1]; svg += '<circle cx="' + X(s.v.length - 1) + '" cy="' + Y(lp[1]) + '" r="3.5" fill="' + (k ? col.b : col.a) + '"/>';
+  function chart(d){
+    var host = $('u-chart'), s = d.series || [], L = (d.state || {}).last || {};
+    if (s.length < 2 || L.ma == null) { host.innerHTML = '<p class="section-sub" style="margin:8px">14일치 기록이 모이면 여기에 그려집니다.</p>'; return; }
+    var buy = L.buyLine * 100, sell = L.sellLine * 100, ma = L.ma * 100;
+    var NS = 'http://www.w3.org/2000/svg', W = 760, H = 230, l = 50, r = 14, t = 14, b = 28;
+    var ys = s.map(function(p){ return p[1]; }).concat([buy, sell, ma]);
+    var mn = Math.min.apply(null, ys), mx = Math.max.apply(null, ys), pad = (mx - mn) * 0.12 || 0.1; mn -= pad; mx += pad;
+    var t0 = s[0][0], t1 = s[s.length - 1][0];
+    var X = function(v){ return l + (v - t0) / (t1 - t0) * (W - l - r); }, Y = function(v){ return t + (mx - v) / (mx - mn) * (H - t - b); };
+    var svg = document.createElementNS(NS, 'svg'); svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H); svg.setAttribute('role', 'img');
+    svg.setAttribute('aria-label', '디지털엑스 USDT 웃돈 14일 추이, 지금 ' + s[s.length - 1][1].toFixed(2) + '%, 매수선 ' + buy.toFixed(2) + '%, 매도선 ' + sell.toFixed(2) + '%');
+    var css = getComputedStyle(document.documentElement), C = function(n){ return css.getPropertyValue(n).trim(); };
+    function el(tag, a, txt){ var e = document.createElementNS(NS, tag); for (var k in a) e.setAttribute(k, a[k]); if (txt != null) e.textContent = txt; svg.appendChild(e); return e; }
+    el('rect', { x: l, y: Y(buy), width: W - l - r, height: Math.max(0, H - b - Y(buy)), fill: C('--good-soft'), opacity: 0.8 });
+    el('rect', { x: l, y: t, width: W - l - r, height: Math.max(0, Y(sell) - t), fill: C('--danger-soft'), opacity: 0.6 });
+    var step = (mx - mn) > 1.6 ? 0.5 : 0.25;
+    for (var v = Math.ceil(mn / step) * step; v <= mx; v += step) {
+      el('line', { x1: l, x2: W - r, y1: Y(v), y2: Y(v), stroke: C('--line-soft') });
+      el('text', { x: l - 6, y: Y(v) + 4, 'text-anchor': 'end', 'font-size': 11, fill: C('--ink-soft') }, v.toFixed(2) + '%');
+    }
+    for (var dd = 0; dd <= 14; dd += 2) { var tx = t1 - dd * 86400e3; if (tx < t0) continue;
+      el('text', { x: X(tx), y: H - 8, 'text-anchor': 'middle', 'font-size': 11, fill: C('--ink-soft') }, kst(new Date(tx).toISOString()).slice(0, 5)); }
+    var lines = [[ma, C('--ink-soft'), '5 4'], [buy, C('--good'), '3 3'], [sell, C('--danger'), '3 3']];
+    lines.forEach(function(x){ el('line', { x1: l, x2: W - r, y1: Y(x[0]), y2: Y(x[0]), stroke: x[1], 'stroke-dasharray': x[2] }); });
+    el('path', { d: s.map(function(p, i){ return (i ? 'L' : 'M') + X(p[0]).toFixed(1) + ' ' + Y(p[1]).toFixed(1); }).join(' '), fill: 'none', stroke: C('--accent'), 'stroke-width': 2 });
+    // 체결 표시
+    (d.trades || []).forEach(function(tr){
+      [[tr.entryTime, 'buy'], [tr.exitTime, 'sell']].forEach(function(e){ if (!e[0]) return; var ts = Date.parse(e[0]); if (ts < t0 || ts > t1 + 2 * 3600e3) return;
+        var near = s.reduce(function(a, p){ return Math.abs(p[0] - ts) < Math.abs(a[0] - ts) ? p : a; }, s[0]);
+        el('circle', { cx: X(near[0]), cy: Y(near[1]), r: 5, fill: e[1] === 'buy' ? C('--good') : C('--danger'), stroke: C('--bg-raised'), 'stroke-width': 1.5 }); });
     });
-    el.innerHTML = svg + '</svg>';
+    var last = s[s.length - 1], hold = (d.state || {}).mode === 'usdt';
+    el('circle', { cx: X(last[0]), cy: Y(last[1]), r: 5, fill: hold ? C('--accent') : C('--ink'), stroke: C('--bg-raised'), 'stroke-width': 1.5 });
+    var lbNow = el('text', { 'font-size': 12, 'font-weight': 600, fill: C('--ink') }, '지금 ' + last[1].toFixed(2) + '%');
+    var lbMa = el('text', { 'font-size': 11, fill: C('--ink-soft') }, '14일 평균 ' + ma.toFixed(2) + '%');
+    var lbBuy = el('text', { 'font-size': 11, fill: C('--good') }, '매수선 ' + buy.toFixed(2) + '% — 이 아래로 오면 USDT 매수');
+    var lbSell = el('text', { 'font-size': 11, fill: C('--danger') }, '매도선 ' + sell.toFixed(2) + '% — 보유 중 이 위로 오면 매도');
+    host.innerHTML = ''; host.appendChild(svg);
+    // 글씨가 선·다른 글씨와 겹치지 않게 자리를 고른다 (김프 차트 7164702 와 같은 방법)
+    var pts = [];
+    for (var i = 0; i < s.length; i++) { var x1 = X(s[i][0]), y1 = Y(s[i][1]); pts.push([x1, y1]);
+      if (i + 1 < s.length) { var x2 = X(s[i + 1][0]), y2 = Y(s[i + 1][1]), n = Math.ceil(Math.max(Math.abs(x2 - x1), Math.abs(y2 - y1)) / 3);
+        for (var k = 1; k < n; k++) pts.push([x1 + (x2 - x1) * k / n, y1 + (y2 - y1) * k / n]); } }
+    var boxes = [{ x: X(last[0]) - 7, y: Y(last[1]) - 7, w: 14, h: 14 }], hl = lines.map(function(x){ return Y(x[0]); });
+    function hits(bx){ var c = 0;
+      for (var h = 0; h < hl.length; h++) if (hl[h] > bx.y && hl[h] < bx.y + bx.h) c += 50;
+      for (var j = 0; j < pts.length; j++) { var q = pts[j]; if (q[0] >= bx.x - 3 && q[0] <= bx.x + bx.w + 3 && q[1] >= bx.y - 3 && q[1] <= bx.y + bx.h + 3) c++; }
+      for (var m = 0; m < boxes.length; m++) { var o = boxes[m]; if (bx.x < o.x + o.w + 4 && o.x < bx.x + bx.w + 4 && bx.y < o.y + o.h + 2 && o.y < bx.y + bx.h + 2) c += 1000; }
+      return c; }
+    function place(tEl, cand, x0, lo, hi){
+      var w = tEl.getComputedTextLength(), fs = Number(tEl.getAttribute('font-size')), best = null;
+      hi = Math.min(hi, W - r - w - 2); lo = Math.max(lo, l + 2); if (hi < lo) hi = lo;
+      for (var yi = 0; yi < cand.length; yi++) for (var x = lo; x <= hi + 0.1; x += 4) {
+        var bx = { x: x, y: cand[yi] - fs * 0.85, w: w, h: fs * 1.05 }, sc = hits(bx) * 100 + Math.abs(x - x0) / 10 + yi * 5;
+        if (!best || sc < best.sc) best = { sc: sc, bx: bx, x: x, y: cand[yi] }; }
+      tEl.setAttribute('x', best.x.toFixed(1)); tEl.setAttribute('y', best.y.toFixed(1)); boxes.push(best.bx);
+    }
+    var nw = lbNow.getComputedTextLength(), nx = X(last[0]) - 9 - nw;
+    place(lbNow, [Y(last[1]) - 9, Y(last[1]) + 20], nx, nx - 260, nx);
+    place(lbBuy, [Y(buy) + 14, Y(buy) - 5], l + 6, l + 6, W);
+    place(lbSell, [Y(sell) - 5, Y(sell) + 14], l + 6, l + 6, W);
+    place(lbMa, [Y(ma) - 5, Y(ma) + 14], l + 6, l + 6, W);
+    [lbNow, lbMa, lbBuy, lbSell].forEach(function(e){ e.setAttribute('paint-order', 'stroke'); e.setAttribute('stroke', C('--bg-raised')); e.setAttribute('stroke-width', 3); e.setAttribute('stroke-linejoin', 'round'); });
   }
-  function status(id, d){
+
+  function render(d){
+    var st = d.state || {}, L = st.last || {}, seed = (d.rules || {}).MAX_KRW || 10000000;
     var age = (Date.now() - new Date(d.updatedAt).getTime()) / 60000;
-    $(id).textContent = '봇 데이터 갱신 ' + kst(d.updatedAt) + ' KST (' + (age < 1 ? '방금' : Math.round(age) + '분 전') + ') · 15분마다 갱신' + (age > 60 ? ' · ⚠️ 한 시간 넘게 갱신이 없습니다' : '');
-  }
-
-  function renderTurtle(d){
-    status('t-status', d);
-    var st = d.state || {}, eq = d.equity.filter(function(e){ return e.strategy === 'turtle'; }), eqM = d.equity.filter(function(e){ return e.strategy === 'ma120'; });
-    var coins = st.coins || {}, price = function(c){ var x = coins[c]; return x && x.tick ? x.tick.p : x && x.close; };
-    var bookEq = function(b){ var s = b.cash; Object.keys(b.pos || {}).forEach(function(c){ (b.pos[c].units || []).forEach(function(u){ s += u.qty * price(c); }); }); return s; };
-    var books = st.books || {}, nowT = (books.S1 ? bookEq(books.S1) : 0) + (books.S2 ? bookEq(books.S2) : 0);
-    var m = st.ma120 || {}, nowM = (m.cash || 0) + (m.qty || 0) * (price('BTC') || 0), fx0 = st.fx0;
-    // 달러 장부 — 현금은 달러로 들고 있다고 보고 코인만 최근 환율로 달러 평가한다 (봇 turtle.js usdEquity 와 같은 셈)
-    var lastEq = eq[eq.length - 1], fx = st.fx || (lastEq && lastEq.detail && lastEq.detail.fx) || fx0, seedUsd = st.seedUsd || 10000;
-    var usdNow = function(key, cash, total){
-      var u = (st.usd || {})[key] || { cashUsd: seedUsd + (cash - st.seedKrw) / fx0, cashKrw: cash };
-      return u.cashUsd + (cash - u.cashKrw) / fx + (total - cash) / fx;
-    };
-    var cashT = (books.S1 ? books.S1.cash : 0) + (books.S2 ? books.S2.cash : 0), uT = usdNow('turtle', cashT, nowT), uM = usdNow('ma120', m.cash || 0, nowM);
-    $('t-seed').textContent = won(st.seedKrw) + ' (시작 환율 ' + (fx0 ? fx0.toFixed(1) : '—') + ')';
-    $('t-eq').textContent = usd(uT); $('t-eq-sub').textContent = pct(uT / seedUsd - 1) + ' · ' + won(nowT);
-    $('t-ma').textContent = usd(uM); $('t-ma-sub').textContent = pct(uM / seedUsd - 1) + ' · ' + (m.qty > 0 ? 'BTC 보유 중' : '현금 (120일선 아래)');
-    var closed = d.trades.filter(function(t){ return t.strategy === 'turtle' && t.status === 'CLOSED'; }), wins = closed.filter(function(t){ return t.pnl > 0; }).length;
-    var sum = closed.reduce(function(s, t){ return s + (t.pnl || 0); }, 0);
-    $('t-closed').textContent = closed.length + '건'; $('t-closed-sub').textContent = closed.length ? '승 ' + wins + ' · 누적 ' + usd(sum / fx) + ' (' + won(sum) + ')' : '아직 청산 없음';
-    var rows = [];
-    ['S1', 'S2'].forEach(function(bk){ var B = books[bk] || {}; Object.keys(B.pos || {}).forEach(function(c){
-      var p = B.pos[c], q = 0, cost = 0; p.units.forEach(function(u){ q += u.qty; cost += u.qty * u.px; });
-      var now = price(c), up = q * now - cost;
-      rows.push('<tr><td>' + (bk === 'S1' ? '시스템 1' : '시스템 2') + '</td><td class="coin">' + c + '</td><td class="num">' + p.units.length + ' / 4</td><td class="num">' + px(cost / q) + '</td><td class="num">' + px(now) + '</td><td class="num">' + px(p.stop) + '</td><td class="num">' + (p.units.length < 4 ? px(p.lastFill + 0.5 * p.N) : '—') + '</td><td class="num ' + cls(up) + '">' + usd(up / fx) + ' (' + pct(up / cost) + ')</td></tr>');
-    }); });
-    $('t-pos').innerHTML = rows.join('') || empty(8, '보유 포지션이 없습니다. 아래 «오늘의 신호 레벨»을 가격이 넘으면 진입합니다.');
-    $('t-levels').innerHTML = ['BTC', 'ETH'].map(function(c){
-      var x = coins[c]; if (!x) return '';
-      var s1 = x.shadow ? '가상 거래 진행 중 (' + (x.shadow.dir > 0 ? '상승' : '하락') + ' 돌파) → 55일 돌파에서만 진입' : x.lastShadowWin === true ? '직전 돌파 승리 → 다음 20일 돌파 건너뜀' : '20일 돌파 시 진입';
-      return '<tr><td class="coin">' + c + '</td><td class="num">' + px(price(c)) + '</td><td class="num">' + px(x.Nw) + '</td><td class="num">' + px(x.H && x.H[20]) + '</td><td class="num">' + px(x.H && x.H[55]) + '</td><td class="num">' + px(x.Lo && x.Lo[10]) + '</td><td class="num">' + px(x.Lo && x.Lo[20]) + '</td><td>' + s1 + '</td></tr>';
-    }).join('');
-    var uv = function(e){ var d = e.detail || {}; return [e.day.slice(5), d.usd != null ? d.usd : e.equity / (d.fx || fx0)]; };
-    chart($('t-chart'), [{ v: eq.map(uv) }, { v: eqM.map(uv) }], function(v){ return '$' + Math.round(v).toLocaleString('en-US'); });
-    var tr = d.trades.slice(0, 50).map(function(t){
-      var book = t.strategy === 'ma120' ? '120일선 비교' : (t.book === 'S1' ? '시스템 1' : '시스템 2');
-      return '<tr><td>' + kst(t.entryTime) + '</td><td>' + book + '</td><td class="coin">' + esc(t.coin) + '</td><td class="num">' + (t.units || 1) + '</td><td class="num">' + px(t.entryPx) + '</td><td class="num">' + px(t.exitPx) + '</td><td class="num ' + cls(t.pnl) + '">' + (t.status === 'OPEN' ? '보유 중' : usd(t.pnl / fx)) + '</td><td>' + esc(t.reason || t.note || '') + '</td></tr>';
-    });
-    $('t-trades').innerHTML = tr.join('') || empty(8, '아직 거래가 없습니다.');
-  }
-
-  function renderLuna(d){
-    status('l-status', d);
-    var st = d.state || {}, S = st.short || { pos: {} }, Bk = st.btc || {}, eq = d.equity.filter(function(e){ return e.strategy === 'luna'; });
-    var pos = Object.keys(S.pos || {}).map(function(k){ return S.pos[k]; });
-    var upnl = function(p){ var mk = p.lastMark || p.entry; return p.qty * (p.entry - mk) + (p.funding || 0); };
-    var shortEq = (S.cash || 0) + pos.reduce(function(s, p){ return s + upnl(p); }, 0), btcEq = (Bk.cash || 0) + (Bk.qty || 0) * (st.btcPx || 0), tot = shortEq + btcEq, seed = st.seed || 10000;
-    $('l-eq').textContent = usd(tot); $('l-eq-sub').textContent = pct(tot / seed - 1);
-    $('l-short').textContent = usd(shortEq); $('l-short-sub').textContent = pos.length + '종목 숏' + (S.halted ? ' · ⛔ 신규 중단: ' + S.halted : '');
-    $('l-btc').textContent = usd(btcEq); $('l-btc-sub').textContent = Bk.qty > 0 ? 'BTC 보유 중 (120일선 ' + usd(Bk.ma, 0) + ')' : '현금 (120일선 아래)';
-    $('l-pos').innerHTML = pos.map(function(p){
-      var u = upnl(p);
-      return '<tr><td class="coin">' + esc(p.symbol) + '</td><td>' + kst(p.at) + '</td><td class="num">' + usd(p.qty * p.entry) + '</td><td class="num">' + px(p.entry) + '</td><td class="num">' + px(p.lastMark) + '</td><td class="num">' + px(p.stop) + '</td><td class="num ' + cls(p.funding) + '">' + usd(p.funding) + '</td><td class="num ' + cls(u) + '">' + usd(u) + ' (' + pct(u / (p.qty * p.entry)) + ')</td></tr>';
-    }).join('') || empty(8, '보유 숏이 없습니다. 매일 09:05 KST에 바이낸스 선물 전 종목을 훑어 조건에 맞는 붕괴 코인을 찾습니다.');
-    chart($('l-chart'), [{ v: eq.map(function(e){ return [e.day.slice(5), e.equity]; }) }, { v: eq.map(function(e){ return [e.day.slice(5), (e.detail || {}).short || 0]; }) }], function(v){ return '$' + Math.round(v).toLocaleString('en-US'); });
-    $('l-trades').innerHTML = d.trades.slice(0, 50).map(function(t){
-      return '<tr><td>' + kst(t.entryTime) + '</td><td>' + (t.book === 'btc' ? 'BTC 다리' : '숏') + '</td><td class="coin">' + esc(t.coin) + '</td><td class="num">' + px(t.entryPx) + '</td><td class="num">' + px(t.exitPx) + '</td><td class="num ' + cls(t.funding) + '">' + usd(t.funding || 0) + '</td><td class="num ' + cls(t.pnl) + '">' + (t.status === 'OPEN' ? '보유 중' : usd(t.pnl)) + '</td><td>' + esc(t.reason || t.note || '') + '</td></tr>';
-    }).join('') || empty(8, '아직 거래가 없습니다.');
-  }
-
-  function renderLs(d){
-    status('s-status', d);
-    var st = d.state || {}, seed = st.seed || 10000, coin = function(s){ return String(s || '').replace(/USDT$/, ''); };
-    var eq = d.equity.filter(function(e){ return e.strategy === 'ls'; }), bh = d.equity.filter(function(e){ return e.strategy === 'btc_hold'; });
-    var last = eq[eq.length - 1], det = (last && last.detail) || {};
-    var now = st.live && st.live.equity != null ? st.live.equity : st.equity;
-    $('s-start').textContent = st.createdAt ? kst(st.createdAt) + ' KST 시작' : '—';
-    $('s-eq').textContent = usd(now); $('s-eq-sub').textContent = pct(now / seed - 1) + (st.live ? ' · 마크가격 ' + kst(st.live.at) : '') + (det.alt015 != null ? ' · 수수료 0.15% 가정 ' + usd(det.alt015, 0) : '');
-    var b = bh[bh.length - 1];
-    $('s-btc').textContent = b ? usd(b.equity) : '—'; if (b) $('s-btc-sub').textContent = pct(b.equity / seed - 1) + ' · 같은 날 $10,000로 시작했다면';
-    $('s-exp').textContent = det.gross != null ? det.gross.toFixed(2) + '배' : '—';
-    $('s-exp-sub').textContent = det.net != null ? '순노출 ' + pct(det.net) + ' (0에 가까울수록 시장중립)' : '—';
-    var net = st.net || {}, E = st.equity || 1;
-    var rows = Object.keys(net).map(function(k){ return [k, net[k]]; }).sort(function(a, b){ return b[1] - a[1]; });
-    $('s-pos').innerHTML = rows.map(function(r){
-      return '<tr><td class="' + (r[1] > 0 ? 'pos' : 'neg') + '">' + (r[1] > 0 ? '롱' : '숏') + '</td><td class="coin">' + esc(coin(r[0])) + '</td><td class="num">' + (Math.abs(r[1]) / E * 100).toFixed(1) + '%</td><td class="num">' + usd(Math.abs(r[1]), 0) + '</td></tr>';
-    }).join('') || empty(4, '아직 포지션이 없습니다. 매일 09:05 KST에 판단합니다.');
-    var pk = st.picks;
-    if (pk) {
-      $('s-picks-sub').textContent = pk.day + ' 종가 기준 · 오늘 다시 맞춘 하위 책: ' + (pk.rebalanced || []).map(function(k){ return 'B' + (k + 1); }).join(', ') + ' · 후보 ' + (pk.universe || []).length + '개 중 점수 상·하위 6개';
-      var line = function(x, side){ return '<tr><td class="' + (side === '롱' ? 'pos' : 'neg') + '">' + side + '</td><td class="coin">' + esc(coin(x.sym)) + '</td><td class="num">' + (Math.abs(x.w) * 100).toFixed(1) + '%</td><td class="num ' + cls(x.mom) + '">' + pct(x.mom) + '</td><td class="num">' + (x.fund * 100).toFixed(4) + '%</td><td class="num">' + (x.vol * 100).toFixed(1) + '%</td><td class="num">' + x.score.toFixed(2) + '</td></tr>'; };
-      $('s-picks').innerHTML = pk.longs.map(function(x){ return line(x, '롱'); }).concat(pk.shorts.map(function(x){ return line(x, '숏'); })).join('');
-    } else { $('s-picks').innerHTML = empty(7, '첫 선정 전입니다.'); }
-    chart($('s-chart'), [{ v: eq.map(function(e){ return [e.day.slice(5), e.equity]; }) }, { v: bh.map(function(e){ return [e.day.slice(5), e.equity]; }) }], function(v){ return '$' + Math.round(v).toLocaleString('en-US'); });
-    $('s-trades').innerHTML = d.trades.slice(0, 60).map(function(t){
-      return '<tr><td>' + kst(t.entryTime) + '</td><td>' + esc(t.book) + '</td><td class="coin">' + esc(t.coin) + '</td><td class="' + (t.side === 'long' ? 'pos' : 'neg') + '">' + (t.side === 'long' ? '롱' : '숏') + '</td><td class="num">' + px(t.entryPx) + '</td><td class="num">' + px(t.exitPx) + '</td><td class="num ' + cls(t.funding) + '">' + usd(t.funding || 0) + '</td><td class="num ' + cls(t.pnl) + '">' + (t.status === 'OPEN' ? '보유 중' : usd(t.pnl)) + '</td><td>' + esc(t.reason || t.note || '') + '</td></tr>';
-    }).join('') || empty(9, '아직 거래가 없습니다.');
-  }
-
-  function renderCore(d){
-    status('c-status', d);
-    var st = d.state || {}, seed = st.seedUsd || 10000, fx = st.fx || st.fx0, px = st.px;
-    var B = st.books || {}, nowUsd = function(k){ var b = B[k]; return b && b.krw != null && fx ? b.krw / fx : null; };
-    $('c-seed').textContent = (st.seedKrw ? won(st.seedKrw) : '—') + ' (시작 환율 ' + (st.fx0 ? st.fx0.toFixed(1) : '—') + ')';
-    [['core', 'c-core'], ['hold', 'c-hold'], ['vt30', 'c-vt']].forEach(function(p){
-      var v = nowUsd(p[0]), b = B[p[0]] || {};
-      $(p[1]).textContent = usd(v);
-      $(p[1] + '-sub').textContent = v == null ? '—' : pct(v / seed - 1) + ' · BTC 비중 ' + Math.round((b.w || 0) * 100) + '%';
-    });
-    var L = st.last;
-    $('c-signal').innerHTML = L ? '<tr><td>' + esc(L.day) + '</td><td class="num">' + usd(L.close, 0) + '</td><td class="num">' + usd(L.ma, 0) + '</td><td class="num ' + cls(L.close - L.ma) + '">' + pct(L.close / L.ma - 1) + '</td><td class="num">' + (L.vol * 100).toFixed(0) + '%</td><td>' + (L.signal ? '🟢 보유 (120일선 위)' : '🔴 현금 (120일선 아래)') + '</td></tr>' : empty(6, '첫 판단 전입니다.');
-    var eq = function(k){ return d.equity.filter(function(e){ return e.strategy === k; }).map(function(e){ return [e.day.slice(5), e.equity]; }); };
-    chart($('c-chart'), [{ v: eq('core') }, { v: eq('hold') }, { v: eq('vt30') }], function(v){ return '$' + Math.round(v).toLocaleString('en-US'); });
-    $('c-trades').innerHTML = d.trades.slice(0, 50).map(function(t){
-      return '<tr><td>' + kst(t.entryTime) + '</td><td>' + esc(t.book) + '</td><td class="num">' + won(t.entryPx) + '</td><td class="num">' + (t.exitPx ? won(t.exitPx) : '—') + '</td><td class="num ' + cls(t.pnl) + '">' + (t.status === 'OPEN' ? '보유 중' : won(t.pnl)) + '</td><td>' + esc(t.reason || t.note || '') + '</td></tr>';
-    }).join('') || empty(6, '아직 거래가 없습니다.');
-  }
-
-  function renderUsdt(d){
-    status('u-status', d);
-    var st = d.state || {}, seed = st.seedUsd || 10000, fx = st.fxNow || st.fx0, krw = st.equityKrw != null ? st.equityKrw : st.seedKrw;
-    var p2 = function(v){ return v == null ? '—' : (v * 100).toFixed(2) + '%'; };
-    $('u-seed').textContent = (st.seedKrw ? won(st.seedKrw) : '—') + ' (시작 환율 ' + (st.fx0 ? st.fx0.toFixed(1) : '—') + ')';
-    $('u-eq').textContent = won(krw); $('u-eq-sub').textContent = pct(krw / st.seedKrw - 1) + ' · ' + usd(fx ? krw / fx : null);
-    $('u-mode').textContent = st.mode === 'usdt' ? 'USDT' : '원화';
-    $('u-mode-sub').textContent = st.halted ? '⛔ 중단 기준 도달 — 신규 매수 중단' : st.mode === 'usdt' ? (st.usdt || 0).toFixed(2) + ' USDT · 웃돈이 평균 + 0.5σ 위로 오면 매도' : '웃돈이 매수선 아래로 가면 매수' + (st.pending ? ' · 다음 시간 ' + (st.pending === 'buy' ? '매수' : '매도') + ' 예정' : '');
-    var done = st.done || [], wins = done.filter(function(t){ return t.pnl > 0; }).length;
-    var avgPrem = done.length ? done.reduce(function(a, t){ return a + t.premPart; }, 0) / done.length : null;
+    $('u-status').textContent = '봇 데이터 갱신 ' + kst(d.updatedAt) + ' KST (' + (age < 1 ? '방금' : Math.round(age) + '분 전') + ') · 매시 정각 직후 갱신' + (age > 75 ? ' · ⚠️ 한 시간 넘게 갱신이 없습니다' : '') + (d.live ? '' : ' · 실전 전환 준비 중 (모의 판단만)');
+    $('page-updated').textContent = '기준 봉 ' + kst(L.t) + ' KST';
+    var done = st.done || [], realized = done.reduce(function(t, x){ return t + (x.pnl || 0); }, 0);
+    var T = st.trade, hold = st.mode === 'usdt' && T;
+    var unreal = hold && L.usdt ? st.qty * L.usdt - T.amt * (st.qty / T.qty) : 0, now = seed + realized + unreal;
+    // 배너
+    var ban = $('u-banner');
+    if (!d.live) { ban.className = 'u-banner wait'; $('u-title').textContent = '⏳ 실전 전환 준비 중 — 아직 실제 주문을 내지 않습니다'; }
+    else if (st.halted) { ban.className = 'u-banner wait'; $('u-title').textContent = '⛔ 신규 매수 중단 — 20거래 중단 기준에 걸렸습니다'; }
+    else if (hold) { ban.className = 'u-banner hold'; $('u-title').textContent = st.pending === 'sell' ? '🔴 매도 신호 — 다음 정각에 USDT를 원화로 팝니다' : '💵 USDT ' + st.qty.toFixed(2) + '개 보유 중 — 웃돈이 매도선 위로 오기를 기다립니다'; }
+    else { ban.className = 'u-banner'; $('u-title').textContent = st.pending === 'buy' ? '🟢 매수 신호 — 다음 정각에 원화로 USDT를 삽니다' : '🟡 원화 대기 — 웃돈이 매수선 아래로 내려오기를 기다립니다'; }
+    $('u-sub').textContent = L.prem != null ? '지금 웃돈 ' + pp(L.prem) + ' · 매수선 ' + pp(L.buyLine) + ' · 매도선 ' + pp(L.sellLine) + (hold ? ' · 산 값 ' + Math.round(T.px).toLocaleString('ko-KR') + '원 (웃돈 ' + pp(T.prem) + ')' : ' · 매수선까지 ' + ((L.prem - L.buyLine) * 100).toFixed(2) + '%p') : '아직 판단 기록이 없습니다';
+    // 타일
+    $('u-eq').textContent = won(now); $('u-eq').className = 'value';
+    $('u-eq-sub').innerHTML = '<span class="' + cls(now - seed) + '">' + pct(now / seed - 1) + ' · ' + won(now - seed) + '</span>' + (L.fx ? ' · $' + Math.round(now / L.fx).toLocaleString('en-US') : '');
+    $('u-mode').textContent = hold ? 'USDT' : '원화';
+    $('u-mode-sub').textContent = hold ? st.qty.toFixed(2) + '개 · 평가 손익 ' + won(unreal) + ' (' + pct(unreal / T.amt) + ')' : (st.pending === 'buy' ? '다음 정각 매수 예정' : '매수 신호 대기');
+    var wins = done.filter(function(x){ return x.pnl > 0; }).length;
     $('u-closed').textContent = done.length + '건';
-    $('u-closed-sub').textContent = done.length ? '승 ' + wins + ' · 거래당 웃돈 몫 ' + (avgPrem * 100).toFixed(2) + '%p' : '아직 청산 없음 (백테스트 기준 연 20회 안팎)';
-    var L = st.last;
-    $('u-now').innerHTML = L ? '<tr><td>' + kst(L.t) + '</td><td class="num">' + won(L.usdt) + '</td><td class="num">' + (L.fx ? L.fx.toFixed(1) : '—') + '</td><td class="num">' + p2(L.prem) + '</td><td class="num">' + p2(L.ma) + '</td><td class="num">' + (L.ma != null ? p2(L.ma - 2 * L.sd) : '—') + '</td><td class="num">' + (L.ma != null ? p2(L.ma + 0.5 * L.sd) : '—') + '</td><td>' + (L.signal === 'buy' ? '🟢 매수 신호 (다음 시간 체결)' : L.signal === 'sell' ? '🔴 매도 신호 (다음 시간 체결)' : '대기') + '</td></tr>' : empty(8, '첫 판단 전입니다.');
-    var eq = function(k){ return d.equity.filter(function(e){ return e.strategy === k; }).map(function(e){ return [e.day.slice(5), e.equity]; }); };
-    chart($('u-chart'), [{ v: eq('usdt') }, { v: eq('krw_cash') }], function(v){ return '$' + Math.round(v).toLocaleString('en-US'); });
-    $('u-trades').innerHTML = done.slice().reverse().map(function(t){
-      return '<tr><td>' + kst(t.in) + '</td><td>' + kst(t.out) + '</td><td class="num ' + cls(t.pnl) + '">' + won(t.pnl) + '</td><td class="num ' + cls(t.premPart) + '">' + (t.premPart * 100).toFixed(2) + '%p</td><td class="num ' + cls(t.fxPart) + '">' + (t.fxPart * 100).toFixed(2) + '%p</td></tr>';
-    }).join('') || (st.trade ? '<tr><td>' + kst(st.trade.at) + '</td><td>보유 중</td><td colspan="3">매수 시 웃돈 ' + p2(st.trade.prem) + '</td></tr>' : empty(5, '아직 거래가 없습니다.'));
+    $('u-closed-sub').textContent = done.length ? '승 ' + wins + ' · 확정 손익 ' + won(realized) + ' · 중단 판정까지 ' + Math.max(0, 20 - done.length) + '건' : '아직 거래 없음';
+    $('u-seed').textContent = '디지털엑스 원화 · 시작 ' + kst(st.createdAt) + ' KST';
+    // 지금 웃돈
+    $('u-prem').textContent = pp(L.prem); $('u-prem-sub').textContent = 'USDT ' + (L.usdt ? Math.round(L.usdt).toLocaleString('ko-KR') + '원' : '—') + ' · 환율 ' + (L.fx ? L.fx.toFixed(1) : '—');
+    $('u-buy').textContent = pp(L.buyLine); $('u-buy-sub').textContent = '14일 평균 ' + pp(L.ma) + ' − 2 × σ ' + pp(L.sd);
+    $('u-sell').textContent = pp(L.sellLine); $('u-sell-sub').textContent = '14일 평균 ' + pp(L.ma) + ' + 0.5 × σ';
+    chart(d);
+    // 거래 기록: 청산 거래(done) + 보유 중인 거래
+    var rows = done.slice().reverse().map(function(x){
+      var tr = (d.trades || []).filter(function(t){ return t.entryTime && Math.abs(Date.parse(t.entryTime) - Date.parse(x.in)) < 5 * 60e3; })[0] || {};
+      return '<tr><td>' + kst(x.in) + '</td><td>' + kst(x.out) + '</td><td class="num">' + (tr.qty ? Number(tr.qty).toFixed(2) : '—') + '</td><td class="num">' + (tr.entryPx ? Math.round(tr.entryPx) : '—') + ' → ' + (tr.exitPx ? Math.round(tr.exitPx) : '—') + '</td><td class="num ' + cls(x.pnl) + '">' + won(x.pnl) + '</td><td class="num">' + (x.premPart * 100).toFixed(2) + '%p</td><td class="num">' + (x.fxPart * 100).toFixed(2) + '%p</td></tr>';
+    });
+    if (hold) rows.unshift('<tr><td>' + kst(T.at) + '</td><td>보유 중</td><td class="num">' + st.qty.toFixed(2) + '</td><td class="num">' + Math.round(T.px) + ' → ' + (L.usdt ? Math.round(L.usdt) : '—') + '</td><td class="num ' + cls(unreal) + '">' + won(unreal) + ' (평가)</td><td class="num">—</td><td class="num">—</td></tr>');
+    $('u-trades').innerHTML = rows.length ? rows.join('') : empty(7, d.live ? '아직 거래 없음 — 웃돈이 매수선 아래로 내려오면 첫 매수가 여기에 기록됩니다' : '실전 전환 준비 중');
   }
 
-  function load(tab){
-    if (!SRC[tab] || loaded[tab]) return;
-    loaded[tab] = true;
-    fetch(SRC[tab] + '?t=' + Math.floor(Date.now() / 300000), { cache: 'no-store' })
-      .then(function(r){ if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
-      .then(function(d){ ({ turtle: renderTurtle, luna: renderLuna, ls: renderLs, core: renderCore, usdt: renderUsdt })[tab](d); })
-      .catch(function(e){ loaded[tab] = false; $({ turtle: 't-status', luna: 'l-status', ls: 's-status', core: 'c-status', usdt: 'u-status' }[tab]).textContent = '봇 데이터를 불러오지 못했습니다 — ' + e.message; });
-  }
-  load("usdt");
+  fetch(URL + '?t=' + Math.floor(Date.now() / 120000), { cache: 'no-store' }).then(function(r){ if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
+    .then(render).catch(function(e){ $('u-status').textContent = '데이터를 불러오지 못했습니다 (' + e.message + ')'; $('u-title').textContent = '데이터 없음'; });
 })();
 </script>
-
 </body>
 </html>
