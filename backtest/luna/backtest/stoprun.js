@@ -35,3 +35,7 @@ if (process.env.WORST) { const need = new Set();
   for (const [k, f] of [['STOP 주문', mk('order', need)], ['5분 확인', mk('poll', need)]]) { const r = run(D, St.crashC(base), { stopFn: f }); const st = r.trades.filter(t => /stop/.test(t.reason));
     const w = [...st].sort((a, b) => a.pnlPctOfEq - b.pnlPctOfEq);
     console.log(k, '손절 1건 손실(장부 대비) 평균', (st.reduce((s, t) => s + t.pnlPctOfEq, 0) / st.length * 100).toFixed(2) + '%', '· 3% 넘은 손절', st.filter(t => t.pnlPctOfEq < -0.03).length + '건', '· 최악 3', w.slice(0, 3).map(t => `${t.sym} ${t.exitDate} ${(t.pnlPctOfEq * 100).toFixed(1)}%`).join(', ')); } }
+// 장중 낙폭 계산용: 지금 규칙(STOP 주문 방식)의 거래와 일봉 장부를 내보낸다
+if (process.env.EXPORT) { const need = new Set(); const r = run(D, St.crashC(base), { stopFn: mk('order', need) });
+  fs.writeFileSync('out_trades_order.json', JSON.stringify({ dates: D.dates, eq: Array.from(r.eq), trades: r.trades.map(t => ({ sym: t.sym, entryDate: t.entryDate, exitDate: t.exitDate, reason: t.reason, avg: t.avgPx, qty: t.qty, exitPx: t.exitPx, stopPx: t.stopPx })),
+    open: r.open })); console.log('내보냄', r.trades.length, '열린', r.open.length); }

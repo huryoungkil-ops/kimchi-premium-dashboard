@@ -250,7 +250,7 @@ function run(D, strat, opts) {
     }
   }
   // close open positions at last mark (report as open)
-  const open = [...pos.values()].map(p => ({ sym: p.sym, entryDate: dates[p.entryIdx], avg: p.avg, last: p.lastPx }));
+  const open = [...pos.values()].map(p => ({ sym: p.sym, entryDate: dates[p.entryIdx], avg: p.avg, last: p.lastPx, qty: p.qty, stopPx: p.stop }));
   return { eq, trades, open, fundingTot, feeTot, slipTot, liqCount, delistCount, gross, npos };
 }
 
