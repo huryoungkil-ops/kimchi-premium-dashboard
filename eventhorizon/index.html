@@ -454,6 +454,8 @@
   .ev-chip.FOMC{ border-color:var(--danger); color:var(--danger); }
   .ev-chip.CPI{ border-color:var(--watch); color:var(--watch); }
   .ev-chip.PRESSER{ color:var(--ink-soft); }
+  .ev-chip.NFP{ border-color:var(--watch); color:var(--watch); }
+  .ev-chip.PPI{ color:var(--ink-soft); }
   .verdict-list{ margin:0; padding-left:18px; font-size:13.5px; line-height:1.75; }
   .verdict-list li{ margin-bottom:4px; }
   @media (max-width:720px){ table.coins{ min-width:560px; } }
@@ -484,7 +486,7 @@
     <a href="/top3" class="paper">🔝 주간 Top3 <span class="sub">바이낸스 현물</span> <span class="lp-badge paper">가상</span></a>
     <a href="/listing" class="paper">📉 상장 공매도 <span class="sub">바이낸스 선물</span> <span class="lp-badge paper">가상</span></a>
     <a href="/mix" class="paper">💰 백만장자 배분 <span class="sub">세 전략 섞기</span> <span class="lp-badge paper">가상</span></a>
-    <a href="/kimlab" class="paper">🧪 김프 실험실 <span class="sub">김프 봇 변형 7개</span> <span class="lp-badge paper">가상</span></a>
+    <a href="/kimlab" class="paper">🧪 김프 실험실 <span class="sub">김프 봇 변형 9개</span> <span class="lp-badge paper">가상</span></a>
     <a href="/carry" class="paper">💸 펀딩 캐리 <span class="sub">바이낸스 · 검토 중</span> <span class="lp-badge paper">가상</span></a>
     <a href="/eventhorizon" class="paper" aria-current="page">🕳️ 이벤트 호라이즌 <span class="sub">FOMC·CPI 위험 달력</span> <span class="lp-badge paper">연구</span></a>
   </nav>
@@ -495,7 +497,7 @@
   <p class="paper-status"><strong>판단: 방향을 맞히는 이벤트 매매 규칙은 하나도 살아남지 못했습니다(누적 200개 시험, 3차 포함).</strong> 살아남은 것은 «언제 시장이 크게 흔들리고 언제 조용한가»를 알려 주는 <strong>변동성 지도</strong>뿐이고, 이것을 포지션 크기를 바꾸지 않는 <strong>«EH 위험 달력 v2»</strong>(정보·체결 보호용)로 남겼습니다. 아직 어느 봇에도 넣지 않은 설계 단계입니다. 3차 결론: <strong>이벤트 방향 탐색은 여기서 멈추고</strong> 위험 달력 v2만 유지합니다.</p>
 
   <section class="tiles" aria-label="이벤트 호라이즌 요약">
-    <div class="tile"><div class="label">살아남은 방향 전략</div><div class="value">0개</div><div class="sub">누적 시험 200개 (1차 94 · 2차 76 · 3차 30)</div></div>
+    <div class="tile"><div class="label">살아남은 방향 전략</div><div class="value">0개</div><div class="sub">누적 시험 207개 (1차 94 · 2차 76 · 3차 30 · 4차 1 · 5차 6)</div></div>
     <div class="tile"><div class="label">FOMC 후 2시간 변동성</div><div class="value">1.95배</div><div class="sub">2025-01 ~ 2026-10, 평소 같은 시각 대비</div></div>
     <div class="tile"><div class="label">CPI 후 1시간 변동성</div><div class="value">1.44배</div><div class="sub">2022년 2.82배 → 2026년 1.23배로 줄어드는 중</div></div>
     <div class="tile"><div class="label">미국 증시 휴장 평일</div><div class="value">0.55배</div><div class="sub">누적 보정 후에도 남음 (test p&lt;0.001)</div></div>
@@ -505,10 +507,10 @@
     <h2 id="eh-up-h">다가오는 이벤트</h2>
     <p class="section-sub">연준·BLS 일정표에서 옮긴 달력(<code>calendars/upcoming_2026Q4_2027.csv</code>)에서 지금 이후 일정을 최대 20개 보여 줍니다. 시각은 한국 시각(KST)이고 페이지를 열 때마다 다시 계산합니다. 7일 안 일정은 색을 칠합니다.</p>
     <div class="table-scroll"><table class="coins paper">
-      <thead><tr><th>남은 날</th><th>한국 시각</th><th>이벤트</th><th>고위험 창</th><th class="num">변동성 배수(v2)</th><th>김프 봇 15분 보류(제안)</th></tr></thead>
+      <thead><tr><th>남은 날</th><th>한국 시각</th><th>이벤트</th><th>고위험 창</th><th class="num">변동성 배수(v2)</th><th>김프 실험실 EVT 장부</th></tr></thead>
       <tbody id="eh-upcoming"><tr><td class="empty-row" colspan="6">계산 중…</td></tr></tbody>
     </table></div>
-    <p class="section-sub" style="margin-top:10px">NFP·PPI 미래 일정과 미국 증시 휴장·조기폐장일은 아직 달력 파일에 없습니다. BLS 웹사이트가 스크립트 접근을 막아 자동 수집을 하지 않고, 설계상 1년에 한 번 사람이 일정표를 보고 넣습니다. FOMC 시각은 «성명 발표 전 예정 시각»입니다. 2026-10-14 CPI(9월분)는 2차 출처로만 확인돼 시험에서 뺐습니다.</p>
+    <p class="section-sub" style="margin-top:10px">NFP·PPI는 2026-10-20에 BLS 일정표(웹 아카이브 사본 — BLS가 스크립트 접근을 막음)에서 2027-12까지 넣었습니다. 2027년 FOMC는 연준 «잠정» 일정입니다. 미국 증시 휴장·조기폐장일은 아직 달력 파일에 없습니다. FOMC 시각은 «성명 발표 전 예정 시각»입니다. 2026-10-14 CPI(9월분)는 2차 출처로만 확인돼 시험에서 뺐습니다.</p>
   </section>
 
   <section aria-labelledby="eh-map-h">
@@ -553,7 +555,7 @@
 <tr><td>🔝 주간 Top3 (T1)</td><td>바꾸지 않음. 이벤트일 노출 축소 금지.</td><td>노출 0.5배 시 시험 구간 샤프 1.276 → 1.186 (개발 1.695 → 1.571)</td></tr>
 <tr><td>🧭 BTC 추세 코어 · 변동성 목표 장부</td><td>바꾸지 않음</td><td>하루 1번 00:01 UTC 판정이라 이벤트 창과 겹치지 않음. 이벤트 ±24시간을 비우면 시험 샤프 0.91 → 0.66</td></tr>
 <tr><td>🐢 터틀 · 🌙 루나</td><td>바꾸지 않음</td><td>장중 손절이 이벤트에 몰린다는 증거 없음. 각 봇 기록으로 다시 세 보기를 권장</td></tr>
-<tr><td>🌶️ 김프 봇 (실전)</td><td><b>제안(미적용):</b> FOMC·CPI·NFP 발표 순간부터 15분 동안 신규 진입과 시장가 청산 보류. PPI는 제외. <b>실전 적용은 허박사 승인 대기.</b></td><td>캔들 기준 김프는 이벤트에 거의 안 흔들림(1시간 1.02배, 15분 1.15배). 하지만 2026-10-14 CPI 때 봇이 두 거래소 시세를 읽는 순간 차이가 평소의 4~10배(코빗 평균 15bp, 최대 70bp)였음 — 단 1건. 기회비용 연 약 32회 × 15분</td></tr>
+<tr><td>🌶️ 김프 봇 (실전)</td><td><b>사용자 결정: 보류하지 않고 이벤트 변동성을 활용 — 김프 실험실 EVT 장부로 검증 중.</b> 실전 봇은 이벤트 때도 평소 규칙 그대로입니다(15분 보류 제안은 10-20 폐기). FOMC·CPI·NFP 발표 뒤 2시간 창 규칙은 페이퍼 장부 EVT(묶음)·EVT_SLOT(자리 +2)에서만 돕니다.</td><td>5차 백테스트(빗썸×Binance 5분봉, 다음 봉 체결, 고친 손익 식): 창 규칙 변형 5개 모두 시험 구간(2025-01~2026-10)에서 지금 규칙보다 못함 — 묶음 월 −$32, 자리 +2 −$0.7. 지금 규칙은 창에서 거의 진입하지 않아(21개월 7건) 보류 여부는 실전에 영향이 거의 없음. 두 거래소 시세 순간 괴리(2026-10-14 CPI 코빗 평균 15bp, 최대 70bp, 단 1건) 위험은 «판단 다음 봉 체결»로 반영</td></tr>
 <tr><td>옵션·변동성 매도</td><td>해당 없음</td><td>실험실은 옵션을 거래하지 않음. 이벤트 스트래들 매도 +0.31%/회지만 평소 날(+0.34%)과 차이 −0.03% (p 0.90)</td></tr>
       </tbody>
     </table></div>
@@ -599,7 +601,8 @@
       <li><b>표본이 작습니다.</b> FOMC는 1년에 8번, CPI는 12번입니다. 1차 시험 구간 FOMC는 30번뿐이라 «효과 없음»은 «거래할 만큼 큰 효과가 안 보인다»는 뜻입니다.</li>
       <li><b>부호가 국면마다 뒤집혔습니다.</b> CPI 후 24시간은 2022 인상기 −1.26%, 2024-09 이후 인하기 +1.03%. FOMC 첫 반응도 2017~19년엔 되돌림, 2020년 이후엔 이어짐이었습니다. 2023~26년의 방향이 2027년에도 맞는다는 근거는 없습니다.</li>
       <li><b>변동성 배수도 변합니다.</b> 개발 구간(2017~22)에서는 거의 1배였고 2022년 이후 커졌습니다. CPI 배수는 2022년 정점 뒤 계속 줄고 있습니다. 연준이 코인의 주요 변수가 아니게 되면 다시 줄어들 수 있습니다.</li>
-      <li><b>발표 직후 몇 초~몇 분의 실제 체결 품질은 재지 못했습니다.</b> 김프 봇의 두 시세 순간 괴리는 2026-10-14 CPI 단 1건입니다.</li>
+      <li><b>발표 직후 몇 초~몇 분의 실제 체결 품질은 재지 못했습니다.</b> 김프 봇의 두 시세 순간 괴리는 2026-10-14 CPI 단 1건입니다. 5차 백테스트는 5분봉 종가와 «다음 봉 체결»로만 이를 흉내 냈고, 헤지를 봉의 최악 가격으로 두면 모든 변형이 크게 나빠집니다.</li>
+      <li><b>5차 이벤트 표본은 시험 구간 55건입니다.</b> 손익 식 수정(수정 1)은 시험 구간을 본 뒤 반영했습니다 — 고친 계산의 시험 구간은 «두 번째로 연 시험»입니다. 환율은 1시간봉이라 발표 직후 몇 분의 원·달러 움직임은 거칠게만 들어갔고, 빗썸은 상장폐지 종목 과거 자료를 주지 않아 살아남은 종목만 썼습니다.</li>
       <li><b>자료의 한계.</b> 토큰 언락은 «일정 모델»(DefiLlama)이라 실제와 다를 수 있습니다. CME 가격 대신 바이낸스 현물을 썼습니다. CPI 컨센서스(서프라이즈) 역사 자료는 무료로 검증 가능한 것을 찾지 못해 시험하지 않았습니다.</li>
       <li><b>연구 시간을 정직하게 적습니다.</b> 1차는 약 40분, 2차는 약 1시간 33분, 3차는 약 30분 걸렸습니다(요청은 3~6시간). 3차는 선물 패널·롱숏 엔진·펀딩 자료를 재사용해 짧았습니다. 시간을 채우려고 시험 수를 늘리지 않았습니다.</li>
       <li><b>L1b는 1시간봉 시가로 잰 근사입니다.</b> 실제 호가 스프레드와 지정가 체결 여부(역선택)는 확인하지 못했고, 거래소가 펀딩 구조(정산 간격·상한)를 바꾸면 사라질 수 있습니다.</li>
@@ -638,19 +641,48 @@
     </div>
   </section>
 
+  <section aria-labelledby="eh-r5-h">
+    <h2 id="eh-r5-h">5차 — 김프 봇이 이벤트 변동성을 쓰는 법 (2026-10-20)</h2>
+    <p class="section-sub"><b>사용자 결정: 보류하지 않고 이벤트 변동성을 활용 — 김프 실험실 EVT 장부로 검증 중.</b> FOMC·CPI·NFP 발표 뒤 2시간 창에서만 실전 규칙을 바꾸는 변형 4개와 묶음 1개를 사전 등록(시험 6개, 누적 207개)하고, 빗썸 × Binance 무기한 5분봉(개발 2020~2024 이벤트 159건 · 시험 2025-01 ~ 2026-10-15 이벤트 55건)으로 돌렸습니다. 비용은 두 다리 수수료(빗썸 0.04% + Binance 0.05% 편도)·빗썸 스프레드 절반·펀딩, 체결은 판단 <b>다음 봉</b>(5분 뒤)입니다 — 거래소 간 시세를 다른 순간에 읽어 생긴 가짜 김프 하락을 그 가격에 사지 못하게 했습니다.</p>
+    <p class="section-sub"><b>수정 1:</b> 시험 구간을 본 뒤, 10-19에 김프 백테스트 손익 식이 고쳐진 것(장부식 — 보유 중 환율 변화를 손익으로 잡던 «환율 착시» 제거, 1시간봉 환율)을 알고 다시 계산했습니다. 아래 표의 주 결과는 고친 계산이고, 옛 계산은 오른쪽에 함께 둡니다.</p>
+    <div class="table-scroll"><table class="coins paper">
+      <thead><tr><th>변형 (이벤트 창 판단에만)</th><th class="num">개발 월 $ (p)</th><th class="num">시험 월 $ (p)</th><th>시험 스트레스 (비용 2배 / 지연 2봉 / 헤지 최악가)</th><th>옛 계산 개발 → 시험</th><th>판정</th></tr></thead>
+      <tbody>
+<tr><td>E1 창 안 USDT 웃돈 필터 끔</td><td class="num">+1.7 (0.10)</td><td class="num">−15.8 (0.97)</td><td>−27.4 / −18.8 / −42.3</td><td>+5.9 → −8.3</td><td><span class="pill danger">기각</span></td></tr>
+<tr><td>E2 창 안 진입선 −1.5σ → −1.0σ</td><td class="num">+30.5 (&lt;0.001)</td><td class="num">−6.6 (0.97)</td><td>−7.7 / −0.4 / −10.7</td><td>+39.2 → −1.3</td><td><span class="pill danger">기각</span></td></tr>
+<tr><td>E3 창 안 자리 6 → 8 (보유 명목 상한 ×1.5)</td><td class="num">+9.6 (0.036)</td><td class="num">−0.7 (0.75)</td><td>−2.3 / +0.5 / −4.6</td><td>+24.1 → +8.6 (0.055)</td><td><span class="pill danger">기각</span> 옛 계산에서만 통과</td></tr>
+<tr><td>E4 창 진입분은 평균에서 청산</td><td class="num">−1.0 (0.94)</td><td class="num">−1.8 (0.91)</td><td>—</td><td>−1.4 → −0.4</td><td><span class="pill danger">기각</span></td></tr>
+<tr><td>E5 EVT 묶음 (E1~E4)</td><td class="num">+18.8 (0.029)</td><td class="num">−32.2 (0.98)</td><td>−50.2 / −37.2 / −74.4</td><td>+37.8 → −1.0</td><td><span class="pill danger">기각</span> 시험에서 해로움 (낙폭 −4.8% vs −2.2%)</td></tr>
+<tr><td>E6 (서술) 지금 규칙의 창 진입 vs 창 밖 진입, 거래당</td><td class="num">−0.16% vs +0.33% (15건)</td><td class="num">+0.02% vs +0.01% (7건)</td><td>—</td><td>—</td><td>차이 없음 (p 0.12 / 0.97)</td></tr>
+      </tbody>
+    </table></div>
+    <div class="rules">
+      <dl>
+        <dt>무엇을 배웠나</dt><dd>지금 규칙은 이벤트 창에서 거의 진입하지 않습니다(시험 구간 21개월 7건) — 자리·예산이 차 있거나 USDT 웃돈 필터가 막습니다. 그래서 «보류할지»는 실전에 영향이 거의 없고, «활용»은 규칙을 풀어 창에서 더 사는 것뿐입니다. 풀어서 더 사면 2020~24에는 이익, 2025~26에는 손해였습니다(김프 엣지 축소 국면을 이벤트 창도 그대로 따름)</dd>
+        <dt>USDT 필터</dt><dd>창에서 필터를 끄고 들어간 거래(E1 시험 61건)는 순손실 −$305, 승률 38%. 필터는 이벤트 때도 일을 합니다</dd>
+        <dt>체결 괴리 위험</dt><dd>창에서 체결한 Binance 다리를 그 5분봉의 가장 불리한 가격으로 두면 모든 변형이 크게 나빠집니다. 발표 직후 헤지 지연 비용이 변형의 이익보다 큽니다</dd>
+        <dt>사후 민감도</dt><dd>실전 USDT 기준이 10-20에 z −1.0으로 바뀐 것을 넣으면(시간봉 z만) 지금 규칙 자체가 시험 구간 월 −$57(연 −3.5%)이고, 변형 차이는 E3 −0.7 · E5 −14.0 — 결론은 같습니다. 지금 규칙의 손실은 이벤트 연구 밖이라 김프 재판정(11-16)에서 봅니다</dd>
+        <dt>페이퍼 장부 (10-20 시작)</dt><dd>사용자 지시(«결과와 무관하게 1~2개»)대로 <b>EVT</b>(E5 묶음)와 <b>EVT_SLOT</b>(E3)을 김프 실험실에 더했습니다. EVT_SLOT은 옛 계산 시험 1위라 골랐고, 고친 계산에서는 기준 미달이라 «사후 유지»로 표시합니다. 2027-12까지 FOMC·CPI·NFP 시각이 들어 있고, 창 밖에서는 BASE와 똑같이 움직입니다</dd>
+        <dt>판정 · 실전 제안</dt><dd>BASE 청산 30건 + 장부 시작 8주 + <b>창 진입 거래 10건</b> 중 가장 늦은 때, BASE 대비 달러 &gt; 0 · P(더 좋음) ≥ 0.9 · 낙폭 1%p 이내면 «실전 후보» → 사용자에게 실전 적용을 제안합니다. 백테스트 기대치는 EVT 월 −$32, EVT_SLOT ≈ 0입니다</dd>
+        <hr>
+        <dt>결론</dt><dd><b>실전 변경 제안 없음.</b> 김프 봇은 이벤트 때 보류하지 않고 평소대로 돌며, 이벤트 활용 규칙은 전진 페이퍼(EVT·EVT_SLOT)로만 확인합니다. 백테스트는 과거일 뿐입니다</dd>
+      </dl>
+    </div>
+  </section>
+
   <section aria-labelledby="eh-r4-h">
     <h2 id="eh-r4-h">4차 계획</h2>
     <div class="flow">
       <div class="flow-step"><span class="num">01</span><h3>L1b 메이커 섀도 검증</h3><p>정산 직후 펀딩 방향으로 지정가(메이커) 진입 → 1시간 뒤 청산. 체결 기록(aggTrades)으로 지정가가 실제로 체결됐는지(역선택) 재현. 사전 등록 후 2026-10-19 이후 전진(섀도) 기록으로만 판정. 기대치는 메이커 낙관 +8bp/회에서 75% 할인</p></div>
       <div class="flow-step"><span class="num">02</span><h3>롱숏 숏 다리 펀딩 국면 감시</h3><p>시험 구간에서 고FDV 토큰 숏의 펀딩 비용이 연 −36%였음. 롱숏 숏 다리는 펀딩 높은 코인을 골라 펀딩을 받지만, 2025-10 이후 음(−) 펀딩 코인이 많아진 국면 변화를 롱숏 기록으로 확인</p></div>
       <div class="flow-step"><span class="num">03</span><h3>데리비트 미결제약정 수집</h3><p>행사가별 미결제약정 일별 스냅숏을 지금부터 서버에 쌓음(공개 API, 하루 1회). 6~12개월 뒤 맥스페인 핀닝을 처음으로 직접 검정</p></div>
-      <div class="flow-step"><span class="num">04</span><h3>이어서 지켜볼 것</h3><p>김프 봇 체결 괴리(서버 김프 기록 3~6개월 뒤 이벤트 20건 이상으로 재측정) · FOMC 반응 추종 24시간 페이퍼 관찰(72시간 연장 금지)</p></div>
+      <div class="flow-step"><span class="num">04</span><h3>이어서 지켜볼 것</h3><p>김프 봇 체결 괴리(서버 김프 기록 3~6개월 뒤 이벤트 20건 이상으로 재측정 — 보류 규칙이 아니라 EVT 장부의 헤지 지연 비용을 재는 용도) · FOMC 반응 추종 24시간 페이퍼 관찰(72시간 연장 금지)</p></div>
     </div>
   </section>
 </div><!-- /tab-eh -->
 
   <footer>
-    <p><strong>연구 결과만 있는 카테고리입니다.</strong> 실제 자금도 페이퍼 봇도 돌지 않고, 위험 달력 v2는 설계만 끝났습니다. 김프 봇 15분 보류는 제안일 뿐 실전에 넣지 않았습니다. 원본: 로컬 연구 노트(저장소에 올리지 않음) <code>research_notes/이벤트 호라이즌/</code> (notes.md · spec.md §4·§5 · round2/ · round3/).</p>
+    <p><strong>실제 자금이 오가지 않는 연구 카테고리입니다.</strong> 위험 달력 v2는 설계만 끝났습니다. 사용자 결정(10-20): 김프 봇은 이벤트 때 보류하지 않고 이벤트 변동성을 활용 — 김프 실험실 EVT·EVT_SLOT 페이퍼 장부로 검증 중이고, L1b 메이커 섀도도 서버에서 기록 중입니다. 원본: 로컬 연구 노트(저장소에 올리지 않음) <code>research_notes/이벤트 호라이즌/</code> (notes.md · spec.md §4·§5 · round2/ ~ round5_kimchi/).</p>
   </footer>
 
 </div>
@@ -666,12 +698,23 @@
     ['CPI','2027-01-13T13:30Z'],['CPI','2027-02-11T13:30Z'],['CPI','2027-03-10T13:30Z'],
     ['CPI','2027-04-13T12:30Z'],['CPI','2027-05-12T12:30Z'],['CPI','2027-06-10T12:30Z'],
     ['CPI','2027-07-14T12:30Z'],['CPI','2027-08-11T12:30Z'],['CPI','2027-09-14T12:30Z'],
-    ['CPI','2027-10-14T12:30Z'],['CPI','2027-11-10T13:30Z'],['CPI','2027-12-10T13:30Z']
+    ['CPI','2027-10-14T12:30Z'],['CPI','2027-11-10T13:30Z'],['CPI','2027-12-10T13:30Z'],
+    // 2026-10-20 추가: NFP·PPI (BLS 일정표 웹 아카이브 사본) · 2027 FOMC (연준 잠정 일정)
+    ['NFP','2026-11-06T13:30Z'],['NFP','2026-12-04T13:30Z'],['NFP','2027-01-08T13:30Z'],['NFP','2027-02-05T13:30Z'],['NFP','2027-03-05T13:30Z'],
+    ['NFP','2027-04-02T12:30Z'],['NFP','2027-05-07T12:30Z'],['NFP','2027-06-04T12:30Z'],['NFP','2027-07-02T12:30Z'],['NFP','2027-08-06T12:30Z'],
+    ['NFP','2027-09-03T12:30Z'],['NFP','2027-10-08T12:30Z'],['NFP','2027-11-05T12:30Z'],['NFP','2027-12-03T13:30Z'],
+    ['PPI','2026-11-13T13:30Z'],['PPI','2026-12-15T13:30Z'],['PPI','2027-01-14T13:30Z'],['PPI','2027-02-12T13:30Z'],['PPI','2027-03-12T13:30Z'],
+    ['PPI','2027-04-14T12:30Z'],['PPI','2027-05-13T12:30Z'],['PPI','2027-06-11T12:30Z'],['PPI','2027-07-15T12:30Z'],['PPI','2027-08-10T12:30Z'],
+    ['PPI','2027-09-10T12:30Z'],['PPI','2027-10-15T12:30Z'],['PPI','2027-11-12T13:30Z'],['PPI','2027-12-15T13:30Z'],
+    ['FOMC','2027-01-27T19:00Z'],['FOMC','2027-03-17T18:00Z'],['FOMC','2027-04-28T18:00Z'],['FOMC','2027-06-09T18:00Z'],
+    ['FOMC','2027-07-28T18:00Z'],['FOMC','2027-09-15T18:00Z'],['FOMC','2027-10-27T18:00Z'],['FOMC','2027-12-08T19:00Z']
   ];
   var INFO = {
-    FOMC: { name: 'FOMC 성명', cls: 'FOMC', win: '발표 후 2시간', mult: '1.95배', block: '15분 보류 대상' },
+    FOMC: { name: 'FOMC 성명', cls: 'FOMC', win: '발표 후 2시간', mult: '1.95배', block: '발표 뒤 2시간 EVT 규칙' },
     FOMC_PRESSER: { name: 'FOMC 기자회견', cls: 'PRESSER', win: '성명 창 안 (+30분)', mult: '—', block: '성명 창에 포함' },
-    CPI: { name: 'CPI (소비자물가)', cls: 'CPI', win: '발표 후 1시간', mult: '1.44배', block: '15분 보류 대상' }
+    CPI: { name: 'CPI (소비자물가)', cls: 'CPI', win: '발표 후 1시간', mult: '1.44배', block: '발표 뒤 2시간 EVT 규칙' },
+    NFP: { name: 'NFP (고용 보고서)', cls: 'NFP', win: '발표 후 1시간', mult: '1.40배', block: '발표 뒤 2시간 EVT 규칙' },
+    PPI: { name: 'PPI (생산자물가)', cls: 'PPI', win: '발표 후 1시간', mult: '1.31배', block: 'EVT 대상 아님' }
   };
   var DOW = ['일','월','화','수','목','금','토'];
   function kst(t){ var d = new Date(t + 9 * 3600e3); var p = function(n){ return (n < 10 ? '0' : '') + n; };

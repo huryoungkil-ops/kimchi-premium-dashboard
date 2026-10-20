@@ -440,9 +440,10 @@
 <body>
 
 <style id="kimlab-css">
-  :root{ --k1:#9c6b23; --k2:#3f6f57; --k3:#2f5f8a; --k4:#7a4f9a; --k5:#7d7a1e; --k6:#9a3b28; --k7:#5b6770; }
-  @media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){ --k1:#d9a44e; --k2:#86bd9f; --k3:#7fb0dc; --k4:#c39be0; --k5:#c9c86a; --k6:#e08b6f; --k7:#a9b6bf; } }
-  :root[data-theme="dark"]{ --k1:#d9a44e; --k2:#86bd9f; --k3:#7fb0dc; --k4:#c39be0; --k5:#c9c86a; --k6:#e08b6f; --k7:#a9b6bf; }
+  :root{ --k1:#9c6b23; --k2:#3f6f57; --k3:#2f5f8a; --k4:#7a4f9a; --k5:#7d7a1e; --k6:#9a3b28; --k7:#5b6770; --k8:#b0306a; --k9:#1f7f86; }
+  @media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){ --k1:#d9a44e; --k2:#86bd9f; --k3:#7fb0dc; --k4:#c39be0; --k5:#c9c86a; --k6:#e08b6f; --k7:#a9b6bf; --k8:#ec80b0; --k9:#6fd0d6; } }
+  :root[data-theme="dark"]{ --k1:#d9a44e; --k2:#86bd9f; --k3:#7fb0dc; --k4:#c39be0; --k5:#c9c86a; --k6:#e08b6f; --k7:#a9b6bf; --k8:#ec80b0; --k9:#6fd0d6; }
+  .variant.evt{ border-left:3px solid var(--k8); }
   .sw-k{ display:inline-block; width:22px; height:0; border-top:2.4px solid currentColor; }
   .sw-base{ display:inline-block; width:22px; height:0; border-top:1.6px dashed var(--ink-soft); }
   .verdict{ display:inline-block; padding:1px 8px; border-radius:999px; font-size:12px; border:1px solid var(--line); white-space:nowrap; }
@@ -481,14 +482,14 @@
     <a href="/top3" class="paper">🔝 주간 Top3 <span class="sub">바이낸스 현물</span> <span class="lp-badge paper">가상</span></a>
     <a href="/listing" class="paper">📉 상장 공매도 <span class="sub">바이낸스 선물</span> <span class="lp-badge paper">가상</span></a>
     <a href="/mix" class="paper">💰 백만장자 배분 <span class="sub">세 전략 섞기</span> <span class="lp-badge paper">가상</span></a>
-    <a href="/kimlab" class="paper" aria-current="page">🧪 김프 실험실 <span class="sub">김프 봇 변형 7개</span> <span class="lp-badge paper">가상</span></a>
+    <a href="/kimlab" class="paper" aria-current="page">🧪 김프 실험실 <span class="sub">김프 봇 변형 9개</span> <span class="lp-badge paper">가상</span></a>
     <a href="/carry" class="paper">💸 펀딩 캐리 <span class="sub">바이낸스 · 검토 중</span> <span class="lp-badge paper">가상</span></a>
     <a href="/eventhorizon" class="paper">🕳️ 이벤트 호라이즌 <span class="sub">FOMC·CPI 위험 달력</span> <span class="lp-badge paper">연구</span></a>
   </nav>
   <p class="mode-legend"><span class="lp-key live">실선</span> = 실전 (실제 돈) · <span class="lp-key paper">점선</span> = 가상 (페이퍼)</p>
 
 <div class="tab-panel" id="tab-kimlab">
-  <p class="paper-note">🧪 <strong>김프 실험실</strong> — 실전 김프 봇(빗썸 현물 매수 + Binance 선물 숏)을 «조금씩 바꾼» 변형 여섯 개와, 실전 규칙을 그대로 따라 하는 기준 장부(BASE)를 <b>같은 시세로 나란히</b> 돌립니다. 백테스트에서 좋아 보였던 개선안이 앞으로의 실제 시장에서도 기준보다 나은지 확인해, 실전 봇에 넣을 후보를 고르는 곳입니다. 장부마다 실전과 같은 가상 시드 <b>$20,156</b>로 시작하고, 주문은 내지 않습니다. 판정 기준은 결과를 보기 전에 정해 두었습니다(아래).</p>
+  <p class="paper-note">🧪 <strong>김프 실험실</strong> — 실전 김프 봇(빗썸 현물 매수 + Binance 선물 숏)을 «조금씩 바꾼» 변형 아홉 개와, 실전 규칙을 그대로 따라 하는 기준 장부(BASE)를 <b>같은 시세로 나란히</b> 돌립니다. 백테스트에서 좋아 보였던 개선안이 앞으로의 실제 시장에서도 기준보다 나은지 확인해, 실전 봇에 넣을 후보를 고르는 곳입니다. 장부마다 실전과 같은 가상 시드 <b>$20,156</b>로 시작하고, 주문은 내지 않습니다. 판정 기준은 결과를 보기 전에 정해 두었습니다(아래).</p>
   <p class="paper-status" id="p-status">불러오는 중…</p>
   <section class="tiles" aria-label="김프 실험실 요약">
     <div class="tile"><div class="label">BASE (실전 규칙 그대로)</div><div class="value" id="p-base">—</div><div class="sub" id="p-base-sub">—</div></div>
@@ -498,8 +499,8 @@
   </section>
 
   <section>
-    <h2>장부 7개 — BASE 와 비교</h2>
-    <p class="section-sub">모두 같은 5분 회차·같은 호가를 봅니다. «BASE 대비»는 지금 잔액의 차이(달러)입니다. 잔액 = 원화 다리(지금 환율로 달러 환산) + 선물 다리(미실현 포함) + 받은 펀딩 − 수수료. 판정 칸은 BASE 청산 30건과 8주가 모두 찬 뒤에야 «진행 중»에서 바뀝니다.</p>
+    <h2>장부 10개 — BASE 와 비교</h2>
+    <p class="section-sub">모두 같은 5분 회차·같은 호가를 봅니다. «BASE 대비»는 지금 잔액의 차이(달러)입니다 — 나중에 더한 장부(NOUZ·EVT·EVT_SLOT)는 더한 날부터 같은 기간의 BASE 와 견준 값입니다. 잔액 = 원화 다리(지금 환율로 달러 환산) + 선물 다리(미실현 포함) + 받은 펀딩 − 수수료. 판정 칸은 BASE 청산 30건과 8주가 모두 찬 뒤에야 «진행 중»에서 바뀝니다.</p>
     <div class="table-scroll"><table class="coins paper">
       <thead><tr><th>장부</th><th class="num">잔액</th><th class="num">손익</th><th class="num">BASE 대비</th><th class="num">최대낙폭</th><th class="num">보유</th><th class="num">청산</th><th class="num">승률</th><th class="num">펀딩</th><th>판정</th></tr></thead>
       <tbody id="p-books"><tr><td class="empty-row" colspan="10">불러오는 중…</td></tr></tbody>
@@ -508,7 +509,7 @@
 
   <section>
     <h2>BASE 대비 차이 추이</h2>
-    <p class="section-sub">매시 기록한 잔액에서 BASE 잔액을 뺀 값입니다(0선 = BASE). 위로 갈수록 BASE 보다 많이 번 장부입니다.</p>
+    <p class="section-sub">매시 기록한 잔액에서 BASE 잔액을 뺀 값입니다(0선 = BASE). 위로 갈수록 BASE 보다 많이 번 장부입니다. 나중에 더한 장부는 시작 시점을 0으로 맞춰 그립니다.</p>
     <div class="line-legend" id="p-legend"></div>
     <div class="equity-chart" id="p-chart"></div>
   </section>
@@ -556,7 +557,7 @@
   </section>
 
   <section aria-labelledby="p-variants-h">
-    <h2 id="p-variants-h">변형 여섯 개 — 무엇을 바꿨고, 연구에서는 어땠나</h2>
+    <h2 id="p-variants-h">변형 아홉 개 — 무엇을 바꿨고, 연구에서는 어땠나</h2>
     <p class="section-sub">숫자는 5분봉 백테스트의 검증 구간(2024-01 ~ 2026-10)에서 같은 엔진의 기준(지금 실전 규칙: 월 +$63, 샤프 1.08, 최대낙폭 −3.0%) 대비 차이입니다. 상장폐지 종목이 빠져 있고(좋게 나옴), 스프레드는 2026-10 값을 과거 전체에 썼습니다. 기준 규칙 자체도 이 검증 구간을 보고 고른 것이라 숫자가 깨끗하지 않습니다.</p>
     <div class="variant-grid">
       <div class="variant"><h3>➕ ADD15 · 물타기 한 번 <span class="tagk">사후 관찰</span></h3>
@@ -587,6 +588,16 @@
         <p class="what">실전 규칙에서 «USDT 웃돈 z &lt; −0.5이면 새 진입 안 함»(10-19 전 기준 0)만 뺀 장부. 필터가 정말 도움이 되는지 오늘 이후 시세로 확인합니다. 10-18부터 시작해, 같은 기간의 BASE와 비교합니다.</p>
         <p class="num-line">근거 연구(2024~ 김프 1,209건): 필터를 켜면 연 −1.3% → +1.7%(스프레드 절반), −7.4% → −2.3%(스프레드 전부). z ≥ 0 진입은 거래당 +0.11%·승률 61%, z &lt; −1 은 −0.2~−0.27%·44~46%</p>
         <p class="warn">NOUZ가 BASE보다 확실히 낫다(P ≥ 0.9, 낙폭 1%p 이내)고 나오면 실전에서 필터를 끕니다. NOUZ가 BASE 이하면 필터 유지 — 사용자 결정(10-18)으로 미리 정한 규칙입니다.</p></div>
+      <div class="variant evt"><h3>🕳️ EVT · 이벤트 창 묶음 <span class="tagk">10-20 추가</span></h3>
+        <p class="what"><b>사용자 결정: 보류하지 않고 이벤트 변동성을 활용 — 김프 실험실 EVT 장부로 검증 중.</b> FOMC 성명·CPI·NFP 발표 뒤 2시간 창의 판단에서만 ① USDT 웃돈 필터 무시 ② 진입선 평균 −1.5σ → −1.0σ ③ 자리 6 → 8, 보유 명목 상한 $8,000 → 약 $12,030 ④ 창에서 들어간 포지션은 평균(+0σ)에서 청산. 창 밖은 BASE 와 똑같습니다.</p>
+        <p class="num-line">이벤트 호라이즌 5차(빗썸×Binance 5분봉, 다음 봉 체결, 고친 손익 식): 개발 2020~24 월 +$18.8 (p 0.03) → 시험 2025-01~2026-10 월 <b>−$32.2</b> · 낙폭 −4.8% (BASE −2.2%) · 시험 구간 창 진입 99건</p>
+        <p class="warn">⚠️ 백테스트 시험 구간에서는 BASE 보다 확실히 나빴습니다(창에서 필터를 끄고 들어간 거래가 주로 잃음). 사용자 결정을 가장 직접 구현한 형태라 사전 등록·사용자 지시대로 결과와 무관하게 넣었습니다. 전진 기록이 이 기대치를 뒤집지 못하면 기각됩니다.</p>
+        <p class="num-line" id="p-evt-EVT">—</p></div>
+      <div class="variant evt"><h3>🕳️ EVT_SLOT · 이벤트 창 자리 +2 <span class="tagk">10-20 추가</span></h3>
+        <p class="what">이벤트 창 판단에서만 자리 6 → 8, 보유 명목 상한 ×1.5. 진입선·USDT 필터·청산선은 BASE 와 같습니다. 지금 규칙은 창에서 자리가 다 차 있어 거의 들어가지 못합니다(시험 구간 21개월 7건).</p>
+        <p class="num-line">5차 백테스트(고친 손익 식): 개발 월 +$9.6 (p 0.04) → 시험 월 <b>−$0.7</b> (p 0.75) · 옛 손익 식에서는 시험 +$8.6 (p 0.055)이었지만 그 몫은 환율 착시였습니다</p>
+        <p class="warn">⚠️ 옛 손익 식 시험 1위라 골라 넣은 뒤 손익 식 수정을 알았습니다 — 고친 계산으로는 사전 등록 기준 미달이라 «사후 유지»(사용자 지시: 결과와 무관하게 1~2개). 효과는 0 근처로 예상합니다. 창 진입이 시험 구간 21개월 10건이라 판정 기준(창 진입 10건)이 차는 데 1년 가까이 걸릴 수 있습니다.</p>
+        <p class="num-line" id="p-evt-EVT_SLOT">—</p></div>
     </div>
     <div class="rules">
       <dl>
@@ -598,7 +609,8 @@
         <dt>1분 판정·양방향</dt><dd>1분마다 판단 +$124/월(표본 작음, 확신 낮음), 김프 위쪽 이탈도 먹는 양방향은 자본 $20,000 추가 필요 — 이번 실험실에는 넣지 않음</dd>
         <hr>
         <dt>판정 (실행 전 고정)</dt><dd>BASE 청산 30건 + 시작 8주 중 늦은 때. 장부 − BASE 달러 손익 &gt; 0 이고, 일 손익 차이를 7일 블록으로 1만 번 다시 뽑은 P(더 좋음) ≥ 0.9 이고, 최대낙폭이 BASE 보다 1%p 넘게 나쁘지 않으면 «실전 후보»(사람이 승인). 손익 차이 ≤ 0 이면 «기각». 그 사이면 «계속» — 8주 뒤 한 번 더, 그때도 아니면 기각</dd>
-        <dt>다중 비교</dt><dd>여섯 개를 한꺼번에 보니 하나쯤은 우연히 통과할 수 있습니다(각 10%씩이면 하나 이상 약 47%). 그래서 후보 = 곧바로 적용이 아니라 검토 시작입니다</dd>
+        <dt>다중 비교</dt><dd>아홉 개를 한꺼번에 보니 하나쯤은 우연히 통과할 수 있습니다(각 10%씩이면 하나 이상 약 61%). 그래서 후보 = 곧바로 적용이 아니라 검토 시작입니다</dd>
+        <dt>EVT 장부 판정</dt><dd>같은 기준을 장부 시작(10-20) 이후 같은 기간의 BASE 와 비교하고, <b>창 진입 거래 10건</b>이 쌓여야 판정합니다. «실전 후보»면 사용자에게 실전 적용을 제안합니다(바로 적용 아님). 이벤트 시각은 2027-12까지 Fed·BLS 일정표에서 넣었습니다</dd>
         <dt>중간 점검</dt><dd>4주(2026-11-14 전후): 회차·BASE 와 실전의 일치·펀딩·USDT·업비트 이력·섀도 기록이 제대로 쌓이는지만 봅니다. 성과를 보고 규칙을 바꾸지 않습니다</dd>
       </dl>
     </div>
@@ -612,7 +624,7 @@
 </div>
 
 <script>
-// 김프 실험실 — 카페24 봇이 GitHub paper-kimlab 브랜치에 올리는 JSON(장부 7개)과, 참고용 실전 김프 봇 JSON(paper-kimchi)을 읽는다.
+// 김프 실험실 — 카페24 봇이 GitHub paper-kimlab 브랜치에 올리는 JSON(장부 10개)과, 참고용 실전 김프 봇 JSON(paper-kimchi)을 읽는다.
 (function(){
   var RAW = 'https://raw.githubusercontent.com/huryoungkil-ops/kimchi-premium-dashboard/';
   var $ = function(id){ return document.getElementById(id); };
@@ -625,8 +637,8 @@
   var kst = function(iso){ if (!iso) return '—'; var d = new Date(new Date(iso).getTime() + 9 * 3600e3); return d.toISOString().slice(5, 16).replace('T', ' '); };
   var empty = function(n, msg){ return '<tr><td class="empty-row" colspan="' + n + '">' + msg + '</td></tr>'; };
   var get = function(p){ return fetch(RAW + p + '?t=' + Math.floor(Date.now() / 120000), { cache: 'no-store' }).then(function(r){ if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); }); };
-  var ORDER = ['BASE', 'ADD15', 'EXIT075', 'FUND', 'IDLE_USDT', 'UPBIT', 'COMBO', 'NOUZ'];
-  var COLOR = { ADD15: '--k1', EXIT075: '--k2', FUND: '--k3', IDLE_USDT: '--k4', UPBIT: '--k5', COMBO: '--k6', NOUZ: '--k7' };
+  var ORDER = ['BASE', 'ADD15', 'EXIT075', 'FUND', 'IDLE_USDT', 'UPBIT', 'COMBO', 'NOUZ', 'EVT', 'EVT_SLOT'];
+  var COLOR = { ADD15: '--k1', EXIT075: '--k2', FUND: '--k3', IDLE_USDT: '--k4', UPBIT: '--k5', COMBO: '--k6', NOUZ: '--k7', EVT: '--k8', EVT_SLOT: '--k9' };
   var VENUE = { bithumb: '빗썸', upbit: '업비트' };
   function mdd(vals){ var pk = -Infinity, m = 0; vals.forEach(function(v){ if (v > pk) pk = v; if (pk > 0) m = Math.min(m, v / pk - 1); }); return m; }
   function badge(j){
@@ -641,7 +653,10 @@
     $('p-legend').innerHTML = '<span><i class="sw-base"></i>BASE (0선)</span>' + ORDER.slice(1).map(function(k){ return '<span style="color:var(' + COLOR[k] + ')"><i class="sw-k"></i><span style="color:var(--ink-soft)">' + k + '</span></span>'; }).join('');
     if (rows.length < 2) { el.innerHTML = '<p class="section-sub" style="margin:8px">매시 기록이 두 번 이상 쌓이면 여기에 추이가 그려집니다.</p>'; return; }
     var W = 760, H = 240, l = 64, r = 70, t = 12, b = 26, all = [0];
-    var S = ORDER.slice(1).map(function(k){ return { k: k, v: rows.map(function(x){ return x[1][k] != null ? x[1][k] - x[1].BASE : null; }) }; });
+    var BK = d.books || {};
+    var S = ORDER.slice(1).map(function(k){ var v = rows.map(function(x){ return x[1][k] != null ? x[1][k] - x[1].BASE : null; });
+      if (BK[k] && BK[k].addedAt) { var o = null; v = v.map(function(y){ if (y == null) return null; if (o == null) o = y; return y - o; }); }   // 나중에 더한 장부: 시작 시점 0
+      return { k: k, v: v }; });
     S.forEach(function(s){ s.v.forEach(function(v){ if (v != null) all.push(v); }); });
     var mn = Math.min.apply(null, all), mx = Math.max.apply(null, all); if (mx - mn < 1) { mx += 0.5; mn -= 0.5; }
     var pad = (mx - mn) * 0.1; mn -= pad; mx += pad;
@@ -681,10 +696,10 @@
 
     var baseEq = base.equity, series = d.series || [];
     $('p-books').innerHTML = ORDER.filter(function(k){ return B[k]; }).map(function(k){
-      var b = B[k], diff = k === 'BASE' ? null : b.equity - baseEq;
+      var b = B[k], diff = k === 'BASE' ? null : (b.addedAt && J[k] && J[k].diff != null ? J[k].diff : b.equity - baseEq);
       var eqs = [seed].concat(series.map(function(r){ return r[1][k]; }).filter(function(v){ return v != null; }), [b.equity]);
       var nOpen = (b.open || []).length, legs = (b.open || []).reduce(function(a, p){ return a + p.legs.length; }, 0);
-      return '<tr><td><b>' + k + '</b> <span class="hold-left">' + esc(b.label) + '</span>' + (b.usdt ? '<br><span class="hold-left">USDT ' + (b.usdt.on ? '켜짐' : '꺼짐') + (b.usdt.qty ? ' · ' + usd(b.usdt.valueUsd, 0) + ' 보유' : '') + ' · 사고팔기 ' + (b.usdt.buys + b.usdt.sells) + '회 (강제 ' + b.usdt.forced + ')</span>' : '') + '</td>' +
+      return '<tr><td><b>' + k + '</b> <span class="hold-left">' + esc(b.label) + '</span>' + (b.usdt ? '<br><span class="hold-left">USDT ' + (b.usdt.on ? '켜짐' : '꺼짐') + (b.usdt.qty ? ' · ' + usd(b.usdt.valueUsd, 0) + ' 보유' : '') + ' · 사고팔기 ' + (b.usdt.buys + b.usdt.sells) + '회 (강제 ' + b.usdt.forced + ')</span>' : '') + (b.evt ? '<br><span class="hold-left">이벤트 창 진입 ' + b.evt.entries + '건 · 청산 ' + b.evt.closed + '건 ' + usd(b.evt.net) + (b.addedAt ? ' · ' + kst(b.addedAt).slice(0, 5) + ' 시작' : '') + '</span>' : '') + '</td>' +
         '<td class="num">' + usd(b.equity) + '</td><td class="num ' + cls(b.equity - seed) + '">' + sgn(b.equity - seed) + '</td>' +
         '<td class="num ' + cls(diff) + '">' + (diff == null ? '—' : sgn(diff)) + '</td><td class="num">' + (mdd(eqs) > -0.00005 ? '0.00%' : pct(mdd(eqs))) + '</td>' +
         '<td class="num">' + nOpen + (legs > nOpen ? ' <span class="hold-left">(+' + (legs - nOpen) + ')</span>' : '') + '</td><td class="num">' + (b.closed || 0) + '</td>' +
@@ -693,6 +708,18 @@
     }).join('');
 
     chart($('p-chart'), d);
+
+    // EVT 장부 카드: 다음 이벤트·창 진입 현황 (봇이 올린 evtCalendar)
+    var ec = d.evtCalendar || null, EVN = { FOMC: 'FOMC 성명', CPI: 'CPI', NFP: 'NFP' };
+    ['EVT', 'EVT_SLOT'].forEach(function(k){
+      var el = $('p-evt-' + k); if (!el) return;
+      var b = B[k];
+      if (!b) { el.textContent = '봇 데이터에 아직 이 장부가 없습니다(10-20 22:56 KST 서버 반영 뒤 첫 게시를 기다리는 중).'; return; }
+      var t = '지금까지: 창 진입 ' + (b.evt ? b.evt.entries : 0) + '건 · 청산 ' + (b.evt ? b.evt.closed : 0) + '건 · 창 거래 순손익 ' + usd(b.evt ? b.evt.net : 0) + ' · 판정 ' + ((J[k] && J[k].state) || '—');
+      if (ec && ec.now) t += ' · 🔴 지금 이벤트 창: ' + (EVN[ec.now.type] || ec.now.type) + ' ' + kst(ec.now.at) + ' KST 발표';
+      else if (ec && ec.next) t += ' · 다음 이벤트 ' + (EVN[ec.next.type] || ec.next.type) + ' ' + kst(ec.next.at) + ' KST';
+      el.textContent = t;
+    });
 
     var open = [];
     ORDER.forEach(function(k){ ((B[k] && B[k].open) || []).forEach(function(p){ p.legs.forEach(function(l, i){ open.push([k, p, l, i]); }); }); });
