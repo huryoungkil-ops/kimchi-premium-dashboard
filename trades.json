@@ -16,9 +16,9 @@
   "exitTime": "2026-10-15T13:05:06.317Z",
   "exitPremium": -0.2156,
   "exitPrice": 60.608007635091504,
-  "grossProfit": -14.59,
+  "grossProfit": -14.58,
   "feeExit": 1.7798,
-  "netProfit": -18.18,
+  "netProfit": -18.17,
   "exitFx": 1339.811585,
   "exitForeignPrice": 0.04533393536861873,
   "korbitPnl": -39.82,
@@ -33,7 +33,7 @@
   "exitKrwQty": 43663,
   "exitUsdtAmt": 1979.4156199999998,
   "feeExitAcc": 1.7798,
-  "note": "2026-10-16 체결 내역으로 기록 보정 (avgPrice 누락 버그)"
+  "note": "2026-10-16 체결 내역으로 기록 보정 (avgPrice 누락 버그) | 10-19 회계 수정(장부식): 원래 기록 net -18.18·국내 -39.82 → 원화 원금 환율 재평가 +0.00 제외"
  },
  {
   "id": 2,
@@ -52,12 +52,12 @@
   "exitTime": "2026-10-17T10:10:06.373Z",
   "exitPremium": 0.0622,
   "exitPrice": 14.990272154043556,
-  "grossProfit": 2.89,
+  "grossProfit": -4.54,
   "feeExit": 1.87,
-  "netProfit": -0.8,
+  "netProfit": -8.23,
   "exitFx": 1334.892169,
   "exitForeignPrice": 0.0112226,
-  "korbitPnl": 61.56,
+  "korbitPnl": 54.13,
   "foreignPnl": -58.67,
   "forceReason": null,
   "n8nId": null,
@@ -69,7 +69,7 @@
   "exitKrwQty": 0,
   "exitUsdtAmt": 0,
   "feeExitAcc": 0,
-  "note": "2026-10-16 체결 내역으로 기록 보정 (avgPrice 누락 버그)"
+  "note": "2026-10-16 체결 내역으로 기록 보정 (avgPrice 누락 버그) | 10-19 회계 수정(장부식): 원래 기록 net -0.80·국내 61.56 → 원화 원금 환율 재평가 +7.43 제외"
  },
  {
   "id": 3,
@@ -88,12 +88,12 @@
   "exitTime": "2026-10-17T00:55:06.464Z",
   "exitPremium": 1.2509,
   "exitPrice": 8.771149423407243,
-  "grossProfit": 15.82,
+  "grossProfit": 8.4,
   "feeExit": 1.648,
-  "netProfit": 12.36,
+  "netProfit": 4.94,
   "exitFx": 1334.892169,
   "exitForeignPrice": 0.0064895,
-  "korbitPnl": -168.92,
+  "korbitPnl": -176.34,
   "foreignPnl": 184.74,
   "forceReason": null,
   "n8nId": null,
@@ -105,6 +105,6 @@
   "exitKrwQty": 0,
   "exitUsdtAmt": 0,
   "feeExitAcc": 0,
-  "note": null
+  "note": "10-19 회계 수정(장부식): 원래 기록 net 12.36·국내 -168.92 → 원화 원금 환율 재평가 +7.42 제외"
  }
 ]
