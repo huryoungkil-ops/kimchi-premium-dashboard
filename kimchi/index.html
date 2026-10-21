@@ -523,6 +523,32 @@
 
   </section>
 
+  <section aria-labelledby="open-h">
+    <h2 id="open-h">지금 들고 있는 포지션</h2>
+    <p class="section-sub">진입할 때의 김프와 현재 김프의 차이가 그대로 평가손익이 됩니다. 김프가 7일 평균 + 0.5σ 위로 회복하면 자동으로 청산되고, 그때 비로소 위의 «누적 청산 거래»에 집계됩니다.</p>
+
+    <div class="live-refresh">
+      <button type="button" id="refresh-open" class="refresh-btn">지금 값 불러오기</button>
+      <span id="refresh-status" class="refresh-status">카페24 봇이 5분마다 계산한 최근 회차 값입니다. 버튼을 누르면 가장 최근 값을 다시 불러옵니다.</span>
+    </div>
+
+    <div class="table-scroll">
+      <table class="coins open-positions">
+        <thead>
+          <tr>
+            <th>코인</th>
+            <th class="num">진입 김프</th>
+            <th class="num">현재 김프</th>
+            <th class="num">평가손익</th>
+            <th>추이</th>
+            <th>진입 시각</th>
+          </tr>
+        </thead>
+        <tbody id="open-tbody"><!--OPEN_POSITIONS--><tr><td class="empty-row" colspan="5">현재 보유 중인 포지션이 없습니다.</td></tr><!--/OPEN_POSITIONS--></tbody>
+      </table>
+    </div>
+  </section>
+
   <section aria-labelledby="gate-h" id="gate">
     <h2 id="gate-h">지금 새로 살 수 있나? — 진입 관문</h2>
     <p class="section-sub">봇이 1분마다 확인하는 진입 조건을 위에서부터 차례로 보여 줍니다. 하나라도 막히면 새 진입은 없고, 들고 있는 포지션의 청산은 관문과 상관없이 계속됩니다.</p>
@@ -667,32 +693,6 @@
         </ul>
       </div>
     </details>
-  </section>
-
-  <section aria-labelledby="open-h">
-    <h2 id="open-h">지금 들고 있는 포지션</h2>
-    <p class="section-sub">진입할 때의 김프와 현재 김프의 차이가 그대로 평가손익이 됩니다. 김프가 7일 평균 + 0.5σ 위로 회복하면 자동으로 청산되고, 그때 비로소 위의 «누적 청산 거래»에 집계됩니다.</p>
-
-    <div class="live-refresh">
-      <button type="button" id="refresh-open" class="refresh-btn">지금 값 불러오기</button>
-      <span id="refresh-status" class="refresh-status">카페24 봇이 5분마다 계산한 최근 회차 값입니다. 버튼을 누르면 가장 최근 값을 다시 불러옵니다.</span>
-    </div>
-
-    <div class="table-scroll">
-      <table class="coins open-positions">
-        <thead>
-          <tr>
-            <th>코인</th>
-            <th class="num">진입 김프</th>
-            <th class="num">현재 김프</th>
-            <th class="num">평가손익</th>
-            <th>추이</th>
-            <th>진입 시각</th>
-          </tr>
-        </thead>
-        <tbody id="open-tbody"><!--OPEN_POSITIONS--><tr><td class="empty-row" colspan="5">현재 보유 중인 포지션이 없습니다.</td></tr><!--/OPEN_POSITIONS--></tbody>
-      </table>
-    </div>
   </section>
 
   <section aria-labelledby="history-h" id="history">

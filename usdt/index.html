@@ -498,6 +498,15 @@
   </section>
 
   <section>
+    <h2>거래 기록</h2>
+    <p class="section-sub">실제 체결 기록입니다. 손익을 «웃돈이 돌아온 몫»과 «환율이 움직인 몫»으로 나눠 적습니다. 전략이 노리는 것은 웃돈 몫입니다. 수수료는 0원(2027-08-24까지 디지털엑스 원화마켓 무료)이고, 호가 차이는 체결가에 들어 있습니다.</p>
+    <div class="table-scroll"><table class="coins">
+      <thead><tr><th>매수</th><th>매도</th><th class="num">수량</th><th class="num">산 값 → 판 값</th><th class="num">손익 (원)</th><th class="num">웃돈 몫</th><th class="num">환율 몫</th></tr></thead>
+      <tbody id="u-trades"><tr><td class="empty-row" colspan="7">불러오는 중…</td></tr></tbody>
+    </table></div>
+  </section>
+
+  <section>
     <h2>지금의 USDT 웃돈 — 최근 14일</h2>
     <p class="section-sub">웃돈 = 디지털엑스 원화 USDT ÷ 장중 원·달러 환율(Yahoo 1시간봉) − 1. 매시 정각 직후 직전 1시간봉 종가로 판단하고, 신호가 나면 <b>바로</b> 주문합니다(2026-10-19부터, 그 전에는 한 시간 뒤). 초록 점선 = 매수선(14일 평균 − 2σ), 빨간 점선 = 매도선(평균 + 0.5σ), 회색 점선 = 14일 평균.</p>
     <div class="u-meter">
@@ -506,15 +515,6 @@
       <div><span>매도선 (평균 + 0.5σ)</span><b id="u-sell">—</b><span id="u-sell-sub">—</span></div>
     </div>
     <div class="u-chart" id="u-chart" aria-label="디지털엑스 USDT 웃돈 14일 추이"></div>
-  </section>
-
-  <section>
-    <h2>거래 기록</h2>
-    <p class="section-sub">실제 체결 기록입니다. 손익을 «웃돈이 돌아온 몫»과 «환율이 움직인 몫»으로 나눠 적습니다. 전략이 노리는 것은 웃돈 몫입니다. 수수료는 0원(2027-08-24까지 디지털엑스 원화마켓 무료)이고, 호가 차이는 체결가에 들어 있습니다.</p>
-    <div class="table-scroll"><table class="coins">
-      <thead><tr><th>매수</th><th>매도</th><th class="num">수량</th><th class="num">산 값 → 판 값</th><th class="num">손익 (원)</th><th class="num">웃돈 몫</th><th class="num">환율 몫</th></tr></thead>
-      <tbody id="u-trades"><tr><td class="empty-row" colspan="7">불러오는 중…</td></tr></tbody>
-    </table></div>
   </section>
 
   <section aria-labelledby="u-strategy-h">
