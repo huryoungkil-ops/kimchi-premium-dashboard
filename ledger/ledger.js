@@ -11,6 +11,7 @@
    리밸런싱(이체)은 config.transfers 에 한 줄 추가한다:
      { "time": "2026-10-01T00:00:00Z", "from": "korbit", "usd": 538.49, "fx": 1356.04 }
    from 이 korbit 이면 코빗→OKX, okx 면 OKX→코빗. fx 는 이체 시점 환율.
+   바깥으로 인출은 "to": "out" (예: 빗썸 여유분 인출 { from: korbit, to: out }), 바깥에서 입금은 "from": "out", "to": korbit|okx.
 */
 (function (root, factory) {
   if (typeof module === 'object' && module.exports) module.exports = factory();
@@ -69,12 +70,17 @@
     // 나머지(총액 − 시드 − 전략 손익)가 환율 효과: 거래에 묶이지 않은 원화 예수금이 환율 따라 움직인 몫
     var closedCount = 0, wins = 0, open = [], missing = [];
 
+    var extUsd = 0;
     (cfg.transfers || []).forEach(function (tr) {
       if (new Date(tr.time).getTime() > asOf) return;
       var usd = Number(tr.usd), tfx = Number(tr.fx);
-      if (tr.from === 'korbit') { k.cashKrw -= usd * tfx; o.cashUsd += usd; }
+      // 바깥 인출 to:'out' · 바깥 입금 from:'out' (2026-10-21) — 손익 기준(capital)도 함께 바뀐다
+      if (tr.to === 'out') { extUsd -= usd; if (tr.from === 'korbit') k.cashKrw -= usd * tfx; else o.cashUsd -= usd; }
+      else if (tr.from === 'out') { extUsd += usd; if (tr.to === 'korbit') k.cashKrw += usd * tfx; else o.cashUsd += usd; }
+      else if (tr.from === 'korbit') { k.cashKrw -= usd * tfx; o.cashUsd += usd; }
       else { o.cashUsd -= usd; k.cashKrw += usd * tfx; }
     });
+    var capital = cfg.seedUsd + extUsd;
 
     trades.forEach(function (t) {
       if (t.status === 'VOID') return;
@@ -123,10 +129,10 @@
       okx: { cashUsd: o.cashUsd, unrealUsd: o.unrealUsd, totalUsd: okxUsd,
              realizedUsd: o.realizedUsd, share: okxUsd / total * 100 },
       total: total,
-      pnl: total - cfg.seedUsd,
-      pnlPct: (total / cfg.seedUsd - 1) * 100,
+      pnl: total - capital,
+      pnlPct: (total / capital - 1) * 100, capital: capital,
       strategyUsd: strategyUsd + unrealStrategy,
-      fxEffectUsd: total - cfg.seedUsd - strategyUsd - unrealStrategy,
+      fxEffectUsd: total - capital - strategyUsd - unrealStrategy,
       // 50:50으로 맞추려면: 양수면 코빗→OKX, 음수면 OKX→코빗
       rebalanceUsd: korbitUsd - target,
       closedCount: closedCount, wins: wins, open: open, missing: missing
