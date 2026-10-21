@@ -440,9 +440,9 @@
 <body>
 
 <style id="kimlab-css">
-  :root{ --k1:#9c6b23; --k2:#3f6f57; --k3:#2f5f8a; --k4:#7a4f9a; --k5:#7d7a1e; --k6:#9a3b28; --k7:#5b6770; --k8:#b0306a; --k9:#1f7f86; }
-  @media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){ --k1:#d9a44e; --k2:#86bd9f; --k3:#7fb0dc; --k4:#c39be0; --k5:#c9c86a; --k6:#e08b6f; --k7:#a9b6bf; --k8:#ec80b0; --k9:#6fd0d6; } }
-  :root[data-theme="dark"]{ --k1:#d9a44e; --k2:#86bd9f; --k3:#7fb0dc; --k4:#c39be0; --k5:#c9c86a; --k6:#e08b6f; --k7:#a9b6bf; --k8:#ec80b0; --k9:#6fd0d6; }
+  :root{ --k1:#9c6b23; --k2:#3f6f57; --k3:#2f5f8a; --k4:#7a4f9a; --k5:#7d7a1e; --k6:#9a3b28; --k7:#5b6770; --k8:#b0306a; --k9:#1f7f86; --k10:#5a4fb0; --k11:#2e7d32; }
+  @media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){ --k1:#d9a44e; --k2:#86bd9f; --k3:#7fb0dc; --k4:#c39be0; --k5:#c9c86a; --k6:#e08b6f; --k7:#a9b6bf; --k8:#ec80b0; --k9:#6fd0d6; --k10:#a99cf0; --k11:#7ccf80; } }
+  :root[data-theme="dark"]{ --k1:#d9a44e; --k2:#86bd9f; --k3:#7fb0dc; --k4:#c39be0; --k5:#c9c86a; --k6:#e08b6f; --k7:#a9b6bf; --k8:#ec80b0; --k9:#6fd0d6; --k10:#a99cf0; --k11:#7ccf80; }
   .variant.evt{ border-left:3px solid var(--k8); }
   .sw-k{ display:inline-block; width:22px; height:0; border-top:2.4px solid currentColor; }
   .sw-base{ display:inline-block; width:22px; height:0; border-top:1.6px dashed var(--ink-soft); }
@@ -500,7 +500,7 @@
 
   <section>
     <h2>장부 10개 — BASE 와 비교</h2>
-    <p class="section-sub">모두 같은 5분 회차·같은 호가를 봅니다. «BASE 대비»는 지금 잔액의 차이(달러)입니다 — 나중에 더한 장부(NOUZ·EVT·EVT_SLOT)는 더한 날부터 같은 기간의 BASE 와 견준 값입니다. 잔액 = 원화 다리(지금 환율로 달러 환산) + 선물 다리(미실현 포함) + 받은 펀딩 − 수수료. 판정 칸은 BASE 청산 30건과 8주가 모두 찬 뒤에야 «진행 중»에서 바뀝니다.</p>
+    <p class="section-sub">모두 같은 5분 회차·같은 호가를 봅니다. «BASE 대비»는 지금 잔액의 차이(달러)입니다 — 나중에 더한 장부(NOUZ·EVT·EVT_SLOT·TOPUP·TOPUP_BETTER)는 더한 날부터 같은 기간의 BASE 와 견준 값입니다. 잔액 = 원화 다리(지금 환율로 달러 환산) + 선물 다리(미실현 포함) + 받은 펀딩 − 수수료. 판정 칸은 BASE 청산 30건과 8주가 모두 찬 뒤에야 «진행 중»에서 바뀝니다.</p>
     <div class="table-scroll"><table class="coins paper">
       <thead><tr><th>장부</th><th class="num">잔액</th><th class="num">손익</th><th class="num">BASE 대비</th><th class="num">최대낙폭</th><th class="num">보유</th><th class="num">청산</th><th class="num">승률</th><th class="num">펀딩</th><th>판정</th></tr></thead>
       <tbody id="p-books"><tr><td class="empty-row" colspan="10">불러오는 중…</td></tr></tbody>
@@ -589,7 +589,7 @@
         <p class="num-line">근거 연구(2024~ 김프 1,209건): 필터를 켜면 연 −1.3% → +1.7%(스프레드 절반), −7.4% → −2.3%(스프레드 전부). z ≥ 0 진입은 거래당 +0.11%·승률 61%, z &lt; −1 은 −0.2~−0.27%·44~46%</p>
         <p class="warn">NOUZ가 BASE보다 확실히 낫다(P ≥ 0.9, 낙폭 1%p 이내)고 나오면 실전에서 필터를 끕니다. NOUZ가 BASE 이하면 필터 유지 — 사용자 결정(10-18)으로 미리 정한 규칙입니다.</p></div>
       <div class="variant evt"><h3>🕳️ EVT · 이벤트 창 묶음 <span class="tagk">10-20 추가</span></h3>
-        <p class="what"><b>사용자 결정: 보류하지 않고 이벤트 변동성을 활용 — 김프 실험실 EVT 장부로 검증 중.</b> FOMC 성명·CPI·NFP 발표 뒤 2시간 창의 판단에서만 ① USDT 웃돈 필터 무시 ② 진입선 평균 −1.5σ → −1.0σ ③ 자리 6 → 8, 보유 명목 상한 $8,000 → 약 $12,030 ④ 창에서 들어간 포지션은 평균(+0σ)에서 청산. 창 밖은 BASE 와 똑같습니다.</p>
+        <p class="what"><b>사용자 결정: 보류하지 않고 이벤트 변동성을 활용 — 김프 실험실 EVT 장부로 검증 중.</b> FOMC 성명·CPI·NFP 발표 뒤 2시간 창의 판단에서만 ① USDT 웃돈 필터 무시 ② 진입선 평균 −1.5σ → −1.0σ ③ 자리 6 → 8, 보유 명목 한도 ×1.5 (10-21부터 한도 = 자산 40% 기준, 그 전 $8,000 → 약 $12,030) ④ 창에서 들어간 포지션은 평균(+0σ)에서 청산. 창 밖은 BASE 와 똑같습니다.</p>
         <p class="num-line">이벤트 호라이즌 5차(빗썸×Binance 5분봉, 다음 봉 체결, 고친 손익 식): 개발 2020~24 월 +$18.8 (p 0.03) → 시험 2025-01~2026-10 월 <b>−$32.2</b> · 낙폭 −4.8% (BASE −2.2%) · 시험 구간 창 진입 99건</p>
         <p class="warn">⚠️ 백테스트 시험 구간에서는 BASE 보다 확실히 나빴습니다(창에서 필터를 끄고 들어간 거래가 주로 잃음). 사용자 결정을 가장 직접 구현한 형태라 사전 등록·사용자 지시대로 결과와 무관하게 넣었습니다. 전진 기록이 이 기대치를 뒤집지 못하면 기각됩니다.</p>
         <p class="num-line" id="p-evt-EVT">—</p></div>
@@ -598,10 +598,20 @@
         <p class="num-line">5차 백테스트(고친 손익 식): 개발 월 +$9.6 (p 0.04) → 시험 월 <b>−$0.7</b> (p 0.75) · 옛 손익 식에서는 시험 +$8.6 (p 0.055)이었지만 그 몫은 환율 착시였습니다</p>
         <p class="warn">⚠️ 옛 손익 식 시험 1위라 골라 넣은 뒤 손익 식 수정을 알았습니다 — 고친 계산으로는 사전 등록 기준 미달이라 «사후 유지»(사용자 지시: 결과와 무관하게 1~2개). 효과는 0 근처로 예상합니다. 창 진입이 시험 구간 21개월 10건이라 판정 기준(창 진입 10건)이 차는 데 1년 가까이 걸릴 수 있습니다.</p>
         <p class="num-line" id="p-evt-EVT_SLOT">—</p></div>
+      <div class="variant"><h3>➕ TOPUP · 채우기 <span class="tagk">10-21 추가</span></h3>
+        <p class="what">진입 크기는 min(자산 10%, 빗썸 5호가 매도 잔량의 30%)라서 호가가 얇은 순간엔 계획보다 작게 삽니다(실전 US $830 · FLOCK $734, 계획 약 $2,015). 이 장부는 그런 포지션을, 다음 회차부터 신호가 아직 ENTRY 이고 진입 관문(평상시 스프레드 포함)·USDT 필터·예산을 통과하면 <b>계획 크기의 모자란 몫만</b> 더 삽니다(크기 = min(모자란 몫, 지금 깊이 30%), 최소 $100, Binance 같은 수량 숏, 수수료 0.04%+0.05%). 청산은 포지션 전체를, 강제청산 판정은 수량 가중 평균 진입 김프로. 계획보다 더 사는 물타기(ADD15)와 다릅니다.</p>
+        <p class="num-line">도입 전 실측(실전 DB): 실전 진입 6건 중 2건이 깊이 상한으로 줄었고, US 진입 뒤 5분 회차 114회 모두 ENTRY · 관문 통과 93회. 회차별 호가 깊이는 기록돼 있지 않아 과거 백테스트는 하지 않았습니다.</p>
+        <p class="warn">판정: BASE 청산 30건 + 장부 시작 8주(2026-12-16 이후) + 채우기 10건 이상 중 가장 늦은 때, 다른 장부와 같은 기준(BASE 대비 +$, P ≥ 0.9, 낙폭 1%p 이내).</p>
+        <p class="num-line" id="p-top-TOPUP">—</p></div>
+      <div class="variant"><h3>➕ TOPUP_BETTER · 평균을 낮출 때만 채우기 <span class="tagk">10-21 추가</span></h3>
+        <p class="what">TOPUP 과 같고, 실체결 김프가 그 포지션의 수량 가중 평균 진입 김프 이하일 때만 채웁니다. <b>실전 김프 봇은 10-21부터 이 규칙으로 실제로 채웁니다</b>(사용자 결정, 끄기 TOPUP=0) — 실험실은 TOPUP 과 견주는 대조군이자 같은 규칙의 페이퍼 기록입니다.</p>
+        <p class="num-line">실전 첫 채우기: 10-21 21:10 KST US +$1,185 → $2,015 · 평균 진입 김프 −0.48% → −0.53%. 실전 10건이 쌓이면 성과(채운 몫의 손익 기여·평균 개선·승률)를 보고합니다.</p>
+        <p class="warn">판정 기준은 TOPUP 과 같습니다.</p>
+        <p class="num-line" id="p-top-TOPUP_BETTER">—</p></div>
     </div>
     <div class="rules">
       <dl>
-        <dt>BASE</dt><dd>실전 서비스 설정 파일에서 규칙 값을 읽어 실전 봇과 같은 판단 코드를 그대로 씁니다: 7일 평균·σ, 평균 −1.5σ 아래 진입, +0.5σ 위 청산, USDT 웃돈 z &lt; 0 이면 새 진입 없음, 기대이익 ≥ 3 × (왕복 비용 0.18% + 스프레드), 크기 = 자산 10%(호가 깊이 30% 상한, 최소 $500), 자리 6, 보유 명목 $8,000, 2일·5일·해외가 +50% 강제청산, 하루 실현손실 $20 넘으면 그날 진입 중단. 거래 대상 종목도 실전 스캐너 목록 그대로, 빗썸 김프도 실전 봇이 같은 회차에 잰 값 그대로(실전이 멈추면 직접 잼)</dd>
+        <dt>BASE</dt><dd>실전 서비스 설정 파일에서 규칙 값을 읽어 실전 봇과 같은 판단 코드를 그대로 씁니다: 7일 평균·σ, 평균 −1.5σ 아래 진입, +0.5σ 위 청산, USDT 웃돈 z &lt; 0 이면 새 진입 없음, 기대이익 ≥ 3 × (왕복 비용 0.18% + 스프레드), 크기 = 자산 10%(호가 깊이 30% 상한, 최소 $500), 자리 6, 보유 명목 한도 = min(장부 자산 × 40%, 원화 쪽 ÷ 1.055, 해외 쪽 ÷ 1.25) · 마지막 자리는 남은 한도 ≥ 90%면 온전히 (10-21, 그 전 고정 $8,000), 2일·5일·해외가 +50% 강제청산, 하루 실현손실 $20 넘으면 그날 진입 중단. 거래 대상 종목도 실전 스캐너 목록 그대로, 빗썸 김프도 실전 봇이 같은 회차에 잰 값 그대로(실전이 멈추면 직접 잼)</dd>
         <dt>체결</dt><dd>그 회차에 받은 두 거래소 호가를 포지션 수량만큼 먹은 평균가 · 빗썸 0.04% · 업비트 0.05% · Binance 시장가 0.05% (편도) · 보유 중 실제 Binance 펀딩 정산</dd>
         <dt>메이커 섀도</dt><dd>BASE 진입마다 지정가 체결 여부만 기록 (5·30분, 체결 분 Binance 가격). 연구: 지정가의 실제 몫은 «스프레드 절반쯤»이고 체결 즉시 헤지할 때만 남는다 — 헤지가 1분 늦으면 5분봉 추정의 절반 이하</dd>
         <hr>
@@ -637,8 +647,8 @@
   var kst = function(iso){ if (!iso) return '—'; var d = new Date(new Date(iso).getTime() + 9 * 3600e3); return d.toISOString().slice(5, 16).replace('T', ' '); };
   var empty = function(n, msg){ return '<tr><td class="empty-row" colspan="' + n + '">' + msg + '</td></tr>'; };
   var get = function(p){ return fetch(RAW + p + '?t=' + Math.floor(Date.now() / 120000), { cache: 'no-store' }).then(function(r){ if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); }); };
-  var ORDER = ['BASE', 'ADD15', 'EXIT075', 'FUND', 'IDLE_USDT', 'UPBIT', 'COMBO', 'NOUZ', 'EVT', 'EVT_SLOT'];
-  var COLOR = { ADD15: '--k1', EXIT075: '--k2', FUND: '--k3', IDLE_USDT: '--k4', UPBIT: '--k5', COMBO: '--k6', NOUZ: '--k7', EVT: '--k8', EVT_SLOT: '--k9' };
+  var ORDER = ['BASE', 'ADD15', 'EXIT075', 'FUND', 'IDLE_USDT', 'UPBIT', 'COMBO', 'NOUZ', 'EVT', 'EVT_SLOT', 'TOPUP', 'TOPUP_BETTER'];
+  var COLOR = { ADD15: '--k1', EXIT075: '--k2', FUND: '--k3', IDLE_USDT: '--k4', UPBIT: '--k5', COMBO: '--k6', NOUZ: '--k7', EVT: '--k8', EVT_SLOT: '--k9', TOPUP: '--k10', TOPUP_BETTER: '--k11' };
   var VENUE = { bithumb: '빗썸', upbit: '업비트' };
   function mdd(vals){ var pk = -Infinity, m = 0; vals.forEach(function(v){ if (v > pk) pk = v; if (pk > 0) m = Math.min(m, v / pk - 1); }); return m; }
   function badge(j){
@@ -721,11 +731,19 @@
       el.textContent = t;
     });
 
+    // 채우기 장부 카드: 채우기 건수·금액·한도
+    ['TOPUP', 'TOPUP_BETTER'].forEach(function(k){
+      var el = $('p-top-' + k); if (!el) return;
+      var b = B[k];
+      if (!b) { el.textContent = '봇 데이터에 아직 이 장부가 없습니다(10-21 서버 반영 뒤 첫 게시를 기다리는 중).'; return; }
+      el.textContent = '지금까지: 채우기 ' + (b.topup ? b.topup.n : 0) + '건 · ' + usd(b.topup ? b.topup.usd : 0, 0) + ' · 청산 ' + (b.closed || 0) + '건 · 판정 ' + ((J[k] && J[k].state) || '—') + (b.budget && b.budget.text ? ' · ' + b.budget.text : '');
+    });
+
     var open = [];
     ORDER.forEach(function(k){ ((B[k] && B[k].open) || []).forEach(function(p){ p.legs.forEach(function(l, i){ open.push([k, p, l, i]); }); }); });
     $('p-open').innerHTML = open.map(function(x){
       var k = x[0], p = x[1], l = x[2], i = x[3];
-      return '<tr><td>' + k + '</td><td class="coin">' + esc(p.coin) + ' <span class="hold-left">' + VENUE[p.venue] + (i ? ' · 물타기' : '') + '</span></td><td>' + kst(l.at) + '</td><td class="num">' + usd(l.size, 0) + '</td><td class="num">' + pp(l.entryPrem) + '</td><td class="num">' + pp(l.entryMa) + '</td><td class="num">' + (l.sigma != null ? l.sigma.toFixed(2) : '—') + '</td><td class="num ' + cls(l.upnl) + '">' + usd(l.upnl) + '</td><td class="num">' + usd(l.funding) + '</td></tr>';
+      return '<tr><td>' + k + '</td><td class="coin">' + esc(p.coin) + ' <span class="hold-left">' + VENUE[p.venue] + (i ? (l.kind === 'topup' ? ' · 채우기' : ' · 물타기') : '') + '</span></td><td>' + kst(l.at) + '</td><td class="num">' + usd(l.size, 0) + '</td><td class="num">' + pp(l.entryPrem) + '</td><td class="num">' + pp(l.entryMa) + '</td><td class="num">' + (l.sigma != null ? l.sigma.toFixed(2) : '—') + '</td><td class="num ' + cls(l.upnl) + '">' + usd(l.upnl) + '</td><td class="num">' + usd(l.funding) + '</td></tr>';
     }).join('') || empty(9, '보유 중인 포지션이 없습니다. 실전처럼 7일 평균의 80%가 쌓여야(빗썸 2026-10-19 오후 무렵) 진입하고, USDT 웃돈 z 가 0 아래면 막힙니다.');
 
     // 실전 vs BASE
