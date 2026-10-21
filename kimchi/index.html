@@ -392,6 +392,48 @@
     font-size:13.5px;
   }
   .rebalance b{ font-family:var(--font-mono); }
+  /* ---------- 자금 사용 막대 (2026-10-21) — 두 거래소를 같은 달러 축에 ---------- */
+  :root{ --cu-wait:color-mix(in srgb, var(--accent) 32%, var(--bg-raised)); --cu-hatch:color-mix(in srgb, var(--ink-soft) 40%, var(--bg-raised)); --cu-gray:color-mix(in srgb, var(--line) 75%, var(--bg-raised)); }
+  .cu{ background:var(--bg-raised); border:1px solid var(--line); border-radius:var(--radius); box-shadow:var(--shadow); padding:18px 20px 16px; }
+  .cu-summary{ font-size:14px; line-height:1.6; margin:0 0 10px; }
+  .cu-summary b{ font-family:var(--font-mono); font-weight:600; font-variant-numeric:tabular-nums; }
+  .cu-summary .rule{ display:block; font-size:12.5px; color:var(--ink-soft); }
+  .cu-row{ margin:0 0 16px; }
+  .cu-head{ display:flex; flex-wrap:wrap; justify-content:space-between; gap:2px 12px; font-size:13px; margin:0 0 2px; }
+  .cu-head .nm{ font-weight:600; }
+  .cu-head .tot{ font-family:var(--font-mono); font-variant-numeric:tabular-nums; color:var(--ink-soft); }
+  .cu-marks{ position:relative; height:20px; font-size:11px; color:var(--ink-soft); font-family:var(--font-mono); }
+  .cu-marks span{ position:absolute; bottom:4px; transform:translateX(-50%); white-space:nowrap; }
+  .cu-marks span.l{ transform:none; } .cu-marks span.r{ transform:translateX(-100%); }
+  .cu-marks span.budget{ color:var(--ink); font-weight:600; }
+  .cu-track{ position:relative; height:40px; }
+  .cu-bar{ display:flex; height:100%; border-radius:8px; overflow:hidden; box-shadow:inset 0 0 0 1px var(--line); }
+  .cu-seg{ display:flex; align-items:center; justify-content:center; min-width:0; overflow:hidden; font-size:11.5px; line-height:1.15; text-align:center;
+    font-family:var(--font-mono); font-variant-numeric:tabular-nums; color:var(--ink); }
+  .cu-seg span{ position:relative; z-index:1; padding:1px 4px; white-space:nowrap; background:inherit; border-radius:4px; }
+  .cu-seg span.hide{ visibility:hidden; }
+  .cu-seg.used{ background:var(--accent); color:var(--accent-ink); font-weight:600; }
+  .cu-seg.wait{ background:var(--cu-wait); }
+  .cu-seg.reserve{ background:repeating-linear-gradient(135deg, var(--cu-hatch) 0 6px, var(--line-soft) 6px 12px); }
+  .cu-seg.reserve span{ background:var(--bg-raised); border-radius:4px; }
+  .cu-seg.spare, .cu-seg.surplus{ background:var(--cu-gray); }
+  .cu-line{ position:absolute; top:-5px; bottom:-5px; width:0; border-left:2px solid var(--ink); pointer-events:none; }
+  .cu-line.gold{ border-left:2px dashed var(--ink-soft); }
+  .cu-legend{ display:flex; flex-wrap:wrap; gap:6px 16px; font-size:12px; color:var(--ink-soft); margin:4px 0 12px; }
+  .cu-legend i{ display:inline-block; width:14px; height:10px; border-radius:2px; vertical-align:-1px; margin-right:5px; box-shadow:inset 0 0 0 1px var(--line); }
+  .cu-legend i.used{ background:var(--accent); } .cu-legend i.wait{ background:var(--cu-wait); }
+  .cu-legend i.reserve{ background:repeating-linear-gradient(135deg, var(--cu-hatch) 0 3px, var(--line-soft) 3px 6px); }
+  .cu-legend i.spare{ background:var(--cu-gray); }
+  .cu-legend i.mk{ width:0; height:12px; border-radius:0; box-shadow:none; border-left:2px solid var(--ink); }
+  .cu-legend i.mk.gold{ border-left:2px dashed var(--ink-soft); }
+  .cu .table-scroll{ box-shadow:none; }
+  table.cu-table{ width:100%; border-collapse:collapse; font-size:13px; }
+  table.cu-table th, table.cu-table td{ padding:7px 10px; border-top:1px solid var(--line-soft); text-align:left; vertical-align:top; }
+  table.cu-table thead th{ border-top:0; font-size:12px; color:var(--ink-soft); font-weight:600; }
+  table.cu-table td.num, table.cu-table th.num{ text-align:right; font-family:var(--font-mono); font-variant-numeric:tabular-nums; white-space:nowrap; }
+  table.cu-table td small{ display:block; color:var(--ink-soft); font-size:11.5px; white-space:normal; }
+  table.cu-table tr.tot td{ font-weight:600; }
+  @media (max-width:640px){ .cu{ padding:14px 12px; } .cu-track{ height:34px; } table.cu-table th, table.cu-table td{ padding:6px 6px; } table.cu-table{ font-size:12.5px; } }
   .ledger-note{ font-size:12px; color:var(--ink-soft); margin:10px 2px 0; line-height:1.6; }
   .ledger-note b{ font-family:var(--font-mono); font-weight:600; }
   /* ---------- 매매 기록 (버튼을 눌러야 펼쳐진다) ---------- */
@@ -521,6 +563,27 @@
     </div>
 
 
+  </section>
+
+  <section aria-labelledby="usage-h" id="usage">
+    <h2 id="usage-h">자금 사용 — 두 거래소 시드 중 얼마가 들어가 있나</h2>
+    <p class="section-sub">빗썸과 Binance를 <b>같은 달러 축</b>에 놓은 막대입니다. 진한 칸이 지금 포지션에 들어간 돈, 옅은 칸이 한도 안에서 아직 안 쓴 몫(투입 대기), 빗금이 Binance 숏 예비금, 회색이 그 밖의 여유입니다. 실선은 한도, 점선은 황금비율 목표 잔고입니다.</p>
+    <div class="cu" id="cu">
+      <p class="cu-summary" id="cu-summary">자금 사용 값을 불러오는 중…</p>
+      <div id="cu-bars"></div>
+      <div class="cu-legend" aria-hidden="true">
+        <span><i class="used"></i>투입</span><span><i class="wait"></i>투입 대기</span><span><i class="reserve"></i>숏 예비금</span><span><i class="spare"></i>여유·잉여</span>
+        <span><i class="mk"></i>한도</span><span><i class="mk gold"></i>황금비율 목표</span>
+      </div>
+      <div class="table-scroll">
+        <table class="cu-table">
+          <thead><tr><th>구간</th><th class="num">빗썸</th><th class="num">Binance</th></tr></thead>
+          <tbody id="cu-tbody"><tr><td colspan="3">—</td></tr></tbody>
+        </table>
+      </div>
+      <p class="ledger-note" id="cu-note"></p>
+    </div>
+    <p class="section-sub" style="margin:12px 2px 0"><b>한 자리 = 자산의 10% = 한도의 0.25</b>를 <b>양쪽 거래소에 각각</b> 씁니다 — 빗썸에서 한도의 0.25만큼 코인을 사고, Binance에서 같은 양을 1배로 숏(증거금 0.25). 온전한 자리 4개면 양쪽 한도 1.0을 다 씁니다. 빗썸은 한도의 <b>1.055</b>배(수수료·환율 여유), Binance는 <b>1.25</b>배(숏 증거금 + 급등 대비 예비 0.25)를 들고 있어야 해서, 두 거래소 합계를 <b>1.055 : 1.25</b>(빗썸 45.77% · Binance 54.23%)로 나누는 것이 «황금비율»입니다. 한도 = min(자산 40%, 빗썸 ÷ 1.055, Binance ÷ 1.25) — 모자란 쪽이 한도를 묶습니다.</p>
   </section>
 
   <section aria-labelledby="open-h">
@@ -967,6 +1030,85 @@
     var btn = document.getElementById('refresh-open');
     if (btn && !btn.disabled) btn.click();
   }).catch(function(e){ console.warn('kimchi.json', e); });
+})();
+</script>
+<script>
+/* 자금 사용 막대 (2026-10-21) — kimchi.json capital (봇이 회차마다 잰 두 거래소 실잔고·한도로 만든 구간, src/capital-split.js usageView) */
+(function(){
+  var host = document.getElementById('cu-bars'); if (!host || !window.__kimchiData) return;
+  var usd = function(v){ return (v < 0 ? '−$' : '$') + Math.round(Math.abs(v)).toLocaleString('en-US'); };
+  var sgn = function(v){ return (v >= 0 ? '+' : '') + usd(v); };
+  var pc = function(v){ return (Math.round(v * 10) / 10).toFixed(1) + '%'; };
+  var set = function(id, h){ var e = document.getElementById(id); if (e) e.innerHTML = h; };
+  var esc = function(t){ return String(t).replace(/[&<>"]/g, function(c){ return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); };
+  function kst(iso){ return new Date(Date.parse(iso) + 9 * 3600e3).toISOString().slice(5, 16).replace('T', ' ') + ' KST'; }
+  var overlap = function(a, b){ var ra = a.getBoundingClientRect(), rb = b.getBoundingClientRect(); return ra.right > rb.left - 4 && rb.right > ra.left - 4; };
+  function fit(){   // 칸보다 긴 글씨는 짧게, 그래도 길면 숨긴다 (값은 아래 표에)
+    host.querySelectorAll('.cu-seg span').forEach(function(sp){
+      sp.classList.remove('hide'); sp.textContent = sp.dataset.full;
+      var w = sp.parentNode.clientWidth - 2;
+      if (sp.scrollWidth > w) sp.textContent = sp.dataset.mid;
+      if (sp.scrollWidth > w) sp.textContent = sp.dataset.short;
+      if (sp.scrollWidth > w) sp.classList.add('hide');
+    });
+    host.querySelectorAll('.cu-marks').forEach(function(mk){   // 한도·목표 글씨가 붙으면 짧게
+      var a = mk.children[0], b = mk.children[1]; if (!a || !b) return;
+      a.textContent = a.dataset.full; b.textContent = b.dataset.full;
+      if (overlap(a, b)) b.textContent = b.dataset.short;
+      if (overlap(a, b)) a.textContent = a.dataset.short;
+    });
+  }
+  function row(name, ex, max, marks){
+    var wrap = document.createElement('div'); wrap.className = 'cu-row';
+    var segTxt = ex.segments.map(function(g){ return g.label + ' ' + usd(g.usd) + ' (' + pc(g.pct) + ')'; }).join(', ');
+    wrap.innerHTML = '<div class="cu-head"><span class="nm">' + name + '</span><span class="tot">총 ' + usd(ex.total) + '</span></div>';
+    var mk = document.createElement('div'); mk.className = 'cu-marks'; mk.setAttribute('aria-hidden', 'true');
+    var track = document.createElement('div'); track.className = 'cu-track'; track.setAttribute('role', 'img');
+    track.setAttribute('aria-label', name.replace(/<[^>]+>/g, '') + ' 총 ' + usd(ex.total) + ': ' + segTxt + '. 한도 ' + usd(ex.budgetMark) + ', 황금비율 목표 ' + usd(ex.goldMark));
+    var bar = document.createElement('div'); bar.className = 'cu-bar'; bar.style.width = (ex.total / max * 100).toFixed(3) + '%';
+    ex.segments.forEach(function(g){
+      if (!(g.usd > 0)) return;
+      var d = document.createElement('div'); d.className = 'cu-seg ' + g.key; d.style.flex = '0 0 ' + (g.usd / ex.total * 100).toFixed(3) + '%';
+      d.title = g.label + ' ' + usd(g.usd) + ' (' + pc(g.pct) + ')';
+      var sp = document.createElement('span'); sp.dataset.full = g.label + ' ' + usd(g.usd) + ' · ' + pc(g.pct); sp.dataset.mid = g.label + ' ' + usd(g.usd); sp.dataset.short = usd(g.usd);
+      sp.textContent = sp.dataset.full; d.appendChild(sp); bar.appendChild(d);
+    });
+    track.appendChild(bar);
+    marks.forEach(function(m){
+      var x = m.v / max * 100, ln = document.createElement('div'); ln.className = 'cu-line' + (m.gold ? ' gold' : ''); ln.style.left = x.toFixed(3) + '%'; track.appendChild(ln);
+      var lb = document.createElement('span'); lb.className = (m.gold ? 'gold' : 'budget') + (x < 10 ? ' l' : x > 85 ? ' r' : ''); lb.style.left = x.toFixed(3) + '%';
+      lb.dataset.full = m.t + ' ' + usd(m.v); lb.dataset.short = m.t; lb.textContent = lb.dataset.full; mk.appendChild(lb);
+    });
+    wrap.appendChild(mk); wrap.appendChild(track);
+    return wrap;
+  }
+  window.__kimchiData.then(function(d){
+    var c = d && d.capital;
+    if (!c || !c.dom || !c.fgn) { set('cu-summary', '봇이 아직 자금 사용 값을 올리지 않았습니다 — 다음 5분 회차에 그려집니다.'); return; }
+    var S = c.summary, D = c.dom, F = c.fgn;
+    set('cu-summary', '전체 <b>' + usd(S.total) + '</b> 중 투입 <b>' + usd(S.used) + '</b> (' + pc(S.usedPct) + ') · 투입 대기 <b>' + usd(S.wait) + '</b> (거래소마다 ' + usd(S.waitPerSide) + ') · 여유 <b>' + usd(S.spare) + '</b>'
+      + '<span class="rule">한도 ' + usd(c.budget.usd) + ' (' + esc(c.budget.bindText) + ' 기준) · 보유 명목 ' + usd(c.openNotional) + ' · 한 자리 ≈ ' + usd(c.slotUsd) + '</span>');
+    var max = Math.max(D.total, F.total, D.goldMark, F.goldMark, F.reserveMark || 0) * 1.02;
+    var gd = (c.gold.dom * 100).toFixed(2), gf = (c.gold.fgn * 100).toFixed(2);
+    host.innerHTML = '';
+    host.appendChild(row('빗썸 <small style="color:var(--ink-soft);font-weight:400">원화 + 코인 시가</small>', D, max, [{ v: D.budgetMark, t: '한도' }, { v: D.goldMark, t: '목표', gold: true }]));
+    host.appendChild(row('Binance futures01 <small style="color:var(--ink-soft);font-weight:400">지갑 + 미실현</small>', F, max, [{ v: F.budgetMark, t: '한도' }, { v: F.goldMark, t: '목표', gold: true }]));
+    var g = function(ex, k){ var s = ex.segments.filter(function(x){ return x.key === k; })[0]; return s ? usd(s.usd) + ' <small>' + pc(s.pct) + '</small>' : '—'; };
+    set('cu-tbody',
+      '<tr><td>투입<small>빗썸 현물 시가 · Binance 숏 명목(1배 = 증거금)</small></td><td class="num">' + g(D, 'used') + '</td><td class="num">' + g(F, 'used') + '</td></tr>' +
+      '<tr><td>투입 대기<small>한도 − 보유 명목 ' + usd(c.openNotional) + '</small></td><td class="num">' + g(D, 'wait') + '</td><td class="num">' + g(F, 'wait') + '</td></tr>' +
+      '<tr><td>숏 예비금<small>한도 × ' + (c.budget.fgnMult - 1).toFixed(2) + ' — 급등 대비</small></td><td class="num">—</td><td class="num">' + g(F, 'reserve') + '</td></tr>' +
+      '<tr><td>여유 · 잉여<small>빗썸: 수수료·환율 여유 + 한도 밖 · Binance: 예비금 밖</small></td><td class="num">' + g(D, 'spare') + '</td><td class="num">' + g(F, 'surplus') + '</td></tr>' +
+      '<tr class="tot"><td>합계</td><td class="num">' + usd(D.total) + '</td><td class="num">' + usd(F.total) + '</td></tr>' +
+      '<tr><td>한도 (한쪽 기준)<small>min(자산 ' + Math.round((c.budget.pct || 0.4) * 100) + '%, 빗썸 ÷ ' + c.budget.domMult + ', Binance ÷ ' + c.budget.fgnMult + ') — ' + esc(c.budget.bindText) + ' 기준</small></td><td class="num">' + usd(D.budgetMark) + '</td><td class="num">' + usd(F.budgetMark) + '</td></tr>' +
+      '<tr><td>황금비율 목표 잔고<small>합계 × ' + gd + '% / ' + gf + '% · 아래는 지금 − 목표</small></td><td class="num">' + usd(D.goldMark) + ' <small>' + sgn(D.total - D.goldMark) + '</small></td><td class="num">' + usd(F.goldMark) + ' <small>' + sgn(F.total - F.goldMark) + '</small></td></tr>');
+    var det = [];
+    if (D.cash != null) det.push('빗썸 원화 ' + usd(D.cash) + ' + 코인 시가 ' + usd(D.spot));
+    if (F.wallet != null) det.push('Binance 지갑 ' + usd(F.wallet) + ' + 미실현 ' + sgn(F.upnl));
+    set('cu-note', esc((c.at ? kst(c.at) + ' 회차 기준 · ' : '') + '값: ' + c.src + (c.fx ? ' · 환율 ' + Math.round(c.fx).toLocaleString('ko-KR') + '원' : '') + (det.length ? ' · ' + det.join(' · ') : '')));
+    fit();
+    var t; window.addEventListener('resize', function(){ clearTimeout(t); t = setTimeout(fit, 120); });
+  }).catch(function(e){ set('cu-summary', '자금 사용 값을 불러오지 못했습니다.'); console.warn('capital', e); });
 })();
 </script>
 <script>
