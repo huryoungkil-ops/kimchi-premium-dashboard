@@ -1397,6 +1397,7 @@ var coins = [
 
   /* 봇의 «강제청산 판정» 노드와 같아야 하는 값. 남은 보유 여유를 알려주는 데만 쓴다. */
   var MAX_HOLD_DAYS = 14;   // 2026-10-22 계단 청산 — 상한 14일
+  var STEP_START_DAYS = 3, STEP_SIGMA = 0.5;   // 계단 청산: 3일 뒤부터 하루 0.5σ씩 (live.conf EXIT_DECAY_*)
 
   /* 봇의 «진입 가능 여부 판단» 노드와 같아야 하는 값. 웹훅이 maxPositions를 실어 보내므로
      평소엔 쓰이지 않고, 응답이 비어 자체적으로 «보유 0건»을 그릴 때만 쓴다. */
@@ -1522,18 +1523,26 @@ var coins = [
     }
     tr.appendChild(sparkTd);
 
-    // 진입 시각 + 강제청산까지 남은 시간 (시:분)
+    // 진입 시각 + 계단 청산 단계 (2026-10-23 사용자: 14일 상한까지 남은시간은 거의 쓸모없어 뺌)
+    //   3일까지는 «계단까지 남은 시간», 그 뒤는 «계단 N단계 · 청산선 평균 ±xσ» (하루 0.5σ씩 내림)
     var timeTd = document.createElement('td');
     timeTd.appendChild(document.createTextNode(kst(p.entryTime)));
     var left = MAX_HOLD_DAYS * 1440 - p.heldMinutes;
     var rem = document.createElement('span');
     rem.className = 'hold-left';
     if (left > 0) {
-      var lh = Math.floor(left / 60), lm = Math.round(left % 60);
-      if (lm === 60) { lh += 1; lm = 0; }
-      var ld = Math.floor(lh / 24); lh = lh % 24;   // 2026-10-22: «309:34» → «12일 21:34»
-      rem.textContent = ' (남은시간 ' + (ld > 0 ? ld + '일 ' : '') + (lh < 10 ? '0' + lh : lh) + ':' + (lm < 10 ? '0' + lm : lm) + ')';
-      rem.title = MAX_HOLD_DAYS + '일(' + (MAX_HOLD_DAYS * 24) + '시간)을 넘기면 강제 청산된다';
+      var toStep = STEP_START_DAYS * 1440 - p.heldMinutes;
+      if (toStep > 0) {
+        var lh = Math.floor(toStep / 60), lm = Math.round(toStep % 60);
+        if (lm === 60) { lh += 1; lm = 0; }
+        var ld = Math.floor(lh / 24); lh = lh % 24;
+        rem.textContent = ' (계단까지 ' + (ld > 0 ? ld + '일 ' : '') + (lh < 10 ? '0' + lh : lh) + ':' + (lm < 10 ? '0' + lm : lm) + ')';
+        rem.title = '보유 ' + STEP_START_DAYS + '일이 지나면 청산선을 하루 ' + STEP_SIGMA + 'σ씩 내린다 (계단 청산)';
+      } else {
+        var k = Math.floor(-toStep / 1440) + 1, line = 0.5 - STEP_SIGMA * k;
+        rem.textContent = ' (계단 ' + k + '단계 · 청산선 평균 ' + (line >= 0 ? '+' : '−') + Math.abs(line).toFixed(1) + 'σ)';
+        rem.title = '보유 ' + STEP_START_DAYS + '일 뒤부터 하루 ' + STEP_SIGMA + 'σ씩 청산선을 내리는 중 — 상한 ' + MAX_HOLD_DAYS + '일';
+      }
     } else {
       rem.className += ' over';
       rem.textContent = ' (강제청산 대상)';
