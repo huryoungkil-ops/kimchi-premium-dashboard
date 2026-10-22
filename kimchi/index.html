@@ -575,6 +575,8 @@
         <span><i class="used"></i>투입</span><span><i class="wait"></i>투입 대기</span><span><i class="reserve"></i>숏 예비금</span><span><i class="spare"></i>여유·잉여</span>
         <span><i class="mk"></i>한도</span><span><i class="mk gold"></i>황금비율 목표</span>
       </div>
+      <details class="gate-why" style="margin:12px 0 0">
+      <summary>구간별 금액 표 — 투입·투입 대기·숏 예비금·여유·한도·황금비율 목표</summary>
       <div class="table-scroll">
         <table class="cu-table">
           <thead><tr><th>구간</th><th class="num">빗썸</th><th class="num">Binance</th></tr></thead>
@@ -582,8 +584,8 @@
         </table>
       </div>
       <p class="ledger-note" id="cu-note"></p>
+      </details>
     </div>
-    <p class="section-sub" style="margin:12px 2px 0"><b>한 자리 = 자산의 10% = 한도의 0.25</b>를 <b>양쪽 거래소에 각각</b> 씁니다 — 빗썸에서 한도의 0.25만큼 코인을 사고, Binance에서 같은 양을 1배로 숏(증거금 0.25). 온전한 자리 4개면 양쪽 한도 1.0을 다 씁니다. 빗썸은 한도의 <b>1.055</b>배(수수료·환율 여유), Binance는 <b>1.25</b>배(숏 증거금 + 급등 대비 예비 0.25)를 들고 있어야 해서, 두 거래소 합계를 <b>1.055 : 1.25</b>(빗썸 45.77% · Binance 54.23%)로 나누는 것이 «황금비율»입니다. 한도 = min(자산 40%, 빗썸 ÷ 1.055, Binance ÷ 1.25) — 모자란 쪽이 한도를 묶습니다.</p>
   </section>
 
   <section aria-labelledby="open-h">
@@ -602,12 +604,13 @@
             <th>코인</th>
             <th class="num">진입 김프</th>
             <th class="num">현재 김프</th>
+            <th class="num" title="7일 평균 + 0.5σ. 계단 청산: 보유 3일 뒤부터 하루 0.5σ 씩 내려간다">청산선</th>
             <th class="num">평가손익</th>
             <th>추이</th>
             <th>진입 시각</th>
           </tr>
         </thead>
-        <tbody id="open-tbody"><!--OPEN_POSITIONS--><tr><td class="empty-row" colspan="5">현재 보유 중인 포지션이 없습니다.</td></tr><!--/OPEN_POSITIONS--></tbody>
+        <tbody id="open-tbody"><!--OPEN_POSITIONS--><tr><td class="empty-row" colspan="7">현재 보유 중인 포지션이 없습니다.</td></tr><!--/OPEN_POSITIONS--></tbody>
       </table>
     </div>
   </section>
@@ -1453,7 +1456,7 @@ var coins = [
   }
 
   /* 기존 표와 같은 모양으로 <tr>을 만든다.
-     열 순서: 코인 · 진입 김프 · 현재 김프 · 평가손익 · 추이 · 진입 시각
+     열 순서: 코인 · 진입 김프 · 현재 김프 · 청산선 · 평가손익 · 추이 · 진입 시각
      평가손익 칸만 pos/neg 클래스로 색이 붙는다 (#open-tbody td.pos / td.neg) */
   function buildRow(p){
     var tr = document.createElement('tr');
@@ -1470,6 +1473,11 @@ var coins = [
     cell(p.coin);
     cell(pct(p.entryPremium));
     cell(p.currentPremium === null ? '—' : pct(p.currentPremium), '', p.currentPremium === null ? (p.note || '값 없음') : '');
+    // 청산선 (2026-10-22): 봇이 이 자리 기준으로 잰 값. 계단으로 내려갔으면 오프셋을 함께 적는다
+    var xl = (typeof p.exitLine === 'number') ? p.exitLine : null, xo = (typeof p.exitOffset === 'number') ? p.exitOffset : null;
+    var xTd = cell(xl === null ? '—' : pct(xl) + (xo !== null && xo < 0.5 ? ' ↓' : ''), '',
+      xl === null ? '봇이 아직 청산선을 싣지 않았습니다' : '7일 평균 ' + (xo !== null && xo >= 0 ? '+' : '') + (xo === null ? '0.5' : xo.toFixed(1)) + 'σ'
+        + (p.currentPremium !== null ? ' · 남은 거리 ' + (xl - p.currentPremium).toFixed(2) + '%p' : '') + (xo !== null && xo < 0.5 ? ' · 계단 청산으로 내려감' : ''));
     cell(money(p.netProfit), p.netProfit === null ? '' : (p.netProfit >= 0 ? 'pos' : 'neg'));
 
     var sparkTd = document.createElement('td');
@@ -1525,6 +1533,7 @@ var coins = [
       none.textContent = '버튼을 누르면';
       td.appendChild(none);
       tr.insertBefore(td, tr.cells[4]);
+      var xl = document.createElement('td'); xl.textContent = '—'; tr.insertBefore(xl, tr.cells[3]);   // 청산선 칸 (2026-10-22)
     });
   })();
 
@@ -1534,7 +1543,7 @@ var coins = [
     var tr = document.createElement('tr');
     var td = document.createElement('td');
     td.className = 'empty-row';
-    td.setAttribute('colspan', '5');
+    td.setAttribute('colspan', '7');
     td.textContent = '현재 보유 중인 포지션이 없습니다.';
     tr.appendChild(td);
     return tr;
