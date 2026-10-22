@@ -1509,7 +1509,8 @@ var coins = [
     if (left > 0) {
       var lh = Math.floor(left / 60), lm = Math.round(left % 60);
       if (lm === 60) { lh += 1; lm = 0; }
-      rem.textContent = ' (남은시간 ' + lh + ':' + (lm < 10 ? '0' + lm : lm) + ')';
+      var ld = Math.floor(lh / 24); lh = lh % 24;   // 2026-10-22: «309:34» → «12일 21:34»
+      rem.textContent = ' (남은시간 ' + (ld > 0 ? ld + '일 ' : '') + (lh < 10 ? '0' + lh : lh) + ':' + (lm < 10 ? '0' + lm : lm) + ')';
       rem.title = MAX_HOLD_DAYS + '일(' + (MAX_HOLD_DAYS * 24) + '시간)을 넘기면 강제 청산된다';
     } else {
       rem.className += ' over';
