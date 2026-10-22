@@ -440,9 +440,9 @@
 <body>
 
 <style id="kimlab-css">
-  :root{ --k1:#9c6b23; --k2:#3f6f57; --k3:#2f5f8a; --k4:#7a4f9a; --k5:#7d7a1e; --k6:#9a3b28; --k7:#5b6770; --k8:#b0306a; --k9:#1f7f86; --k10:#5a4fb0; --k11:#2e7d32; }
-  @media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){ --k1:#d9a44e; --k2:#86bd9f; --k3:#7fb0dc; --k4:#c39be0; --k5:#c9c86a; --k6:#e08b6f; --k7:#a9b6bf; --k8:#ec80b0; --k9:#6fd0d6; --k10:#a99cf0; --k11:#7ccf80; } }
-  :root[data-theme="dark"]{ --k1:#d9a44e; --k2:#86bd9f; --k3:#7fb0dc; --k4:#c39be0; --k5:#c9c86a; --k6:#e08b6f; --k7:#a9b6bf; --k8:#ec80b0; --k9:#6fd0d6; --k10:#a99cf0; --k11:#7ccf80; }
+  :root{ --k1:#9c6b23; --k2:#3f6f57; --k3:#2f5f8a; --k4:#7a4f9a; --k5:#7d7a1e; --k6:#9a3b28; --k7:#5b6770; --k8:#b0306a; --k9:#1f7f86; --k10:#5a4fb0; --k11:#2e7d32; --k12:#8a5a3c; --k13:#c0571a; }
+  @media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){ --k1:#d9a44e; --k2:#86bd9f; --k3:#7fb0dc; --k4:#c39be0; --k5:#c9c86a; --k6:#e08b6f; --k7:#a9b6bf; --k8:#ec80b0; --k9:#6fd0d6; --k10:#a99cf0; --k11:#7ccf80; --k12:#d1a585; --k13:#f29a5e; } }
+  :root[data-theme="dark"]{ --k1:#d9a44e; --k2:#86bd9f; --k3:#7fb0dc; --k4:#c39be0; --k5:#c9c86a; --k6:#e08b6f; --k7:#a9b6bf; --k8:#ec80b0; --k9:#6fd0d6; --k10:#a99cf0; --k11:#7ccf80; --k12:#d1a585; --k13:#f29a5e; }
   .variant.evt{ border-left:3px solid var(--k8); }
   .sw-k{ display:inline-block; width:22px; height:0; border-top:2.4px solid currentColor; }
   .sw-base{ display:inline-block; width:22px; height:0; border-top:1.6px dashed var(--ink-soft); }
@@ -489,7 +489,7 @@
   <p class="mode-legend"><span class="lp-key live">실선</span> = 실전 (실제 돈) · <span class="lp-key paper">점선</span> = 가상 (페이퍼)</p>
 
 <div class="tab-panel" id="tab-kimlab">
-  <p class="paper-note">🧪 <strong>김프 실험실</strong> — 실전 김프 봇(빗썸 현물 매수 + Binance 선물 숏)을 «조금씩 바꾼» 변형 아홉 개와, 실전 규칙을 그대로 따라 하는 기준 장부(BASE)를 <b>같은 시세로 나란히</b> 돌립니다. 백테스트에서 좋아 보였던 개선안이 앞으로의 실제 시장에서도 기준보다 나은지 확인해, 실전 봇에 넣을 후보를 고르는 곳입니다. 장부마다 실전과 같은 가상 시드 <b>$20,156</b>로 시작하고, 주문은 내지 않습니다. 판정 기준은 결과를 보기 전에 정해 두었습니다(아래).</p>
+  <p class="paper-note">🧪 <strong>김프 실험실</strong> — 실전 김프 봇(빗썸 현물 매수 + Binance 선물 숏)을 «조금씩 바꾼» 변형 열세 개와, 실전 규칙을 그대로 따라 하는 기준 장부(BASE)를 <b>같은 시세로 나란히</b> 돌립니다. 백테스트에서 좋아 보였던 개선안이 앞으로의 실제 시장에서도 기준보다 나은지 확인해, 실전 봇에 넣을 후보를 고르는 곳입니다. 장부마다 실전과 같은 가상 시드 <b>$20,156</b>로 시작하고, 주문은 내지 않습니다. 판정 기준은 결과를 보기 전에 정해 두었습니다(아래).</p>
   <p class="paper-status" id="p-status">불러오는 중…</p>
   <section class="tiles" aria-label="김프 실험실 요약">
     <div class="tile"><div class="label">BASE (실전 규칙 그대로)</div><div class="value" id="p-base">—</div><div class="sub" id="p-base-sub">—</div></div>
@@ -509,7 +509,7 @@
 
   <section>
     <h2>장부 10개 — BASE 와 비교</h2>
-    <p class="section-sub">모두 같은 5분 회차·같은 호가를 봅니다. «BASE 대비»는 지금 잔액의 차이(달러)입니다 — 나중에 더한 장부(NOUZ·EVT·EVT_SLOT·TOPUP·TOPUP_BETTER)는 더한 날부터 같은 기간의 BASE 와 견준 값입니다. 잔액 = 원화 다리(지금 환율로 달러 환산) + 선물 다리(미실현 포함) + 받은 펀딩 − 수수료. 판정 칸은 BASE 청산 30건과 8주가 모두 찬 뒤에야 «진행 중»에서 바뀝니다.</p>
+    <p class="section-sub">모두 같은 5분 회차·같은 호가를 봅니다. «BASE 대비»는 지금 잔액의 차이(달러)입니다 — 나중에 더한 장부(NOUZ·EVT·EVT_SLOT·TOPUP·TOPUP_BETTER·EXIT100·TAILWIND)는 더한 날부터 같은 기간의 BASE 와 견준 값입니다. 잔액 = 원화 다리(지금 환율로 달러 환산) + 선물 다리(미실현 포함) + 받은 펀딩 − 수수료. 판정 칸은 BASE 청산 30건과 8주가 모두 찬 뒤에야 «진행 중»에서 바뀝니다.</p>
     <div class="table-scroll"><table class="coins paper">
       <thead><tr><th>장부</th><th class="num">잔액</th><th class="num">손익</th><th class="num">BASE 대비</th><th class="num">최대낙폭</th><th class="num">보유</th><th class="num">청산</th><th class="num">승률</th><th class="num">펀딩</th><th>판정</th></tr></thead>
       <tbody id="p-books"><tr><td class="empty-row" colspan="10">불러오는 중…</td></tr></tbody>
@@ -557,7 +557,7 @@
   </section>
 
   <section aria-labelledby="p-variants-h">
-    <h2 id="p-variants-h">변형 아홉 개 — 무엇을 바꿨고, 연구에서는 어땠나</h2>
+    <h2 id="p-variants-h">변형 열세 개 — 무엇을 바꿨고, 연구에서는 어땠나</h2>
     <p class="section-sub">숫자는 5분봉 백테스트의 검증 구간(2024-01 ~ 2026-10)에서 같은 엔진의 기준(지금 실전 규칙: 월 +$63, 샤프 1.08, 최대낙폭 −3.0%) 대비 차이입니다. 상장폐지 종목이 빠져 있고(좋게 나옴), 스프레드는 2026-10 값을 과거 전체에 썼습니다. 기준 규칙 자체도 이 검증 구간을 보고 고른 것이라 숫자가 깨끗하지 않습니다.</p>
     <div class="variant-grid">
       <div class="variant"><h3>➕ ADD15 · 물타기 한 번 <span class="tagk">사후 관찰</span></h3>
@@ -608,6 +608,16 @@
         <p class="num-line">실전 첫 채우기: 10-21 21:10 KST US +$1,185 → $2,015 · 평균 진입 김프 −0.48% → −0.53%. 실전 10건이 쌓이면 성과(채운 몫의 손익 기여·평균 개선·승률)를 보고합니다.</p>
         <p class="warn">판정 기준은 TOPUP 과 같습니다.</p>
         <p class="num-line" id="p-top-TOPUP_BETTER">—</p></div>
+      <div class="variant"><h3>🎯 EXIT100 · 청산선 +1.0σ <span class="tagk">10-22 추가</span></h3>
+        <p class="what">청산선을 «평균 + 0.5σ»에서 «평균 + 1.0σ»로 넓혀, EXIT075 보다 한 걸음 더 기다립니다. 나머지는 실전과 같습니다. «웃돈 순풍 익절» 백테스트의 대조군에서 나왔습니다.</p>
+        <p class="num-line">익절 연장 백테스트(빗썸×Binance 5분봉, 다음 봉 체결, 자리당 $2,000, 시간별 환율): 개발 2024-01~2025-06 +$431 (P 0.68) → 검증 2025-07~2026-10 <b>+$160</b> (P 0.69) · 낙폭 −$562 (BASE −$570). 같은 백테스트에서 EXIT075 는 +$772 → +$80.</p>
+        <p class="warn">⚠️ 체결 모드에 민감합니다 — 묵은 가격 체결을 허용한 계산(fresh=0)에서는 결과가 흔들렸습니다. 판정: 다른 장부와 같은 기준(BASE 청산 30건 + 장부 시작 8주, BASE 대비 +$, P ≥ 0.9, 낙폭 1%p 이내)에 EXIT075 장부 대비 차이도 함께 봅니다. 둘 다 후보면 큰 쪽 하나만 제안합니다.</p>
+        <p class="num-line" id="p-x100">—</p></div>
+      <div class="variant"><h3>🌬️ TAILWIND · 웃돈 순풍 익절 <span class="tagk">10-22 추가 · 백테스트 기각</span></h3>
+        <p class="what">BASE 와 같지만, 평소 청산 신호(+0.5σ)가 날 때 <b>USDT 웃돈이 오르는 중</b>이면 팔지 않고 연장합니다. 상승 = 직전 시간 웃돈 상승 + 5분 전보다 안 내림 + 웃돈 z 30분 상승 ≥ 0.084(개발 구간 상위 25%). 연장 중에는 ① 평균 + 0.75σ 도달 ② 원래 청산선 − 0.05%p 아래(바닥) ③ 고점 대비 0.3%p 되돌림 ④ USDT 상승 꺾임 ⑤ 12시간 중 먼저 오는 것에 팝니다. 매개변수는 백테스트 선택안 <code>X_z30_K0.75_g0.3_T12</code> 그대로입니다. 연장마다 «그때 바로 팔았을 때» 대비 추가 손익을 기록합니다.</p>
+        <p class="num-line">백테스트: USDT 변형 540개 전부 BASE 보다 나쁨(개발·검증 0/540). 선택안 검증 <b>−$311</b> (P 0.06) · EXIT075 대비 −$391 · 낙폭 −$652 (BASE −$570) · 연장 월 10건, 추가 손익 −$250 (157건 중 90건 손해), 연장은 평균 0.3시간 만에 대부분 바닥에서 끝남. 연장 동안 김프 −0.50%p 중 USDT 몫은 −0.02%p — 청산선을 처음 찍는 순간은 대개 코인 고유 괴리의 일시 튐입니다.</p>
+        <p class="warn">⚠️ 기각된 아이디어를 사용자 지시로 앞으로의 시세에서 지켜보는 장부입니다. 판정은 <b>연장 20건이 찼을 때 한 번</b>: 추가 손익 합 > 0 + P ≥ 0.8 + EXIT075 장부보다 나음 + 낙폭이 BASE 보다 $200 넘게 나쁘지 않음 → 유지, 아니면 폐기. 20건이 차면 봇이 디스코드 보고 채널에 알립니다.</p>
+        <p class="num-line" id="p-tail">—</p></div>
     </div>
     <div class="rules">
       <dl>
@@ -647,8 +657,8 @@
   var kst = function(iso){ if (!iso) return '—'; var d = new Date(new Date(iso).getTime() + 9 * 3600e3); return d.toISOString().slice(5, 16).replace('T', ' '); };
   var empty = function(n, msg){ return '<tr><td class="empty-row" colspan="' + n + '">' + msg + '</td></tr>'; };
   var get = function(p){ return fetch(RAW + p + '?t=' + Math.floor(Date.now() / 120000), { cache: 'no-store' }).then(function(r){ if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); }); };
-  var ORDER = ['BASE', 'ADD15', 'EXIT075', 'FUND', 'IDLE_USDT', 'UPBIT', 'COMBO', 'NOUZ', 'EVT', 'EVT_SLOT', 'TOPUP', 'TOPUP_BETTER'];
-  var COLOR = { ADD15: '--k1', EXIT075: '--k2', FUND: '--k3', IDLE_USDT: '--k4', UPBIT: '--k5', COMBO: '--k6', NOUZ: '--k7', EVT: '--k8', EVT_SLOT: '--k9', TOPUP: '--k10', TOPUP_BETTER: '--k11' };
+  var ORDER = ['BASE', 'ADD15', 'EXIT075', 'FUND', 'IDLE_USDT', 'UPBIT', 'COMBO', 'NOUZ', 'EVT', 'EVT_SLOT', 'TOPUP', 'TOPUP_BETTER', 'EXIT100', 'TAILWIND'];
+  var COLOR = { ADD15: '--k1', EXIT075: '--k2', FUND: '--k3', IDLE_USDT: '--k4', UPBIT: '--k5', COMBO: '--k6', NOUZ: '--k7', EVT: '--k8', EVT_SLOT: '--k9', TOPUP: '--k10', TOPUP_BETTER: '--k11', EXIT100: '--k12', TAILWIND: '--k13' };
   var VENUE = { bithumb: '빗썸', upbit: '업비트' };
   function mdd(vals){ var pk = -Infinity, m = 0; vals.forEach(function(v){ if (v > pk) pk = v; if (pk > 0) m = Math.min(m, v / pk - 1); }); return m; }
   function badge(j){
@@ -739,11 +749,27 @@
       el.textContent = '지금까지: 채우기 ' + (b.topup ? b.topup.n : 0) + '건 · ' + usd(b.topup ? b.topup.usd : 0, 0) + ' · 청산 ' + (b.closed || 0) + '건 · 판정 ' + ((J[k] && J[k].state) || '—') + (b.budget && b.budget.text ? ' · ' + b.budget.text : '');
     });
 
+    // EXIT100·TAILWIND 카드
+    (function(){
+      var x = $('p-x100'), b = B.EXIT100, jx = J.EXIT100 || {};
+      if (x) x.textContent = !b ? '봇 데이터에 아직 이 장부가 없습니다(10-22 서버 반영 뒤 첫 게시를 기다리는 중).'
+        : '지금까지: 청산 ' + (b.closed || 0) + '건 · 실현 ' + usd(b.realized) + ' · 판정 ' + (jx.state || '—') + (jx.vs075 ? ' · EXIT075 대비 ' + sgn(jx.vs075.diff) : '');
+      var el = $('p-tail'), t = B.TAILWIND, jt = J.TAILWIND || {};
+      if (!el) return;
+      if (!t || !t.tail) { el.textContent = '봇 데이터에 아직 이 장부가 없습니다(10-22 서버 반영 뒤 첫 게시를 기다리는 중).'; return; }
+      var T = t.tail, ext = (t.open || []).filter(function(p){ return p.ext; }), tn = d.tailNow;
+      var s1 = '지금까지: 연장 시작 ' + T.started + '건 · 끝 ' + T.done + ' / 20건 · 추가 손익 ' + sgn(T.extraSum) + ' · 판정 ' + (jt.state || '진행 중');
+      if (ext.length) s1 += ' · 🌬️ 연장 중: ' + ext.map(function(p){ return p.coin + ' (' + kst(p.ext.at) + '부터, 바로 팔았으면 ' + usd(p.ext.cf) + ')'; }).join(', ');
+      if (tn) s1 += ' · 지금 USDT ' + (tn.up ? '상승 중' : tn.brk ? '꺾임' : '평탄') + (tn.dZ != null ? ' (z 30분 ' + (tn.dZ >= 0 ? '+' : '−') + Math.abs(tn.dZ).toFixed(3) + ')' : '');
+      var last = (T.list || []).slice(-5).reverse().map(function(r){ return r.coin + ' ' + r.reason.replace('X_', '') + ' ' + r.extH + 'h ' + sgn(r.extra); });
+      el.textContent = s1 + (last.length ? ' · 최근: ' + last.join(' · ') : '');
+    })();
+
     var open = [];
     ORDER.forEach(function(k){ ((B[k] && B[k].open) || []).forEach(function(p){ p.legs.forEach(function(l, i){ open.push([k, p, l, i]); }); }); });
     $('p-open').innerHTML = open.map(function(x){
       var k = x[0], p = x[1], l = x[2], i = x[3];
-      return '<tr><td>' + k + '</td><td class="coin">' + esc(p.coin) + ' <span class="hold-left">' + VENUE[p.venue] + (i ? (l.kind === 'topup' ? ' · 채우기' : ' · 물타기') : '') + '</span></td><td>' + kst(l.at) + '</td><td class="num">' + usd(l.size, 0) + '</td><td class="num">' + pp(l.entryPrem) + '</td><td class="num">' + pp(l.entryMa) + '</td><td class="num">' + (l.sigma != null ? l.sigma.toFixed(2) : '—') + '</td><td class="num ' + cls(l.upnl) + '">' + usd(l.upnl) + '</td><td class="num">' + usd(l.funding) + '</td></tr>';
+      return '<tr><td>' + k + '</td><td class="coin">' + esc(p.coin) + ' <span class="hold-left">' + VENUE[p.venue] + (i ? (l.kind === 'topup' ? ' · 채우기' : ' · 물타기') : '') + (p.ext && !i ? ' · 🌬️ 연장 중' : '') + '</span></td><td>' + kst(l.at) + '</td><td class="num">' + usd(l.size, 0) + '</td><td class="num">' + pp(l.entryPrem) + '</td><td class="num">' + pp(l.entryMa) + '</td><td class="num">' + (l.sigma != null ? l.sigma.toFixed(2) : '—') + '</td><td class="num ' + cls(l.upnl) + '">' + usd(l.upnl) + '</td><td class="num">' + usd(l.funding) + '</td></tr>';
     }).join('') || empty(9, '보유 중인 포지션이 없습니다. 실전처럼 7일 평균의 80%가 쌓여야(빗썸 2026-10-19 오후 무렵) 진입하고, USDT 웃돈 z 가 0 아래면 막힙니다.');
 
     // 실전 vs BASE
