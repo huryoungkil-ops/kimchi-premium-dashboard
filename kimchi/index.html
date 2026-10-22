@@ -728,13 +728,19 @@
 
     <div class="rebalance" id="lg-rebalance">리밸런싱 계산 중…</div>
 
+<details class="gate-why fold-tbl">
+      <summary>환율 · 전략 손익 · 환율 효과 — 계산 설명</summary>
     <p class="ledger-note" id="lg-note"></p>
+    </details>
   </section>
 
   <section aria-labelledby="capital-h" id="capital">
     <h2 id="capital-h">자금 배분 원칙 (2026-10-21)</h2>
+<details class="gate-why fold-tbl">
+      <summary>한도 · 한 자리 · 황금비율 — 설명</summary>
     <p class="section-sub">김프 거래는 두 다리입니다 — 빗썸에서 코인을 원화로 사고, 같은 양을 Binance futures01에서 1배로 숏. <b>한도 = 한쪽 다리 명목(빗썸 매수액 = Binance 숏 금액) 기준 자산의 40%</b>라서, 다 쓰면 양쪽 거래소에 묶이는 돈은 그 두 배(약 80%)입니다. 마지막 자리는 남은 한도가 그 자리의 90% 이상이면 온전히 들어가 최대 약 41%. 봇이 실제로 쓰는 한도는 <b>min(자산 40%, 빗썸 총액 ÷ 1.055, Binance 총액 ÷ 1.25)</b> — 한쪽 돈이 모자라면 그쪽이 묶습니다.</p>
     <p class="section-sub">한 자리 = 자산의 10% = 한도의 <b>0.25</b>를 양쪽에 각각 씁니다 (한도를 1.0으로 보면 빗썸 매수 0.25 · Binance 숏 증거금 0.25). 빗썸은 1.055, Binance는 1.25를 들고 있으니 온전한 자리 4개가 양쪽 1.0씩을 쓰고, 호가 깊이 때문에 작게 들어간 자리가 있으면 최대 6자리까지 열립니다. 두 다리에 필요한 돈이 달라 50:50이 아니라 <b>«황금비율» 빗썸 1.055 : Binance 1.25 = <span id="cap-gold">45.8% : 54.2%</span></b>로 둡니다.</p>
+    </details>
     <p class="ledger-note" id="cap-budget">한도 — 봇이 회차마다 다시 잽니다.</p>
     <div class="table-scroll">
       <table class="coins paper">
@@ -820,6 +826,8 @@
       </div>
     </div>
 
+<details class="gate-why fold-tbl">
+      <summary>용어 설명 — 스프레드 · 호가 깊이 · 거래대금 · 왜 중앙값인가</summary>
     <div class="rules">
       <dl>
         <dt>스프레드</dt><dd>지금 살 수 있는 가장 싼 값과 지금 팔 수 있는 가장 비싼 값의 차이. 사자마자 되팔면 이만큼 잃는 «통행료»입니다. 김프 1~3%를 노리는 전략이라 통행료가 1%만 돼도 남는 게 없습니다.</dd>
@@ -831,6 +839,7 @@
     </div>
 
     <p class="section-sub">거래에서 빠져도 <strong>관찰은 계속</strong>합니다. 진입 판단에 7일치 이동평균이 필요한데, 이력이 끊기면 다시 편입될 때 7일을 또 기다려야 하기 때문입니다. 그래서 «관찰»이 «거래»보다 항상 넓습니다.</p>
+    </details>
 
 <details class="gate-why fold-tbl">
       <summary>종목 표 — 스프레드 · 호가 깊이 · 거래대금 · 상태</summary>
@@ -981,8 +990,11 @@
 </div><!-- /tab-kimchi -->
 
   <footer>
+<details class="gate-why fold-tbl">
+      <summary>실전 거래 · 안전장치 안내</summary>
     <p><strong>2026-10-15 13:15부터 실제 자금으로 거래합니다 (빗썸 원화 현물 롱 × Binance USDⓈ-M 선물 숏, 격리·1배).</strong> 그 전의 코빗 × OKX 페이퍼 기록은 이 화면에서 뺐고, 서버에는 그대로 남아 있습니다. 수치는 봇이 5분마다 올리는 스냅샷이며 여는 순간의 실시간 값은 아닙니다. 투자 권유가 아닙니다.</p>
     <p>안전장치: 출금 권한 없는 API 키·서버 IP 제한, 하루 실현손실 $20 넘으면 새 진입 중단, 빗썸 실제 수수료가 0.04%(쿠폰)를 넘으면 새 진입 중단, 비상정지 파일(data/STOP).</p>
+    </details>
   </footer>
 
 </div>
