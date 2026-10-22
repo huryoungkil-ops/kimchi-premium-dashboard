@@ -440,9 +440,9 @@
 <body>
 
 <style id="kimlab-css">
-  :root{ --k1:#9c6b23; --k2:#3f6f57; --k3:#2f5f8a; --k4:#7a4f9a; --k5:#7d7a1e; --k6:#9a3b28; --k7:#5b6770; --k8:#b0306a; --k9:#1f7f86; --k10:#5a4fb0; --k11:#2e7d32; --k12:#8a5a3c; --k13:#c0571a; }
-  @media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){ --k1:#d9a44e; --k2:#86bd9f; --k3:#7fb0dc; --k4:#c39be0; --k5:#c9c86a; --k6:#e08b6f; --k7:#a9b6bf; --k8:#ec80b0; --k9:#6fd0d6; --k10:#a99cf0; --k11:#7ccf80; --k12:#d1a585; --k13:#f29a5e; } }
-  :root[data-theme="dark"]{ --k1:#d9a44e; --k2:#86bd9f; --k3:#7fb0dc; --k4:#c39be0; --k5:#c9c86a; --k6:#e08b6f; --k7:#a9b6bf; --k8:#ec80b0; --k9:#6fd0d6; --k10:#a99cf0; --k11:#7ccf80; --k12:#d1a585; --k13:#f29a5e; }
+  :root{ --k1:#9c6b23; --k2:#3f6f57; --k3:#2f5f8a; --k4:#7a4f9a; --k5:#7d7a1e; --k6:#9a3b28; --k7:#5b6770; --k8:#b0306a; --k9:#1f7f86; --k10:#5a4fb0; --k11:#2e7d32; --k12:#8a5a3c; --k13:#c0571a; --k14:#8f2f8f; --k15:#4d7a12; }
+  @media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){ --k1:#d9a44e; --k2:#86bd9f; --k3:#7fb0dc; --k4:#c39be0; --k5:#c9c86a; --k6:#e08b6f; --k7:#a9b6bf; --k8:#ec80b0; --k9:#6fd0d6; --k10:#a99cf0; --k11:#7ccf80; --k12:#d1a585; --k13:#f29a5e; --k14:#e08be0; --k15:#a6d36b; } }
+  :root[data-theme="dark"]{ --k1:#d9a44e; --k2:#86bd9f; --k3:#7fb0dc; --k4:#c39be0; --k5:#c9c86a; --k6:#e08b6f; --k7:#a9b6bf; --k8:#ec80b0; --k9:#6fd0d6; --k10:#a99cf0; --k11:#7ccf80; --k12:#d1a585; --k13:#f29a5e; --k14:#e08be0; --k15:#a6d36b; }
   .variant.evt{ border-left:3px solid var(--k8); }
   .sw-k{ display:inline-block; width:22px; height:0; border-top:2.4px solid currentColor; }
   .sw-base{ display:inline-block; width:22px; height:0; border-top:1.6px dashed var(--ink-soft); }
@@ -509,7 +509,7 @@
 
   <section>
     <h2>장부 10개 — BASE 와 비교</h2>
-    <p class="section-sub">모두 같은 5분 회차·같은 호가를 봅니다. «BASE 대비»는 지금 잔액의 차이(달러)입니다 — 나중에 더한 장부(NOUZ·EVT·EVT_SLOT·TOPUP·TOPUP_BETTER·EXIT100·TAILWIND)는 더한 날부터 같은 기간의 BASE 와 견준 값입니다. 잔액 = 원화 다리(지금 환율로 달러 환산) + 선물 다리(미실현 포함) + 받은 펀딩 − 수수료. 판정 칸은 BASE 청산 30건과 8주가 모두 찬 뒤에야 «진행 중»에서 바뀝니다.</p>
+    <p class="section-sub">모두 같은 5분 회차·같은 호가를 봅니다. «BASE 대비»는 지금 잔액의 차이(달러)입니다 — 나중에 더한 장부(NOUZ·EVT·EVT_SLOT·TOPUP·TOPUP_BETTER·EXIT100·TAILWIND·LEGTRAIL·LEGTRAIL2)는 더한 날부터 같은 기간의 BASE 와 견준 값입니다. 잔액 = 원화 다리(지금 환율로 달러 환산) + 선물 다리(미실현 포함) + 받은 펀딩 − 수수료. 판정 칸은 BASE 청산 30건과 8주가 모두 찬 뒤에야 «진행 중»에서 바뀝니다.</p>
     <div class="table-scroll"><table class="coins paper">
       <thead><tr><th>장부</th><th class="num">잔액</th><th class="num">손익</th><th class="num">BASE 대비</th><th class="num">최대낙폭</th><th class="num">보유</th><th class="num">청산</th><th class="num">승률</th><th class="num">펀딩</th><th>판정</th></tr></thead>
       <tbody id="p-books"><tr><td class="empty-row" colspan="10">불러오는 중…</td></tr></tbody>
@@ -618,6 +618,16 @@
         <p class="num-line">백테스트: USDT 변형 540개 전부 BASE 보다 나쁨(개발·검증 0/540). 선택안 검증 <b>−$311</b> (P 0.06) · EXIT075 대비 −$391 · 낙폭 −$652 (BASE −$570) · 연장 월 10건, 추가 손익 −$250 (157건 중 90건 손해), 연장은 평균 0.3시간 만에 대부분 바닥에서 끝남. 연장 동안 김프 −0.50%p 중 USDT 몫은 −0.02%p — 청산선을 처음 찍는 순간은 대개 코인 고유 괴리의 일시 튐입니다.</p>
         <p class="warn">⚠️ 기각된 아이디어를 사용자 지시로 앞으로의 시세에서 지켜보는 장부입니다. 판정은 <b>연장 20건이 찼을 때 한 번</b>: 추가 손익 합 > 0 + P ≥ 0.8 + EXIT075 장부보다 나음 + 낙폭이 BASE 보다 $200 넘게 나쁘지 않음 → 유지, 아니면 폐기. 20건이 차면 봇이 디스코드 보고 채널에 알립니다.</p>
         <p class="num-line" id="p-tail">—</p></div>
+      <div class="variant"><h3>🦵 LEGTRAIL · 한 다리 추격 익절 <span class="tagk">10-22 추가 · 백테스트 기각</span></h3>
+        <p class="what">BASE 와 같지만, 평소 청산 신호(+0.5σ)가 날 때 <b>Binance 15분 모멘텀이 강하면 한 다리를 먼저</b> 닫습니다. 모멘텀 = 직전 5분봉 3개 수익률 z(24시간 5분 변동성 기준) — z ≥ +1.5 면 Binance 숏을 먼저 닫고 빗썸 현물을 남기고, z ≤ −1.5 면 빗썸을 먼저 팔고 Binance 숏을 남깁니다. 남은 다리는 <b>1분마다</b> 지금 호가로 판단해 ① +0.5% 목표 ② 바닥(원래 청산 순간 대비 포지션의 −0.05%p) ③ 15분 중 먼저 오는 것에 닫습니다. 매개변수는 백테스트 선택안 <code>R3_1.5_c0_T15_gN_X0.5_F0.05</code>. 한 다리마다 «원래 순간 두 다리를 같이 닫았을 때» 대비 추가 손익과 헤지 없는 시간을 기록합니다.</p>
+        <p class="num-line">백테스트(빗썸×Binance 5분봉, 다음 봉 체결): 겹침 8,448 변형 중 개발 구간 BASE 를 이긴 것 0개. 선택안 개발 −$351 (P 0.16) → 검증 <b>−$228</b> (P 0.38) · 낙폭 −$645 (BASE −$570) · 검증 한 다리 131건(평균 무헤지 12분), 이익은 MET·SOON·0G 3건에 몰림. 상승 감지 때 김프가 평균 되돌아가(60분 −0.48%p) 비싸진 빗썸 다리를 쥐는 셈입니다. 1분 겹침(37건): −$33, 바닥에서 끝난 비율 70%.</p>
+        <p class="warn">⚠️ 기각된 아이디어를 사용자 지시로 앞으로의 시세에서 지켜보는 장부입니다. 판정은 <b>한 다리 20건이 찼을 때 한 번</b>: 추가 손익 합 > 0 + P ≥ 0.8 + EXIT075 장부보다 나음 + 낙폭이 BASE 보다 $200 넘게 나쁘지 않음 → 유지, 아니면 폐기. 20건이 차면 봇이 디스코드 보고 채널에 알립니다.</p>
+        <p class="num-line" id="p-leg-LEGTRAIL">—</p></div>
+      <div class="variant"><h3>🦵 LEGTRAIL2 · 한 다리 — 두 단계 바닥 <span class="tagk">10-22 추가 · 백테스트 기각</span></h3>
+        <p class="what">LEGTRAIL 과 같고 바닥만 사용자의 두 단계입니다: 시작 10분 동안은 −0.30%p 까지 버티고, 남은 다리가 한 번이라도 +0.1%p 벌었거나 10분이 지나면 −0.05%p 로 조입니다. 값은 1분 백테스트에서 «10분·−0.30%p» 조합 중 가장 나았던 것(<code>F2w10_0.3_0.1</code>).</p>
+        <p class="num-line">1분 겹침(같은 37건): −$40 (P 0.25), 1단계 바닥에서 끝난 비율 32%, 평균 무헤지 8.5분. 5분 엔진에서는 두 단계 가족 최고안도 검증 −$327.</p>
+        <p class="warn">판정 기준은 LEGTRAIL 과 같습니다(한 다리 20건에 한 번).</p>
+        <p class="num-line" id="p-leg-LEGTRAIL2">—</p></div>
     </div>
     <div class="rules">
       <dl>
@@ -657,8 +667,8 @@
   var kst = function(iso){ if (!iso) return '—'; var d = new Date(new Date(iso).getTime() + 9 * 3600e3); return d.toISOString().slice(5, 16).replace('T', ' '); };
   var empty = function(n, msg){ return '<tr><td class="empty-row" colspan="' + n + '">' + msg + '</td></tr>'; };
   var get = function(p){ return fetch(RAW + p + '?t=' + Math.floor(Date.now() / 120000), { cache: 'no-store' }).then(function(r){ if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); }); };
-  var ORDER = ['BASE', 'ADD15', 'EXIT075', 'FUND', 'IDLE_USDT', 'UPBIT', 'COMBO', 'NOUZ', 'EVT', 'EVT_SLOT', 'TOPUP', 'TOPUP_BETTER', 'EXIT100', 'TAILWIND'];
-  var COLOR = { ADD15: '--k1', EXIT075: '--k2', FUND: '--k3', IDLE_USDT: '--k4', UPBIT: '--k5', COMBO: '--k6', NOUZ: '--k7', EVT: '--k8', EVT_SLOT: '--k9', TOPUP: '--k10', TOPUP_BETTER: '--k11', EXIT100: '--k12', TAILWIND: '--k13' };
+  var ORDER = ['BASE', 'ADD15', 'EXIT075', 'FUND', 'IDLE_USDT', 'UPBIT', 'COMBO', 'NOUZ', 'EVT', 'EVT_SLOT', 'TOPUP', 'TOPUP_BETTER', 'EXIT100', 'TAILWIND', 'LEGTRAIL', 'LEGTRAIL2'];
+  var COLOR = { ADD15: '--k1', EXIT075: '--k2', FUND: '--k3', IDLE_USDT: '--k4', UPBIT: '--k5', COMBO: '--k6', NOUZ: '--k7', EVT: '--k8', EVT_SLOT: '--k9', TOPUP: '--k10', TOPUP_BETTER: '--k11', EXIT100: '--k12', TAILWIND: '--k13', LEGTRAIL: '--k14', LEGTRAIL2: '--k15' };
   var VENUE = { bithumb: '빗썸', upbit: '업비트' };
   function mdd(vals){ var pk = -Infinity, m = 0; vals.forEach(function(v){ if (v > pk) pk = v; if (pk > 0) m = Math.min(m, v / pk - 1); }); return m; }
   function badge(j){
@@ -765,11 +775,24 @@
       el.textContent = s1 + (last.length ? ' · 최근: ' + last.join(' · ') : '');
     })();
 
+    // LEGTRAIL·LEGTRAIL2 카드 (한 다리 추격 익절)
+    ['LEGTRAIL', 'LEGTRAIL2'].forEach(function(k){
+      var el = $('p-leg-' + k); if (!el) return;
+      var b = B[k], jl = J[k] || {};
+      if (!b || !b.leg) { el.textContent = '봇 데이터에 아직 이 장부가 없습니다(10-22 서버 반영 뒤 첫 게시를 기다리는 중).'; return; }
+      var T = b.leg, lg = (b.open || []).filter(function(p){ return p.lg; });
+      var s1 = '지금까지: 한 다리 시작 ' + T.started + '건 · 끝 ' + T.done + ' / 20건 · 추가 손익 ' + sgn(T.extraSum) + ' · 헤지 없는 시간 합 ' + (T.unhedgedMin || 0).toFixed(1) + '분 · 판정 ' + (jl.state || '진행 중');
+      if (lg.length) s1 += ' · 🦵 한 다리 중: ' + lg.map(function(p){ return p.coin + ' (' + (p.lg.dir > 0 ? '빗썸' : 'Binance') + ' 남김, ' + kst(p.lg.at) + '부터, 지금 ' + (p.lg.r >= 0 ? '+' : '−') + Math.abs(p.lg.r || 0).toFixed(3) + '%)'; }).join(', ');
+      var last = (T.list || []).slice(-5).reverse().map(function(r){ return r.coin + ' ' + (r.dir === '상승' ? '↑' : '↓') + ' ' + r.reason + ' ' + r.min + '분 ' + sgn(r.extra); });
+      var lw = d.legWatch;
+      el.textContent = s1 + (last.length ? ' · 최근: ' + last.join(' · ') : '') + (k === 'LEGTRAIL' && lw ? ' · BASE 청산 관찰 기록 ' + lw.n + '건(60분 1분봉 저장 ' + lw.done + ', 감지 상승 ' + lw.up + ' · 하락 ' + lw.down + ')' : '');
+    });
+
     var open = [];
     ORDER.forEach(function(k){ ((B[k] && B[k].open) || []).forEach(function(p){ p.legs.forEach(function(l, i){ open.push([k, p, l, i]); }); }); });
     $('p-open').innerHTML = open.map(function(x){
       var k = x[0], p = x[1], l = x[2], i = x[3];
-      return '<tr><td>' + k + '</td><td class="coin">' + esc(p.coin) + ' <span class="hold-left">' + VENUE[p.venue] + (i ? (l.kind === 'topup' ? ' · 채우기' : ' · 물타기') : '') + (p.ext && !i ? ' · 🌬️ 연장 중' : '') + '</span></td><td>' + kst(l.at) + '</td><td class="num">' + usd(l.size, 0) + '</td><td class="num">' + pp(l.entryPrem) + '</td><td class="num">' + pp(l.entryMa) + '</td><td class="num">' + (l.sigma != null ? l.sigma.toFixed(2) : '—') + '</td><td class="num ' + cls(l.upnl) + '">' + usd(l.upnl) + '</td><td class="num">' + usd(l.funding) + '</td></tr>';
+      return '<tr><td>' + k + '</td><td class="coin">' + esc(p.coin) + ' <span class="hold-left">' + VENUE[p.venue] + (i ? (l.kind === 'topup' ? ' · 채우기' : ' · 물타기') : '') + (p.ext && !i ? ' · 🌬️ 연장 중' : '') + (p.lg && !i ? ' · 🦵 한 다리(' + (p.lg.dir > 0 ? '빗썸' : 'Binance') + ' 남김)' : '') + '</span></td><td>' + kst(l.at) + '</td><td class="num">' + usd(l.size, 0) + '</td><td class="num">' + pp(l.entryPrem) + '</td><td class="num">' + pp(l.entryMa) + '</td><td class="num">' + (l.sigma != null ? l.sigma.toFixed(2) : '—') + '</td><td class="num ' + cls(l.upnl) + '">' + usd(l.upnl) + '</td><td class="num">' + usd(l.funding) + '</td></tr>';
     }).join('') || empty(9, '보유 중인 포지션이 없습니다. 실전처럼 7일 평균의 80%가 쌓여야(빗썸 2026-10-19 오후 무렵) 진입하고, USDT 웃돈 z 가 0 아래면 막힙니다.');
 
     // 실전 vs BASE
