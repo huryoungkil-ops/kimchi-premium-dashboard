@@ -440,9 +440,9 @@
 <body>
 
 <style id="kimlab-css">
-  :root{ --k1:#9c6b23; --k2:#3f6f57; --k3:#2f5f8a; --k4:#7a4f9a; --k5:#7d7a1e; --k6:#9a3b28; --k7:#5b6770; --k8:#b0306a; --k9:#1f7f86; --k10:#5a4fb0; --k11:#2e7d32; --k12:#8a5a3c; --k13:#c0571a; --k14:#8f2f8f; --k15:#4d7a12; }
-  @media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){ --k1:#d9a44e; --k2:#86bd9f; --k3:#7fb0dc; --k4:#c39be0; --k5:#c9c86a; --k6:#e08b6f; --k7:#a9b6bf; --k8:#ec80b0; --k9:#6fd0d6; --k10:#a99cf0; --k11:#7ccf80; --k12:#d1a585; --k13:#f29a5e; --k14:#e08be0; --k15:#a6d36b; } }
-  :root[data-theme="dark"]{ --k1:#d9a44e; --k2:#86bd9f; --k3:#7fb0dc; --k4:#c39be0; --k5:#c9c86a; --k6:#e08b6f; --k7:#a9b6bf; --k8:#ec80b0; --k9:#6fd0d6; --k10:#a99cf0; --k11:#7ccf80; --k12:#d1a585; --k13:#f29a5e; --k14:#e08be0; --k15:#a6d36b; }
+  :root{ --k1:#9c6b23; --k2:#3f6f57; --k3:#2f5f8a; --k4:#7a4f9a; --k5:#7d7a1e; --k6:#9a3b28; --k7:#5b6770; --k8:#b0306a; --k9:#1f7f86; --k10:#5a4fb0; --k11:#2e7d32; --k12:#8a5a3c; --k13:#c0571a; --k14:#8f2f8f; --k15:#4d7a12; --k16:#a0522d; }
+  @media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){ --k1:#d9a44e; --k2:#86bd9f; --k3:#7fb0dc; --k4:#c39be0; --k5:#c9c86a; --k6:#e08b6f; --k7:#a9b6bf; --k8:#ec80b0; --k9:#6fd0d6; --k10:#a99cf0; --k11:#7ccf80; --k12:#d1a585; --k13:#f29a5e; --k14:#e08be0; --k15:#a6d36b; --k16:#e3a47a; } }
+  :root[data-theme="dark"]{ --k1:#d9a44e; --k2:#86bd9f; --k3:#7fb0dc; --k4:#c39be0; --k5:#c9c86a; --k6:#e08b6f; --k7:#a9b6bf; --k8:#ec80b0; --k9:#6fd0d6; --k10:#a99cf0; --k11:#7ccf80; --k12:#d1a585; --k13:#f29a5e; --k14:#e08be0; --k15:#a6d36b; --k16:#e3a47a; }
   .variant.evt{ border-left:3px solid var(--k8); }
   .sw-k{ display:inline-block; width:22px; height:0; border-top:2.4px solid currentColor; }
   .sw-base{ display:inline-block; width:22px; height:0; border-top:1.6px dashed var(--ink-soft); }
@@ -509,7 +509,7 @@
 
   <section>
     <h2>장부 10개 — BASE 와 비교</h2>
-    <p class="section-sub">모두 같은 5분 회차·같은 호가를 봅니다. «BASE 대비»는 지금 잔액의 차이(달러)입니다 — 나중에 더한 장부(NOUZ·EVT·EVT_SLOT·TOPUP·TOPUP_BETTER·EXIT100·TAILWIND·LEGTRAIL·LEGTRAIL2)는 더한 날부터 같은 기간의 BASE 와 견준 값입니다. 잔액 = 원화 다리(지금 환율로 달러 환산) + 선물 다리(미실현 포함) + 받은 펀딩 − 수수료. 판정 칸은 BASE 청산 30건과 8주가 모두 찬 뒤에야 «진행 중»에서 바뀝니다.</p>
+    <p class="section-sub">모두 같은 5분 회차·같은 호가를 봅니다. «BASE 대비»는 지금 잔액의 차이(달러)입니다 — 나중에 더한 장부(NOUZ·EVT·EVT_SLOT·TOPUP·TOPUP_BETTER·EXIT100·TAILWIND·LEGTRAIL·LEGTRAIL2·SCOUT)는 더한 날부터 같은 기간의 BASE 와 견준 값입니다. 잔액 = 원화 다리(지금 환율로 달러 환산) + 선물 다리(미실현 포함) + 받은 펀딩 − 수수료. 판정 칸은 BASE 청산 30건과 8주가 모두 찬 뒤에야 «진행 중»에서 바뀝니다.</p>
     <div class="table-scroll"><table class="coins paper">
       <thead><tr><th>장부</th><th class="num">잔액</th><th class="num">손익</th><th class="num">BASE 대비</th><th class="num">최대낙폭</th><th class="num">보유</th><th class="num">청산</th><th class="num">승률</th><th class="num">펀딩</th><th>판정</th></tr></thead>
       <tbody id="p-books"><tr><td class="empty-row" colspan="10">불러오는 중…</td></tr></tbody>
@@ -628,6 +628,11 @@
         <p class="num-line">1분 겹침(같은 37건): −$40 (P 0.25), 1단계 바닥에서 끝난 비율 32%, 평균 무헤지 8.5분. 5분 엔진에서는 두 단계 가족 최고안도 검증 −$327.</p>
         <p class="warn">판정 기준은 LEGTRAIL 과 같습니다(한 다리 20건에 한 번).</p>
         <p class="num-line" id="p-leg-LEGTRAIL2">—</p></div>
+      <div class="variant"><h3>🔭 SCOUT · 선발대 진입 <span class="tagk">10-25 추가 · 백테스트 기각</span></h3>
+        <p class="what">BASE 와 같지만, <b>USDT 웃돈이 높은 동안</b>(웃돈 z 1시간봉 또는 실시간 ≥ +0.5) 평균 −1.25σ 에 닿은 코인에 <b>반 자리</b>(자산 10% × 0.5)를 먼저 넣습니다(선발대). 관문은 실전과 같은 «기대이익 ≥ 3 × (수수료 + max(지금, 평상시 스프레드))». 그 코인이 진짜 진입선(−1.5σ)과 관문을 넘으면 나머지 반 자리를 채웁니다(전환). 청산선은 평균 +1.0σ(전환 뒤에도). 선발대 합계는 한 자리를 넘지 않고, 평소 진입이 자리·예산이 모자라면 오래된 선발대부터 바로 닫습니다(퇴출). 매개변수는 백테스트 선택안 <code>S_H0.5_R1.25_K100_cR_G3</code>.</p>
+        <p class="num-line">백테스트(빗썸×Binance 5분봉, 계단 청산·채우기 들어간 BASE, 72 변형): 개발 2024-01~2025-06 −$0.71 (선발대 1건) → 검증 2025-07~2026-10 <b>+$31</b> (P 0.99, 월 +$2, 선발대 3건 · 전환 1 · 퇴출 0) · 낙폭 BASE 와 같음. Holm 0/72 · DSR 0.00 → 기각. 개발에서 선발대를 한 관문 3배 변형 30개는 모두 BASE 보다 나빴습니다. 원인은 비용 관문 — 고웃돈 국면에서 −1.25σ 아래로 간 봉의 6%만 관문을 넘습니다(σ 가 작아서).</p>
+        <p class="warn">⚠️ 기각된 아이디어를 사용자 지시로 지켜보는 장부입니다. 판정은 <b>선발대 20건 + 장부 시작 8주</b>가 찬 때 한 번: BASE 대비 +$ · P ≥ 0.9 · 낙폭 1%p 이내면 실전 채택을 제안합니다. 백테스트 속도(월 0.2건)면 20건까지 수년이 걸릴 수 있습니다. 20건이 차면 봇이 디스코드 상태 채널에 알립니다.</p>
+        <p class="num-line" id="p-scout">—</p></div>
     </div>
     <div class="rules">
       <dl>
@@ -667,8 +672,8 @@
   var kst = function(iso){ if (!iso) return '—'; var d = new Date(new Date(iso).getTime() + 9 * 3600e3); return d.toISOString().slice(5, 16).replace('T', ' '); };
   var empty = function(n, msg){ return '<tr><td class="empty-row" colspan="' + n + '">' + msg + '</td></tr>'; };
   var get = function(p){ return fetch(RAW + p + '?t=' + Math.floor(Date.now() / 120000), { cache: 'no-store' }).then(function(r){ if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); }); };
-  var ORDER = ['BASE', 'ADD15', 'EXIT075', 'FUND', 'IDLE_USDT', 'UPBIT', 'COMBO', 'NOUZ', 'EVT', 'EVT_SLOT', 'TOPUP', 'TOPUP_BETTER', 'EXIT100', 'TAILWIND', 'LEGTRAIL', 'LEGTRAIL2'];
-  var COLOR = { ADD15: '--k1', EXIT075: '--k2', FUND: '--k3', IDLE_USDT: '--k4', UPBIT: '--k5', COMBO: '--k6', NOUZ: '--k7', EVT: '--k8', EVT_SLOT: '--k9', TOPUP: '--k10', TOPUP_BETTER: '--k11', EXIT100: '--k12', TAILWIND: '--k13', LEGTRAIL: '--k14', LEGTRAIL2: '--k15' };
+  var ORDER = ['BASE', 'ADD15', 'EXIT075', 'FUND', 'IDLE_USDT', 'UPBIT', 'COMBO', 'NOUZ', 'EVT', 'EVT_SLOT', 'TOPUP', 'TOPUP_BETTER', 'EXIT100', 'TAILWIND', 'LEGTRAIL', 'LEGTRAIL2', 'SCOUT'];
+  var COLOR = { ADD15: '--k1', EXIT075: '--k2', FUND: '--k3', IDLE_USDT: '--k4', UPBIT: '--k5', COMBO: '--k6', NOUZ: '--k7', EVT: '--k8', EVT_SLOT: '--k9', TOPUP: '--k10', TOPUP_BETTER: '--k11', EXIT100: '--k12', TAILWIND: '--k13', LEGTRAIL: '--k14', LEGTRAIL2: '--k15', SCOUT: '--k16' };
   var VENUE = { bithumb: '빗썸', upbit: '업비트' };
   function mdd(vals){ var pk = -Infinity, m = 0; vals.forEach(function(v){ if (v > pk) pk = v; if (pk > 0) m = Math.min(m, v / pk - 1); }); return m; }
   function badge(j){
@@ -788,11 +793,24 @@
       el.textContent = s1 + (last.length ? ' · 최근: ' + last.join(' · ') : '') + (k === 'LEGTRAIL' && lw ? ' · BASE 청산 관찰 기록 ' + lw.n + '건(60분 1분봉 저장 ' + lw.done + ', 감지 상승 ' + lw.up + ' · 하락 ' + lw.down + ')' : '');
     });
 
+    // SCOUT 카드 (선발대 진입)
+    (function(){
+      var el = $('p-scout'); if (!el) return;
+      var b = B.SCOUT, js = J.SCOUT || {};
+      if (!b || !b.scout) { el.textContent = '봇 데이터에 아직 이 장부가 없습니다(10-25 서버 반영 뒤 첫 게시를 기다리는 중).'; return; }
+      var T = b.scout, op = (b.open || []).filter(function(p){ return p.scout; }), uz = d.uz || {};
+      var s1 = '지금까지: 선발대 ' + T.entries + ' / 20건 · 전환 ' + T.conv + ' · 끝 ' + T.closed + '건 손익 ' + sgn(T.net) + ' · 퇴출 ' + T.evicted + '건(' + sgn(T.evictNet) + ') · 판정 ' + (js.state || '진행 중') + (js.why ? ' (' + js.why + ')' : '');
+      if (op.length) s1 += ' · 🔭 보유: ' + op.map(function(p){ return p.coin + ' (' + kst(p.scout.at) + (p.scout.conv ? ', 전환됨' : ', 반 자리') + ')'; }).join(', ');
+      if (uz.z != null) s1 += ' · 지금 USDT 웃돈 z(1시간봉) ' + (uz.z >= 0 ? '+' : '−') + Math.abs(uz.z).toFixed(2) + (uz.z >= 0.5 ? ' — 고웃돈 국면' : '');
+      var last = (T.list || []).slice(-5).reverse().map(function(r){ return r.coin + ' ' + r.reason + (r.conv ? '(전환)' : '') + ' ' + sgn(r.net); });
+      el.textContent = s1 + (last.length ? ' · 최근: ' + last.join(' · ') : '');
+    })();
+
     var open = [];
     ORDER.forEach(function(k){ ((B[k] && B[k].open) || []).forEach(function(p){ p.legs.forEach(function(l, i){ open.push([k, p, l, i]); }); }); });
     $('p-open').innerHTML = open.map(function(x){
       var k = x[0], p = x[1], l = x[2], i = x[3];
-      return '<tr><td>' + k + '</td><td class="coin">' + esc(p.coin) + ' <span class="hold-left">' + VENUE[p.venue] + (i ? (l.kind === 'topup' ? ' · 채우기' : ' · 물타기') : '') + (p.ext && !i ? ' · 🌬️ 연장 중' : '') + (p.lg && !i ? ' · 🦵 한 다리(' + (p.lg.dir > 0 ? '빗썸' : 'Binance') + ' 남김)' : '') + '</span></td><td>' + kst(l.at) + '</td><td class="num">' + usd(l.size, 0) + '</td><td class="num">' + pp(l.entryPrem) + '</td><td class="num">' + pp(l.entryMa) + '</td><td class="num">' + (l.sigma != null ? l.sigma.toFixed(2) : '—') + '</td><td class="num ' + cls(l.upnl) + '">' + usd(l.upnl) + '</td><td class="num">' + usd(l.funding) + '</td></tr>';
+      return '<tr><td>' + k + '</td><td class="coin">' + esc(p.coin) + ' <span class="hold-left">' + VENUE[p.venue] + (i ? (l.kind === 'topup' ? ' · 채우기' : l.kind === 'scoutadd' ? '' : ' · 물타기') : '') + (p.ext && !i ? ' · 🌬️ 연장 중' : '') + (p.lg && !i ? ' · 🦵 한 다리(' + (p.lg.dir > 0 ? '빗썸' : 'Binance') + ' 남김)' : '') + (p.scout ? (i ? ' · 선발대 전환' : ' · 🔭 선발대') : '') + '</span></td><td>' + kst(l.at) + '</td><td class="num">' + usd(l.size, 0) + '</td><td class="num">' + pp(l.entryPrem) + '</td><td class="num">' + pp(l.entryMa) + '</td><td class="num">' + (l.sigma != null ? l.sigma.toFixed(2) : '—') + '</td><td class="num ' + cls(l.upnl) + '">' + usd(l.upnl) + '</td><td class="num">' + usd(l.funding) + '</td></tr>';
     }).join('') || empty(9, '보유 중인 포지션이 없습니다. 실전처럼 7일 평균의 80%가 쌓여야(빗썸 2026-10-19 오후 무렵) 진입하고, USDT 웃돈 z 가 0 아래면 막힙니다.');
 
     // 실전 vs BASE
