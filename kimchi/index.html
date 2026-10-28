@@ -570,16 +570,16 @@
 
   <section aria-labelledby="usage-h" id="usage">
     <h2 id="usage-h">자금 사용 — 두 거래소 시드 중 얼마가 들어가 있나</h2>
-    <p class="section-sub">빗썸과 Binance를 <b>같은 달러 축</b>에 놓은 막대입니다. 진한 칸이 지금 포지션에 들어간 돈, 옅은 칸이 한도 안에서 아직 안 쓴 몫(투입 대기), 빗금이 Binance 숏 예비금, 회색이 그 밖의 여유입니다. 실선은 한도, 점선은 황금비율 목표 잔고입니다.</p>
+    <p class="section-sub">빗썸과 Binance를 <b>같은 달러 축</b>에 놓은 막대입니다. 진한 칸이 지금 포지션에 들어간 돈, 옅은 칸이 한도 안에서 아직 안 쓴 몫(투입 대기), 빗금이 Binance 숏 여유분(수수료·펀딩, 한도의 5%), 회색이 그 밖의 여유입니다. 실선은 한도, 점선은 황금비율 목표 잔고입니다.</p>
     <div class="cu" id="cu">
       <p class="cu-summary" id="cu-summary">자금 사용 값을 불러오는 중…</p>
       <div id="cu-bars"></div>
       <div class="cu-legend" aria-hidden="true">
-        <span><i class="used"></i>투입</span><span><i class="wait"></i>투입 대기</span><span><i class="reserve"></i>숏 예비금</span><span><i class="spare"></i>여유·잉여</span>
+        <span><i class="used"></i>투입</span><span><i class="wait"></i>투입 대기</span><span><i class="reserve"></i>숏 여유분</span><span><i class="spare"></i>여유·잉여</span>
         <span><i class="mk"></i>한도</span><span><i class="mk gold"></i>황금비율 목표</span>
       </div>
       <details class="gate-why" style="margin:12px 0 0">
-      <summary>구간별 금액 표 — 투입·투입 대기·숏 예비금·여유·한도·황금비율 목표</summary>
+      <summary>구간별 금액 표 — 투입·투입 대기·숏 여유분·여유·한도·황금비율 목표</summary>
       <div class="table-scroll">
         <table class="cu-table">
           <thead><tr><th>구간</th><th class="num">빗썸</th><th class="num">Binance</th></tr></thead>
@@ -740,8 +740,8 @@
     <h2 id="capital-h">자금 배분 원칙 (2026-10-21)</h2>
 <details class="gate-why fold-tbl">
       <summary>한도 · 한 자리 · 황금비율 — 설명</summary>
-    <p class="section-sub">김프 거래는 두 다리입니다 — 빗썸에서 코인을 원화로 사고, 같은 양을 Binance futures01에서 1배로 숏. <b>한도 = 한쪽 다리 명목(빗썸 매수액 = Binance 숏 금액) 기준 자산의 40%</b>라서, 다 쓰면 양쪽 거래소에 묶이는 돈은 그 두 배(약 80%)입니다. 마지막 자리는 남은 한도가 그 자리의 90% 이상이면 온전히 들어가 최대 약 41%. 봇이 실제로 쓰는 한도는 <b>min(자산 40%, 빗썸 총액 ÷ 1.055, Binance 총액 ÷ 1.25)</b> — 한쪽 돈이 모자라면 그쪽이 묶습니다.</p>
-    <p class="section-sub">한 자리 = 자산의 10% = 한도의 <b>0.25</b>를 양쪽에 각각 씁니다 (한도를 1.0으로 보면 빗썸 매수 0.25 · Binance 숏 증거금 0.25). 빗썸은 1.055, Binance는 1.25를 들고 있으니 온전한 자리 4개가 양쪽 1.0씩을 쓰고, 호가 깊이 때문에 작게 들어간 자리가 있으면 최대 6자리까지 열립니다. 두 다리에 필요한 돈이 달라 50:50이 아니라 <b>«황금비율» 빗썸 1.055 : Binance 1.25 = <span id="cap-gold">45.8% : 54.2%</span></b>로 둡니다.</p>
+    <p class="section-sub">김프 거래는 두 다리입니다 — 빗썸에서 코인을 원화로 사고, 같은 양을 Binance futures01에서 1배 «격리»로 숏. <b>한도 = 한쪽 다리 명목(빗썸 매수액 = Binance 숏 금액) 기준 자산의 47.5%</b>라서, 다 쓰면 양쪽 거래소에 묶이는 돈은 그 두 배(약 95%)입니다 (2026-10-28 40% → 47.5%). 마지막 자리는 남은 한도만큼 작게 들어갑니다(남은 한도가 그 자리의 90% 이상이면 온전히). 봇이 실제로 쓰는 한도는 <b>min(자산 47.5%, 빗썸 총액 ÷ 1.055, Binance 총액 ÷ 1.05)</b> — 한쪽 돈이 모자라면 그쪽이 묶습니다.</p>
+    <p class="section-sub">한 자리 = 자산의 10%를 양쪽에 각각 씁니다. 온전한 자리 4개 + 남은 한도만큼 작은 자리 하나이고, 호가 깊이 때문에 작게 들어간 자리가 있으면 최대 6자리까지 열립니다. Binance 숏은 1배 «격리»라 자리마다 증거금 = 숏 금액이 따로 묶이고, 해외가 +50%면 봇이 가격손절로 양쪽을 닫습니다 — 지갑에 남은 현금은 그 자리를 지켜 주지 않으므로 큰 예비금이 필요 없습니다. 그래서 두 쪽 배수를 거의 같게 <b>«황금비율» 빗썸 1.055 : Binance 1.05 = <span id="cap-gold">50.1% : 49.9%</span></b>로 둡니다 (2026-10-28 옛 1.055 : 1.25 = 45.8 : 54.2 에서 바꿈).</p>
     </details>
     <p class="ledger-note" id="cap-budget">한도 — 봇이 회차마다 다시 잽니다.</p>
     <div class="table-scroll">
@@ -750,8 +750,8 @@
           <tr><th>거래소</th><th>무엇이 필요한가</th><th class="num">황금비율 목표</th><th class="num">지금</th><th class="num">목표 대비</th></tr>
         </thead>
         <tbody>
-          <tr><td>빗썸 <small>원화 + 코인 시가</small></td><td>산 코인 값 + 수수료·환율 여유(5~6%) — 배수 1.055</td><td class="num" id="cap-tdom">45.8% ≈ $9,261</td><td class="num" id="cap-dom">$10,004 (49.4%)</td><td class="num" id="cap-gdom">+$743</td></tr>
-          <tr><td>Binance <small>지갑 + 미실현</small></td><td>증거금 + 급등 예비 25% — 해외가 +50%면 강제 청산, $2,000 한 자리가 약 $1,000 잃을 수 있음 — 배수 1.25</td><td class="num" id="cap-tfgn">54.2% ≈ $10,974</td><td class="num" id="cap-fgn">$10,231 (50.6%)</td><td class="num" id="cap-gfgn">−$743</td></tr>
+          <tr><td>빗썸 <small>원화 + 코인 시가</small></td><td>산 코인 값 + 수수료·환율 여유(5~6%) — 배수 1.055</td><td class="num" id="cap-tdom">50.1% ≈ $10,190</td><td class="num" id="cap-dom">$10,004 (49.4%)</td><td class="num" id="cap-gdom">+$743</td></tr>
+          <tr><td>Binance <small>지갑 + 미실현</small></td><td>숏 증거금(1배 격리 = 숏 금액) + 수수료·펀딩 여유 5% — 배수 1.05. 해외가 +50%면 가격손절이 양쪽을 닫습니다</td><td class="num" id="cap-tfgn">49.9% ≈ $10,140</td><td class="num" id="cap-fgn">$10,231 (50.6%)</td><td class="num" id="cap-gfgn">−$743</td></tr>
         </tbody>
       </table>
     </div>
@@ -762,7 +762,7 @@
         <p><b>결정 — 지금은 빼지 않는다 (10-21).</b> 하락장이면 Binance 숏이 벌고 빗썸(보유 코인)이 줄어 비율이 저절로 황금비율에 가까워질 수 있습니다. 옮기거나 뺀다면 원장 <code>transfers</code>에 기록해야 손익이 틀어지지 않습니다. 빼면 한 자리 크기(자산 10%)와 한도(자산 40%)도 함께 줄어듭니다.</p>
         <p class="gate-why-h"><b>봇이 매시 실제 잔고로 확인하고 상태 채널에 알립니다</b> (조회만, 주문 없음)</p>
         <ul class="gate-why-list">
-          <li><b>💸 자산 이동 필요</b> — 어느 쪽이든 황금 비중에서 ±5%p 넘게 벗어남(빗썸 &lt; 40.8% 또는 &gt; 50.8%), 또는 빗썸 &lt; 한도, 또는 Binance 예비 &lt; 15%(Binance &lt; 한도 × 1.15). 7일에 한 번. (옛 «한쪽 55% 초과»는 뺐습니다 — Binance의 정상 황금 비중이 이미 54.2%라서)</li>
+          <li><b>💸 자산 이동 필요</b> — 어느 쪽이든 황금 비중에서 ±5%p 넘게 벗어남(빗썸 &lt; 40.8% 또는 &gt; 50.8%), 또는 빗썸 &lt; 한도, 또는 Binance &lt; 한도 × 1.02. 7일에 한 번. (옛 «한쪽 55% 초과»는 뺐습니다 — 황금 비중 ±5%p 판정이 같은 일을 합니다)</li>
           <li><b>✅ 목표 비중 도달</b> — 두 비중이 황금 비중 ±1%p 안. 한 번 알리고, ±2%p 넘게 벗어났다 돌아오면 또 알립니다.</li>
           <li>알림·아침 상태 보고마다 지금 잔고·비중, 황금비율 목표 잔고(달러·원), 옮길 방향과 금액을 자동으로 다시 계산해 적습니다. 옮긴 뒤에는 Claude에게 «김프 자금 이동 기록해»라고 하면 원장에 남깁니다.</li>
         </ul>
@@ -881,7 +881,7 @@
       <div class="flow-step">
         <span class="num">03</span>
         <h3>진입 처리</h3>
-        <p>중복 보유·최대 개수(6개, 보유 명목 합계 ≤ 한도 = 자산 40%)와 기대수익 관문을 확인한 뒤 자산의 10%(호가 깊이 30% 상한)로 빗썸 매수 → 산 만큼 Binance 숏을 실제로 체결하고 Discord로 알림. 깊이 때문에 작게 산 자리는 조건이 맞으면 «채우기»로 계획 크기까지 더 삽니다</p>
+        <p>중복 보유·최대 개수(6개, 보유 명목 합계 ≤ 한도 = 자산 47.5%)와 기대수익 관문을 확인한 뒤 자산의 10%(호가 깊이 30% 상한)로 빗썸 매수 → 산 만큼 Binance 숏을 실제로 체결하고 Discord로 알림. 깊이 때문에 작게 산 자리는 조건이 맞으면 «채우기»로 계획 크기까지 더 삽니다</p>
       </div>
       <div class="flow-step">
         <span class="num">04</span>
@@ -923,7 +923,7 @@
         <dt>규칙 근거</dt><dd>5분봉 108조합을 2020~23년으로만 고르고 2024~26년으로 확인: 연 +3.6%, 최대낙폭 −2.8% (이전 규칙 3일·−2σ·+0.25σ는 −1.3%, −9.9%). 2026-10-16 변경. 10-19 USDT 기준 0 → −0.5: 2024-01~26-10 연 +3.6% → +4.5%, 최대낙폭 −2.8% → −3.3% ⚠️ 이 숫자들은 예전 손익 계산(환율 재평가 포함)입니다. 장부식으로 다시 재면 연 −2.7%(하루 환율)·−1.1%(시간 환율) — 아래 «매매 기록»의 2026-10-19 수정 참고</dd>
         <dt>최대 보유</dt><dd>동시 6자리 · 14일 초과 시 강제 청산 (2026-10-22 계단 청산과 함께 5일 → 14일. 백테스트에서 14일에 닿은 자리는 없었습니다)</dd>
         <dt>깔끔한 청산</dt><dd>거래가 끝나면 두 거래소 어디에도 그 코인 수량·포지션이 남지 않게 합니다 (빗썸·Binance futures01 은 이 봇만 쓴다는 전제). 청산 때 걸린 주문을 취소하고 <b>실제 잔고·포지션</b>을 다시 읽어 빗썸 전량 매도 → Binance 숏을 남은 빗썸 수량에 맞춤 → 3초 뒤 확인해 남은 것 정리(최대 3번, 5,000원 미만 자투리는 최소액 넘게 사서 전부 매도·비용 상한 $1). 진입·채우기 3초 뒤에도 두 다리를 맞추고, 5분마다 기록·빗썸·Binance 를 대조합니다. 2026-10-21 BMT 청산이 11분 멈춘 뒤 도입 (docs/clean-close.md)</dd>
-        <dt>한도 (예산)</dt><dd>한도 = 한쪽 다리 명목(빗썸 매수액 = Binance 숏 금액) 기준 <b>자산의 40%</b> · 양쪽 거래소에 묶이는 돈은 그 두 배(약 80%) · 단 빗썸 총액 ÷ 1.055, Binance 총액 ÷ 1.25(급등 예비 25%) 보다 크지 않게 — 작은 쪽이 묶습니다. 마지막 자리는 남은 한도가 그 자리의 90% 이상이면 줄이지 않고 온전히 (최대 약 41%). 2026-10-21 고정 $8,000 에서 바꿈</dd>
+        <dt>한도 (예산)</dt><dd>한도 = 한쪽 다리 명목(빗썸 매수액 = Binance 숏 금액) 기준 <b>자산의 47.5%</b> · 양쪽 거래소에 묶이는 돈은 그 두 배(약 95%) · 단 빗썸 총액 ÷ 1.055, Binance 총액 ÷ 1.05(1배 격리라 큰 예비금 없이 수수료·펀딩 여유 5%) 보다 크지 않게 — 작은 쪽이 묶습니다. 마지막 자리는 남은 한도만큼 (남은 한도가 그 자리의 90% 이상이면 온전히). 2026-10-21 고정 $8,000 → 자산 40%, 2026-10-28 «95% 투입»으로 47.5%</dd>
         <dt>채우기</dt><dd>진입 때 호가가 얇아 계획(자산 10%)보다 작게 산 자리(5호가 매도 잔량 30% 상한)를, 신호 ENTRY·이력·진입 관문(평상시 스프레드 포함)·USDT 필터가 그대로이고 <b>실체결 김프 ≤ 평균 진입 김프</b>일 때 계획 크기까지 더 삽니다 (Binance 같은 수량 숏, 한 번 최소 $100, 진입 2일 안, 한도·현금 안). 청산은 전체를 함께, 진입 김프는 수량 가중 평균. 2026-10-21 도입 — 실전 10건 뒤 성과 보고</dd>
         <hr>
         <dt>변동성 가드</dt><dd>σ &gt; 2.5%p → 이번 회차 신호 보류 (자동 복귀, 영구 제외 아님)</dd>
@@ -1124,8 +1124,8 @@
     set('cu-tbody',
       '<tr><td>투입<small>빗썸 현물 시가 · Binance 숏 명목(1배 = 증거금)</small></td><td class="num">' + g(D, 'used') + '</td><td class="num">' + g(F, 'used') + '</td></tr>' +
       '<tr><td>투입 대기<small>한도 − 보유 명목 ' + usd(c.openNotional) + '</small></td><td class="num">' + g(D, 'wait') + '</td><td class="num">' + g(F, 'wait') + '</td></tr>' +
-      '<tr><td>숏 예비금<small>한도 × ' + (c.budget.fgnMult - 1).toFixed(2) + ' — 급등 대비</small></td><td class="num">—</td><td class="num">' + g(F, 'reserve') + '</td></tr>' +
-      '<tr><td>여유 · 잉여<small>빗썸: 수수료·환율 여유 + 한도 밖 · Binance: 예비금 밖</small></td><td class="num">' + g(D, 'spare') + '</td><td class="num">' + g(F, 'surplus') + '</td></tr>' +
+      '<tr><td>숏 여유분<small>한도 × ' + (c.budget.fgnMult - 1).toFixed(2) + ' — 수수료·펀딩 (1배 격리라 큰 예비금 없음)</small></td><td class="num">—</td><td class="num">' + g(F, 'reserve') + '</td></tr>' +
+      '<tr><td>여유 · 잉여<small>빗썸: 수수료·환율 여유 + 한도 밖 · Binance: 여유분 밖</small></td><td class="num">' + g(D, 'spare') + '</td><td class="num">' + g(F, 'surplus') + '</td></tr>' +
       '<tr class="tot"><td>합계</td><td class="num">' + usd(D.total) + '</td><td class="num">' + usd(F.total) + '</td></tr>' +
       '<tr><td>한도 (한쪽 기준)<small>min(자산 ' + Math.round((c.budget.pct || 0.4) * 100) + '%, 빗썸 ÷ ' + c.budget.domMult + ', Binance ÷ ' + c.budget.fgnMult + ') — ' + esc(c.budget.bindText) + ' 기준</small></td><td class="num">' + usd(D.budgetMark) + '</td><td class="num">' + usd(F.budgetMark) + '</td></tr>' +
       '<tr><td>황금비율 목표 잔고<small>합계 × ' + gd + '% / ' + gf + '% · 아래는 지금 − 목표</small></td><td class="num">' + usd(D.goldMark) + ' <small>' + sgn(D.total - D.goldMark) + '</small></td><td class="num">' + usd(F.goldMark) + ' <small>' + sgn(F.total - F.goldMark) + '</small></td></tr>');
@@ -1991,7 +1991,7 @@ var coins = [
     list.appendChild(item(uOk, '① USDT 웃돈 필터', '원화 시장 전체가 평소보다 많이 식어 있으면(1시간봉 z와 실시간 z가 둘 다 ' + (u ? u.min : '−1.5') + ' 미만) 새로 사지 않음 — 그런 김프 하락은 잘 돌아오지 않는다',
       u && Number.isFinite(u.z) ? 'z ' + sg(u.z) + (Number.isFinite(u.liveZ) ? ' / ' + sg(u.liveZ) : '') + (u.blocked ? ' < ' : ' ≥ ') + u.min + (u.via === 'live' ? ' (실시간으로 통과)' : '') : '—'));
     var bud = g.budget;
-    list.appendChild(item(slotsOk, '② 자리와 예산', '동시 ' + st.maxPositions + '자리 · 보유 명목 합계 ≤ ' + (bud && bud.text ? bud.text : '한도 (자산 40%)') + (bud && bud.lastSlotTol ? ' · 마지막 자리는 남은 한도 ≥ 90%면 온전히' : ''),
+    list.appendChild(item(slotsOk, '② 자리와 예산', '동시 ' + st.maxPositions + '자리 · 보유 명목 합계 ≤ ' + (bud && bud.text ? bud.text : '한도 (자산 47.5%)') + (bud && bud.lastSlotTol ? ' · 마지막 자리는 남은 한도 ≥ 90%면 온전히' : ''),
       '보유 ' + st.open + ' / ' + st.maxPositions + (bud && Number.isFinite(bud.used) && Number.isFinite(bud.usd) ? ' · $' + Math.round(bud.used).toLocaleString('en-US') + ' / $' + Math.round(bud.usd).toLocaleString('en-US') : '')));
     renderCapital(bud);
     list.appendChild(item(sig.length > 0, '③ 진입 신호 (평균 − ' + g.entrySigma + 'σ 아래)', '코인별 ' + Math.round(g.historyHours / 24) + '일 평균보다 김프가 ' + g.entrySigma + 'σ 넘게 낮은 종목',
