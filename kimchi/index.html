@@ -607,13 +607,14 @@
             <th>코인</th>
             <th class="num">진입 김프</th>
             <th class="num">현재 김프</th>
+            <th class="num" title="보유 수량을 지금 두 거래소 호가로 한꺼번에 팔았을 때의 김프 (빗썸 매수호가·Binance 매도호가 평균). 봇은 청산선을 이 값으로 판정한다. 5분마다 갱신">실체결 김프</th>
             <th class="num" title="7일 평균 + 0.5σ. 계단 청산: 보유 3일 뒤부터 하루 0.5σ 씩 내려간다 — USDT 웃돈이 평균 아래면 멈췄다가, 넘는 순간 밀린 만큼 한꺼번에">청산선</th>
             <th class="num">평가손익</th>
             <th>추이</th>
             <th>진입 시각</th>
           </tr>
         </thead>
-        <tbody id="open-tbody"><!--OPEN_POSITIONS--><tr><td class="empty-row" colspan="7">현재 보유 중인 포지션이 없습니다.</td></tr><!--/OPEN_POSITIONS--></tbody>
+        <tbody id="open-tbody"><!--OPEN_POSITIONS--><tr><td class="empty-row" colspan="8">현재 보유 중인 포지션이 없습니다.</td></tr><!--/OPEN_POSITIONS--></tbody>
       </table>
     </div>
   </section>
@@ -1498,11 +1499,16 @@ var coins = [
     cell(p.coin);
     cell(pct(p.entryPremium));
     cell(p.currentPremium === null ? '—' : pct(p.currentPremium), '', p.currentPremium === null ? (p.note || '값 없음') : '');
+    // 실체결 김프 (2026-10-30): 보유 수량만큼 호가를 먹었을 때. 청산 판정은 이 값으로 한다
+    var ep = (typeof p.execPremium === 'number') ? p.execPremium : null;
+    var epAge = p.execAt ? Math.round((Date.now() - Date.parse(p.execAt)) / 60000) : null;
+    cell(ep === null ? '—' : pct(ep), '', ep === null ? '아직 잰 값이 없습니다 (봇이 5분마다 잽니다)'
+      : '보유 수량을 지금 호가로 팔았을 때 · ' + epAge + '분 전' + (p.currentPremium !== null ? ' · 현재 김프와 차이 ' + (ep - p.currentPremium).toFixed(2) + '%p' : ''));
     // 청산선 (2026-10-22): 봇이 이 자리 기준으로 잰 값. 계단으로 내려갔으면 오프셋을 함께 적는다
     var xl = (typeof p.exitLine === 'number') ? p.exitLine : null, xo = (typeof p.exitOffset === 'number') ? p.exitOffset : null;
     var xTd = cell(xl === null ? '—' : pct(xl) + (xo !== null && xo < 0.5 ? ' ↓' : ''), '',
       xl === null ? '봇이 아직 청산선을 싣지 않았습니다' : '7일 평균 ' + (xo !== null && xo >= 0 ? '+' : '') + (xo === null ? '0.5' : xo.toFixed(1)) + 'σ'
-        + (p.currentPremium !== null ? ' · 남은 거리 ' + (xl - p.currentPremium).toFixed(2) + '%p' : '') + (xo !== null && xo < 0.5 ? ' · 계단 청산으로 내려감' : ''));
+        + (ep !== null ? ' · 실체결 기준 남은 거리 ' + (xl - ep).toFixed(2) + '%p' : p.currentPremium !== null ? ' · 남은 거리 ' + (xl - p.currentPremium).toFixed(2) + '%p' : '') + (xo !== null && xo < 0.5 ? ' · 계단 청산으로 내려감' : ''));
     cell(money(p.netProfit), p.netProfit === null ? '' : (p.netProfit >= 0 ? 'pos' : 'neg'));
 
     var sparkTd = document.createElement('td');
