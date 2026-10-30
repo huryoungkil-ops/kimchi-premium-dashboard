@@ -487,13 +487,13 @@
   .u-bt td.n, .u-bt th.n{ text-align:right; font-family:var(--font-mono); white-space:nowrap; }
 </style>
 <div class="tab-panel" id="tab-usdt">
-  <p class="paper-note">💵 <strong>USDT 웃돈 한 다리 · 실전</strong> — 2026-10-19부터 <strong>디지털엑스</strong>에서 원화 USDT 한 종목만 <strong>실제 돈으로</strong> 사고팝니다(상한 1,000만 원). 한국 거래소에서 USDT에 붙는 웃돈(공식 환율 대비)이 평소보다 많이 낮아지면 USDT를 사고, 평균 위로 돌아오면 원화로 팝니다. 코인 시세 방향과는 상관이 없고, USDT를 들고 있는 동안만 원·달러 환율 위험을 집니다.</p>
+  <p class="paper-note">💵 <strong>USDT 웃돈 한 다리 · 실전</strong> — 2026-10-19부터 <strong>디지털엑스</strong>에서 원화 USDT 한 종목만 <strong>실제 돈으로</strong> 사고팝니다(원금 1,000만 원으로 시작 → <strong>10-30 증액, 상한 3,000만 원</strong>). 한국 거래소에서 USDT에 붙는 웃돈(공식 환율 대비)이 평소보다 많이 낮아지면 USDT를 사고, 평균 위로 돌아오면 원화로 팝니다. 코인 시세 방향과는 상관이 없고, USDT를 들고 있는 동안만 원·달러 환율 위험을 집니다.</p>
   <p class="paper-status" id="u-status">불러오는 중…</p>
 
   <div class="u-banner wait" id="u-banner" role="status"><span class="u-dot" aria-hidden="true"></span><div><div class="u-title" id="u-title">상태를 불러오는 중…</div><div class="u-sub" id="u-sub">카페24 봇이 매시 정각 직후 올리는 값입니다.</div></div></div>
 
   <section class="tiles" aria-label="USDT 웃돈 실전 요약">
-    <div class="tile"><div class="label">실전 시드</div><div class="value">₩10,000,000</div><div class="sub" id="u-seed">디지털엑스 원화 · 상한</div></div>
+    <div class="tile"><div class="label">투입 원금</div><div class="value">₩29,804,942</div><div class="sub" id="u-seed">10-19 1,000만 원 + 10-30 1,980만 원</div></div>
     <div class="tile"><div class="label">평가액</div><div class="value" id="u-eq">—</div><div class="sub" id="u-eq-sub">—</div></div>
     <div class="tile"><div class="label">지금 들고 있는 것</div><div class="value" id="u-mode">—</div><div class="sub" id="u-mode-sub">—</div></div>
     <div class="tile"><div class="label">청산 거래</div><div class="value" id="u-closed">—</div><div class="sub" id="u-closed-sub">—</div></div>
@@ -524,13 +524,13 @@
     <p class="section-sub">김프 타이밍 연구에서 요즘 김프 출렁임의 약 98%가 코인이 아니라 «한국 거래소에서 USDT에 붙는 웃돈»이라는 것을 확인했습니다. 그 웃돈은 평균으로 돌아오는 힘이 강했습니다(반감기 약 13일). 그래서 코인 대신 USDT 하나만, 수수료가 없는 디지털엑스에서 거래합니다.</p>
     <div class="flow">
       <div class="flow-step"><span class="num">01</span><h3>매시간 웃돈 계산</h3><p>디지털엑스 원화 USDT ÷ 장중 원·달러 환율 − 1. 빗썸과 가격이 달라 신호도 디지털엑스 시세로 냅니다</p></div>
-      <div class="flow-step"><span class="num">02</span><h3>많이 낮으면 USDT</h3><p>웃돈이 최근 14일 평균보다 2σ 넘게 낮아지면, 바로 원화 전액(최대 1,000만 원)을 USDT로</p></div>
+      <div class="flow-step"><span class="num">02</span><h3>많이 낮으면 USDT</h3><p>웃돈이 최근 14일 평균보다 2σ 넘게 낮아지면, 바로 원화 전액(최대 3,000만 원)을 USDT로</p></div>
       <div class="flow-step"><span class="num">03</span><h3>평균+0.5σ 오면 원화</h3><p>웃돈이 14일 평균 + 0.5σ 위로 올라오면, 바로 이 봇이 산 USDT를 전부 원화로. 손절·최대 보유기간 없음</p></div>
       <div class="flow-step"><span class="num">04</span><h3>중단 기준</h3><p>20거래 뒤 거래당 웃돈 몫 평균이 0 이하면 신규 매수 중단 (보유분은 규칙대로 매도)</p></div>
     </div>
     <div class="rules">
       <dl>
-        <dt>거래소 · 자금</dt><dd>디지털엑스(구 코빗) 원화 USDT · 이 봇이 쓰는 원화는 최대 1,000만 원 · 팔 때는 이 봇이 산 수량만</dd>
+        <dt>거래소 · 자금</dt><dd>디지털엑스(구 코빗) 원화 USDT · 이 봇이 쓰는 원화는 최대 3,000만 원(10-30 1,000만 → 3,000만 증액) · 팔 때는 이 봇이 산 수량만</dd>
         <dt>주문</dt><dd>① 살 때는 매수 1호가, 팔 때는 매도 1호가에 지정가 대기 주문(post-only)을 걸고 최대 40분 기다립니다 — 1호가가 움직이면 다시 겁니다. 수수료 0원이라 남은 비용인 호가 한 칸(편도 약 0.037%)을 아끼려는 것입니다. ② 40분 안에 다 안 채워지면 남은 몫은 최우선 호가 지정가 즉시체결(IOC, 가격 보호 1%)로 — 시장가 없음, 최대 5번. 취소가 확인되지 않으면 멈추고 알립니다</dd>
         <dt>체결 시점</dt><dd>신호를 본 그 회차에 바로 (2026-10-19 변경). USDT 가격이 환율 변화를 같은 시간 26%, 1시간 뒤 +9.5% 따라와서, 한 시간을 기다리면 그 몫을 놓칩니다 — 백테스트 연 13.1% → 15.0%, 최대낙폭 −4.0% → −4.2%</dd>
         <dt>비용</dt><dd>수수료 0% (디지털엑스 원화마켓, 2027-08-24 09시까지) · 호가 한 칸(1원 ≈ 0.074%)</dd>
@@ -632,7 +632,8 @@
   }
 
   function render(d){
-    var st = d.state || {}, L = st.last || {}, seed = (d.rules || {}).MAX_KRW || 10000000;
+    var st = d.state || {}, L = st.last || {}, FLOWS = [{ at: '2026-10-19T10:39:04Z', krw: 10000000, day: '2026-10-19' }, { at: '2026-10-30T00:00:00Z', krw: 19804942, day: '2026-10-31' }];
+    var seed = FLOWS.reduce(function(t, f){ return t + f.krw; }, 0);   // 상한(MAX_KRW)이 아니라 실제로 넣은 원금
     var age = (Date.now() - new Date(d.updatedAt).getTime()) / 60000;
     $('u-status').textContent = '봇 데이터 갱신 ' + kst(d.updatedAt) + ' KST (' + (age < 1 ? '방금' : Math.round(age) + '분 전') + ') · 매시 정각 직후 갱신' + (age > 75 ? ' · ⚠️ 한 시간 넘게 갱신이 없습니다' : '') + (d.live ? '' : ' · 실전 전환 준비 중 (모의 판단만)');
     $('page-updated').textContent = '기준 봉 ' + kst(L.t) + ' KST';
@@ -648,13 +649,17 @@
     $('u-sub').textContent = L.prem != null ? '지금 웃돈 ' + pp(L.prem) + ' · 매수선 ' + pp(L.buyLine) + ' · 매도선 ' + pp(L.sellLine) + (hold ? ' · 산 값 ' + Math.round(T.px).toLocaleString('ko-KR') + '원 (웃돈 ' + pp(T.prem) + ')' : ' · 매수선까지 ' + ((L.prem - L.buyLine) * 100).toFixed(2) + '%p') : '아직 판단 기록이 없습니다';
     // 타일
     $('u-eq').textContent = won(now); $('u-eq').className = 'value';
-    $('u-eq-sub').innerHTML = '<span class="' + cls(now - seed) + '">' + pct(now / seed - 1) + ' · ' + won(now - seed) + '</span>' + (L.fx ? ' · $' + Math.round(now / L.fx).toLocaleString('en-US') : '');
+    var twr = 1, base = 0, cut = 0;
+    FLOWS.forEach(function(f, i){ var nx = FLOWS[i + 1], end = nx ? Date.parse(nx.at) : Infinity;
+      var p = done.filter(function(x){ var o = Date.parse(x.out); return o >= cut && o < end; }).reduce(function(t, x){ return t + (x.pnl || 0); }, 0) + (nx ? 0 : unreal);
+      base += f.krw; twr *= 1 + p / base; base += p; cut = end; });
+    $('u-eq-sub').innerHTML = '<span class="' + cls(now - seed) + '">' + won(now - seed) + ' · 수익률 ' + pct(twr - 1) + '</span>' + ' <span title="증액 전후를 이어 붙인 시간가중 수익률 — 원금 대비로 나누면 증액 전 수익이 묽어진다">(시간가중)</span>' + (L.fx ? ' · $' + Math.round(now / L.fx).toLocaleString('en-US') : '');
     $('u-mode').textContent = hold ? 'USDT' : '원화';
     $('u-mode-sub').textContent = hold ? st.qty.toFixed(2) + '개 · 평가 손익 ' + won(unreal) + ' (' + pct(unreal / T.amt) + ')' : (st.pending === 'buy' ? '다음 정각 매수 예정' : '매수 신호 대기');
     var wins = done.filter(function(x){ return x.pnl > 0; }).length;
     $('u-closed').textContent = done.length + '건';
     $('u-closed-sub').textContent = done.length ? '승 ' + wins + ' · 확정 손익 ' + won(realized) + ' · 중단 판정까지 ' + Math.max(0, 20 - done.length) + '건' : '아직 거래 없음';
-    $('u-seed').textContent = '디지털엑스 원화 · 시작 ' + kst(st.createdAt) + ' KST';
+    $('u-seed').textContent = '10-19 1,000만 원 + 10-30 1,980만 원 · 상한 ' + won((d.rules || {}).MAX_KRW || 30000000);
     // 지금 웃돈
     $('u-prem').textContent = pp(L.prem); $('u-prem-sub').textContent = 'USDT ' + (L.usdt ? Math.round(L.usdt).toLocaleString('ko-KR') + '원' : '—') + ' · 환율 ' + (L.fx ? L.fx.toFixed(1) : '—');
     $('u-buy').textContent = pp(L.buyLine); $('u-buy-sub').textContent = '14일 평균 ' + pp(L.ma) + ' − 2 × σ ' + pp(L.sd);
