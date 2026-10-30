@@ -743,7 +743,8 @@
         var seedKrw = FLOWS.reduce(function(t, f){ return t + f.krw; }, 0), later = function(day){ return FLOWS.reduce(function(t, f){ return t + (day < f.day ? f.krw : 0); }, 0); };   // 하루 장부 점은 그날 아침에 찍혀, 10-30 점은 입금 전이다
         var done = st.done || [], realized = done.reduce(function(t, x){ return t + (x.pnl || 0); }, 0);
         var T = st.trade, unreal = st.mode === 'usdt' && T && L.usdt ? st.qty * L.usdt - T.amt * (st.qty / T.qty) : 0;
-        var nowKrw = seedKrw + realized + unreal;
+        // 10-30~: 봇이 올리는 디지털엑스 계좌 실제 잔고가 있으면 그것을 쓴다 (예치금 이자 포함). 없으면 원금 + 거래 손익.
+        var B = d.balance, nowKrw = B && B.krw != null ? B.krw + (B.usdt || 0) * (L.usdt || 0) : seedKrw + realized + unreal;
         var eq = (d.equity || []).filter(function(e){ return e.strategy === 'usdtdx'; }).map(function(e){ var x = e.detail || {}; return x.krw != null ? x.krw + later(e.day) : null; }).filter(function(v){ return v != null; });
         var toUsd = function(k){ return fx ? k / fx : null; };
         var series = [seedKrw].concat(eq, [nowKrw]).map(toUsd);
