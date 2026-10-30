@@ -496,6 +496,7 @@
     <div class="tile"><div class="label">투입 원금</div><div class="value">₩29,804,942</div><div class="sub" id="u-seed">10-19 1,000만 원 + 10-30 1,980만 원</div></div>
     <div class="tile"><div class="label">평가액</div><div class="value" id="u-eq">—</div><div class="sub" id="u-eq-sub">—</div></div>
     <div class="tile"><div class="label">지금 들고 있는 것</div><div class="value" id="u-mode">—</div><div class="sub" id="u-mode-sub">—</div></div>
+    <div class="tile"><div class="label">수익 구성</div><div class="value" id="u-mix">—</div><div class="sub" id="u-mix-sub">거래 + 예치금 이자</div></div>
     <div class="tile"><div class="label">청산 거래</div><div class="value" id="u-closed">—</div><div class="sub" id="u-closed-sub">—</div></div>
   </section>
 
@@ -632,7 +633,9 @@
   }
 
   function render(d){
-    var st = d.state || {}, L = st.last || {}, FLOWS = [{ at: '2026-10-19T10:39:04Z', krw: 10000000, day: '2026-10-19' }, { at: '2026-10-30T00:00:00Z', krw: 19804942, day: '2026-10-31' }];
+    var st = d.state || {}, L = st.last || {}, FLOWS = ((d.acct && d.acct.flows) || [{ at: '2026-10-19T10:39:04Z', krw: 10000000 }, { at: '2026-10-30T00:00:00Z', krw: 19804942 }]).map(function(f){
+          // 원금 기록은 봇이 올린다 (acct.flows, 10-30~). 일일 장부 점은 07:46 KST 에 찍히므로 그 뒤 입금은 다음 날 점부터 들어간다.
+          return { at: f.at, krw: f.krw, day: new Date(Date.parse(f.at) + (9 * 60 - 466 + 1440) * 60e3).toISOString().slice(0, 10) }; });
     var seed = FLOWS.reduce(function(t, f){ return t + f.krw; }, 0);   // 상한(MAX_KRW)이 아니라 실제로 넣은 원금
     var age = (Date.now() - new Date(d.updatedAt).getTime()) / 60000;
     $('u-status').textContent = '봇 데이터 갱신 ' + kst(d.updatedAt) + ' KST (' + (age < 1 ? '방금' : Math.round(age) + '분 전') + ') · 매시 정각 직후 갱신' + (age > 75 ? ' · ⚠️ 한 시간 넘게 갱신이 없습니다' : '') + (d.live ? '' : ' · 실전 전환 준비 중 (모의 판단만)');
@@ -642,6 +645,8 @@
     var unreal = hold && L.usdt ? st.qty * L.usdt - T.amt * (st.qty / T.qty) : 0;
     // 10-30~: 봇이 올리는 디지털엑스 계좌 실제 잔고 (예치금 이자 포함). 없으면 원금 + 거래 손익.
     var B = d.balance, real = B && B.krw != null, now = real ? B.krw + (B.usdt || 0) * (L.usdt || 0) : seed + realized + unreal, other = now - (seed + realized + unreal);
+    // 10-30 사용자 지시: 예치금 이자도 전략 수익이다 — 거래 수익과 나란히 보인다 (봇이 acct 로 계산해 올린다)
+    var A = d.acct, interest = A ? A.interest : (real ? other : null), trade = realized + unreal;
     // 배너
     var ban = $('u-banner');
     if (!d.live) { ban.className = 'u-banner wait'; $('u-title').textContent = '⏳ 실전 전환 준비 중 — 아직 실제 주문을 내지 않습니다'; }
@@ -660,7 +665,10 @@
     $('u-mode-sub').textContent = hold ? st.qty.toFixed(2) + '개 · 평가 손익 ' + won(unreal) + ' (' + pct(unreal / T.amt) + ')' : (st.pending === 'buy' ? '다음 정각 매수 예정' : '매수 신호 대기');
     var wins = done.filter(function(x){ return x.pnl > 0; }).length;
     $('u-closed').textContent = done.length + '건';
-    $('u-closed-sub').textContent = done.length ? '승 ' + wins + ' · 확정 손익 ' + won(realized) + (real && Math.abs(other) >= 1 ? ' · 그 밖(예치금 이자 등) ' + won(other) : '') + ' · 중단 판정까지 ' + Math.max(0, 20 - done.length) + '건' : '아직 거래 없음';
+    $('u-closed-sub').textContent = done.length ? '승 ' + wins + ' · 확정 손익 ' + won(realized) + ' · 중단 판정까지 ' + Math.max(0, 20 - done.length) + '건' : '아직 거래 없음';
+    $('u-mix').innerHTML = '<span class="' + cls(now - seed) + '">' + won(now - seed) + '</span>';
+    $('u-mix-sub').textContent = '거래 ' + won(trade) + (interest != null ? ' + 예치금 이자 ' + won(interest) : '') +
+      (A && A.rate && A.rate.rate != null ? ' · 이자 연율 ' + (A.rate.rate * 100).toFixed(2) + '% (' + Math.round(A.rate.days) + '일)' : ' · 이자 연율은 14일 쌓이면 표시');
     $('u-seed').textContent = '10-19 1,000만 원 + 10-30 1,980만 원 · 상한 ' + won((d.rules || {}).MAX_KRW || 30000000);
     // 지금 웃돈
     $('u-prem').textContent = pp(L.prem); $('u-prem-sub').textContent = 'USDT ' + (L.usdt ? Math.round(L.usdt).toLocaleString('ko-KR') + '원' : '—') + ' · 환율 ' + (L.fx ? L.fx.toFixed(1) : '—');

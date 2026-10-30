@@ -739,7 +739,9 @@
     //   시드는 «상한»(rules.MAX_KRW)이 아니라 «실제로 넣은 원금»이다 — 10-30 1,980만 원 증액 (상한 1,000만 → 3,000만).
     //   증액 전 장부 점에는 그 뒤에 넣은 원금을 더해 곡선이 계단처럼 튀지 않게 한다.
     { key: 'usdt', href: '/usdt', live: true, emoji: '💵', name: 'USDT 웃돈 · 실전', ex: '디지털엑스 원화', file: 'live-usdtdx/usdtdx.json', limit: 75, parse: function(d){
-        var st = d.state || {}, L = st.last || {}, fx = L.fx, FLOWS = [{ at: '2026-10-19T10:39:04Z', krw: 10000000, day: '2026-10-19' }, { at: '2026-10-30T00:00:00Z', krw: 19804942, day: '2026-10-31' }];
+        var st = d.state || {}, L = st.last || {}, fx = L.fx, FLOWS = ((d.acct && d.acct.flows) || [{ at: '2026-10-19T10:39:04Z', krw: 10000000 }, { at: '2026-10-30T00:00:00Z', krw: 19804942 }]).map(function(f){
+          // 원금 기록은 봇이 올린다 (acct.flows, 10-30~). 일일 장부 점은 07:46 KST 에 찍히므로 그 뒤 입금은 다음 날 점부터 들어간다.
+          return { at: f.at, krw: f.krw, day: new Date(Date.parse(f.at) + (9 * 60 - 466 + 1440) * 60e3).toISOString().slice(0, 10) }; });
         var seedKrw = FLOWS.reduce(function(t, f){ return t + f.krw; }, 0), later = function(day){ return FLOWS.reduce(function(t, f){ return t + (day < f.day ? f.krw : 0); }, 0); };   // 하루 장부 점은 그날 아침에 찍혀, 10-30 점은 입금 전이다
         var done = st.done || [], realized = done.reduce(function(t, x){ return t + (x.pnl || 0); }, 0);
         var T = st.trade, unreal = st.mode === 'usdt' && T && L.usdt ? st.qty * L.usdt - T.amt * (st.qty / T.qty) : 0;
