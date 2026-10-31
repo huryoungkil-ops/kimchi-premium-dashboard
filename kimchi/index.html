@@ -628,8 +628,8 @@
     </div>
     <ol class="gate-list" id="gate-list"></ol>
     <figure class="gate-fig">
-      <div id="gate-chart" class="gate-chart" aria-label="USDT 웃돈 최근 4일 추이"></div>
-      <figcaption>빗썸 USDT 웃돈(빗썸 USDT 원화가 ÷ 환율 감시기 환율 − 1), 최근 4일 시간별(평균·σ는 그대로 14일로 계산). 회색 점선이 14일 평균, 빨간 점선이 보류선(평균 − 1.5σ)입니다. <b>1시간봉 z와 실시간 z가 둘 다</b> 그 아래(z &lt; −1.5)일 때만 «새 진입 보류»입니다. 기준 변경: 10-19 전 0 → −0.5 → 10-20 17:41 −1.0 → 10-21 09:12 −1.5. 실시간 z는 10-20 18:00부터 함께 봅니다.</figcaption>
+      <div id="gate-chart" class="gate-chart" aria-label="USDT 웃돈 최근 2일 추이"></div>
+      <figcaption>빗썸 USDT 웃돈(빗썸 USDT 원화가 ÷ 환율 감시기 환율 − 1), 최근 2일 시간별(평균·σ는 그대로 14일로 계산). 회색 점선이 14일 평균, 빨간 점선이 보류선(평균 − 1.5σ)입니다. <b>1시간봉 z와 실시간 z가 둘 다</b> 그 아래(z &lt; −1.5)일 때만 «새 진입 보류»입니다. 기준 변경: 10-19 전 0 → −0.5 → 10-20 17:41 −1.0 → 10-21 09:12 −1.5. 실시간 z는 10-20 18:00부터 함께 봅니다.</figcaption>
     </figure>
     <details class="gate-why">
       <summary>USDT 웃돈 필터는 왜 있고, 무엇을 기대하나</summary>
@@ -1925,9 +1925,9 @@ var coins = [
   }
   function chart(u){
     var host = $('gate-chart'); if (!host || !u || !u.series || u.series.length < 2) return;
-    // 모바일에서도 가로 스크롤 없이 한 화면에 — 최근 4일만, 폭은 화면에 맞춰 글씨가 작아지지 않게 (2026-10-31)
+    // 모바일에서도 가로 스크롤 없이 한 화면에 — 최근 2일만, 폭은 화면에 맞춰 글씨가 작아지지 않게 (2026-10-31)
     var W = Math.max(360, Math.min(760, host.clientWidth || 760)), NS = 'http://www.w3.org/2000/svg', H = 220, l = 48, r = 14, t = 16, b = 28;
-    var s0 = u.series[u.series.length - 1][0] - 4 * 86400e3, s = u.series.filter(function(p){ return p[0] >= s0; });
+    var s0 = u.series[u.series.length - 1][0] - 2 * 86400e3, s = u.series.filter(function(p){ return p[0] >= s0; });
     if (s.length < 2) s = u.series;
     var cut = Number.isFinite(u.sd) && Number.isFinite(u.min) ? u.ma + u.min * u.sd : u.ma;   // 보류선 = 14일 평균 + 기준 z × σ (2026-10-21 기준 −1.5)
     var ys = s.map(function(p){ return p[1]; }).concat([u.ma, cut]);
@@ -1936,7 +1936,7 @@ var coins = [
     var X = function(v){ return l + (v - t0) / (t1 - t0) * (W - l - r); };
     var Y = function(v){ return t + (mx - v) / (mx - mn) * (H - t - b); };
     var svg = document.createElementNS(NS, 'svg'); svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H); svg.setAttribute('role', 'img');
-    svg.setAttribute('aria-label', 'USDT 웃돈 최근 4일 추이, 지금 ' + u.prem.toFixed(2) + '%, 14일 평균 ' + u.ma.toFixed(2) + '%');
+    svg.setAttribute('aria-label', 'USDT 웃돈 최근 2일 추이, 지금 ' + u.prem.toFixed(2) + '%, 14일 평균 ' + u.ma.toFixed(2) + '%');
     function el(tag, a, txt){ var e = document.createElementNS(NS, tag); for (var k in a) e.setAttribute(k, a[k]); if (txt != null) e.textContent = txt; svg.appendChild(e); return e; }
     var css = getComputedStyle(document.documentElement), C = function(n){ return css.getPropertyValue(n).trim(); };
     el('rect', { x: l, y: Y(cut), width: W - l - r, height: Math.max(0, H - b - Y(cut)), fill: C('--danger-soft'), opacity: 0.75 });
@@ -1945,8 +1945,8 @@ var coins = [
       el('line', { x1: l, x2: W - r, y1: Y(v), y2: Y(v), stroke: C('--line-soft') });
       el('text', { x: l - 6, y: Y(v) + 4, 'text-anchor': 'end', 'font-size': 11, fill: C('--ink-soft') }, v.toFixed(2) + '%');
     }
-    for (var dd = 0; dd <= 4; dd++) { var tx = t1 - dd * 86400e3; if (tx < t0) continue;
-      el('text', { x: X(tx), y: H - 8, 'text-anchor': 'middle', 'font-size': 11, fill: C('--ink-soft') }, kst(tx).slice(0, 5)); }
+    for (var dd = 0; dd <= 2; dd += 0.5) { var tx = t1 - dd * 86400e3; if (tx < t0) continue;   // 2일치라 12시간 간격, 시각까지
+      el('text', { x: X(tx), y: H - 8, 'text-anchor': dd ? 'middle' : 'end', 'font-size': 11, fill: C('--ink-soft') }, kst(tx).slice(0, 8) + '시'); }
     el('line', { x1: l, x2: W - r, y1: Y(u.ma), y2: Y(u.ma), stroke: C('--ink-soft'), 'stroke-dasharray': '5 4' });
     var lbMa = el('text', { 'font-size': 11, fill: C('--ink-soft') }, '14일 평균 ' + u.ma.toFixed(2) + '%');
     if (cut !== u.ma) el('line', { x1: l, x2: W - r, y1: Y(cut), y2: Y(cut), stroke: C('--danger'), 'stroke-dasharray': '3 3' });
