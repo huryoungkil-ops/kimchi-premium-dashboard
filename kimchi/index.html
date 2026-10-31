@@ -134,6 +134,7 @@
   .gate-chart svg{ display:block; width:100%; height:auto; }
   .gate-why{ background:var(--bg-raised); border:1px solid var(--line); border-radius:var(--radius); padding:12px 18px; }
   .gate-why summary{ cursor:pointer; font-weight:600; }
+  .gate-fold .gate-list{ margin:12px 0 0; }
   .fold-tbl{ padding:12px 18px; } .fold-tbl[open] > summary{ margin-bottom:12px; }   /* 긴 표 접기 (2026-10-22) */
   .gate-why-body{ font-size:14px; } .gate-why-body p{ max-width:75ch; }
   .gate-tbl{ overflow-x:auto; } .gate-tbl table{ border-collapse:collapse; width:100%; font-size:13.5px; margin:8px 0; }
@@ -620,17 +621,19 @@
   </section>
 
   <section aria-labelledby="gate-h" id="gate">
+    <figure class="gate-fig" style="margin-top:0">
+      <div id="gate-chart" class="gate-chart" aria-label="USDT 웃돈 최근 2일 추이"></div>
+      <figcaption>빗썸 USDT 웃돈(빗썸 USDT 원화가 ÷ 환율 감시기 환율 − 1), 최근 2일 시간별(평균·σ는 그대로 14일로 계산). 회색 점선이 14일 평균, 빨간 점선이 보류선(평균 − 1.5σ)입니다. <b>1시간봉 z와 실시간 z가 둘 다</b> 그 아래(z &lt; −1.5)일 때만 «새 진입 보류»입니다. 기준 변경: 10-19 전 0 → −0.5 → 10-20 17:41 −1.0 → 10-21 09:12 −1.5. 실시간 z는 10-20 18:00부터 함께 봅니다.</figcaption>
+    </figure>
     <h2 id="gate-h">지금 새로 살 수 있나? — 진입 관문</h2>
     <p class="section-sub">봇이 1분마다 확인하는 진입 조건을 위에서부터 차례로 보여 줍니다. 하나라도 막히면 새 진입은 없고, 들고 있는 포지션의 청산은 관문과 상관없이 계속됩니다.</p>
     <div class="gate-banner wait" id="gate-banner" role="status">
       <span class="gate-dot" aria-hidden="true"></span>
       <div><div class="gate-title" id="gate-title">상태를 불러오는 중…</div><div class="gate-sub" id="gate-sub">카페24 봇이 5분마다 올리는 값으로 표시합니다.</div></div>
     </div>
-    <ol class="gate-list" id="gate-list"></ol>
-    <figure class="gate-fig">
-      <div id="gate-chart" class="gate-chart" aria-label="USDT 웃돈 최근 2일 추이"></div>
-      <figcaption>빗썸 USDT 웃돈(빗썸 USDT 원화가 ÷ 환율 감시기 환율 − 1), 최근 2일 시간별(평균·σ는 그대로 14일로 계산). 회색 점선이 14일 평균, 빨간 점선이 보류선(평균 − 1.5σ)입니다. <b>1시간봉 z와 실시간 z가 둘 다</b> 그 아래(z &lt; −1.5)일 때만 «새 진입 보류»입니다. 기준 변경: 10-19 전 0 → −0.5 → 10-20 17:41 −1.0 → 10-21 09:12 −1.5. 실시간 z는 10-20 18:00부터 함께 봅니다.</figcaption>
-    </figure>
+    <details class="gate-why gate-fold" style="margin:0 0 16px"><summary id="gate-list-sum">관문 5단계 자세히 보기</summary>
+      <ol class="gate-list" id="gate-list"></ol>
+    </details>
     <details class="gate-why">
       <summary>USDT 웃돈 필터는 왜 있고, 무엇을 기대하나</summary>
       <div class="gate-why-body">
@@ -2019,6 +2022,8 @@ var coins = [
     list.appendChild(item(true, '④ 기록 조건', Math.round(g.historyHours / 24) + '일 창의 ' + Math.round(g.minCoverage * 100) + '% 이상 기록이 있는 종목만'
       + (g.coverageTempUntil ? ' (한시 완화 — ' + kst(Date.parse(g.coverageTempUntil)) + ' KST에 80%로 복귀)' : ''), Math.round(g.minCoverage * 100) + '%'));
     list.appendChild(item(null, '⑤ 주문 직전 재확인', '두 거래소 호가를 다시 받아 실제 체결 평균가로 기대이익 ≥ 비용 문턱 × 3, 해외가 급변(0.5%) 없을 때만 주문', '주문 때 확인'));
+    var nOk = 0, nBad = 0; [].forEach.call(list.children, function(li){ var t = li.querySelector('.ic').textContent; if (t === '✅') nOk++; else if (t === '⛔') nBad++; });   // 접힌 목록 제목에 요약 (2026-10-31)
+    $('gate-list-sum').textContent = '관문 5단계 — ✅ 통과 ' + nOk + (nBad ? ' · ⛔ 막힘 ' + nBad : '') + ' · ⏺ 주문 때 확인 ' + (list.children.length - nOk - nBad) + ' (눌러서 펼치기)';
     lastU = u; chart(u);
   }).catch(function(e){ var t = $('gate-title'); if (t) t.textContent = '상태를 불러오지 못했습니다'; console.warn('gate', e); });
   if (window.matchMedia) matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function(){ chart(lastU); });
