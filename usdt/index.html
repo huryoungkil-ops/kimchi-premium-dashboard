@@ -573,7 +573,7 @@
     var L = (d.state || {}).last || {};
     if (s.length < 2 || L.ma == null) { host.innerHTML = '<p class="section-sub" style="margin:8px">14일치 기록이 모이면 여기에 그려집니다.</p>'; return; }
     var buy = L.buyLine * 100, sell = L.sellLine * 100, ma = L.ma * 100;
-    var NS = 'http://www.w3.org/2000/svg', W = Math.max(360, Math.min(760, host.clientWidth || 760)), H = 230, l = 50, r = 14, t = 14, b = 28;
+    var NS = 'http://www.w3.org/2000/svg', W = Math.max(360, Math.min(760, host.clientWidth || 760)), H = 230, l = 50, r = 14, t = 14, b = 40;
     var ys = s.map(function(p){ return p[1]; }).concat([buy, sell, ma]);
     var mn = Math.min.apply(null, ys), mx = Math.max.apply(null, ys), pad = (mx - mn) * 0.12 || 0.1; mn -= pad; mx += pad;
     var t0 = s[0][0], t1 = s[s.length - 1][0];
@@ -590,7 +590,9 @@
       el('text', { x: l - 6, y: Y(v) + 4, 'text-anchor': 'end', 'font-size': 11, fill: C('--ink-soft') }, v.toFixed(2) + '%');
     }
     for (var dd = 0; dd <= 2; dd += 0.5) { var tx = t1 - dd * 86400e3; if (tx < t0) continue;   // 2일치라 12시간 간격, 시각까지
-      el('text', { x: X(tx), y: H - 8, 'text-anchor': dd ? 'middle' : 'end', 'font-size': 11, fill: C('--ink-soft') }, kst(new Date(tx).toISOString()).slice(0, 8) + '시'); }
+      var lb = kst(new Date(tx).toISOString()), an = dd ? 'middle' : 'end';   // 날짜·시각 두 줄 (2026-10-31)
+      el('text', { x: X(tx), y: H - 21, 'text-anchor': an, 'font-size': 11, fill: C('--ink-soft') }, lb.slice(0, 5));
+      el('text', { x: X(tx), y: H - 7, 'text-anchor': an, 'font-size': 11, fill: C('--ink-soft') }, lb.slice(6, 11)); }
     var lines = [[ma, C('--ink-soft'), '5 4'], [buy, C('--good'), '3 3'], [sell, C('--danger'), '3 3']];
     lines.forEach(function(x){ el('line', { x1: l, x2: W - r, y1: Y(x[0]), y2: Y(x[0]), stroke: x[1], 'stroke-dasharray': x[2] }); });
     el('path', { d: s.map(function(p, i){ return (i ? 'L' : 'M') + X(p[0]).toFixed(1) + ' ' + Y(p[1]).toFixed(1); }).join(' '), fill: 'none', stroke: C('--accent'), 'stroke-width': 2 });
