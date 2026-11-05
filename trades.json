@@ -45,7 +45,8 @@
   "origPositionSize": null,
   "origFeeEntry": null,
   "origQty": null,
-  "origKorbitQty": null
+  "origKorbitQty": null,
+  "entryNote": null
  },
  {
   "id": 2,
@@ -93,7 +94,8 @@
   "origPositionSize": null,
   "origFeeEntry": null,
   "origQty": null,
-  "origKorbitQty": null
+  "origKorbitQty": null,
+  "entryNote": null
  },
  {
   "id": 3,
@@ -141,7 +143,8 @@
   "origPositionSize": null,
   "origFeeEntry": null,
   "origQty": null,
-  "origKorbitQty": null
+  "origKorbitQty": null,
+  "entryNote": null
  },
  {
   "id": 4,
@@ -189,7 +192,8 @@
   "origPositionSize": 829.84,
   "origFeeEntry": 0.7488,
   "origQty": 150748,
-  "origKorbitQty": 150748
+  "origKorbitQty": 150748,
+  "entryNote": null
  },
  {
   "id": 5,
@@ -237,7 +241,8 @@
   "origPositionSize": null,
   "origFeeEntry": null,
   "origQty": null,
-  "origKorbitQty": null
+  "origKorbitQty": null,
+  "entryNote": null
  },
  {
   "id": 6,
@@ -285,7 +290,8 @@
   "origPositionSize": null,
   "origFeeEntry": null,
   "origQty": null,
-  "origKorbitQty": null
+  "origKorbitQty": null,
+  "entryNote": null
  },
  {
   "id": 7,
@@ -333,7 +339,8 @@
   "origPositionSize": null,
   "origFeeEntry": null,
   "origQty": null,
-  "origKorbitQty": null
+  "origKorbitQty": null,
+  "entryNote": null
  },
  {
   "id": 8,
@@ -381,7 +388,8 @@
   "origPositionSize": null,
   "origFeeEntry": null,
   "origQty": null,
-  "origKorbitQty": null
+  "origKorbitQty": null,
+  "entryNote": null
  },
  {
   "id": 9,
@@ -429,7 +437,8 @@
   "origPositionSize": null,
   "origFeeEntry": null,
   "origQty": null,
-  "origKorbitQty": null
+  "origKorbitQty": null,
+  "entryNote": null
  },
  {
   "id": 10,
@@ -477,7 +486,8 @@
   "origPositionSize": null,
   "origFeeEntry": null,
   "origQty": null,
-  "origKorbitQty": null
+  "origKorbitQty": null,
+  "entryNote": null
  },
  {
   "id": 11,
@@ -525,7 +535,8 @@
   "origPositionSize": null,
   "origFeeEntry": null,
   "origQty": null,
-  "origKorbitQty": null
+  "origKorbitQty": null,
+  "entryNote": null
  },
  {
   "id": 12,
@@ -573,7 +584,8 @@
   "origPositionSize": null,
   "origFeeEntry": null,
   "origQty": null,
-  "origKorbitQty": null
+  "origKorbitQty": null,
+  "entryNote": null
  },
  {
   "id": 13,
@@ -621,7 +633,8 @@
   "origPositionSize": 529.91,
   "origFeeEntry": 0.4747,
   "origQty": 92079,
-  "origKorbitQty": 92079
+  "origKorbitQty": 92079,
+  "entryNote": null
  },
  {
   "id": 14,
@@ -669,7 +682,8 @@
   "origPositionSize": null,
   "origFeeEntry": null,
   "origQty": null,
-  "origKorbitQty": null
+  "origKorbitQty": null,
+  "entryNote": null
  },
  {
   "id": 15,
@@ -717,7 +731,8 @@
   "origPositionSize": null,
   "origFeeEntry": null,
   "origQty": null,
-  "origKorbitQty": null
+  "origKorbitQty": null,
+  "entryNote": null
  },
  {
   "id": 16,
@@ -765,7 +780,8 @@
   "origPositionSize": null,
   "origFeeEntry": null,
   "origQty": null,
-  "origKorbitQty": null
+  "origKorbitQty": null,
+  "entryNote": null
  },
  {
   "id": 17,
@@ -813,7 +829,8 @@
   "origPositionSize": null,
   "origFeeEntry": null,
   "origQty": null,
-  "origKorbitQty": null
+  "origKorbitQty": null,
+  "entryNote": null
  },
  {
   "id": 18,
@@ -861,7 +878,8 @@
   "origPositionSize": 1943.06,
   "origFeeEntry": 1.7556,
   "origQty": 42520,
-  "origKorbitQty": 42520
+  "origKorbitQty": 42520,
+  "entryNote": null
  },
  {
   "id": 19,
@@ -909,6 +927,7 @@
   "origPositionSize": null,
   "origFeeEntry": null,
   "origQty": null,
-  "origKorbitQty": null
+  "origKorbitQty": null,
+  "entryNote": null
  }
 ]
