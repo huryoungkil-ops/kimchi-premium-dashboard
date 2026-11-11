@@ -68,7 +68,7 @@
     '<div class="lw-head"><button type="button" class="lw-btn" id="lw-btn">🎙️ 매수 후보 생중계 시작</button>' +
     '<span class="lw-intro" id="lw-intro">누르는 동안만 서버가 두 거래소 호가를 새로 받아, 진입선에 가장 가까운 종목들이 봇의 관문 8개 중 어디에 걸려 있는지 10초마다 중계합니다. 10분 뒤나 다른 탭으로 가면 저절로 쉽니다.</span></div>' +
     '<div class="lw-board" id="lw-board"></div>' +
-    '<div class="lw-body"><h3>🏁 결승선(봇이 사는 자리)까지 남은 거리</h3><div class="lw-track" id="lw-track"></div>' +
+    '<div class="lw-body"><h3>🏁 결승선(봇이 사는 자리)까지 남은 거리</h3><div class="lw-track" id="lw-track"></div><p class="lw-note" style="margin-top:6px">자리는 «남은 거리 ÷ 그 코인의 평소 출렁임(σ)» 순서입니다 — 봇도 σ 기준으로 판단합니다. 많이 출렁이는 코인은 %p로는 멀어 보여도 실제로는 금방 닿을 수 있습니다.</p>' +
     '<h3>📣 실시간 중계</h3><ul class="lw-feed" id="lw-feed"></ul>' +
     '<h3>🎽 선수 소개 — 후보 6종목</h3><div class="lw-cards" id="lw-cards"></div>' +
     '<div id="lw-benchwrap"></div>' +
@@ -150,7 +150,7 @@
     $('lw-track').innerHTML = d.candidates.map(function (c) {
       var x = Math.max(0, Math.min(1, 1 - c.gapSig / 3));
       return '<div class="lw-lane"><span class="lw-runner' + (c.verdict === 'go' ? ' go' : '') + '" style="left:' + (4 + x * 92).toFixed(1) + '%">' + esc(c.coin) +
-        '<small>' + (c.gap > 0 ? c.gap.toFixed(2) + '%p' : '도착') + '</small></span></div>';
+        '<small>' + (c.gap > 0 ? c.gapSig.toFixed(1) + 'σ · ' + c.gap.toFixed(2) + '%p' : '도착') + '</small></span></div>';
     }).join('') || '<div class="lw-lane">후보 없음</div>';
 
     $('lw-cards').innerHTML = d.candidates.map(function (c, i) { return card(c, i, pmap[c.coin], d); }).join('');
@@ -185,7 +185,7 @@
         (l ? '결승선에 가장 가까운 선수는 <b>' + esc(l.coin) + '</b> — 남은 거리 ' + Math.max(0, l.gap).toFixed(2) + '%p.' : '후보가 없습니다.') +
         (d.usdt.ok ? '' : ' 다만 USDT 필터가 막혀 있어 지금은 아무도 못 삽니다.'));
       if (d.bench.length) out.push('🪑 벤치에는 ' + d.bench.map(function (c) { return '<b>' + esc(c.coin) + '</b>'; }).join(', ') + ' — 신호는 떴지만 출전 자격이 없습니다.');
-      out.forEach(say); return;
+      out.reverse().forEach(say); return;
     }
     var pm = {}; prev.candidates.forEach(function (c) { pm[c.coin] = c; });
     if (prev.candidates[0] && d.candidates[0] && prev.candidates[0].coin !== d.candidates[0].coin) out.push('🏃 <b>선두 교체!</b> ' + esc(d.candidates[0].coin) + '이(가) ' + esc(prev.candidates[0].coin) + '을(를) 제쳤습니다 — 남은 거리 ' + Math.max(0, d.candidates[0].gap).toFixed(2) + '%p.');
