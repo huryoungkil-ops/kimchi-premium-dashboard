@@ -1,0 +1,27 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>입장 · 허박사의 코인 전략 연구소</title><meta name="robots" content="noindex,nofollow">
+<link rel="icon" href="/favicon.ico?v=4" sizes="any"><link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<style>
+:root{--bg:#f6f7f9;--card:#fff;--ink:#1f2328;--soft:#6b7280;--line:#d8dde3;--acc:#c27c0e;--bad:#c62828}
+@media (prefers-color-scheme:dark){:root{--bg:#14171c;--card:#1d2128;--ink:#e8eaed;--soft:#9aa3ad;--line:#333a44;--acc:#f0a930;--bad:#ff6b6b}}
+*{box-sizing:border-box}body{margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:16px;background:var(--bg);color:var(--ink);font-family:-apple-system,"Apple SD Gothic Neo","Malgun Gothic",sans-serif}
+form{width:100%;max-width:340px;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:28px 24px;text-align:center}
+h1{font-size:19px;margin:6px 0 4px}p{margin:0 0 18px;color:var(--soft);font-size:14px}
+input{width:100%;font-size:26px;letter-spacing:10px;text-align:center;padding:12px;border:1px solid var(--line);border-radius:10px;background:var(--bg);color:var(--ink)}
+button{width:100%;margin-top:12px;font-size:16px;font-weight:700;padding:12px;border:0;border-radius:10px;background:var(--acc);color:#fff;cursor:pointer}
+.e{color:var(--bad);font-size:14px;margin:10px 0 0}
+</style></head><body>
+<form method="post" action="/api/login">
+<div style="font-size:34px">🪙</div>
+<h1>허박사의 코인 전략 연구소</h1><p>PIN 을 입력하세요</p>
+<input name="pin" type="password" inputmode="numeric" autocomplete="current-password" maxlength="12" required autofocus>
+<input type="hidden" name="next" id="next" value="/">
+<button type="submit">들어가기</button>
+<div class="e" id="e" hidden>PIN 이 맞지 않습니다</div>
+</form>
+<script>
+var q=new URLSearchParams(location.search);
+var n=q.get('next')||'/'; if(n.charAt(0)==='/'&&n.charAt(1)!=='/') document.getElementById('next').value=n;
+if(q.get('e')) document.getElementById('e').hidden=false;
+</script>
+</body></html>
