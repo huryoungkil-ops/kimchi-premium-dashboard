@@ -46,7 +46,8 @@
   "origFeeEntry": null,
   "origQty": null,
   "origKorbitQty": null,
-  "entryNote": null
+  "entryNote": null,
+  "budgetCapped": null
  },
  {
   "id": 2,
@@ -95,7 +96,8 @@
   "origFeeEntry": null,
   "origQty": null,
   "origKorbitQty": null,
-  "entryNote": null
+  "entryNote": null,
+  "budgetCapped": null
  },
  {
   "id": 3,
@@ -144,7 +146,8 @@
   "origFeeEntry": null,
   "origQty": null,
   "origKorbitQty": null,
-  "entryNote": null
+  "entryNote": null,
+  "budgetCapped": null
  },
  {
   "id": 4,
@@ -193,7 +196,8 @@
   "origFeeEntry": 0.7488,
   "origQty": 150748,
   "origKorbitQty": 150748,
-  "entryNote": null
+  "entryNote": null,
+  "budgetCapped": null
  },
  {
   "id": 5,
@@ -242,7 +246,8 @@
   "origFeeEntry": null,
   "origQty": null,
   "origKorbitQty": null,
-  "entryNote": null
+  "entryNote": null,
+  "budgetCapped": null
  },
  {
   "id": 6,
@@ -291,7 +296,8 @@
   "origFeeEntry": null,
   "origQty": null,
   "origKorbitQty": null,
-  "entryNote": null
+  "entryNote": null,
+  "budgetCapped": null
  },
  {
   "id": 7,
@@ -340,7 +346,8 @@
   "origFeeEntry": null,
   "origQty": null,
   "origKorbitQty": null,
-  "entryNote": null
+  "entryNote": null,
+  "budgetCapped": null
  },
  {
   "id": 8,
@@ -389,7 +396,8 @@
   "origFeeEntry": null,
   "origQty": null,
   "origKorbitQty": null,
-  "entryNote": null
+  "entryNote": null,
+  "budgetCapped": null
  },
  {
   "id": 9,
@@ -438,7 +446,8 @@
   "origFeeEntry": null,
   "origQty": null,
   "origKorbitQty": null,
-  "entryNote": null
+  "entryNote": null,
+  "budgetCapped": null
  },
  {
   "id": 10,
@@ -487,7 +496,8 @@
   "origFeeEntry": null,
   "origQty": null,
   "origKorbitQty": null,
-  "entryNote": null
+  "entryNote": null,
+  "budgetCapped": null
  },
  {
   "id": 11,
@@ -536,7 +546,8 @@
   "origFeeEntry": null,
   "origQty": null,
   "origKorbitQty": null,
-  "entryNote": null
+  "entryNote": null,
+  "budgetCapped": null
  },
  {
   "id": 12,
@@ -585,7 +596,8 @@
   "origFeeEntry": null,
   "origQty": null,
   "origKorbitQty": null,
-  "entryNote": null
+  "entryNote": null,
+  "budgetCapped": null
  },
  {
   "id": 13,
@@ -634,7 +646,8 @@
   "origFeeEntry": 0.4747,
   "origQty": 92079,
   "origKorbitQty": 92079,
-  "entryNote": null
+  "entryNote": null,
+  "budgetCapped": null
  },
  {
   "id": 14,
@@ -683,7 +696,8 @@
   "origFeeEntry": null,
   "origQty": null,
   "origKorbitQty": null,
-  "entryNote": null
+  "entryNote": null,
+  "budgetCapped": null
  },
  {
   "id": 15,
@@ -732,7 +746,8 @@
   "origFeeEntry": null,
   "origQty": null,
   "origKorbitQty": null,
-  "entryNote": null
+  "entryNote": null,
+  "budgetCapped": null
  },
  {
   "id": 16,
@@ -781,7 +796,8 @@
   "origFeeEntry": null,
   "origQty": null,
   "origKorbitQty": null,
-  "entryNote": null
+  "entryNote": null,
+  "budgetCapped": null
  },
  {
   "id": 17,
@@ -830,7 +846,8 @@
   "origFeeEntry": null,
   "origQty": null,
   "origKorbitQty": null,
-  "entryNote": null
+  "entryNote": null,
+  "budgetCapped": null
  },
  {
   "id": 18,
@@ -879,7 +896,8 @@
   "origFeeEntry": 1.7556,
   "origQty": 42520,
   "origKorbitQty": 42520,
-  "entryNote": null
+  "entryNote": null,
+  "budgetCapped": null
  },
  {
   "id": 19,
@@ -928,7 +946,8 @@
   "origFeeEntry": null,
   "origQty": null,
   "origKorbitQty": null,
-  "entryNote": null
+  "entryNote": null,
+  "budgetCapped": null
  },
  {
   "id": 20,
@@ -977,7 +996,8 @@
   "origFeeEntry": null,
   "origQty": null,
   "origKorbitQty": null,
-  "entryNote": "FIRST_EDGE"
+  "entryNote": "FIRST_EDGE",
+  "budgetCapped": null
  },
  {
   "id": 21,
@@ -1026,7 +1046,8 @@
   "origFeeEntry": null,
   "origQty": null,
   "origKorbitQty": null,
-  "entryNote": null
+  "entryNote": null,
+  "budgetCapped": null
  },
  {
   "id": 22,
@@ -1075,7 +1096,8 @@
   "origFeeEntry": null,
   "origQty": null,
   "origKorbitQty": null,
-  "entryNote": null
+  "entryNote": null,
+  "budgetCapped": null
  },
  {
   "id": 23,
@@ -1124,7 +1146,8 @@
   "origFeeEntry": 1.7466,
   "origQty": 2994.4,
   "origKorbitQty": 2994.4,
-  "entryNote": null
+  "entryNote": null,
+  "budgetCapped": null
  },
  {
   "id": 24,
@@ -1173,7 +1196,8 @@
   "origFeeEntry": null,
   "origQty": null,
   "origKorbitQty": null,
-  "entryNote": null
+  "entryNote": null,
+  "budgetCapped": null
  },
  {
   "id": 25,
@@ -1222,7 +1246,8 @@
   "origFeeEntry": 0.5078,
   "origQty": 9281,
   "origKorbitQty": 9281,
-  "entryNote": "FIRST_EDGE"
+  "entryNote": "FIRST_EDGE",
+  "budgetCapped": null
  },
  {
   "id": 26,
@@ -1271,7 +1296,8 @@
   "origFeeEntry": 1.7385,
   "origQty": 61057.8,
   "origKorbitQty": 61057.8,
-  "entryNote": null
+  "entryNote": null,
+  "budgetCapped": null
  },
  {
   "id": 27,
@@ -1320,7 +1346,8 @@
   "origFeeEntry": null,
   "origQty": null,
   "origKorbitQty": null,
-  "entryNote": null
+  "entryNote": null,
+  "budgetCapped": null
  },
  {
   "id": 28,
@@ -1369,7 +1396,8 @@
   "origFeeEntry": null,
   "origQty": null,
   "origKorbitQty": null,
-  "entryNote": null
+  "entryNote": null,
+  "budgetCapped": null
  },
  {
   "id": 29,
@@ -1418,6 +1446,107 @@
   "origFeeEntry": 1.1345,
   "origQty": 23219,
   "origKorbitQty": 23219,
-  "entryNote": null
+  "entryNote": null,
+  "budgetCapped": null
+ },
+ {
+  "id": 30,
+  "mode": "live",
+  "foreign_ex": "binance",
+  "coin": "ENSO",
+  "status": "OPEN",
+  "entryTime": "2026-11-23T11:06:06.417Z",
+  "entryPremium": 0.4584,
+  "entryMa": 2.3402683694530486,
+  "entryPrice": 613.7979864689537,
+  "positionSize": 426.66,
+  "feeEntry": 0.383,
+  "entryForeignPrice": 0.4539,
+  "entryFx": 1346.105,
+  "exitTime": null,
+  "exitPremium": null,
+  "exitPrice": null,
+  "grossProfit": null,
+  "feeExit": null,
+  "netProfit": null,
+  "exitFx": null,
+  "exitForeignPrice": null,
+  "korbitPnl": null,
+  "foreignPnl": null,
+  "forceReason": null,
+  "n8nId": null,
+  "qty": 935.7,
+  "korbitQty": 935.7,
+  "tag": "ENSO-mwt5u8g5",
+  "closedQty": 0,
+  "exitKrwAmt": 0,
+  "exitKrwQty": 0,
+  "exitUsdtAmt": 0,
+  "feeExitAcc": 0,
+  "note": null,
+  "plannedUsd": 2543.88,
+  "depthKrw": 13964551,
+  "depthCapped": 0,
+  "topupCount": null,
+  "origEntryPremium": null,
+  "origEntryPrice": null,
+  "origEntryForeignPrice": null,
+  "origEntryFx": null,
+  "origPositionSize": null,
+  "origFeeEntry": null,
+  "origQty": null,
+  "origKorbitQty": null,
+  "entryNote": null,
+  "budgetCapped": 1
+ },
+ {
+  "id": 31,
+  "mode": "live",
+  "foreign_ex": "binance",
+  "coin": "ENJ",
+  "status": "OPEN",
+  "entryTime": "2026-11-23T17:10:07.102Z",
+  "entryPremium": -0.2944,
+  "entryMa": 1.7179899328859025,
+  "entryPrice": 25.380000000000003,
+  "positionSize": 127.53,
+  "feeEntry": 0.115,
+  "entryForeignPrice": 0.01896,
+  "entryFx": 1342.56,
+  "exitTime": null,
+  "exitPremium": null,
+  "exitPrice": null,
+  "grossProfit": null,
+  "feeExit": null,
+  "netProfit": null,
+  "exitFx": null,
+  "exitForeignPrice": null,
+  "korbitPnl": null,
+  "foreignPnl": null,
+  "forceReason": null,
+  "n8nId": null,
+  "qty": 6746,
+  "korbitQty": 6746,
+  "tag": "ENJ-mwtiv7s1",
+  "closedQty": 0,
+  "exitKrwAmt": 0,
+  "exitKrwQty": 0,
+  "exitUsdtAmt": 0,
+  "feeExitAcc": 0,
+  "note": null,
+  "plannedUsd": 2546.53,
+  "depthKrw": 13484234,
+  "depthCapped": 0,
+  "topupCount": null,
+  "origEntryPremium": null,
+  "origEntryPrice": null,
+  "origEntryForeignPrice": null,
+  "origEntryFx": null,
+  "origPositionSize": null,
+  "origFeeEntry": null,
+  "origQty": null,
+  "origKorbitQty": null,
+  "entryNote": null,
+  "budgetCapped": 1
  }
 ]
