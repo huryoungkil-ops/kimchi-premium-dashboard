@@ -123,6 +123,15 @@
   .gate-banner.stop{ border-color:var(--danger); background:var(--danger-soft); } .gate-banner.stop .gate-dot{ background:var(--danger); }
   .gate-banner.idle{ border-color:var(--watch); background:var(--watch-soft); } .gate-banner.idle .gate-dot{ background:var(--watch); }
   .gate-title{ font-weight:700; font-size:18px; }
+  /* 하락장 환승 한 줄 현황 (2026-11-27) */
+  .ds-strip{ display:flex; flex-wrap:wrap; align-items:center; gap:6px 14px; padding:8px 14px; margin:-4px 0 14px; border:1px solid var(--line); border-radius:var(--radius); background:var(--bg-raised); font-size:13px; }
+  .ds-strip .ds-h{ font-weight:700; white-space:nowrap; }
+  .ds-strip .ds-k{ color:var(--ink-soft); white-space:nowrap; }
+  .ds-strip .ds-k b{ color:inherit; font-weight:600; }
+  .ds-strip .ds-pill{ display:inline-block; padding:1px 8px; border-radius:999px; font-weight:600; font-size:12px; border:1px solid currentColor; }
+  .ds-strip .ok{ color:var(--good); } .ds-strip .wait{ color:var(--watch); } .ds-strip .bad{ color:var(--danger); } .ds-strip .off{ color:var(--ink-soft); }
+  .ds-strip .ds-now{ flex:1 1 260px; min-width:0; color:var(--ink-soft); overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+  @media (max-width:640px){ .ds-strip .ds-now{ white-space:normal; } }
   .gate-sub{ font-size:13px; color:var(--ink-soft); margin-top:2px; }
   .gate-list{ list-style:none; padding:0; margin:0 0 16px; display:grid; gap:1px; background:var(--line); border:1px solid var(--line); border-radius:var(--radius); overflow:hidden; }
   .gate-list li{ background:var(--bg-raised); padding:11px 16px; display:grid; grid-template-columns:28px minmax(0,1fr) auto; gap:10px; align-items:start; font-size:14px; }
@@ -631,6 +640,7 @@
       <span class="gate-dot" aria-hidden="true"></span>
       <div><div class="gate-title" id="gate-title">상태를 불러오는 중…</div><div class="gate-sub" id="gate-sub">카페24 봇이 5분마다 올리는 값으로 표시합니다.</div></div>
     </div>
+    <div class="ds-strip" id="ds-strip" role="status" aria-label="하락장 환승 현황" hidden></div>
     <div id="lw" aria-live="polite"></div>
     <details class="gate-why gate-fold" style="margin:0 0 16px"><summary id="gate-list-sum">관문 5단계 자세히 보기</summary>
       <ol class="gate-list" id="gate-list"></ol>
@@ -2032,7 +2042,37 @@ var coins = [
 })();
 </script>
 
-<script src="https://visits.180-70-116-114.sslip.io/v.js" data-site="coin-lab" defer></script><script src="/lib/lab-strats.js"></script><script src="/kimchi/live-watch.js" defer></script>
+<script>
+// 하락장 환승 한 줄 현황 (2026-11-27) — kimchi.json gate.downswap (봇이 회차마다 남긴 판정)
+(function(){
+  if (!window.__kimchiData) return;
+  window.__kimchiData.then(function(d){
+    var x = d.gate && d.gate.downswap, el = document.getElementById('ds-strip');
+    if (!x || !el) return;
+    function esc(t){ return String(t == null ? '' : t).replace(/[&<>"]/g, function(c){ return { '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;' }[c]; }); }
+    function hm(iso){ return new Date(Date.parse(iso) + 9 * 3600e3).toISOString().slice(11, 16); }
+    function md(iso){ return new Date(Date.parse(iso) + 9 * 3600e3).toISOString().slice(5, 16).replace('-', '/').replace('T', ' '); }
+    var st = x.state || {}, p = x.p || {}, held = st.held || [];
+    var down = held.filter(function(h){ return h.down; });
+    var usedToday = x.day === x.today;
+    var pillCls = !x.on ? 'off' : st.stage === 'swap' || st.stage === 'target' ? 'ok' : st.stage === 'error' ? 'bad' : usedToday ? 'off' : 'wait';
+    var pill = !x.on ? '꺼짐' : st.stage === 'swap' ? '환승 실행' : st.stage === 'target' ? '매수 대기' : usedToday ? '오늘 완료' : '감시 중';
+    var parts = [
+      '<span class="ds-h">🔁 하락장 환승</span>',
+      '<span class="ds-pill ' + pillCls + '">' + pill + '</span>',
+      '<span class="ds-k" title="7일 평균이 24시간에 ' + p.slopePp + '%p 이상 내려간 보유 자리 / 전체 보유">평균 하락 자리 <b>' + down.length + '/' + held.length + '</b>'
+        + (down.length ? ' (' + esc(down.map(function(h){ return h.coin + ' ' + h.slope.toFixed(2); }).join(', ')) + ')' : '') + '</span>',
+      '<span class="ds-k">오늘 <b>' + (usedToday ? '사용함' : '1회 남음') + '</b></span>',
+      '<span class="ds-k">누적 <b>' + (x.count || 0) + '회</b>' + (x.last && x.last.at ? ' · 마지막 ' + esc(md(x.last.at) + ' ' + x.last.sold + '→' + x.last.target) : '') + '</span>',
+      '<span class="ds-now" title="' + esc(st.text) + '">' + (st.at ? hm(st.at) + ' ' : '') + esc(st.text || '아직 판정 기록 없음') + '</span>'
+    ];
+    el.innerHTML = parts.join('');
+    el.title = '조건: 보유 ' + p.minHoldH + '시간 이상 · 7일 평균 24시간 ' + p.slopePp + '%p 이상 하락 · 이익 ≥ 수수료 + ' + p.minProfitPp + '%p · 후보 몫 − 보유 몫 ≥ ' + p.marginPp + '%p · 하루 1회 · 목표 종목은 판 뒤 ' + p.targetMin + '분 USDT 필터 예외';
+    el.hidden = false;
+  }).catch(function(e){ console.warn('downswap', e); });
+})();
+</script>
+<script src="https://visits.180-70-116-114.sslip.io/v.js\" data-site="coin-lab" defer></script><script src="/lib/lab-strats.js"></script><script src="/kimchi/live-watch.js" defer></script>
 <script>LAB.mount('kimchi');</script>
 <script>window.LAB_SEARCH_HINT='전략·페이지·보고서 찾기 — 예: 김프, 펀딩, 터틀, 루나, 롱숏';</script><script src="/lib/lab-search.js" defer></script></body>
 </html>
