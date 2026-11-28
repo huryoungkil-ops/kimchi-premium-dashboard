@@ -460,15 +460,15 @@
     <div class="brand">
       <span class="mark">⚖️</span>
       <div><h1>롱숏 모멘텀+캐리</h1><a class="lab" href="/">허박사의 코인 전략 연구소 · Dr. Hur's Coin Strategy Lab</a></div>
-      <span class="tag tag-live" id="ls-tag"><i class="lp-dot"></i>LIVE · 실전</span>
+      <span class="tag tag-paper" id="ls-tag">PAPER · 가상 (실전은 11-28 종료)</span>
     </div>
-    <div class="snapshot-meta">카페24 ls-live 서비스가 15분마다 올리는 실전 기록<br><span id="page-updated">매일 09:06 KST 판단 · 5분마다 위험 감시</span></div>
+    <div class="snapshot-meta">카페24 ls-live 서비스가 매일 계산하는 가상 장부(신호 장부)<br><span id="page-updated">매일 09:06 KST 판단 · 실제 주문 없음</span></div>
   </header>
 
   <nav class="strategy-tabs" aria-label="페이지">
     <a href="/">🏠 전체 대시보드</a>
     <a href="/kimchi" class="live">🌶️ 김치프리미엄 <span class="sub">빗썸 × Binance · 실전</span> <span class="lp-badge live"><i class="lp-dot"></i>실전</span></a>
-    <a href="/ls" class="live" aria-current="page">⚖️ 롱숏 모멘텀+캐리 <span class="sub">바이낸스 선물 · 실전</span> <span class="lp-badge live"><i class="lp-dot"></i>실전</span></a>
+    <a href="/ls" class="paper" aria-current="page">⚖️ 롱숏 모멘텀+캐리 <span class="sub">바이낸스 선물 · 실전 종료</span> <span class="lp-badge paper">가상</span></a>
     <a href="/usdt" class="live">💵 USDT 웃돈 <span class="sub">디지털엑스 원화 · 실전</span> <span class="lp-badge live"><i class="lp-dot"></i>실전</span></a>
     <a href="/turtle" class="paper">🐢 터틀 트레이딩 <span class="sub">빗썸 원화</span> <span class="lp-badge paper">가상</span></a>
     <a href="/luna" class="paper">🌙 제2의 루나를 찾아라 <span class="sub">바이낸스 선물</span> <span class="lp-badge paper">가상</span></a>
@@ -485,8 +485,20 @@
   <p class="mode-legend"><span class="lp-key live">실선</span> = 실전 (실제 돈) · <span class="lp-key paper">점선</span> = 가상 (페이퍼)</p>
 
 <div class="tab-panel" id="tab-ls">
+  <section id="paper-sec" aria-labelledby="pp-h">
+    <h2 id="pp-h">가상 장부 · 시드 $10,000 · 2026-10-10 시작</h2>
+    <p class="section-sub">실전과 같은 규칙(모멘텀+캐리, 하위 책 7개 요일 분산)으로 매일 목표 비중을 계산해 가상으로 사고팝니다. 2026-11-28 실전을 끝낸 뒤에도 이 장부는 계속 돕니다 — 전략의 힘이 돌아오는지 지켜보는 감시용입니다.</p>
+    <div class="tiles" aria-label="가상 장부 요약">
+      <div class="tile"><div class="label">가상 평가액</div><div class="value" id="pp-eq">—</div><div class="sub" id="pp-eq-sub">—</div></div>
+      <div class="tile"><div class="label">최대 낙폭</div><div class="value" id="pp-dd">—</div><div class="sub">시작 이후 최고점 대비</div></div>
+      <div class="tile"><div class="label">최근 90일 샤프</div><div class="value" id="pp-sh">—</div><div class="sub" id="pp-sh-sub">—</div></div>
+      <div class="tile"><div class="label">실전 복귀 조건</div><div class="value" id="pp-back">—</div><div class="sub">가상 장부 최근 90일 샤프 ≥ 1 이면 실전 재진입을 제안합니다 (결정은 사용자)</div></div>
+    </div>
+    <div class="equity-chart" id="pp-chart"></div>
+  </section>
+
   <section id="live-sec" aria-labelledby="live-h">
-    <div class="live-head"><h2 id="live-h" style="margin:0">실전 (실제 돈) · Binance 서브계정 futures02 · 2026-10-18 23:44 KST 시작</h2><span class="mode-badge paper" id="lv-mode"><i class="pulse"></i>확인 중</span></div>
+    <div class="live-head"><h2 id="live-h" style="margin:0">실전 기록 (종료) · Binance 서브계정 futures02 · 2026-10-18 23:44 ~ 11-28 20:45 KST</h2><span class="mode-badge paper" id="lv-mode"><i class="pulse"></i>확인 중</span></div>
     <p class="paper-status" id="lv-status">실전 데이터를 불러오는 중…</p>
     <div class="tiles" aria-label="실전 요약">
       <div class="tile"><div class="label">실전 시드</div><div class="value" id="lv-seed">$4,000</div><div class="sub" id="lv-seed-sub">USDT-M 선물 지갑</div></div>
@@ -669,16 +681,40 @@
     el.innerHTML = svg + '</svg>';
   }
   // ---------- 실전(ls-live): 카페24 ls-live 서비스가 15분마다(주문·손절 때는 바로) 올리는 paper-ls-live/ls-live.json ----------
+  // ---------- 가상 장부 (2026-11-28 실전 종료 뒤 이 페이지의 주인공) — ls-live.json 의 paperEquity [[day, equity]] ----------
+  function renderPaper(d){
+    var pe = (d.paperEquity || []).filter(function(r){ return r[1] > 0; });
+    if (!pe.length) { $('pp-eq').textContent = '—'; $('pp-eq-sub').textContent = '가상 장부 기록을 아직 받지 못했습니다'; return; }
+    var seed = 10000, last = pe[pe.length - 1][1], pk = 0, dd = 0;
+    pe.forEach(function(r){ if (r[1] > pk) pk = r[1]; dd = Math.min(dd, r[1] / pk - 1); });
+    $('pp-eq').textContent = usd(last);
+    $('pp-eq-sub').innerHTML = '<span class="' + cls(last - seed) + '">' + pct(last / seed - 1) + ' (' + usd(last - seed) + ')</span> · ' + pe[pe.length - 1][0] + ' 기준';
+    $('pp-dd').textContent = pct(dd);
+    var w = pe.slice(-91), rets = [];
+    for (var i = 1; i < w.length; i++) rets.push(w[i][1] / w[i - 1][1] - 1);
+    var m = rets.reduce(function(a, b){ return a + b; }, 0) / (rets.length || 1);
+    var sd = Math.sqrt(rets.reduce(function(a, b){ return a + (b - m) * (b - m); }, 0) / Math.max(1, rets.length - 1));
+    var sh = sd > 0 ? m / sd * Math.sqrt(365) : null, full = rets.length >= 90;
+    $('pp-sh').textContent = sh == null ? '—' : sh.toFixed(2);
+    $('pp-sh-sub').textContent = '하루 수익률 ' + rets.length + '일치' + (full ? '' : ' (90일이 차면 판정 — 그 전엔 참고용)');
+    $('pp-back').textContent = !full ? '판정 전' : sh >= 1 ? '✅ 조건 충족 — 제안 예정' : '아직 아님';
+    chart($('pp-chart'), [{ v: pe.map(function(r){ return [r[0].slice(5), r[1]]; }) }], function(v){ return '$' + Math.round(v).toLocaleString('en-US'); });
+  }
   function renderLive(d){
     var mode = d.mode, acct = d.account || {}, rk = d.risk || {}, lim = rk.limits || {}, seed = d.seedUsd || 4000;
     var badge = $('lv-mode');
-    if (mode === 'live') { badge.className = 'mode-badge live'; badge.innerHTML = '<i class="pulse"></i>실제 운영 중'; $('ls-tag').className = 'tag tag-live'; $('ls-tag').innerHTML = '<i class="lp-dot"></i>LIVE · 실전'; }
+    renderPaper(d);
+    if (d.liveEnded && mode !== 'live') {
+      badge.className = 'mode-badge dry'; badge.innerHTML = '실전 종료 · 전부 청산';
+      $('lv-status').textContent = '2026-11-28 20:45 KST 사용자 결정으로 실전 종료 — 22개 포지션 전부 청산(실패 0, 잔량 0). 2026년 들어 성과가 정체돼(백테스트 1~9월 +3.8%, 실전 10-18~11-28 −4.1%) 실제 돈은 뺐습니다. 아래는 실전 기간의 기록이고, 지금 잔고는 포지션 없이 남은 지갑입니다.';
+    }
+    else if (mode === 'live') { badge.className = 'mode-badge live'; badge.innerHTML = '<i class="pulse"></i>실제 운영 중'; $('ls-tag').className = 'tag tag-live'; $('ls-tag').innerHTML = '<i class="lp-dot"></i>LIVE · 실전'; }
     else { badge.className = 'mode-badge dry'; badge.innerHTML = '<i class="pulse"></i>모의 주문 · 실제 주문 없음'; $('ls-tag').className = 'tag tag-paper'; $('ls-tag').textContent = 'PAPER · 실전 모의 주문 중'; }
     var age = (Date.now() - new Date(d.updatedAt).getTime()) / 60000;
-    $('lv-status').textContent = '실전 데이터 갱신 ' + kst(d.updatedAt) + ' KST (' + (age < 1 ? '방금' : Math.round(age) + '분 전') + ')' + (age > 60 ? ' · ⚠️ 한 시간 넘게 갱신이 없습니다' : '') +
+    if (!d.liveEnded) $('lv-status').textContent = '실전 데이터 갱신 ' + kst(d.updatedAt) + ' KST (' + (age < 1 ? '방금' : Math.round(age) + '분 전') + ')' + (age > 60 ? ' · ⚠️ 한 시간 넘게 갱신이 없습니다' : '') +
       (mode === 'live' ? '' : d.keys ? ' · futures02 키 연결됨 — 실제 잔고 기준으로 «낼 주문»만 계산합니다' : ' · futures02 키가 아직 없어 시드 $4,000·빈 계정 기준으로 «낼 주문»만 계산합니다');
     $('lv-seed').textContent = usd(seed, 0);
-    $('lv-seed-sub').textContent = 'USDT-M 선물 지갑' + (d.netTransfers ? ' · 입출금 ' + usd(d.netTransfers) : '') + (mode === 'live' ? '' : ' · 실제 운영 전');
+    $('lv-seed-sub').textContent = 'USDT-M 선물 지갑' + (d.netTransfers ? ' · 입출금 ' + usd(d.netTransfers) : '') + (mode === 'live' ? '' : d.liveEnded ? ' · 11-28 종료' : ' · 실제 운영 전');
     var eq = acct.equity, perf = d.perf != null ? d.perf : eq;
     $('lv-eq').textContent = usd(eq); $('lv-eq').className = 'value';
     $('lv-eq-sub').innerHTML = eq == null ? '—' : '<span class="' + cls(perf - seed) + '">' + pct(perf / seed - 1) + ' (' + usd(perf - seed) + ')</span>' + (acct.simulated ? ' · 키 없음 → 시드' : ' · 미실현 ' + usd(acct.upnl));

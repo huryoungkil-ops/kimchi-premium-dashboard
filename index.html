@@ -511,7 +511,7 @@
   <nav class="strategy-tabs" aria-label="페이지">
     <a href="/" aria-current="page">🏠 전체 대시보드</a>
     <a href="/kimchi" class="live">🌶️ 김치프리미엄 <span class="sub">빗썸 × Binance · 실전</span> <span class="lp-badge live"><i class="lp-dot"></i>실전</span></a>
-    <a href="/ls" class="live">⚖️ 롱숏 모멘텀+캐리 <span class="sub">바이낸스 선물 · 실전</span> <span class="lp-badge live"><i class="lp-dot"></i>실전</span></a>
+    <a href="/ls" class="paper">⚖️ 롱숏 모멘텀+캐리 <span class="sub">바이낸스 선물 · 실전 종료</span> <span class="lp-badge paper">가상</span></a>
     <a href="/usdt" class="live">💵 USDT 웃돈 <span class="sub">디지털엑스 원화 · 실전</span> <span class="lp-badge live"><i class="lp-dot"></i>실전</span></a>
     <a href="/turtle" class="paper">🐢 터틀 트레이딩 <span class="sub">빗썸 원화</span> <span class="lp-badge paper">가상</span></a>
     <a href="/luna" class="paper">🌙 제2의 루나를 찾아라 <span class="sub">바이낸스 선물</span> <span class="lp-badge paper">가상</span></a>
@@ -732,7 +732,7 @@
     if (kim && kim.r && !kim.r.seedFromBot && cfgSeed) kim.r.seed = cfgSeed;
     var lsLive = !!(lsl && lsl.r && lsl.r.mode === 'live');
     // 롱숏 실전이 아직 모의 주문이면 카드는 실전 칸에 두되 실전 합계에서는 뺀다
-    if (lsl && lsl.r && !lsLive) { lsl.name = '롱숏 모멘텀+캐리 · 실전 (모의 주문 중)'; lsl.noSum = true; }
+    if (lsl && lsl.r && !lsLive && !lsl.r.paperLs) { lsl.name = '롱숏 모멘텀+캐리 · 실전 (모의 주문 중)'; lsl.noSum = true; }   // 11-28 실전 종료 뒤엔 가상 장부(paperLs)라 가상 칸·합계 제외는 live 표시로 정해진다
     var ud = S.filter(function(x){ return x.key === 'usdt'; })[0];
     if (ud && ud.r && !ud.r.liveMode) { ud.name = 'USDT 웃돈 · 실전 (실전 전환 준비 중)'; ud.noSum = true; }
     var LIVE = S.filter(function(s){ return s.live; }), PAPER = S.filter(function(s){ return !s.live; });
